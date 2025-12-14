@@ -1,0 +1,138 @@
+---
+import BaseLayout from "../layouts/BaseLayout.astro";
+---
+
+<BaseLayout titrePage="Accueil">
+  <header class="hero">
+    <div class="contenu-hero">
+      <h1>Lumière du Vodun</h1>
+      <p class="slogan-hero">Héritage Vodun : L'âme et l'histoire du Bénin.</p>
+      <p class="description">
+        Bienvenue sur votre porte d'entrée numérique vers le Bénin. Loin des
+        clichés, découvrez une spiritualité vivante, une philosophie de vie et
+        un lien sacré avec la nature.
+      </p>
+      <br />
+      <a href="/about" class="bouton-cta">Découvrir notre mission</a>
+    </div>
+
+    <div class="symbole-solaire" id="soleil"></div>
+  </header>
+
+  <section class="intro">
+    <div class="conteneur-texte">
+      <h2>Une culture, pas un mythe.</h2>
+      <p>
+        Souvent mal compris à l'international, le Vodun est une célébration de
+        la vie. À travers ce site, nous déconstruisons les mythes pour révéler
+        l'identité béninoise : des Rois d'Abomey aux cérémonies contemporaines.
+      </p>
+    </div>
+  </section>
+</BaseLayout>
+
+<style>
+  .hero {
+    min-height: 85vh;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 50px 10%;
+    position: relative;
+    overflow: hidden;
+    /* AJOUT DE L'IMAGE DE FOND */
+    background-image:
+      linear-gradient(rgba(255, 255, 255, 0.9), rgba(255, 255, 255, 0.8)),
+      url("/vodunsi.jpeg");
+    background-size: cover;
+    background-position: center;
+  }
+
+  .contenu-hero {
+    max-width: 600px;
+    z-index: 2;
+  }
+
+  .contenu-hero h1 {
+    font-size: 3.5rem; /* Mobile first : sera adapté par BaseLayout si besoin */
+    margin-bottom: 0.5rem;
+  }
+
+  @media (max-width: 768px) {
+    .contenu-hero h1 {
+      font-size: 2.5rem;
+    }
+  }
+
+  .slogan-hero {
+    font-family: "Playfair Display", serif;
+    font-style: italic;
+    color: var(--couleur-or);
+    font-size: 1.2rem;
+    margin-bottom: 1.5rem;
+  }
+
+  .description {
+    font-size: 1.1rem;
+    color: #444;
+    margin-bottom: 2rem;
+  }
+
+  .bouton-cta {
+    background-color: var(--couleur-principale);
+    color: white;
+    padding: 15px 35px;
+    text-decoration: none;
+    font-weight: bold;
+    letter-spacing: 1px;
+    transition: background 0.3s;
+    display: inline-block;
+  }
+
+  .bouton-cta:hover {
+    background-color: var(--couleur-or);
+    color: black;
+  }
+
+  .symbole-solaire {
+    width: 500px;
+    height: 500px;
+    border: 1px solid var(--couleur-or);
+    border-radius: 50%;
+    position: absolute;
+    right: -100px;
+    top: 15%;
+    opacity: 0.6;
+    background: repeating-conic-gradient(
+      from 0deg,
+      rgba(212, 175, 55, 0.1) 0deg 10deg,
+      transparent 10deg 20deg
+    );
+    z-index: 1;
+  }
+
+  .intro {
+    padding: 80px 10%;
+    background-color: white;
+    text-align: center;
+    border-top: 4px solid var(--couleur-or);
+  }
+
+  .conteneur-texte {
+    max-width: 800px;
+    margin: 0 auto;
+  }
+</style>
+
+<script>
+  // Script sécurisé pour éviter les erreurs rouges
+  const soleil = document.getElementById("soleil");
+
+  if (soleil) {
+    window.addEventListener("scroll", () => {
+      const scrollValue = window.scrollY;
+      // Rotation douce
+      soleil.style.transform = `rotate(${scrollValue * 0.1}deg)`;
+    });
+  }
+</script>

@@ -1,0 +1,118 @@
+---
+import BaseLayout from "./BaseLayout.astro";
+const { frontmatter } = Astro.props;
+---
+
+<BaseLayout titrePage={frontmatter.title}>
+  <div class="article-container">
+    <div class="image-wrapper">
+      <img
+        src={frontmatter.image}
+        alt={frontmatter.title}
+        class="article-img"
+      />
+    </div>
+
+    <h1>{frontmatter.title}</h1>
+    <p class="date">
+      Publié le {frontmatter.pubDate} | Catégorie : {frontmatter.categorie}
+    </p>
+
+    <div class="contenu-texte">
+      <slot />
+    </div>
+  </div>
+</BaseLayout>
+
+<style>
+  .article-container {
+    max-width: 800px;
+    margin: 0 auto;
+    padding: 40px 20px;
+  }
+
+  /* --- NOUVEAU STYLE D'IMAGE INTELLIGENT --- */
+  .image-wrapper {
+    width: 100%;
+    /* On définit une hauteur maximale raisonnable (60% de l'écran)
+       pour éviter qu'une image très verticale ne casse tout le design */
+    max-height: 60vh;
+    margin-bottom: 30px;
+    border-radius: 12px; /* Coins arrondis */
+    overflow: hidden; /* Force l'image à respecter les coins arrondis */
+    background-color: #f8f8f8; /* Un fond gris très clair si l'image ne remplit pas tout */
+    display: flex;
+    justify-content: center; /* Centre horizontalement */
+    align-items: center; /* Centre verticalement */
+    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.08); /* Petite ombre élégante */
+  }
+
+  .article-img {
+    /* L'image prendra la largeur max possible sans dépasser... */
+    max-width: 100%;
+    /* ...et la hauteur max possible sans dépasser la limite du wrapper */
+    max-height: 60vh;
+
+    /* LA CLÉ MAGIQUE : "contain"
+       L'image est redimensionnée pour être ENTIÈREMENT visible dans la zone.
+       Elle ne sera jamais coupée, quel que soit son format (carré, paysage, portrait). */
+    object-fit: contain;
+
+    display: block;
+  }
+  /* --------------------------------------- */
+
+  h1 {
+    font-size: 3rem;
+    margin-bottom: 15px;
+    line-height: 1.2;
+    color: var(--couleur-principale);
+  }
+
+  .date {
+    color: #888;
+    font-style: italic;
+    margin-bottom: 40px;
+    border-bottom: 1px solid #eee;
+    padding-bottom: 20px;
+    font-size: 0.9rem;
+  }
+
+  /* Style pour le texte de l'article pour qu'il soit très lisible */
+  .contenu-texte {
+    font-size: 1.15rem;
+    line-height: 1.8;
+    color: #333;
+  }
+
+  /* On ajoute du style aux éléments qui pourraient être dans votre markdown */
+  .contenu-texte h2 {
+    margin-top: 40px;
+    font-size: 2rem;
+  }
+  .contenu-texte h3 {
+    margin-top: 30px;
+    font-size: 1.5rem;
+  }
+  .contenu-texte ul,
+  .contenu-texte ol {
+    padding-left: 20px;
+    margin-bottom: 20px;
+  }
+  .contenu-texte li {
+    margin-bottom: 10px;
+  }
+
+  /* Adaptation Mobile */
+  @media (max-width: 600px) {
+    h1 {
+      font-size: 2.2rem;
+    }
+    .image-wrapper {
+      max-height: 40vh;
+    } /* Moins haut sur petit écran */
+    .article-img {
+      max-height: 40vh;
+    }
+  }
+</style>

@@ -1,0 +1,116 @@
+---
+import BaseLayout from "../layouts/BaseLayout.astro";
+---
+
+<BaseLayout titrePage="À Propos">
+  <section class="about-header">
+    <h1>Notre Mission</h1>
+    <p class="slogan">Révéler l'Âme du Bénin</p>
+  </section>
+
+  <section class="contenu-page">
+    <div class="bloc-texte">
+      <h2>L'Origine du Projet</h2>
+      <p>
+        Bienvenue sur <strong>Héritage Vodun</strong>, votre porte d'entrée
+        numérique vers le Bénin, terre d'histoire, de bravoure et de
+        spiritualité.
+      </p>
+      <p>
+        Ce projet est né d'un constat simple : la richesse culturelle du Bénin,
+        et plus particulièrement la spiritualité Vodun, reste méconnue ou mal
+        comprise à travers le monde. Souvent réduit à des clichés folkloriques
+        ou cinématographiques, le Vodun est pourtant bien plus que cela : c'est
+        une vision du monde, une philosophie de vie et un lien sacré avec la
+        nature et les ancêtres.
+      </p>
+    </div>
+
+    <div class="bloc-texte">
+      <h2>Ce que nous faisons</h2>
+      <p>
+        Avec Héritage Vodun, notre objectif est de déconstruire les mythes et de
+        célébrer l'identité béninoise dans toute sa globalité. Nous nous
+        engageons à offrir un contenu de qualité qui explore :
+      </p>
+
+      <ul class="liste-valeurs">
+        <li>
+          <strong>L'Histoire :</strong> Des grands royaumes du Dahomey aux figures
+          emblématiques qui ont façonné la nation.
+        </li>
+        <li>
+          <strong>Les Valeurs Culturelles :</strong> L'hospitalité, le respect des
+          aînés, l'art et les traditions orales.
+        </li>
+        <li>
+          <strong>Le Vodun :</strong> Une exploration respectueuse et approfondie
+          de ses divinités, de ses rituels, de sa philosophie et de son rôle social
+          contemporain.
+        </li>
+      </ul>
+    </div>
+
+    <div class="bloc-texte">
+      <h2>Pourquoi nous suivre ?</h2>
+      <p>
+        Que vous soyez un chercheur de vérité, un amoureux de l'Afrique, un
+        membre de la diaspora ou un simple curieux, Héritage Vodun est conçu
+        pour vous. À travers nos dossiers de fond et notre blog, nous souhaitons
+        créer un pont entre le passé et le présent, entre le visible et
+        l'invisible.
+      </p>
+      <p class="appel-final">
+        Embarquez avec nous pour un voyage au cœur de la tradition.
+      </p>
+    </div>
+  </section>
+</BaseLayout>
+
+<style>
+  .about-header {
+    text-align: center;
+    padding: 60px 20px;
+    background-color: white;
+    border-bottom: 1px solid #eee;
+  }
+
+  .slogan {
+    font-family: "Playfair Display", serif;
+    font-style: italic;
+    color: var(--couleur-or);
+    font-size: 1.5rem;
+    margin-top: 10px;
+  }
+
+  .contenu-page {
+    max-width: 800px;
+    margin: 0 auto;
+    padding: 60px 20px;
+  }
+
+  .bloc-texte {
+    margin-bottom: 50px;
+  }
+
+  .liste-valeurs {
+    list-style: none;
+    padding-left: 0;
+    margin-top: 20px;
+  }
+
+  .liste-valeurs li {
+    margin-bottom: 15px;
+    padding-left: 20px;
+    border-left: 4px solid var(--couleur-principale);
+  }
+
+  .appel-final {
+    font-weight: bold;
+    color: var(--couleur-principale);
+    font-size: 1.3rem;
+    margin-top: 40px;
+    text-align: center;
+    font-family: "Playfair Display", serif;
+  }
+</style>

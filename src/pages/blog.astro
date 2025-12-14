@@ -1,0 +1,92 @@
+---
+import BaseLayout from "../layouts/BaseLayout.astro";
+// MAGIE : On récupère tous les articles du dossier "posts"
+const allPosts = await Astro.glob("../pages/posts/*.md");
+---
+
+<BaseLayout titrePage="Le Blog">
+  <header class="blog-header">
+    <h1>Chroniques du Sacré</h1>
+    <p>Explorez les mythes, les rites et l'histoire.</p>
+  </header>
+
+  <section class="blog-grid">
+    {
+      allPosts.map((post) => (
+        <article class="carte-article">
+          <div
+            class="image-cover"
+            style={`background-image: url(${post.frontmatter.image});`}
+          />
+
+          <div class="contenu-carte">
+            <span class="categorie">{post.frontmatter.categorie}</span>
+            <h3>{post.frontmatter.title}</h3>
+            <p>{post.frontmatter.description}</p>
+            <a href={post.url} class="lire-plus">
+              Lire la suite &rarr;
+            </a>
+          </div>
+        </article>
+      ))
+    }
+  </section>
+</BaseLayout>
+
+<style>
+  .blog-header {
+    text-align: center;
+    padding: 60px 20px;
+    background-color: white;
+  }
+  .blog-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+    gap: 40px;
+    padding: 40px 10%;
+    margin-bottom: 100px;
+  }
+  .carte-article {
+    background: white;
+    border: 1px solid #eee;
+    transition: transform 0.3s ease;
+    border-bottom: 4px solid var(--couleur-principale);
+  }
+  .carte-article:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 10px 20px rgba(0, 0, 0, 0.1);
+  }
+
+  .image-cover {
+    height: 200px;
+    width: 100%;
+    background-size: cover;
+    background-position: center;
+    background-color: #eee;
+  }
+
+  .contenu-carte {
+    padding: 30px;
+  }
+  .categorie {
+    text-transform: uppercase;
+    font-size: 0.8rem;
+    color: var(--couleur-or);
+    font-weight: bold;
+  }
+  h3 {
+    font-size: 1.4rem;
+    margin: 10px 0;
+  }
+  p {
+    font-size: 1rem;
+    color: #555;
+  }
+  .lire-plus {
+    display: inline-block;
+    margin-top: 20px;
+    text-decoration: none;
+    color: var(--couleur-principale);
+    font-weight: bold;
+  }
+</style>
