@@ -1,151 +1,54 @@
 ---
-import Logo from "../components/Logo.astro";
-const { titrePage } = Astro.props;
+import "../styles/global.css";
+
+// On récupère les infos de la page. Si on ne donne rien, il utilise les valeurs par défaut.
+const {
+  titrePage = "Héritage Vodun",
+  description = "Découvrez l'essence du Vodun, spiritualité millénaire du Bénin. Histoire, rites et culture expliqués loin des clichés.",
+  image = "/vodunsi.jpg", // L'image que vous avez envoyée
+} = Astro.props;
+
+// Crée l'URL canonique (l'adresse officielle de la page pour Google)
+const canonicalURL = new URL(Astro.url.pathname, Astro.site);
 ---
 
 <html lang="fr">
   <head>
     <meta charset="utf-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1" />
-    <meta
-      name="description"
-      content="Héritage Vodun : L'âme et l'histoire du Bénin. Explorez la spiritualité, les divinités et les traditions."
-    />
+    <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+    <meta name="viewport" content="width=device-width" />
+    <meta name="generator" content={Astro.generator} />
+
     <title>{titrePage} | Héritage Vodun</title>
+    <meta name="description" content={description} />
+    <link rel="canonical" href={canonicalURL} />
+
+    <meta property="og:type" content="website" />
+    <meta property="og:url" content={Astro.url} />
+    <meta property="og:title" content={titrePage} />
+    <meta property="og:description" content={description} />
+    <meta property="og:image" content={new URL(image, Astro.site)} />
+
+    <meta property="twitter:card" content="summary_large_image" />
+    <meta property="twitter:url" content={Astro.url} />
+    <meta property="twitter:title" content={titrePage} />
+    <meta property="twitter:description" content={description} />
+    <meta property="twitter:image" content={new URL(image, Astro.site)} />
 
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
     <link
-      href="https://fonts.googleapis.com/css2?family=Lato:wght@400;700&family=Playfair+Display:wght@700&display=swap"
+      href="https://fonts.googleapis.com/css2?family=Lato:wght@400;700&family=Playfair+Display:ital,wght@0,400;0,700;1,400&display=swap"
       rel="stylesheet"
     />
-
-    <style is:global>
-      /* --- DESIGN SYSTEM --- */
-      :root {
-        --couleur-fond: #faf9f6; /* Blanc Sable */
-        --couleur-principale: #c04000; /* Terre Ocre */
-        --couleur-texte: #2f4f4f; /* Vert Sombre */
-        --couleur-or: #d4af37; /* Or */
-      }
-
-      html {
-        scroll-behavior: smooth;
-      }
-
-      body {
-        margin: 0;
-        padding: 0;
-        background-color: var(--couleur-fond);
-        color: var(--couleur-texte);
-        font-family: "Lato", sans-serif;
-        font-size: 18px; /* Optimisé lecture */
-        line-height: 1.6;
-      }
-
-      h1,
-      h2,
-      h3 {
-        font-family: "Playfair Display", serif;
-        color: var(--couleur-principale);
-        line-height: 1.2;
-        margin-top: 0;
-      }
-
-      /* NAVIGATION */
-      nav {
-        display: flex;
-        justify-content: space-between;
-        align-items: center;
-        padding: 15px 5%;
-        background-color: white;
-        box-shadow: 0 2px 10px rgba(0, 0, 0, 0.05);
-        position: sticky;
-        top: 0;
-        z-index: 100;
-      }
-
-      .logo-container {
-        display: flex;
-        align-items: center;
-        text-decoration: none;
-        gap: 15px;
-        color: var(--couleur-principale);
-        transition: color 0.3s;
-      }
-
-      .logo-texte {
-        font-family: "Playfair Display", serif;
-        font-weight: bold;
-        font-size: 1.4rem;
-        text-transform: uppercase;
-        letter-spacing: 1px;
-      }
-
-      .logo-container:hover {
-        color: var(--couleur-or);
-      }
-
-      .liens {
-        display: flex;
-        gap: 20px;
-      }
-
-      .liens a {
-        text-decoration: none;
-        color: var(--couleur-texte);
-        font-weight: 700;
-        font-size: 16px;
-        text-transform: uppercase;
-        transition: color 0.3s;
-      }
-
-      .liens a:hover {
-        color: var(--couleur-or);
-      }
-
-      main {
-        min-height: 80vh;
-      }
-
-      footer {
-        text-align: center;
-        padding: 40px 20px;
-        background-color: var(--couleur-principale);
-        color: white;
-        margin-top: 80px;
-        font-size: 16px;
-      }
-
-      /* MOBILE */
-      @media (max-width: 768px) {
-        nav {
-          flex-direction: column;
-          padding: 20px;
-        }
-        .liens {
-          margin-top: 20px;
-          flex-wrap: wrap;
-          justify-content: center;
-        }
-        .logo-texte {
-          font-size: 1.2rem;
-        }
-      }
-    </style>
   </head>
-
   <body>
-    <nav>
-      <a href="/" class="logo-container">
-        <Logo width="40" height="40" />
-        <span class="logo-texte">Héritage Vodun</span>
-      </a>
-
+    <nav class="navigation-principale">
+      <div class="logo">Héritage Vodun</div>
       <div class="liens">
         <a href="/">Accueil</a>
-        <a href="/about">À Propos</a>
         <a href="/blog">Blog</a>
+        <a href="/about">À Propos</a>
         <a href="/contact">Contact</a>
       </div>
     </nav>
@@ -155,7 +58,46 @@ const { titrePage } = Astro.props;
     </main>
 
     <footer>
-      <p>&copy; 2025 Héritage Vodun - L'âme et l'histoire du Bénin.</p>
+      <p>
+        &copy; {new Date().getFullYear()} Héritage Vodun. Tous droits réservés.
+      </p>
     </footer>
   </body>
 </html>
+
+<style>
+  /* STYLES RAPIDES POUR LE MENU (Si vous ne les avez pas ailleurs) */
+  .navigation-principale {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 20px 40px;
+    background: white;
+    border-bottom: 1px solid #eee;
+  }
+  .logo {
+    font-family: "Playfair Display", serif;
+    font-weight: bold;
+    font-size: 1.5rem;
+    color: #2f4f4f;
+  }
+  .liens a {
+    text-decoration: none;
+    color: #333;
+    margin-left: 20px;
+    font-family: "Lato", sans-serif;
+    font-weight: bold;
+    transition: color 0.3s;
+  }
+  .liens a:hover {
+    color: #d4af37; /* Or */
+  }
+  footer {
+    text-align: center;
+    padding: 40px;
+    background: #2f4f4f;
+    color: white;
+    margin-top: auto;
+    font-family: "Lato", sans-serif;
+  }
+</style>
