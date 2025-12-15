@@ -1,7 +1,7 @@
 // @ts-check
 import { defineConfig } from 'astro/config';
 import sitemap from '@astrojs/sitemap';
-import vercel from '@astrojs/vercel/static'; // Assurez-vous d'avoir "/static" ici
+import vercel from '@astrojs/vercel/static';
 
 // https://astro.build/config
 export default defineConfig({
@@ -9,6 +9,6 @@ export default defineConfig({
   
   integrations: [sitemap()],
   
-  // CORRECTION ICI : On ajoute des accolades {} vides
+  // LA SOLUTION : On met des accolades vides ici v
   adapter: vercel({}) 
 });
