@@ -1,16 +1,17 @@
 // @ts-check
 import { defineConfig } from 'astro/config';
 import sitemap from '@astrojs/sitemap';
-import vercel from '@astrojs/vercel/static'; // On utilise l'import static spécifique
 
+// On retire l'import de Vercel qui pose problème
+// import vercel from '@astrojs/vercel/static'; 
+
+// https://astro.build/config
 export default defineConfig({
-  // C'EST LA LIGNE MANQUANTE QUI VA TOUT CHANGER :
-  output: 'static',
-
   site: 'https://heritage-vodun.vercel.app',
   
+  // On active le sitemap
   integrations: [sitemap()],
   
-  // @ts-ignore
-  adapter: vercel()
+  // On ne met PAS d'adaptateur. 
+  // Astro va juste créer un dossier "dist" et Vercel le mettra en ligne tout seul.
 });
