@@ -4,135 +4,286 @@ import BaseLayout from "../layouts/BaseLayout.astro";
 
 <BaseLayout titrePage="Accueil">
   <header class="hero">
-    <div class="contenu-hero">
-      <h1>Lumière du Vodun</h1>
-      <p class="slogan-hero">Héritage Vodun : L'âme et l'histoire du Bénin.</p>
-      <p class="description">
-        Bienvenue sur votre porte d'entrée numérique vers le Bénin. Loin des
-        clichés, découvrez une spiritualité vivante, une philosophie de vie et
-        un lien sacré avec la nature.
-      </p>
-      <br />
-      <a href="/about" class="bouton-cta">Découvrir notre mission</a>
+    <div class="hero-bg"></div>
+
+    <div class="sanctuaire-container">
+      <div class="anneau-sacre externe"></div>
+      <div class="anneau-sacre interne"></div>
+      <div class="coeur-lumineux"></div>
     </div>
 
-    <div class="symbole-solaire" id="soleil"></div>
+    <div class="contenu-hero">
+      <span class="appel-ancetres">Bienvenue sur la terre des origines</span>
+      <h1>Lumière du Vodun</h1>
+      <p class="slogan">L'âme et l'histoire du Bénin</p>
+
+      <p class="description">
+        Une spiritualité vivante. Une philosophie de paix. <br />
+        Un lien sacré entre l'Homme et la Nature.
+      </p>
+
+      <div class="actions">
+        <a href="/about" class="btn-or">Découvrir notre mission</a>
+      </div>
+    </div>
+
+    <div class="scroll-indicator">
+      <span></span>
+    </div>
   </header>
 
   <section class="intro">
     <div class="conteneur-texte">
       <h2>Une culture, pas un mythe.</h2>
       <p>
-        Souvent mal compris à l'international, le Vodun est une célébration de
-        la vie. À travers ce site, nous déconstruisons les mythes pour révéler
-        l'identité béninoise : des Rois d'Abomey aux cérémonies contemporaines.
+        Le Vodun est une célébration de la vie. À travers ce site, nous révélons
+        l'identité béninoise : de la sagesse du Fâ à la puissance des rythmes
+        sacrés.
       </p>
     </div>
   </section>
 </BaseLayout>
 
 <style>
+  /* --- STRUCTURE --- */
   .hero {
-    min-height: 85vh;
+    height: 90vh; /* Hauteur immersive */
     display: flex;
     align-items: center;
-    justify-content: space-between;
-    padding: 50px 10%;
+    justify-content: center;
     position: relative;
     overflow: hidden;
-    /* AJOUT DE L'IMAGE DE FOND */
-    background-image:
-      linear-gradient(rgba(255, 255, 255, 0.9), rgba(255, 255, 255, 0.8)),
-      url("/vodunsi.jpeg");
+    color: white;
+  }
+
+  /* --- FOND --- */
+  .hero-bg {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-image: url("/vodunsi.jpeg");
     background-size: cover;
     background-position: center;
+    z-index: 1;
+    /* On assombrit l'image pour que les cercles dorés ressortent bien */
+    filter: brightness(0.5) contrast(1.2);
   }
 
-  .contenu-hero {
-    max-width: 600px;
+  /* --- ANIMATION CENTRALE (Le Sanctuaire) --- */
+  .sanctuaire-container {
+    position: absolute;
+    width: 800px;
+    height: 800px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
     z-index: 2;
+    pointer-events: none; /* Laisse passer les clics */
+    opacity: 0.8; /* Bien visible */
   }
 
-  .contenu-hero h1 {
-    font-size: 3.5rem; /* Mobile first : sera adapté par BaseLayout si besoin */
-    margin-bottom: 0.5rem;
+  .anneau-sacre {
+    position: absolute;
+    border-radius: 50%;
+    box-shadow: 0 0 15px rgba(212, 175, 55, 0.1); /* Légère lueur */
   }
 
-  @media (max-width: 768px) {
-    .contenu-hero h1 {
-      font-size: 2.5rem;
-    }
+  /* Grand anneau externe - Trait fin et élégant */
+  .externe {
+    width: 650px;
+    height: 650px;
+    border: 1px solid rgba(212, 175, 55, 0.4); /* Couleur Or visible */
+    border-top: 1px solid rgba(212, 175, 55, 0.9); /* Une partie plus brillante */
+    border-bottom: 1px solid rgba(212, 175, 55, 0.9);
+    animation: rotation-horaire 60s infinite linear;
   }
 
-  .slogan-hero {
+  /* Anneau interne - Pointillés (Esprit) */
+  .interne {
+    width: 450px;
+    height: 450px;
+    border: 2px dashed rgba(255, 255, 255, 0.25);
+    animation: rotation-anti-horaire 45s infinite linear;
+  }
+
+  /* Le centre lumineux */
+  .coeur-lumineux {
+    width: 300px;
+    height: 300px;
+    background: radial-gradient(
+      circle,
+      rgba(212, 175, 55, 0.15) 0%,
+      transparent 70%
+    );
+    border-radius: 50%;
+    animation: pulsation 6s infinite ease-in-out;
+  }
+
+  /* --- CONTENU --- */
+  .contenu-hero {
+    position: relative;
+    z-index: 10;
+    text-align: center;
+    max-width: 700px;
+    padding: 0 20px;
+    /* Petit effet de flottement global pour donner vie */
+    animation: flottement 8s infinite ease-in-out;
+  }
+
+  .appel-ancetres {
+    display: block;
+    text-transform: uppercase;
+    letter-spacing: 3px;
+    font-size: 0.85rem;
+    color: var(--couleur-or);
+    margin-bottom: 10px;
+    font-weight: bold;
+  }
+
+  h1 {
+    font-family: "Playfair Display", serif;
+    font-size: 4rem;
+    margin: 0;
+    line-height: 1.1;
+    text-shadow: 0 5px 15px rgba(0, 0, 0, 0.5);
+  }
+
+  .slogan {
     font-family: "Playfair Display", serif;
     font-style: italic;
-    color: var(--couleur-or);
-    font-size: 1.2rem;
-    margin-bottom: 1.5rem;
+    font-size: 1.5rem;
+    color: rgba(255, 255, 255, 0.9);
+    margin-top: 10px;
+    margin-bottom: 30px;
   }
 
   .description {
     font-size: 1.1rem;
-    color: #444;
-    margin-bottom: 2rem;
+    line-height: 1.6;
+    margin-bottom: 40px;
+    color: rgba(255, 255, 255, 0.8);
   }
 
-  .bouton-cta {
-    background-color: var(--couleur-principale);
-    color: white;
-    padding: 15px 35px;
+  .btn-or {
+    background-color: var(--couleur-or);
+    color: #1a1a1a;
+    padding: 15px 40px;
+    border-radius: 50px; /* Bouton arrondi = Harmonie */
     text-decoration: none;
     font-weight: bold;
+    text-transform: uppercase;
     letter-spacing: 1px;
-    transition: background 0.3s;
+    transition:
+      transform 0.3s,
+      background 0.3s;
     display: inline-block;
   }
 
-  .bouton-cta:hover {
-    background-color: var(--couleur-or);
-    color: black;
+  .btn-or:hover {
+    background-color: white;
+    transform: scale(1.05);
   }
 
-  .symbole-solaire {
-    width: 500px;
-    height: 500px;
-    border: 1px solid var(--couleur-or);
-    border-radius: 50%;
+  /* --- INDICATEUR SCROLL (SOURIS) --- */
+  .scroll-indicator {
     position: absolute;
-    right: -100px;
-    top: 15%;
-    opacity: 0.6;
-    background: repeating-conic-gradient(
-      from 0deg,
-      rgba(212, 175, 55, 0.1) 0deg 10deg,
-      transparent 10deg 20deg
-    );
-    z-index: 1;
+    bottom: 30px;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 30px;
+    height: 50px;
+    border: 2px solid rgba(255, 255, 255, 0.3);
+    border-radius: 20px;
+    z-index: 10;
+  }
+  .scroll-indicator span {
+    display: block;
+    width: 6px;
+    height: 6px;
+    background: white;
+    border-radius: 50%;
+    margin: 10px auto 0;
+    animation: scroll-anim 2s infinite;
+  }
+
+  /* --- ANIMATIONS --- */
+  @keyframes rotation-horaire {
+    from {
+      transform: rotate(0deg);
+    }
+    to {
+      transform: rotate(360deg);
+    }
+  }
+  @keyframes rotation-anti-horaire {
+    from {
+      transform: rotate(360deg);
+    }
+    to {
+      transform: rotate(0deg);
+    }
+  }
+  @keyframes pulsation {
+    0%,
+    100% {
+      transform: scale(1);
+      opacity: 0.5;
+    }
+    50% {
+      transform: scale(1.2);
+      opacity: 0.8;
+    }
+  }
+  @keyframes flottement {
+    0%,
+    100% {
+      transform: translateY(0);
+    }
+    50% {
+      transform: translateY(-10px);
+    }
+  }
+  @keyframes scroll-anim {
+    0% {
+      transform: translateY(0);
+      opacity: 1;
+    }
+    100% {
+      transform: translateY(20px);
+      opacity: 0;
+    }
+  }
+
+  /* --- MOBILE --- */
+  @media (max-width: 768px) {
+    h1 {
+      font-size: 2.8rem;
+    }
+    .sanctuaire-container {
+      width: 100%;
+      overflow: hidden;
+    }
+    .externe {
+      width: 350px;
+      height: 350px;
+    }
+    .interne {
+      width: 250px;
+      height: 250px;
+    }
   }
 
   .intro {
     padding: 80px 10%;
     background-color: white;
     text-align: center;
-    border-top: 4px solid var(--couleur-or);
+    position: relative;
+    z-index: 20; /* Passe au dessus du fond */
   }
-
   .conteneur-texte {
     max-width: 800px;
     margin: 0 auto;
   }
 </style>
-
-<script>
-  // Script sécurisé pour éviter les erreurs rouges
-  const soleil = document.getElementById("soleil");
-
-  if (soleil) {
-    window.addEventListener("scroll", () => {
-      const scrollValue = window.scrollY;
-      // Rotation douce
-      soleil.style.transform = `rotate(${scrollValue * 0.1}deg)`;
-    });
-  }
-</script>

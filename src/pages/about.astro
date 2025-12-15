@@ -3,114 +3,331 @@ import BaseLayout from "../layouts/BaseLayout.astro";
 ---
 
 <BaseLayout titrePage="À Propos">
-  <section class="about-header">
-    <h1>Notre Mission</h1>
-    <p class="slogan">Révéler l'Âme du Bénin</p>
-  </section>
+  <div class="page-container">
+    <section class="about-header animate-fade-down">
+      <span class="sur-titre">Notre raison d'être</span>
+      <h1>Notre Mission</h1>
+      <div class="ligne-or"></div>
+      <p class="slogan">"Révéler l'Âme du Bénin"</p>
+    </section>
 
-  <section class="contenu-page">
-    <div class="bloc-texte">
-      <h2>L'Origine du Projet</h2>
-      <p>
-        Bienvenue sur <strong>Héritage Vodun</strong>, votre porte d'entrée
-        numérique vers le Bénin, terre d'histoire, de bravoure et de
-        spiritualité.
-      </p>
-      <p>
-        Ce projet est né d'un constat simple : la richesse culturelle du Bénin,
-        et plus particulièrement la spiritualité Vodun, reste méconnue ou mal
-        comprise à travers le monde. Souvent réduit à des clichés folkloriques
-        ou cinématographiques, le Vodun est pourtant bien plus que cela : c'est
-        une vision du monde, une philosophie de vie et un lien sacré avec la
-        nature et les ancêtres.
-      </p>
+    <div class="conteneur-principal">
+      <section class="bloc-texte animate-fade-up delay-1">
+        <h2>L'Origine du Projet</h2>
+        <div class="texte-riche">
+          <p>
+            <span class="lettrine">B</span>ienvenue sur <strong
+              >Héritage Vodun</strong
+            >, votre porte d'entrée numérique vers le Bénin, terre d'histoire,
+            de bravoure et de spiritualité.
+          </p>
+          <p>
+            Ce projet est né d'un constat simple : la richesse culturelle du
+            Bénin, et plus particulièrement la spiritualité Vodun, reste
+            méconnue ou mal comprise à travers le monde. Souvent réduit à des
+            clichés folkloriques, le Vodun est pourtant bien plus que cela :
+            c'est une vision du monde, une philosophie de vie et un lien sacré
+            avec la nature et les ancêtres.
+          </p>
+        </div>
+      </section>
+
+      <section class="bloc-valeurs animate-fade-up delay-2">
+        <h2>Ce que nous faisons</h2>
+        <p class="intro-section">
+          Notre objectif est de déconstruire les mythes et de célébrer
+          l'identité béninoise dans toute sa globalité :
+        </p>
+
+        <div class="grille-valeurs">
+          <div class="carte-valeur">
+            <div class="icone">📜</div>
+            <h3>L'Histoire</h3>
+            <p>
+              Des grands royaumes du Dahomey aux figures emblématiques qui ont
+              façonné la nation.
+            </p>
+          </div>
+
+          <div class="carte-valeur">
+            <div class="icone">🤝</div>
+            <h3>Les Valeurs</h3>
+            <p>
+              L'hospitalité, le respect des aînés, l'art et les traditions
+              orales.
+            </p>
+          </div>
+
+          <div class="carte-valeur">
+            <div class="icone">🌿</div>
+            <h3>Le Vodun</h3>
+            <p>
+              Une exploration respectueuse des divinités, des rituels et de la
+              philosophie.
+            </p>
+          </div>
+        </div>
+      </section>
+
+      <section class="bloc-texte dernier-bloc animate-fade-up delay-3">
+        <h2>Pourquoi nous suivre ?</h2>
+        <p>
+          Que vous soyez un chercheur de vérité, un amoureux de l'Afrique, un
+          membre de la diaspora ou un simple curieux, Héritage Vodun est conçu
+          pour vous. Nous créons un pont entre le passé et le présent, entre le
+          visible et l'invisible.
+        </p>
+
+        <div class="appel-final-container">
+          <p class="appel-final">
+            Embarquez avec nous pour un voyage au cœur de la tradition.
+          </p>
+        </div>
+      </section>
     </div>
-
-    <div class="bloc-texte">
-      <h2>Ce que nous faisons</h2>
-      <p>
-        Avec Héritage Vodun, notre objectif est de déconstruire les mythes et de
-        célébrer l'identité béninoise dans toute sa globalité. Nous nous
-        engageons à offrir un contenu de qualité qui explore :
-      </p>
-
-      <ul class="liste-valeurs">
-        <li>
-          <strong>L'Histoire :</strong> Des grands royaumes du Dahomey aux figures
-          emblématiques qui ont façonné la nation.
-        </li>
-        <li>
-          <strong>Les Valeurs Culturelles :</strong> L'hospitalité, le respect des
-          aînés, l'art et les traditions orales.
-        </li>
-        <li>
-          <strong>Le Vodun :</strong> Une exploration respectueuse et approfondie
-          de ses divinités, de ses rituels, de sa philosophie et de son rôle social
-          contemporain.
-        </li>
-      </ul>
-    </div>
-
-    <div class="bloc-texte">
-      <h2>Pourquoi nous suivre ?</h2>
-      <p>
-        Que vous soyez un chercheur de vérité, un amoureux de l'Afrique, un
-        membre de la diaspora ou un simple curieux, Héritage Vodun est conçu
-        pour vous. À travers nos dossiers de fond et notre blog, nous souhaitons
-        créer un pont entre le passé et le présent, entre le visible et
-        l'invisible.
-      </p>
-      <p class="appel-final">
-        Embarquez avec nous pour un voyage au cœur de la tradition.
-      </p>
-    </div>
-  </section>
+  </div>
 </BaseLayout>
 
 <style>
+  /* --- VARIABLES LOCALES --- */
+  :root {
+    --or-vodun: #d4af37;
+    --terre: #a0522d;
+    --gris-sombre: #2f4f4f;
+    --fond-page: #fdfbf7;
+  }
+
+  .page-container {
+    background-color: var(--fond-page);
+    padding-bottom: 80px;
+    overflow-x: hidden; /* Évite le scroll horizontal sur mobile */
+  }
+
+  /* --- HEADER --- */
   .about-header {
     text-align: center;
-    padding: 60px 20px;
-    background-color: white;
-    border-bottom: 1px solid #eee;
+    padding: 80px 20px 60px;
+    background: linear-gradient(to bottom, #fff, var(--fond-page));
+  }
+
+  .sur-titre {
+    font-family: "Lato", sans-serif;
+    text-transform: uppercase;
+    letter-spacing: 2px;
+    font-size: 0.8rem;
+    color: var(--terre);
+    display: block;
+    margin-bottom: 10px;
+  }
+
+  h1 {
+    font-family: "Playfair Display", serif;
+    font-size: 3.5rem;
+    color: var(--gris-sombre);
+    margin: 0;
+  }
+
+  .ligne-or {
+    width: 80px;
+    height: 3px;
+    background-color: var(--or-vodun);
+    margin: 20px auto;
   }
 
   .slogan {
     font-family: "Playfair Display", serif;
     font-style: italic;
-    color: var(--couleur-or);
-    font-size: 1.5rem;
-    margin-top: 10px;
+    color: #666; /* Plus doux que l'or pour le slogan */
+    font-size: 1.4rem;
   }
 
-  .contenu-page {
-    max-width: 800px;
+  /* --- CONTENU --- */
+  .conteneur-principal {
+    max-width: 900px;
     margin: 0 auto;
-    padding: 60px 20px;
+    padding: 0 20px;
+  }
+
+  h2 {
+    font-family: "Playfair Display", serif;
+    font-size: 2.2rem;
+    color: var(--gris-sombre);
+    margin-bottom: 25px;
+    position: relative;
+    display: inline-block;
+  }
+
+  /* Petite décoration à gauche des H2 */
+  h2::before {
+    content: "";
+    position: absolute;
+    left: -20px;
+    top: 50%;
+    transform: translateY(-50%);
+    width: 4px;
+    height: 70%;
+    background-color: var(--or-vodun);
+    opacity: 0.7;
+  }
+
+  p {
+    font-family: "Lato", sans-serif;
+    font-size: 1.1rem;
+    line-height: 1.8;
+    color: #444;
+    margin-bottom: 20px;
   }
 
   .bloc-texte {
-    margin-bottom: 50px;
+    margin-bottom: 80px;
   }
 
-  .liste-valeurs {
-    list-style: none;
-    padding-left: 0;
-    margin-top: 20px;
+  /* --- LETTRINE (Effet Livre d'Histoire) --- */
+  .lettrine {
+    float: left;
+    font-family: "Playfair Display", serif;
+    font-size: 4rem;
+    line-height: 0.8;
+    padding-right: 15px;
+    padding-top: 5px;
+    color: var(--terre);
+    font-weight: bold;
   }
 
-  .liste-valeurs li {
+  /* --- GRILLE DES VALEURS (Cartes) --- */
+  .intro-section {
+    margin-bottom: 40px;
+  }
+
+  .grille-valeurs {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+    gap: 30px;
+    margin-top: 30px;
+  }
+
+  .carte-valeur {
+    background: white;
+    padding: 30px 20px;
+    border-radius: 8px;
+    box-shadow: 0 5px 20px rgba(0, 0, 0, 0.05);
+    text-align: center;
+    border-bottom: 3px solid transparent;
+    transition: all 0.3s ease;
+  }
+
+  .carte-valeur:hover {
+    transform: translateY(-5px);
+    border-bottom-color: var(--or-vodun);
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+  }
+
+  .icone {
+    font-size: 2.5rem;
     margin-bottom: 15px;
-    padding-left: 20px;
-    border-left: 4px solid var(--couleur-principale);
+  }
+
+  .carte-valeur h3 {
+    font-family: "Playfair Display", serif;
+    color: var(--terre);
+    font-size: 1.5rem;
+    margin-bottom: 15px;
+  }
+
+  .carte-valeur p {
+    font-size: 1rem;
+    color: #666;
+    margin-bottom: 0;
+  }
+
+  /* --- APPEL FINAL --- */
+  .dernier-bloc {
+    text-align: center;
+  }
+
+  .dernier-bloc h2::before {
+    display: none; /* Pas de barre latérale pour le titre centré */
+  }
+
+  .appel-final-container {
+    margin-top: 40px;
+    display: inline-block;
+    border: 1px solid var(--or-vodun);
+    padding: 10px 40px;
+    border-radius: 50px; /* Forme de pilule */
   }
 
   .appel-final {
-    font-weight: bold;
-    color: var(--couleur-principale);
-    font-size: 1.3rem;
-    margin-top: 40px;
-    text-align: center;
     font-family: "Playfair Display", serif;
+    font-weight: bold;
+    color: var(--terre);
+    font-size: 1.4rem;
+    margin: 0;
+    font-style: italic;
+  }
+
+  /* --- ANIMATIONS --- */
+
+  /* Définition des mouvements */
+  @keyframes fadeDown {
+    from {
+      opacity: 0;
+      transform: translateY(-30px);
+    }
+    to {
+      opacity: 1;
+      transform: translateY(0);
+    }
+  }
+
+  @keyframes fadeUp {
+    from {
+      opacity: 0;
+      transform: translateY(30px);
+    }
+    to {
+      opacity: 1;
+      transform: translateY(0);
+    }
+  }
+
+  /* Application des classes */
+  .animate-fade-down {
+    animation: fadeDown 1s ease-out forwards;
+  }
+
+  .animate-fade-up {
+    opacity: 0; /* Caché au départ */
+    animation: fadeUp 0.8s ease-out forwards;
+  }
+
+  /* Délais pour l'effet en cascade */
+  .delay-1 {
+    animation-delay: 0.3s;
+  }
+  .delay-2 {
+    animation-delay: 0.6s;
+  }
+  .delay-3 {
+    animation-delay: 0.9s;
+  }
+
+  /* --- RESPONSIVE --- */
+  @media (max-width: 768px) {
+    h1 {
+      font-size: 2.5rem;
+    }
+    h2 {
+      font-size: 1.8rem;
+    }
+    .lettrine {
+      font-size: 3rem;
+    }
+    .grille-valeurs {
+      grid-template-columns: 1fr;
+    } /* Cartes empilées */
+    .about-header {
+      padding: 50px 20px 30px;
+    }
   }
 </style>

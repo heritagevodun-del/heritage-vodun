@@ -1,92 +1,271 @@
 ---
 import BaseLayout from "../layouts/BaseLayout.astro";
-// MAGIE : On récupère tous les articles du dossier "posts"
+// On récupère les articles
 const allPosts = await Astro.glob("../pages/posts/*.md");
 ---
 
 <BaseLayout titrePage="Le Blog">
-  <header class="blog-header">
-    <h1>Chroniques du Sacré</h1>
-    <p>Explorez les mythes, les rites et l'histoire.</p>
-  </header>
+  <div class="page-container">
+    <header class="blog-header animate-enter">
+      <span class="sous-titre">Héritage & Transmission</span>
+      <h1>Chroniques du Sacré</h1>
+      <div class="separateur"></div>
+      <p>
+        Plongez au cœur des mythes, décryptez les rites et redécouvrez
+        l'histoire du Bénin à travers nos récits.
+      </p>
+    </header>
 
-  <section class="blog-grid">
-    {
-      allPosts.map((post) => (
-        <article class="carte-article">
-          <div
-            class="image-cover"
-            style={`background-image: url(${post.frontmatter.image});`}
-          />
+    <section class="blog-grid">
+      {
+        allPosts.map((post, index) => (
+          /* On ajoute un délai d'animation basé sur l'index (0.1s, 0.2s, etc.) */
+          <article
+            class="carte-article"
+            style={`animation-delay: ${index * 150}ms`}
+          >
+            <a href={post.url} class="lien-global">
+              <div class="conteneur-image">
+                <div
+                  class="image-cover"
+                  style={`background-image: url(${post.frontmatter.image});`}
+                />
+              </div>
 
-          <div class="contenu-carte">
-            <span class="categorie">{post.frontmatter.categorie}</span>
-            <h3>{post.frontmatter.title}</h3>
-            <p>{post.frontmatter.description}</p>
-            <a href={post.url} class="lire-plus">
-              Lire la suite &rarr;
+              <div class="contenu-carte">
+                <div class="meta-info">
+                  <span class="categorie">{post.frontmatter.categorie}</span>
+                  {/* Tu peux ajouter la date ici si tu veux later */}
+                </div>
+
+                <h3>{post.frontmatter.title}</h3>
+                <p class="description">{post.frontmatter.description}</p>
+
+                <span class="lire-plus">
+                  Lire l'article <span class="fleche">&rarr;</span>
+                </span>
+              </div>
             </a>
-          </div>
-        </article>
-      ))
-    }
-  </section>
+          </article>
+        ))
+      }
+    </section>
+  </div>
 </BaseLayout>
 
 <style>
+  /* --- COULEURS & VARIABLES --- */
+  :root {
+    --or-vodun: #d4af37;
+    --terre: #a0522d;
+    --gris-sombre: #2f4f4f;
+    --fond-page: #fdfbf7;
+  }
+
+  .page-container {
+    background-color: var(--fond-page);
+    min-height: 100vh;
+    padding-bottom: 80px;
+  }
+
+  /* --- HEADER --- */
   .blog-header {
     text-align: center;
-    padding: 60px 20px;
-    background-color: white;
+    padding: 80px 20px 60px;
+    max-width: 800px;
+    margin: 0 auto;
   }
+
+  .sous-titre {
+    font-family: "Lato", sans-serif;
+    text-transform: uppercase;
+    letter-spacing: 3px;
+    font-size: 0.8rem;
+    color: var(--terre);
+    display: block;
+    margin-bottom: 10px;
+  }
+
+  .blog-header h1 {
+    font-family: "Playfair Display", serif;
+    font-size: 3.5rem;
+    color: var(--gris-sombre);
+    margin: 0;
+    line-height: 1.2;
+  }
+
+  .separateur {
+    width: 60px;
+    height: 3px;
+    background-color: var(--or-vodun);
+    margin: 20px auto;
+  }
+
+  .blog-header p {
+    font-size: 1.1rem;
+    color: #666;
+    line-height: 1.6;
+  }
+
+  /* --- GRILLE --- */
   .blog-grid {
     display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+    grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
     gap: 40px;
-    padding: 40px 10%;
-    margin-bottom: 100px;
+    padding: 0 5%; /* Marge sur les côtés */
+    max-width: 1400px;
+    margin: 0 auto;
   }
+
+  /* --- CARTE ARTICLE --- */
   .carte-article {
     background: white;
-    border: 1px solid #eee;
-    transition: transform 0.3s ease;
-    border-bottom: 4px solid var(--couleur-principale);
+    border-radius: 12px;
+    overflow: hidden; /* Important pour arrondir l'image */
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.05);
+    transition: all 0.4s ease;
+    border: 1px solid rgba(0, 0, 0, 0.03);
+
+    /* Pour l'animation d'entrée */
+    opacity: 0;
+    animation: fadeInUp 0.8s ease forwards;
   }
+
   .carte-article:hover {
-    transform: translateY(-5px);
-    box-shadow: 0 10px 20px rgba(0, 0, 0, 0.1);
+    transform: translateY(-10px); /* La carte monte */
+    box-shadow: 0 20px 40px rgba(0, 0, 0, 0.12);
+  }
+
+  .lien-global {
+    text-decoration: none;
+    color: inherit;
+    display: flex;
+    flex-direction: column;
+    height: 100%;
+  }
+
+  /* --- IMAGE & ZOOM --- */
+  .conteneur-image {
+    width: 100%;
+    height: 240px;
+    overflow: hidden; /* Cache ce qui dépasse quand on zoom */
   }
 
   .image-cover {
-    height: 200px;
+    height: 100%;
     width: 100%;
     background-size: cover;
     background-position: center;
-    background-color: #eee;
+    transition: transform 0.6s cubic-bezier(0.25, 0.46, 0.45, 0.94);
   }
 
+  /* Zoom de l'image au survol de la carte */
+  .carte-article:hover .image-cover {
+    transform: scale(1.1);
+  }
+
+  /* --- CONTENU TEXTE --- */
   .contenu-carte {
-    padding: 30px;
+    padding: 35px 30px;
+    display: flex;
+    flex-direction: column;
+    flex-grow: 1; /* Pour que le bas s'aligne */
   }
+
   .categorie {
+    font-family: "Lato", sans-serif;
+    font-size: 0.75rem;
     text-transform: uppercase;
-    font-size: 0.8rem;
-    color: var(--couleur-or);
+    letter-spacing: 1.5px;
+    color: var(--terre);
     font-weight: bold;
-  }
-  h3 {
-    font-size: 1.4rem;
-    margin: 10px 0;
-  }
-  p {
-    font-size: 1rem;
-    color: #555;
-  }
-  .lire-plus {
+    background: rgba(160, 82, 45, 0.1);
+    padding: 5px 10px;
+    border-radius: 4px;
     display: inline-block;
-    margin-top: 20px;
-    text-decoration: none;
-    color: var(--couleur-principale);
+    margin-bottom: 15px;
+  }
+
+  h3 {
+    font-family: "Playfair Display", serif;
+    font-size: 1.6rem;
+    color: var(--gris-sombre);
+    margin: 0 0 15px 0;
+    line-height: 1.3;
+    transition: color 0.3s;
+  }
+
+  /* Le titre change de couleur au survol */
+  .carte-article:hover h3 {
+    color: var(--terre);
+  }
+
+  .description {
+    font-family: "Lato", sans-serif;
+    font-size: 1rem;
+    color: #666;
+    line-height: 1.6;
+    margin-bottom: 25px;
+    flex-grow: 1;
+  }
+
+  /* --- BOUTON LIRE PLUS --- */
+  .lire-plus {
+    font-family: "Lato", sans-serif;
     font-weight: bold;
+    color: var(--gris-sombre);
+    font-size: 0.95rem;
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    transition: gap 0.3s;
+  }
+
+  .fleche {
+    font-size: 1.2rem;
+    color: var(--or-vodun);
+    transition: transform 0.3s;
+  }
+
+  .carte-article:hover .lire-plus {
+    gap: 15px; /* Ecarte le texte de la flèche */
+    color: var(--terre);
+  }
+
+  .carte-article:hover .fleche {
+    transform: translateX(5px);
+  }
+
+  /* --- ANIMATIONS KEYFRAMES --- */
+  @keyframes fadeInUp {
+    from {
+      opacity: 0;
+      transform: translateY(30px);
+    }
+    to {
+      opacity: 1;
+      transform: translateY(0);
+    }
+  }
+
+  .animate-enter {
+    animation: fadeInUp 1s ease forwards;
+  }
+
+  /* --- RESPONSIVE MOBILE --- */
+  @media (max-width: 768px) {
+    .blog-header {
+      padding: 60px 20px 40px;
+    }
+    .blog-header h1 {
+      font-size: 2.5rem;
+    }
+    .blog-grid {
+      grid-template-columns: 1fr; /* Une seule colonne sur mobile */
+      gap: 30px;
+    }
+    .conteneur-image {
+      height: 200px;
+    }
   }
 </style>

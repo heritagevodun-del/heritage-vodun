@@ -3,150 +3,295 @@ import BaseLayout from "../layouts/BaseLayout.astro";
 ---
 
 <BaseLayout titrePage="Contact">
-  <div class="header-contact">
-    <h1>Restons en lien</h1>
-  </div>
-
-  <div class="conteneur-grid">
-    <section class="carte-newsletter">
-      <h2>Rejoignez le Cercle</h2>
-      <p>
-        Inscrivez-vous pour recevoir nos "escales" au cœur du Bénin et votre
-        message de bienvenue exclusif.
+  <div class="page-container">
+    <div class="header-contact">
+      <h1>Restons en lien</h1>
+      <p class="intro-text">
+        Une question, une histoire à partager ou simplement l'envie de rejoindre
+        l'aventure ? Nos portes (et nos boîtes mail) sont grandes ouvertes.
       </p>
+    </div>
 
-      <form
-        class="formulaire"
-        action="https://formspree.io/f/meoydrwg"
-        method="POST"
-      >
-        <label for="email-news">Votre Email</label>
+    <div class="conteneur-grid">
+      <section class="carte carte-newsletter">
+        <div class="contenu-carte">
+          <h2>L'esprit Vodun, chez vous.</h2>
+          <p>
+            Pas de spam, juste de la culture. Recevez nos meilleurs articles et
+            nos découvertes directement dans votre messagerie.
+          </p>
 
-        <input
-          type="email"
-          id="email-news"
-          name="email_newsletter"
-          placeholder="exemple@gmail.com"
-          required
-        />
+          <form
+            class="formulaire"
+            action="https://formspree.io/f/meoydrwg"
+            method="POST"
+          >
+            <label for="email-news">Votre Email</label>
+            <input
+              type="email"
+              id="email-news"
+              name="email_newsletter"
+              placeholder="exemple@gmail.com"
+              required
+            />
+            <input
+              type="hidden"
+              name="_subject"
+              value="Nouvel abonné Newsletter !"
+            />
 
-        <input
-          type="hidden"
-          name="_subject"
-          value="Nouvel abonné Newsletter !"
-        />
+            <button type="submit" class="btn-primary">S'abonner</button>
+          </form>
+          <p class="note-discrete">Rejoignez la communauté Héritage Vodun.</p>
+        </div>
+      </section>
 
-        <button type="submit">S'inscrire à la Newsletter</button>
-      </form>
+      <section class="carte carte-contact">
+        <div class="contenu-carte">
+          <h2>Sous l'Arbre à Palabre 🌳</h2>
+          <p>
+            Dans la tradition béninoise, la parole est sacrée et l'échange est
+            roi. Vous avez une question sur un rite ? Une suggestion pour le
+            site ? Ou simplement envie de dire bonjour ? Écrivez-nous, nous
+            prenons le temps de vous lire.
+          </p>
 
-      <p class="note-discrete">Rejoignez la communauté Héritage Vodun.</p>
-    </section>
+          <form
+            class="formulaire"
+            action="https://formspree.io/f/meoydrwg"
+            method="POST"
+          >
+            <label for="nom">Nom</label>
+            <input type="text" id="nom" name="nom" required />
 
-    <section class="carte-contact">
-      <h2>Nous écrire</h2>
-      <p>Une question sur le projet ou une suggestion ?</p>
+            <label for="email-contact">Email</label>
+            <input type="email" id="email-contact" name="email" required />
 
-      <form
-        class="formulaire"
-        action="https://formspree.io/f/meoydrwg"
-        method="POST"
-      >
-        <label for="nom">Nom</label>
-        <input type="text" id="nom" name="nom" required />
+            <label for="message">Message</label>
+            <textarea id="message" name="message" rows="5" required></textarea>
 
-        <label for="email-contact">Email</label>
-        <input type="email" id="email-contact" name="email" required />
+            <input
+              type="hidden"
+              name="_subject"
+              value="Nouveau message de Contact"
+            />
 
-        <label for="message">Message</label>
-        <textarea id="message" name="message" rows="5" required></textarea>
-
-        <input
-          type="hidden"
-          name="_subject"
-          value="Nouveau message de Contact"
-        />
-
-        <button type="submit" class="btn-secondaire">Envoyer le message</button>
-      </form>
-    </section>
+            <button type="submit" class="btn-secondaire"
+              >Envoyer mon message</button
+            >
+          </form>
+        </div>
+      </section>
+    </div>
   </div>
 </BaseLayout>
 
 <style>
-  .header-contact {
-    text-align: center;
-    padding: 40px 20px;
+  /* --- Variables locales de secours (si non définies dans BaseLayout) --- */
+  :root {
+    --couleur-principale: #a0522d; /* Terre de sienne / Ocre */
+    --couleur-secondaire: #2f4f4f; /* Gris ardoise foncé */
+    --couleur-or: #d4af37; /* Or */
+    --bg-page: #fdfbf7; /* Blanc cassé chaleureux */
   }
 
+  /* --- Structure Globale --- */
+  .page-container {
+    background-color: var(--bg-page, #fdfbf7);
+    padding-bottom: 80px;
+  }
+
+  .header-contact {
+    text-align: center;
+    padding: 60px 20px 40px;
+    max-width: 800px;
+    margin: 0 auto;
+  }
+
+  h1 {
+    font-family: "Playfair Display", serif; /* Police titres */
+    font-size: 3rem;
+    color: var(--couleur-secondaire, #333);
+    margin-bottom: 15px;
+  }
+
+  .intro-text {
+    font-size: 1.1rem;
+    color: #666;
+    line-height: 1.6;
+  }
+
+  /* --- Grille et Cartes --- */
   .conteneur-grid {
     display: flex;
     flex-wrap: wrap;
-    max-width: 1000px;
-    margin: 0 auto 80px auto;
+    max-width: 1100px;
+    margin: 0 auto;
     padding: 0 20px;
     gap: 40px;
+    align-items: flex-start; /* Important pour que les hauteurs s'adaptent */
   }
 
-  section {
+  .carte {
     flex: 1;
-    min-width: 300px;
-    padding: 40px;
+    min-width: 320px; /* Empêche d'être trop petit */
     background: white;
-    border-radius: 4px;
-    box-shadow: 0 5px 20px rgba(0, 0, 0, 0.05);
+    border-radius: 12px;
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.08); /* Ombre plus douce */
+    overflow: hidden;
+    position: relative;
+    transition: transform 0.3s ease;
   }
 
-  /* Newsletter mise en avant */
+  .contenu-carte {
+    padding: 40px;
+  }
+
+  .carte:hover {
+    transform: translateY(-5px); /* Petit effet de levée au survol */
+  }
+
+  h2 {
+    font-family: "Playfair Display", serif;
+    font-size: 1.8rem;
+    margin-bottom: 15px;
+    color: var(--couleur-secondaire, #222);
+    position: relative;
+    padding-bottom: 15px;
+  }
+
+  /* Petite ligne décorative sous les titres h2 */
+  h2::after {
+    content: "";
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    width: 50px;
+    height: 3px;
+    background-color: var(--couleur-or, #d4af37);
+  }
+
+  p {
+    font-family: "Lato", sans-serif;
+    color: #555;
+    line-height: 1.6;
+    margin-bottom: 25px;
+  }
+
+  /* --- Spécificités Newsletter --- */
   .carte-newsletter {
-    border: 2px solid var(--couleur-or);
-    background-color: #fffcf0;
+    border-top: 5px solid var(--couleur-or, #d4af37); /* Juste une ligne en haut */
+    background: linear-gradient(
+      to bottom,
+      #fffcf5,
+      #ffffff
+    ); /* Dégradé subtil */
   }
 
+  /* --- Formulaires --- */
   .formulaire {
     display: flex;
     flex-direction: column;
     gap: 20px;
-    margin-top: 25px;
   }
 
   label {
     font-weight: bold;
     font-size: 0.9rem;
+    color: #333;
+    margin-bottom: -10px; /* Rapproche le label de l'input */
+    display: block;
   }
 
   input,
   textarea {
+    width: 100%;
     padding: 15px;
-    border: 1px solid #ddd;
-    border-radius: 4px;
+    border: 1px solid #e0e0e0;
+    border-radius: 6px;
     font-family: "Lato", sans-serif;
     font-size: 16px;
     background: #fafafa;
+    transition: all 0.3s ease;
+    box-sizing: border-box; /* Crucial pour le responsive */
   }
 
+  /* Effet Focus élégant */
+  input:focus,
+  textarea:focus {
+    outline: none;
+    border-color: var(--couleur-or, #d4af37);
+    background: white;
+    box-shadow: 0 0 0 3px rgba(212, 175, 55, 0.1);
+  }
+
+  /* --- Boutons --- */
   button {
-    padding: 15px;
-    background-color: var(--couleur-principale);
-    color: white;
+    padding: 16px;
     border: none;
+    border-radius: 6px;
     font-weight: bold;
     cursor: pointer;
     font-size: 16px;
-    transition: background 0.3s;
+    transition: all 0.3s ease;
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+    margin-top: 10px;
   }
 
-  button:hover {
-    background-color: var(--couleur-or);
-    color: black;
+  .btn-primary {
+    background-color: var(--couleur-or, #d4af37);
+    color: #1a1a1a;
+  }
+
+  .btn-primary:hover {
+    background-color: #b89628;
+    transform: scale(1.02);
   }
 
   .btn-secondaire {
-    background-color: #2f4f4f;
+    background-color: var(--couleur-secondaire, #2f4f4f);
+    color: white;
   }
+
+  .btn-secondaire:hover {
+    background-color: #1e3333;
+    transform: scale(1.02);
+  }
+
   .note-discrete {
-    font-size: 0.8rem;
-    color: #888;
-    margin-top: 15px;
+    font-size: 0.85rem;
+    color: #999;
+    margin-top: 20px;
     font-style: italic;
+    text-align: center;
+  }
+
+  /* --- RESPONSIVE MOBILE --- */
+  @media (max-width: 768px) {
+    .header-contact {
+      padding: 40px 20px 20px;
+    }
+
+    h1 {
+      font-size: 2.2rem;
+    }
+
+    .conteneur-grid {
+      flex-direction: column; /* Empile les cartes verticalement */
+      gap: 30px;
+    }
+
+    .carte {
+      min-width: 100%; /* Prend toute la largeur */
+    }
+
+    .contenu-carte {
+      padding: 25px; /* Moins de marge interne sur mobile */
+    }
+
+    h2 {
+      font-size: 1.5rem;
+    }
   }
 </style>
