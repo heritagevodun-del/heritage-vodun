@@ -1,5 +1,7 @@
 ---
 import BaseLayout from "../layouts/BaseLayout.astro";
+import FaAnimation from "../components/FaAnimation.astro"; // 1. On importe le composant
+
 // On récupère les articles
 const allPosts = await Astro.glob("../pages/posts/*.md");
 ---
@@ -19,23 +21,29 @@ const allPosts = await Astro.glob("../pages/posts/*.md");
     <section class="blog-grid">
       {
         allPosts.map((post, index) => (
-          /* On ajoute un délai d'animation basé sur l'index (0.1s, 0.2s, etc.) */
+          /* On ajoute un délai d'animation basé sur l'index */
           <article
             class="carte-article"
             style={`animation-delay: ${index * 150}ms`}
           >
             <a href={post.url} class="lien-global">
               <div class="conteneur-image">
-                <div
-                  class="image-cover"
-                  style={`background-image: url(${post.frontmatter.image});`}
-                />
+                {/* 2. LA CONDITION INTELLIGENTE */}
+                {post.frontmatter.type_image === "animation_fa" ? (
+                  /* Cas A : C'est le Fâ -> Animation Vignette */
+                  <FaAnimation mode="vignette" />
+                ) : (
+                  /* Cas B : C'est un article normal -> Image de fond */
+                  <div
+                    class="image-cover"
+                    style={`background-image: url(${post.frontmatter.image});`}
+                  />
+                )}
               </div>
 
               <div class="contenu-carte">
                 <div class="meta-info">
                   <span class="categorie">{post.frontmatter.categorie}</span>
-                  {/* Tu peux ajouter la date ici si tu veux later */}
                 </div>
 
                 <h3>{post.frontmatter.title}</h3>
@@ -112,7 +120,7 @@ const allPosts = await Astro.glob("../pages/posts/*.md");
     display: grid;
     grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
     gap: 40px;
-    padding: 0 5%; /* Marge sur les côtés */
+    padding: 0 5%;
     max-width: 1400px;
     margin: 0 auto;
   }
@@ -121,18 +129,16 @@ const allPosts = await Astro.glob("../pages/posts/*.md");
   .carte-article {
     background: white;
     border-radius: 12px;
-    overflow: hidden; /* Important pour arrondir l'image */
+    overflow: hidden;
     box-shadow: 0 10px 30px rgba(0, 0, 0, 0.05);
     transition: all 0.4s ease;
     border: 1px solid rgba(0, 0, 0, 0.03);
-
-    /* Pour l'animation d'entrée */
     opacity: 0;
     animation: fadeInUp 0.8s ease forwards;
   }
 
   .carte-article:hover {
-    transform: translateY(-10px); /* La carte monte */
+    transform: translateY(-10px);
     box-shadow: 0 20px 40px rgba(0, 0, 0, 0.12);
   }
 
@@ -148,7 +154,9 @@ const allPosts = await Astro.glob("../pages/posts/*.md");
   .conteneur-image {
     width: 100%;
     height: 240px;
-    overflow: hidden; /* Cache ce qui dépasse quand on zoom */
+    overflow: hidden;
+    background-color: var(--gris-sombre); /* Fond par défaut si ça charge */
+    position: relative;
   }
 
   .image-cover {
@@ -164,12 +172,18 @@ const allPosts = await Astro.glob("../pages/posts/*.md");
     transform: scale(1.1);
   }
 
+  /* Zoom léger aussi pour l'animation si on veut (optionnel) */
+  .carte-article:hover :global(.fa-container) {
+    transform: scale(1.05);
+    transition: transform 0.6s ease;
+  }
+
   /* --- CONTENU TEXTE --- */
   .contenu-carte {
     padding: 35px 30px;
     display: flex;
     flex-direction: column;
-    flex-grow: 1; /* Pour que le bas s'aligne */
+    flex-grow: 1;
   }
 
   .categorie {
@@ -195,7 +209,6 @@ const allPosts = await Astro.glob("../pages/posts/*.md");
     transition: color 0.3s;
   }
 
-  /* Le titre change de couleur au survol */
   .carte-article:hover h3 {
     color: var(--terre);
   }
@@ -228,7 +241,7 @@ const allPosts = await Astro.glob("../pages/posts/*.md");
   }
 
   .carte-article:hover .lire-plus {
-    gap: 15px; /* Ecarte le texte de la flèche */
+    gap: 15px;
     color: var(--terre);
   }
 
@@ -236,7 +249,7 @@ const allPosts = await Astro.glob("../pages/posts/*.md");
     transform: translateX(5px);
   }
 
-  /* --- ANIMATIONS KEYFRAMES --- */
+  /* --- ANIMATIONS --- */
   @keyframes fadeInUp {
     from {
       opacity: 0;
@@ -247,12 +260,11 @@ const allPosts = await Astro.glob("../pages/posts/*.md");
       transform: translateY(0);
     }
   }
-
   .animate-enter {
     animation: fadeInUp 1s ease forwards;
   }
 
-  /* --- RESPONSIVE MOBILE --- */
+  /* --- RESPONSIVE --- */
   @media (max-width: 768px) {
     .blog-header {
       padding: 60px 20px 40px;
@@ -261,7 +273,7 @@ const allPosts = await Astro.glob("../pages/posts/*.md");
       font-size: 2.5rem;
     }
     .blog-grid {
-      grid-template-columns: 1fr; /* Une seule colonne sur mobile */
+      grid-template-columns: 1fr;
       gap: 30px;
     }
     .conteneur-image {

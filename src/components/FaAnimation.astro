@@ -1,0 +1,135 @@
+---
+/* On récupère le mode : "hero" (grand) ou "vignette" (petit) */
+const { mode = "hero" } = Astro.props;
+---
+
+<div class={`fa-container ${mode}`}>
+  <div class="fa-oracle">
+    <div class="fa-column">
+      <div class="fa-dot open pulse-1"></div>
+      <div class="fa-dot closed pulse-2"></div>
+      <div class="fa-dot closed pulse-3"></div>
+      <div class="fa-dot open pulse-4"></div>
+    </div>
+    <div class="fa-column">
+      <div class="fa-dot open pulse-5"></div>
+      <div class="fa-dot closed pulse-6"></div>
+      <div class="fa-dot open pulse-7"></div>
+      <div class="fa-dot closed pulse-8"></div>
+    </div>
+  </div>
+  {mode === "hero" && <p class="fa-caption">La danse binaire de l'invisible</p>}
+</div>
+
+<style>
+  /* --- CONFIGURATION GÉNÉRALE --- */
+  .fa-container {
+    background: linear-gradient(135deg, #2f4f4f 0%, #1a2f2f 100%);
+    position: relative;
+    overflow: hidden;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+  }
+
+  /* --- MODE HERO (Dans l'article) --- */
+  .hero {
+    padding: 60px 20px;
+    border-radius: 12px;
+    margin-bottom: 40px;
+    box-shadow: inset 0 0 30px rgba(0, 0, 0, 0.3);
+    width: 100%;
+  }
+
+  /* --- MODE VIGNETTE (Dans le blog) --- */
+  .vignette {
+    width: 100%;
+    height: 100%; /* Prend toute la place de la carte */
+    min-height: 200px; /* Hauteur minimum pour qu'on voit bien */
+    padding: 0;
+    border-radius: 8px 8px 0 0; /* Arrondi seulement en haut */
+  }
+
+  /* --- LE RESTE (Points, Animation) --- */
+  .fa-oracle {
+    display: inline-flex;
+    gap: 20px; /* Plus serré pour passer partout */
+    z-index: 2;
+  }
+  .vignette .fa-oracle {
+    gap: 15px;
+    transform: scale(0.8);
+  } /* Plus petit en vignette */
+
+  .fa-column {
+    display: flex;
+    flex-direction: column;
+    gap: 15px;
+  }
+
+  .fa-dot {
+    width: 20px;
+    height: 20px; /* Un peu plus petit par défaut */
+    border-radius: 50%;
+  }
+  .hero .fa-dot {
+    width: 30px;
+    height: 30px;
+    gap: 25px;
+  } /* Plus grand en Hero */
+
+  .fa-dot.open {
+    background-color: #c06c3b;
+    box-shadow: 0 0 15px rgba(192, 108, 59, 0.6);
+  }
+  .fa-dot.closed {
+    background-color: #1a2f2f;
+    border: 2px solid #2f4f4f;
+  }
+
+  .fa-caption {
+    color: rgba(255, 255, 255, 0.7);
+    font-family: "Playfair Display", serif;
+    font-style: italic;
+    margin-top: 30px;
+  }
+
+  /* Animations */
+  @keyframes fa-pulse {
+    0%,
+    100% {
+      transform: scale(1);
+      opacity: 0.8;
+    }
+    50% {
+      transform: scale(1.2);
+      opacity: 1;
+      box-shadow: 0 0 25px rgba(192, 108, 59, 0.9);
+    }
+  }
+  .pulse-1 {
+    animation: fa-pulse 4s infinite ease-in-out 0s;
+  }
+  .pulse-2 {
+    animation: fa-pulse 4s infinite ease-in-out 0.5s;
+  }
+  .pulse-3 {
+    animation: fa-pulse 4s infinite ease-in-out 1s;
+  }
+  .pulse-4 {
+    animation: fa-pulse 4s infinite ease-in-out 1.5s;
+  }
+  .pulse-5 {
+    animation: fa-pulse 4s infinite ease-in-out 2s;
+  }
+  .pulse-6 {
+    animation: fa-pulse 4s infinite ease-in-out 2.5s;
+  }
+  .pulse-7 {
+    animation: fa-pulse 4s infinite ease-in-out 3s;
+  }
+  .pulse-8 {
+    animation: fa-pulse 4s infinite ease-in-out 3.5s;
+  }
+</style>

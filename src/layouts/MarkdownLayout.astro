@@ -1,5 +1,6 @@
 ---
 import BaseLayout from "./BaseLayout.astro";
+import FaAnimation from "../components/FaAnimation.astro"; // On importe le composant
 const { frontmatter } = Astro.props;
 ---
 
@@ -11,7 +12,23 @@ const { frontmatter } = Astro.props;
       </p>
       <h1>{frontmatter.title}</h1>
       <div class="separator"></div>
-      <img src={frontmatter.image} alt={frontmatter.title} class="hero-image" />
+
+      {/* LA LOGIQUE INTELLIGENTE */}
+      {
+        frontmatter.type_image === "animation_fa" ? (
+          /* Cas 1 : C'est le Fâ -> On affiche l'animation en mode "hero" */
+          <FaAnimation mode="hero" />
+        ) : (
+          /* Cas 2 : C'est normal -> On affiche l'image si elle existe */
+          frontmatter.image && (
+            <img
+              src={frontmatter.image}
+              alt={frontmatter.title}
+              class="hero-image"
+            />
+          )
+        )
+      }
     </header>
 
     <div class="contenu-article">
@@ -21,6 +38,7 @@ const { frontmatter } = Astro.props;
 </BaseLayout>
 
 <style>
+  /* Gardez vos styles habituels ici, pas besoin de changer le CSS du layout */
   .article-container {
     max-width: 800px;
     margin: 0 auto;
@@ -32,7 +50,7 @@ const { frontmatter } = Astro.props;
   }
   .meta {
     font-family: "Lato", sans-serif;
-    color: #a0522d; /* Couleur Terre */
+    color: #a0522d;
     text-transform: uppercase;
     font-size: 0.9rem;
     letter-spacing: 2px;
@@ -47,7 +65,7 @@ const { frontmatter } = Astro.props;
   .separator {
     width: 60px;
     height: 4px;
-    background-color: #d4af37; /* Or */
+    background-color: #d4af37;
     margin: 0 auto 40px;
   }
   .hero-image {
@@ -62,7 +80,6 @@ const { frontmatter } = Astro.props;
     line-height: 1.8;
     color: #333;
   }
-  /* Style pour les titres dans le markdown */
   .contenu-article :global(h2) {
     font-family: "Playfair Display", serif;
     color: #2f4f4f;
