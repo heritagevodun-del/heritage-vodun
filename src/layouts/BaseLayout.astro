@@ -1,10 +1,11 @@
 ---
 // src/layouts/BaseLayout.astro
+import Navigation from "../components/Navigation.astro"; // 👈 Import ajouté
 
 const {
   titrePage = "Héritage Vodun",
   description = "Découvrez l'essence du Vodun, spiritualité millénaire du Bénin. Histoire, rites et culture expliqués loin des clichés.",
-  image = "/vodunsi.jpeg",
+  image = "/vodunsi.jpeg", // L'image corrigée est bien là
 } = Astro.props;
 
 const canonicalURL = new URL(Astro.url.pathname, Astro.site);
@@ -96,12 +97,7 @@ const canonicalURL = new URL(Astro.url.pathname, Astro.site);
           <span class="hamburger-line"></span>
         </button>
 
-        <nav id="nav-menu" class="nav-links">
-          <a href="/">Accueil</a>
-          <a href="/about">À Propos</a>
-          <a href="/blog">Blog</a>
-          <a href="/contact">Contact</a>
-        </nav>
+        <Navigation />
       </div>
     </header>
 
@@ -124,6 +120,7 @@ const canonicalURL = new URL(Astro.url.pathname, Astro.site);
           <ul>
             <li><a href="/">Accueil</a></li>
             <li><a href="/about">Notre Mission</a></li>
+            <li><a href="/lexique">Lexique</a></li>
             <li><a href="/blog">Articles & Guides</a></li>
             <li><a href="/contact">Nous écrire</a></li>
           </ul>
@@ -151,7 +148,7 @@ const canonicalURL = new URL(Astro.url.pathname, Astro.site);
 
     <script>
       const menuBtn = document.getElementById("menu-toggle");
-      const navMenu = document.getElementById("nav-menu");
+      const navMenu = document.getElementById("nav-menu"); // Le composant utilise bien cet ID
 
       if (menuBtn && navMenu) {
         menuBtn.addEventListener("click", () => {
@@ -221,22 +218,9 @@ const canonicalURL = new URL(Astro.url.pathname, Astro.site);
     letter-spacing: 1px;
   }
 
-  .nav-links {
-    display: flex;
-    gap: 2rem;
-  }
-
-  .nav-links a {
-    text-decoration: none;
-    color: #4a4a4a;
-    font-weight: 700;
-    font-size: 1rem;
-    transition: color 0.3s ease;
-  }
-
-  .nav-links a:hover {
-    color: #c06c3b;
-  }
+  /* NOTE : Le CSS des liens (.nav-links, etc.) a été supprimé d'ici 
+     car il est maintenant géré dans Navigation.astro 
+  */
 
   #menu-toggle {
     display: none;
@@ -313,24 +297,7 @@ const canonicalURL = new URL(Astro.url.pathname, Astro.site);
       display: flex;
     }
 
-    .nav-links {
-      display: none;
-      flex-direction: column;
-      position: absolute;
-      top: 100%;
-      left: 0;
-      width: 100%;
-      background: white;
-      padding: 1.5rem;
-      box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
-      border-top: 1px solid #eee;
-      align-items: center;
-      gap: 1.5rem;
-    }
-
-    .nav-links.active {
-      display: flex;
-    }
+    /* Le style du menu mobile a aussi été déplacé dans Navigation.astro */
 
     .footer-container {
       grid-template-columns: 1fr;

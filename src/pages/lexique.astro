@@ -1,0 +1,262 @@
+---
+import BaseLayout from "../layouts/BaseLayout.astro";
+
+// LISTE ENRICHIE ET VÉRIFIÉE DES TERMES VODUN
+const termes = [
+  {
+    mot: "Asen",
+    def: "Autel portatif en métal (généralement en fer forgé) planté en terre. Il sert de réceptacle pour invoquer, honorer et nourrir les esprits des ancêtres défunts au sein de la famille.",
+  },
+  {
+    mot: "Azan",
+    def: "Franges de feuilles de palmier déchiquetées installées à l'entrée des lieux sacrés. Elles marquent la frontière entre le monde profane et le monde sacré, et servent de protection contre les impuretés.",
+  },
+  {
+    mot: "Bo",
+    def: "Souvent appelé 'Gris-gris' par erreur, le Bo est un savoir scientifique et occulte utilisant les propriétés des plantes, des minéraux et des incantations pour protéger, guérir ou agir sur le destin. Ce n'est pas de la 'magie' mais une science de la nature.",
+  },
+  {
+    mot: "Bokonon",
+    def: "Prêtre du Fâ. Contrairement au Hounnon (chef de couvent), le Bokonon est le devin, l'initié qui maîtrise la science géomantique pour lire le destin et prescrire les sacrifices.",
+  },
+  {
+    mot: "Botchio",
+    def: "Littéralement 'Cadavre magique' ou 'Réceptacle de force'. Statuette en bois sculptée, chargée d'éléments actifs, qui sert de sentinelle pour absorber les attaques malveillantes à la place de son propriétaire.",
+  },
+  {
+    mot: "Dan",
+    def: "Divinité de la prospérité, de la continuité et de la richesse. Souvent représenté par le serpent arc-en-ciel (Ayido Hwedo), il fait le lien entre le Ciel et la Terre et assure la stabilité du monde.",
+  },
+  {
+    mot: "Dja",
+    def: "Huile de palme rouge (zomi). C'est le 'sang végétal'. Elle est l'offrande apaisante par excellence, versée sur les autels (notamment Legba et Gou) pour calmer les énergies 'chaudes'.",
+  },
+  {
+    mot: "Egungun",
+    def: "Société de masques incarnant l'esprit des ancêtres revenants. Lorsqu'un Egungun sort, c'est l'ancêtre lui-même qui revient bénir ou juger les vivants. Il est sacré et ne doit pas être touché.",
+  },
+  {
+    mot: "Fâ",
+    def: "Science divinatoire et système de sagesse originaire d'Ifé. Ce n'est pas une religion à part entière, mais la 'boussole' du Vodun. Il repose sur 256 signes (Dù) mathématiques.",
+  },
+  {
+    mot: "Gbadu",
+    def: "Principe féminin du Fâ, représentant la matrice universelle et le secret de la vie. Elle complète le Fâ qui est le principe masculin.",
+  },
+  {
+    mot: "Gbè",
+    def: "Concept philosophique signifiant à la fois 'La Vie', 'Le Monde' et 'La Parole'. Dans la pensée Vodun, la parole crée la vie.",
+  },
+  {
+    mot: "Gou (Gu)",
+    def: "Divinité du fer, de la guerre et de la technologie. Il est le patron des forgerons, des chasseurs et aujourd'hui des mécaniciens. Sans Gu, pas d'outils, pas de civilisation.",
+  },
+  {
+    mot: "Gueledé",
+    def: "Société de masques (Patrimoine UNESCO) célébrant le pouvoir des Mères (les femmes âgées et ancêtres féminins) pour assurer la fertilité et la paix sociale.",
+  },
+  {
+    mot: "Heviosso",
+    def: "Divinité du tonnerre et de la foudre. Il incarne la justice divine immédiate. Il frappe ceux qui commettent des crimes graves ou ne respectent pas l'ordre naturel.",
+  },
+  {
+    mot: "Hounnon",
+    def: "Littéralement 'Mère/Possesseur du Vodun'. C'est le chef spirituel d'un couvent, celui qui détient les secrets des rites et qui initie les adeptes.",
+  },
+  {
+    mot: "Hounnongan",
+    def: "Dignitaire de très haut rang dans la hiérarchie Vodun. Il assiste le Hounnon et joue un rôle clé dans les cérémonies publiques et secrètes.",
+  },
+  {
+    mot: "Ikin",
+    def: "Noix de palme sacrées utilisées pour la consultation majeure du Fâ. Elles sont considérées comme supérieures au chapelet (Opele) car elles ne mentent jamais.",
+  },
+  {
+    mot: "Joto",
+    def: "L'ancêtre tutélaire. Selon le Vodun, chaque enfant est la réincarnation partielle d'un ancêtre. Le Joto est révélé par le Fâ à la naissance (rite du To-Fâ).",
+  },
+  {
+    mot: "Klegba",
+    def: "Représentation physique de Legba, souvent sous la forme d'une butte de terre érigée à l'entrée des concessions ou des villages pour la protection.",
+  },
+  {
+    mot: "Kouvito",
+    def: "Les 'revenants' ou esprits des morts. Terme souvent utilisé pour désigner les membres de la société Egungun.",
+  },
+  {
+    mot: "Legba",
+    def: "Divinité messagère et gardienne des seuils. Il est l'intermédiaire indispensable : sans lui, aucune prière n'arrive aux autres dieux. Il n'est pas le diable, mais le diplomate cosmique.",
+  },
+  {
+    mot: "Loko",
+    def: "Divinité liée à l'arbre Iroko. Loko est l'arbre-mémoire, le gardien des traditions et le lieu de rassemblement des esprits.",
+  },
+  {
+    mot: "Mami Wata",
+    def: "Divinité des eaux. Souvent représentée comme une sirène ou une femme d'une grande beauté entourée de serpents. Elle symbolise la puissance de l'océan et la richesse ultime.",
+  },
+  {
+    mot: "Mawu-Lisa",
+    def: "Le couple créateur suprême. Mawu (féminin, la Lune, la fraîcheur) et Lisa (masculin, le Soleil, la chaleur). Ils représentent l'équilibre parfait du monde.",
+  },
+  {
+    mot: "Opele",
+    def: "Chapelet divinatoire composé de 8 demi-coques, utilisé par le Bokonon pour les consultations rapides du Fâ.",
+  },
+  {
+    mot: "Oro",
+    def: "Société secrète très puissante, dont la sortie est annoncée par un vrombissement terrifiant. Elle est strictement interdite aux non-initiés et aux femmes.",
+  },
+  {
+    mot: "Sakpata",
+    def: "Divinité de la Terre. Il est craint car associé aux maladies éruptives, mais il est surtout respecté comme le propriétaire du sol et des richesses qu'il contient.",
+  },
+  {
+    mot: "Se",
+    def: "Le Destin ou l'Âme divine. C'est la parcelle du dieu créateur (Mawu) que chaque être humain porte en lui. Le 'Se' détermine notre mission sur terre.",
+  },
+  {
+    mot: "Sodabi",
+    def: "Alcool local (vin de palme distillé). Il est indispensable pour les libations : on verse le Sodabi sur le sol pour inviter les ancêtres à boire avec nous.",
+  },
+  {
+    mot: "Tassinon",
+    def: "Dignitaire femme, souvent une tante ou une matriarche, chargée de veiller sur les autels des ancêtres (Asen) de la famille.",
+  },
+  {
+    mot: "Tohossou",
+    def: "Divinité des eaux royales et des naissances extraordinaires. Protecteur des enfants nés avec des particularités physiques, il est très vénéré dans la région d'Abomey.",
+  },
+  {
+    mot: "Vodun",
+    def: "Terme Fon signifiant 'Ce qu'on ne peut élucider', 'Esprit' ou 'Divinité'. Désigne à la fois les entités invisibles, les objets sacrés, et la culture spirituelle née au Bénin.",
+  },
+  {
+    mot: "Vodunsi",
+    def: "Littéralement 'Épouse du Vodun'. Désigne tout initié(e) (homme ou femme) qui a traversé les rites du couvent et qui est au service d'une divinité spécifique.",
+  },
+  {
+    mot: "Zangbeto",
+    def: "Le 'Gardien de la Nuit'. Société de masques de paille qui tournent comme des toupies. Ils assurent la police traditionnelle, chassent les sorciers et protègent le village.",
+  },
+];
+
+// Tri automatique par ordre alphabétique
+termes.sort((a, b) => a.mot.localeCompare(b.mot));
+---
+
+<BaseLayout titrePage="Lexique & Définitions">
+  <div class="lexique-container">
+    <header class="lexique-header">
+      <span class="sous-titre">Comprendre les mots</span>
+      <h1>Le Glossaire Vodun</h1>
+      <div class="separateur"></div>
+      <p>
+        Pour appréhender la philosophie de nos ancêtres, il faut d'abord
+        maîtriser les mots. Voici les définitions authentiques et clés de notre
+        tradition.
+      </p>
+    </header>
+
+    <div class="liste-definitions">
+      {
+        termes.map((item) => (
+          <div class="definition-card">
+            <h2>{item.mot}</h2>
+            <p>{item.def}</p>
+          </div>
+        ))
+      }
+    </div>
+  </div>
+</BaseLayout>
+
+<style>
+  .lexique-container {
+    background-color: #fdfbf7;
+    min-height: 100vh;
+    padding-bottom: 80px;
+  }
+  .lexique-header {
+    text-align: center;
+    padding: 60px 20px;
+    max-width: 800px;
+    margin: 0 auto;
+  }
+  .sous-titre {
+    color: #a0522d;
+    text-transform: uppercase;
+    letter-spacing: 2px;
+    font-size: 0.9rem;
+    font-weight: bold;
+  }
+  h1 {
+    font-family: "Playfair Display", serif;
+    font-size: 3rem;
+    color: #2f4f4f;
+    margin: 10px 0;
+  }
+  .separateur {
+    width: 60px;
+    height: 4px;
+    background-color: #d4af37;
+    margin: 20px auto;
+  }
+  .lexique-header p {
+    font-family: "Lato", sans-serif;
+    font-size: 1.1rem;
+    color: #555;
+    line-height: 1.6;
+  }
+
+  /* LISTE DES DÉFINITIONS */
+  .liste-definitions {
+    max-width: 900px;
+    margin: 0 auto;
+    padding: 0 20px;
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: 30px;
+  }
+
+  .definition-card {
+    background: white;
+    padding: 30px;
+    border-radius: 12px;
+    border-left: 5px solid #a0522d; /* Bordure marron à gauche */
+    box-shadow: 0 5px 20px rgba(0, 0, 0, 0.05);
+    transition: transform 0.3s ease;
+  }
+
+  .definition-card:hover {
+    transform: translateX(10px); /* Petite animation au survol */
+    border-left-color: #d4af37; /* Devient doré */
+  }
+
+  .definition-card h2 {
+    font-family: "Playfair Display", serif;
+    color: #2f4f4f;
+    margin-top: 0;
+    font-size: 1.8rem;
+    margin-bottom: 10px;
+  }
+
+  .definition-card p {
+    font-family: "Lato", sans-serif;
+    font-size: 1.05rem;
+    line-height: 1.6;
+    color: #444;
+    margin-bottom: 0;
+    text-align: justify; /* Pour une lecture plus propre */
+  }
+
+  /* Responsive : ajustement mobile */
+  @media (max-width: 768px) {
+    .lexique-header h1 {
+      font-size: 2.5rem;
+    }
+    .definition-card {
+      padding: 20px;
+    }
+  }
+</style>
