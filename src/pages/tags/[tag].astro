@@ -2,20 +2,22 @@
 import BaseLayout from "../../layouts/BaseLayout.astro";
 import FaAnimation from "../../components/FaAnimation.astro";
 
-// 1. Cette fonction parcourt tous les articles pour trouver les catégories uniques
+// 1. On force le type de retour de la fonction pour calmer TypeScript
 export async function getStaticPaths() {
-  const allPosts = await Astro.glob("../posts/*.md");
+  // On dit explicitement : "allPosts est une liste de n'importe quoi (any[])"
+  const allPosts: any[] = await Astro.glob("../posts/*.md");
 
-  // On récupère toutes les catégories définies dans vos articles
-  const uniqueTags = [
-    ...new Set(allPosts.map((post) => post.frontmatter.categorie).flat()),
+  // On dit explicitement : "uniqueTags est une liste de n'importe quoi"
+  const uniqueTags: any[] = [
+    ...new Set(
+      allPosts.map((post: any) => post.frontmatter.categorie).filter(Boolean)
+    ),
   ];
 
-  // On crée une page pour chaque catégorie
-  return uniqueTags.map((tag) => {
-    // On filtre les articles qui ont cette catégorie
+  // On dit explicitement : "tag est n'importe quoi"
+  return uniqueTags.map((tag: any) => {
     const filteredPosts = allPosts.filter(
-      (post) => post.frontmatter.categorie === tag
+      (post: any) => post.frontmatter.categorie === tag
     );
     return {
       params: { tag },
@@ -37,12 +39,13 @@ const { posts } = Astro.props;
     </header>
 
     <section class="blog-grid">
+      {/* On ajoute : any ici aussi pour être sûr */}
       {
-        posts.map((post) => (
+        posts.map((post: any) => (
           <article class="carte-article">
             <a href={post.url} class="lien-global">
               <div class="conteneur-image">
-                {/* Réutilisation de notre logique intelligente Image/Animation */}
+                {/* Logique intelligente Image/Animation */}
                 {post.frontmatter.type_image === "animation_fa" ? (
                   <FaAnimation mode="vignette" />
                 ) : (
@@ -89,7 +92,7 @@ const { posts } = Astro.props;
     font-weight: bold;
   }
 
-  /* Grille (copié du blog pour garder le style) */
+  /* Grille */
   .blog-grid {
     display: grid;
     grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
