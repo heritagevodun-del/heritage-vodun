@@ -1,6 +1,6 @@
 ---
 import BaseLayout from "../layouts/BaseLayout.astro";
-import FaAnimation from "../components/FaAnimation.astro"; // 1. On importe le composant
+import FaAnimation from "../components/FaAnimation.astro";
 
 // On récupère les articles
 const allPosts = await Astro.glob("../pages/posts/*.md");
@@ -21,39 +21,46 @@ const allPosts = await Astro.glob("../pages/posts/*.md");
     <section class="blog-grid">
       {
         allPosts.map((post, index) => (
-          /* On ajoute un délai d'animation basé sur l'index */
           <article
             class="carte-article"
             style={`animation-delay: ${index * 150}ms`}
           >
-            <a href={post.url} class="lien-global">
+            {/* ZONE 1 : L'Image (Clique vers l'article) */}
+            <a href={post.url} class="lien-image">
               <div class="conteneur-image">
-                {/* 2. LA CONDITION INTELLIGENTE */}
                 {post.frontmatter.type_image === "animation_fa" ? (
-                  /* Cas A : C'est le Fâ -> Animation Vignette */
                   <FaAnimation mode="vignette" />
                 ) : (
-                  /* Cas B : C'est un article normal -> Image de fond */
                   <div
                     class="image-cover"
                     style={`background-image: url(${post.frontmatter.image});`}
                   />
                 )}
               </div>
+            </a>
 
-              <div class="contenu-carte">
-                <div class="meta-info">
-                  <span class="categorie">{post.frontmatter.categorie}</span>
-                </div>
+            <div class="contenu-carte">
+              <div class="meta-info">
+                {/* ZONE 2 : La Catégorie (Clique vers le filtre tags) */}
+                {/* C'est ICI que la magie opère : on pointe vers /tags/NomDeLaCategorie */}
+                <a
+                  href={`/tags/${post.frontmatter.categorie}`}
+                  class="categorie"
+                >
+                  {post.frontmatter.categorie}
+                </a>
+              </div>
 
+              {/* ZONE 3 : Le Texte (Clique vers l'article) */}
+              <a href={post.url} class="lien-texte">
                 <h3>{post.frontmatter.title}</h3>
                 <p class="description">{post.frontmatter.description}</p>
 
                 <span class="lire-plus">
                   Lire l'article <span class="fleche">&rarr;</span>
                 </span>
-              </div>
-            </a>
+              </a>
+            </div>
           </article>
         ))
       }
@@ -135,6 +142,8 @@ const allPosts = await Astro.glob("../pages/posts/*.md");
     border: 1px solid rgba(0, 0, 0, 0.03);
     opacity: 0;
     animation: fadeInUp 0.8s ease forwards;
+    display: flex; /* Important pour aligner image et contenu */
+    flex-direction: column;
   }
 
   .carte-article:hover {
@@ -142,12 +151,20 @@ const allPosts = await Astro.glob("../pages/posts/*.md");
     box-shadow: 0 20px 40px rgba(0, 0, 0, 0.12);
   }
 
-  .lien-global {
+  /* --- LIENS --- */
+  /* On retire le soulignement par défaut des liens */
+  .lien-image,
+  .lien-texte,
+  .categorie {
     text-decoration: none;
     color: inherit;
+    display: block;
+  }
+
+  .lien-texte {
     display: flex;
     flex-direction: column;
-    height: 100%;
+    flex-grow: 1; /* Pour remplir l'espace */
   }
 
   /* --- IMAGE & ZOOM --- */
@@ -155,7 +172,7 @@ const allPosts = await Astro.glob("../pages/posts/*.md");
     width: 100%;
     height: 240px;
     overflow: hidden;
-    background-color: var(--gris-sombre); /* Fond par défaut si ça charge */
+    background-color: var(--gris-sombre);
     position: relative;
   }
 
@@ -167,12 +184,10 @@ const allPosts = await Astro.glob("../pages/posts/*.md");
     transition: transform 0.6s cubic-bezier(0.25, 0.46, 0.45, 0.94);
   }
 
-  /* Zoom de l'image au survol de la carte */
   .carte-article:hover .image-cover {
     transform: scale(1.1);
   }
 
-  /* Zoom léger aussi pour l'animation si on veut (optionnel) */
   .carte-article:hover :global(.fa-container) {
     transform: scale(1.05);
     transition: transform 0.6s ease;
@@ -186,6 +201,7 @@ const allPosts = await Astro.glob("../pages/posts/*.md");
     flex-grow: 1;
   }
 
+  /* --- CATEGORIE (Nouveau Style Bouton) --- */
   .categorie {
     font-family: "Lato", sans-serif;
     font-size: 0.75rem;
@@ -196,8 +212,18 @@ const allPosts = await Astro.glob("../pages/posts/*.md");
     background: rgba(160, 82, 45, 0.1);
     padding: 5px 10px;
     border-radius: 4px;
-    display: inline-block;
+    display: inline-block; /* Important pour que le bouton ait une taille */
     margin-bottom: 15px;
+    transition: all 0.3s ease;
+    cursor: pointer;
+    position: relative; /* Pour passer au dessus du reste */
+    z-index: 10;
+  }
+
+  /* Effet au survol du bouton catégorie */
+  .categorie:hover {
+    background-color: var(--terre);
+    color: white;
   }
 
   h3 {
@@ -213,13 +239,17 @@ const allPosts = await Astro.glob("../pages/posts/*.md");
     color: var(--terre);
   }
 
+  /* Modification pour une meilleure description */
   .description {
     font-family: "Lato", sans-serif;
-    font-size: 1rem;
-    color: #666;
+    font-size: 1.05rem;
+    color: #555;
     line-height: 1.6;
     margin-bottom: 25px;
-    flex-grow: 1;
+    display: -webkit-box;
+    -webkit-line-clamp: 3;
+    -webkit-box-orient: vertical;
+    overflow: hidden;
   }
 
   /* --- BOUTON LIRE PLUS --- */
@@ -232,6 +262,7 @@ const allPosts = await Astro.glob("../pages/posts/*.md");
     align-items: center;
     gap: 8px;
     transition: gap 0.3s;
+    margin-top: auto;
   }
 
   .fleche {

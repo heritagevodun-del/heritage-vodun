@@ -1,6 +1,6 @@
 ---
 import BaseLayout from "./BaseLayout.astro";
-import FaAnimation from "../components/FaAnimation.astro"; // On importe le composant
+import FaAnimation from "../components/FaAnimation.astro"; // On n'oublie pas l'import !
 const { frontmatter } = Astro.props;
 ---
 
@@ -8,19 +8,24 @@ const { frontmatter } = Astro.props;
   <article class="article-container">
     <header class="article-header">
       <p class="meta">
-        {frontmatter.pubDate.slice(0, 10)} — {frontmatter.categorie}
+        {frontmatter.pubDate.slice(0, 10)} —
+        {/* LE CHANGEMENT EST ICI : La catégorie devient un lien */}
+        <a href={`/tags/${frontmatter.categorie}`} class="categorie-link">
+          {frontmatter.categorie}
+        </a>
       </p>
       <h1>{frontmatter.title}</h1>
       <div class="separator"></div>
 
-      {/* LA LOGIQUE INTELLIGENTE */}
+      {/* LOGIQUE INTELLIGENTE IMAGE / ANIMATION */}
       {
         frontmatter.type_image === "animation_fa" ? (
-          /* Cas 1 : C'est le Fâ -> On affiche l'animation en mode "hero" */
+          /* Cas A : C'est le Fâ -> Animation Hero */
           <FaAnimation mode="hero" />
         ) : (
-          /* Cas 2 : C'est normal -> On affiche l'image si elle existe */
-          frontmatter.image && (
+          /* Cas B : C'est normal -> Image classique (si elle existe et n'est pas masquée) */
+          frontmatter.image &&
+          frontmatter.afficheImage !== false && (
             <img
               src={frontmatter.image}
               alt={frontmatter.title}
@@ -38,7 +43,6 @@ const { frontmatter } = Astro.props;
 </BaseLayout>
 
 <style>
-  /* Gardez vos styles habituels ici, pas besoin de changer le CSS du layout */
   .article-container {
     max-width: 800px;
     margin: 0 auto;
@@ -55,6 +59,19 @@ const { frontmatter } = Astro.props;
     font-size: 0.9rem;
     letter-spacing: 2px;
   }
+
+  /* Nouveau style pour le lien de catégorie dans l'article */
+  .categorie-link {
+    text-decoration: none;
+    color: inherit;
+    border-bottom: 1px solid transparent;
+    transition: all 0.3s ease;
+  }
+  .categorie-link:hover {
+    color: #d4af37; /* Devient doré au survol */
+    border-bottom: 1px solid #d4af37;
+  }
+
   h1 {
     font-family: "Playfair Display", serif;
     font-size: 3rem;
@@ -65,7 +82,7 @@ const { frontmatter } = Astro.props;
   .separator {
     width: 60px;
     height: 4px;
-    background-color: #d4af37;
+    background-color: #d4af37; /* Or */
     margin: 0 auto 40px;
   }
   .hero-image {
@@ -80,6 +97,7 @@ const { frontmatter } = Astro.props;
     line-height: 1.8;
     color: #333;
   }
+  /* Style pour les titres dans le markdown */
   .contenu-article :global(h2) {
     font-family: "Playfair Display", serif;
     color: #2f4f4f;

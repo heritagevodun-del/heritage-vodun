@@ -1,0 +1,154 @@
+---
+import BaseLayout from "../../layouts/BaseLayout.astro";
+import FaAnimation from "../../components/FaAnimation.astro";
+
+// 1. Cette fonction parcourt tous les articles pour trouver les catégories uniques
+export async function getStaticPaths() {
+  const allPosts = await Astro.glob("../posts/*.md");
+
+  // On récupère toutes les catégories définies dans vos articles
+  const uniqueTags = [
+    ...new Set(allPosts.map((post) => post.frontmatter.categorie).flat()),
+  ];
+
+  // On crée une page pour chaque catégorie
+  return uniqueTags.map((tag) => {
+    // On filtre les articles qui ont cette catégorie
+    const filteredPosts = allPosts.filter(
+      (post) => post.frontmatter.categorie === tag
+    );
+    return {
+      params: { tag },
+      props: { posts: filteredPosts },
+    };
+  });
+}
+
+const { tag } = Astro.params;
+const { posts } = Astro.props;
+---
+
+<BaseLayout titrePage={tag}>
+  <div class="page-container">
+    <header class="tag-header">
+      <span class="sous-titre">Catégorie</span>
+      <h1>#{tag}</h1>
+      <p>Découvrez tous nos articles sur le thème : {tag}</p>
+    </header>
+
+    <section class="blog-grid">
+      {
+        posts.map((post) => (
+          <article class="carte-article">
+            <a href={post.url} class="lien-global">
+              <div class="conteneur-image">
+                {/* Réutilisation de notre logique intelligente Image/Animation */}
+                {post.frontmatter.type_image === "animation_fa" ? (
+                  <FaAnimation mode="vignette" />
+                ) : (
+                  <div
+                    class="image-cover"
+                    style={`background-image: url(${post.frontmatter.image});`}
+                  />
+                )}
+              </div>
+              <div class="contenu-carte">
+                <h3>{post.frontmatter.title}</h3>
+                <p>{post.frontmatter.description}</p>
+                <span class="lire-plus">Lire l'article &rarr;</span>
+              </div>
+            </a>
+          </article>
+        ))
+      }
+    </section>
+  </div>
+</BaseLayout>
+
+<style>
+  /* On réutilise le style du Blog pour rester cohérent */
+  .page-container {
+    background-color: #fdfbf7;
+    min-height: 100vh;
+    padding-bottom: 80px;
+  }
+  .tag-header {
+    text-align: center;
+    padding: 60px 20px;
+  }
+  .tag-header h1 {
+    font-family: "Playfair Display", serif;
+    font-size: 3rem;
+    color: #2f4f4f;
+    margin: 10px 0;
+  }
+  .sous-titre {
+    color: #d4af37;
+    text-transform: uppercase;
+    letter-spacing: 2px;
+    font-weight: bold;
+  }
+
+  /* Grille (copié du blog pour garder le style) */
+  .blog-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+    gap: 40px;
+    padding: 0 5%;
+    max-width: 1200px;
+    margin: 0 auto;
+  }
+  .carte-article {
+    background: white;
+    border-radius: 12px;
+    overflow: hidden;
+    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.05);
+    transition: transform 0.3s;
+  }
+  .carte-article:hover {
+    transform: translateY(-5px);
+  }
+  .lien-global {
+    text-decoration: none;
+    color: inherit;
+    display: flex;
+    flex-direction: column;
+    height: 100%;
+  }
+  .conteneur-image {
+    height: 200px;
+    overflow: hidden;
+    position: relative;
+  }
+  .image-cover {
+    width: 100%;
+    height: 100%;
+    background-size: cover;
+    background-position: center;
+  }
+  .contenu-carte {
+    padding: 25px;
+    display: flex;
+    flex-direction: column;
+    flex-grow: 1;
+  }
+  h3 {
+    font-family: "Playfair Display", serif;
+    font-size: 1.4rem;
+    color: #2f4f4f;
+    margin: 0 0 10px;
+  }
+  p {
+    font-family: "Lato", sans-serif;
+    font-size: 0.95rem;
+    color: #666;
+    line-height: 1.5;
+    margin-bottom: 20px;
+    flex-grow: 1;
+  }
+  .lire-plus {
+    font-weight: bold;
+    color: #a0522d;
+    margin-top: auto;
+  }
+</style>
