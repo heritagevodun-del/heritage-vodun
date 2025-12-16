@@ -1,0 +1,15 @@
+{
+  "redirects": [
+    {
+      "source": "/:path*",
+      "has": [
+        {
+          "type": "host",
+          "value": "heritage-vodun.vercel.app"
+        }
+      ],
+      "destination": "https://www.heritagevodun.com/:path*",
+      "permanent": true
+    }
+  ]
+}
