@@ -1,11 +1,12 @@
 ---
 // src/layouts/BaseLayout.astro
-import Navigation from "../components/Navigation.astro"; // 👈 Import ajouté
+import Navigation from "../components/Navigation.astro";
+import { ClientRouter } from "astro:transitions";
 
 const {
   titrePage = "Héritage Vodun",
   description = "Découvrez l'essence du Vodun, spiritualité millénaire du Bénin. Histoire, rites et culture expliqués loin des clichés.",
-  image = "/vodunsi.jpeg", // L'image corrigée est bien là
+  image = "/vodunsi.jpeg",
 } = Astro.props;
 
 const canonicalURL = new URL(Astro.url.pathname, Astro.site);
@@ -14,6 +15,8 @@ const canonicalURL = new URL(Astro.url.pathname, Astro.site);
 <html lang="fr">
   <head>
     <meta charset="utf-8" />
+
+    <ClientRouter />
 
     <script is:inline>
       // Si l'adresse contient "vercel.app", on redirige vers le vrai site
@@ -27,7 +30,7 @@ const canonicalURL = new URL(Astro.url.pathname, Astro.site);
       name="google-site-verification"
       content="CRqvKv6IhsMc-HKsY_2vq9n2Az8AqbXUZ_IRFfe240I"
     />
-    <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+    <link rel="icon" type="image/svg+xml" href="/favicon.svg?v=2" />
     <meta name="viewport" content="width=device-width" />
     <meta name="generator" content={Astro.generator} />
 
@@ -147,15 +150,28 @@ const canonicalURL = new URL(Astro.url.pathname, Astro.site);
     </footer>
 
     <script>
-      const menuBtn = document.getElementById("menu-toggle");
-      const navMenu = document.getElementById("nav-menu"); // Le composant utilise bien cet ID
+      // Script corrigé pour éviter les erreurs TypeScript dans VS Code
+      document.addEventListener("astro:page-load", () => {
+        const menuBtn = document.getElementById("menu-toggle");
+        const navMenu = document.getElementById("nav-menu");
 
-      if (menuBtn && navMenu) {
-        menuBtn.addEventListener("click", () => {
-          navMenu.classList.toggle("active");
-          menuBtn.classList.toggle("open");
-        });
-      }
+        // On vérifie que le bouton, le menu ET le parent du bouton existent
+        if (menuBtn && navMenu && menuBtn.parentNode) {
+          // On clone pour nettoyer les événements précédents
+          const newMenuBtn = menuBtn.cloneNode(true);
+
+          // On remplace
+          menuBtn.parentNode.replaceChild(newMenuBtn, menuBtn);
+
+          // On vérifie que c'est bien un élément HTML pour accéder à classList
+          if (newMenuBtn instanceof HTMLElement) {
+            newMenuBtn.addEventListener("click", () => {
+              navMenu.classList.toggle("active");
+              newMenuBtn.classList.toggle("open");
+            });
+          }
+        }
+      });
     </script>
   </body>
 </html>
@@ -217,10 +233,6 @@ const canonicalURL = new URL(Astro.url.pathname, Astro.site);
     text-transform: uppercase;
     letter-spacing: 1px;
   }
-
-  /* NOTE : Le CSS des liens (.nav-links, etc.) a été supprimé d'ici 
-     car il est maintenant géré dans Navigation.astro 
-  */
 
   #menu-toggle {
     display: none;
@@ -296,8 +308,6 @@ const canonicalURL = new URL(Astro.url.pathname, Astro.site);
     #menu-toggle {
       display: flex;
     }
-
-    /* Le style du menu mobile a aussi été déplacé dans Navigation.astro */
 
     .footer-container {
       grid-template-columns: 1fr;
