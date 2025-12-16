@@ -13,6 +13,15 @@ const canonicalURL = new URL(Astro.url.pathname, Astro.site);
 <html lang="fr">
   <head>
     <meta charset="utf-8" />
+
+    <script is:inline>
+      // Si l'adresse contient "vercel.app", on redirige vers le vrai site
+      if (window.location.hostname.includes("vercel.app")) {
+        window.location.replace(
+          "https://www.heritagevodun.com" + window.location.pathname
+        );
+      }
+    </script>
     <meta
       name="google-site-verification"
       content="CRqvKv6IhsMc-HKsY_2vq9n2Az8AqbXUZ_IRFfe240I"

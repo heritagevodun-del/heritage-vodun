@@ -1,5 +1,6 @@
 ---
 import BaseLayout from "../layouts/BaseLayout.astro";
+import Newsletter from "../components/Newsletter.astro";
 ---
 
 <BaseLayout titrePage="Accueil">
@@ -33,21 +34,34 @@ import BaseLayout from "../layouts/BaseLayout.astro";
   </header>
 
   <section class="intro">
+    <div class="watermark">VODUN</div>
+
     <div class="conteneur-texte">
-      <h2>Une culture, pas un mythe.</h2>
-      <p>
-        Le Vodun est une célébration de la vie. À travers ce site, nous révélons
-        l'identité béninoise : de la sagesse du Fâ à la puissance des rythmes
-        sacrés.
+      <span class="sur-titre">Notre Identité</span>
+      <h2>
+        Une culture,<br />
+        <span class="text-highlight">pas un mythe.</span>
+      </h2>
+
+      <div class="separateur-vertical"></div>
+
+      <p class="texte-manifeste">
+        <span class="lettrine">L</span>e Vodun est une célébration de la vie. À
+        travers ce site, nous révélons l'identité béninoise : de la sagesse du
+        Fâ à la puissance des rythmes sacrés.
       </p>
     </div>
   </section>
+
+  <Newsletter />
 </BaseLayout>
 
 <style>
-  /* --- STRUCTURE --- */
+  /* =========================================
+     1. STYLE DU HERO (SANCTUAIRE)
+     ========================================= */
   .hero {
-    height: 90vh; /* Hauteur immersive */
+    height: 90vh;
     display: flex;
     align-items: center;
     justify-content: center;
@@ -56,7 +70,6 @@ import BaseLayout from "../layouts/BaseLayout.astro";
     color: white;
   }
 
-  /* --- FOND --- */
   .hero-bg {
     position: absolute;
     top: 0;
@@ -67,11 +80,9 @@ import BaseLayout from "../layouts/BaseLayout.astro";
     background-size: cover;
     background-position: center;
     z-index: 1;
-    /* On assombrit l'image pour que les cercles dorés ressortent bien */
     filter: brightness(0.5) contrast(1.2);
   }
 
-  /* --- ANIMATION CENTRALE (Le Sanctuaire) --- */
   .sanctuaire-container {
     position: absolute;
     width: 800px;
@@ -80,27 +91,25 @@ import BaseLayout from "../layouts/BaseLayout.astro";
     justify-content: center;
     align-items: center;
     z-index: 2;
-    pointer-events: none; /* Laisse passer les clics */
-    opacity: 0.8; /* Bien visible */
+    pointer-events: none;
+    opacity: 0.8;
   }
 
   .anneau-sacre {
     position: absolute;
     border-radius: 50%;
-    box-shadow: 0 0 15px rgba(212, 175, 55, 0.1); /* Légère lueur */
+    box-shadow: 0 0 15px rgba(212, 175, 55, 0.1);
   }
 
-  /* Grand anneau externe - Trait fin et élégant */
   .externe {
     width: 650px;
     height: 650px;
-    border: 1px solid rgba(212, 175, 55, 0.4); /* Couleur Or visible */
-    border-top: 1px solid rgba(212, 175, 55, 0.9); /* Une partie plus brillante */
+    border: 1px solid rgba(212, 175, 55, 0.4);
+    border-top: 1px solid rgba(212, 175, 55, 0.9);
     border-bottom: 1px solid rgba(212, 175, 55, 0.9);
     animation: rotation-horaire 60s infinite linear;
   }
 
-  /* Anneau interne - Pointillés (Esprit) */
   .interne {
     width: 450px;
     height: 450px;
@@ -108,7 +117,6 @@ import BaseLayout from "../layouts/BaseLayout.astro";
     animation: rotation-anti-horaire 45s infinite linear;
   }
 
-  /* Le centre lumineux */
   .coeur-lumineux {
     width: 300px;
     height: 300px;
@@ -121,7 +129,6 @@ import BaseLayout from "../layouts/BaseLayout.astro";
     animation: pulsation 6s infinite ease-in-out;
   }
 
-  /* --- CONTENU --- */
   .contenu-hero {
     position: relative;
     z-index: 10;
@@ -136,7 +143,7 @@ import BaseLayout from "../layouts/BaseLayout.astro";
     text-transform: uppercase;
     letter-spacing: 3px;
     font-size: 0.85rem;
-    color: #d4af37; /* Or défini explicitement */
+    color: #d4af37;
     margin-bottom: 10px;
     font-weight: bold;
   }
@@ -165,10 +172,9 @@ import BaseLayout from "../layouts/BaseLayout.astro";
     color: rgba(255, 255, 255, 0.8);
   }
 
-  /* --- BOUTON FIXÉ --- */
   .btn-or {
-    background-color: #d4af37; /* Couleur Or visible */
-    color: #1a1a1a; /* Texte noir pour le contraste */
+    background-color: #d4af37;
+    color: #1a1a1a;
     padding: 15px 40px;
     border-radius: 50px;
     text-decoration: none;
@@ -184,13 +190,12 @@ import BaseLayout from "../layouts/BaseLayout.astro";
   }
 
   .btn-or:hover {
-    background-color: transparent; /* Fond transparent au survol */
-    color: #fff; /* Texte blanc */
-    border-color: #fff; /* Bordure blanche */
+    background-color: transparent;
+    color: #fff;
+    border-color: #fff;
     transform: scale(1.05);
   }
 
-  /* --- INDICATEUR SCROLL --- */
   .scroll-indicator {
     position: absolute;
     bottom: 30px;
@@ -212,7 +217,94 @@ import BaseLayout from "../layouts/BaseLayout.astro";
     animation: scroll-anim 2s infinite;
   }
 
-  /* --- ANIMATIONS --- */
+  /* =========================================
+     2. STYLE DU MANIFESTE (INTRO) - Nouveau
+     ========================================= */
+  .intro {
+    position: relative;
+    padding: 140px 20px; /* Espace généreux */
+    background-color: #fdfbf7; /* Blanc cassé */
+    overflow: hidden;
+    text-align: center;
+  }
+
+  /* Le mot géant en fond */
+  .watermark {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    font-size: 18vw; /* Taille énorme */
+    font-weight: 900;
+    font-family: "Playfair Display", serif;
+    color: rgba(0, 0, 0, 0.03); /* Très pâle */
+    pointer-events: none;
+    z-index: 0;
+    white-space: nowrap;
+    letter-spacing: 20px;
+  }
+
+  .conteneur-texte {
+    position: relative;
+    z-index: 1;
+    max-width: 800px;
+    margin: 0 auto;
+  }
+
+  .sur-titre {
+    display: block;
+    color: #d4af37;
+    font-size: 0.9rem;
+    text-transform: uppercase;
+    letter-spacing: 4px;
+    font-weight: bold;
+    margin-bottom: 20px;
+  }
+
+  .intro h2 {
+    font-family: "Playfair Display", serif;
+    font-size: 4rem; /* Grand titre imposant */
+    line-height: 1.1;
+    color: #1a1a1a;
+    margin-bottom: 30px;
+  }
+
+  .text-highlight {
+    color: #2f4f4f; /* Vert sombre */
+    font-style: italic;
+  }
+
+  .separateur-vertical {
+    width: 2px;
+    height: 60px;
+    background: linear-gradient(to bottom, #d4af37, transparent);
+    margin: 0 auto 30px;
+  }
+
+  .texte-manifeste {
+    font-family: "Lato", sans-serif;
+    font-size: 1.3rem; /* Texte lisible */
+    line-height: 1.8;
+    color: #4a4a4a;
+    text-align: justify; /* Justifié pour effet livre */
+    text-align-last: center; /* Dernière ligne centrée */
+  }
+
+  /* La Lettrine (Drop Cap) */
+  .lettrine {
+    float: left;
+    font-family: "Playfair Display", serif;
+    font-size: 4.5rem;
+    line-height: 0.8;
+    color: #d4af37;
+    margin-right: 15px;
+    margin-top: -5px;
+    font-weight: bold;
+  }
+
+  /* =========================================
+     ANIMATIONS & RESPONSIVE
+     ========================================= */
   @keyframes rotation-horaire {
     from {
       transform: rotate(0deg);
@@ -260,15 +352,19 @@ import BaseLayout from "../layouts/BaseLayout.astro";
     }
   }
 
-  /* --- MOBILE --- */
   @media (max-width: 768px) {
     h1 {
       font-size: 2.8rem;
     }
-
+    .intro h2 {
+      font-size: 2.5rem;
+    }
+    .watermark {
+      font-size: 30vw;
+      opacity: 0.04;
+    }
     .sanctuaire-container {
       width: 100%;
-      overflow: hidden;
     }
     .externe {
       width: 350px;
@@ -278,21 +374,13 @@ import BaseLayout from "../layouts/BaseLayout.astro";
       width: 250px;
       height: 250px;
     }
-
     .intro {
-      padding: 60px 20px;
+      padding: 80px 20px;
     }
-  }
-
-  .intro {
-    padding: 80px 10%;
-    background-color: white;
-    text-align: center;
-    position: relative;
-    z-index: 20;
-  }
-  .conteneur-texte {
-    max-width: 800px;
-    margin: 0 auto;
+    .texte-manifeste {
+      font-size: 1.1rem;
+      text-align: left;
+      text-align-last: left;
+    }
   }
 </style>

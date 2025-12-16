@@ -1,0 +1,266 @@
+---
+// Newsletter.astro - Version "Invitation Sacrée" (Light & Gold)
+---
+
+<section class="newsletter-section">
+  <div class="container">
+    <div class="invitation-card">
+      <div class="ornement-haut"></div>
+
+      <div class="contenu">
+        <span class="sous-titre">Le Cercle des Initiés</span>
+        <h2>Restez connecté à la Source</h2>
+        <p>
+          Rejoignez-nous. Recevez les dates des cérémonies, la sagesse du Fâ et
+          l'essence de nos traditions directement dans votre cœur (et votre
+          boîte mail).
+        </p>
+
+        <form id="form-newsletter" class="formulaire">
+          <input
+            type="hidden"
+            name="access_key"
+            value="90fd8cd4-08c6-427b-9e44-ae19d6c3f487"
+          />
+          <input
+            type="hidden"
+            name="subject"
+            value="Nouvel abonné Newsletter (Site Web)"
+          />
+          <input
+            type="checkbox"
+            name="botcheck"
+            class="hidden"
+            style="display: none;"
+          />
+
+          <div class="input-group">
+            <input
+              type="email"
+              name="email"
+              placeholder="Votre adresse email..."
+              required
+              class="champ-email"
+            />
+            <button type="submit" class="btn-inscription"> S'inscrire </button>
+          </div>
+          <p class="message-resultat" id="resultat-newsletter"></p>
+        </form>
+
+        <p class="rgpd">Nous respectons votre tranquillité. Pas de spam.</p>
+      </div>
+
+      <div class="ornement-bas"></div>
+    </div>
+  </div>
+</section>
+
+<script is:inline>
+  const formNews = document.getElementById("form-newsletter");
+  const resNews = document.getElementById("resultat-newsletter");
+
+  formNews.addEventListener("submit", function (e) {
+    e.preventDefault();
+    const formData = new FormData(formNews);
+    const object = Object.fromEntries(formData);
+    const json = JSON.stringify(object);
+
+    resNews.innerHTML = "Connexion en cours...";
+    resNews.style.color = "#d4af37";
+
+    fetch("https://api.web3forms.com/submit", {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json",
+        Accept: "application/json",
+      },
+      body: json,
+    })
+      .then(async (response) => {
+        if (response.status == 200) {
+          resNews.innerHTML = "✨ Bienvenue dans le cercle.";
+          resNews.style.color = "#2f4f4f";
+          formNews.reset();
+        } else {
+          resNews.innerHTML = "Une erreur est survenue. Réessayez.";
+          resNews.style.color = "red";
+        }
+      })
+      .catch((error) => {
+        resNews.innerHTML = "Erreur réseau.";
+      });
+  });
+</script>
+
+<style>
+  /* --- Section Globale --- */
+  .newsletter-section {
+    padding: 80px 20px 100px;
+    background: linear-gradient(
+      to bottom,
+      #ffffff,
+      #fdfbf7
+    ); /* Dégradé subtil vers le sol */
+    display: flex;
+    justify-content: center;
+  }
+
+  .container {
+    width: 100%;
+    max-width: 800px;
+  }
+
+  /* --- La Carte "Invitation" --- */
+  .invitation-card {
+    background-color: #fffcf5; /* Couleur Parchemin très clair */
+    border: 1px solid rgba(212, 175, 55, 0.3); /* Bordure or très fine */
+    border-radius: 8px;
+    padding: 60px 40px;
+    text-align: center;
+    position: relative;
+    /* Ombre portée douce + Lueur dorée */
+    box-shadow:
+      0 10px 40px rgba(0, 0, 0, 0.05),
+      0 0 20px rgba(212, 175, 55, 0.1);
+    /* Animation de respiration */
+    animation: breathing-glow 6s infinite ease-in-out;
+  }
+
+  /* Ornements (Petits traits dorés en haut et en bas pour faire "Cadre") */
+  .ornement-haut::before,
+  .ornement-bas::after {
+    content: "✦";
+    font-size: 1.5rem;
+    color: #d4af37;
+    display: block;
+    margin-bottom: 20px;
+  }
+  .ornement-bas::after {
+    margin-top: 20px;
+    margin-bottom: 0;
+  }
+
+  /* --- Typographie --- */
+  .sous-titre {
+    color: #d4af37;
+    text-transform: uppercase;
+    letter-spacing: 3px;
+    font-size: 0.8rem;
+    font-weight: bold;
+    display: block;
+    margin-bottom: 15px;
+  }
+
+  h2 {
+    font-family: "Playfair Display", serif;
+    font-size: 2.5rem;
+    color: #2f4f4f; /* Gris foncé/Vert sombre pour le contraste élégant */
+    margin-bottom: 20px;
+  }
+
+  p {
+    font-family: "Lato", sans-serif;
+    color: #666;
+    line-height: 1.6;
+    margin-bottom: 30px;
+    font-size: 1.1rem;
+    max-width: 600px;
+    margin-left: auto;
+    margin-right: auto;
+  }
+
+  /* --- Formulaire --- */
+  .input-group {
+    display: flex;
+    gap: 10px;
+    justify-content: center;
+    flex-wrap: wrap;
+    max-width: 500px;
+    margin: 0 auto;
+  }
+
+  .champ-email {
+    flex: 1;
+    min-width: 250px;
+    padding: 15px 20px;
+    border-radius: 4px; /* Coins un peu plus carrés pour le sérieux */
+    border: 1px solid #e0e0e0;
+    background-color: white;
+    color: #333;
+    font-family: "Lato", sans-serif;
+    outline: none;
+    transition: all 0.3s;
+  }
+
+  .champ-email:focus {
+    border-color: #d4af37;
+    box-shadow: 0 0 0 3px rgba(212, 175, 55, 0.1);
+  }
+
+  .btn-inscription {
+    background-color: #d4af37;
+    color: #1a1a1a;
+    border: none;
+    padding: 15px 30px;
+    border-radius: 4px;
+    font-weight: bold;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    cursor: pointer;
+    transition: all 0.3s;
+    border: 1px solid #d4af37;
+  }
+
+  .btn-inscription:hover {
+    background-color: transparent;
+    color: #d4af37;
+    transform: translateY(-2px);
+  }
+
+  .rgpd {
+    font-size: 0.8rem;
+    color: #999;
+    margin-top: 25px;
+    margin-bottom: 0;
+    font-style: italic;
+  }
+
+  .message-resultat {
+    margin-top: 15px;
+    font-weight: bold;
+    min-height: 24px;
+  }
+
+  /* --- Animation --- */
+  @keyframes breathing-glow {
+    0%,
+    100% {
+      box-shadow:
+        0 10px 40px rgba(0, 0, 0, 0.05),
+        0 0 20px rgba(212, 175, 55, 0.1);
+      border-color: rgba(212, 175, 55, 0.3);
+    }
+    50% {
+      box-shadow:
+        0 15px 50px rgba(0, 0, 0, 0.08),
+        0 0 35px rgba(212, 175, 55, 0.3);
+      border-color: rgba(212, 175, 55, 0.6);
+    }
+  }
+
+  /* --- Mobile --- */
+  @media (max-width: 768px) {
+    .invitation-card {
+      padding: 40px 20px;
+    }
+    h2 {
+      font-size: 2rem;
+    }
+    .input-group {
+      flex-direction: column;
+    }
+    .btn-inscription {
+      width: 100%;
+    }
+  }
+</style>
