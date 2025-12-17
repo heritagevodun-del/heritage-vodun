@@ -1,4 +1,4 @@
 User-agent: *
 Allow: /
 
-Sitemap: https://heritage-vodun.vercel.app/sitemap-index.xml
+Sitemap: https://www.heritagevodun.com/sitemap-index.xml
