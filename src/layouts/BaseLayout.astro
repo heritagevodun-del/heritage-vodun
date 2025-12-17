@@ -74,15 +74,24 @@ const canonicalURL = new URL(Astro.url.pathname, Astro.site);
     ></script>
 
     <style>
-      /* Cacher la barre Google moche */
+      /* --- CORRECTION CSS POUR LA TRADUCTION --- */
       body {
         top: 0 !important;
       }
       .goog-te-banner-frame {
         display: none !important;
       }
+
+      /* IMPORTANT : On ne met PAS display: none, sinon Google ne crée pas le menu.
+         On le cache juste visuellement. */
       #google_translate_element {
-        display: none;
+        visibility: hidden;
+        position: absolute;
+        width: 1px;
+        height: 1px;
+        overflow: hidden;
+        top: 0;
+        left: 0;
       }
     </style>
   </head>
@@ -251,7 +260,7 @@ const canonicalURL = new URL(Astro.url.pathname, Astro.site);
 
     <script>
       document.addEventListener("astro:page-load", () => {
-        // --- 1. GESTION MENU MOBILE ---
+        // --- GESTION MENU MOBILE ---
         const menuBtn = document.getElementById("menu-toggle");
         const navMenu = document.getElementById("nav-menu");
 
@@ -267,23 +276,30 @@ const canonicalURL = new URL(Astro.url.pathname, Astro.site);
           }
         }
 
-        // --- 2. GESTION BOUTON TRADUCTION ---
+        // --- GESTION BOUTON TRADUCTION AMÉLIORÉE ---
         const translateBtn = document.getElementById("translate-btn");
         if (translateBtn) {
           translateBtn.addEventListener("click", () => {
-            // On cherche le selecteur caché de Google et on change la valeur
             const googleSelect = document.querySelector(".goog-te-combo");
+
             if (googleSelect) {
-              // Si c'est déjà en anglais, on remet français, sinon anglais
-              // Note: L'API Google simple est limitée, ici on force vers l'Anglais
-              // Pour basculer, il faut souvent recharger ou manipuler l'iframe complexe.
-              // Solution simple : simuler le choix 'en'
+              // Si le module est prêt, on traduit
               (googleSelect as HTMLSelectElement).value = "en";
               googleSelect.dispatchEvent(new Event("change"));
             } else {
-              alert(
-                "Le module de traduction se charge... Réessayez dans 2 secondes."
-              );
+              // Si le module n'est pas prêt, on évite l'alerte moche.
+              // On attend un peu et on réessaie automatiquement.
+              const checkGoogle = setInterval(() => {
+                const retrySelect = document.querySelector(".goog-te-combo");
+                if (retrySelect) {
+                  (retrySelect as HTMLSelectElement).value = "en";
+                  retrySelect.dispatchEvent(new Event("change"));
+                  clearInterval(checkGoogle); // Stop quand c'est fait
+                }
+              }, 500); // Vérifie toutes les 0.5 secondes
+
+              // Sécurité : on arrête de chercher après 5 secondes pour pas tourner dans le vide
+              setTimeout(() => clearInterval(checkGoogle), 5000);
             }
           });
         }
@@ -365,11 +381,11 @@ const canonicalURL = new URL(Astro.url.pathname, Astro.site);
 
   /* --- FOOTER PRO --- */
   .site-footer {
-    background-color: #1a2e2e; /* Vert très sombre, presque noir */
+    background-color: #1a2e2e;
     color: #e0e0e0;
     padding-top: 4rem;
     margin-top: 4rem;
-    border-top: 4px solid #c06c3b; /* Ligne dorée signature */
+    border-top: 4px solid #c06c3b;
   }
 
   .footer-container {
@@ -377,12 +393,11 @@ const canonicalURL = new URL(Astro.url.pathname, Astro.site);
     margin: 0 auto;
     padding: 0 1.5rem;
     display: grid;
-    grid-template-columns: 1.5fr 1fr 1fr 1fr; /* Structure asymétrique pro */
+    grid-template-columns: 1.5fr 1fr 1fr 1fr;
     gap: 3rem;
     margin-bottom: 3rem;
   }
 
-  /* Footer Headings */
   .footer-logo {
     font-family: "Playfair Display", serif;
     font-size: 1.8rem;
@@ -396,7 +411,6 @@ const canonicalURL = new URL(Astro.url.pathname, Astro.site);
     font-size: 1.2rem;
   }
 
-  /* Brand Column */
   .brand-desc {
     font-size: 0.95rem;
     opacity: 0.8;
@@ -422,7 +436,6 @@ const canonicalURL = new URL(Astro.url.pathname, Astro.site);
     transform: translateY(-3px);
   }
 
-  /* Links */
   .footer-links ul {
     list-style: none;
   }
@@ -439,7 +452,6 @@ const canonicalURL = new URL(Astro.url.pathname, Astro.site);
     padding-left: 5px;
   }
 
-  /* Newsletter */
   .footer-newsletter p {
     font-size: 0.9rem;
     margin-bottom: 1rem;
@@ -469,7 +481,6 @@ const canonicalURL = new URL(Astro.url.pathname, Astro.site);
     background: #a05a2f;
   }
 
-  /* Contact */
   .footer-contact p {
     font-size: 0.95rem;
     margin-bottom: 0.5rem;
@@ -485,9 +496,8 @@ const canonicalURL = new URL(Astro.url.pathname, Astro.site);
     padding-bottom: 2px;
   }
 
-  /* Bottom Bar */
   .footer-bottom {
-    background: #142424; /* Encore plus sombre */
+    background: #142424;
     padding: 1.5rem;
     display: flex;
     justify-content: space-between;
@@ -511,7 +521,6 @@ const canonicalURL = new URL(Astro.url.pathname, Astro.site);
     opacity: 0.3;
   }
 
-  /* Responsive */
   @media (max-width: 900px) {
     .footer-container {
       grid-template-columns: 1fr 1fr;
