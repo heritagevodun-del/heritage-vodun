@@ -61,7 +61,6 @@ const canonicalURL = new URL(Astro.url.pathname, Astro.site);
           {
             pageLanguage: "fr",
             includedLanguages: "en,fr",
-            layout: google.translate.TranslateElement.InlineLayout.SIMPLE,
             autoDisplay: false,
           },
           "google_translate_element"
@@ -81,13 +80,7 @@ const canonicalURL = new URL(Astro.url.pathname, Astro.site);
         display: none !important;
       }
       #google_translate_element {
-        visibility: hidden;
-        position: absolute;
-        width: 1px;
-        height: 1px;
-        overflow: hidden;
-        top: 0;
-        left: 0;
+        display: none;
       }
     </style>
   </head>
@@ -153,60 +146,6 @@ const canonicalURL = new URL(Astro.url.pathname, Astro.site);
             Le portail de référence pour comprendre la spiritualité, l'histoire
             et les rites du Bénin.
           </p>
-          <div class="social-icons">
-            <a href="#" aria-label="Facebook"
-              ><svg
-                xmlns="http://www.w3.org/2000/svg"
-                width="20"
-                height="20"
-                viewBox="0 0 24 24"
-                fill="none"
-                stroke="currentColor"
-                stroke-width="2"
-                stroke-linecap="round"
-                stroke-linejoin="round"
-                ><path
-                  d="M18 2h-3a5 5 0 0 0-5 5v3H7v4h3v8h4v-8h3l1-4h-4V7a1 1 0 0 1 1-1h3z"
-                ></path></svg
-              ></a
-            >
-            <a href="#" aria-label="Instagram"
-              ><svg
-                xmlns="http://www.w3.org/2000/svg"
-                width="20"
-                height="20"
-                viewBox="0 0 24 24"
-                fill="none"
-                stroke="currentColor"
-                stroke-width="2"
-                stroke-linecap="round"
-                stroke-linejoin="round"
-                ><rect x="2" y="2" width="20" height="20" rx="5" ry="5"
-                ></rect><path
-                  d="M16 11.37A4 4 0 1 1 12.63 8 4 4 0 0 1 16 11.37z"
-                ></path><line x1="17.5" y1="6.5" x2="17.51" y2="6.5"
-                ></line></svg
-              ></a
-            >
-            <a href="#" aria-label="Youtube"
-              ><svg
-                xmlns="http://www.w3.org/2000/svg"
-                width="20"
-                height="20"
-                viewBox="0 0 24 24"
-                fill="none"
-                stroke="currentColor"
-                stroke-width="2"
-                stroke-linecap="round"
-                stroke-linejoin="round"
-                ><path
-                  d="M22.54 6.42a2.78 2.78 0 0 0-1.94-2C18.88 4 12 4 12 4s-6.88 0-8.6.46a2.78 2.78 0 0 0-1.94 2A29 29 0 0 0 1 11.75a29 29 0 0 0 .46 5.33A2.78 2.78 0 0 0 3.4 19c1.72.46 8.6.46 8.6.46s6.88 0 8.6-.46a2.78 2.78 0 0 0 1.94-2 29 29 0 0 0 .46-5.33 29 29 0 0 0-.46-5.33z"
-                ></path><polygon
-                  points="9.75 15.02 15.5 11.75 9.75 8.48 9.75 15.02"
-                ></polygon></svg
-              ></a
-            >
-          </div>
         </div>
 
         <div class="footer-links">
@@ -259,31 +198,51 @@ const canonicalURL = new URL(Astro.url.pathname, Astro.site);
           }
         }
 
-        // 2. Traduction (CORRECTION ERREUR ROUGE ICI 👇)
+        // 2. Traduction par Cookie (Typé pour TypeScript)
         const translateBtn = document.getElementById("translate-btn");
-        // On vérifie que le bouton ET son parent existent avant de faire quoi que ce soit
+
+        // CORRECTION 1 : Ajout des types (name: string) pour satisfaire TypeScript
+        function getCookie(name: string) {
+          const v = document.cookie.match("(^|;) ?" + name + "=([^;]*)(;|$)");
+          return v ? v[2] : null;
+        }
+
+        // CORRECTION 2 : Ajout des types (string, string, number)
+        function setCookie(name: string, value: string, days: number) {
+          const d = new Date();
+          d.setTime(d.getTime() + 24 * 60 * 60 * 1000 * days);
+          document.cookie =
+            name + "=" + value + ";path=/;domain=" + window.location.hostname;
+        }
+
+        if (translateBtn) {
+          if (getCookie("googtrans") === "/fr/en") {
+            const textSpan = translateBtn.querySelector(".text");
+            if (textSpan) textSpan.textContent = "FR";
+          }
+        }
+
+        // CORRECTION 3 : Vérification stricte que parentNode existe
         if (translateBtn && translateBtn.parentNode) {
           const newTranslateBtn = translateBtn.cloneNode(true);
+          // TypeScript sait maintenant que parentNode n'est pas null ici
           translateBtn.parentNode.replaceChild(newTranslateBtn, translateBtn);
 
           newTranslateBtn.addEventListener("click", () => {
-            const googleSelect = document.querySelector(".goog-te-combo");
+            const currentLang = getCookie("googtrans");
 
-            if (googleSelect && googleSelect instanceof HTMLSelectElement) {
-              googleSelect.value = "en";
-              googleSelect.dispatchEvent(new Event("change"));
+            if (currentLang === "/fr/en") {
+              // Revenir en FR
+              document.cookie =
+                "googtrans=; expires=Thu, 01 Jan 1970 00:00:00 UTC; path=/;";
+              document.cookie =
+                "googtrans=; expires=Thu, 01 Jan 1970 00:00:00 UTC; path=/; domain=" +
+                window.location.hostname;
+              location.reload();
             } else {
-              let attempts = 0;
-              const checkInterval = setInterval(() => {
-                attempts++;
-                const retrySelect = document.querySelector(".goog-te-combo");
-                if (retrySelect && retrySelect instanceof HTMLSelectElement) {
-                  retrySelect.value = "en";
-                  retrySelect.dispatchEvent(new Event("change"));
-                  clearInterval(checkInterval);
-                }
-                if (attempts > 10) clearInterval(checkInterval);
-              }, 500);
+              // Forcer EN
+              setCookie("googtrans", "/fr/en", 1);
+              location.reload();
             }
           });
         }
@@ -391,24 +350,7 @@ const canonicalURL = new URL(Astro.url.pathname, Astro.site);
     margin-bottom: 1.5rem;
     max-width: 300px;
   }
-  .social-icons {
-    display: flex;
-    gap: 1rem;
-  }
-  .social-icons a {
-    color: #fff;
-    background: rgba(255, 255, 255, 0.1);
-    padding: 8px;
-    border-radius: 50%;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    transition: all 0.3s ease;
-  }
-  .social-icons a:hover {
-    background: #c06c3b;
-    transform: translateY(-3px);
-  }
+
   .footer-links ul {
     list-style: none;
   }
