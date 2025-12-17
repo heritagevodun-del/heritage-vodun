@@ -8,15 +8,6 @@
   <a href="/lexique" class="nav-item">Lexique</a>
   <a href="/blog" class="nav-item">Blog</a>
   <a href="/contact" class="nav-item">Contact</a>
-
-  <button
-    id="translate-btn"
-    class="translate-btn"
-    aria-label="Traduire en Anglais"
-  >
-    <span class="icon">🌍</span>
-    <span class="text">EN</span>
-  </button>
 </nav>
 
 <style>
@@ -59,36 +50,10 @@
     width: 100%;
   }
 
-  /* --- BOUTON TRADUCTION --- */
-  .translate-btn {
-    display: flex;
-    align-items: center;
-    gap: 8px;
-    background: transparent;
-    border: 1px solid #2f4f4f;
-    padding: 6px 16px;
-    border-radius: 50px;
-    cursor: pointer;
-    font-family: "Lato", sans-serif;
-    font-weight: 700;
-    color: #2f4f4f;
-    transition: all 0.3s ease;
-  }
-
-  .translate-btn:hover {
-    background: #2f4f4f;
-    color: #fff;
-    border-color: #2f4f4f;
-  }
-
-  .translate-btn .icon {
-    font-size: 1.1rem;
-  }
-
   /* --- MOBILE --- */
   @media (max-width: 768px) {
     .nav-links {
-      display: none; /* Géré par le script du BaseLayout */
+      display: none;
       flex-direction: column;
       position: absolute;
       top: 100%;
@@ -102,21 +67,9 @@
       gap: 1.5rem;
     }
 
-    /* Quand le menu est ouvert */
+    /* Quand le menu est ouvert (géré par le script global) */
     :global(.nav-links.active) {
       display: flex;
-    }
-
-    .translate-btn {
-      width: 100%;
-      justify-content: center;
-      margin-top: 1rem;
-      border-color: #c06c3b;
-      color: #c06c3b;
-    }
-
-    .translate-btn:hover {
-      background: #c06c3b;
     }
   }
 </style>

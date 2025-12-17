@@ -19,67 +19,14 @@ const { title = "Héritage Vodun" } = Astro.props;
     <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
     <meta name="generator" content={Astro.generator} />
     <title>{title}</title>
-
-    <script type="text/javascript">
-      function googleTranslateElementInit() {
-        new google.translate.TranslateElement(
-          {
-            pageLanguage: "fr",
-            includedLanguages: "en,fr",
-            layout: google.translate.TranslateElement.InlineLayout.SIMPLE,
-            autoDisplay: false,
-          },
-          "google_translate_element"
-        );
-      }
-    </script>
-    <script
-      type="text/javascript"
-      src="//translate.google.com/translate_a/element.js?cb=googleTranslateElementInit"
-    ></script>
   </head>
-
   <body>
-    <div id="google_translate_element"></div>
-
     <slot />
-
-    <script>
-      // Fonction pour changer la langue
-      function triggerTranslation() {
-        // ICI LA CORRECTION : On précise "as HTMLSelectElement" pour éviter l'erreur rouge
-        const googleSelect = document.querySelector(
-          ".goog-te-combo"
-        ) as HTMLSelectElement;
-
-        if (googleSelect) {
-          googleSelect.value = "en";
-          googleSelect.dispatchEvent(new Event("change", { bubbles: true }));
-        }
-      }
-
-      // On attend que tout soit prêt
-      ["DOMContentLoaded", "astro:page-load"].forEach((event) => {
-        document.addEventListener(event, () => {
-          const btn = document.getElementById("translate-btn");
-
-          if (btn) {
-            btn.addEventListener("click", (e) => {
-              e.preventDefault();
-              triggerTranslation();
-
-              // Sécurité : on réessaie après 1 seconde
-              setTimeout(triggerTranslation, 1000);
-            });
-          }
-        });
-      });
-    </script>
   </body>
 </html>
 
 <style is:global>
-  /* --- STABILITÉ ET PROPRETÉ --- */
+  /* Reset standard pour un site compact et propre */
   html,
   body {
     margin: 0;
@@ -87,40 +34,5 @@ const { title = "Héritage Vodun" } = Astro.props;
     width: 100%;
     height: 100%;
     overflow-x: hidden;
-  }
-  html {
-    margin-top: 0 !important;
-  }
-  body {
-    top: 0 !important;
-  }
-
-  /* Cache visuel complet de Google */
-  .goog-te-banner-frame.skiptranslate {
-    display: none !important;
-  }
-  body > .skiptranslate {
-    display: none !important;
-  }
-  #goog-gt-tt,
-  .goog-te-balloon-frame {
-    display: none !important;
-  }
-  .goog-logo-link {
-    display: none !important;
-  }
-  .goog-te-gadget {
-    color: transparent !important;
-  }
-
-  /* Le widget technique reste présent mais invisible */
-  #google_translate_element {
-    visibility: hidden;
-    position: absolute;
-    width: 1px;
-    height: 1px;
-    top: 0;
-    left: 0;
-    z-index: -1;
   }
 </style>
