@@ -45,7 +45,20 @@ const { title = "Héritage Vodun" } = Astro.props;
     <slot />
 
     <script>
-      // On attend que la page soit chargée (compatible Astro ViewTransitions)
+      // Fonction pour changer la langue
+      function triggerTranslation() {
+        // ICI LA CORRECTION : On précise "as HTMLSelectElement" pour éviter l'erreur rouge
+        const googleSelect = document.querySelector(
+          ".goog-te-combo"
+        ) as HTMLSelectElement;
+
+        if (googleSelect) {
+          googleSelect.value = "en";
+          googleSelect.dispatchEvent(new Event("change", { bubbles: true }));
+        }
+      }
+
+      // On attend que tout soit prêt
       ["DOMContentLoaded", "astro:page-load"].forEach((event) => {
         document.addEventListener(event, () => {
           const btn = document.getElementById("translate-btn");
@@ -53,27 +66,10 @@ const { title = "Héritage Vodun" } = Astro.props;
           if (btn) {
             btn.addEventListener("click", (e) => {
               e.preventDefault();
-              // On cherche le menu déroulant caché de Google
-              const googleSelect = document.querySelector(
-                ".goog-te-combo"
-              ) as HTMLSelectElement;
+              triggerTranslation();
 
-              if (googleSelect) {
-                // On change la langue vers Anglais
-                googleSelect.value = "en";
-                googleSelect.dispatchEvent(new Event("change"));
-              } else {
-                // Si Google n'est pas encore prêt, on réessaie brièvement
-                setTimeout(() => {
-                  const retrySelect = document.querySelector(
-                    ".goog-te-combo"
-                  ) as HTMLSelectElement;
-                  if (retrySelect) {
-                    retrySelect.value = "en";
-                    retrySelect.dispatchEvent(new Event("change"));
-                  }
-                }, 1000);
-              }
+              // Sécurité : on réessaie après 1 seconde
+              setTimeout(triggerTranslation, 1000);
             });
           }
         });
@@ -83,7 +79,7 @@ const { title = "Héritage Vodun" } = Astro.props;
 </html>
 
 <style is:global>
-  /* --- DESIGN INTELLIGENT & STABLE --- */
+  /* --- STABILITÉ ET PROPRETÉ --- */
   html,
   body {
     margin: 0;
@@ -92,8 +88,6 @@ const { title = "Héritage Vodun" } = Astro.props;
     height: 100%;
     overflow-x: hidden;
   }
-
-  /* Sécurité : On empêche Google de pousser le site vers le bas */
   html {
     margin-top: 0 !important;
   }
@@ -101,26 +95,13 @@ const { title = "Héritage Vodun" } = Astro.props;
     top: 0 !important;
   }
 
-  /* On cache la barre bleue intrusvive */
+  /* Cache visuel complet de Google */
   .goog-te-banner-frame.skiptranslate {
     display: none !important;
   }
   body > .skiptranslate {
     display: none !important;
   }
-
-  /* On cache le widget technique (on utilise notre propre bouton) */
-  #google_translate_element {
-    visibility: hidden; /* Important : visibility hidden et pas display none */
-    position: absolute;
-    width: 1px;
-    height: 1px;
-    top: 0;
-    left: 0;
-    z-index: -1;
-  }
-
-  /* Nettoyage cosmétique */
   #goog-gt-tt,
   .goog-te-balloon-frame {
     display: none !important;
@@ -130,5 +111,16 @@ const { title = "Héritage Vodun" } = Astro.props;
   }
   .goog-te-gadget {
     color: transparent !important;
+  }
+
+  /* Le widget technique reste présent mais invisible */
+  #google_translate_element {
+    visibility: hidden;
+    position: absolute;
+    width: 1px;
+    height: 1px;
+    top: 0;
+    left: 0;
+    z-index: -1;
   }
 </style>
