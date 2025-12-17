@@ -5,7 +5,7 @@ import { ClientRouter } from "astro:transitions";
 
 const {
   titrePage = "Héritage Vodun",
-  description = "Découvrez l'essence du Vodun, spiritualité millénaire du Bénin. Histoire, rites et culture expliqués loin des clichés.",
+  description = "Découvrez l'essence du Vodun, spiritualité millénaire du Bénin.",
   image = "/vodunsi.jpeg",
 } = Astro.props;
 
@@ -15,17 +15,16 @@ const canonicalURL = new URL(Astro.url.pathname, Astro.site);
 <html lang="fr">
   <head>
     <meta charset="utf-8" />
-
     <ClientRouter />
 
     <script is:inline>
-      // Si l'adresse contient "vercel.app", on redirige vers le vrai site
       if (window.location.hostname.includes("vercel.app")) {
         window.location.replace(
           "https://www.heritagevodun.com" + window.location.pathname
         );
       }
     </script>
+
     <meta
       name="google-site-verification"
       content="CRqvKv6IhsMc-HKsY_2vq9n2Az8AqbXUZ_IRFfe240I"
@@ -43,7 +42,6 @@ const canonicalURL = new URL(Astro.url.pathname, Astro.site);
     <meta property="og:title" content={titrePage} />
     <meta property="og:description" content={description} />
     <meta property="og:image" content={new URL(image, Astro.site)} />
-
     <meta property="twitter:card" content="summary_large_image" />
     <meta property="twitter:url" content={Astro.url} />
     <meta property="twitter:title" content={titrePage} />
@@ -53,11 +51,45 @@ const canonicalURL = new URL(Astro.url.pathname, Astro.site);
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
     <link
-      href="https://fonts.googleapis.com/css2?family=Lato:wght@400;700&family=Playfair+Display:ital,wght@0,400;0,700;1,400&display=swap"
+      href="https://fonts.googleapis.com/css2?family=Lato:wght@300;400;700&family=Playfair+Display:ital,wght@0,400;0,600;0,700;1,400&display=swap"
       rel="stylesheet"
     />
+
+    <script type="text/javascript">
+      function googleTranslateElementInit() {
+        new google.translate.TranslateElement(
+          {
+            pageLanguage: "fr",
+            includedLanguages: "en,fr",
+            layout: google.translate.TranslateElement.InlineLayout.SIMPLE,
+            autoDisplay: false,
+          },
+          "google_translate_element"
+        );
+      }
+    </script>
+    <script
+      type="text/javascript"
+      src="//translate.google.com/translate_a/element.js?cb=googleTranslateElementInit"
+    ></script>
+
+    <style>
+      /* Cacher la barre Google moche */
+      body {
+        top: 0 !important;
+      }
+      .goog-te-banner-frame {
+        display: none !important;
+      }
+      #google_translate_element {
+        display: none;
+      }
+    </style>
   </head>
+
   <body>
+    <div id="google_translate_element"></div>
+
     <header class="site-header">
       <div class="header-container">
         <a href="/" class="logo-wrapper">
@@ -65,8 +97,8 @@ const canonicalURL = new URL(Astro.url.pathname, Astro.site);
             class="logo-icon"
             xmlns="http://www.w3.org/2000/svg"
             viewBox="0 0 100 100"
-            width="40"
-            height="40"
+            width="45"
+            height="45"
           >
             <circle
               cx="50"
@@ -110,35 +142,98 @@ const canonicalURL = new URL(Astro.url.pathname, Astro.site);
 
     <footer class="site-footer">
       <div class="footer-container">
-        <div class="footer-col">
+        <div class="footer-brand">
           <h3 class="footer-logo">Héritage Vodun</h3>
-          <p>
-            Explorer la richesse culturelle et spirituelle du Bénin. Comprendre
-            l'héritage pour mieux construire l'avenir.
+          <p class="brand-desc">
+            Le portail de référence pour comprendre la spiritualité, l'histoire
+            et les rites du Bénin. Une tradition vivante, expliquée avec respect
+            et authenticité.
           </p>
+          <div class="social-icons">
+            <a href="#" aria-label="Facebook"
+              ><svg
+                xmlns="http://www.w3.org/2000/svg"
+                width="20"
+                height="20"
+                viewBox="0 0 24 24"
+                fill="none"
+                stroke="currentColor"
+                stroke-width="2"
+                stroke-linecap="round"
+                stroke-linejoin="round"
+                ><path
+                  d="M18 2h-3a5 5 0 0 0-5 5v3H7v4h3v8h4v-8h3l1-4h-4V7a1 1 0 0 1 1-1h3z"
+                ></path></svg
+              ></a
+            >
+            <a href="#" aria-label="Instagram"
+              ><svg
+                xmlns="http://www.w3.org/2000/svg"
+                width="20"
+                height="20"
+                viewBox="0 0 24 24"
+                fill="none"
+                stroke="currentColor"
+                stroke-width="2"
+                stroke-linecap="round"
+                stroke-linejoin="round"
+                ><rect x="2" y="2" width="20" height="20" rx="5" ry="5"
+                ></rect><path
+                  d="M16 11.37A4 4 0 1 1 12.63 8 4 4 0 0 1 16 11.37z"
+                ></path><line x1="17.5" y1="6.5" x2="17.51" y2="6.5"
+                ></line></svg
+              ></a
+            >
+            <a href="#" aria-label="Youtube"
+              ><svg
+                xmlns="http://www.w3.org/2000/svg"
+                width="20"
+                height="20"
+                viewBox="0 0 24 24"
+                fill="none"
+                stroke="currentColor"
+                stroke-width="2"
+                stroke-linecap="round"
+                stroke-linejoin="round"
+                ><path
+                  d="M22.54 6.42a2.78 2.78 0 0 0-1.94-2C18.88 4 12 4 12 4s-6.88 0-8.6.46a2.78 2.78 0 0 0-1.94 2A29 29 0 0 0 1 11.75a29 29 0 0 0 .46 5.33A2.78 2.78 0 0 0 3.4 19c1.72.46 8.6.46 8.6.46s6.88 0 8.6-.46a2.78 2.78 0 0 0 1.94-2 29 29 0 0 0 .46-5.33 29 29 0 0 0-.46-5.33z"
+                ></path><polygon
+                  points="9.75 15.02 15.5 11.75 9.75 8.48 9.75 15.02"
+                ></polygon></svg
+              ></a
+            >
+          </div>
         </div>
 
-        <div class="footer-col">
-          <h4>Navigation</h4>
+        <div class="footer-links">
+          <h4>Explorer</h4>
           <ul>
             <li><a href="/">Accueil</a></li>
+            <li><a href="/lexique">Le Lexique Sacré</a></li>
+            <li><a href="/blog">Articles & Récits</a></li>
             <li><a href="/about">Notre Mission</a></li>
-            <li><a href="/lexique">Lexique</a></li>
-            <li><a href="/blog">Articles & Guides</a></li>
-            <li><a href="/contact">Nous écrire</a></li>
           </ul>
         </div>
 
-        <div class="footer-col">
-          <h4>Nous trouver</h4>
-          <p>📍 Ouidah, Bénin</p>
-          <br />
-          <p style="font-size: 0.95rem;">
-            Une question ?<br />
-            <a href="/contact" style="color: #C06C3B; font-weight: bold;"
-              >Contactez-nous ici</a
-            >
+        <div class="footer-newsletter">
+          <h4>Restez Connecté</h4>
+          <p>
+            Recevez chaque mois un récit ou une découverte sur la culture Vodun.
           </p>
+          <form
+            class="newsletter-form"
+            onsubmit="event.preventDefault(); alert('Merci ! Inscription validée.');"
+          >
+            <input type="email" placeholder="Votre email..." required />
+            <button type="submit">→</button>
+          </form>
+        </div>
+
+        <div class="footer-contact">
+          <h4>Nous Trouver</h4>
+          <p>📍 Ouidah, Bénin</p>
+          <p>📧 contact@heritagevodun.com</p>
+          <a href="/contact" class="contact-btn-footer">Nous écrire</a>
         </div>
       </div>
 
@@ -146,30 +241,51 @@ const canonicalURL = new URL(Astro.url.pathname, Astro.site);
         <p>
           &copy; {new Date().getFullYear()} Héritage Vodun. Tous droits réservés.
         </p>
+        <div class="legal-links">
+          <a href="#">Mentions Légales</a>
+          <span class="separator">|</span>
+          <a href="#">Politique de Confidentialité</a>
+        </div>
       </div>
     </footer>
 
     <script>
-      // Script corrigé pour éviter les erreurs TypeScript dans VS Code
       document.addEventListener("astro:page-load", () => {
+        // --- 1. GESTION MENU MOBILE ---
         const menuBtn = document.getElementById("menu-toggle");
         const navMenu = document.getElementById("nav-menu");
 
-        // On vérifie que le bouton, le menu ET le parent du bouton existent
         if (menuBtn && navMenu && menuBtn.parentNode) {
-          // On clone pour nettoyer les événements précédents
           const newMenuBtn = menuBtn.cloneNode(true);
-
-          // On remplace
           menuBtn.parentNode.replaceChild(newMenuBtn, menuBtn);
 
-          // On vérifie que c'est bien un élément HTML pour accéder à classList
           if (newMenuBtn instanceof HTMLElement) {
             newMenuBtn.addEventListener("click", () => {
               navMenu.classList.toggle("active");
               newMenuBtn.classList.toggle("open");
             });
           }
+        }
+
+        // --- 2. GESTION BOUTON TRADUCTION ---
+        const translateBtn = document.getElementById("translate-btn");
+        if (translateBtn) {
+          translateBtn.addEventListener("click", () => {
+            // On cherche le selecteur caché de Google et on change la valeur
+            const googleSelect = document.querySelector(".goog-te-combo");
+            if (googleSelect) {
+              // Si c'est déjà en anglais, on remet français, sinon anglais
+              // Note: L'API Google simple est limitée, ici on force vers l'Anglais
+              // Pour basculer, il faut souvent recharger ou manipuler l'iframe complexe.
+              // Solution simple : simuler le choix 'en'
+              (googleSelect as HTMLSelectElement).value = "en";
+              googleSelect.dispatchEvent(new Event("change"));
+            } else {
+              alert(
+                "Le module de traduction se charge... Réessayez dans 2 secondes."
+              );
+            }
+          });
         }
       });
     </script>
@@ -193,42 +309,39 @@ const canonicalURL = new URL(Astro.url.pathname, Astro.site);
     font-family: "Lato", sans-serif;
     color: #333;
     line-height: 1.6;
+    background-color: #fcfcfc;
   }
-
   main {
     flex: 1;
   }
 
-  /* --- HEADER & NAV --- */
+  /* --- HEADER --- */
   .site-header {
-    background: white;
-    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.05);
+    background: rgba(255, 255, 255, 0.98);
+    backdrop-filter: blur(10px);
+    box-shadow: 0 2px 15px rgba(0, 0, 0, 0.04);
     position: sticky;
     top: 0;
     z-index: 1000;
   }
-
   .header-container {
     max-width: 1200px;
     margin: 0 auto;
-    padding: 1rem 1.5rem;
+    padding: 0.8rem 1.5rem;
     display: flex;
     justify-content: space-between;
     align-items: center;
-    position: relative;
   }
-
   .logo-wrapper {
     display: flex;
     align-items: center;
     text-decoration: none;
-    gap: 10px;
+    gap: 12px;
   }
-
   .logo-text {
     font-family: "Playfair Display", serif;
     font-weight: 700;
-    font-size: 1.4rem;
+    font-size: 1.5rem;
     color: #2f4f4f;
     text-transform: uppercase;
     letter-spacing: 1px;
@@ -242,7 +355,6 @@ const canonicalURL = new URL(Astro.url.pathname, Astro.site);
     flex-direction: column;
     gap: 5px;
   }
-
   .hamburger-line {
     width: 25px;
     height: 3px;
@@ -251,12 +363,13 @@ const canonicalURL = new URL(Astro.url.pathname, Astro.site);
     transition: all 0.3s ease;
   }
 
-  /* --- FOOTER --- */
+  /* --- FOOTER PRO --- */
   .site-footer {
-    background-color: #2f4f4f;
-    color: #f0f0f0;
-    padding-top: 3rem;
-    margin-top: 3rem;
+    background-color: #1a2e2e; /* Vert très sombre, presque noir */
+    color: #e0e0e0;
+    padding-top: 4rem;
+    margin-top: 4rem;
+    border-top: 4px solid #c06c3b; /* Ligne dorée signature */
   }
 
   .footer-container {
@@ -264,54 +377,157 @@ const canonicalURL = new URL(Astro.url.pathname, Astro.site);
     margin: 0 auto;
     padding: 0 1.5rem;
     display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
-    gap: 2rem;
+    grid-template-columns: 1.5fr 1fr 1fr 1fr; /* Structure asymétrique pro */
+    gap: 3rem;
+    margin-bottom: 3rem;
   }
 
-  .footer-col h3,
-  .footer-col h4 {
+  /* Footer Headings */
+  .footer-logo {
     font-family: "Playfair Display", serif;
-    color: #c06c3b;
+    font-size: 1.8rem;
+    color: #fff;
     margin-bottom: 1rem;
   }
+  h4 {
+    font-family: "Playfair Display", serif;
+    color: #c06c3b;
+    margin-bottom: 1.2rem;
+    font-size: 1.2rem;
+  }
 
-  .footer-col ul {
+  /* Brand Column */
+  .brand-desc {
+    font-size: 0.95rem;
+    opacity: 0.8;
+    margin-bottom: 1.5rem;
+    max-width: 300px;
+  }
+  .social-icons {
+    display: flex;
+    gap: 1rem;
+  }
+  .social-icons a {
+    color: #fff;
+    background: rgba(255, 255, 255, 0.1);
+    padding: 8px;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    transition: all 0.3s ease;
+  }
+  .social-icons a:hover {
+    background: #c06c3b;
+    transform: translateY(-3px);
+  }
+
+  /* Links */
+  .footer-links ul {
     list-style: none;
   }
-
-  .footer-col ul li {
-    margin-bottom: 0.5rem;
+  .footer-links li {
+    margin-bottom: 0.8rem;
   }
-
-  .footer-col a {
-    color: #ddd;
+  .footer-links a {
+    color: #b0b0b0;
     text-decoration: none;
     transition: color 0.2s;
   }
-
-  .footer-col a:hover {
-    color: #fff;
-    text-decoration: underline;
+  .footer-links a:hover {
+    color: #c06c3b;
+    padding-left: 5px;
   }
 
-  .footer-bottom {
-    text-align: center;
-    padding: 1.5rem;
-    margin-top: 2rem;
-    border-top: 1px solid rgba(255, 255, 255, 0.1);
+  /* Newsletter */
+  .footer-newsletter p {
     font-size: 0.9rem;
-    opacity: 0.7;
+    margin-bottom: 1rem;
+    opacity: 0.8;
+  }
+  .newsletter-form {
+    display: flex;
+  }
+  .newsletter-form input {
+    padding: 10px;
+    border: none;
+    border-radius: 4px 0 0 4px;
+    width: 100%;
+    outline: none;
+  }
+  .newsletter-form button {
+    background: #c06c3b;
+    color: white;
+    border: none;
+    padding: 0 15px;
+    border-radius: 0 4px 4px 0;
+    cursor: pointer;
+    font-weight: bold;
+    transition: background 0.3s;
+  }
+  .newsletter-form button:hover {
+    background: #a05a2f;
   }
 
-  /* --- RESPONSIVE MOBILE --- */
-  @media (max-width: 768px) {
-    #menu-toggle {
-      display: flex;
-    }
+  /* Contact */
+  .footer-contact p {
+    font-size: 0.95rem;
+    margin-bottom: 0.5rem;
+    opacity: 0.9;
+  }
+  .contact-btn-footer {
+    display: inline-block;
+    margin-top: 10px;
+    font-size: 0.9rem;
+    color: #c06c3b;
+    text-decoration: none;
+    border-bottom: 1px solid #c06c3b;
+    padding-bottom: 2px;
+  }
 
+  /* Bottom Bar */
+  .footer-bottom {
+    background: #142424; /* Encore plus sombre */
+    padding: 1.5rem;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    flex-wrap: wrap;
+    gap: 1rem;
+    border-top: 1px solid rgba(255, 255, 255, 0.05);
+    font-size: 0.85rem;
+    color: #888;
+  }
+  .legal-links a {
+    color: #888;
+    text-decoration: none;
+    transition: color 0.2s;
+  }
+  .legal-links a:hover {
+    color: #ccc;
+  }
+  .separator {
+    margin: 0 10px;
+    opacity: 0.3;
+  }
+
+  /* Responsive */
+  @media (max-width: 900px) {
+    .footer-container {
+      grid-template-columns: 1fr 1fr;
+    }
+  }
+  @media (max-width: 600px) {
     .footer-container {
       grid-template-columns: 1fr;
+      gap: 2rem;
+    }
+    .footer-bottom {
+      flex-direction: column;
       text-align: center;
+    }
+    #menu-toggle {
+      display: flex;
     }
   }
 </style>

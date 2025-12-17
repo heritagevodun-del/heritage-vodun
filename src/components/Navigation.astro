@@ -3,52 +3,120 @@
 ---
 
 <nav id="nav-menu" class="nav-links">
-  <a href="/">Accueil</a>
-  <a href="/about">À Propos</a>
-  <a href="/lexique">Lexique</a>
-  <a href="/blog">Blog</a>
-  <a href="/contact">Contact</a>
+  <a href="/" class="nav-item">Accueil</a>
+  <a href="/about" class="nav-item">À Propos</a>
+  <a href="/lexique" class="nav-item">Lexique</a>
+  <a href="/blog" class="nav-item">Blog</a>
+  <a href="/contact" class="nav-item">Contact</a>
+
+  <button
+    id="translate-btn"
+    class="translate-btn"
+    aria-label="Traduire en Anglais"
+  >
+    <span class="icon">🌍</span>
+    <span class="text">EN</span>
+  </button>
 </nav>
 
 <style>
-  /* Style des liens */
   .nav-links {
     display: flex;
-    gap: 2rem;
+    align-items: center;
+    gap: 2.5rem;
   }
 
-  .nav-links a {
+  /* --- STYLE DES LIENS AVEC ANIMATION DORÉE --- */
+  .nav-item {
     text-decoration: none;
-    color: #4a4a4a;
-    font-weight: 700;
-    font-size: 1rem;
+    color: #2f4f4f;
+    font-weight: 600;
+    font-size: 0.95rem;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    position: relative;
+    padding-bottom: 5px;
     transition: color 0.3s ease;
   }
 
-  .nav-links a:hover {
+  /* La ligne dorée qui apparait en dessous */
+  .nav-item::after {
+    content: "";
+    position: absolute;
+    width: 0;
+    height: 2px;
+    bottom: 0;
+    left: 0;
+    background-color: #c06c3b;
+    transition: width 0.3s ease;
+  }
+
+  .nav-item:hover {
     color: #c06c3b;
   }
 
-  /* Version Mobile */
+  .nav-item:hover::after {
+    width: 100%;
+  }
+
+  /* --- BOUTON TRADUCTION --- */
+  .translate-btn {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    background: transparent;
+    border: 1px solid #2f4f4f;
+    padding: 6px 16px;
+    border-radius: 50px;
+    cursor: pointer;
+    font-family: "Lato", sans-serif;
+    font-weight: 700;
+    color: #2f4f4f;
+    transition: all 0.3s ease;
+  }
+
+  .translate-btn:hover {
+    background: #2f4f4f;
+    color: #fff;
+    border-color: #2f4f4f;
+  }
+
+  .translate-btn .icon {
+    font-size: 1.1rem;
+  }
+
+  /* --- MOBILE --- */
   @media (max-width: 768px) {
     .nav-links {
-      display: none;
+      display: none; /* Géré par le script du BaseLayout */
       flex-direction: column;
       position: absolute;
       top: 100%;
       left: 0;
       width: 100%;
       background: white;
-      padding: 1.5rem;
-      box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
-      border-top: 1px solid #eee;
+      padding: 2rem;
+      box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+      border-top: 1px solid #f0f0f0;
       align-items: center;
       gap: 1.5rem;
     }
 
-    /* La classe .active est ajoutée par le script du BaseLayout */
+    /* Quand le menu est ouvert */
     :global(.nav-links.active) {
       display: flex;
+    }
+
+    .translate-btn {
+      width: 100%;
+      justify-content: center;
+      margin-top: 1rem;
+      border-color: #c06c3b;
+      color: #c06c3b;
+    }
+
+    .translate-btn:hover {
+      background: #c06c3b;
     }
   }
 </style>

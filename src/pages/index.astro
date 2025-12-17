@@ -1,11 +1,15 @@
 ---
+// src/pages/index.astro
 import BaseLayout from "../layouts/BaseLayout.astro";
 import Newsletter from "../components/Newsletter.astro";
+import HeroSlider from "../components/HeroSlider.astro";
+
+const pageTitle = "Lumière du Vodun";
 ---
 
-<BaseLayout titrePage="Accueil">
-  <header class="hero">
-    <div class="hero-bg"></div>
+<BaseLayout titrePage={pageTitle}>
+  <header class="hero-section">
+    <HeroSlider />
 
     <div class="sanctuaire-container">
       <div class="anneau-sacre externe"></div>
@@ -13,18 +17,25 @@ import Newsletter from "../components/Newsletter.astro";
       <div class="coeur-lumineux"></div>
     </div>
 
-    <div class="contenu-hero">
-      <span class="appel-ancetres">Bienvenue sur la terre des origines</span>
-      <h1>Lumière du Vodun</h1>
-      <p class="slogan">L'âme et l'histoire du Bénin</p>
+    <div class="hero-content">
+      <div class="anim-entry delay-1">
+        <span class="badge-gold">Terre des Origines</span>
+      </div>
 
-      <p class="description">
+      <h1 class="anim-entry delay-2">
+        Lumière du <br />
+        <span class="text-gradient">Vodun</span>
+      </h1>
+
+      <div class="separator anim-entry delay-3"></div>
+
+      <p class="description anim-entry delay-3">
         Une spiritualité vivante. Une philosophie de paix. <br />
-        Un lien sacré entre l'Homme et la Nature.
+        L'âme et l'histoire du Bénin révélées.
       </p>
 
-      <div class="actions">
-        <a href="/about" class="btn-or">Découvrir notre mission</a>
+      <div class="actions anim-entry delay-4">
+        <a href="/about" class="btn-prestige">Découvrir notre mission</a>
       </div>
     </div>
 
@@ -33,22 +44,25 @@ import Newsletter from "../components/Newsletter.astro";
     </div>
   </header>
 
-  <section class="intro">
-    <div class="watermark">VODUN</div>
+  <section class="intro-manifeste">
+    <div class="watermark">HÉRITAGE</div>
 
-    <div class="conteneur-texte">
+    <div class="container-manifeste">
       <span class="sur-titre">Notre Identité</span>
+
       <h2>
         Une culture,<br />
-        <span class="text-highlight">pas un mythe.</span>
+        <span class="italic-highlight">pas un mythe.</span>
       </h2>
 
-      <div class="separateur-vertical"></div>
+      <div class="vertical-line"></div>
 
-      <p class="texte-manifeste">
-        <span class="lettrine">L</span>e Vodun est une célébration de la vie. À
-        travers ce site, nous révélons l'identité béninoise : de la sagesse du
-        Fâ à la puissance des rythmes sacrés.
+      <p class="texte-pro">
+        <span class="lettrine">L</span>e Vodun est bien plus qu'une religion,
+        c'est une célébration de la vie et des éléments. À travers ce sanctuaire
+        numérique, nous brisons les chaînes des préjugés pour révéler l'identité
+        béninoise : de la sagesse mathématique du <strong>Fâ</strong> à la puissance
+        des rythmes sacrés.
       </p>
     </div>
   </section>
@@ -57,143 +71,278 @@ import Newsletter from "../components/Newsletter.astro";
 </BaseLayout>
 
 <style>
-  /* =========================================
-     1. STYLE DU HERO (SANCTUAIRE)
-     ========================================= */
-  .hero {
-    height: 90vh;
+  /* --- 1. HERO SECTION --- */
+  .hero-section {
+    position: relative;
+    /* Utilisation de dvh pour gérer la barre d'adresse mobile */
+    height: 100dvh;
+    width: 100%;
     display: flex;
     align-items: center;
     justify-content: center;
-    position: relative;
     overflow: hidden;
     color: white;
   }
 
-  .hero-bg {
-    position: absolute;
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 100%;
-    background-image: url("/vodunsi.jpeg");
-    background-size: cover;
-    background-position: center;
-    z-index: 1;
-    filter: brightness(0.5) contrast(1.2);
-  }
-
+  /* --- 2. DÉCORATION (ANNEAUX) --- */
   .sanctuaire-container {
     position: absolute;
-    width: 800px;
-    height: 800px;
+    width: 100%;
+    height: 100%;
     display: flex;
     justify-content: center;
     align-items: center;
-    z-index: 2;
+    z-index: 1;
     pointer-events: none;
-    opacity: 0.8;
   }
 
   .anneau-sacre {
     position: absolute;
     border-radius: 50%;
-    box-shadow: 0 0 15px rgba(212, 175, 55, 0.1);
+    box-shadow: 0 0 20px rgba(212, 175, 55, 0.15);
   }
 
+  /* Desktop : taille basée sur la hauteur */
   .externe {
-    width: 650px;
-    height: 650px;
-    border: 1px solid rgba(212, 175, 55, 0.4);
-    border-top: 1px solid rgba(212, 175, 55, 0.9);
-    border-bottom: 1px solid rgba(212, 175, 55, 0.9);
-    animation: rotation-horaire 60s infinite linear;
+    width: 65vh;
+    height: 65vh;
+    border: 1px solid rgba(212, 175, 55, 0.3);
+    border-left: 1px solid rgba(212, 175, 55, 0.8);
+    animation: rot-clock 60s infinite linear;
   }
 
   .interne {
-    width: 450px;
-    height: 450px;
-    border: 2px dashed rgba(255, 255, 255, 0.25);
-    animation: rotation-anti-horaire 45s infinite linear;
+    width: 45vh;
+    height: 45vh;
+    border: 1px dashed rgba(255, 255, 255, 0.2);
+    animation: rot-anti 45s infinite linear;
   }
 
   .coeur-lumineux {
-    width: 300px;
-    height: 300px;
+    width: 35vh;
+    height: 35vh;
     background: radial-gradient(
       circle,
-      rgba(212, 175, 55, 0.15) 0%,
+      rgba(212, 175, 55, 0.12) 0%,
       transparent 70%
     );
-    border-radius: 50%;
-    animation: pulsation 6s infinite ease-in-out;
+    animation: pulse 6s infinite ease-in-out;
   }
 
-  .contenu-hero {
+  /* --- 3. CONTENU --- */
+  .hero-content {
     position: relative;
     z-index: 10;
     text-align: center;
-    max-width: 700px;
+    max-width: 900px;
     padding: 0 20px;
-    animation: flottement 8s infinite ease-in-out;
+    /* Sécurité mobile : empêche le texte de toucher les bords */
+    width: 100%;
   }
 
-  .appel-ancetres {
-    display: block;
+  .badge-gold {
+    display: inline-block;
+    border: 1px solid #d4af37;
+    color: #d4af37;
+    padding: 8px 16px;
+    font-size: 0.8rem;
     text-transform: uppercase;
     letter-spacing: 3px;
-    font-size: 0.85rem;
-    color: #d4af37;
-    margin-bottom: 10px;
-    font-weight: bold;
+    margin-bottom: 25px;
+    background: rgba(0, 0, 0, 0.4);
+    backdrop-filter: blur(5px);
   }
 
   h1 {
     font-family: "Playfair Display", serif;
-    font-size: 4rem;
-    margin: 0;
-    line-height: 1.1;
-    text-shadow: 0 5px 15px rgba(0, 0, 0, 0.5);
+    font-size: 5rem;
+    line-height: 1.05;
+    font-weight: 400;
+    margin-bottom: 20px;
+    text-shadow: 0 10px 30px rgba(0, 0, 0, 0.6);
   }
 
-  .slogan {
-    font-family: "Playfair Display", serif;
+  .text-gradient {
+    font-weight: 700;
+    background: linear-gradient(to right, #ffffff 10%, #d4af37 90%);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
     font-style: italic;
-    font-size: 1.5rem;
-    color: rgba(255, 255, 255, 0.9);
-    margin-top: 10px;
-    margin-bottom: 30px;
+  }
+
+  .separator {
+    width: 80px;
+    height: 3px;
+    background: #d4af37;
+    margin: 0 auto 30px;
   }
 
   .description {
-    font-size: 1.1rem;
-    line-height: 1.6;
+    font-size: 1.3rem;
+    color: rgba(255, 255, 255, 0.95);
     margin-bottom: 40px;
-    color: rgba(255, 255, 255, 0.8);
+    line-height: 1.6;
+    font-weight: 300;
+    text-shadow: 0 2px 4px rgba(0, 0, 0, 0.8); /* Ombre renforcée pour lisibilité */
   }
 
-  .btn-or {
-    background-color: #d4af37;
-    color: #1a1a1a;
-    padding: 15px 40px;
-    border-radius: 50px;
-    text-decoration: none;
-    font-weight: bold;
-    text-transform: uppercase;
-    letter-spacing: 1px;
-    transition:
-      transform 0.3s,
-      background 0.3s,
-      color 0.3s;
+  .btn-prestige {
+    position: relative;
     display: inline-block;
-    border: 2px solid #d4af37;
+    padding: 18px 45px;
+    color: #fff;
+    text-decoration: none;
+    text-transform: uppercase;
+    letter-spacing: 2px;
+    font-size: 0.9rem;
+    border: 1px solid rgba(255, 255, 255, 0.4);
+    overflow: hidden;
+    transition: all 0.4s ease;
+    background: rgba(212, 175, 55, 0.15);
+    backdrop-filter: blur(5px);
+  }
+  .btn-prestige::before {
+    content: "";
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 0;
+    height: 100%;
+    background: #d4af37;
+    transition: width 0.4s ease;
+    z-index: -1;
+  }
+  .btn-prestige:hover {
+    border-color: #d4af37;
+    color: #000;
+  }
+  .btn-prestige:hover::before {
+    width: 100%;
   }
 
-  .btn-or:hover {
-    background-color: transparent;
-    color: #fff;
-    border-color: #fff;
-    transform: scale(1.05);
+  /* --- 4. MANIFESTE --- */
+  .intro-manifeste {
+    position: relative;
+    padding: 140px 20px;
+    background-color: #fcfbf9;
+    text-align: center;
+    overflow: hidden;
+  }
+  .watermark {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    font-size: 20vw;
+    font-weight: 900;
+    color: rgba(0, 0, 0, 0.03);
+    font-family: "Playfair Display", serif;
+    pointer-events: none;
+    z-index: 0;
+  }
+  .container-manifeste {
+    position: relative;
+    z-index: 1;
+    max-width: 800px;
+    margin: 0 auto;
+  }
+  .sur-titre {
+    color: #d4af37;
+    font-size: 0.85rem;
+    text-transform: uppercase;
+    letter-spacing: 4px;
+    display: block;
+    margin-bottom: 15px;
+    font-weight: 700;
+  }
+  .intro-manifeste h2 {
+    font-family: "Playfair Display", serif;
+    font-size: 3.8rem;
+    color: #1a1a1a;
+    margin-bottom: 40px;
+    line-height: 1.2;
+  }
+  .italic-highlight {
+    color: #2f4f4f;
+    font-style: italic;
+  }
+  .vertical-line {
+    width: 1px;
+    height: 80px;
+    background: linear-gradient(to bottom, #d4af37, transparent);
+    margin: 0 auto 40px;
+  }
+  .texte-pro {
+    font-size: 1.25rem;
+    line-height: 1.9;
+    color: #555;
+    text-align: justify;
+    text-align-last: center;
+  }
+  .lettrine {
+    float: left;
+    font-family: "Playfair Display", serif;
+    font-size: 4rem;
+    line-height: 0.8;
+    color: #d4af37;
+    margin-right: 15px;
+    margin-top: 5px;
+  }
+
+  /* --- ANIMATIONS --- */
+  .anim-entry {
+    opacity: 0;
+    animation: fadeInUp 1s ease-out forwards;
+  }
+  .delay-1 {
+    animation-delay: 0.2s;
+  }
+  .delay-2 {
+    animation-delay: 0.5s;
+  }
+  .delay-3 {
+    animation-delay: 0.8s;
+  }
+  .delay-4 {
+    animation-delay: 1.1s;
+  }
+
+  @keyframes fadeInUp {
+    from {
+      opacity: 0;
+      transform: translateY(30px);
+    }
+    to {
+      opacity: 1;
+      transform: translateY(0);
+    }
+  }
+  @keyframes rot-clock {
+    from {
+      transform: rotate(0deg);
+    }
+    to {
+      transform: rotate(360deg);
+    }
+  }
+  @keyframes rot-anti {
+    from {
+      transform: rotate(360deg);
+    }
+    to {
+      transform: rotate(0deg);
+    }
+  }
+  @keyframes pulse {
+    0%,
+    100% {
+      transform: scale(1);
+      opacity: 0.5;
+    }
+    50% {
+      transform: scale(1.1);
+      opacity: 0.7;
+    }
   }
 
   .scroll-indicator {
@@ -201,186 +350,81 @@ import Newsletter from "../components/Newsletter.astro";
     bottom: 30px;
     left: 50%;
     transform: translateX(-50%);
-    width: 30px;
+    width: 1px;
     height: 50px;
-    border: 2px solid rgba(255, 255, 255, 0.3);
-    border-radius: 20px;
-    z-index: 10;
+    background: rgba(255, 255, 255, 0.2);
   }
   .scroll-indicator span {
     display: block;
-    width: 6px;
-    height: 6px;
-    background: white;
-    border-radius: 50%;
-    margin: 10px auto 0;
-    animation: scroll-anim 2s infinite;
+    width: 100%;
+    height: 50%;
+    background: #d4af37;
+    animation: scrollDrop 2s infinite;
   }
-
-  /* =========================================
-     2. STYLE DU MANIFESTE (INTRO) - Nouveau
-     ========================================= */
-  .intro {
-    position: relative;
-    padding: 140px 20px; /* Espace généreux */
-    background-color: #fdfbf7; /* Blanc cassé */
-    overflow: hidden;
-    text-align: center;
-  }
-
-  /* Le mot géant en fond */
-  .watermark {
-    position: absolute;
-    top: 50%;
-    left: 50%;
-    transform: translate(-50%, -50%);
-    font-size: 18vw; /* Taille énorme */
-    font-weight: 900;
-    font-family: "Playfair Display", serif;
-    color: rgba(0, 0, 0, 0.03); /* Très pâle */
-    pointer-events: none;
-    z-index: 0;
-    white-space: nowrap;
-    letter-spacing: 20px;
-  }
-
-  .conteneur-texte {
-    position: relative;
-    z-index: 1;
-    max-width: 800px;
-    margin: 0 auto;
-  }
-
-  .sur-titre {
-    display: block;
-    color: #d4af37;
-    font-size: 0.9rem;
-    text-transform: uppercase;
-    letter-spacing: 4px;
-    font-weight: bold;
-    margin-bottom: 20px;
-  }
-
-  .intro h2 {
-    font-family: "Playfair Display", serif;
-    font-size: 4rem; /* Grand titre imposant */
-    line-height: 1.1;
-    color: #1a1a1a;
-    margin-bottom: 30px;
-  }
-
-  .text-highlight {
-    color: #2f4f4f; /* Vert sombre */
-    font-style: italic;
-  }
-
-  .separateur-vertical {
-    width: 2px;
-    height: 60px;
-    background: linear-gradient(to bottom, #d4af37, transparent);
-    margin: 0 auto 30px;
-  }
-
-  .texte-manifeste {
-    font-family: "Lato", sans-serif;
-    font-size: 1.3rem; /* Texte lisible */
-    line-height: 1.8;
-    color: #4a4a4a;
-    text-align: justify; /* Justifié pour effet livre */
-    text-align-last: center; /* Dernière ligne centrée */
-  }
-
-  /* La Lettrine (Drop Cap) */
-  .lettrine {
-    float: left;
-    font-family: "Playfair Display", serif;
-    font-size: 4.5rem;
-    line-height: 0.8;
-    color: #d4af37;
-    margin-right: 15px;
-    margin-top: -5px;
-    font-weight: bold;
-  }
-
-  /* =========================================
-     ANIMATIONS & RESPONSIVE
-     ========================================= */
-  @keyframes rotation-horaire {
-    from {
-      transform: rotate(0deg);
-    }
-    to {
-      transform: rotate(360deg);
-    }
-  }
-  @keyframes rotation-anti-horaire {
-    from {
-      transform: rotate(360deg);
-    }
-    to {
-      transform: rotate(0deg);
-    }
-  }
-  @keyframes pulsation {
-    0%,
-    100% {
-      transform: scale(1);
-      opacity: 0.5;
-    }
-    50% {
-      transform: scale(1.2);
-      opacity: 0.8;
-    }
-  }
-  @keyframes flottement {
-    0%,
-    100% {
-      transform: translateY(0);
-    }
-    50% {
-      transform: translateY(-10px);
-    }
-  }
-  @keyframes scroll-anim {
+  @keyframes scrollDrop {
     0% {
-      transform: translateY(0);
-      opacity: 1;
+      transform: translateY(-100%);
     }
     100% {
-      transform: translateY(20px);
-      opacity: 0;
+      transform: translateY(200%);
     }
   }
 
+  /* =========================================
+     🎯 RESPONSIVE MOBILE OPTIMISÉ
+     ========================================= */
   @media (max-width: 768px) {
+    /* Ajustement des titres */
     h1 {
-      font-size: 2.8rem;
+      font-size: 3rem;
+      margin-bottom: 15px;
     }
-    .intro h2 {
-      font-size: 2.5rem;
+    .description {
+      font-size: 1.1rem;
+      padding: 0 10px;
     }
-    .watermark {
-      font-size: 30vw;
-      opacity: 0.04;
-    }
-    .sanctuaire-container {
-      width: 100%;
-    }
+
+    /* Adaptation des anneaux en largeur d'écran (vw) et non en hauteur
+       pour éviter qu'ils ne soient trop grands sur un mobile vertical */
     .externe {
-      width: 350px;
-      height: 350px;
+      width: 85vw;
+      height: 85vw;
+      max-width: 400px;
+      max-height: 400px;
     }
     .interne {
-      width: 250px;
-      height: 250px;
+      width: 60vw;
+      height: 60vw;
+      max-width: 280px;
+      max-height: 280px;
     }
-    .intro {
+    .coeur-lumineux {
+      width: 40vw;
+      height: 40vw;
+    }
+
+    /* Ajustement de la section Manifeste */
+    .intro-manifeste {
       padding: 80px 20px;
     }
-    .texte-manifeste {
-      font-size: 1.1rem;
+    .intro-manifeste h2 {
+      font-size: 2.2rem;
+    }
+
+    /* Le texte passe en alignement gauche pour faciliter la lecture sur petit écran */
+    .texte-pro {
       text-align: left;
       text-align-last: left;
+      font-size: 1.1rem;
+    }
+
+    /* Ajustement bouton */
+    .btn-prestige {
+      padding: 15px 30px;
+      font-size: 0.8rem;
+      width: 100%;
+      max-width: 300px;
+      text-align: center;
     }
   }
 </style>

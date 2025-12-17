@@ -1,0 +1,97 @@
+---
+/* src/components/HeroSlider.astro */
+/* Ce composant gère uniquement le défilement des images en arrière-plan */
+
+const slides = [
+  { img: "/vodun-intro.jpeg", alt: "Tradition" },
+  { img: "/divinites-vodun.jpeg", alt: "Divinités" },
+  { img: "/fa.jpeg", alt: "Fâ" },
+  { img: "/vodunsi.jpeg", alt: "Vodunsi" },
+  { img: "/esprit.jpeg", alt: "Esprit" },
+];
+---
+
+<div class="hero-slider-background">
+  {
+    slides.map((slide, index) => (
+      <div class={`slide ${index === 0 ? "active" : ""}`}>
+        <img src={slide.img} alt={slide.alt} />
+        <div class="overlay-gradient" />
+      </div>
+    ))
+  }
+</div>
+
+<script>
+  // Logique de défilement infini et fluide
+  const slides = document.querySelectorAll(".hero-slider-background .slide");
+  let current = 0;
+  const total = slides.length;
+
+  function nextSlide() {
+    if (slides.length === 0) return;
+    slides[current].classList.remove("active");
+    current = (current + 1) % total;
+    slides[current].classList.add("active");
+  }
+
+  if (total > 1) {
+    let interval = setInterval(nextSlide, 6000); // 6 secondes
+    document.addEventListener("astro:before-swap", () =>
+      clearInterval(interval)
+    );
+  }
+</script>
+
+<style>
+  .hero-slider-background {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    z-index: 0; /* Tout au fond */
+    overflow: hidden;
+    background: #000;
+  }
+
+  .slide {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    opacity: 0;
+    transition: opacity 2.5s ease-in-out; /* Transition très lente et douce */
+  }
+
+  .slide.active {
+    opacity: 1;
+  }
+
+  .slide img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    transform: scale(1.05);
+    transition: transform 8s ease-out; /* Effet Ken Burns (zoom lent) */
+  }
+
+  .slide.active img {
+    transform: scale(1);
+  }
+
+  /* Dégradé professionnel pour la lisibilité du texte */
+  .overlay-gradient {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: radial-gradient(
+      circle at center,
+      rgba(0, 0, 0, 0.2) 0%,
+      rgba(0, 0, 0, 0.8) 100%
+    );
+  }
+</style>
