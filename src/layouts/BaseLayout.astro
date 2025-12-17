@@ -55,12 +55,14 @@ const canonicalURL = new URL(Astro.url.pathname, Astro.site);
       rel="stylesheet"
     />
 
-    <script type="text/javascript" transition:persist>
+    <script type="text/javascript">
       function googleTranslateElementInit() {
         new google.translate.TranslateElement(
           {
             pageLanguage: "fr",
             includedLanguages: "en,fr",
+            // C'EST ICI LE SECRET : Mode SIMPLE pour éviter la barre du haut
+            layout: google.translate.TranslateElement.InlineLayout.SIMPLE,
             autoDisplay: false,
           },
           "google_translate_element"
@@ -70,30 +72,38 @@ const canonicalURL = new URL(Astro.url.pathname, Astro.site);
     <script
       type="text/javascript"
       src="//translate.google.com/translate_a/element.js?cb=googleTranslateElementInit"
-      transition:persist></script>
+    ></script>
 
     <style>
-      /* On autorise Google à pousser le body vers le bas si nécessaire */
-      body {
-        position: relative;
-        min-height: 100vh;
-        transition: top 0.3s ease; /* Animation fluide si le body bouge */
-      }
+      /* --- NETTOYAGE GOOGLE TRANSLATE --- */
 
-      /* On cache le widget "Select language" par défaut car on a notre propre bouton */
+      /* On cache le widget Google par défaut car on utilise notre propre bouton */
       #google_translate_element {
-        display: none;
+        visibility: hidden;
+        position: absolute;
+        width: 1px;
+        height: 1px;
+        overflow: hidden;
+        top: 0;
+        left: 0;
       }
 
-      /* On s'assure que la barre Google (si elle apparait) est visible et propre */
-      .goog-te-banner-frame {
-        z-index: 99999 !important;
+      /* Sécurité : On cache la barre si jamais elle essaie de s'afficher quand même */
+      .goog-te-banner-frame.skiptranslate {
+        display: none !important;
       }
+
+      /* On nettoie les infobulles au survol */
+      #goog-gt-tt {
+        display: none !important;
+      }
+
+      /* PLUS AUCUN 'top: 0' ou 'position: fixed' sur le body ! */
     </style>
   </head>
 
   <body>
-    <div id="google_translate_element" transition:persist></div>
+    <div id="google_translate_element"></div>
 
     <header class="site-header">
       <div class="header-container">
@@ -151,52 +161,119 @@ const canonicalURL = new URL(Astro.url.pathname, Astro.site);
           <h3 class="footer-logo">Héritage Vodun</h3>
           <p class="brand-desc">
             Le portail de référence pour comprendre la spiritualité, l'histoire
-            et les rites du Bénin.
+            et les rites du Bénin. Une tradition vivante, expliquée avec respect
+            et authenticité.
           </p>
+          <div class="social-icons">
+            <a href="#" aria-label="Facebook"
+              ><svg
+                xmlns="http://www.w3.org/2000/svg"
+                width="20"
+                height="20"
+                viewBox="0 0 24 24"
+                fill="none"
+                stroke="currentColor"
+                stroke-width="2"
+                stroke-linecap="round"
+                stroke-linejoin="round"
+                ><path
+                  d="M18 2h-3a5 5 0 0 0-5 5v3H7v4h3v8h4v-8h3l1-4h-4V7a1 1 0 0 1 1-1h3z"
+                ></path></svg
+              ></a
+            >
+            <a href="#" aria-label="Instagram"
+              ><svg
+                xmlns="http://www.w3.org/2000/svg"
+                width="20"
+                height="20"
+                viewBox="0 0 24 24"
+                fill="none"
+                stroke="currentColor"
+                stroke-width="2"
+                stroke-linecap="round"
+                stroke-linejoin="round"
+                ><rect x="2" y="2" width="20" height="20" rx="5" ry="5"
+                ></rect><path
+                  d="M16 11.37A4 4 0 1 1 12.63 8 4 4 0 0 1 16 11.37z"
+                ></path><line x1="17.5" y1="6.5" x2="17.51" y2="6.5"
+                ></line></svg
+              ></a
+            >
+            <a href="#" aria-label="Youtube"
+              ><svg
+                xmlns="http://www.w3.org/2000/svg"
+                width="20"
+                height="20"
+                viewBox="0 0 24 24"
+                fill="none"
+                stroke="currentColor"
+                stroke-width="2"
+                stroke-linecap="round"
+                stroke-linejoin="round"
+                ><path
+                  d="M22.54 6.42a2.78 2.78 0 0 0-1.94-2C18.88 4 12 4 12 4s-6.88 0-8.6.46a2.78 2.78 0 0 0-1.94 2A29 29 0 0 0 1 11.75a29 29 0 0 0 .46 5.33A2.78 2.78 0 0 0 3.4 19c1.72.46 8.6.46 8.6.46s6.88 0 8.6-.46a2.78 2.78 0 0 0 1.94-2 29 29 0 0 0 .46-5.33 29 29 0 0 0-.46-5.33z"
+                ></path><polygon
+                  points="9.75 15.02 15.5 11.75 9.75 8.48 9.75 15.02"
+                ></polygon></svg
+              ></a
+            >
+          </div>
         </div>
 
         <div class="footer-links">
           <h4>Explorer</h4>
           <ul>
             <li><a href="/">Accueil</a></li>
-            <li><a href="/lexique">Lexique</a></li>
-            <li><a href="/blog">Articles</a></li>
-            <li><a href="/about">Mission</a></li>
+            <li><a href="/lexique">Le Lexique Sacré</a></li>
+            <li><a href="/blog">Articles & Récits</a></li>
+            <li><a href="/about">Notre Mission</a></li>
           </ul>
         </div>
 
         <div class="footer-newsletter">
-          <h4>Newsletter</h4>
-          <p>Recevez nos récits chaque mois.</p>
+          <h4>Restez Connecté</h4>
+          <p>
+            Recevez chaque mois un récit ou une découverte sur la culture Vodun.
+          </p>
           <form
             class="newsletter-form"
-            onsubmit="event.preventDefault(); alert('Merci !');"
+            onsubmit="event.preventDefault(); alert('Merci ! Inscription validée.');"
           >
-            <input type="email" placeholder="Email..." required />
+            <input type="email" placeholder="Votre email..." required />
             <button type="submit">→</button>
           </form>
         </div>
 
         <div class="footer-contact">
-          <h4>Contact</h4>
+          <h4>Nous Trouver</h4>
           <p>📍 Ouidah, Bénin</p>
           <p>📧 contact@heritagevodun.com</p>
+          <a href="/contact" class="contact-btn-footer">Nous écrire</a>
         </div>
       </div>
 
       <div class="footer-bottom">
-        <p>&copy; {new Date().getFullYear()} Héritage Vodun.</p>
+        <p>
+          &copy; {new Date().getFullYear()} Héritage Vodun. Tous droits réservés.
+        </p>
+        <div class="legal-links">
+          <a href="#">Mentions Légales</a>
+          <span class="separator">|</span>
+          <a href="#">Politique de Confidentialité</a>
+        </div>
       </div>
     </footer>
 
     <script>
       document.addEventListener("astro:page-load", () => {
-        // --- 1. GESTION DU MENU MOBILE ---
+        // --- 1. GESTION MENU MOBILE ---
         const menuBtn = document.getElementById("menu-toggle");
         const navMenu = document.getElementById("nav-menu");
+
         if (menuBtn && navMenu && menuBtn.parentNode) {
           const newMenuBtn = menuBtn.cloneNode(true);
           menuBtn.parentNode.replaceChild(newMenuBtn, menuBtn);
+
           if (newMenuBtn instanceof HTMLElement) {
             newMenuBtn.addEventListener("click", () => {
               navMenu.classList.toggle("active");
@@ -205,90 +282,27 @@ const canonicalURL = new URL(Astro.url.pathname, Astro.site);
           }
         }
 
-        // --- 2. GESTION INTELLIGENTE DE LA BARRE GOOGLE ---
-        // Le but : Si Google ajoute une barre en haut, le menu descend d'autant.
-
-        const headerElement = document.querySelector(".site-header");
-
-        // Fonction qui ajuste la position du menu
-        function adjustHeaderPosition() {
-          if (headerElement instanceof HTMLElement) {
-            // Google modifie le style 'top' du <body> quand la barre apparait
-            const bodyTop = window.getComputedStyle(document.body).top;
-            // Si bodyTop vaut "40px", on applique "40px" au header aussi
-            // parseInt permet de convertir "40px" en 40 pour vérifier si > 0
-            const topValue = parseInt(bodyTop, 10);
-
-            if (!isNaN(topValue) && topValue > 0) {
-              headerElement.style.top = bodyTop;
-            } else {
-              headerElement.style.top = "0px";
-            }
-          }
-        }
-
-        // On surveille le <body> pour détecter quand Google change son style
-        const observer = new MutationObserver((mutations) => {
-          mutations.forEach((mutation) => {
-            if (
-              mutation.type === "attributes" &&
-              mutation.attributeName === "style"
-            ) {
-              adjustHeaderPosition();
-            }
-          });
-        });
-
-        // On lance la surveillance
-        observer.observe(document.body, {
-          attributes: true,
-          attributeFilter: ["style"],
-        });
-
-        // On lance aussi une vérification immédiate au cas où la barre est déjà là
-        adjustHeaderPosition();
-
-        // --- 3. TRADUCTION & COOKIES ---
+        // --- 2. GESTION BOUTON TRADUCTION ---
         const translateBtn = document.getElementById("translate-btn");
-
-        function getCookie(name: string) {
-          const v = document.cookie.match("(^|;) ?" + name + "=([^;]*)(;|$)");
-          return v ? v[2] : null;
-        }
-
-        function setCookie(name: string, value: string, days: number) {
-          const d = new Date();
-          d.setTime(d.getTime() + 24 * 60 * 60 * 1000 * days);
-          document.cookie =
-            name + "=" + value + ";path=/;domain=" + window.location.hostname;
-        }
-
         if (translateBtn) {
-          if (getCookie("googtrans") === "/fr/en") {
-            const textSpan = translateBtn.querySelector(".text");
-            if (textSpan) textSpan.textContent = "FR";
-          }
-        }
+          translateBtn.addEventListener("click", () => {
+            const googleSelect = document.querySelector(".goog-te-combo");
 
-        if (translateBtn && translateBtn.parentNode) {
-          const newTranslateBtn = translateBtn.cloneNode(true);
-          translateBtn.parentNode.replaceChild(newTranslateBtn, translateBtn);
-
-          newTranslateBtn.addEventListener("click", () => {
-            const currentLang = getCookie("googtrans");
-
-            if (currentLang === "/fr/en") {
-              // Retour FR
-              document.cookie =
-                "googtrans=; expires=Thu, 01 Jan 1970 00:00:00 UTC; path=/;";
-              document.cookie =
-                "googtrans=; expires=Thu, 01 Jan 1970 00:00:00 UTC; path=/; domain=" +
-                window.location.hostname;
-              location.reload();
+            if (googleSelect) {
+              // On force la langue anglaise
+              (googleSelect as HTMLSelectElement).value = "en";
+              googleSelect.dispatchEvent(new Event("change"));
             } else {
-              // Force EN
-              setCookie("googtrans", "/fr/en", 1);
-              location.reload();
+              // Tentative automatique si pas encore chargé
+              const checkGoogle = setInterval(() => {
+                const retrySelect = document.querySelector(".goog-te-combo");
+                if (retrySelect) {
+                  (retrySelect as HTMLSelectElement).value = "en";
+                  retrySelect.dispatchEvent(new Event("change"));
+                  clearInterval(checkGoogle);
+                }
+              }, 500);
+              setTimeout(() => clearInterval(checkGoogle), 5000); // Stop après 5s
             }
           });
         }
@@ -298,6 +312,7 @@ const canonicalURL = new URL(Astro.url.pathname, Astro.site);
 </html>
 
 <style>
+  /* --- RESET & GLOBAL --- */
   :global(*),
   :global(*::before),
   :global(*::after) {
@@ -305,6 +320,7 @@ const canonicalURL = new URL(Astro.url.pathname, Astro.site);
     margin: 0;
     padding: 0;
   }
+
   body {
     display: flex;
     flex-direction: column;
@@ -318,17 +334,15 @@ const canonicalURL = new URL(Astro.url.pathname, Astro.site);
     flex: 1;
   }
 
-  /* HEADER AVEC TRANSITION FLUIDE */
+  /* --- HEADER --- */
   .site-header {
     background: rgba(255, 255, 255, 0.98);
     backdrop-filter: blur(10px);
     box-shadow: 0 2px 15px rgba(0, 0, 0, 0.04);
     position: sticky;
-    top: 0; /* Par défaut 0, mais le JS va changer ça si Google apparait */
+    top: 0;
     z-index: 1000;
-    transition: top 0.3s ease; /* Le menu glissera doucement */
   }
-
   .header-container {
     max-width: 1200px;
     margin: 0 auto;
@@ -351,6 +365,7 @@ const canonicalURL = new URL(Astro.url.pathname, Astro.site);
     text-transform: uppercase;
     letter-spacing: 1px;
   }
+
   #menu-toggle {
     display: none;
     background: none;
@@ -366,13 +381,16 @@ const canonicalURL = new URL(Astro.url.pathname, Astro.site);
     border-radius: 2px;
     transition: all 0.3s ease;
   }
+
+  /* --- FOOTER PRO --- */
   .site-footer {
-    background-color: #1a2e2e;
+    background-color: #1a2e2e; /* Vert très sombre */
     color: #e0e0e0;
     padding-top: 4rem;
     margin-top: 4rem;
-    border-top: 4px solid #c06c3b;
+    border-top: 4px solid #c06c3b; /* Ligne dorée */
   }
+
   .footer-container {
     max-width: 1200px;
     margin: 0 auto;
@@ -382,6 +400,7 @@ const canonicalURL = new URL(Astro.url.pathname, Astro.site);
     gap: 3rem;
     margin-bottom: 3rem;
   }
+
   .footer-logo {
     font-family: "Playfair Display", serif;
     font-size: 1.8rem;
@@ -394,12 +413,32 @@ const canonicalURL = new URL(Astro.url.pathname, Astro.site);
     margin-bottom: 1.2rem;
     font-size: 1.2rem;
   }
+
   .brand-desc {
     font-size: 0.95rem;
     opacity: 0.8;
     margin-bottom: 1.5rem;
     max-width: 300px;
   }
+  .social-icons {
+    display: flex;
+    gap: 1rem;
+  }
+  .social-icons a {
+    color: #fff;
+    background: rgba(255, 255, 255, 0.1);
+    padding: 8px;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    transition: all 0.3s ease;
+  }
+  .social-icons a:hover {
+    background: #c06c3b;
+    transform: translateY(-3px);
+  }
+
   .footer-links ul {
     list-style: none;
   }
@@ -415,6 +454,7 @@ const canonicalURL = new URL(Astro.url.pathname, Astro.site);
     color: #c06c3b;
     padding-left: 5px;
   }
+
   .footer-newsletter p {
     font-size: 0.9rem;
     margin-bottom: 1rem;
@@ -443,6 +483,7 @@ const canonicalURL = new URL(Astro.url.pathname, Astro.site);
   .newsletter-form button:hover {
     background: #a05a2f;
   }
+
   .footer-contact p {
     font-size: 0.95rem;
     margin-bottom: 0.5rem;
@@ -457,6 +498,7 @@ const canonicalURL = new URL(Astro.url.pathname, Astro.site);
     border-bottom: 1px solid #c06c3b;
     padding-bottom: 2px;
   }
+
   .footer-bottom {
     background: #142424;
     padding: 1.5rem;
@@ -469,6 +511,19 @@ const canonicalURL = new URL(Astro.url.pathname, Astro.site);
     font-size: 0.85rem;
     color: #888;
   }
+  .legal-links a {
+    color: #888;
+    text-decoration: none;
+    transition: color 0.2s;
+  }
+  .legal-links a:hover {
+    color: #ccc;
+  }
+  .separator {
+    margin: 0 10px;
+    opacity: 0.3;
+  }
+
   @media (max-width: 900px) {
     .footer-container {
       grid-template-columns: 1fr 1fr;

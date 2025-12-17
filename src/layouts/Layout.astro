@@ -1,44 +1,130 @@
+---
+// src/layouts/layout.astro
+interface Props {
+  title?: string;
+}
+
+const { title = "Héritage Vodun" } = Astro.props;
+---
+
 <!doctype html>
-<html lang="en">
+<html lang="fr">
   <head>
     <meta charset="UTF-8" />
+    <meta
+      name="description"
+      content="Découvrez l'essence du Vodun, spiritualité millénaire du Bénin."
+    />
     <meta name="viewport" content="width=device-width" />
     <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
     <meta name="generator" content={Astro.generator} />
-    <title>Astro Basics</title>
+    <title>{title}</title>
+
+    <script type="text/javascript">
+      function googleTranslateElementInit() {
+        new google.translate.TranslateElement(
+          {
+            pageLanguage: "fr",
+            includedLanguages: "en,fr",
+            layout: google.translate.TranslateElement.InlineLayout.SIMPLE,
+            autoDisplay: false,
+          },
+          "google_translate_element"
+        );
+      }
+    </script>
+    <script
+      type="text/javascript"
+      src="//translate.google.com/translate_a/element.js?cb=googleTranslateElementInit"
+    ></script>
   </head>
+
   <body>
+    <div id="google_translate_element"></div>
+
     <slot />
+
+    <script>
+      // On attend que la page soit chargée (compatible Astro ViewTransitions)
+      ["DOMContentLoaded", "astro:page-load"].forEach((event) => {
+        document.addEventListener(event, () => {
+          const btn = document.getElementById("translate-btn");
+
+          if (btn) {
+            btn.addEventListener("click", (e) => {
+              e.preventDefault();
+              // On cherche le menu déroulant caché de Google
+              const googleSelect = document.querySelector(
+                ".goog-te-combo"
+              ) as HTMLSelectElement;
+
+              if (googleSelect) {
+                // On change la langue vers Anglais
+                googleSelect.value = "en";
+                googleSelect.dispatchEvent(new Event("change"));
+              } else {
+                // Si Google n'est pas encore prêt, on réessaie brièvement
+                setTimeout(() => {
+                  const retrySelect = document.querySelector(
+                    ".goog-te-combo"
+                  ) as HTMLSelectElement;
+                  if (retrySelect) {
+                    retrySelect.value = "en";
+                    retrySelect.dispatchEvent(new Event("change"));
+                  }
+                }, 1000);
+              }
+            });
+          }
+        });
+      });
+    </script>
   </body>
 </html>
 
 <style is:global>
-  /* 1. VOS RÉGLAGES D'ORIGINE (Pour garder le site compact) */
+  /* --- DESIGN INTELLIGENT & STABLE --- */
   html,
   body {
     margin: 0;
+    padding: 0;
     width: 100%;
     height: 100%;
+    overflow-x: hidden;
   }
 
-  /* 2. LE CORRECTIF GOOGLE TRANSLATE */
-
-  /* On force le site à rester collé en haut */
+  /* Sécurité : On empêche Google de pousser le site vers le bas */
+  html {
+    margin-top: 0 !important;
+  }
   body {
     top: 0 !important;
   }
 
-  /* On cache la barre bleue (l'iframe) */
+  /* On cache la barre bleue intrusvive */
   .goog-te-banner-frame.skiptranslate {
     display: none !important;
   }
-
-  /* On cache l'espace vide que Google tente de réserver en haut */
   body > .skiptranslate {
     display: none !important;
   }
 
-  /* On nettoie le logo et les textes inutiles */
+  /* On cache le widget technique (on utilise notre propre bouton) */
+  #google_translate_element {
+    visibility: hidden; /* Important : visibility hidden et pas display none */
+    position: absolute;
+    width: 1px;
+    height: 1px;
+    top: 0;
+    left: 0;
+    z-index: -1;
+  }
+
+  /* Nettoyage cosmétique */
+  #goog-gt-tt,
+  .goog-te-balloon-frame {
+    display: none !important;
+  }
   .goog-logo-link {
     display: none !important;
   }
