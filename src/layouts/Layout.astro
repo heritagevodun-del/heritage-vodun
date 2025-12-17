@@ -13,31 +13,30 @@
 </html>
 
 <style is:global>
+  /* 1. On garde vos réglages d'origine STRICTS pour la structure */
   html,
   body {
     margin: 0;
     width: 100%;
     height: 100%;
-    /* Empêche Google de décaler le site vers le bas */
+    /* On force seulement le haut à rester à 0 pour contrer Google */
     top: 0 !important;
-    position: static !important;
   }
 
-  /* Cache la barre bleue de Google Translate en haut */
+  /* 2. On cache UNIQUEMENT la barre visuelle de Google */
   .goog-te-banner-frame.skiptranslate {
     display: none !important;
   }
 
-  /* Cache le logo Google et nettoie le widget */
+  body > .skiptranslate {
+    display: none !important;
+  }
+
+  /* 3. Nettoyage visuel du widget (optionnel, sans risque pour la structure) */
   .goog-logo-link {
     display: none !important;
   }
   .goog-te-gadget {
     color: transparent !important;
-  }
-
-  /* Cache l'info-bulle au survol du texte traduit */
-  #goog-gt-tt {
-    display: none !important;
   }
 </style>
