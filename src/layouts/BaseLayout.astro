@@ -73,14 +73,21 @@ const canonicalURL = new URL(Astro.url.pathname, Astro.site);
       transition:persist></script>
 
     <style>
+      /* On autorise Google à pousser le body vers le bas si nécessaire */
       body {
-        top: 0 !important;
+        position: relative;
+        min-height: 100vh;
+        transition: top 0.3s ease; /* Animation fluide si le body bouge */
       }
-      .goog-te-banner-frame {
-        display: none !important;
-      }
+
+      /* On cache le widget "Select language" par défaut car on a notre propre bouton */
       #google_translate_element {
         display: none;
+      }
+
+      /* On s'assure que la barre Google (si elle apparait) est visible et propre */
+      .goog-te-banner-frame {
+        z-index: 99999 !important;
       }
     </style>
   </head>
@@ -184,7 +191,7 @@ const canonicalURL = new URL(Astro.url.pathname, Astro.site);
 
     <script>
       document.addEventListener("astro:page-load", () => {
-        // 1. Menu Mobile
+        // --- 1. GESTION DU MENU MOBILE ---
         const menuBtn = document.getElementById("menu-toggle");
         const navMenu = document.getElementById("nav-menu");
         if (menuBtn && navMenu && menuBtn.parentNode) {
@@ -198,16 +205,57 @@ const canonicalURL = new URL(Astro.url.pathname, Astro.site);
           }
         }
 
-        // 2. Traduction par Cookie (Typé pour TypeScript)
+        // --- 2. GESTION INTELLIGENTE DE LA BARRE GOOGLE ---
+        // Le but : Si Google ajoute une barre en haut, le menu descend d'autant.
+
+        const headerElement = document.querySelector(".site-header");
+
+        // Fonction qui ajuste la position du menu
+        function adjustHeaderPosition() {
+          if (headerElement instanceof HTMLElement) {
+            // Google modifie le style 'top' du <body> quand la barre apparait
+            const bodyTop = window.getComputedStyle(document.body).top;
+            // Si bodyTop vaut "40px", on applique "40px" au header aussi
+            // parseInt permet de convertir "40px" en 40 pour vérifier si > 0
+            const topValue = parseInt(bodyTop, 10);
+
+            if (!isNaN(topValue) && topValue > 0) {
+              headerElement.style.top = bodyTop;
+            } else {
+              headerElement.style.top = "0px";
+            }
+          }
+        }
+
+        // On surveille le <body> pour détecter quand Google change son style
+        const observer = new MutationObserver((mutations) => {
+          mutations.forEach((mutation) => {
+            if (
+              mutation.type === "attributes" &&
+              mutation.attributeName === "style"
+            ) {
+              adjustHeaderPosition();
+            }
+          });
+        });
+
+        // On lance la surveillance
+        observer.observe(document.body, {
+          attributes: true,
+          attributeFilter: ["style"],
+        });
+
+        // On lance aussi une vérification immédiate au cas où la barre est déjà là
+        adjustHeaderPosition();
+
+        // --- 3. TRADUCTION & COOKIES ---
         const translateBtn = document.getElementById("translate-btn");
 
-        // CORRECTION 1 : Ajout des types (name: string) pour satisfaire TypeScript
         function getCookie(name: string) {
           const v = document.cookie.match("(^|;) ?" + name + "=([^;]*)(;|$)");
           return v ? v[2] : null;
         }
 
-        // CORRECTION 2 : Ajout des types (string, string, number)
         function setCookie(name: string, value: string, days: number) {
           const d = new Date();
           d.setTime(d.getTime() + 24 * 60 * 60 * 1000 * days);
@@ -222,17 +270,15 @@ const canonicalURL = new URL(Astro.url.pathname, Astro.site);
           }
         }
 
-        // CORRECTION 3 : Vérification stricte que parentNode existe
         if (translateBtn && translateBtn.parentNode) {
           const newTranslateBtn = translateBtn.cloneNode(true);
-          // TypeScript sait maintenant que parentNode n'est pas null ici
           translateBtn.parentNode.replaceChild(newTranslateBtn, translateBtn);
 
           newTranslateBtn.addEventListener("click", () => {
             const currentLang = getCookie("googtrans");
 
             if (currentLang === "/fr/en") {
-              // Revenir en FR
+              // Retour FR
               document.cookie =
                 "googtrans=; expires=Thu, 01 Jan 1970 00:00:00 UTC; path=/;";
               document.cookie =
@@ -240,7 +286,7 @@ const canonicalURL = new URL(Astro.url.pathname, Astro.site);
                 window.location.hostname;
               location.reload();
             } else {
-              // Forcer EN
+              // Force EN
               setCookie("googtrans", "/fr/en", 1);
               location.reload();
             }
@@ -271,14 +317,18 @@ const canonicalURL = new URL(Astro.url.pathname, Astro.site);
   main {
     flex: 1;
   }
+
+  /* HEADER AVEC TRANSITION FLUIDE */
   .site-header {
     background: rgba(255, 255, 255, 0.98);
     backdrop-filter: blur(10px);
     box-shadow: 0 2px 15px rgba(0, 0, 0, 0.04);
     position: sticky;
-    top: 0;
+    top: 0; /* Par défaut 0, mais le JS va changer ça si Google apparait */
     z-index: 1000;
+    transition: top 0.3s ease; /* Le menu glissera doucement */
   }
+
   .header-container {
     max-width: 1200px;
     margin: 0 auto;
@@ -350,7 +400,6 @@ const canonicalURL = new URL(Astro.url.pathname, Astro.site);
     margin-bottom: 1.5rem;
     max-width: 300px;
   }
-
   .footer-links ul {
     list-style: none;
   }
