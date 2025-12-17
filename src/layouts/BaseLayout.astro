@@ -61,7 +61,6 @@ const canonicalURL = new URL(Astro.url.pathname, Astro.site);
           {
             pageLanguage: "fr",
             includedLanguages: "en,fr",
-            // C'EST ICI LE SECRET : Mode SIMPLE pour éviter la barre du haut
             layout: google.translate.TranslateElement.InlineLayout.SIMPLE,
             autoDisplay: false,
           },
@@ -76,8 +75,6 @@ const canonicalURL = new URL(Astro.url.pathname, Astro.site);
 
     <style>
       /* --- NETTOYAGE GOOGLE TRANSLATE --- */
-
-      /* On cache le widget Google par défaut car on utilise notre propre bouton */
       #google_translate_element {
         visibility: hidden;
         position: absolute;
@@ -87,18 +84,12 @@ const canonicalURL = new URL(Astro.url.pathname, Astro.site);
         top: 0;
         left: 0;
       }
-
-      /* Sécurité : On cache la barre si jamais elle essaie de s'afficher quand même */
       .goog-te-banner-frame.skiptranslate {
         display: none !important;
       }
-
-      /* On nettoie les infobulles au survol */
       #goog-gt-tt {
         display: none !important;
       }
-
-      /* PLUS AUCUN 'top: 0' ou 'position: fixed' sur le body ! */
     </style>
   </head>
 
@@ -164,60 +155,6 @@ const canonicalURL = new URL(Astro.url.pathname, Astro.site);
             et les rites du Bénin. Une tradition vivante, expliquée avec respect
             et authenticité.
           </p>
-          <div class="social-icons">
-            <a href="#" aria-label="Facebook"
-              ><svg
-                xmlns="http://www.w3.org/2000/svg"
-                width="20"
-                height="20"
-                viewBox="0 0 24 24"
-                fill="none"
-                stroke="currentColor"
-                stroke-width="2"
-                stroke-linecap="round"
-                stroke-linejoin="round"
-                ><path
-                  d="M18 2h-3a5 5 0 0 0-5 5v3H7v4h3v8h4v-8h3l1-4h-4V7a1 1 0 0 1 1-1h3z"
-                ></path></svg
-              ></a
-            >
-            <a href="#" aria-label="Instagram"
-              ><svg
-                xmlns="http://www.w3.org/2000/svg"
-                width="20"
-                height="20"
-                viewBox="0 0 24 24"
-                fill="none"
-                stroke="currentColor"
-                stroke-width="2"
-                stroke-linecap="round"
-                stroke-linejoin="round"
-                ><rect x="2" y="2" width="20" height="20" rx="5" ry="5"
-                ></rect><path
-                  d="M16 11.37A4 4 0 1 1 12.63 8 4 4 0 0 1 16 11.37z"
-                ></path><line x1="17.5" y1="6.5" x2="17.51" y2="6.5"
-                ></line></svg
-              ></a
-            >
-            <a href="#" aria-label="Youtube"
-              ><svg
-                xmlns="http://www.w3.org/2000/svg"
-                width="20"
-                height="20"
-                viewBox="0 0 24 24"
-                fill="none"
-                stroke="currentColor"
-                stroke-width="2"
-                stroke-linecap="round"
-                stroke-linejoin="round"
-                ><path
-                  d="M22.54 6.42a2.78 2.78 0 0 0-1.94-2C18.88 4 12 4 12 4s-6.88 0-8.6.46a2.78 2.78 0 0 0-1.94 2A29 29 0 0 0 1 11.75a29 29 0 0 0 .46 5.33A2.78 2.78 0 0 0 3.4 19c1.72.46 8.6.46 8.6.46s6.88 0 8.6-.46a2.78 2.78 0 0 0 1.94-2 29 29 0 0 0 .46-5.33 29 29 0 0 0-.46-5.33z"
-                ></path><polygon
-                  points="9.75 15.02 15.5 11.75 9.75 8.48 9.75 15.02"
-                ></polygon></svg
-              ></a
-            >
-          </div>
         </div>
 
         <div class="footer-links">
@@ -246,8 +183,23 @@ const canonicalURL = new URL(Astro.url.pathname, Astro.site);
 
         <div class="footer-contact">
           <h4>Nous Trouver</h4>
-          <p>📍 Ouidah, Bénin</p>
-          <p>📧 contact@heritagevodun.com</p>
+          <p>
+            📍
+            <a
+              href="https://www.google.com/maps/search/?api=1&query=Ouidah,+Bénin"
+              target="_blank"
+              rel="noopener noreferrer"
+              class="contact-link"
+            >
+              Ouidah, Bénin
+            </a>
+          </p>
+          <p>
+            📧
+            <a href="mailto:contact@heritagevodun.com" class="contact-link">
+              contact@heritagevodun.com
+            </a>
+          </p>
           <a href="/contact" class="contact-btn-footer">Nous écrire</a>
         </div>
       </div>
@@ -289,11 +241,9 @@ const canonicalURL = new URL(Astro.url.pathname, Astro.site);
             const googleSelect = document.querySelector(".goog-te-combo");
 
             if (googleSelect) {
-              // On force la langue anglaise
               (googleSelect as HTMLSelectElement).value = "en";
               googleSelect.dispatchEvent(new Event("change"));
             } else {
-              // Tentative automatique si pas encore chargé
               const checkGoogle = setInterval(() => {
                 const retrySelect = document.querySelector(".goog-te-combo");
                 if (retrySelect) {
@@ -302,7 +252,7 @@ const canonicalURL = new URL(Astro.url.pathname, Astro.site);
                   clearInterval(checkGoogle);
                 }
               }, 500);
-              setTimeout(() => clearInterval(checkGoogle), 5000); // Stop après 5s
+              setTimeout(() => clearInterval(checkGoogle), 5000);
             }
           });
         }
@@ -384,11 +334,11 @@ const canonicalURL = new URL(Astro.url.pathname, Astro.site);
 
   /* --- FOOTER PRO --- */
   .site-footer {
-    background-color: #1a2e2e; /* Vert très sombre */
+    background-color: #1a2e2e;
     color: #e0e0e0;
     padding-top: 4rem;
     margin-top: 4rem;
-    border-top: 4px solid #c06c3b; /* Ligne dorée */
+    border-top: 4px solid #c06c3b;
   }
 
   .footer-container {
@@ -420,24 +370,8 @@ const canonicalURL = new URL(Astro.url.pathname, Astro.site);
     margin-bottom: 1.5rem;
     max-width: 300px;
   }
-  .social-icons {
-    display: flex;
-    gap: 1rem;
-  }
-  .social-icons a {
-    color: #fff;
-    background: rgba(255, 255, 255, 0.1);
-    padding: 8px;
-    border-radius: 50%;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    transition: all 0.3s ease;
-  }
-  .social-icons a:hover {
-    background: #c06c3b;
-    transform: translateY(-3px);
-  }
+
+  /* Styles social icons supprimés */
 
   .footer-links ul {
     list-style: none;
@@ -489,6 +423,17 @@ const canonicalURL = new URL(Astro.url.pathname, Astro.site);
     margin-bottom: 0.5rem;
     opacity: 0.9;
   }
+  /* Nouveau style pour les liens de contact (mail et maps) */
+  .contact-link {
+    color: inherit;
+    text-decoration: none;
+    transition: color 0.2s;
+  }
+  .contact-link:hover {
+    color: #c06c3b;
+    text-decoration: underline;
+  }
+
   .contact-btn-footer {
     display: inline-block;
     margin-top: 10px;

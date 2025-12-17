@@ -1,5 +1,5 @@
 ---
-// Newsletter.astro - Version "Invitation Sacrée" (Light & Gold)
+// src/components/Newsletter.astro - Version "Invitation Sacrée"
 ---
 
 <section class="newsletter-section">
@@ -78,7 +78,9 @@
     })
       .then(async (response) => {
         if (response.status == 200) {
-          resNews.innerHTML = "✨ Bienvenue dans le cercle.";
+          // --- MESSAGE CHALEUREUX DE CONFIRMATION ---
+          resNews.innerHTML =
+            "✨ Merci. Votre inscription est confirmée. Bienvenue dans le Cercle.";
           resNews.style.color = "#2f4f4f";
           formNews.reset();
         } else {
@@ -88,6 +90,7 @@
       })
       .catch((error) => {
         resNews.innerHTML = "Erreur réseau.";
+        resNews.style.color = "red";
       });
   });
 </script>

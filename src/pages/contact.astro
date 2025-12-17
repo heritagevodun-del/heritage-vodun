@@ -100,11 +100,14 @@ import BaseLayout from "../layouts/BaseLayout.astro";
       .then(async (response) => {
         let json = await response.json();
         if (response.status == 200) {
-          result.innerHTML = "✨ Message envoyé avec succès !";
+          // --- C'EST ICI QUE LE MESSAGE EST MODIFIÉ ---
+          result.innerHTML =
+            "✨ Merci ! Votre parole a bien été reçue sous l'Arbre à Palabre.<br>Nous vous répondrons avec joie très prochainement.";
           result.style.color = "#2f4f4f";
           form.reset();
         } else {
-          result.innerHTML = "Erreur. Veuillez réessayer.";
+          result.innerHTML =
+            "Une petite erreur est survenue. Veuillez réessayer.";
           result.style.color = "red";
         }
       })
@@ -226,7 +229,8 @@ import BaseLayout from "../layouts/BaseLayout.astro";
   .message-resultat {
     text-align: center;
     font-weight: bold;
-    margin-top: 10px;
+    margin-top: 15px;
+    line-height: 1.5; /* Pour que les deux lignes respirent */
   }
 
   @media (max-width: 768px) {
