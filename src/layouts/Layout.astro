@@ -13,7 +13,7 @@
 </html>
 
 <style is:global>
-  /* 1. Configuration de base du site (ne change pas) */
+  /* 1. VOS RÉGLAGES D'ORIGINE (Pour garder le site compact) */
   html,
   body {
     margin: 0;
@@ -21,27 +21,24 @@
     height: 100%;
   }
 
-  /* 2. CORRECTIF GOOGLE TRANSLATE (Le "Mur en béton") */
+  /* 2. LE CORRECTIF GOOGLE TRANSLATE */
 
-  /* On force html ET body à rester collés en haut à 0px */
-  html,
+  /* On force le site à rester collé en haut */
   body {
     top: 0 !important;
-    margin-top: 0 !important;
-    position: relative !important; /* Garde la structure stable */
   }
 
-  /* On cache l'iframe (la barre bleue) de Google */
+  /* On cache la barre bleue (l'iframe) */
   .goog-te-banner-frame.skiptranslate {
     display: none !important;
   }
 
-  /* On cache l'espace vide que Google essaie parfois de réserver */
+  /* On cache l'espace vide que Google tente de réserver en haut */
   body > .skiptranslate {
     display: none !important;
   }
 
-  /* On cache le logo Google et les popups inutiles */
+  /* On nettoie le logo et les textes inutiles */
   .goog-logo-link {
     display: none !important;
   }
