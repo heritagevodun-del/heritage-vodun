@@ -1,7 +1,5 @@
 ---
 /* src/components/HeroSlider.astro */
-/* Ce composant gère uniquement le défilement des images en arrière-plan */
-
 const slides = [
   { img: "/vodun-intro.jpeg", alt: "Tradition" },
   { img: "/divinites-vodun.jpeg", alt: "Divinités" },
@@ -23,24 +21,34 @@ const slides = [
 </div>
 
 <script>
-  // Logique de défilement infini et fluide
-  const slides = document.querySelectorAll(".hero-slider-background .slide");
-  let current = 0;
-  const total = slides.length;
+  // On utilise 'astro:page-load' pour que ça marche à chaque navigation (Aller/Retour)
+  document.addEventListener("astro:page-load", () => {
+    const slides = document.querySelectorAll(".hero-slider-background .slide");
+    if (slides.length <= 1) return; // Pas d'animation si 1 seule image
 
-  function nextSlide() {
-    if (slides.length === 0) return;
-    slides[current].classList.remove("active");
-    current = (current + 1) % total;
-    slides[current].classList.add("active");
-  }
+    let current = 0;
+    const total = slides.length;
 
-  if (total > 1) {
-    let interval = setInterval(nextSlide, 6000); // 6 secondes
-    document.addEventListener("astro:before-swap", () =>
-      clearInterval(interval)
+    // Fonction pour changer d'image
+    const nextSlide = () => {
+      slides[current].classList.remove("active");
+      current = (current + 1) % total;
+      slides[current].classList.add("active");
+    };
+
+    // On lance le chrono
+    const interval = setInterval(nextSlide, 6000);
+
+    // IMPORTANT : On nettoie le chrono si l'utilisateur quitte la page
+    // pour éviter d'avoir deux chronos qui tournent en même temps
+    document.addEventListener(
+      "astro:before-swap",
+      () => {
+        clearInterval(interval);
+      },
+      { once: true }
     );
-  }
+  });
 </script>
 
 <style>
@@ -50,7 +58,7 @@ const slides = [
     left: 0;
     width: 100%;
     height: 100%;
-    z-index: 0; /* Tout au fond */
+    z-index: 0;
     overflow: hidden;
     background: #000;
   }
@@ -62,7 +70,7 @@ const slides = [
     width: 100%;
     height: 100%;
     opacity: 0;
-    transition: opacity 2.5s ease-in-out; /* Transition très lente et douce */
+    transition: opacity 2.5s ease-in-out;
   }
 
   .slide.active {
@@ -74,14 +82,13 @@ const slides = [
     height: 100%;
     object-fit: cover;
     transform: scale(1.05);
-    transition: transform 8s ease-out; /* Effet Ken Burns (zoom lent) */
+    transition: transform 8s ease-out;
   }
 
   .slide.active img {
     transform: scale(1);
   }
 
-  /* Dégradé professionnel pour la lisibilité du texte */
   .overlay-gradient {
     position: absolute;
     top: 0;
