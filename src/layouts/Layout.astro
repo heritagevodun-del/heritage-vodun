@@ -13,26 +13,35 @@
 </html>
 
 <style is:global>
-  /* 1. On garde vos réglages d'origine STRICTS pour la structure */
+  /* 1. Configuration de base du site (ne change pas) */
   html,
   body {
     margin: 0;
     width: 100%;
     height: 100%;
-    /* On force seulement le haut à rester à 0 pour contrer Google */
-    top: 0 !important;
   }
 
-  /* 2. On cache UNIQUEMENT la barre visuelle de Google */
+  /* 2. CORRECTIF GOOGLE TRANSLATE (Le "Mur en béton") */
+
+  /* On force html ET body à rester collés en haut à 0px */
+  html,
+  body {
+    top: 0 !important;
+    margin-top: 0 !important;
+    position: relative !important; /* Garde la structure stable */
+  }
+
+  /* On cache l'iframe (la barre bleue) de Google */
   .goog-te-banner-frame.skiptranslate {
     display: none !important;
   }
 
+  /* On cache l'espace vide que Google essaie parfois de réserver */
   body > .skiptranslate {
     display: none !important;
   }
 
-  /* 3. Nettoyage visuel du widget (optionnel, sans risque pour la structure) */
+  /* On cache le logo Google et les popups inutiles */
   .goog-logo-link {
     display: none !important;
   }
