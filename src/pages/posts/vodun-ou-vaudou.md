@@ -1,7 +1,7 @@
 ---
-layout: ../../layouts/MarkdownLayout.astro
+layout: ../../layouts/PostLayout.astro
 title: "Vodun ou Vaudou ? Comprendre l'essence d'une spiritualité millénaire"
-pubDate: "2025-05-20"
+pubDate: 2025-05-20
 description: "Poupées, zombies, sorcellerie ? Hollywood a tout faux. Héritage Vodun rétablit la vérité sur une vision du monde où l'humain, la nature et les ancêtres vivent en harmonie."
 image: "/vodun-intro.jpeg"
 categorie: "Spiritualité"
@@ -26,8 +26,8 @@ L'orthographe « Vaudou » est une transformation occidentale apparue avec la d�
 
 Le Vodun n'est pas une adoration aveugle d'idoles. C'est une philosophie qui célèbre le lien indissoluble entre deux mondes :
 
-1.  **Le monde visible :** Les humains, la nature, les animaux.
-2.  **Le monde invisible :** Les esprits, les ancêtres, les forces élémentaires (l'eau, la terre, le feu, l'air).
+1. **Le monde visible :** Les humains, la nature, les animaux.
+2. **Le monde invisible :** Les esprits, les ancêtres, les forces élémentaires (l'eau, la terre, le feu, l'air).
 
 Dans la cosmogonie béninoise, tout est vivant. La nature est sacrée. Le _Vodunsi_ (l'adepte) ne cherche pas à dominer la nature, mais à dialoguer avec elle pour maintenir l'équilibre.
 

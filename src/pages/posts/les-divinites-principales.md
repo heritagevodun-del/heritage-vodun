@@ -1,5 +1,5 @@
 ---
-layout: ../../layouts/MarkdownLayout.astro
+layout: ../../layouts/PostLayout.astro
 title: "Au-delà des Mythes : Qui sont les Grandes Divinités du Vodun ?"
 pubDate: 2025-12-15
 description: "Legba n'est pas le diable. Découvrez la véritable nature de Mawu-Lisa, Heviosso, Sakpata et des autres forces qui régissent le panthéon Vodun."
@@ -7,19 +7,7 @@ image: "/divinites-vodun.jpeg"
 categorie: "Divinités"
 ---
 
-<style>
-  article { max-width: 800px; margin: 0 auto; padding: 20px; font-family: 'Lato', sans-serif; line-height: 1.8; }
-  h2 { font-family: 'Playfair Display', serif; color: #C06C3B; margin-top: 3rem; border-bottom: 2px solid #eee; padding-bottom: 10px; }
-  strong { color: #2F4F4F; }
-  .intro { font-size: 1.2rem; font-style: italic; color: #555; border-left: 4px solid #C06C3B; padding-left: 20px; margin-bottom: 40px; }
-  img { max-width: 100%; height: auto; border-radius: 8px; margin: 20px 0; }
-</style>
-
-<article>
-
-<div class="intro">
-  <p>Souvent réduit à tort à de la sorcellerie dans la culture populaire occidentale, le Vodun est en réalité une spiritualité complexe, organisée et profondément liée aux forces de la nature. Pour comprendre le Vodun, il faut d'abord rencontrer ceux qui l'habitent.</p>
-</div>
+Souvent réduit à tort à de la sorcellerie dans la culture populaire occidentale, le Vodun est en réalité une spiritualité complexe, organisée et profondément liée aux forces de la nature. Pour comprendre le Vodun, il faut d'abord rencontrer ceux qui l'habitent.
 
 Le Vodun n'est pas une vénération aveugle de statues. C'est une **cosmogonie** : une manière d'expliquer l'univers. Au sommet, il y a une force créatrice unique, mais trop immense pour s'occuper des détails du quotidien. C'est là qu'interviennent les **Voduns**, des divinités intermédiaires, chacune responsable d'un aspect de la vie (le tonnerre, la terre, l'eau, la guérison).
 
@@ -67,5 +55,3 @@ Souvent représentée avec des traits métissés et une longue chevelure, elle e
 Le panthéon Vodun est une véritable **école de vie**. Chaque divinité nous rappelle que l'homme doit vivre en équilibre : entre le chaud et le froid (Mawu-Lisa), en respectant la justice (Heviosso) et la terre (Sakpata), tout en sachant communiquer (Legba).
 
 Comprendre ces divinités, c'est arrêter d'avoir peur de l'inconnu pour commencer à respecter une sagesse millénaire.
-
-</article>

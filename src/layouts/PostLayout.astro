@@ -1,0 +1,147 @@
+---
+import BaseLayout from "./BaseLayout.astro";
+import FaAnimation from "../components/FaAnimation.astro";
+
+const { frontmatter } = Astro.props;
+---
+
+<BaseLayout
+  titrePage={frontmatter.titrePage || frontmatter.title}
+  description={frontmatter.description}
+  image={frontmatter.image}
+>
+  <div class="blog-container">
+    {
+      frontmatter.categorie && (
+        <div class="category-badge">{frontmatter.categorie}</div>
+      )
+    }
+
+    <div class="meta-info">
+      <p>
+        {frontmatter.pubDate.toString().slice(0, 10)} | Par {
+          frontmatter.author || "Héritage Vodun"
+        }
+      </p>
+    </div>
+
+    <h1>{frontmatter.titrePage || frontmatter.title}</h1>
+
+    {
+      frontmatter.type_image === "animation_fa" ? (
+        <div class="featured-animation">
+          <FaAnimation />
+        </div>
+      ) : (
+        frontmatter.image && (
+          <img
+            src={frontmatter.image}
+            alt={frontmatter.title}
+            class="featured-image"
+          />
+        )
+      )
+    }
+
+    <div class="content">
+      <slot />
+    </div>
+  </div>
+</BaseLayout>
+
+<style>
+  .blog-container {
+    max-width: 800px;
+    margin: 4rem auto;
+    padding: 0 1.5rem;
+    font-family: "Lato", sans-serif;
+    color: #333;
+  }
+
+  /* 👇 Style du Badge Catégorie */
+  .category-badge {
+    display: inline-block;
+    background-color: rgba(192, 108, 59, 0.1); /* Fond léger couleur terre */
+    color: #c06c3b; /* Couleur principale */
+    padding: 4px 12px;
+    border-radius: 20px;
+    font-size: 0.85rem;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    margin-bottom: 1rem;
+    border: 1px solid rgba(192, 108, 59, 0.3);
+  }
+
+  .meta-info {
+    color: #888;
+    font-size: 0.9rem;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    margin-bottom: 1rem;
+  }
+
+  h1 {
+    font-family: "Playfair Display", serif;
+    color: #1a2e2e;
+    font-size: 2.5rem;
+    margin-bottom: 2rem;
+    line-height: 1.2;
+  }
+
+  .featured-image {
+    width: 100%;
+    height: auto;
+    border-radius: 8px;
+    margin-bottom: 3rem;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+  }
+
+  .featured-animation {
+    margin-bottom: 3rem;
+    overflow: hidden;
+    border-radius: 8px;
+  }
+
+  /* --- Contenu --- */
+  .content {
+    font-size: 1.15rem;
+    line-height: 1.8;
+  }
+  .content :global(h2) {
+    font-family: "Playfair Display", serif;
+    color: #c06c3b;
+    margin-top: 3rem;
+    margin-bottom: 1.5rem;
+    font-size: 1.8rem;
+  }
+  .content :global(h3) {
+    color: #1a2e2e;
+    margin-top: 2rem;
+    font-weight: bold;
+    font-size: 1.3rem;
+  }
+  .content :global(blockquote) {
+    border-left: 4px solid #c06c3b;
+    padding-left: 1.5rem;
+    font-style: italic;
+    background: #f9f9f9;
+    padding: 1.5rem;
+    margin: 2rem 0;
+    border-radius: 0 8px 8px 0;
+  }
+  .content :global(ul) {
+    margin-bottom: 2rem;
+    padding-left: 1.5rem;
+  }
+  .content :global(li) {
+    margin-bottom: 0.5rem;
+  }
+  .content :global(strong) {
+    color: #c06c3b;
+  }
+  .content :global(a) {
+    color: #c06c3b;
+    text-decoration: underline;
+  }
+</style>
