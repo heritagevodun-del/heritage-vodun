@@ -1,24 +1,69 @@
 ---
-// src/layouts/layout.astro
+// src/layouts/Layout.astro
 interface Props {
   title?: string;
+  description?: string;
+  image?: string;
 }
 
-const { title = "Héritage Vodun" } = Astro.props;
+// On définit des valeurs par défaut intelligentes pour le SEO
+const {
+  title = "Héritage Vodun | Guide Spirituel & Culturel à Ouidah",
+  description = "Découvrez l'essence du Vodun, spiritualité millénaire du Bénin. Visites guidées à Ouidah, consultation du Fâ et histoire de la Route des Esclaves.",
+  image = "/images/og-default.jpg", // Image par défaut pour les partages (assurez-vous d'en avoir une)
+} = Astro.props;
+
+// Création de l'URL canonique (Indispensable pour que Google ne s'embrouille pas)
+const canonicalURL = new URL(Astro.url.pathname, Astro.site);
 ---
 
 <!doctype html>
 <html lang="fr">
   <head>
     <meta charset="UTF-8" />
-    <meta
-      name="description"
-      content="Découvrez l'essence du Vodun, spiritualité millénaire du Bénin."
-    />
     <meta name="viewport" content="width=device-width" />
     <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
     <meta name="generator" content={Astro.generator} />
+
     <title>{title}</title>
+    <meta name="description" content={description} />
+    <link rel="canonical" href={canonicalURL} />
+
+    <meta property="og:type" content="website" />
+    <meta property="og:url" content={Astro.url} />
+    <meta property="og:title" content={title} />
+    <meta property="og:description" content={description} />
+    <meta property="og:image" content={new URL(image, Astro.url)} />
+
+    <meta property="twitter:card" content="summary_large_image" />
+    <meta property="twitter:url" content={Astro.url} />
+    <meta property="twitter:title" content={title} />
+    <meta property="twitter:description" content={description} />
+    <meta property="twitter:image" content={new URL(image, Astro.url)} />
+
+    <script type="application/ld+json" is:inline>
+      {
+        "@context": "https://schema.org",
+        "@type": "TravelAgency",
+        "name": "Héritage Vodun",
+        "url": "https://www.heritagevodun.com",
+        "image": "https://www.heritagevodun.com/images/logo.png",
+        "description": "Guide culturel et spirituel à Ouidah. Spécialiste du Vodun, du Fâ et de l'histoire du Bénin.",
+        "address": {
+          "@type": "PostalAddress",
+          "addressLocality": "Ouidah",
+          "addressRegion": "Atlantique",
+          "addressCountry": "BJ"
+        },
+        "geo": {
+          "@type": "GeoCoordinates",
+          "latitude": 6.3667,
+          "longitude": 2.0833
+        },
+        "telephone": "+22900000000",
+        "priceRange": "$$"
+      }
+    </script>
   </head>
   <body>
     <slot />
@@ -26,7 +71,7 @@ const { title = "Héritage Vodun" } = Astro.props;
 </html>
 
 <style is:global>
-  /* Reset standard pour un site compact et propre */
+  /* Reset standard pour un site compact et propre (Votre style d'origine) */
   html,
   body {
     margin: 0;
@@ -34,5 +79,11 @@ const { title = "Héritage Vodun" } = Astro.props;
     width: 100%;
     height: 100%;
     overflow-x: hidden;
+    font-family:
+      system-ui,
+      -apple-system,
+      sans-serif; /* Ajout d'une police par défaut propre */
+    background-color: #1a1a1a; /* Fond sombre par défaut pour éviter le flash blanc */
+    color: white;
   }
 </style>

@@ -1,13 +1,16 @@
 ---
 // src/pages/index.astro
-import BaseLayout from "../layouts/BaseLayout.astro";
+// 👇 CHANGEMENT ICI : On utilise BaseLayout pour avoir le Menu et le Footer
+import Layout from "../layouts/BaseLayout.astro";
 import Newsletter from "../components/Newsletter.astro";
 import HeroSlider from "../components/HeroSlider.astro";
 
-const pageTitle = "Lumière du Vodun";
+// Titre optimisé pour Google
+const pageTitle =
+  "Héritage Vodun | Guide Spirituel & Culturel à Ouidah (Bénin)";
 ---
 
-<BaseLayout titrePage={pageTitle}>
+<Layout titrePage={pageTitle}>
   <header class="hero-section">
     <HeroSlider />
 
@@ -23,19 +26,25 @@ const pageTitle = "Lumière du Vodun";
       </div>
 
       <h1 class="anim-entry delay-2">
-        Lumière du <br />
+        Héritage <br />
         <span class="text-gradient">Vodun</span>
       </h1>
 
       <div class="separator anim-entry delay-3"></div>
 
       <p class="description anim-entry delay-3">
-        Une spiritualité vivante. Une philosophie de paix. <br />
-        L'âme et l'histoire du Bénin révélées.
+        <strong>Guide Spirituel & Culturel à Ouidah (Bénin).</strong><br />
+        Une spiritualité vivante. Une philosophie de paix.<br />
+        Visites guidées, consultation du Fâ et histoire révélée.
       </p>
 
       <div class="actions anim-entry delay-4">
-        <a href="/about" class="btn-prestige">Découvrir notre mission</a>
+        <a
+          href="https://mindoguesito.com"
+          class="btn-prestige btn-ia"
+          target="_blank">Parler au Sage (IA)</a
+        >
+        <a href="/about" class="btn-prestige">Notre Mission</a>
       </div>
     </div>
 
@@ -62,19 +71,20 @@ const pageTitle = "Lumière du Vodun";
         c'est une célébration de la vie et des éléments. À travers ce sanctuaire
         numérique, nous brisons les chaînes des préjugés pour révéler l'identité
         béninoise : de la sagesse mathématique du <strong>Fâ</strong> à la puissance
-        des rythmes sacrés.
+        des rythmes sacrés. Nous organisons vos <strong
+          >visites authentiques à Ouidah</strong
+        >.
       </p>
     </div>
   </section>
 
   <Newsletter />
-</BaseLayout>
+</Layout>
 
 <style>
   /* --- 1. HERO SECTION --- */
   .hero-section {
     position: relative;
-    /* Utilisation de dvh pour gérer la barre d'adresse mobile */
     height: 100dvh;
     width: 100%;
     display: flex;
@@ -102,7 +112,6 @@ const pageTitle = "Lumière du Vodun";
     box-shadow: 0 0 20px rgba(212, 175, 55, 0.15);
   }
 
-  /* Desktop : taille basée sur la hauteur */
   .externe {
     width: 65vh;
     height: 65vh;
@@ -136,7 +145,6 @@ const pageTitle = "Lumière du Vodun";
     text-align: center;
     max-width: 900px;
     padding: 0 20px;
-    /* Sécurité mobile : empêche le texte de toucher les bords */
     width: 100%;
   }
 
@@ -183,18 +191,26 @@ const pageTitle = "Lumière du Vodun";
     margin-bottom: 40px;
     line-height: 1.6;
     font-weight: 300;
-    text-shadow: 0 2px 4px rgba(0, 0, 0, 0.8); /* Ombre renforcée pour lisibilité */
+    text-shadow: 0 2px 4px rgba(0, 0, 0, 0.8);
+  }
+
+  /* --- BOUTONS --- */
+  .actions {
+    display: flex;
+    justify-content: center;
+    gap: 15px;
+    flex-wrap: wrap;
   }
 
   .btn-prestige {
     position: relative;
     display: inline-block;
-    padding: 18px 45px;
+    padding: 15px 30px;
     color: #fff;
     text-decoration: none;
     text-transform: uppercase;
     letter-spacing: 2px;
-    font-size: 0.9rem;
+    font-size: 0.85rem;
     border: 1px solid rgba(255, 255, 255, 0.4);
     overflow: hidden;
     transition: all 0.4s ease;
@@ -218,6 +234,15 @@ const pageTitle = "Lumière du Vodun";
   }
   .btn-prestige:hover::before {
     width: 100%;
+  }
+
+  /* Variations des boutons */
+  .btn-ia {
+    border-color: rgba(100, 200, 255, 0.4);
+  }
+  .btn-ia:hover {
+    background-color: rgba(100, 200, 255, 0.2);
+    color: white;
   }
 
   /* --- 4. MANIFESTE --- */
@@ -370,11 +395,8 @@ const pageTitle = "Lumière du Vodun";
     }
   }
 
-  /* =========================================
-     🎯 RESPONSIVE MOBILE OPTIMISÉ
-     ========================================= */
+  /* RESPONSIVE */
   @media (max-width: 768px) {
-    /* Ajustement des titres */
     h1 {
       font-size: 3rem;
       margin-bottom: 15px;
@@ -383,9 +405,6 @@ const pageTitle = "Lumière du Vodun";
       font-size: 1.1rem;
       padding: 0 10px;
     }
-
-    /* Adaptation des anneaux en largeur d'écran (vw) et non en hauteur
-       pour éviter qu'ils ne soient trop grands sur un mobile vertical */
     .externe {
       width: 85vw;
       height: 85vw;
@@ -402,27 +421,22 @@ const pageTitle = "Lumière du Vodun";
       width: 40vw;
       height: 40vw;
     }
-
-    /* Ajustement de la section Manifeste */
     .intro-manifeste {
       padding: 80px 20px;
     }
     .intro-manifeste h2 {
       font-size: 2.2rem;
     }
-
-    /* Le texte passe en alignement gauche pour faciliter la lecture sur petit écran */
     .texte-pro {
       text-align: left;
       text-align-last: left;
       font-size: 1.1rem;
     }
 
-    /* Ajustement bouton */
     .btn-prestige {
-      padding: 15px 30px;
-      font-size: 0.8rem;
-      width: 100%;
+      padding: 12px 20px;
+      font-size: 0.75rem;
+      width: 100%; /* Boutons pleine largeur sur mobile */
       max-width: 300px;
       text-align: center;
     }
