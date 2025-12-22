@@ -161,12 +161,35 @@ const canonicalURL = new URL(Astro.url.pathname, Astro.site);
           <p>
             Recevez chaque mois un récit ou une découverte sur la culture Vodun.
           </p>
-          <form
-            class="newsletter-form"
-            onsubmit="event.preventDefault(); alert('Merci ! Inscription validée.');"
-          >
-            <input type="email" placeholder="Votre email..." required />
-            <button type="submit">→</button>
+
+          <form id="footer-newsletter-form" class="newsletter-form">
+            <input
+              type="hidden"
+              name="access_key"
+              value="90fd8cd4-08c6-427b-9e44-ae19d6c3f487"
+            />
+            <input
+              type="hidden"
+              name="subject"
+              value="Nouvel abonné Footer (BaseLayout)"
+            />
+            <input
+              type="checkbox"
+              name="botcheck"
+              class="hidden"
+              style="display: none;"
+            />
+
+            <div class="input-wrapper">
+              <input
+                type="email"
+                name="email"
+                placeholder="Votre email..."
+                required
+              />
+              <button type="submit" class="btn-submit">→</button>
+            </div>
+            <p id="footer-result" class="footer-message"></p>
           </form>
         </div>
 
@@ -207,6 +230,7 @@ const canonicalURL = new URL(Astro.url.pathname, Astro.site);
 
     <script>
       document.addEventListener("astro:page-load", () => {
+        // --- 1. GESTION DU MENU MOBILE ---
         const menuBtn = document.getElementById("menu-toggle");
         const navMenu = document.getElementById("nav-menu");
 
@@ -220,6 +244,67 @@ const canonicalURL = new URL(Astro.url.pathname, Astro.site);
               newMenuBtn.classList.toggle("open");
             });
           }
+        }
+
+        // --- 2. GESTION DU FORMULAIRE FOOTER ---
+        const footerForm = document.getElementById(
+          "footer-newsletter-form"
+        ) as HTMLFormElement;
+        const footerResult = document.getElementById("footer-result");
+        const footerBtn = footerForm?.querySelector(
+          ".btn-submit"
+        ) as HTMLButtonElement;
+
+        if (footerForm && footerResult && footerBtn) {
+          footerForm.addEventListener("submit", function (e) {
+            e.preventDefault();
+            const formData = new FormData(footerForm);
+            const object = Object.fromEntries(formData);
+            const json = JSON.stringify(object);
+
+            // État "Chargement"
+            footerResult.innerHTML = "...";
+            footerResult.style.color = "#c06c3b";
+            footerBtn.disabled = true;
+            footerBtn.style.opacity = "0.7";
+
+            fetch("https://api.web3forms.com/submit", {
+              method: "POST",
+              headers: {
+                "Content-Type": "application/json",
+                Accept: "application/json",
+              },
+              body: json,
+            })
+              .then(async (response) => {
+                if (response.status == 200) {
+                  // Succès
+                  footerResult.innerHTML = "✨ Merci ! Inscription validée.";
+                  footerResult.style.color = "#4CAF50"; // Vert ou Or (#c06c3b) selon goût
+                  footerForm.reset();
+
+                  // Reset après 3 secondes
+                  setTimeout(() => {
+                    footerResult.innerHTML = "";
+                    footerBtn.disabled = false;
+                    footerBtn.style.opacity = "1";
+                  }, 3000);
+                } else {
+                  // Erreur
+                  footerResult.innerHTML = "Une erreur est survenue.";
+                  footerResult.style.color = "red";
+                  footerBtn.disabled = false;
+                  footerBtn.style.opacity = "1";
+                }
+              })
+              .catch((error) => {
+                console.error(error);
+                footerResult.innerHTML = "Erreur de connexion.";
+                footerResult.style.color = "red";
+                footerBtn.disabled = false;
+                footerBtn.style.opacity = "1";
+              });
+          });
         }
       });
     </script>
@@ -352,7 +437,13 @@ const canonicalURL = new URL(Astro.url.pathname, Astro.site);
     margin-bottom: 1rem;
     opacity: 0.8;
   }
+
+  /* --- STYLE FORMULAIRE FOOTER --- */
   .newsletter-form {
+    display: flex;
+    flex-direction: column;
+  }
+  .input-wrapper {
     display: flex;
   }
   .newsletter-form input {
@@ -361,6 +452,7 @@ const canonicalURL = new URL(Astro.url.pathname, Astro.site);
     border-radius: 4px 0 0 4px;
     width: 100%;
     outline: none;
+    font-family: "Lato", sans-serif;
   }
   .newsletter-form button {
     background: #c06c3b;
@@ -374,6 +466,12 @@ const canonicalURL = new URL(Astro.url.pathname, Astro.site);
   }
   .newsletter-form button:hover {
     background: #a05a2f;
+  }
+  .footer-message {
+    font-size: 0.85rem;
+    margin-top: 8px;
+    min-height: 20px;
+    font-weight: bold;
   }
 
   .footer-contact p {
