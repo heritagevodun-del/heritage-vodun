@@ -43,13 +43,14 @@ const canonicalURL = new URL(Astro.url.pathname, Astro.site);
     <meta property="og:url" content={Astro.url} />
     <meta property="og:title" content={titrePage} />
     <meta property="og:description" content={description} />
-    <meta property="og:image" content={new URL(image, Astro.site)} />
+
+    <meta property="og:image" content={new URL(image, Astro.url)} />
 
     <meta property="twitter:card" content="summary_large_image" />
     <meta property="twitter:url" content={Astro.url} />
     <meta property="twitter:title" content={titrePage} />
     <meta property="twitter:description" content={description} />
-    <meta property="twitter:image" content={new URL(image, Astro.site)} />
+    <meta property="twitter:image" content={new URL(image, Astro.url)} />
 
     <script type="application/ld+json" is:inline>
       {
@@ -70,7 +71,7 @@ const canonicalURL = new URL(Astro.url.pathname, Astro.site);
           "latitude": 6.3667,
           "longitude": 2.0833
         },
-        "telephone": "+2290197000000",
+        "telephone": "+2290169783365",
         "priceRange": "$$"
       }
     </script>
@@ -206,7 +207,6 @@ const canonicalURL = new URL(Astro.url.pathname, Astro.site);
 
     <script>
       document.addEventListener("astro:page-load", () => {
-        // --- 1. GESTION MENU MOBILE ---
         const menuBtn = document.getElementById("menu-toggle");
         const navMenu = document.getElementById("nav-menu");
 
@@ -235,7 +235,6 @@ const canonicalURL = new URL(Astro.url.pathname, Astro.site);
     margin: 0;
     padding: 0;
   }
-
   body {
     display: flex;
     flex-direction: column;
@@ -305,7 +304,6 @@ const canonicalURL = new URL(Astro.url.pathname, Astro.site);
     margin-top: 4rem;
     border-top: 4px solid #c06c3b;
   }
-
   .footer-container {
     max-width: 1200px;
     margin: 0 auto;
@@ -315,7 +313,6 @@ const canonicalURL = new URL(Astro.url.pathname, Astro.site);
     gap: 3rem;
     margin-bottom: 3rem;
   }
-
   .footer-logo {
     font-family: "Playfair Display", serif;
     font-size: 1.8rem;
@@ -328,14 +325,12 @@ const canonicalURL = new URL(Astro.url.pathname, Astro.site);
     margin-bottom: 1.2rem;
     font-size: 1.2rem;
   }
-
   .brand-desc {
     font-size: 0.95rem;
     opacity: 0.8;
     margin-bottom: 1.5rem;
     max-width: 300px;
   }
-
   .footer-links ul {
     list-style: none;
   }
@@ -395,7 +390,6 @@ const canonicalURL = new URL(Astro.url.pathname, Astro.site);
     color: #c06c3b;
     text-decoration: underline;
   }
-
   .contact-btn-footer {
     display: inline-block;
     margin-top: 10px;

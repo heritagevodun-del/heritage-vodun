@@ -6,11 +6,11 @@ interface Props {
   image?: string;
 }
 
-// On définit des valeurs par défaut intelligentes pour le SEO
 const {
   title = "Héritage Vodun | Guide Spirituel & Culturel à Ouidah",
   description = "Découvrez l'essence du Vodun, spiritualité millénaire du Bénin. Visites guidées à Ouidah, consultation du Fâ et histoire de la Route des Esclaves.",
-  image = "/images/og-default.jpg", // Image par défaut pour les partages (assurez-vous d'en avoir une)
+  // 👇 C'est bon, ça pointe vers la racine
+  image = "/vodunsi.jpeg",
 } = Astro.props;
 
 // Création de l'URL canonique (Indispensable pour que Google ne s'embrouille pas)
@@ -47,7 +47,7 @@ const canonicalURL = new URL(Astro.url.pathname, Astro.site);
         "@type": "TravelAgency",
         "name": "Héritage Vodun",
         "url": "https://www.heritagevodun.com",
-        "image": "https://www.heritagevodun.com/images/logo.png",
+        "image": "https://www.heritagevodun.com/vodunsi.jpeg",
         "description": "Guide culturel et spirituel à Ouidah. Spécialiste du Vodun, du Fâ et de l'histoire du Bénin.",
         "address": {
           "@type": "PostalAddress",
@@ -60,7 +60,7 @@ const canonicalURL = new URL(Astro.url.pathname, Astro.site);
           "latitude": 6.3667,
           "longitude": 2.0833
         },
-        "telephone": "+22900000000",
+        "telephone": "+2290169783365",
         "priceRange": "$$"
       }
     </script>
@@ -71,7 +71,7 @@ const canonicalURL = new URL(Astro.url.pathname, Astro.site);
 </html>
 
 <style is:global>
-  /* Reset standard pour un site compact et propre (Votre style d'origine) */
+  /* Reset standard */
   html,
   body {
     margin: 0;
@@ -82,8 +82,8 @@ const canonicalURL = new URL(Astro.url.pathname, Astro.site);
     font-family:
       system-ui,
       -apple-system,
-      sans-serif; /* Ajout d'une police par défaut propre */
-    background-color: #1a1a1a; /* Fond sombre par défaut pour éviter le flash blanc */
+      sans-serif;
+    background-color: #1a1a1a;
     color: white;
   }
 </style>
