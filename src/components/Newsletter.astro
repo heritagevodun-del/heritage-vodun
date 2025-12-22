@@ -1,5 +1,5 @@
 ---
-// src/components/Newsletter.astro - Version "Invitation Sacrée"
+// src/components/Newsletter.astro - Version Optimisée & Sécurisée
 ---
 
 <section class="newsletter-section">
@@ -41,8 +41,12 @@
               placeholder="Votre adresse email..."
               required
               class="champ-email"
+              aria-label="Adresse email pour la newsletter"
             />
-            <button type="submit" class="btn-inscription"> S'inscrire </button>
+            <button type="submit" class="btn-inscription">
+              <span class="btn-text">S'inscrire</span>
+              <span class="btn-loader" style="display: none;">...</span>
+            </button>
           </div>
           <p class="message-resultat" id="resultat-newsletter"></p>
         </form>
@@ -55,43 +59,68 @@
   </div>
 </section>
 
-<script is:inline>
-  const formNews = document.getElementById("form-newsletter");
-  const resNews = document.getElementById("resultat-newsletter");
+<script>
+  // On utilise astro:page-load pour que le script se relance à chaque navigation
+  document.addEventListener("astro:page-load", () => {
+    const formNews = document.getElementById(
+      "form-newsletter"
+    ) as HTMLFormElement;
+    const resNews = document.getElementById("resultat-newsletter");
+    const btn = document.querySelector(".btn-inscription") as HTMLButtonElement;
+    const btnText = document.querySelector(".btn-text") as HTMLElement;
+    const btnLoader = document.querySelector(".btn-loader") as HTMLElement;
 
-  formNews.addEventListener("submit", function (e) {
-    e.preventDefault();
-    const formData = new FormData(formNews);
-    const object = Object.fromEntries(formData);
-    const json = JSON.stringify(object);
+    // Sécurité : on ne lance le script que si le formulaire est présent sur la page
+    if (formNews && resNews && btn) {
+      formNews.addEventListener("submit", function (e) {
+        e.preventDefault();
+        const formData = new FormData(formNews);
+        const object = Object.fromEntries(formData);
+        const json = JSON.stringify(object);
 
-    resNews.innerHTML = "Connexion en cours...";
-    resNews.style.color = "#d4af37";
+        // Feedback visuel : On charge
+        resNews.innerHTML = "";
+        btn.disabled = true; // Empêche le double clic
+        btn.style.opacity = "0.7";
+        if (btnText) btnText.style.display = "none";
+        if (btnLoader) btnLoader.style.display = "inline-block";
 
-    fetch("https://api.web3forms.com/submit", {
-      method: "POST",
-      headers: {
-        "Content-Type": "application/json",
-        Accept: "application/json",
-      },
-      body: json,
-    })
-      .then(async (response) => {
-        if (response.status == 200) {
-          // --- MESSAGE CHALEUREUX DE CONFIRMATION ---
-          resNews.innerHTML =
-            "✨ Merci. Votre inscription est confirmée. Bienvenue dans le Cercle.";
-          resNews.style.color = "#2f4f4f";
-          formNews.reset();
-        } else {
-          resNews.innerHTML = "Une erreur est survenue. Réessayez.";
-          resNews.style.color = "red";
-        }
-      })
-      .catch((error) => {
-        resNews.innerHTML = "Erreur réseau.";
-        resNews.style.color = "red";
+        fetch("https://api.web3forms.com/submit", {
+          method: "POST",
+          headers: {
+            "Content-Type": "application/json",
+            Accept: "application/json",
+          },
+          body: json,
+        })
+          .then(async (response) => {
+            if (response.status == 200) {
+              // SUCCÈS
+              resNews.innerHTML =
+                "✨ Merci. Votre inscription est confirmée. Bienvenue dans le Cercle.";
+              resNews.style.color = "#2f4f4f";
+              formNews.reset();
+            } else {
+              // ERREUR
+              resNews.innerHTML =
+                "Une erreur est survenue. Veuillez réessayer.";
+              resNews.style.color = "#d9534f";
+            }
+          })
+          .catch((error) => {
+            resNews.innerHTML = "Erreur de connexion.";
+            resNews.style.color = "#d9534f";
+            console.error(error);
+          })
+          .finally(() => {
+            // Remise à zéro du bouton
+            btn.disabled = false;
+            btn.style.opacity = "1";
+            if (btnText) btnText.style.display = "inline";
+            if (btnLoader) btnLoader.style.display = "none";
+          });
       });
+    }
   });
 </script>
 
@@ -99,11 +128,7 @@
   /* --- Section Globale --- */
   .newsletter-section {
     padding: 80px 20px 100px;
-    background: linear-gradient(
-      to bottom,
-      #ffffff,
-      #fdfbf7
-    ); /* Dégradé subtil vers le sol */
+    background: linear-gradient(to bottom, #ffffff, #fdfbf7);
     display: flex;
     justify-content: center;
   }
@@ -115,21 +140,21 @@
 
   /* --- La Carte "Invitation" --- */
   .invitation-card {
-    background-color: #fffcf5; /* Couleur Parchemin très clair */
-    border: 1px solid rgba(212, 175, 55, 0.3); /* Bordure or très fine */
+    background-color: #fffcf5;
+    border: 1px solid rgba(212, 175, 55, 0.3);
     border-radius: 8px;
     padding: 60px 40px;
     text-align: center;
     position: relative;
-    /* Ombre portée douce + Lueur dorée */
     box-shadow:
       0 10px 40px rgba(0, 0, 0, 0.05),
       0 0 20px rgba(212, 175, 55, 0.1);
-    /* Animation de respiration */
+    /* Optimisation GPU */
+    will-change: transform, box-shadow;
     animation: breathing-glow 6s infinite ease-in-out;
   }
 
-  /* Ornements (Petits traits dorés en haut et en bas pour faire "Cadre") */
+  /* Ornements */
   .ornement-haut::before,
   .ornement-bas::after {
     content: "✦";
@@ -157,7 +182,7 @@
   h2 {
     font-family: "Playfair Display", serif;
     font-size: 2.5rem;
-    color: #2f4f4f; /* Gris foncé/Vert sombre pour le contraste élégant */
+    color: #2f4f4f;
     margin-bottom: 20px;
   }
 
@@ -186,7 +211,7 @@
     flex: 1;
     min-width: 250px;
     padding: 15px 20px;
-    border-radius: 4px; /* Coins un peu plus carrés pour le sérieux */
+    border-radius: 4px;
     border: 1px solid #e0e0e0;
     background-color: white;
     color: #333;
@@ -212,12 +237,18 @@
     cursor: pointer;
     transition: all 0.3s;
     border: 1px solid #d4af37;
+    min-width: 140px; /* Pour éviter que le bouton change de taille pendant le chargement */
   }
 
-  .btn-inscription:hover {
+  .btn-inscription:hover:not(:disabled) {
     background-color: transparent;
     color: #d4af37;
     transform: translateY(-2px);
+  }
+
+  .btn-inscription:disabled {
+    cursor: not-allowed;
+    filter: grayscale(0.5);
   }
 
   .rgpd {
@@ -232,6 +263,7 @@
     margin-top: 15px;
     font-weight: bold;
     min-height: 24px;
+    transition: color 0.3s;
   }
 
   /* --- Animation --- */

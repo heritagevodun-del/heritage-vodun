@@ -1,11 +1,11 @@
 ---
 /* src/components/HeroSlider.astro */
 const slides = [
-  { img: "/vodun-intro.jpeg", alt: "Tradition" },
-  { img: "/divinites-vodun.jpeg", alt: "Divinités" },
-  { img: "/fa.jpeg", alt: "Fâ" },
-  { img: "/vodunsi.jpeg", alt: "Vodunsi" },
-  { img: "/esprit.jpeg", alt: "Esprit" },
+  { img: "/vodun-intro.jpeg", alt: "Tradition Vodun à Ouidah" },
+  { img: "/divinites-vodun.jpeg", alt: "Cérémonie des Divinités" },
+  { img: "/fa.jpeg", alt: "Consultation du Fâ" },
+  { img: "/vodunsi.jpeg", alt: "Danse des Vodunsi" },
+  { img: "/esprit.jpeg", alt: "Spiritualité et Esprit" },
 ];
 ---
 
@@ -13,7 +13,13 @@ const slides = [
   {
     slides.map((slide, index) => (
       <div class={`slide ${index === 0 ? "active" : ""}`}>
-        <img src={slide.img} alt={slide.alt} />
+        <img
+          src={slide.img}
+          alt={slide.alt}
+          loading={index === 0 ? "eager" : "lazy"}
+          fetchpriority={index === 0 ? "high" : "auto"}
+          decoding="async"
+        />
         <div class="overlay-gradient" />
       </div>
     ))
@@ -21,26 +27,21 @@ const slides = [
 </div>
 
 <script>
-  // On utilise 'astro:page-load' pour que ça marche à chaque navigation (Aller/Retour)
   document.addEventListener("astro:page-load", () => {
     const slides = document.querySelectorAll(".hero-slider-background .slide");
-    if (slides.length <= 1) return; // Pas d'animation si 1 seule image
+    if (slides.length <= 1) return;
 
     let current = 0;
     const total = slides.length;
 
-    // Fonction pour changer d'image
     const nextSlide = () => {
       slides[current].classList.remove("active");
       current = (current + 1) % total;
       slides[current].classList.add("active");
     };
 
-    // On lance le chrono
     const interval = setInterval(nextSlide, 6000);
 
-    // IMPORTANT : On nettoie le chrono si l'utilisateur quitte la page
-    // pour éviter d'avoir deux chronos qui tournent en même temps
     document.addEventListener(
       "astro:before-swap",
       () => {
@@ -60,7 +61,7 @@ const slides = [
     height: 100%;
     z-index: 0;
     overflow: hidden;
-    background: #000;
+    background: #050505;
   }
 
   .slide {
@@ -70,11 +71,14 @@ const slides = [
     width: 100%;
     height: 100%;
     opacity: 0;
+    will-change: opacity, transform;
     transition: opacity 2.5s ease-in-out;
+    z-index: 0;
   }
 
   .slide.active {
     opacity: 1;
+    z-index: 1;
   }
 
   .slide img {
@@ -98,7 +102,8 @@ const slides = [
     background: radial-gradient(
       circle at center,
       rgba(0, 0, 0, 0.2) 0%,
-      rgba(0, 0, 0, 0.8) 100%
+      rgba(0, 0, 0, 0.7) 100%
     );
+    pointer-events: none;
   }
 </style>

@@ -1,18 +1,34 @@
 ---
 import BaseLayout from "../layouts/BaseLayout.astro";
+
+// SEO : Données structurées pour "AboutPage"
+const schemaData = {
+  "@context": "https://schema.org",
+  "@type": "AboutPage",
+  mainEntity: {
+    "@type": "Organization",
+    name: "Héritage Vodun",
+    description:
+      "Porte d'entrée numérique vers le Bénin et la spiritualité Vodun.",
+    foundingDate: "2024",
+    areaServed: "Bénin, Monde",
+  },
+};
 ---
 
-<BaseLayout titrePage="À Propos">
+<BaseLayout titrePage="À Propos de Notre Mission">
+  <script type="application/ld+json" set:html={JSON.stringify(schemaData)} />
+
   <div class="page-container">
-    <section class="about-header animate-fade-down">
+    <header class="about-header animate-fade-down">
       <span class="sur-titre">Notre raison d'être</span>
       <h1>Notre Mission</h1>
       <div class="ligne-or"></div>
       <p class="slogan">"Révéler l'Âme du Bénin"</p>
-    </section>
+    </header>
 
-    <div class="conteneur-principal">
-      <section class="bloc-texte animate-fade-up delay-1">
+    <main class="conteneur-principal">
+      <article class="bloc-texte animate-fade-up delay-1">
         <h2>L'Origine du Projet</h2>
         <div class="texte-riche">
           <p>
@@ -30,7 +46,7 @@ import BaseLayout from "../layouts/BaseLayout.astro";
             avec la nature et les ancêtres.
           </p>
         </div>
-      </section>
+      </article>
 
       <section class="bloc-valeurs animate-fade-up delay-2">
         <h2>Ce que nous faisons</h2>
@@ -41,7 +57,7 @@ import BaseLayout from "../layouts/BaseLayout.astro";
 
         <div class="grille-valeurs">
           <div class="carte-valeur">
-            <div class="icone">📜</div>
+            <div class="icone" aria-hidden="true">📜</div>
             <h3>L'Histoire</h3>
             <p>
               Des grands royaumes du Dahomey aux figures emblématiques qui ont
@@ -50,7 +66,7 @@ import BaseLayout from "../layouts/BaseLayout.astro";
           </div>
 
           <div class="carte-valeur">
-            <div class="icone">🤝</div>
+            <div class="icone" aria-hidden="true">🤝</div>
             <h3>Les Valeurs</h3>
             <p>
               L'hospitalité, le respect des aînés, l'art et les traditions
@@ -59,7 +75,7 @@ import BaseLayout from "../layouts/BaseLayout.astro";
           </div>
 
           <div class="carte-valeur">
-            <div class="icone">🌿</div>
+            <div class="icone" aria-hidden="true">🌿</div>
             <h3>Le Vodun</h3>
             <p>
               Une exploration respectueuse des divinités, des rituels et de la
@@ -84,7 +100,7 @@ import BaseLayout from "../layouts/BaseLayout.astro";
           </p>
         </div>
       </section>
-    </div>
+    </main>
   </div>
 </BaseLayout>
 
@@ -100,7 +116,9 @@ import BaseLayout from "../layouts/BaseLayout.astro";
   .page-container {
     background-color: var(--fond-page);
     padding-bottom: 80px;
-    overflow-x: hidden; /* Évite le scroll horizontal sur mobile */
+    overflow-x: hidden;
+    /* Optimisation rendu */
+    contain: content;
   }
 
   /* --- HEADER --- */
@@ -108,6 +126,7 @@ import BaseLayout from "../layouts/BaseLayout.astro";
     text-align: center;
     padding: 80px 20px 60px;
     background: linear-gradient(to bottom, #fff, var(--fond-page));
+    will-change: transform, opacity;
   }
 
   .sur-titre {
@@ -118,6 +137,7 @@ import BaseLayout from "../layouts/BaseLayout.astro";
     color: var(--terre);
     display: block;
     margin-bottom: 10px;
+    font-weight: 700;
   }
 
   h1 {
@@ -125,6 +145,7 @@ import BaseLayout from "../layouts/BaseLayout.astro";
     font-size: 3.5rem;
     color: var(--gris-sombre);
     margin: 0;
+    line-height: 1.1;
   }
 
   .ligne-or {
@@ -137,7 +158,7 @@ import BaseLayout from "../layouts/BaseLayout.astro";
   .slogan {
     font-family: "Playfair Display", serif;
     font-style: italic;
-    color: #666; /* Plus doux que l'or pour le slogan */
+    color: #666;
     font-size: 1.4rem;
   }
 
@@ -157,7 +178,6 @@ import BaseLayout from "../layouts/BaseLayout.astro";
     display: inline-block;
   }
 
-  /* Petite décoration à gauche des H2 */
   h2::before {
     content: "";
     position: absolute;
@@ -182,7 +202,6 @@ import BaseLayout from "../layouts/BaseLayout.astro";
     margin-bottom: 80px;
   }
 
-  /* --- LETTRINE (Effet Livre d'Histoire) --- */
   .lettrine {
     float: left;
     font-family: "Playfair Display", serif;
@@ -194,7 +213,7 @@ import BaseLayout from "../layouts/BaseLayout.astro";
     font-weight: bold;
   }
 
-  /* --- GRILLE DES VALEURS (Cartes) --- */
+  /* --- GRILLE DES VALEURS --- */
   .intro-section {
     margin-bottom: 40px;
   }
@@ -214,6 +233,8 @@ import BaseLayout from "../layouts/BaseLayout.astro";
     text-align: center;
     border-bottom: 3px solid transparent;
     transition: all 0.3s ease;
+    /* Optimisation rendu */
+    contain: content;
   }
 
   .carte-valeur:hover {
@@ -246,7 +267,7 @@ import BaseLayout from "../layouts/BaseLayout.astro";
   }
 
   .dernier-bloc h2::before {
-    display: none; /* Pas de barre latérale pour le titre centré */
+    display: none;
   }
 
   .appel-final-container {
@@ -254,7 +275,12 @@ import BaseLayout from "../layouts/BaseLayout.astro";
     display: inline-block;
     border: 1px solid var(--or-vodun);
     padding: 10px 40px;
-    border-radius: 50px; /* Forme de pilule */
+    border-radius: 50px;
+    transition: background 0.3s ease;
+  }
+
+  .appel-final-container:hover {
+    background: rgba(212, 175, 55, 0.1);
   }
 
   .appel-final {
@@ -267,8 +293,6 @@ import BaseLayout from "../layouts/BaseLayout.astro";
   }
 
   /* --- ANIMATIONS --- */
-
-  /* Définition des mouvements */
   @keyframes fadeDown {
     from {
       opacity: 0;
@@ -291,17 +315,15 @@ import BaseLayout from "../layouts/BaseLayout.astro";
     }
   }
 
-  /* Application des classes */
   .animate-fade-down {
     animation: fadeDown 1s ease-out forwards;
   }
 
   .animate-fade-up {
-    opacity: 0; /* Caché au départ */
+    opacity: 0;
     animation: fadeUp 0.8s ease-out forwards;
   }
 
-  /* Délais pour l'effet en cascade */
   .delay-1 {
     animation-delay: 0.3s;
   }
@@ -325,7 +347,7 @@ import BaseLayout from "../layouts/BaseLayout.astro";
     }
     .grille-valeurs {
       grid-template-columns: 1fr;
-    } /* Cartes empilées */
+    }
     .about-header {
       padding: 50px 20px 30px;
     }

@@ -2,21 +2,25 @@
 import BaseLayout from "../../layouts/BaseLayout.astro";
 import FaAnimation from "../../components/FaAnimation.astro";
 
-// 1. On force le type de retour de la fonction pour calmer TypeScript
+// 1. GÉNÉRATION DES ROUTES
 export async function getStaticPaths() {
-  // On dit explicitement : "allPosts est une liste de n'importe quoi (any[])"
   const allPosts: any[] = await Astro.glob("../posts/*.md");
 
-  // On dit explicitement : "uniqueTags est une liste de n'importe quoi"
+  // Correction : Tri avec pubDate || date
+  const sortedPosts = allPosts.sort(
+    (a, b) =>
+      new Date(b.frontmatter.pubDate || b.frontmatter.date).valueOf() -
+      new Date(a.frontmatter.pubDate || a.frontmatter.date).valueOf()
+  );
+
   const uniqueTags: any[] = [
     ...new Set(
-      allPosts.map((post: any) => post.frontmatter.categorie).filter(Boolean)
+      sortedPosts.map((post: any) => post.frontmatter.categorie).filter(Boolean)
     ),
   ];
 
-  // On dit explicitement : "tag est n'importe quoi"
   return uniqueTags.map((tag: any) => {
-    const filteredPosts = allPosts.filter(
+    const filteredPosts = sortedPosts.filter(
       (post: any) => post.frontmatter.categorie === tag
     );
     return {
@@ -28,24 +32,64 @@ export async function getStaticPaths() {
 
 const { tag } = Astro.params;
 const { posts } = Astro.props;
+
+// Fonction format corrigée (pubDate)
+function formatDate(dateInput: string | Date) {
+  const date = new Date(dateInput);
+  if (isNaN(date.getTime())) {
+    return "";
+  }
+  const options: Intl.DateTimeFormatOptions = {
+    year: "numeric",
+    month: "long",
+    day: "numeric",
+  };
+  return date.toLocaleDateString("fr-FR", options);
+}
+
+// 2. SEO
+const schemaData = {
+  "@context": "https://schema.org",
+  "@type": "CollectionPage",
+  name: `Articles sur ${tag}`,
+  description: `Découvrez nos articles et ressources sur le thème : ${tag}`,
+  mainEntity: {
+    "@type": "ItemList",
+    itemListElement: posts.map((post: any, index: number) => ({
+      "@type": "ListItem",
+      position: index + 1,
+      url: `https://heritagevodun.com${post.url}`,
+    })),
+  },
+};
 ---
 
-<BaseLayout titrePage={tag}>
+<BaseLayout titrePage={`Catégorie : ${tag} | Héritage Vodun`}>
+  <script type="application/ld+json" set:html={JSON.stringify(schemaData)} />
+
   <div class="page-container">
-    <header class="tag-header">
-      <span class="sous-titre">Catégorie</span>
+    <header class="tag-header animate-enter">
+      <span class="sous-titre">Exploration Thématique</span>
       <h1>#{tag}</h1>
-      <p>Découvrez tous nos articles sur le thème : {tag}</p>
+      <div class="separateur"></div>
+      <p>
+        Retrouvez ici toutes nos chroniques dédiées à : <strong>{tag}</strong>
+      </p>
     </header>
 
     <section class="blog-grid">
-      {/* On ajoute : any ici aussi pour être sûr */}
       {
-        posts.map((post: any) => (
-          <article class="carte-article">
-            <a href={post.url} class="lien-global">
+        posts.map((post: any, index: number) => (
+          <article
+            class="carte-article"
+            style={`animation-delay: ${Math.min(index * 100, 1000)}ms`}
+          >
+            <a
+              href={post.url}
+              class="lien-global"
+              aria-label={post.frontmatter.title}
+            >
               <div class="conteneur-image">
-                {/* Logique intelligente Image/Animation */}
                 {post.frontmatter.type_image === "animation_fa" ? (
                   <FaAnimation mode="vignette" />
                 ) : (
@@ -55,10 +99,23 @@ const { posts } = Astro.props;
                   />
                 )}
               </div>
+
               <div class="contenu-carte">
+                <div class="meta-header">
+                  {/* Correction ici : affichage pubDate */}
+                  <span class="date-publication">
+                    {formatDate(
+                      post.frontmatter.pubDate || post.frontmatter.date
+                    )}
+                  </span>
+                </div>
+
                 <h3>{post.frontmatter.title}</h3>
-                <p>{post.frontmatter.description}</p>
-                <span class="lire-plus">Lire l'article &rarr;</span>
+                <p class="description">{post.frontmatter.description}</p>
+
+                <span class="lire-plus">
+                  Lire l'article <span class="fleche">&rarr;</span>
+                </span>
               </div>
             </a>
           </article>
@@ -69,48 +126,80 @@ const { posts } = Astro.props;
 </BaseLayout>
 
 <style>
-  /* On réutilise le style du Blog pour rester cohérent */
+  /* --- VARIABLES --- */
+  :root {
+    --or-vodun: #d4af37;
+    --terre: #a0522d;
+    --gris-sombre: #2f4f4f;
+    --fond-page: #fdfbf7;
+  }
+
   .page-container {
-    background-color: #fdfbf7;
+    background-color: var(--fond-page);
     min-height: 100vh;
     padding-bottom: 80px;
   }
+
+  /* --- HEADER --- */
   .tag-header {
     text-align: center;
-    padding: 60px 20px;
+    padding: 80px 20px 60px;
+    max-width: 800px;
+    margin: 0 auto;
   }
+
   .tag-header h1 {
     font-family: "Playfair Display", serif;
-    font-size: 3rem;
-    color: #2f4f4f;
+    font-size: 3.5rem;
+    color: var(--gris-sombre);
     margin: 10px 0;
+    text-transform: capitalize;
   }
+
   .sous-titre {
-    color: #d4af37;
+    font-family: "Lato", sans-serif;
+    color: var(--terre);
     text-transform: uppercase;
-    letter-spacing: 2px;
+    letter-spacing: 3px;
+    font-size: 0.85rem;
     font-weight: bold;
   }
 
-  /* Grille */
+  .separateur {
+    width: 60px;
+    height: 3px;
+    background-color: var(--or-vodun);
+    margin: 20px auto;
+  }
+
+  /* --- GRILLE --- */
   .blog-grid {
     display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+    grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
     gap: 40px;
     padding: 0 5%;
-    max-width: 1200px;
+    max-width: 1400px;
     margin: 0 auto;
   }
+
+  /* --- CARTE ARTICLE --- */
   .carte-article {
     background: white;
     border-radius: 12px;
     overflow: hidden;
-    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.05);
-    transition: transform 0.3s;
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.05);
+    transition: all 0.4s ease;
+    border: 1px solid rgba(0, 0, 0, 0.03);
+    opacity: 0;
+    animation: fadeInUp 0.8s ease forwards;
+    will-change: transform;
   }
+
   .carte-article:hover {
-    transform: translateY(-5px);
+    transform: translateY(-10px);
+    box-shadow: 0 20px 40px rgba(0, 0, 0, 0.12);
   }
+
   .lien-global {
     text-decoration: none;
     color: inherit;
@@ -118,40 +207,111 @@ const { posts } = Astro.props;
     flex-direction: column;
     height: 100%;
   }
+
+  /* --- IMAGE --- */
   .conteneur-image {
-    height: 200px;
+    width: 100%;
+    height: 220px;
     overflow: hidden;
+    background-color: var(--gris-sombre);
     position: relative;
   }
+
   .image-cover {
     width: 100%;
     height: 100%;
     background-size: cover;
     background-position: center;
+    transition: transform 0.6s ease;
   }
+
+  .carte-article:hover .image-cover {
+    transform: scale(1.1);
+  }
+
+  /* --- CONTENU --- */
   .contenu-carte {
-    padding: 25px;
+    padding: 30px;
     display: flex;
     flex-direction: column;
     flex-grow: 1;
   }
+
+  .meta-header {
+    margin-bottom: 15px;
+  }
+
+  .date-publication {
+    font-family: "Lato", sans-serif;
+    font-size: 0.8rem;
+    color: #999;
+    font-style: italic;
+  }
+
   h3 {
     font-family: "Playfair Display", serif;
-    font-size: 1.4rem;
-    color: #2f4f4f;
-    margin: 0 0 10px;
+    font-size: 1.5rem;
+    color: var(--gris-sombre);
+    margin: 0 0 15px;
+    line-height: 1.3;
+    transition: color 0.3s;
   }
-  p {
+
+  .carte-article:hover h3 {
+    color: var(--terre);
+  }
+
+  .description {
     font-family: "Lato", sans-serif;
-    font-size: 0.95rem;
-    color: #666;
-    line-height: 1.5;
-    margin-bottom: 20px;
+    font-size: 1rem;
+    color: #555;
+    line-height: 1.6;
+    margin-bottom: 25px;
     flex-grow: 1;
+    display: -webkit-box;
+    -webkit-line-clamp: 3;
+    -webkit-box-orient: vertical;
+    overflow: hidden;
   }
+
   .lire-plus {
+    font-family: "Lato", sans-serif;
     font-weight: bold;
-    color: #a0522d;
+    color: var(--gris-sombre);
+    font-size: 0.9rem;
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    transition: gap 0.3s;
     margin-top: auto;
+  }
+
+  .fleche {
+    font-size: 1.2rem;
+    color: var(--or-vodun);
+    transition: transform 0.3s;
+  }
+
+  .carte-article:hover .lire-plus {
+    gap: 15px;
+    color: var(--terre);
+  }
+  .carte-article:hover .fleche {
+    transform: translateX(5px);
+  }
+
+  /* --- ANIMATIONS --- */
+  @keyframes fadeInUp {
+    from {
+      opacity: 0;
+      transform: translateY(30px);
+    }
+    to {
+      opacity: 1;
+      transform: translateY(0);
+    }
+  }
+  .animate-enter {
+    animation: fadeInUp 1s ease forwards;
   }
 </style>

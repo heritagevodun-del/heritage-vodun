@@ -141,14 +141,34 @@ const termes = [
   },
 ];
 
-// Tri automatique par ordre alphabétique
+// Tri automatique
 termes.sort((a, b) => a.mot.localeCompare(b.mot));
+
+// Création des lettres pour l'index (A, B, D...)
+const lettres = [...new Set(termes.map((t) => t.mot.charAt(0).toUpperCase()))];
+
+// --- SEO : JSON-LD (Données Structurées pour Google) ---
+const schemaData = {
+  "@context": "https://schema.org",
+  "@type": "DefinedTermSet",
+  name: "Glossaire Vodun & Culture Béninoise",
+  description:
+    "Définitions authentiques des termes clés du Vodun, des divinités et des traditions de Ouidah.",
+  hasDefinedTerm: termes.map((t) => ({
+    "@type": "DefinedTerm",
+    termCode: t.mot,
+    name: t.mot,
+    description: t.def,
+  })),
+};
 ---
 
-<BaseLayout titrePage="Lexique & Définitions">
+<BaseLayout titrePage="Lexique & Définitions du Vodun">
+  <script type="application/ld+json" set:html={JSON.stringify(schemaData)} />
+
   <div class="lexique-container">
     <header class="lexique-header">
-      <span class="sous-titre">Comprendre les mots</span>
+      <span class="sous-titre">Comprendre les mots sacrés</span>
       <h1>Le Glossaire Vodun</h1>
       <div class="separateur"></div>
       <p>
@@ -156,16 +176,31 @@ termes.sort((a, b) => a.mot.localeCompare(b.mot));
         maîtriser les mots. Voici les définitions authentiques et clés de notre
         tradition.
       </p>
+
+      <div class="index-alpha">
+        {
+          lettres.map((lettre) => (
+            <a href={`#lettre-${lettre}`} class="lettre-lien">
+              {lettre}
+            </a>
+          ))
+        }
+      </div>
     </header>
 
     <div class="liste-definitions">
       {
-        termes.map((item) => (
-          <div class="definition-card">
-            <h2>{item.mot}</h2>
-            <p>{item.def}</p>
-          </div>
-        ))
+        termes.map((item) => {
+          const premiereLettre = item.mot.charAt(0).toUpperCase();
+          return (
+            <div class="definition-card" id={`lettre-${premiereLettre}`}>
+              <div class="card-content">
+                <h2>{item.mot}</h2>
+                <p>{item.def}</p>
+              </div>
+            </div>
+          );
+        })
       }
     </div>
   </div>
@@ -173,40 +208,71 @@ termes.sort((a, b) => a.mot.localeCompare(b.mot));
 
 <style>
   .lexique-container {
-    background-color: #fdfbf7;
+    background-color: #fcfbf9; /* Fond légèrement plus chaud */
     min-height: 100vh;
     padding-bottom: 80px;
   }
   .lexique-header {
     text-align: center;
-    padding: 60px 20px;
+    padding: 80px 20px 40px;
     max-width: 800px;
     margin: 0 auto;
   }
   .sous-titre {
     color: #a0522d;
     text-transform: uppercase;
-    letter-spacing: 2px;
-    font-size: 0.9rem;
-    font-weight: bold;
+    letter-spacing: 3px;
+    font-size: 0.85rem;
+    font-weight: 700;
+    display: block;
+    margin-bottom: 10px;
   }
   h1 {
     font-family: "Playfair Display", serif;
-    font-size: 3rem;
-    color: #2f4f4f;
-    margin: 10px 0;
+    font-size: 3.5rem;
+    color: #1a1a1a;
+    margin: 0;
+    line-height: 1.1;
   }
   .separateur {
     width: 60px;
-    height: 4px;
+    height: 3px;
     background-color: #d4af37;
-    margin: 20px auto;
+    margin: 25px auto;
   }
   .lexique-header p {
     font-family: "Lato", sans-serif;
-    font-size: 1.1rem;
+    font-size: 1.15rem;
     color: #555;
     line-height: 1.6;
+  }
+
+  /* --- INDEX ALPHABÉTIQUE --- */
+  .index-alpha {
+    margin-top: 30px;
+    display: flex;
+    justify-content: center;
+    flex-wrap: wrap;
+    gap: 10px;
+  }
+  .lettre-lien {
+    display: inline-flex;
+    justify-content: center;
+    align-items: center;
+    width: 35px;
+    height: 35px;
+    border: 1px solid #d4af37;
+    color: #a0522d;
+    text-decoration: none;
+    border-radius: 50%;
+    font-weight: bold;
+    font-size: 0.9rem;
+    transition: all 0.3s ease;
+  }
+  .lettre-lien:hover {
+    background-color: #d4af37;
+    color: white;
+    transform: translateY(-2px);
   }
 
   /* LISTE DES DÉFINITIONS */
@@ -214,40 +280,55 @@ termes.sort((a, b) => a.mot.localeCompare(b.mot));
     max-width: 900px;
     margin: 0 auto;
     padding: 0 20px;
-    display: grid;
-    grid-template-columns: 1fr;
-    gap: 30px;
+    display: flex;
+    flex-direction: column;
+    gap: 25px;
   }
 
   .definition-card {
     background: white;
-    padding: 30px;
-    border-radius: 12px;
-    border-left: 5px solid #a0522d; /* Bordure marron à gauche */
-    box-shadow: 0 5px 20px rgba(0, 0, 0, 0.05);
-    transition: transform 0.3s ease;
+    padding: 35px;
+    border-radius: 8px;
+    border-left: 4px solid #a0522d;
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.03);
+    transition: all 0.3s ease;
+    scroll-margin-top: 20px; /* Pour que l'ancre ne soit pas cachée */
   }
 
   .definition-card:hover {
-    transform: translateX(10px); /* Petite animation au survol */
-    border-left-color: #d4af37; /* Devient doré */
+    transform: translateX(5px);
+    box-shadow: 0 8px 25px rgba(0, 0, 0, 0.08);
+    border-left-color: #d4af37;
   }
 
   .definition-card h2 {
     font-family: "Playfair Display", serif;
     color: #2f4f4f;
     margin-top: 0;
-    font-size: 1.8rem;
-    margin-bottom: 10px;
+    font-size: 2rem;
+    margin-bottom: 15px;
+    position: relative;
+    display: inline-block;
+  }
+
+  /* Petit soulignement décoratif sous le titre */
+  .definition-card h2::after {
+    content: "";
+    position: absolute;
+    bottom: -5px;
+    left: 0;
+    width: 30px;
+    height: 2px;
+    background-color: rgba(212, 175, 55, 0.3);
   }
 
   .definition-card p {
     font-family: "Lato", sans-serif;
-    font-size: 1.05rem;
-    line-height: 1.6;
+    font-size: 1.1rem;
+    line-height: 1.8;
     color: #444;
     margin-bottom: 0;
-    text-align: justify; /* Pour une lecture plus propre */
+    text-align: justify;
   }
 
   /* Responsive : ajustement mobile */
@@ -256,7 +337,12 @@ termes.sort((a, b) => a.mot.localeCompare(b.mot));
       font-size: 2.5rem;
     }
     .definition-card {
-      padding: 20px;
+      padding: 25px;
+    }
+    .lettre-lien {
+      width: 30px;
+      height: 30px;
+      font-size: 0.8rem;
     }
   }
 </style>

@@ -2,11 +2,55 @@
 import BaseLayout from "../layouts/BaseLayout.astro";
 import FaAnimation from "../components/FaAnimation.astro";
 
-// On récupère les articles
+// 1. RÉCUPÉRATION ET TRI DES ARTICLES
 const allPosts = await Astro.glob("../pages/posts/*.md");
+
+// On trie du plus récent au plus ancien (Supporte pubDate OU date)
+const sortedPosts = allPosts.sort((a, b) => {
+  const dateA = new Date(a.frontmatter.pubDate || a.frontmatter.date).valueOf();
+  const dateB = new Date(b.frontmatter.pubDate || b.frontmatter.date).valueOf();
+  return (isNaN(dateB) ? 0 : dateB) - (isNaN(dateA) ? 0 : dateA);
+});
+
+// Fonction de formatage
+function formatDate(dateInput: string | Date) {
+  const date = new Date(dateInput);
+  if (isNaN(date.getTime())) {
+    return "Date inconnue";
+  }
+  const options: Intl.DateTimeFormatOptions = {
+    year: "numeric",
+    month: "long",
+    day: "numeric",
+  };
+  return date.toLocaleDateString("fr-FR", options);
+}
+
+// 2. SEO : SCHEMA.ORG
+const schemaData = {
+  "@context": "https://schema.org",
+  "@type": "Blog",
+  name: "Chroniques du Sacré - Héritage Vodun",
+  description:
+    "Explorez les mythes, les rites et l'histoire du Bénin à travers nos articles.",
+  blogPost: sortedPosts.map((post) => ({
+    "@type": "BlogPosting",
+    headline: post.frontmatter.title,
+    description: post.frontmatter.description,
+    // 👇 Correction ici
+    datePublished: post.frontmatter.pubDate || post.frontmatter.date,
+    author: {
+      "@type": "Organization",
+      name: "Héritage Vodun",
+    },
+    url: `https://heritagevodun.com${post.url}`,
+  })),
+};
 ---
 
-<BaseLayout titrePage="Le Blog">
+<BaseLayout titrePage="Le Blog | Chroniques du Sacré">
+  <script type="application/ld+json" set:html={JSON.stringify(schemaData)} />
+
   <div class="page-container">
     <header class="blog-header animate-enter">
       <span class="sous-titre">Héritage & Transmission</span>
@@ -20,13 +64,16 @@ const allPosts = await Astro.glob("../pages/posts/*.md");
 
     <section class="blog-grid">
       {
-        allPosts.map((post, index) => (
+        sortedPosts.map((post, index) => (
           <article
             class="carte-article"
-            style={`animation-delay: ${index * 150}ms`}
+            style={`animation-delay: ${Math.min(index * 100, 1000)}ms`}
           >
-            {/* ZONE 1 : L'Image (Clique vers l'article) */}
-            <a href={post.url} class="lien-image">
+            <a
+              href={post.url}
+              class="lien-image"
+              aria-label={`Lire l'article : ${post.frontmatter.title}`}
+            >
               <div class="conteneur-image">
                 {post.frontmatter.type_image === "animation_fa" ? (
                   <FaAnimation mode="vignette" />
@@ -34,24 +81,29 @@ const allPosts = await Astro.glob("../pages/posts/*.md");
                   <div
                     class="image-cover"
                     style={`background-image: url(${post.frontmatter.image});`}
+                    role="img"
+                    aria-label={post.frontmatter.title}
                   />
                 )}
               </div>
             </a>
 
             <div class="contenu-carte">
-              <div class="meta-info">
-                {/* ZONE 2 : La Catégorie (Clique vers le filtre tags) */}
-                {/* C'est ICI que la magie opère : on pointe vers /tags/NomDeLaCategorie */}
+              <div class="meta-header">
                 <a
                   href={`/tags/${post.frontmatter.categorie}`}
                   class="categorie"
                 >
                   {post.frontmatter.categorie}
                 </a>
+                <span class="date-publication">
+                  {/* 👇 Correction ici : on cherche pubDate en priorité */}
+                  {formatDate(
+                    post.frontmatter.pubDate || post.frontmatter.date
+                  )}
+                </span>
               </div>
 
-              {/* ZONE 3 : Le Texte (Clique vers l'article) */}
               <a href={post.url} class="lien-texte">
                 <h3>{post.frontmatter.title}</h3>
                 <p class="description">{post.frontmatter.description}</p>
@@ -81,6 +133,7 @@ const allPosts = await Astro.glob("../pages/posts/*.md");
     background-color: var(--fond-page);
     min-height: 100vh;
     padding-bottom: 80px;
+    contain: content;
   }
 
   /* --- HEADER --- */
@@ -142,8 +195,10 @@ const allPosts = await Astro.glob("../pages/posts/*.md");
     border: 1px solid rgba(0, 0, 0, 0.03);
     opacity: 0;
     animation: fadeInUp 0.8s ease forwards;
-    display: flex; /* Important pour aligner image et contenu */
+    display: flex;
     flex-direction: column;
+    will-change: transform;
+    contain: content;
   }
 
   .carte-article:hover {
@@ -152,7 +207,6 @@ const allPosts = await Astro.glob("../pages/posts/*.md");
   }
 
   /* --- LIENS --- */
-  /* On retire le soulignement par défaut des liens */
   .lien-image,
   .lien-texte,
   .categorie {
@@ -164,7 +218,7 @@ const allPosts = await Astro.glob("../pages/posts/*.md");
   .lien-texte {
     display: flex;
     flex-direction: column;
-    flex-grow: 1; /* Pour remplir l'espace */
+    flex-grow: 1;
   }
 
   /* --- IMAGE & ZOOM --- */
@@ -188,11 +242,6 @@ const allPosts = await Astro.glob("../pages/posts/*.md");
     transform: scale(1.1);
   }
 
-  .carte-article:hover :global(.fa-container) {
-    transform: scale(1.05);
-    transition: transform 0.6s ease;
-  }
-
   /* --- CONTENU TEXTE --- */
   .contenu-carte {
     padding: 35px 30px;
@@ -201,29 +250,37 @@ const allPosts = await Astro.glob("../pages/posts/*.md");
     flex-grow: 1;
   }
 
-  /* --- CATEGORIE (Nouveau Style Bouton) --- */
+  /* META HEADER */
+  .meta-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 15px;
+  }
+
   .categorie {
     font-family: "Lato", sans-serif;
-    font-size: 0.75rem;
+    font-size: 0.7rem;
     text-transform: uppercase;
-    letter-spacing: 1.5px;
+    letter-spacing: 1px;
     color: var(--terre);
     font-weight: bold;
     background: rgba(160, 82, 45, 0.1);
-    padding: 5px 10px;
+    padding: 4px 8px;
     border-radius: 4px;
-    display: inline-block; /* Important pour que le bouton ait une taille */
-    margin-bottom: 15px;
     transition: all 0.3s ease;
-    cursor: pointer;
-    position: relative; /* Pour passer au dessus du reste */
-    z-index: 10;
   }
 
-  /* Effet au survol du bouton catégorie */
   .categorie:hover {
     background-color: var(--terre);
     color: white;
+  }
+
+  .date-publication {
+    font-family: "Lato", sans-serif;
+    font-size: 0.8rem;
+    color: #999;
+    font-style: italic;
   }
 
   h3 {
@@ -239,7 +296,6 @@ const allPosts = await Astro.glob("../pages/posts/*.md");
     color: var(--terre);
   }
 
-  /* Modification pour une meilleure description */
   .description {
     font-family: "Lato", sans-serif;
     font-size: 1.05rem;

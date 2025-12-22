@@ -1,6 +1,6 @@
 ---
 // src/pages/index.astro
-// 👇 CHANGEMENT ICI : On utilise BaseLayout pour avoir le Menu et le Footer
+// 👇 IMPORT : On garde vos composants
 import Layout from "../layouts/BaseLayout.astro";
 import Newsletter from "../components/Newsletter.astro";
 import HeroSlider from "../components/HeroSlider.astro";
@@ -42,7 +42,8 @@ const pageTitle =
         <a
           href="https://mindoguesito.com"
           class="btn-prestige btn-ia"
-          target="_blank">Parler au Sage (IA)</a
+          target="_blank"
+          rel="noopener noreferrer">Parler au Sage (IA)</a
         >
         <a href="/about" class="btn-prestige">Notre Mission</a>
       </div>
@@ -92,6 +93,7 @@ const pageTitle =
     justify-content: center;
     overflow: hidden;
     color: white;
+    transform: translateZ(0); /* Active l'accélération GPU */
   }
 
   /* --- 2. DÉCORATION (ANNEAUX) --- */
@@ -110,6 +112,7 @@ const pageTitle =
     position: absolute;
     border-radius: 50%;
     box-shadow: 0 0 20px rgba(212, 175, 55, 0.15);
+    will-change: transform; /* Rend l'animation plus fluide */
   }
 
   .externe {
@@ -136,6 +139,7 @@ const pageTitle =
       transparent 70%
     );
     animation: pulse 6s infinite ease-in-out;
+    will-change: transform, opacity;
   }
 
   /* --- 3. CONTENU --- */
@@ -231,6 +235,7 @@ const pageTitle =
   .btn-prestige:hover {
     border-color: #d4af37;
     color: #000;
+    cursor: pointer;
   }
   .btn-prestige:hover::before {
     width: 100%;
@@ -252,6 +257,7 @@ const pageTitle =
     background-color: #fcfbf9;
     text-align: center;
     overflow: hidden;
+    /* Suppression des lignes à risque ici pour garantir la stabilité */
   }
   .watermark {
     position: absolute;
@@ -318,6 +324,7 @@ const pageTitle =
   .anim-entry {
     opacity: 0;
     animation: fadeInUp 1s ease-out forwards;
+    will-change: transform, opacity;
   }
   .delay-1 {
     animation-delay: 0.2s;
@@ -436,7 +443,7 @@ const pageTitle =
     .btn-prestige {
       padding: 12px 20px;
       font-size: 0.75rem;
-      width: 100%; /* Boutons pleine largeur sur mobile */
+      width: 100%;
       max-width: 300px;
       text-align: center;
     }
