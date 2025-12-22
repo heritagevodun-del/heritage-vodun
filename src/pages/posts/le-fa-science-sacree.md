@@ -1,7 +1,7 @@
 ---
 layout: ../../layouts/PostLayout.astro
 title: "Le Fâ : Géomancie sacrée et boussole de vie"
-pubDate: 2026-01-05
+pubDate: 2025-12-22
 description: "Ni boule de cristal, ni magie noire. Le Fâ est une science divinatoire mathématique classée à l'UNESCO, qui permet de lire le destin et de prendre les bonnes décisions."
 categorie: "Sagesse"
 # 👇 On appelle l'animation via cette clé spéciale que j'ai ajoutée dans le Layout

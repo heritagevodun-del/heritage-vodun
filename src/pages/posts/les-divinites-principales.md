@@ -1,7 +1,7 @@
 ---
 layout: ../../layouts/PostLayout.astro
 title: "Au-delà des Mythes : Qui sont les Grandes Divinités du Vodun ?"
-pubDate: 2025-12-15
+pubDate: 2025-12-20
 description: "Legba n'est pas le diable. Découvrez la véritable nature de Mawu-Lisa, Heviosso, Sakpata et des autres forces qui régissent le panthéon Vodun."
 image: "/divinites-vodun.jpeg"
 categorie: "Divinités"

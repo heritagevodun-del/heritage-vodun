@@ -1,7 +1,7 @@
 ---
 layout: ../../layouts/PostLayout.astro
 title: "Vodun Days à Ouidah : Au-delà du Festival, une Renaissance Spirituelle"
-pubDate: 2025-01-10
+pubDate: 2025-12-22
 description: "Tout savoir sur les Vodun Days au Bénin. Dates, programme officiel à Ouidah et sens caché de cet événement mondial qui réinvente la fête du 10 janvier."
 image: "/vodun-days-ouidah.jpg"
 categorie: "Événement"
