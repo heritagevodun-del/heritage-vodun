@@ -3,14 +3,14 @@
 import Navigation from "../components/Navigation.astro";
 import { ClientRouter } from "astro:transitions";
 
-// 👇 Props SEO enrichies
+// 👇 Props SEO enrichies & Valeurs par défaut blindées
 const {
-  titrePage = "Héritage Vodun | Guide Spirituel & Culturel à Ouidah",
-  description = "Découvrez l'essence du Vodun, spiritualité millénaire du Bénin. Visites guidées à Ouidah, consultation du Fâ et histoire de la Route des Esclaves.",
+  titrePage = "Héritage Vodun | Guide Spirituel, Fâ & Tourisme à Ouidah",
+  description = "Plongez au cœur du Vodun au Bénin. Visites guidées à Ouidah, consultation du Fâ, et histoire de la Route des Esclaves. Une spiritualité authentique.",
   image = "/vodunsi.jpeg",
 } = Astro.props;
 
-// Calcul de l'URL canonique pour Google
+// Calcul de l'URL canonique (Vital pour le SEO)
 const canonicalURL = new URL(Astro.url.pathname, Astro.site);
 ---
 
@@ -20,6 +20,7 @@ const canonicalURL = new URL(Astro.url.pathname, Astro.site);
     <ClientRouter />
 
     <script is:inline>
+      // Redirection anti-duplicate content (Vercel -> Domaine principal)
       if (window.location.hostname.includes("vercel.app")) {
         window.location.replace(
           "https://www.heritagevodun.com" + window.location.pathname
@@ -27,10 +28,14 @@ const canonicalURL = new URL(Astro.url.pathname, Astro.site);
       }
     </script>
 
+    <meta name="robots" content="index, follow, max-image-preview:large" />
     <meta
       name="google-site-verification"
       content="vVcu2NVdsuB7Nu6DtS7nl5cZUPzeALF1fuGVk_Udf7g"
     />
+
+    <link rel="sitemap" href="/sitemap-index.xml" />
+
     <link rel="icon" type="image/svg+xml" href="/favicon.svg?v=2" />
     <meta name="viewport" content="width=device-width" />
     <meta name="generator" content={Astro.generator} />
@@ -43,7 +48,6 @@ const canonicalURL = new URL(Astro.url.pathname, Astro.site);
     <meta property="og:url" content={Astro.url} />
     <meta property="og:title" content={titrePage} />
     <meta property="og:description" content={description} />
-
     <meta property="og:image" content={new URL(image, Astro.url)} />
 
     <meta property="twitter:card" content="summary_large_image" />
@@ -247,26 +251,24 @@ const canonicalURL = new URL(Astro.url.pathname, Astro.site);
         }
 
         // --- 2. GESTION DU FORMULAIRE FOOTER ---
-        const footerForm = document.getElementById(
-          "footer-newsletter-form"
-        ) as HTMLFormElement;
+        const footerForm = document.getElementById("footer-newsletter-form");
         const footerResult = document.getElementById("footer-result");
-        const footerBtn = footerForm?.querySelector(
-          ".btn-submit"
-        ) as HTMLButtonElement;
+        const footerBtn = footerForm?.querySelector(".btn-submit");
 
         if (footerForm && footerResult && footerBtn) {
           footerForm.addEventListener("submit", function (e) {
             e.preventDefault();
-            const formData = new FormData(footerForm);
+            const formData = new FormData(footerForm as HTMLFormElement);
             const object = Object.fromEntries(formData);
             const json = JSON.stringify(object);
 
             // État "Chargement"
             footerResult.innerHTML = "...";
             footerResult.style.color = "#c06c3b";
-            footerBtn.disabled = true;
-            footerBtn.style.opacity = "0.7";
+            if (footerBtn instanceof HTMLButtonElement) {
+              footerBtn.disabled = true;
+              footerBtn.style.opacity = "0.7";
+            }
 
             fetch("https://api.web3forms.com/submit", {
               method: "POST",
@@ -280,29 +282,35 @@ const canonicalURL = new URL(Astro.url.pathname, Astro.site);
                 if (response.status == 200) {
                   // Succès
                   footerResult.innerHTML = "✨ Merci ! Inscription validée.";
-                  footerResult.style.color = "#4CAF50"; // Vert ou Or (#c06c3b) selon goût
-                  footerForm.reset();
+                  footerResult.style.color = "#4CAF50";
+                  (footerForm as HTMLFormElement).reset();
 
                   // Reset après 3 secondes
                   setTimeout(() => {
                     footerResult.innerHTML = "";
-                    footerBtn.disabled = false;
-                    footerBtn.style.opacity = "1";
+                    if (footerBtn instanceof HTMLButtonElement) {
+                      footerBtn.disabled = false;
+                      footerBtn.style.opacity = "1";
+                    }
                   }, 3000);
                 } else {
                   // Erreur
                   footerResult.innerHTML = "Une erreur est survenue.";
                   footerResult.style.color = "red";
-                  footerBtn.disabled = false;
-                  footerBtn.style.opacity = "1";
+                  if (footerBtn instanceof HTMLButtonElement) {
+                    footerBtn.disabled = false;
+                    footerBtn.style.opacity = "1";
+                  }
                 }
               })
               .catch((error) => {
                 console.error(error);
                 footerResult.innerHTML = "Erreur de connexion.";
                 footerResult.style.color = "red";
-                footerBtn.disabled = false;
-                footerBtn.style.opacity = "1";
+                if (footerBtn instanceof HTMLButtonElement) {
+                  footerBtn.disabled = false;
+                  footerBtn.style.opacity = "1";
+                }
               });
           });
         }
