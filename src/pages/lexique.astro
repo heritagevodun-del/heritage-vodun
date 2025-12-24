@@ -1,19 +1,39 @@
 ---
 import BaseLayout from "../layouts/BaseLayout.astro";
 
-// LISTE ENRICHIE ET VÉRIFIÉE DES TERMES VODUN
+// LISTE ENRICHIE EXPERTE (Encyclopédie Vodun)
 const termes = [
+  {
+    mot: "Agbadja",
+    def: "Rythme et danse emblématique du peuple Fon et Ewe. Caractérisé par le mouvement des épaules qui s'ouvrent et se ferment, il symbolise l'envol de l'oiseau et la vitalité.",
+  },
+  {
+    mot: "Akwé",
+    def: "Le Cauris. Coquillage blanc servant autrefois de monnaie, mais surtout instrument divinatoire de base. 'Jeter les cauris' est la première étape pour interroger les esprits.",
+  },
   {
     mot: "Asen",
     def: "Autel portatif en métal (généralement en fer forgé) planté en terre. Il sert de réceptacle pour invoquer, honorer et nourrir les esprits des ancêtres défunts au sein de la famille.",
+  },
+  {
+    mot: "Atchè",
+    def: "Le pouvoir spirituel, l'autorité ou la 'force de réalisation'. Quand un dignitaire prononce une bénédiction avec Atchè, elle se manifeste dans la réalité.",
+  },
+  {
+    mot: "Ayido Hwedo",
+    def: "Le Serpent Arc-en-ciel cosmique. Souvent associé à Dan, il est l'entité qui soutient la Terre pour l'empêcher de tomber dans l'abîme. Il représente l'éternité et la continuité.",
   },
   {
     mot: "Azan",
     def: "Franges de feuilles de palmier déchiquetées installées à l'entrée des lieux sacrés. Elles marquent la frontière entre le monde profane et le monde sacré, et servent de protection contre les impuretés.",
   },
   {
+    mot: "Azé",
+    def: "La sorcellerie ou l'énergie destructrice nocturne (souvent associée à l'oiseau). Contrairement au Vodun qui cherche l'équilibre, l'Azé est une force de prédation que les rites cherchent à neutraliser.",
+  },
+  {
     mot: "Bo",
-    def: "Souvent appelé 'Gris-gris' par erreur, le Bo est un savoir scientifique et occulte utilisant les propriétés des plantes, des minéraux et des incantations pour protéger, guérir ou agir sur le destin. Ce n'est pas de la 'magie' mais une science de la nature.",
+    def: "Souvent appelé 'Gris-gris' par erreur, le Bo est un savoir scientifique et occulte utilisant les propriétés des plantes, des minéraux et des incantations pour protéger, guérir ou agir sur le destin.",
   },
   {
     mot: "Bokonon",
@@ -25,7 +45,11 @@ const termes = [
   },
   {
     mot: "Dan",
-    def: "Divinité de la prospérité, de la continuité et de la richesse. Souvent représenté par le serpent arc-en-ciel (Ayido Hwedo), il fait le lien entre le Ciel et la Terre et assure la stabilité du monde.",
+    def: "Divinité de la prospérité et de la richesse. Il est le principe du mouvement sinueux et de l'eau qui coule. Il apporte l'abondance mais exige une propreté absolue.",
+  },
+  {
+    mot: "Dangbé",
+    def: "Le Python Royal Sacré. Ancêtre totémique du peuple Xwéda de Ouidah. Il est vénéré comme un dieu bienveillant garantissant la pluie et la fécondité. Il ne doit jamais être tué.",
   },
   {
     mot: "Dja",
@@ -33,11 +57,15 @@ const termes = [
   },
   {
     mot: "Egungun",
-    def: "Société de masques incarnant l'esprit des ancêtres revenants. Lorsqu'un Egungun sort, c'est l'ancêtre lui-même qui revient bénir ou juger les vivants. Il est sacré et ne doit pas être touché.",
+    def: "Société de masques incarnant l'esprit des ancêtres revenants. Lorsqu'un Egungun sort, c'est l'ancêtre lui-même qui revient bénir ou juger les vivants.",
   },
   {
     mot: "Fâ",
     def: "Science divinatoire et système de sagesse originaire d'Ifé. Ce n'est pas une religion à part entière, mais la 'boussole' du Vodun. Il repose sur 256 signes (Dù) mathématiques.",
+  },
+  {
+    mot: "Gan",
+    def: "Le Gong ou la cloche rituelle. Son son métallique et perçant sert à 'réveiller' les divinités et à marquer le tempo des chants sacrés. On dit que le Gan parle aux esprits.",
   },
   {
     mot: "Gbadu",
@@ -45,11 +73,19 @@ const termes = [
   },
   {
     mot: "Gbè",
-    def: "Concept philosophique signifiant à la fois 'La Vie', 'Le Monde' et 'La Parole'. Dans la pensée Vodun, la parole crée la vie.",
+    def: "Concept philosophique signifiant à la fois 'La Vie', 'Le Monde' et 'La Parole'. Dans la pensée Vodun, la parole crée la vie (Gbè).",
+  },
+  {
+    mot: "Gla",
+    def: "Terme générique pour désigner le Masque ou l'esprit qui l'habite. Le masque n'est pas un déguisement, c'est une incarnation temporaire d'une force invisible.",
+  },
+  {
+    mot: "Gléxwé",
+    def: "Nom endogène et historique de la ville de Ouidah, signifiant 'La Maison des Champs'. C'est le cœur historique du commerce et du Vodun sur la côte.",
   },
   {
     mot: "Gou (Gu)",
-    def: "Divinité du fer, de la guerre et de la technologie. Il est le patron des forgerons, des chasseurs et aujourd'hui des mécaniciens. Sans Gu, pas d'outils, pas de civilisation.",
+    def: "Divinité du fer, de la guerre et de la technologie. Il est le patron des forgerons et des chasseurs. Il tranche l'ignorance et ouvre les chemins, mais il est aussi le dieu du sang versé.",
   },
   {
     mot: "Gueledé",
@@ -58,6 +94,14 @@ const termes = [
   {
     mot: "Heviosso",
     def: "Divinité du tonnerre et de la foudre. Il incarne la justice divine immédiate. Il frappe ceux qui commettent des crimes graves ou ne respectent pas l'ordre naturel.",
+  },
+  {
+    mot: "Houn",
+    def: "Le Tambour. Dans le Vodun, le tambour n'est pas un simple instrument de musique, c'est une entité vivante qui possède son propre esprit et qui permet d'appeler les divinités (Houn-yè).",
+  },
+  {
+    mot: "Hounkpame",
+    def: "Le Couvent Vodun. C'est le sanctuaire fermé où les initiés se retirent pour 'mourir' à leur ancienne vie et renaître avec un nouveau nom et une connexion aux dieux.",
   },
   {
     mot: "Hounnon",
@@ -84,20 +128,32 @@ const termes = [
     def: "Les 'revenants' ou esprits des morts. Terme souvent utilisé pour désigner les membres de la société Egungun.",
   },
   {
+    mot: "Kpassè",
+    def: "Roi fondateur légendaire de Ouidah. Il ne serait pas mort mais se serait transformé en arbre Iroko. La Forêt Sacrée de Kpassè à Ouidah est un haut lieu de pèlerinage.",
+  },
+  {
     mot: "Legba",
-    def: "Divinité messagère et gardienne des seuils. Il est l'intermédiaire indispensable : sans lui, aucune prière n'arrive aux autres dieux. Il n'est pas le diable, mais le diplomate cosmique.",
+    def: "Divinité messagère et gardienne des seuils. Il est l'intermédiaire indispensable : sans lui, aucune prière n'arrive aux autres dieux. C'est le diplomate cosmique.",
   },
   {
     mot: "Loko",
     def: "Divinité liée à l'arbre Iroko. Loko est l'arbre-mémoire, le gardien des traditions et le lieu de rassemblement des esprits.",
   },
   {
+    mot: "Makpo",
+    def: "La Récade. Bâton de commandement royal ou sacerdotal, souvent orné d'un symbole métallique. Il représente l'autorité de la parole et le pouvoir du Roi ou du Prêtre.",
+  },
+  {
     mot: "Mami Wata",
-    def: "Divinité des eaux. Souvent représentée comme une sirène ou une femme d'une grande beauté entourée de serpents. Elle symbolise la puissance de l'océan et la richesse ultime.",
+    def: "Divinité des eaux. Souvent représentée comme une sirène ou une femme d'une grande beauté entourée de serpents. Elle symbolise la puissance de l'océan, la séduction et la richesse.",
   },
   {
     mot: "Mawu-Lisa",
-    def: "Le couple créateur suprême. Mawu (féminin, la Lune, la fraîcheur) et Lisa (masculin, le Soleil, la chaleur). Ils représentent l'équilibre parfait du monde.",
+    def: "Le couple créateur suprême. Mawu (féminin, la Lune) et Lisa (masculin, le Soleil). Ils représentent l'équilibre parfait du monde, le froid et le chaud, la nuit et le jour.",
+  },
+  {
+    mot: "Nana Buluku",
+    def: "La Grande-Mère primordiale. Divinité suprême et très ancienne, elle aurait engendré Mawu et Lisa. Elle est l'origine mystérieuse de toute chose.",
   },
   {
     mot: "Opele",
@@ -105,11 +161,15 @@ const termes = [
   },
   {
     mot: "Oro",
-    def: "Société secrète très puissante, dont la sortie est annoncée par un vrombissement terrifiant. Elle est strictement interdite aux non-initiés et aux femmes.",
+    def: "Société secrète très puissante, dont la sortie est annoncée par un vrombissement terrifiant (le taureau-rugissant). Elle est strictement interdite aux femmes et aux non-initiés.",
   },
   {
     mot: "Sakpata",
-    def: "Divinité de la Terre. Il est craint car associé aux maladies éruptives, mais il est surtout respecté comme le propriétaire du sol et des richesses qu'il contient.",
+    def: "Divinité de la Terre. Il est craint car associé aux maladies éruptives, mais il est surtout respecté comme le propriétaire du sol et de toutes les richesses terrestres.",
+  },
+  {
+    mot: "Sato",
+    def: "Tambour géant (souvent plus de 1m50) utilisé lors des funérailles de grands dignitaires. On dit que c'est le 'Tambour Orphelin' car il pleure les morts.",
   },
   {
     mot: "Se",
@@ -125,7 +185,15 @@ const termes = [
   },
   {
     mot: "Tohossou",
-    def: "Divinité des eaux royales et des naissances extraordinaires. Protecteur des enfants nés avec des particularités physiques, il est très vénéré dans la région d'Abomey.",
+    def: "Divinité des eaux royales. Protecteur des enfants nés avec des particularités physiques ou des malformations, considérés comme des envoyés des eaux.",
+  },
+  {
+    mot: "Tron",
+    def: "Divinité guerrière et protectrice (Thron Kpeto Deka Alafia). Très populaire aujourd'hui pour son efficacité contre la sorcellerie et pour la protection des foyers.",
+  },
+  {
+    mot: "Vi-kpe",
+    def: "L'eau lustrale ou eau sacrée, souvent mélangée à des herbes et de la kaolin, utilisée pour la purification des adeptes et le nettoyage des souillures spirituelles.",
   },
   {
     mot: "Vodun",
@@ -136,12 +204,32 @@ const termes = [
     def: "Littéralement 'Épouse du Vodun'. Désigne tout initié(e) (homme ou femme) qui a traversé les rites du couvent et qui est au service d'une divinité spécifique.",
   },
   {
+    mot: "Vossa",
+    def: "Le sacrifice ou l'offrande rituelle. Ce n'est pas une perte, mais un échange d'énergie vital pour rétablir l'équilibre ou remercier les divinités.",
+  },
+  {
+    mot: "Xwéda",
+    def: "Peuple autochtone de la région de Ouidah (Gléxwé). Ce sont les adorateurs originels du Python Dangbé.",
+  },
+  {
+    mot: "Yê",
+    def: "L'ombre ou la silhouette d'une personne, considérée comme une composante spirituelle fragile qui peut être attaquée ou volée par les sorciers.",
+  },
+  {
+    mot: "Yêhwe",
+    def: "Terme respectueux pour désigner une divinité ou un esprit saint. Les adeptes du Vodun sont souvent appelés Yêhwe-si.",
+  },
+  {
     mot: "Zangbeto",
     def: "Le 'Gardien de la Nuit'. Société de masques de paille qui tournent comme des toupies. Ils assurent la police traditionnelle, chassent les sorciers et protègent le village.",
   },
+  {
+    mot: "Zin",
+    def: "La jarre en terre cuite ou canari. Elle est l'élément fondamental des autels Vodun, contenant l'eau sacrée, les plantes ou les 'secrets' de la divinité.",
+  },
 ];
 
-// Tri automatique
+// Tri automatique alphabétique (Indispensable pour l'UX)
 termes.sort((a, b) => a.mot.localeCompare(b.mot));
 
 // Création des lettres pour l'index (A, B, D...)
@@ -163,7 +251,7 @@ const schemaData = {
 };
 ---
 
-<BaseLayout titrePage="Lexique & Définitions du Vodun">
+<BaseLayout titrePage="Lexique Sacré | Glossaire du Vodun & Ouidah">
   <script type="application/ld+json" set:html={JSON.stringify(schemaData)} />
 
   <div class="lexique-container">
@@ -207,8 +295,13 @@ const schemaData = {
 </BaseLayout>
 
 <style>
+  /* Ajout du défilement fluide pour toute la page */
+  :global(html) {
+    scroll-behavior: smooth;
+  }
+
   .lexique-container {
-    background-color: #fcfbf9; /* Fond légèrement plus chaud */
+    background-color: #fcfbf9;
     min-height: 100vh;
     padding-bottom: 80px;
   }
@@ -292,7 +385,9 @@ const schemaData = {
     border-left: 4px solid #a0522d;
     box-shadow: 0 4px 15px rgba(0, 0, 0, 0.03);
     transition: all 0.3s ease;
-    scroll-margin-top: 20px; /* Pour que l'ancre ne soit pas cachée */
+
+    /* Correction du scroll pour ne pas être caché par le menu */
+    scroll-margin-top: 100px;
   }
 
   .definition-card:hover {
@@ -311,7 +406,6 @@ const schemaData = {
     display: inline-block;
   }
 
-  /* Petit soulignement décoratif sous le titre */
   .definition-card h2::after {
     content: "";
     position: absolute;
@@ -331,7 +425,7 @@ const schemaData = {
     text-align: justify;
   }
 
-  /* Responsive : ajustement mobile */
+  /* Responsive */
   @media (max-width: 768px) {
     .lexique-header h1 {
       font-size: 2.5rem;
