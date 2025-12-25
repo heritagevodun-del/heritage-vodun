@@ -33,7 +33,7 @@ Pourquoi cette vénération ? Plongez au cœur du mythe avec cette vidéo exclus
 
 ## 🎥 Immersion au cœur du Temple
 
-Découvrez en images la manipulation des pythons sacrés et l'explication des dignitaires du temple :
+Découvrez en images le temple des pythons de Ouidah :
 
 <div style="display: flex; justify-content: center; margin: 30px 0; width: 100%;">
   <iframe
