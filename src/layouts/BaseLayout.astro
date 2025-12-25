@@ -3,15 +3,25 @@
 import Navigation from "../components/Navigation.astro";
 import { ClientRouter } from "astro:transitions";
 
-// 👇 Props SEO enrichies & Valeurs par défaut blindées
+// 1. Imports des polices optimisées (Plus rapide que Google CDN)
+import "@fontsource/lato/300.css";
+import "@fontsource/lato/400.css";
+import "@fontsource/lato/700.css";
+import "@fontsource/playfair-display/400.css";
+import "@fontsource/playfair-display/600.css";
+import "@fontsource/playfair-display/700.css";
+import "@fontsource/playfair-display/400-italic.css";
+
+// 👇 Props SEO enrichies
 const {
   titrePage = "Héritage Vodun | Guide Spirituel, Fâ & Tourisme à Ouidah",
   description = "Plongez au cœur du Vodun au Bénin. Visites guidées à Ouidah, consultation du Fâ, et histoire de la Route des Esclaves. Une spiritualité authentique.",
   image = "/vodunsi.jpeg",
 } = Astro.props;
 
-// Calcul de l'URL canonique (Vital pour le SEO)
+// Calcul de l'URL canonique
 const canonicalURL = new URL(Astro.url.pathname, Astro.site);
+const socialImageURL = new URL(image, Astro.url);
 ---
 
 <html lang="fr">
@@ -19,25 +29,16 @@ const canonicalURL = new URL(Astro.url.pathname, Astro.site);
     <meta charset="utf-8" />
     <ClientRouter />
 
-    <script is:inline>
-      // Redirection anti-duplicate content (Vercel -> Domaine principal)
-      if (window.location.hostname.includes("vercel.app")) {
-        window.location.replace(
-          "https://www.heritagevodun.com" + window.location.pathname
-        );
-      }
-    </script>
-
     <meta name="robots" content="index, follow, max-image-preview:large" />
     <meta
       name="google-site-verification"
       content="vVcu2NVdsuB7Nu6DtS7nl5cZUPzeALF1fuGVk_Udf7g"
     />
-
     <link rel="sitemap" href="/sitemap-index.xml" />
 
-    <link rel="icon" type="image/svg+xml" href="/favicon.svg?v=2" />
     <meta name="viewport" content="width=device-width" />
+    <meta name="theme-color" content="#ffffff" />
+    <link rel="icon" type="image/svg+xml" href="/favicon.svg?v=2" />
     <meta name="generator" content={Astro.generator} />
 
     <title>{titrePage}</title>
@@ -48,13 +49,13 @@ const canonicalURL = new URL(Astro.url.pathname, Astro.site);
     <meta property="og:url" content={Astro.url} />
     <meta property="og:title" content={titrePage} />
     <meta property="og:description" content={description} />
-    <meta property="og:image" content={new URL(image, Astro.url)} />
+    <meta property="og:image" content={socialImageURL} />
 
     <meta property="twitter:card" content="summary_large_image" />
     <meta property="twitter:url" content={Astro.url} />
     <meta property="twitter:title" content={titrePage} />
     <meta property="twitter:description" content={description} />
-    <meta property="twitter:image" content={new URL(image, Astro.url)} />
+    <meta property="twitter:image" content={socialImageURL} />
 
     <script type="application/ld+json" is:inline>
       {
@@ -79,13 +80,6 @@ const canonicalURL = new URL(Astro.url.pathname, Astro.site);
         "priceRange": "$$"
       }
     </script>
-
-    <link rel="preconnect" href="https://fonts.googleapis.com" />
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-    <link
-      href="https://fonts.googleapis.com/css2?family=Lato:wght@300;400;700&family=Playfair+Display:ital,wght@0,400;0,600;0,700;1,400&display=swap"
-      rel="stylesheet"
-    />
   </head>
 
   <body>
@@ -202,7 +196,7 @@ const canonicalURL = new URL(Astro.url.pathname, Astro.site);
           <p>
             📍
             <a
-              href="https://www.google.com/maps/search/?api=1&query=Ouidah,+Bénin"
+              href="https://www.google.com/maps/search/?api=1&query=Ouidah+Benin"
               target="_blank"
               rel="noopener noreferrer"
               class="contact-link"
@@ -233,42 +227,51 @@ const canonicalURL = new URL(Astro.url.pathname, Astro.site);
     </footer>
 
     <script>
+      // Redirection simple si on est sur le sous-domaine (Client-side fallback)
+      if (window.location.hostname.includes("vercel.app")) {
+        window.location.replace(
+          "https://www.heritagevodun.com" + window.location.pathname
+        );
+      }
+
       document.addEventListener("astro:page-load", () => {
         // --- 1. GESTION DU MENU MOBILE ---
         const menuBtn = document.getElementById("menu-toggle");
         const navMenu = document.getElementById("nav-menu");
 
         if (menuBtn && navMenu && menuBtn.parentNode) {
-          const newMenuBtn = menuBtn.cloneNode(true);
+          // On clone pour retirer les anciens event listeners (sécurité Astro Transitions)
+          const newMenuBtn = menuBtn.cloneNode(true) as HTMLElement;
           menuBtn.parentNode.replaceChild(newMenuBtn, menuBtn);
 
-          if (newMenuBtn instanceof HTMLElement) {
-            newMenuBtn.addEventListener("click", () => {
-              navMenu.classList.toggle("active");
-              newMenuBtn.classList.toggle("open");
-            });
-          }
+          newMenuBtn.addEventListener("click", () => {
+            navMenu.classList.toggle("active");
+            newMenuBtn.classList.toggle("open");
+          });
         }
 
         // --- 2. GESTION DU FORMULAIRE FOOTER ---
-        const footerForm = document.getElementById("footer-newsletter-form");
+        const footerForm = document.getElementById(
+          "footer-newsletter-form"
+        ) as HTMLFormElement | null;
         const footerResult = document.getElementById("footer-result");
-        const footerBtn = footerForm?.querySelector(".btn-submit");
+        // On cherche le bouton à l'intérieur du formulaire
+        const footerBtn = footerForm
+          ? (footerForm.querySelector(".btn-submit") as HTMLButtonElement)
+          : null;
 
         if (footerForm && footerResult && footerBtn) {
           footerForm.addEventListener("submit", function (e) {
             e.preventDefault();
-            const formData = new FormData(footerForm as HTMLFormElement);
+            const formData = new FormData(footerForm);
             const object = Object.fromEntries(formData);
             const json = JSON.stringify(object);
 
             // État "Chargement"
             footerResult.innerHTML = "...";
             footerResult.style.color = "#c06c3b";
-            if (footerBtn instanceof HTMLButtonElement) {
-              footerBtn.disabled = true;
-              footerBtn.style.opacity = "0.7";
-            }
+            footerBtn.disabled = true;
+            footerBtn.style.opacity = "0.7";
 
             fetch("https://api.web3forms.com/submit", {
               method: "POST",
@@ -283,34 +286,28 @@ const canonicalURL = new URL(Astro.url.pathname, Astro.site);
                   // Succès
                   footerResult.innerHTML = "✨ Merci ! Inscription validée.";
                   footerResult.style.color = "#4CAF50";
-                  (footerForm as HTMLFormElement).reset();
+                  footerForm.reset();
 
                   // Reset après 3 secondes
                   setTimeout(() => {
                     footerResult.innerHTML = "";
-                    if (footerBtn instanceof HTMLButtonElement) {
-                      footerBtn.disabled = false;
-                      footerBtn.style.opacity = "1";
-                    }
+                    footerBtn.disabled = false;
+                    footerBtn.style.opacity = "1";
                   }, 3000);
                 } else {
                   // Erreur
                   footerResult.innerHTML = "Une erreur est survenue.";
                   footerResult.style.color = "red";
-                  if (footerBtn instanceof HTMLButtonElement) {
-                    footerBtn.disabled = false;
-                    footerBtn.style.opacity = "1";
-                  }
+                  footerBtn.disabled = false;
+                  footerBtn.style.opacity = "1";
                 }
               })
               .catch((error) => {
                 console.error(error);
                 footerResult.innerHTML = "Erreur de connexion.";
                 footerResult.style.color = "red";
-                if (footerBtn instanceof HTMLButtonElement) {
-                  footerBtn.disabled = false;
-                  footerBtn.style.opacity = "1";
-                }
+                footerBtn.disabled = false;
+                footerBtn.style.opacity = "1";
               });
           });
         }
@@ -332,7 +329,7 @@ const canonicalURL = new URL(Astro.url.pathname, Astro.site);
     display: flex;
     flex-direction: column;
     min-height: 100vh;
-    font-family: "Lato", sans-serif;
+    font-family: "Lato", sans-serif; /* Utilise maintenant la police locale */
     color: #333;
     line-height: 1.6;
     background-color: #fcfcfc;

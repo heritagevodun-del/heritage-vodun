@@ -11,6 +11,8 @@
   "dependencies": {
     "@astrojs/sitemap": "^3.6.0",
     "@astrojs/vercel": "^9.0.2",
+    "@fontsource/lato": "^5.2.7",
+    "@fontsource/playfair-display": "^5.2.8",
     "astro": "^5.16.5"
   }
 }
