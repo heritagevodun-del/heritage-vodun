@@ -6,6 +6,32 @@ description: "Sur la plage de Ouidah, la Porte du Non-Retour, récemment rénov�
 image: "/porte-non-retour.jpeg"
 type_image: "animation_porte"
 categorie: "Histoire & Mémoire"
+tags:
+  [
+    "Porte du Non-Retour",
+    "Ouidah",
+    "Bénin",
+    "Route de l'Esclave",
+    "Esclavage",
+    "Mémoire",
+    "Histoire",
+    "Patrimoine",
+    "UNESCO",
+    "Tourisme Mémoriel",
+    "Diaspora",
+    "Afro-descendants",
+    "Fortuné Bandeira",
+    "Monument",
+    "Place Chacha",
+    "Arbre de l'Oubli",
+    "Djègbadji",
+    "Rénovation",
+    "Égoungoun",
+    "Spiritualité",
+    "Culture",
+    "Afrique",
+    "Traite Transatlantique",
+  ]
 ---
 
 Face à l'immensité de l'Océan Atlantique, sur la plage de Djègbadji à Ouidah, se dresse un monument qui impose le silence. Ce n'est pas une simple architecture de béton et de bronze, c'est une cicatrice ouverte dans l'histoire de l'humanité.
@@ -49,3 +75,5 @@ Lors des **"Vodun days"**, la plage s'anime de cérémonies, prouvant que la cul
 Visiter la Porte du Non-Retour, surtout depuis sa rénovation spectaculaire, ce n'est pas faire du tourisme. C'est un **acte de pèlerinage**. C'est se tenir là où l'histoire a basculé pour des millions de vies.
 
 Ce monument nous rappelle que malgré l'océan et les chaînes, le lien entre l'Afrique et ses enfants de l'autre côté de l'eau n'a jamais été totalement rompu.
+
+Envie de comprendre l'histoire de chaque symbole gravé sur la porte ? Demandez à [**Mindoguesito**](https://www.mindoguesito.com/), notre guide virtuel expert en histoire du Bénin.

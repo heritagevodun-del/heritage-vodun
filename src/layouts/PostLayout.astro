@@ -2,7 +2,18 @@
 import BaseLayout from "./BaseLayout.astro";
 import FaAnimation from "../components/FaAnimation.astro";
 
-const { frontmatter } = Astro.props;
+// 👇 On dit à TypeScript que frontmatter peut contenir n'importe quoi (any)
+const { frontmatter } = Astro.props as { frontmatter: any };
+
+// Formatage de la date en français
+const formattedDate = new Date(frontmatter.pubDate).toLocaleDateString(
+  "fr-FR",
+  {
+    day: "numeric",
+    month: "long",
+    year: "numeric",
+  }
+);
 ---
 
 <BaseLayout
@@ -19,9 +30,7 @@ const { frontmatter } = Astro.props;
 
     <div class="meta-info">
       <p>
-        {frontmatter.pubDate.toString().slice(0, 10)} | Par {
-          frontmatter.author || "Héritage Vodun"
-        }
+        {formattedDate} | Par {frontmatter.author || "Héritage Vodun"}
       </p>
     </div>
 
@@ -46,6 +55,22 @@ const { frontmatter } = Astro.props;
     <div class="content">
       <slot />
     </div>
+
+    {
+      frontmatter.tags && (
+        <div class="tags-section">
+          <h3>Sujets abordés dans cet article :</h3>
+          <div class="tags-list">
+            {/* 👇 J'ai ajouté ': string' ici pour corriger l'erreur rouge */}
+            {frontmatter.tags.map((tag: string) => (
+              <a href={`/tags/${tag}`} class="tag-badge">
+                #{tag}
+              </a>
+            ))}
+          </div>
+        </div>
+      )
+    }
   </div>
 </BaseLayout>
 
@@ -61,8 +86,8 @@ const { frontmatter } = Astro.props;
   /* 👇 Style du Badge Catégorie */
   .category-badge {
     display: inline-block;
-    background-color: rgba(192, 108, 59, 0.1); /* Fond léger couleur terre */
-    color: #c06c3b; /* Couleur principale */
+    background-color: rgba(192, 108, 59, 0.1);
+    color: #c06c3b;
     padding: 4px 12px;
     border-radius: 20px;
     font-size: 0.85rem;
@@ -143,5 +168,38 @@ const { frontmatter } = Astro.props;
   .content :global(a) {
     color: #c06c3b;
     text-decoration: underline;
+  }
+
+  /* 👇 STYLE TAGS (Votre design respecté) */
+  .tags-section {
+    margin-top: 4rem;
+    padding-top: 2rem;
+    border-top: 1px solid #eee;
+  }
+  .tags-section h3 {
+    font-family: "Playfair Display", serif;
+    font-size: 1.2rem;
+    color: #1a2e2e;
+    margin-bottom: 1rem;
+  }
+  .tags-list {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 10px;
+  }
+  .tag-badge {
+    background-color: #f4f4f4;
+    color: #555;
+    padding: 6px 14px;
+    border-radius: 6px;
+    font-size: 0.9rem;
+    text-decoration: none !important;
+    transition: all 0.3s ease;
+    border: 1px solid transparent;
+  }
+  .tag-badge:hover {
+    background-color: #c06c3b;
+    color: white;
+    transform: translateY(-2px);
   }
 </style>

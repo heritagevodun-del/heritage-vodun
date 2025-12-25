@@ -5,6 +5,34 @@ pubDate: 2025-11-20
 description: "Poupées, zombies, sorcellerie ? Hollywood a tout faux. Héritage Vodun rétablit la vérité sur une vision du monde où l'humain, la nature et les ancêtres vivent en harmonie."
 image: "/vodun-intro.jpeg"
 categorie: "Spiritualité"
+tags:
+  [
+    "Vodun",
+    "Vaudou",
+    "Voodoo",
+    "Bénin",
+    "Spiritualité",
+    "Culture Fon",
+    "Tradition",
+    "Philosophie",
+    "Ancêtres",
+    "Nature",
+    "Monde Invisible",
+    "Cosmogonie",
+    "Harmonie",
+    "Orishas",
+    "Divinités",
+    "Vodunsi",
+    "Esclavage",
+    "Haïti",
+    "Louisiane",
+    "Sorcellerie",
+    "Vérité",
+    "Afrique de l'Ouest",
+    "Patrimoine",
+    "Religion Endogène",
+    "Ouidah",
+  ]
 ---
 
 Lorsque l'on évoque le mot « Vaudou » à travers le monde, les images qui surgissent sont souvent celles véhiculées par le cinéma hollywoodien : poupées plantées d'aiguilles, zombis et sorcellerie sombre.

@@ -5,7 +5,31 @@ pubDate: 2025-12-22
 description: "Tout savoir sur les Vodun Days au Bénin. Dates, programme officiel à Ouidah et sens caché de cet événement mondial qui réinvente la fête du 10 janvier."
 image: "/vodun-days-ouidah.jpg"
 categorie: "Événement"
-tags: ["Culture", "Ouidah", "Événement", "Spiritualité"]
+tags:
+  [
+    "Vodun Days",
+    "Ouidah",
+    "Bénin",
+    "10 Janvier",
+    "Fête du Vaudou",
+    "Religions Endogènes",
+    "Tourisme Culturel",
+    "Zangbeto",
+    "Egungun",
+    "Mami Wata",
+    "Sakpata",
+    "Koku",
+    "Porte du Non-Retour",
+    "Place Maro",
+    "Tradition",
+    "Spiritualité",
+    "Diaspora",
+    "Patrimoine",
+    "Sortie de Masques",
+    "Festival",
+    "Forêt Sacrée",
+    "Fâ",
+  ]
 ---
 
 **Oubliez ce que vous pensiez savoir sur la "Fête du Vaudou".**
@@ -42,7 +66,7 @@ C'est le cœur battant de l'événement. Vous assisterez aux sorties des couvent
 
 - **Zangbeto :** Les Gardiens de la nuit, ces meules de foin qui tourbillonnent mystérieusement.
 - **Egungun :** Les revenants, esprits des ancêtres qui viennent bénir les vivants.
-- **Koku, Sakpata, Mami Wana :** Chaque divinité a ses rythmes, ses couleurs et ses transes.
+- **Koku, Sakpata, Mami Wata :** Chaque divinité a ses rythmes, ses couleurs et ses transes.
 
 > *L'œil de l'Expert :* Ne voyez pas cela comme un spectacle de danse. Chaque geste est une prière, chaque rythme est un langage codé.
 
@@ -70,4 +94,4 @@ Hôtels et auberges à Ouidah sont pris d'assaut des mois à l'avance. Si vous p
 Les Vodun Days durent 3 jours, mais le Vodun se vit toute l'année.
 Ne repartez pas sans avoir consulté le **Fâ** pour connaître votre chemin de vie, ou sans avoir visité la **Forêt Sacrée de Kpassè** dans le calme, loin de la foule.
 
-👉 **[Réservez votre guide culturel avec Héritage Vodun](/contact)** ou discutez avec **Mindoguesito**, notre IA, pour préparer votre esprit avant votre voyage.
+👉 **[Réservez votre guide culturel avec Héritage Vodun](/contact)** ou discutez avec **[Mindoguesito](https://www.mindoguesito.com/)**, notre IA, pour préparer votre esprit avant votre voyage.
