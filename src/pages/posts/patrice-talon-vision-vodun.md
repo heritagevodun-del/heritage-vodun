@@ -5,7 +5,20 @@ pubDate: 2025-12-25
 description: "Comment le Président Patrice Talon a transformé le Vodun en levier de développement et de fierté nationale. Analyse d'une stratégie gagnant-gagnant."
 image: "/patrice-talon-vodun.jpeg"
 categorie: "Société & Histoire"
-tags: ["Patrice Talon", "Politique", "Vodun Days", "Ouidah"]
+tags: ["Patrice Talon",
+    "Politique",
+    "Bénin",
+    "Gouvernement",
+    "Réformes",
+    "Tourisme",
+    "Développement",
+    "Economie",
+    "Ouidah",
+    "Cotonou",
+    "Ambition",
+    "Soft Power",
+    "Patrimoine",
+    "Investissement"]
 ---
 
 **Il a fallu du temps pour que le Bénin ose regarder son reflet dans le miroir sans trembler.**

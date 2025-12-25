@@ -2,14 +2,14 @@
 import BaseLayout from "../layouts/BaseLayout.astro";
 import FaAnimation from "../components/FaAnimation.astro";
 
-// --- DEFINITION DES TYPES (Pour VS Code Intelligent) ---
-// Cela empêche les erreurs rouges quand on appelle post.frontmatter.title
+// --- DEFINITION DES TYPES ---
 interface Frontmatter {
   title: string;
   pubDate: string;
   date?: string;
   description: string;
   categorie: string;
+  tags?: string[]; // Ajout du support des tags
   type_image?: string;
   image?: string;
 }
@@ -19,12 +19,11 @@ interface MarkdownPost {
   url: string;
 }
 
-// --- 1. RÉCUPÉRATION MODERNE (VITE API) ---
-// "eager: true" charge les articles immédiatement (remplace Astro.glob)
+// --- 1. RÉCUPÉRATION DES DONNÉES ---
 const matches = import.meta.glob<MarkdownPost>("./posts/*.md", { eager: true });
 const allPosts = Object.values(matches);
 
-// On trie du plus récent au plus ancien (Supporte pubDate OU date)
+// Tri du plus récent au plus ancien
 const sortedPosts = allPosts.sort((a, b) => {
   const dateA = new Date(
     a.frontmatter.pubDate || a.frontmatter.date || ""
@@ -35,13 +34,30 @@ const sortedPosts = allPosts.sort((a, b) => {
   return (isNaN(dateB) ? 0 : dateB) - (isNaN(dateA) ? 0 : dateA);
 });
 
-// Fonction de formatage
+// --- 2. EXTRACTION POUR LES FILTRES (Nouveau) ---
+// Récupérer toutes les catégories uniques pour le menu du haut
+const uniqueCategories = [
+  ...new Set(
+    sortedPosts.map((post) => post.frontmatter.categorie).filter(Boolean)
+  ),
+];
+
+// Récupérer les tags les plus populaires
+const allTags = sortedPosts.map((post) => post.frontmatter.tags || []).flat();
+const tagCounts = allTags.reduce((acc: any, tag: string) => {
+  acc[tag] = (acc[tag] || 0) + 1;
+  return acc;
+}, {});
+// Top 10 des tags
+const topTags = Object.keys(tagCounts)
+  .sort((a, b) => tagCounts[b] - tagCounts[a])
+  .slice(0, 10);
+
+// Fonction de formatage date
 function formatDate(dateInput: string | Date | undefined) {
   if (!dateInput) return "Date inconnue";
   const date = new Date(dateInput);
-  if (isNaN(date.getTime())) {
-    return "Date inconnue";
-  }
+  if (isNaN(date.getTime())) return "Date inconnue";
   const options: Intl.DateTimeFormatOptions = {
     year: "numeric",
     month: "long",
@@ -50,22 +66,18 @@ function formatDate(dateInput: string | Date | undefined) {
   return date.toLocaleDateString("fr-FR", options);
 }
 
-// 2. SEO : SCHEMA.ORG
+// --- 3. SEO ---
 const schemaData = {
   "@context": "https://schema.org",
   "@type": "Blog",
   name: "Chroniques du Sacré - Héritage Vodun",
-  description:
-    "Explorez les mythes, les rites et l'histoire du Bénin à travers nos articles.",
+  description: "Explorez les mythes, les rites et l'histoire du Bénin.",
   blogPost: sortedPosts.map((post) => ({
     "@type": "BlogPosting",
     headline: post.frontmatter.title,
     description: post.frontmatter.description,
     datePublished: post.frontmatter.pubDate || post.frontmatter.date,
-    author: {
-      "@type": "Organization",
-      name: "Héritage Vodun",
-    },
+    author: { "@type": "Organization", name: "Héritage Vodun" },
     url: `https://heritagevodun.com${post.url}`,
   })),
 };
@@ -85,12 +97,46 @@ const schemaData = {
       </p>
     </header>
 
+    <section
+      class="filters-section animate-enter"
+      style="animation-delay: 150ms"
+    >
+      <div class="filter-group">
+        <h3>Parcourir par Thème :</h3>
+        <div class="categories-list">
+          {
+            uniqueCategories.map((cat) => (
+              /* Lien vers le dossier CATEGORIES */
+              <a href={`/categories/${cat}`} class="cat-pill">
+                {cat}
+              </a>
+            ))
+          }
+        </div>
+      </div>
+
+      {
+        topTags.length > 0 && (
+          <div class="filter-group">
+            <h3>Mots-clés du moment :</h3>
+            <div class="tags-cloud">
+              {topTags.map((tag) => (
+                /* Lien vers le dossier TAGS */
+                <a href={`/tags/${tag}`} class="tag-link">
+                  #{tag}
+                </a>
+              ))}
+            </div>
+          </div>
+        )
+      }
+    </section>
     <section class="blog-grid">
       {
         sortedPosts.map((post, index) => (
           <article
             class="carte-article"
-            style={`animation-delay: ${Math.min(index * 100, 1000)}ms`}
+            style={`animation-delay: ${Math.min((index + 2) * 100, 1000)}ms`}
           >
             <a
               href={post.url}
@@ -113,12 +159,14 @@ const schemaData = {
 
             <div class="contenu-carte">
               <div class="meta-header">
+                {/* 👇 CORRECTION IMPORTANTE ICI : Lien vers /categories/ */}
                 <a
-                  href={`/tags/${post.frontmatter.categorie}`}
+                  href={`/categories/${post.frontmatter.categorie}`}
                   class="categorie"
                 >
                   {post.frontmatter.categorie}
                 </a>
+
                 <span class="date-publication">
                   {formatDate(
                     post.frontmatter.pubDate || post.frontmatter.date
@@ -161,7 +209,7 @@ const schemaData = {
   /* --- HEADER --- */
   .blog-header {
     text-align: center;
-    padding: 80px 20px 60px;
+    padding: 80px 20px 40px; /* Réduit un peu le bas pour laisser place aux filtres */
     max-width: 800px;
     margin: 0 auto;
   }
@@ -195,6 +243,72 @@ const schemaData = {
     font-size: 1.1rem;
     color: #666;
     line-height: 1.6;
+  }
+
+  /* --- NOUVEAU : STYLE DES FILTRES --- */
+  .filters-section {
+    max-width: 1000px;
+    margin: 0 auto 60px;
+    text-align: center;
+    padding: 0 20px;
+  }
+  .filter-group {
+    margin-bottom: 25px;
+  }
+  .filter-group h3 {
+    font-family: "Lato", sans-serif;
+    font-size: 0.85rem;
+    color: #999;
+    text-transform: uppercase;
+    letter-spacing: 1.5px;
+    margin-bottom: 15px;
+  }
+
+  /* Badges Catégories */
+  .categories-list {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 12px;
+  }
+  .cat-pill {
+    background: white;
+    border: 1px solid var(--or-vodun);
+    color: var(--terre);
+    padding: 8px 20px;
+    border-radius: 30px;
+    text-decoration: none;
+    font-family: "Lato", sans-serif;
+    font-weight: 700;
+    font-size: 0.9rem;
+    transition: all 0.3s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+  }
+  .cat-pill:hover {
+    background: var(--or-vodun);
+    color: white;
+    transform: translateY(-3px);
+    box-shadow: 0 5px 15px rgba(212, 175, 55, 0.25);
+  }
+
+  /* Nuage de Tags */
+  .tags-cloud {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 15px;
+    margin-top: 10px;
+  }
+  .tag-link {
+    color: #777;
+    text-decoration: none;
+    font-size: 0.9rem;
+    font-family: "Lato", sans-serif;
+    border-bottom: 1px solid transparent;
+    transition: all 0.2s;
+  }
+  .tag-link:hover {
+    color: var(--terre);
+    border-bottom-color: var(--terre);
   }
 
   /* --- GRILLE --- */
@@ -376,7 +490,7 @@ const schemaData = {
   /* --- RESPONSIVE --- */
   @media (max-width: 768px) {
     .blog-header {
-      padding: 60px 20px 40px;
+      padding: 60px 20px 20px;
     }
     .blog-header h1 {
       font-size: 2.5rem;
@@ -387,6 +501,9 @@ const schemaData = {
     }
     .conteneur-image {
       height: 200px;
+    }
+    .filters-section {
+      margin-bottom: 40px;
     }
   }
 </style>

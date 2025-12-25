@@ -2,121 +2,74 @@
 import BaseLayout from "../../layouts/BaseLayout.astro";
 import FaAnimation from "../../components/FaAnimation.astro";
 
-// --- DÉFINITION DES TYPES (Pour VS Code) ---
-interface Frontmatter {
-  title: string;
-  categorie: string;
-  pubDate?: string;
-  date?: string;
-  description: string;
-  image?: string;
-  type_image?: string;
-}
-
-interface MarkdownPost {
-  frontmatter: Frontmatter;
-  url: string;
-}
-
-// 1. GÉNÉRATION DES ROUTES DYNAMIQUES (Mode Expert)
+// 1. GÉNÉRATION DES ROUTES (Spécial Catégories)
 export async function getStaticPaths() {
-  // On utilise la méthode moderne (Vite) avec "eager: true" pour avoir les données tout de suite
-  const matches = import.meta.glob<MarkdownPost>("../posts/*.md", {
-    eager: true,
-  });
+  const matches = import.meta.glob("../posts/*.md", { eager: true });
   const allPosts = Object.values(matches);
 
-  // Tri du plus récent au plus ancien
-  const sortedPosts = allPosts.sort((a, b) => {
-    const dateA = new Date(
-      a.frontmatter.pubDate || a.frontmatter.date || ""
-    ).valueOf();
-    const dateB = new Date(
-      b.frontmatter.pubDate || b.frontmatter.date || ""
-    ).valueOf();
-    return (isNaN(dateB) ? 0 : dateB) - (isNaN(dateA) ? 0 : dateA);
-  });
-
-  // Extraction des tags uniques
-  const uniqueTags = [
+  // On récupère toutes les catégories uniques
+  const uniqueCategories = [
     ...new Set(
-      sortedPosts.map((post) => post.frontmatter.categorie).filter(Boolean)
+      allPosts.map((post: any) => post.frontmatter.categorie).filter(Boolean)
     ),
   ];
 
-  // Création des routes pour chaque tag
-  return uniqueTags.map((tag) => {
-    const filteredPosts = sortedPosts.filter(
-      (post) => post.frontmatter.categorie === tag
+  // On crée une page pour chaque catégorie
+  return uniqueCategories.map((category) => {
+    const filteredPosts = allPosts.filter(
+      (post: any) => post.frontmatter.categorie === category
     );
+
+    // Tri par date (plus récent en premier)
+    filteredPosts.sort((a: any, b: any) => {
+      return (
+        new Date(b.frontmatter.pubDate).valueOf() -
+        new Date(a.frontmatter.pubDate).valueOf()
+      );
+    });
+
     return {
-      params: { tag },
+      params: { category },
       props: { posts: filteredPosts },
     };
   });
 }
 
-// Récupération des props typées
-const { tag } = Astro.params;
+const { category } = Astro.params;
 const { posts } = Astro.props;
 
-// Fonction format (Typée)
-function formatDate(dateInput: string | Date | undefined) {
+// Fonction format date (CORRIGÉE avec le type)
+function formatDate(dateInput: string | number | Date) {
   if (!dateInput) return "";
   const date = new Date(dateInput);
-  if (isNaN(date.getTime())) {
-    return "";
-  }
-  const options: Intl.DateTimeFormatOptions = {
+  return date.toLocaleDateString("fr-FR", {
     year: "numeric",
     month: "long",
     day: "numeric",
-  };
-  return date.toLocaleDateString("fr-FR", options);
+  });
 }
-
-// 2. SEO
-const schemaData = {
-  "@context": "https://schema.org",
-  "@type": "CollectionPage",
-  name: `Articles sur ${tag}`,
-  description: `Découvrez nos articles et ressources sur le thème : ${tag}`,
-  mainEntity: {
-    "@type": "ItemList",
-    itemListElement: posts.map((post: MarkdownPost, index: number) => ({
-      "@type": "ListItem",
-      position: index + 1,
-      url: `https://heritagevodun.com${post.url}`,
-    })),
-  },
-};
 ---
 
-<BaseLayout titrePage={`Catégorie : ${tag} | Héritage Vodun`}>
-  <script type="application/ld+json" set:html={JSON.stringify(schemaData)} />
-
+<BaseLayout titrePage={`Catégorie : ${category} | Héritage Vodun`}>
   <div class="page-container">
-    <header class="tag-header animate-enter">
-      <span class="sous-titre">Exploration Thématique</span>
-      <h1>#{tag}</h1>
+    <header class="cat-header animate-enter">
+      <span class="sous-titre">Collection Thématique</span>
+      <h1>{category}</h1>
       <div class="separateur"></div>
       <p>
-        Retrouvez ici toutes nos chroniques dédiées à : <strong>{tag}</strong>
+        Retrouvez les {posts.length} article{posts.length > 1 ? "s" : ""} de la rubrique
+        <strong>{category}</strong>
       </p>
     </header>
 
     <section class="blog-grid">
       {
-        posts.map((post: MarkdownPost, index: number) => (
+        posts.map((post: any, index: number) => (
           <article
             class="carte-article"
             style={`animation-delay: ${Math.min(index * 100, 1000)}ms`}
           >
-            <a
-              href={post.url}
-              class="lien-global"
-              aria-label={post.frontmatter.title}
-            >
+            <a href={post.url} class="lien-global">
               <div class="conteneur-image">
                 {post.frontmatter.type_image === "animation_fa" ? (
                   <FaAnimation mode="vignette" />
@@ -127,19 +80,14 @@ const schemaData = {
                   />
                 )}
               </div>
-
               <div class="contenu-carte">
                 <div class="meta-header">
                   <span class="date-publication">
-                    {formatDate(
-                      post.frontmatter.pubDate || post.frontmatter.date
-                    )}
+                    {formatDate(post.frontmatter.pubDate)}
                   </span>
                 </div>
-
                 <h3>{post.frontmatter.title}</h3>
                 <p class="description">{post.frontmatter.description}</p>
-
                 <span class="lire-plus">
                   Lire l'article <span class="fleche">&rarr;</span>
                 </span>
@@ -153,36 +101,32 @@ const schemaData = {
 </BaseLayout>
 
 <style>
-  /* --- VARIABLES --- */
+  /* --- REPRISE EXACTE DE VOTRE DESIGN --- */
   :root {
     --or-vodun: #d4af37;
     --terre: #a0522d;
     --gris-sombre: #2f4f4f;
     --fond-page: #fdfbf7;
   }
-
   .page-container {
     background-color: var(--fond-page);
     min-height: 100vh;
     padding-bottom: 80px;
   }
 
-  /* --- HEADER --- */
-  .tag-header {
+  .cat-header {
     text-align: center;
     padding: 80px 20px 60px;
     max-width: 800px;
     margin: 0 auto;
   }
-
-  .tag-header h1 {
+  .cat-header h1 {
     font-family: "Playfair Display", serif;
     font-size: 3.5rem;
     color: var(--gris-sombre);
     margin: 10px 0;
     text-transform: capitalize;
   }
-
   .sous-titre {
     font-family: "Lato", sans-serif;
     color: var(--terre);
@@ -191,7 +135,6 @@ const schemaData = {
     font-size: 0.85rem;
     font-weight: bold;
   }
-
   .separateur {
     width: 60px;
     height: 3px;
@@ -199,7 +142,6 @@ const schemaData = {
     margin: 20px auto;
   }
 
-  /* --- GRILLE --- */
   .blog-grid {
     display: grid;
     grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
@@ -209,7 +151,6 @@ const schemaData = {
     margin: 0 auto;
   }
 
-  /* --- CARTE ARTICLE --- */
   .carte-article {
     background: white;
     border-radius: 12px;
@@ -219,9 +160,7 @@ const schemaData = {
     border: 1px solid rgba(0, 0, 0, 0.03);
     opacity: 0;
     animation: fadeInUp 0.8s ease forwards;
-    will-change: transform;
   }
-
   .carte-article:hover {
     transform: translateY(-10px);
     box-shadow: 0 20px 40px rgba(0, 0, 0, 0.12);
@@ -234,8 +173,6 @@ const schemaData = {
     flex-direction: column;
     height: 100%;
   }
-
-  /* --- IMAGE --- */
   .conteneur-image {
     width: 100%;
     height: 220px;
@@ -243,7 +180,6 @@ const schemaData = {
     background-color: var(--gris-sombre);
     position: relative;
   }
-
   .image-cover {
     width: 100%;
     height: 100%;
@@ -251,23 +187,19 @@ const schemaData = {
     background-position: center;
     transition: transform 0.6s ease;
   }
-
   .carte-article:hover .image-cover {
     transform: scale(1.1);
   }
 
-  /* --- CONTENU --- */
   .contenu-carte {
     padding: 30px;
     display: flex;
     flex-direction: column;
     flex-grow: 1;
   }
-
   .meta-header {
     margin-bottom: 15px;
   }
-
   .date-publication {
     font-family: "Lato", sans-serif;
     font-size: 0.8rem;
@@ -283,11 +215,9 @@ const schemaData = {
     line-height: 1.3;
     transition: color 0.3s;
   }
-
   .carte-article:hover h3 {
     color: var(--terre);
   }
-
   .description {
     font-family: "Lato", sans-serif;
     font-size: 1rem;
@@ -312,13 +242,11 @@ const schemaData = {
     transition: gap 0.3s;
     margin-top: auto;
   }
-
   .fleche {
     font-size: 1.2rem;
     color: var(--or-vodun);
     transition: transform 0.3s;
   }
-
   .carte-article:hover .lire-plus {
     gap: 15px;
     color: var(--terre);
@@ -327,7 +255,6 @@ const schemaData = {
     transform: translateX(5px);
   }
 
-  /* --- ANIMATIONS --- */
   @keyframes fadeInUp {
     from {
       opacity: 0;

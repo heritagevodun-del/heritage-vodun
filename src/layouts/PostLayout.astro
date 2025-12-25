@@ -22,9 +22,12 @@ const formattedDate = new Date(frontmatter.pubDate).toLocaleDateString(
   image={frontmatter.image}
 >
   <div class="blog-container">
+    {/* 👇 CORRECTION : C'est maintenant un LIEN vers la page catégorie */}
     {
       frontmatter.categorie && (
-        <div class="category-badge">{frontmatter.categorie}</div>
+        <a href={`/categories/${frontmatter.categorie}`} class="category-badge">
+          {frontmatter.categorie}
+        </a>
       )
     }
 
@@ -61,7 +64,6 @@ const formattedDate = new Date(frontmatter.pubDate).toLocaleDateString(
         <div class="tags-section">
           <h3>Sujets abordés dans cet article :</h3>
           <div class="tags-list">
-            {/* 👇 J'ai ajouté ': string' ici pour corriger l'erreur rouge */}
             {frontmatter.tags.map((tag: string) => (
               <a href={`/tags/${tag}`} class="tag-badge">
                 #{tag}
@@ -83,7 +85,7 @@ const formattedDate = new Date(frontmatter.pubDate).toLocaleDateString(
     color: #333;
   }
 
-  /* 👇 Style du Badge Catégorie */
+  /* 👇 Style du Badge Catégorie (Mis à jour pour le lien) */
   .category-badge {
     display: inline-block;
     background-color: rgba(192, 108, 59, 0.1);
@@ -96,6 +98,15 @@ const formattedDate = new Date(frontmatter.pubDate).toLocaleDateString(
     letter-spacing: 1px;
     margin-bottom: 1rem;
     border: 1px solid rgba(192, 108, 59, 0.3);
+    text-decoration: none; /* Pas de soulignement par défaut */
+    transition: all 0.3s ease;
+  }
+
+  /* Petit effet au survol pour inciter au clic */
+  .category-badge:hover {
+    background-color: #c06c3b;
+    color: white;
+    transform: translateY(-2px);
   }
 
   .meta-info {
@@ -170,7 +181,7 @@ const formattedDate = new Date(frontmatter.pubDate).toLocaleDateString(
     text-decoration: underline;
   }
 
-  /* 👇 STYLE TAGS (Votre design respecté) */
+  /* 👇 STYLE TAGS */
   .tags-section {
     margin-top: 4rem;
     padding-top: 2rem;
