@@ -2,11 +2,10 @@
 import BaseLayout from "../../layouts/BaseLayout.astro";
 import FaAnimation from "../../components/FaAnimation.astro";
 
-// --- DÉFINITION DES TYPES ---
+// --- DÉFINITION DES TYPES (Pour VS Code) ---
 interface Frontmatter {
   title: string;
   categorie: string;
-  tags?: string[]; // Ajout du tableau de tags
   pubDate?: string;
   date?: string;
   description: string;
@@ -19,8 +18,9 @@ interface MarkdownPost {
   url: string;
 }
 
-// 1. GÉNÉRATION DES ROUTES DYNAMIQUES (Spécial TAGS)
+// 1. GÉNÉRATION DES ROUTES DYNAMIQUES (Mode Expert)
 export async function getStaticPaths() {
+  // On utilise la méthode moderne (Vite) avec "eager: true" pour avoir les données tout de suite
   const matches = import.meta.glob<MarkdownPost>("../posts/*.md", {
     eager: true,
   });
@@ -37,21 +37,17 @@ export async function getStaticPaths() {
     return (isNaN(dateB) ? 0 : dateB) - (isNaN(dateA) ? 0 : dateA);
   });
 
-  // 👇 LA CORRECTION EST ICI : On récupère tous les tags (flat)
+  // Extraction des tags uniques
   const uniqueTags = [
     ...new Set(
-      sortedPosts
-        .map((post) => post.frontmatter.tags) // On prend les tableaux de tags
-        .flat() // On les met tous à plat dans une seule liste
-        .filter(Boolean) // On enlève les vides
+      sortedPosts.map((post) => post.frontmatter.categorie).filter(Boolean)
     ),
   ];
 
-  // Création des routes pour chaque tag unique
+  // Création des routes pour chaque tag
   return uniqueTags.map((tag) => {
-    // On filtre les articles qui contiennent ce tag spécifique
-    const filteredPosts = sortedPosts.filter((post) =>
-      post.frontmatter.tags?.includes(tag as string)
+    const filteredPosts = sortedPosts.filter(
+      (post) => post.frontmatter.categorie === tag
     );
     return {
       params: { tag },
@@ -60,27 +56,31 @@ export async function getStaticPaths() {
   });
 }
 
+// Récupération des props typées
 const { tag } = Astro.params;
 const { posts } = Astro.props;
 
-// Fonction format
+// Fonction format (Typée)
 function formatDate(dateInput: string | Date | undefined) {
   if (!dateInput) return "";
   const date = new Date(dateInput);
-  if (isNaN(date.getTime())) return "";
-  return date.toLocaleDateString("fr-FR", {
+  if (isNaN(date.getTime())) {
+    return "";
+  }
+  const options: Intl.DateTimeFormatOptions = {
     year: "numeric",
     month: "long",
     day: "numeric",
-  });
+  };
+  return date.toLocaleDateString("fr-FR", options);
 }
 
 // 2. SEO
 const schemaData = {
   "@context": "https://schema.org",
   "@type": "CollectionPage",
-  name: `Sujet : ${tag}`,
-  description: `Tous nos articles sur le thème : ${tag}`,
+  name: `Articles sur ${tag}`,
+  description: `Découvrez nos articles et ressources sur le thème : ${tag}`,
   mainEntity: {
     "@type": "ItemList",
     itemListElement: posts.map((post: MarkdownPost, index: number) => ({
@@ -92,18 +92,16 @@ const schemaData = {
 };
 ---
 
-<BaseLayout titrePage={`Sujet : ${tag} | Héritage Vodun`}>
+<BaseLayout titrePage={`Catégorie : ${tag} | Héritage Vodun`}>
   <script type="application/ld+json" set:html={JSON.stringify(schemaData)} />
 
   <div class="page-container">
     <header class="tag-header animate-enter">
-      <span class="sous-titre">Exploration par mot-clé</span>
+      <span class="sous-titre">Exploration Thématique</span>
       <h1>#{tag}</h1>
       <div class="separateur"></div>
       <p>
-        {posts.length} article{posts.length > 1 ? "s" : ""} trouvé{
-          posts.length > 1 ? "s" : ""
-        } sur le thème : <strong>{tag}</strong>
+        Retrouvez ici toutes nos chroniques dédiées à : <strong>{tag}</strong>
       </p>
     </header>
 
@@ -137,10 +135,6 @@ const schemaData = {
                       post.frontmatter.pubDate || post.frontmatter.date
                     )}
                   </span>
-                  {/* Petit ajout : Afficher la catégorie principale */}
-                  {post.frontmatter.categorie && (
-                    <span class="badge-cat">{post.frontmatter.categorie}</span>
-                  )}
                 </div>
 
                 <h3>{post.frontmatter.title}</h3>
@@ -159,7 +153,7 @@ const schemaData = {
 </BaseLayout>
 
 <style>
-  /* --- VARIABLES (Votre Design Original) --- */
+  /* --- VARIABLES --- */
   :root {
     --or-vodun: #d4af37;
     --terre: #a0522d;
@@ -272,9 +266,6 @@ const schemaData = {
 
   .meta-header {
     margin-bottom: 15px;
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
   }
 
   .date-publication {
@@ -282,15 +273,6 @@ const schemaData = {
     font-size: 0.8rem;
     color: #999;
     font-style: italic;
-  }
-
-  .badge-cat {
-    font-size: 0.7rem;
-    text-transform: uppercase;
-    color: var(--or-vodun);
-    border: 1px solid var(--or-vodun);
-    padding: 2px 8px;
-    border-radius: 10px;
   }
 
   h3 {
