@@ -2,18 +2,42 @@
 import BaseLayout from "../layouts/BaseLayout.astro";
 import FaAnimation from "../components/FaAnimation.astro";
 
-// 1. RÉCUPÉRATION ET TRI DES ARTICLES
-const allPosts = await Astro.glob("../pages/posts/*.md");
+// --- DEFINITION DES TYPES (Pour VS Code Intelligent) ---
+// Cela empêche les erreurs rouges quand on appelle post.frontmatter.title
+interface Frontmatter {
+  title: string;
+  pubDate: string;
+  date?: string;
+  description: string;
+  categorie: string;
+  type_image?: string;
+  image?: string;
+}
+
+interface MarkdownPost {
+  frontmatter: Frontmatter;
+  url: string;
+}
+
+// --- 1. RÉCUPÉRATION MODERNE (VITE API) ---
+// "eager: true" charge les articles immédiatement (remplace Astro.glob)
+const matches = import.meta.glob<MarkdownPost>("./posts/*.md", { eager: true });
+const allPosts = Object.values(matches);
 
 // On trie du plus récent au plus ancien (Supporte pubDate OU date)
 const sortedPosts = allPosts.sort((a, b) => {
-  const dateA = new Date(a.frontmatter.pubDate || a.frontmatter.date).valueOf();
-  const dateB = new Date(b.frontmatter.pubDate || b.frontmatter.date).valueOf();
+  const dateA = new Date(
+    a.frontmatter.pubDate || a.frontmatter.date || ""
+  ).valueOf();
+  const dateB = new Date(
+    b.frontmatter.pubDate || b.frontmatter.date || ""
+  ).valueOf();
   return (isNaN(dateB) ? 0 : dateB) - (isNaN(dateA) ? 0 : dateA);
 });
 
 // Fonction de formatage
-function formatDate(dateInput: string | Date) {
+function formatDate(dateInput: string | Date | undefined) {
+  if (!dateInput) return "Date inconnue";
   const date = new Date(dateInput);
   if (isNaN(date.getTime())) {
     return "Date inconnue";
@@ -37,7 +61,6 @@ const schemaData = {
     "@type": "BlogPosting",
     headline: post.frontmatter.title,
     description: post.frontmatter.description,
-    // 👇 Correction ici
     datePublished: post.frontmatter.pubDate || post.frontmatter.date,
     author: {
       "@type": "Organization",
@@ -97,7 +120,6 @@ const schemaData = {
                   {post.frontmatter.categorie}
                 </a>
                 <span class="date-publication">
-                  {/* 👇 Correction ici : on cherche pubDate en priorité */}
                   {formatDate(
                     post.frontmatter.pubDate || post.frontmatter.date
                   )}
