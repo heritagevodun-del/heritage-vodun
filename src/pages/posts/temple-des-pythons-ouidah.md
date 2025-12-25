@@ -1,7 +1,7 @@
 ---
 layout: ../../layouts/PostLayout.astro
 title: "Le Temple des Pythons : Pourquoi le serpent est-il sacré à Ouidah ?"
-pubDate: 2025-11-10
+pubDate: 2025-12-25
 description: "Oubliez vos phobies. À Ouidah, le python n'est pas un danger, c'est un protecteur. Regardez notre reportage vidéo au cœur du sanctuaire."
 image: "/temple-pythons.png"
 categorie: "Lieux Sacrés"
