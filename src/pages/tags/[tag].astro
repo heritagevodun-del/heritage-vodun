@@ -2,26 +2,52 @@
 import BaseLayout from "../../layouts/BaseLayout.astro";
 import FaAnimation from "../../components/FaAnimation.astro";
 
-// 1. GÉNÉRATION DES ROUTES
+// --- DÉFINITION DES TYPES (Pour VS Code) ---
+interface Frontmatter {
+  title: string;
+  categorie: string;
+  pubDate?: string;
+  date?: string;
+  description: string;
+  image?: string;
+  type_image?: string;
+}
+
+interface MarkdownPost {
+  frontmatter: Frontmatter;
+  url: string;
+}
+
+// 1. GÉNÉRATION DES ROUTES DYNAMIQUES (Mode Expert)
 export async function getStaticPaths() {
-  const allPosts: any[] = await Astro.glob("../posts/*.md");
+  // On utilise la méthode moderne (Vite) avec "eager: true" pour avoir les données tout de suite
+  const matches = import.meta.glob<MarkdownPost>("../posts/*.md", {
+    eager: true,
+  });
+  const allPosts = Object.values(matches);
 
-  // Correction : Tri avec pubDate || date
-  const sortedPosts = allPosts.sort(
-    (a, b) =>
-      new Date(b.frontmatter.pubDate || b.frontmatter.date).valueOf() -
-      new Date(a.frontmatter.pubDate || a.frontmatter.date).valueOf()
-  );
+  // Tri du plus récent au plus ancien
+  const sortedPosts = allPosts.sort((a, b) => {
+    const dateA = new Date(
+      a.frontmatter.pubDate || a.frontmatter.date || ""
+    ).valueOf();
+    const dateB = new Date(
+      b.frontmatter.pubDate || b.frontmatter.date || ""
+    ).valueOf();
+    return (isNaN(dateB) ? 0 : dateB) - (isNaN(dateA) ? 0 : dateA);
+  });
 
-  const uniqueTags: any[] = [
+  // Extraction des tags uniques
+  const uniqueTags = [
     ...new Set(
-      sortedPosts.map((post: any) => post.frontmatter.categorie).filter(Boolean)
+      sortedPosts.map((post) => post.frontmatter.categorie).filter(Boolean)
     ),
   ];
 
-  return uniqueTags.map((tag: any) => {
+  // Création des routes pour chaque tag
+  return uniqueTags.map((tag) => {
     const filteredPosts = sortedPosts.filter(
-      (post: any) => post.frontmatter.categorie === tag
+      (post) => post.frontmatter.categorie === tag
     );
     return {
       params: { tag },
@@ -30,11 +56,13 @@ export async function getStaticPaths() {
   });
 }
 
+// Récupération des props typées
 const { tag } = Astro.params;
 const { posts } = Astro.props;
 
-// Fonction format corrigée (pubDate)
-function formatDate(dateInput: string | Date) {
+// Fonction format (Typée)
+function formatDate(dateInput: string | Date | undefined) {
+  if (!dateInput) return "";
   const date = new Date(dateInput);
   if (isNaN(date.getTime())) {
     return "";
@@ -55,7 +83,7 @@ const schemaData = {
   description: `Découvrez nos articles et ressources sur le thème : ${tag}`,
   mainEntity: {
     "@type": "ItemList",
-    itemListElement: posts.map((post: any, index: number) => ({
+    itemListElement: posts.map((post: MarkdownPost, index: number) => ({
       "@type": "ListItem",
       position: index + 1,
       url: `https://heritagevodun.com${post.url}`,
@@ -79,7 +107,7 @@ const schemaData = {
 
     <section class="blog-grid">
       {
-        posts.map((post: any, index: number) => (
+        posts.map((post: MarkdownPost, index: number) => (
           <article
             class="carte-article"
             style={`animation-delay: ${Math.min(index * 100, 1000)}ms`}
@@ -102,7 +130,6 @@ const schemaData = {
 
               <div class="contenu-carte">
                 <div class="meta-header">
-                  {/* Correction ici : affichage pubDate */}
                   <span class="date-publication">
                     {formatDate(
                       post.frontmatter.pubDate || post.frontmatter.date
