@@ -1,0 +1,10 @@
+{
+  "editor.formatOnSave": true,
+  "[astro]": {
+    "editor.defaultFormatter": "astro-build.astro-vscode"
+  },
+  "markdownlint.config": {
+    "MD033": false,
+    "MD041": false
+  }
+}
