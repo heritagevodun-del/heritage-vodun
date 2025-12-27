@@ -19,84 +19,132 @@ const schemaData = {
 };
 ---
 
-<BaseLayout titrePage="Contact | L'Arbre à Palabre">
+<BaseLayout titrePage="Contact & Réservation | L'Arbre à Palabre">
   <script type="application/ld+json" set:html={JSON.stringify(schemaData)} />
 
   <div class="page-container">
     <div class="header-contact animate-fade-down">
+      <span class="sur-titre">L'Arbre à Palabre</span>
       <h1>Parlons ensemble</h1>
       <div class="ligne-or"></div>
       <p class="intro-text">
-        Une question sur la tradition ? Une demande particulière ou simplement
-        envie de nous saluer ? L'Arbre à Palabre est ouvert.
+        Sous l'arbre à palabre, la parole se libère. Que ce soit pour organiser
+        votre voyage ou proposer un partenariat, nous sommes à votre écoute.
       </p>
     </div>
 
-    <div class="conteneur-central animate-fade-up">
-      <section class="carte carte-contact">
-        <div class="contenu-carte">
-          <h2>Formulaire de Contact</h2>
-          <p class="sous-titre-form">
-            Remplissez ce formulaire, nous vous répondrons directement par
-            email.
+    <div class="conteneur-layout">
+      <aside class="sidebar-info animate-fade-right">
+        <div class="info-card special-ai">
+          <div class="icon-wrapper">✨</div>
+          <h3>Une question sur le Vodun ?</h3>
+          <p>
+            Vous voulez savoir ce qu'est le Fâ ou l'histoire d'un masque ? Pas
+            besoin d'attendre un email !
           </p>
-
-          <form id="form-contact" class="formulaire">
-            <input
-              type="hidden"
-              name="access_key"
-              value="90fd8cd4-08c6-427b-9e44-ae19d6c3f487"
-            />
-            <input
-              type="hidden"
-              name="subject"
-              value="Nouveau Message Contact (Site Web)"
-            />
-            <input
-              type="checkbox"
-              name="botcheck"
-              class="hidden"
-              style="display: none;"
-            />
-
-            <div class="groupe-input">
-              <label for="nom">Nom</label>
-              <input
-                type="text"
-                id="nom"
-                name="name"
-                required
-                placeholder="Votre nom complet"
-              />
-            </div>
-
-            <div class="groupe-input">
-              <label for="email-contact">Email</label>
-              <input
-                type="email"
-                id="email-contact"
-                name="email"
-                required
-                placeholder="votre@email.com"
-              />
-            </div>
-
-            <div class="groupe-input">
-              <label for="message">Message</label>
-              <textarea
-                id="message"
-                name="message"
-                rows="6"
-                required
-                placeholder="Comment pouvons-nous vous aider ?"></textarea>
-            </div>
-
-            <button type="submit" class="btn-envoi">Envoyer le message</button>
-
-            <div id="resultat-contact" class="message-resultat"></div>
-          </form>
+          <a
+            href="https://www.mindoguesito.com"
+            target="_blank"
+            class="btn-ai-action"
+          >
+            Demander à Mindoguesito (Immédiat)
+          </a>
         </div>
-      </section>
+
+        <div class="info-card">
+          <div class="icon-wrapper">📍</div>
+          <h3>Localisation</h3>
+          <p>Ouidah, Bénin<br />Cité historique</p>
+        </div>
+      </aside>
+
+      <main class="form-section animate-fade-up">
+        <div class="carte-contact">
+          <div class="contenu-carte">
+            <h2>Envoyer un message officiel</h2>
+            <p class="sous-titre-form">
+              Pour les demandes de guides, presse ou collaborations.
+            </p>
+
+            <form id="form-contact" class="formulaire">
+              <input
+                type="hidden"
+                name="access_key"
+                value="90fd8cd4-08c6-427b-9e44-ae19d6c3f487"
+              />
+              <input
+                type="hidden"
+                name="subject"
+                id="hidden-subject"
+                value="Nouveau Message Site Web"
+              />
+              <input
+                type="checkbox"
+                name="botcheck"
+                class="hidden"
+                style="display: none;"
+              />
+
+              <div class="grid-2-cols">
+                <div class="groupe-input">
+                  <label for="nom">Nom complet</label>
+                  <input
+                    type="text"
+                    id="nom"
+                    name="name"
+                    required
+                    placeholder="Votre Nom"
+                  />
+                </div>
+                <div class="groupe-input">
+                  <label for="email-contact">Email</label>
+                  <input
+                    type="email"
+                    id="email-contact"
+                    name="email"
+                    required
+                    placeholder="votre@email.com"
+                  />
+                </div>
+              </div>
+
+              <div class="groupe-input">
+                <label for="sujet-select">Objet de la demande</label>
+                <div class="select-wrapper">
+                  <select id="sujet-select" name="topic" required>
+                    <option value="" disabled selected
+                      >-- Choisissez un sujet --</option
+                    >
+                    <option value="Voyage">Organiser une visite à Ouidah</option
+                    >
+                    <option value="Partenariat"
+                      >Proposition de Partenariat</option
+                    >
+                    <option value="Presse">Presse & Médias</option>
+                    <option value="Autre">Autre demande</option>
+                  </select>
+                </div>
+              </div>
+
+              <div class="groupe-input">
+                <label for="message">Votre Message</label>
+                <textarea
+                  id="message"
+                  name="message"
+                  rows="5"
+                  required
+                  placeholder="Dites-nous en plus sur votre projet..."
+                ></textarea>
+              </div>
+
+              <button type="submit" class="btn-envoi">Envoyer le message</button
+              >
+
+              <div id="resultat-contact" class="message-resultat"></div>
+            </form>
+          </div>
+        </div>
+      </main>
     </div>
   </div>
 </BaseLayout>
@@ -105,19 +153,25 @@ const schemaData = {
   const form = document.getElementById("form-contact");
   const result = document.getElementById("resultat-contact");
   const btn = document.querySelector(".btn-envoi");
+  const subjectSelect = document.getElementById("sujet-select");
+  const hiddenSubject = document.getElementById("hidden-subject");
 
   if (form) {
+    // Mise à jour dynamique du sujet de l'email
+    subjectSelect.addEventListener("change", (e) => {
+      hiddenSubject.value = `[Héritage Vodun] Nouveau message : ${e.target.value}`;
+    });
+
     form.addEventListener("submit", function (e) {
       e.preventDefault();
       const formData = new FormData(form);
       const object = Object.fromEntries(formData);
       const json = JSON.stringify(object);
 
-      // Feedback visuel immédiat
       result.innerHTML = "Envoi en cours...";
-      result.style.color = "#d4af37";
-      result.style.opacity = "1";
+      result.className = "message-resultat loading";
       if (btn) btn.innerHTML = "Patientez...";
+      if (btn) btn.disabled = true;
 
       fetch("https://api.web3forms.com/submit", {
         method: "POST",
@@ -130,33 +184,32 @@ const schemaData = {
         .then(async (response) => {
           let json = await response.json();
           if (response.status == 200) {
-            // Succès
             result.innerHTML =
-              "✨ Merci ! Votre parole a bien été reçue sous l'Arbre à Palabre.<br>Nous vous répondrons avec joie très prochainement.";
-            result.style.color = "#2f4f4f";
+              "✨ Message reçu !<br>Nous vous répondrons sous peu.";
+            result.className = "message-resultat success";
             form.reset();
             if (btn) btn.innerHTML = "Message Envoyé";
           } else {
-            // Erreur API
             console.log(response);
-            result.innerHTML = json.message || "Une erreur est survenue.";
-            result.style.color = "red";
+            result.innerHTML = json.message || "Erreur lors de l'envoi.";
+            result.className = "message-resultat error";
             if (btn) btn.innerHTML = "Réessayer";
+            if (btn) btn.disabled = false;
           }
         })
         .catch((error) => {
-          // Erreur Réseau
           console.log(error);
-          result.innerHTML = "Problème de connexion. Veuillez réessayer.";
-          result.style.color = "red";
+          result.innerHTML = "Erreur de connexion.";
+          result.className = "message-resultat error";
           if (btn) btn.innerHTML = "Réessayer";
+          if (btn) btn.disabled = false;
         });
     });
   }
 </script>
 
 <style>
-  /* --- VARIABLES (Harmonisées avec le reste du site) --- */
+  /* --- VARIABLES --- */
   :root {
     --or-vodun: #d4af37;
     --terre: #a0522d;
@@ -167,156 +220,256 @@ const schemaData = {
   .page-container {
     background-color: var(--fond-page);
     padding-bottom: 80px;
-    min-height: 80vh;
-    contain: content;
+    min-height: 90vh;
   }
 
   /* --- HEADER --- */
   .header-contact {
     text-align: center;
-    padding: 80px 20px 40px;
+    padding: 80px 20px 60px;
     max-width: 800px;
     margin: 0 auto;
   }
-
+  .sur-titre {
+    text-transform: uppercase;
+    letter-spacing: 3px;
+    color: var(--terre);
+    font-size: 0.9rem;
+    font-weight: 700;
+    display: block;
+    margin-bottom: 15px;
+  }
   h1 {
     font-family: "Playfair Display", serif;
     font-size: 3.5rem;
     color: var(--gris-sombre);
-    margin-bottom: 20px;
+    margin: 0;
     line-height: 1.1;
   }
-
   .ligne-or {
     width: 60px;
     height: 3px;
     background-color: var(--or-vodun);
-    margin: 0 auto 25px;
+    margin: 20px auto;
   }
-
   .intro-text {
-    font-size: 1.15rem;
-    color: #555;
     font-family: "Lato", sans-serif;
+    font-size: 1.1rem;
+    color: #555;
     line-height: 1.6;
   }
 
-  /* --- CARTE CENTRALE --- */
-  .conteneur-central {
-    max-width: 650px;
+  /* --- LAYOUT GRID (Sidebar + Form) --- */
+  .conteneur-layout {
+    max-width: 1100px;
     margin: 0 auto;
     padding: 0 20px;
+    display: grid;
+    grid-template-columns: 1fr 2fr; /* Sidebar plus petite */
+    gap: 40px;
+    align-items: start;
   }
 
-  .carte {
+  /* SIDEBAR INFO */
+  .sidebar-info {
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+  }
+  .info-card {
+    background: white;
+    padding: 30px;
+    border-radius: 8px;
+    border: 1px solid rgba(0, 0, 0, 0.05);
+    text-align: center;
+  }
+  .special-ai {
+    background: #2f4f4f;
+    color: white;
+    box-shadow: 0 10px 30px rgba(47, 79, 79, 0.2);
+    border: none;
+  }
+  .special-ai h3,
+  .special-ai p {
+    color: white;
+  }
+  .icon-wrapper {
+    font-size: 2rem;
+    margin-bottom: 10px;
+  }
+  .info-card h3 {
+    font-family: "Playfair Display", serif;
+    margin-bottom: 10px;
+    font-size: 1.2rem;
+  }
+  .info-card p {
+    font-size: 0.95rem;
+    line-height: 1.5;
+    color: #666;
+    margin-bottom: 20px;
+  }
+  .btn-ai-action {
+    display: inline-block;
+    background: var(--or-vodun);
+    color: #1a1a1a;
+    padding: 10px 20px;
+    border-radius: 4px;
+    text-decoration: none;
+    font-weight: bold;
+    font-size: 0.9rem;
+    transition: transform 0.2s;
+  }
+  .btn-ai-action:hover {
+    transform: scale(1.05);
+  }
+
+  /* FORM SECTION */
+  .carte-contact {
     background: white;
     border-radius: 12px;
-    box-shadow: 0 20px 50px rgba(0, 0, 0, 0.08);
+    box-shadow: 0 20px 60px rgba(0, 0, 0, 0.08);
     overflow: hidden;
-    border-top: 5px solid var(--terre); /* Touche de couleur "Terre" */
-    transition: transform 0.3s ease;
+    border-top: 5px solid var(--terre);
   }
-
-  .carte:hover {
-    transform: translateY(-5px);
-  }
-
   .contenu-carte {
     padding: 45px;
   }
-
   h2 {
     font-family: "Playfair Display", serif;
     font-size: 2rem;
-    margin-bottom: 15px;
+    margin-bottom: 10px;
     color: var(--gris-sombre);
-    text-align: center;
   }
-
   .sous-titre-form {
-    text-align: center;
     color: #666;
-    margin-bottom: 35px;
-    font-size: 0.95rem;
+    margin-bottom: 30px;
   }
 
-  /* --- FORMULAIRE --- */
+  /* INPUTS */
   .formulaire {
     display: flex;
     flex-direction: column;
-    gap: 25px;
+    gap: 20px;
   }
-
+  .grid-2-cols {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 20px;
+  }
   .groupe-input {
     display: flex;
     flex-direction: column;
     gap: 8px;
   }
-
   label {
     font-weight: 700;
     color: var(--gris-sombre);
-    font-size: 0.9rem;
+    font-size: 0.85rem;
     text-transform: uppercase;
     letter-spacing: 1px;
   }
-
   input,
-  textarea {
+  textarea,
+  select {
     width: 100%;
-    padding: 16px;
+    padding: 14px;
     border: 2px solid #eee;
-    border-radius: 8px;
+    border-radius: 6px;
     font-family: "Lato", sans-serif;
-    font-size: 16px;
+    font-size: 1rem;
     background: #fafafa;
-    box-sizing: border-box; /* Important pour éviter les dépassements */
-    transition: all 0.3s ease;
+    transition: all 0.3s;
   }
-
   input:focus,
-  textarea:focus {
+  textarea:focus,
+  select:focus {
     outline: none;
     border-color: var(--or-vodun);
     background: white;
-    box-shadow: 0 0 0 4px rgba(212, 175, 55, 0.1);
   }
 
-  /* --- BOUTON --- */
+  /* SELECT CUSTOM */
+  .select-wrapper {
+    position: relative;
+  }
+  .select-wrapper::after {
+    content: "▼";
+    font-size: 0.8rem;
+    color: #888;
+    position: absolute;
+    right: 15px;
+    top: 50%;
+    transform: translateY(-50%);
+    pointer-events: none;
+  }
+  select {
+    appearance: none;
+    cursor: pointer;
+  }
+
+  /* BUTTON */
   .btn-envoi {
-    padding: 18px;
+    padding: 16px;
     border: none;
-    border-radius: 8px;
+    border-radius: 6px;
     font-weight: bold;
     cursor: pointer;
     font-size: 1rem;
     text-transform: uppercase;
     letter-spacing: 1px;
-    margin-top: 15px;
     background: linear-gradient(135deg, var(--terre), #8b4513);
     color: white;
-    transition: all 0.3s ease;
+    transition: all 0.3s;
     box-shadow: 0 4px 15px rgba(160, 82, 45, 0.3);
   }
-
-  .btn-envoi:hover {
+  .btn-envoi:hover:not(:disabled) {
     transform: translateY(-2px);
     box-shadow: 0 6px 20px rgba(160, 82, 45, 0.4);
-    background: linear-gradient(135deg, #8b4513, var(--terre));
+  }
+  .btn-envoi:disabled {
+    opacity: 0.7;
+    cursor: not-allowed;
   }
 
+  /* MESSAGES RETOUR */
   .message-resultat {
     text-align: center;
     font-weight: bold;
     margin-top: 10px;
-    line-height: 1.6;
-    padding: 10px;
+    padding: 15px;
     border-radius: 6px;
-    opacity: 0; /* Caché par défaut */
-    transition: opacity 0.5s ease;
+    display: none;
+  }
+  .message-resultat.loading {
+    display: block;
+    color: var(--or-vodun);
+  }
+  .message-resultat.success {
+    display: block;
+    background: #e8f5e9;
+    color: #2e7d32;
+    border: 1px solid #c8e6c9;
+  }
+  .message-resultat.error {
+    display: block;
+    background: #ffebee;
+    color: #c62828;
+    border: 1px solid #ffcdd2;
   }
 
-  /* --- ANIMATIONS --- */
+  /* ANIMATIONS */
+  .animate-fade-down {
+    animation: fadeDown 0.8s ease-out forwards;
+  }
+  .animate-fade-right {
+    opacity: 0;
+    animation: fadeRight 0.8s ease-out 0.2s forwards;
+  }
+  .animate-fade-up {
+    opacity: 0;
+    animation: fadeUp 0.8s ease-out 0.4s forwards;
+  }
+
   @keyframes fadeDown {
     from {
       opacity: 0;
@@ -327,10 +480,20 @@ const schemaData = {
       transform: translateY(0);
     }
   }
+  @keyframes fadeRight {
+    from {
+      opacity: 0;
+      transform: translateX(-20px);
+    }
+    to {
+      opacity: 1;
+      transform: translateX(0);
+    }
+  }
   @keyframes fadeUp {
     from {
       opacity: 0;
-      transform: translateY(30px);
+      transform: translateY(20px);
     }
     to {
       opacity: 1;
@@ -338,24 +501,20 @@ const schemaData = {
     }
   }
 
-  .animate-fade-down {
-    animation: fadeDown 1s ease-out forwards;
-  }
-  .animate-fade-up {
-    opacity: 0;
-    animation: fadeUp 1s ease-out 0.3s forwards; /* Petit délai */
-  }
-
   /* RESPONSIVE */
-  @media (max-width: 768px) {
-    h1 {
-      font-size: 2.5rem;
+  @media (max-width: 900px) {
+    .conteneur-layout {
+      grid-template-columns: 1fr;
+      gap: 30px;
     }
-    .contenu-carte {
-      padding: 30px 20px;
+    .sidebar-info {
+      order: 2;
+    } /* Sidebar en bas sur mobile */
+    .form-section {
+      order: 1;
     }
-    .header-contact {
-      padding: 60px 20px 30px;
+    .grid-2-cols {
+      grid-template-columns: 1fr;
     }
   }
 </style>
