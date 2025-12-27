@@ -16,8 +16,12 @@ const termes = [
     def: "Autel portatif en métal (généralement en fer forgé) planté en terre. Il sert de réceptacle pour invoquer, honorer et nourrir les esprits des ancêtres défunts au sein de la famille.",
   },
   {
+    mot: "Atakoun",
+    def: "La maniguette ou 'Graine de Paradis'. Épice sacrée indispensable aux rituels. Mâchée avec du gin et projetée (postillonnée), elle active les prières et réveille les fétiches.",
+  },
+  {
     mot: "Atchè",
-    def: "Le pouvoir spirituel, l'autorité ou la 'force de réalisation'. Quand un dignitaire prononce une bénédiction avec Atchè, elle se manifeste dans la réalité.",
+    def: "Le pouvoir spirituel, l'autorité ou la 'force de réalisation'. Quand un dignitaire prononce une bénédiction avec Atchè, elle se manifeste obligatoirement dans la réalité.",
   },
   {
     mot: "Ayido Hwedo",
@@ -25,7 +29,7 @@ const termes = [
   },
   {
     mot: "Azan",
-    def: "Franges de feuilles de palmier déchiquetées installées à l'entrée des lieux sacrés. Elles marquent la frontière entre le monde profane et le monde sacré, et servent de protection contre les impuretés.",
+    def: "Franges de feuilles de palmier déchiquetées installées à l'entrée des lieux sacrés. Elles marquent la frontière entre le monde profane et le monde sacré, et servent de barrière contre les impuretés.",
   },
   {
     mot: "Azé",
@@ -33,7 +37,7 @@ const termes = [
   },
   {
     mot: "Bo",
-    def: "Souvent appelé 'Gris-gris' par erreur, le Bo est un savoir scientifique et occulte utilisant les propriétés des plantes, des minéraux et des incantations pour protéger, guérir ou agir sur le destin.",
+    def: "Souvent appelé 'Gris-gris' par erreur, le Bo est une science occulte utilisant les propriétés des plantes, des minéraux et des incantations pour protéger, guérir ou agir sur le destin.",
   },
   {
     mot: "Bokonon",
@@ -118,6 +122,10 @@ const termes = [
   {
     mot: "Joto",
     def: "L'ancêtre tutélaire. Selon le Vodun, chaque enfant est la réincarnation partielle d'un ancêtre. Le Joto est révélé par le Fâ à la naissance (rite du To-Fâ).",
+  },
+  {
+    mot: "Kaolin",
+    def: "Argile blanche (Calcaire) utilisée pour tracer les signes sacrés (Vê) sur le sol ou sur le corps des initiés. Le blanc symbolise la pureté et le monde des esprits.",
   },
   {
     mot: "Klegba",
@@ -291,6 +299,13 @@ const schemaData = {
         })
       }
     </div>
+
+    <div class="cta-floating">
+      <p>Un terme manque ? Une question ?</p>
+      <a href="https://www.mindoguesito.com" target="_blank" class="btn-ask-ai">
+        Demander à Mindoguesito ✨
+      </a>
+    </div>
   </div>
 </BaseLayout>
 
@@ -303,7 +318,7 @@ const schemaData = {
   .lexique-container {
     background-color: #fcfbf9;
     min-height: 100vh;
-    padding-bottom: 80px;
+    padding-bottom: 120px; /* Plus d'espace pour le bouton flottant */
   }
   .lexique-header {
     text-align: center;
@@ -425,6 +440,53 @@ const schemaData = {
     text-align: justify;
   }
 
+  /* --- CTA FLOTTANT --- */
+  .cta-floating {
+    position: fixed;
+    bottom: 30px;
+    right: 30px;
+    background: white;
+    padding: 15px 25px;
+    border-radius: 50px;
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.15);
+    display: flex;
+    align-items: center;
+    gap: 15px;
+    border: 1px solid rgba(212, 175, 55, 0.3);
+    z-index: 100;
+    animation: float 4s ease-in-out infinite;
+  }
+  .cta-floating p {
+    margin: 0;
+    font-size: 0.9rem;
+    font-weight: 600;
+    color: #555;
+  }
+  .btn-ask-ai {
+    background: #d4af37;
+    color: white;
+    text-decoration: none;
+    padding: 8px 16px;
+    border-radius: 20px;
+    font-size: 0.85rem;
+    font-weight: 700;
+    transition: all 0.3s;
+  }
+  .btn-ask-ai:hover {
+    background: #b89628;
+    transform: scale(1.05);
+  }
+
+  @keyframes float {
+    0%,
+    100% {
+      transform: translateY(0);
+    }
+    50% {
+      transform: translateY(-10px);
+    }
+  }
+
   /* Responsive */
   @media (max-width: 768px) {
     .lexique-header h1 {
@@ -437,6 +499,13 @@ const schemaData = {
       width: 30px;
       height: 30px;
       font-size: 0.8rem;
+    }
+    .cta-floating {
+      bottom: 20px;
+      right: 20px;
+      left: 20px;
+      justify-content: space-between;
+      flex-direction: row;
     }
   }
 </style>
