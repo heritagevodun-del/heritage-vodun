@@ -4,7 +4,7 @@ import Layout from "../layouts/BaseLayout.astro";
 import Newsletter from "../components/Newsletter.astro";
 import HeroSlider from "../components/HeroSlider.astro";
 
-// Titre optimisé SEO
+// Titre optimisé pour le SEO (Mots-clés géolocalisés + Thématiques)
 const pageTitle =
   "Héritage Vodun | Spiritualité, Fâ & Tourisme Culturel à Ouidah (Bénin)";
 ---
@@ -32,19 +32,24 @@ const pageTitle =
       <div class="separator anim-entry delay-3"></div>
 
       <p class="description anim-entry delay-3">
-        <strong>Guide Spirituel & Culturel à Ouidah (Bénin).</strong><br />
-        Une spiritualité vivante. Une philosophie de paix.<br />
-        Visites guidées, consultation du Fâ et histoire révélée.
+        <strong
+          >Le guide ultime de la spiritualité Vodun à Ouidah (Bénin).</strong
+        ><br />
+        Une immersion authentique loin du folklore.<br />
+        Découvrez l'histoire de la Route des Esclaves, consultez le Fâ et dialoguez
+        avec nos gardiens.
       </p>
 
       <div class="actions anim-entry delay-4">
         <a
-          href="https://mindoguesito.com"
+          href="https://www.mindoguesito.com"
           class="btn-action btn-gold-pulse"
           target="_blank"
           rel="noopener noreferrer"
+          title="Discuter avec Mindoguesito, l'Intelligence Artificielle du savoir Vodun"
+          aria-label="Ouvrir le chat avec le Gardien des Savoirs dans un nouvel onglet"
         >
-          <span class="icon-btn">✨</span> Parler au Sage (IA)
+          <span class="icon-btn">✨</span> Parler au Gardien
         </a>
 
         <a href="/about" class="btn-action btn-outline-prestige">
@@ -116,7 +121,7 @@ const pageTitle =
     position: absolute;
     border-radius: 50%;
     box-shadow: 0 0 20px rgba(212, 175, 55, 0.15);
-    will-change: transform;
+    will-change: transform; /* Performance Boost */
   }
 
   .externe {
@@ -233,6 +238,7 @@ const pageTitle =
     border: none;
     box-shadow: 0 0 20px rgba(212, 175, 55, 0.4);
     animation: pulse-glow 2.5s infinite; /* Animation continue */
+    will-change: transform, box-shadow; /* OPTIMISATION PERFORMANCE MOBILE */
   }
 
   .btn-gold-pulse:hover {
