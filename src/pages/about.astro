@@ -1,103 +1,138 @@
 ---
 import BaseLayout from "../layouts/BaseLayout.astro";
 
-// SEO : Données structurées pour "AboutPage"
+// SEO : Données structurées enrichies
 const schemaData = {
   "@context": "https://schema.org",
   "@type": "AboutPage",
   mainEntity: {
     "@type": "Organization",
     name: "Héritage Vodun",
+    url: "https://www.heritagevodun.com",
+    logo: "https://www.heritagevodun.com/logo.png",
     description:
-      "Porte d'entrée numérique vers le Bénin et la spiritualité Vodun.",
+      "Le sanctuaire numérique du Bénin. Nous allions tradition séculaire et intelligence artificielle pour préserver et transmettre la spiritualité Vodun.",
     foundingDate: "2024",
-    areaServed: "Bénin, Monde",
+    areaServed: "Monde",
+    sameAs: [
+      "https://www.facebook.com/heritagevodun",
+      "https://www.instagram.com/heritagevodun",
+    ],
   },
 };
 ---
 
-<BaseLayout titrePage="À Propos de Notre Mission">
+<BaseLayout titrePage="Notre Mission | Héritage Vodun & Innovation">
   <script type="application/ld+json" set:html={JSON.stringify(schemaData)} />
 
   <div class="page-container">
     <header class="about-header animate-fade-down">
-      <span class="sur-titre">Notre raison d'être</span>
+      <span class="sur-titre">Tradition & Innovation</span>
       <h1>Notre Mission</h1>
       <div class="ligne-or"></div>
-      <p class="slogan">"Révéler l'Âme du Bénin"</p>
+      <p class="slogan">"Quand la Sagesse Ancestrale rencontre le Futur"</p>
     </header>
 
     <main class="conteneur-principal">
       <article class="bloc-texte animate-fade-up delay-1">
-        <h2>L'Origine du Projet</h2>
+        <h2>L'Origine d'une Ambition</h2>
         <div class="texte-riche">
           <p>
-            <span class="lettrine">B</span>ienvenue sur <strong
-              >Héritage Vodun</strong
-            >, votre porte d'entrée numérique vers le Bénin, terre d'histoire,
-            de bravoure et de spiritualité.
+            <span class="lettrine">T</span>out est parti d'une frustration.
+            Celle de voir le <strong>Bénin</strong>, berceau mondial du Vodun,
+            trop souvent réduit à des clichés de magie noire ou de folklore pour
+            touristes.
           </p>
           <p>
-            Ce projet est né d'un constat simple : la richesse culturelle du
-            Bénin, et plus particulièrement la spiritualité Vodun, reste
-            méconnue ou mal comprise à travers le monde. Souvent réduit à des
-            clichés folkloriques, le Vodun est pourtant bien plus que cela :
-            c'est une vision du monde, une philosophie de vie et un lien sacré
-            avec la nature et les ancêtres.
+            Nous savions que derrière le rideau se cachait une philosophie
+            complexe, une mathématique sacrée (le Fâ) et une connexion profonde
+            à la nature. Mais comment transmettre ce savoir millénaire à une
+            génération connectée ? Comment rendre le sacré accessible sans le
+            profaner ?
+          </p>
+          <p class="citation-block">
+            "Héritage Vodun est né pour être ce pont. Un pied dans la terre
+            rouge de Ouidah, l'autre dans le numérique."
           </p>
         </div>
       </article>
 
       <section class="bloc-valeurs animate-fade-up delay-2">
-        <h2>Ce que nous faisons</h2>
+        <h2>Nos 3 Piliers Fondateurs</h2>
         <p class="intro-section">
-          Notre objectif est de déconstruire les mythes et de célébrer
-          l'identité béninoise dans toute sa globalité :
+          Nous ne sommes pas une simple agence de tourisme, ni un musée
+          poussiéreux. Nous sommes des gardiens actifs :
         </p>
 
         <div class="grille-valeurs">
           <div class="carte-valeur">
-            <div class="icone" aria-hidden="true">📜</div>
-            <h3>L'Histoire</h3>
+            <div class="icone" aria-hidden="true">🏛️</div>
+            <h3>Mémoire</h3>
             <p>
-              Des grands royaumes du Dahomey aux figures emblématiques qui ont
-              façonné la nation.
+              Préserver l'histoire authentique, de la Route des Esclaves aux
+              Royaumes du Dahomey, pour que rien ne s'efface.
             </p>
           </div>
 
           <div class="carte-valeur">
-            <div class="icone" aria-hidden="true">🤝</div>
-            <h3>Les Valeurs</h3>
+            <div class="icone" aria-hidden="true">🤖</div>
+            <h3>Innovation</h3>
             <p>
-              L'hospitalité, le respect des aînés, l'art et les traditions
-              orales.
+              Avec <strong>Mindoguesito</strong>, notre IA, nous offrons un
+              accès instantané et bienveillant aux savoirs complexes.
             </p>
           </div>
 
           <div class="carte-valeur">
             <div class="icone" aria-hidden="true">🌿</div>
-            <h3>Le Vodun</h3>
+            <h3>Authenticité</h3>
             <p>
-              Une exploration respectueuse des divinités, des rituels et de la
-              philosophie.
+              Aucun folklore "pour touriste". Nous vous emmenons dans les vrais
+              temples, rencontrer les vrais dignitaires.
             </p>
           </div>
         </div>
       </section>
 
-      <section class="bloc-texte dernier-bloc animate-fade-up delay-3">
-        <h2>Pourquoi nous suivre ?</h2>
+      <section class="bloc-innovation animate-fade-up delay-3">
+        <div class="innovation-content">
+          <h2>La Révolution Mindoguesito</h2>
+          <p>
+            Nous avons créé la première Intelligence Artificielle dédiée à la
+            culture Vodun. Elle ne remplace pas les prêtres, elle est leur
+            <strong>messagère numérique</strong>.
+          </p>
+          <ul class="liste-avantages">
+            <li>✨ Réponses disponibles 24h/24</li>
+            <li>✨ Explications sans jugement</li>
+            <li>✨ Gardienne des mythes et légendes</li>
+          </ul>
+          <a
+            href="https://www.mindoguesito.com"
+            target="_blank"
+            class="btn-decouvrir"
+          >
+            Discuter avec l'IA →
+          </a>
+        </div>
+        <div class="innovation-image">
+          <div class="cercle-ia"></div>
+        </div>
+      </section>
+
+      <section class="bloc-texte dernier-bloc animate-fade-up delay-4">
+        <h2>Rejoignez le Cercle</h2>
         <p>
-          Que vous soyez un chercheur de vérité, un amoureux de l'Afrique, un
-          membre de la diaspora ou un simple curieux, Héritage Vodun est conçu
-          pour vous. Nous créons un pont entre le passé et le présent, entre le
-          visible et l'invisible.
+          Que vous soyez descendant en quête de racines, chercheur de vérité ou
+          simple voyageur, votre place est ici. Le Vodun est une table ouverte.
         </p>
 
         <div class="appel-final-container">
           <p class="appel-final">
-            Embarquez avec nous pour un voyage au cœur de la tradition.
+            "Nul ne connaît la fin du chemin, mais nous connaissons ceux qui
+            l'ont ouvert."
           </p>
+          <a href="/contact" class="btn-rejoindre">Planifier mon voyage</a>
         </div>
       </section>
     </main>
@@ -105,194 +140,285 @@ const schemaData = {
 </BaseLayout>
 
 <style>
-  /* --- VARIABLES LOCALES --- */
+  /* --- VARIABLES --- */
   :root {
     --or-vodun: #d4af37;
     --terre: #a0522d;
-    --gris-sombre: #2f4f4f;
+    --gris-sombre: #1a1a1a;
     --fond-page: #fdfbf7;
+    --fond-carte: #ffffff;
   }
 
   .page-container {
     background-color: var(--fond-page);
-    padding-bottom: 80px;
+    padding-bottom: 100px;
     overflow-x: hidden;
-    /* Optimisation rendu */
-    contain: content;
   }
 
   /* --- HEADER --- */
   .about-header {
     text-align: center;
-    padding: 80px 20px 60px;
-    background: linear-gradient(to bottom, #fff, var(--fond-page));
-    will-change: transform, opacity;
+    padding: 100px 20px 80px;
+    background: radial-gradient(circle at top, #fff 0%, var(--fond-page) 100%);
   }
-
   .sur-titre {
     font-family: "Lato", sans-serif;
     text-transform: uppercase;
-    letter-spacing: 2px;
-    font-size: 0.8rem;
+    letter-spacing: 3px;
+    font-size: 0.85rem;
     color: var(--terre);
     display: block;
-    margin-bottom: 10px;
+    margin-bottom: 15px;
     font-weight: 700;
   }
-
   h1 {
     font-family: "Playfair Display", serif;
-    font-size: 3.5rem;
+    font-size: 4rem;
     color: var(--gris-sombre);
     margin: 0;
     line-height: 1.1;
   }
-
   .ligne-or {
-    width: 80px;
-    height: 3px;
+    width: 60px;
+    height: 4px;
     background-color: var(--or-vodun);
-    margin: 20px auto;
+    margin: 25px auto;
+    border-radius: 2px;
   }
-
   .slogan {
     font-family: "Playfair Display", serif;
     font-style: italic;
-    color: #666;
-    font-size: 1.4rem;
+    color: #555;
+    font-size: 1.5rem;
+    max-width: 600px;
+    margin: 0 auto;
   }
 
-  /* --- CONTENU --- */
+  /* --- CONTENU GÉNÉRAL --- */
   .conteneur-principal {
-    max-width: 900px;
+    max-width: 1000px;
     margin: 0 auto;
     padding: 0 20px;
   }
-
   h2 {
     font-family: "Playfair Display", serif;
-    font-size: 2.2rem;
+    font-size: 2.5rem;
     color: var(--gris-sombre);
-    margin-bottom: 25px;
+    margin-bottom: 30px;
     position: relative;
     display: inline-block;
   }
-
-  h2::before {
+  h2::after {
     content: "";
-    position: absolute;
-    left: -20px;
-    top: 50%;
-    transform: translateY(-50%);
-    width: 4px;
-    height: 70%;
-    background-color: var(--or-vodun);
-    opacity: 0.7;
+    display: block;
+    width: 40px;
+    height: 2px;
+    background: var(--or-vodun);
+    margin-top: 10px;
   }
-
   p {
     font-family: "Lato", sans-serif;
-    font-size: 1.1rem;
+    font-size: 1.15rem;
     line-height: 1.8;
     color: #444;
-    margin-bottom: 20px;
+    margin-bottom: 25px;
+    text-align: justify;
   }
-
   .bloc-texte {
-    margin-bottom: 80px;
+    margin-bottom: 100px;
   }
-
   .lettrine {
     float: left;
     font-family: "Playfair Display", serif;
-    font-size: 4rem;
+    font-size: 4.5rem;
     line-height: 0.8;
     padding-right: 15px;
-    padding-top: 5px;
-    color: var(--terre);
+    padding-top: 8px;
+    color: var(--or-vodun);
     font-weight: bold;
   }
-
-  /* --- GRILLE DES VALEURS --- */
-  .intro-section {
-    margin-bottom: 40px;
+  .citation-block {
+    border-left: 4px solid var(--or-vodun);
+    padding-left: 20px;
+    font-style: italic;
+    font-size: 1.3rem;
+    color: var(--terre);
+    margin-top: 30px;
+    background: rgba(212, 175, 55, 0.05);
+    padding: 20px;
+    border-radius: 0 8px 8px 0;
   }
 
+  /* --- GRILLE VALEURS --- */
   .grille-valeurs {
     display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
-    gap: 30px;
-    margin-top: 30px;
+    grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+    gap: 40px;
+    margin-top: 40px;
   }
-
   .carte-valeur {
-    background: white;
-    padding: 30px 20px;
-    border-radius: 8px;
-    box-shadow: 0 5px 20px rgba(0, 0, 0, 0.05);
+    background: var(--fond-carte);
+    padding: 40px 30px;
+    border-radius: 4px;
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.03);
     text-align: center;
-    border-bottom: 3px solid transparent;
-    transition: all 0.3s ease;
-    /* Optimisation rendu */
-    contain: content;
+    border-top: 4px solid transparent;
+    transition: all 0.4s ease;
   }
-
   .carte-valeur:hover {
-    transform: translateY(-5px);
-    border-bottom-color: var(--or-vodun);
-    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+    transform: translateY(-10px);
+    border-top-color: var(--or-vodun);
+    box-shadow: 0 20px 40px rgba(0, 0, 0, 0.08);
   }
-
   .icone {
-    font-size: 2.5rem;
-    margin-bottom: 15px;
+    font-size: 3rem;
+    margin-bottom: 20px;
   }
-
   .carte-valeur h3 {
     font-family: "Playfair Display", serif;
-    color: var(--terre);
-    font-size: 1.5rem;
+    color: var(--gris-sombre);
+    font-size: 1.6rem;
     margin-bottom: 15px;
   }
-
   .carte-valeur p {
     font-size: 1rem;
     color: #666;
+    text-align: center;
     margin-bottom: 0;
+  }
+
+  /* --- BLOC INNOVATION (NOUVEAU) --- */
+  .bloc-innovation {
+    margin: 100px 0;
+    background: #1a1a1a;
+    color: white;
+    border-radius: 8px;
+    padding: 50px;
+    display: flex;
+    align-items: center;
+    gap: 40px;
+    box-shadow: 0 20px 50px rgba(0, 0, 0, 0.2);
+    position: relative;
+    overflow: hidden;
+  }
+  .innovation-content {
+    flex: 2;
+    z-index: 2;
+  }
+  .innovation-content h2 {
+    color: white;
+    margin-bottom: 20px;
+  }
+  .innovation-content p {
+    color: rgba(255, 255, 255, 0.8);
+    text-align: left;
+  }
+  .liste-avantages {
+    list-style: none;
+    padding: 0;
+    margin: 25px 0;
+  }
+  .liste-avantages li {
+    font-size: 1.1rem;
+    margin-bottom: 10px;
+    color: #d4af37;
+    font-weight: bold;
+  }
+  .btn-decouvrir {
+    display: inline-block;
+    background: #d4af37;
+    color: #1a1a1a;
+    padding: 12px 30px;
+    text-decoration: none;
+    font-weight: bold;
+    border-radius: 4px;
+    transition: transform 0.3s;
+  }
+  .btn-decouvrir:hover {
+    transform: scale(1.05);
+    background: #f0c548;
+  }
+  .innovation-image {
+    flex: 1;
+    display: flex;
+    justify-content: center;
+    z-index: 1;
+  }
+  .cercle-ia {
+    width: 200px;
+    height: 200px;
+    border-radius: 50%;
+    background: radial-gradient(
+      circle,
+      rgba(212, 175, 55, 0.4) 0%,
+      transparent 70%
+    );
+    box-shadow: 0 0 50px rgba(212, 175, 55, 0.2);
+    animation: pulse 4s infinite ease-in-out;
   }
 
   /* --- APPEL FINAL --- */
   .dernier-bloc {
     text-align: center;
+    margin-bottom: 0;
   }
-
-  .dernier-bloc h2::before {
-    display: none;
+  .dernier-bloc h2::after {
+    margin: 10px auto;
   }
-
   .appel-final-container {
     margin-top: 40px;
+    background: white;
+    padding: 40px;
+    border-radius: 8px;
+    box-shadow: 0 10px 40px rgba(0, 0, 0, 0.05);
     display: inline-block;
-    border: 1px solid var(--or-vodun);
-    padding: 10px 40px;
-    border-radius: 50px;
-    transition: background 0.3s ease;
   }
-
-  .appel-final-container:hover {
-    background: rgba(212, 175, 55, 0.1);
-  }
-
   .appel-final {
     font-family: "Playfair Display", serif;
     font-weight: bold;
     color: var(--terre);
-    font-size: 1.4rem;
-    margin: 0;
+    font-size: 1.6rem;
+    margin-bottom: 30px;
     font-style: italic;
+    text-align: center;
+  }
+  .btn-rejoindre {
+    background: var(--gris-sombre);
+    color: white;
+    padding: 15px 40px;
+    text-decoration: none;
+    font-weight: bold;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    transition: background 0.3s;
+  }
+  .btn-rejoindre:hover {
+    background: var(--or-vodun);
+    color: black;
   }
 
   /* --- ANIMATIONS --- */
+  @keyframes pulse {
+    0% {
+      transform: scale(0.95);
+      opacity: 0.5;
+    }
+    50% {
+      transform: scale(1.1);
+      opacity: 0.8;
+    }
+    100% {
+      transform: scale(0.95);
+      opacity: 0.5;
+    }
+  }
+  .animate-fade-down {
+    animation: fadeDown 1s ease-out forwards;
+  }
+  .animate-fade-up {
+    opacity: 0;
+    animation: fadeUp 0.8s ease-out forwards;
+  }
   @keyframes fadeDown {
     from {
       opacity: 0;
@@ -303,7 +429,6 @@ const schemaData = {
       transform: translateY(0);
     }
   }
-
   @keyframes fadeUp {
     from {
       opacity: 0;
@@ -314,42 +439,40 @@ const schemaData = {
       transform: translateY(0);
     }
   }
-
-  .animate-fade-down {
-    animation: fadeDown 1s ease-out forwards;
-  }
-
-  .animate-fade-up {
-    opacity: 0;
-    animation: fadeUp 0.8s ease-out forwards;
-  }
-
   .delay-1 {
-    animation-delay: 0.3s;
+    animation-delay: 0.2s;
   }
   .delay-2 {
-    animation-delay: 0.6s;
+    animation-delay: 0.4s;
   }
   .delay-3 {
-    animation-delay: 0.9s;
+    animation-delay: 0.6s;
+  }
+  .delay-4 {
+    animation-delay: 0.8s;
   }
 
-  /* --- RESPONSIVE --- */
+  /* RESPONSIVE */
   @media (max-width: 768px) {
     h1 {
-      font-size: 2.5rem;
+      font-size: 2.8rem;
     }
     h2 {
-      font-size: 1.8rem;
-    }
-    .lettrine {
-      font-size: 3rem;
+      font-size: 2rem;
     }
     .grille-valeurs {
       grid-template-columns: 1fr;
     }
-    .about-header {
-      padding: 50px 20px 30px;
+    .bloc-innovation {
+      flex-direction: column;
+      padding: 30px;
+      text-align: center;
     }
+    .innovation-content p {
+      text-align: center;
+    }
+    .innovation-image {
+      display: none;
+    } /* On cache l'animation sur mobile pour gagner de la place */
   }
 </style>
