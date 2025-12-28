@@ -2,6 +2,8 @@
 // src/layouts/BaseLayout.astro
 import Navigation from "../components/Navigation.astro";
 import { ClientRouter } from "astro:transitions";
+// 👇 AJOUT : Import du mouchard de vitesse Vercel
+import SpeedInsights from "@vercel/speed-insights/astro";
 
 // 1. Imports des polices optimisées (Plus rapide que Google CDN)
 import "@fontsource/lato/300.css";
@@ -313,6 +315,8 @@ const socialImageURL = new URL(image, Astro.url);
         }
       });
     </script>
+
+    <SpeedInsights />
   </body>
 </html>
 
