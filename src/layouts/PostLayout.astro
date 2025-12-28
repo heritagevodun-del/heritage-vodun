@@ -1,6 +1,7 @@
 ---
 import BaseLayout from "./BaseLayout.astro";
 import FaAnimation from "../components/FaAnimation.astro";
+import SakpataAltar from "../components/SakpataAltar.astro"; // 👈 IMPORT IMPORTANT
 
 // 👇 On dit à TypeScript que frontmatter peut contenir n'importe quoi (any)
 const { frontmatter } = Astro.props as { frontmatter: any };
@@ -22,7 +23,7 @@ const formattedDate = new Date(frontmatter.pubDate).toLocaleDateString(
   image={frontmatter.image}
 >
   <div class="blog-container">
-    {/* 👇 CORRECTION : C'est maintenant un LIEN vers la page catégorie */}
+    {/* LIEN CATÉGORIE */}
     {
       frontmatter.categorie && (
         <a href={`/categories/${frontmatter.categorie}`} class="category-badge">
@@ -39,12 +40,20 @@ const formattedDate = new Date(frontmatter.pubDate).toLocaleDateString(
 
     <h1>{frontmatter.titrePage || frontmatter.title}</h1>
 
+    {/* 👇 LOGIQUE D'AFFICHAGE INTELLIGENTE */}
     {
       frontmatter.type_image === "animation_fa" ? (
+        /* CAS 1 : Animation Fâ */
         <div class="featured-animation">
           <FaAnimation />
         </div>
+      ) : frontmatter.type_image === "animation_sakpata" ? (
+        /* CAS 2 : Animation Sakpata (NOUVEAU) */
+        <div class="featured-animation">
+          <SakpataAltar />
+        </div>
       ) : (
+        /* CAS 3 : Image Classique (Par défaut) */
         frontmatter.image && (
           <img
             src={frontmatter.image}
@@ -59,6 +68,7 @@ const formattedDate = new Date(frontmatter.pubDate).toLocaleDateString(
       <slot />
     </div>
 
+    {/* TAGS */}
     {
       frontmatter.tags && (
         <div class="tags-section">
@@ -85,7 +95,7 @@ const formattedDate = new Date(frontmatter.pubDate).toLocaleDateString(
     color: #333;
   }
 
-  /* 👇 Style du Badge Catégorie (Mis à jour pour le lien) */
+  /* Badge Catégorie */
   .category-badge {
     display: inline-block;
     background-color: rgba(192, 108, 59, 0.1);
@@ -98,11 +108,10 @@ const formattedDate = new Date(frontmatter.pubDate).toLocaleDateString(
     letter-spacing: 1px;
     margin-bottom: 1rem;
     border: 1px solid rgba(192, 108, 59, 0.3);
-    text-decoration: none; /* Pas de soulignement par défaut */
+    text-decoration: none;
     transition: all 0.3s ease;
   }
 
-  /* Petit effet au survol pour inciter au clic */
   .category-badge:hover {
     background-color: #c06c3b;
     color: white;
@@ -137,6 +146,8 @@ const formattedDate = new Date(frontmatter.pubDate).toLocaleDateString(
     margin-bottom: 3rem;
     overflow: hidden;
     border-radius: 8px;
+    /* On ajoute une petite ombre aussi pour l'animation pour que ça fasse propre */
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
   }
 
   /* --- Contenu --- */
@@ -181,7 +192,7 @@ const formattedDate = new Date(frontmatter.pubDate).toLocaleDateString(
     text-decoration: underline;
   }
 
-  /* 👇 STYLE TAGS */
+  /* STYLE TAGS */
   .tags-section {
     margin-top: 4rem;
     padding-top: 2rem;
