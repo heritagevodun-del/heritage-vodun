@@ -30,6 +30,7 @@ tags:
     "Vodun",
   ]
 ---
+*Note : L'animation visuelle ci-dessus est une création numérique interactive, conçue pour illustrer la structure géométrique et symbolique du Fâ.*
 
 Si le Vodun est la religion, **le Fâ en est l'écriture**. Avant chaque grande décision, chaque cérémonie ou chaque naissance, les Béninois consultent cet oracle millénaire. Loin de la voyance de foire ou de la magie noire, le Fâ est un système binaire complexe qui révèle la "feuille de route" précise de chaque individu.
 
