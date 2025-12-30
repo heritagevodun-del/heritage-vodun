@@ -287,7 +287,7 @@ const schemaData = {
     margin-bottom: 0;
   }
 
-  /* --- BLOC INNOVATION (NOUVEAU) --- */
+  /* --- BLOC INNOVATION --- */
   .bloc-innovation {
     margin: 100px 0;
     background: #1a1a1a;
@@ -357,7 +357,7 @@ const schemaData = {
     animation: pulse 4s infinite ease-in-out;
   }
 
-  /* --- APPEL FINAL --- */
+  /* --- APPEL FINAL (MODIFIÉ POUR RESPONSIVE) --- */
   .dernier-bloc {
     text-align: center;
     margin-bottom: 0;
@@ -371,7 +371,7 @@ const schemaData = {
     padding: 40px;
     border-radius: 8px;
     box-shadow: 0 10px 40px rgba(0, 0, 0, 0.05);
-    display: inline-block;
+    display: inline-block; /* Comportement par défaut desktop */
   }
   .appel-final {
     font-family: "Playfair Display", serif;
@@ -383,6 +383,7 @@ const schemaData = {
     text-align: center;
   }
   .btn-rejoindre {
+    display: inline-block; /* Important pour le padding et le responsive */
     background: var(--gris-sombre);
     color: white;
     padding: 15px 40px;
@@ -390,11 +391,14 @@ const schemaData = {
     font-weight: bold;
     text-transform: uppercase;
     letter-spacing: 1px;
-    transition: background 0.3s;
+    border-radius: 4px; /* Un peu d'arrondi c'est plus moderne */
+    transition: all 0.3s ease;
   }
   .btn-rejoindre:hover {
     background: var(--or-vodun);
     color: black;
+    transform: translateY(-2px);
+    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
   }
 
   /* --- ANIMATIONS --- */
@@ -452,20 +456,32 @@ const schemaData = {
     animation-delay: 0.8s;
   }
 
-  /* RESPONSIVE */
+  /* --- RESPONSIVE OPTIMISÉ --- */
   @media (max-width: 768px) {
+    /* Typographie adaptée */
     h1 {
-      font-size: 2.8rem;
+      font-size: 2.5rem;
     }
     h2 {
-      font-size: 2rem;
+      font-size: 1.8rem;
+    }
+    .lettrine {
+      font-size: 3.5rem;
+    }
+
+    /* Layout */
+    .page-container {
+      padding-bottom: 50px;
+    }
+    .about-header {
+      padding: 60px 20px 40px;
     }
     .grille-valeurs {
       grid-template-columns: 1fr;
     }
     .bloc-innovation {
       flex-direction: column;
-      padding: 30px;
+      padding: 30px 20px;
       text-align: center;
     }
     .innovation-content p {
@@ -473,6 +489,25 @@ const schemaData = {
     }
     .innovation-image {
       display: none;
-    } /* On cache l'animation sur mobile pour gagner de la place */
+    }
+
+    /* FIX BOUTON MOBILE */
+    .appel-final-container {
+      width: 100%; /* Prend toute la largeur disponible */
+      box-sizing: border-box; /* Inclut le padding dans le calcul de largeur */
+      padding: 30px 20px; /* Marges internes réduites */
+      margin-top: 20px;
+    }
+    .appel-final {
+      font-size: 1.2rem;
+      margin-bottom: 25px;
+    }
+    .btn-rejoindre {
+      display: block; /* Devient un bloc pour prendre la largeur */
+      width: 100%; /* Remplit le conteneur */
+      text-align: center; /* Centre le texte */
+      padding: 15px 10px; /* Padding ajusté */
+      box-sizing: border-box;
+    }
   }
 </style>
