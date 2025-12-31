@@ -4,6 +4,7 @@ title: "Tofâ et Purification : Préparer Spirituellement la Nouvelle Année"
 pubDate: 2025-12-31
 description: "Au Bénin, on ne change pas d'année sans consulter l'Oracle. Découvrez le Tofâ et un rituel de purification simple pour entrer en 2026 avec une énergie renouvelée."
 image: "/purification-vodun.jpg"
+featured: true
 categorie: "Spiritualité & Tradition"
 tags:
   - "Tofâ"
