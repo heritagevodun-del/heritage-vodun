@@ -1,7 +1,7 @@
 ---
 layout: ../../layouts/PostLayout.astro
 title: "L'Asen : L'objet métallique qui permet de \"téléphoner\" aux morts"
-pubDate: 2026-01-08
+pubDate: 2026-01-03
 description: "Ce n'est pas un simple chandelier en fer. C'est un chef-d'œuvre spirituel conçu pour planter l'âme d'un ancêtre dans la terre et dialoguer avec lui."
 image: "/asen-header.jpg"
 categorie: "Objet Sacré"
