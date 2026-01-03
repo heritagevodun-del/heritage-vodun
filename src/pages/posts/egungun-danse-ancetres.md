@@ -1,7 +1,7 @@
 ---
 layout: ../../layouts/PostLayout.astro
 title: "Egungun : Pourquoi les morts reviennent-ils danser parmi nous ?"
-pubDate: 2026-01-07
+pubDate: 2026-01-03
 description: "Loin des clichés effrayants, découvrez la vérité émouvante sur les Revenants. Ce n'est pas de la sorcellerie, c'est la plus belle des réunions de famille."
 image: "/egungun-header.jpg"
 categorie: "Sagesse"
