@@ -38,7 +38,7 @@ Au moment où le Zangbeto tourne, il ne s'agit pas d'une performance acrobatique
 * **Pourquoi certains spectateurs fondent-ils en larmes sans raison ?**
 * **Pourquoi se sent-on "rechargé" comme une batterie après avoir marché sur ce sable ?**
 
-La réponse ne se trouve pas dans les guides touristiques. Elle est dans le sol même de la Porte du Non-Retour.
+La réponse ne se trouve pas chez les guides touristiques. Elle est dans le sol même de la Porte du Non-Retour.
 
 ## Ce que l'on ne vous dit pas sur la "Transe"
 
@@ -54,7 +54,7 @@ Si vous avez prévu d'être à Ouidah ce mois-ci, j'ai un conseil crucial pour v
 **Baissez votre téléphone.**
 
 Prenez vos photos, oui. Mais ensuite, rangez-le.
-Regardez avec vos yeux. Écoutez avec votre ventre.
+Regardez avec vos yeux. Écoutez avec vos oreilles.
 Acceptez de ne pas tout comprendre intellectuellement, mais de tout ressentir émotionnellement.
 
 C'est là, et seulement là, que les "Vodun Days" cesseront d'être un festival pour devenir ce qu'ils sont vraiment : **un rendez-vous avec vous-même.**
