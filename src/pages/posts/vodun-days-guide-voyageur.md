@@ -20,7 +20,7 @@ tags:
   ]
 ---
 
-Ouidah s'apprête à vibrer. Les 9 et 10 janvier 2026, la cité historique accueille le monde pour les **Vodun Days**. Plus qu'un festival, c'est une immersion spirituelle où le visible et l'invisible se côtoient dans les rues.
+Ouidah s'apprête à vibrer. Les 8, 9 et 10 janvier 2026, la cité historique accueille le monde pour les **Vodun Days**. Plus qu'un festival, c'est une immersion spirituelle où le visible et l'invisible se côtoient dans les rues.
 
 Vous vous apprêtez à y participer ? Magnifique. Pour que votre expérience soit inoubliable et fluide, il suffit de connaître quelques codes culturels. Loin des interdits effrayants, voyez ces règles comme des clés : elles vous ouvrent les portes d'une intimité respectueuse avec la tradition.
 
