@@ -4,7 +4,7 @@ title: "Vodun Days : Ce que les caméras ne vous montreront jamais"
 pubDate: 2026-01-03
 description: "Derrière les images spectaculaires du 10 Janvier se cache une réalité invisible. Êtes-vous prêt à voir ce que les autres ne font que regarder ?"
 image: "/vodun-days-header.png"
-categorie: "Spiritualité"
+categorie: "Rituels & Cérémonies"
 tags:
   [
     "Vodun Days",

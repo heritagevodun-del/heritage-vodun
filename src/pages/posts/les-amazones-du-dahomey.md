@@ -4,7 +4,7 @@ title: "Les Amazones du Dahomey : La véritable histoire derrière le mythe"
 pubDate: 2026-01-01
 description: "Si le film 'The Woman King' les a rendues célèbres, la réalité des Agojie est bien plus complexe et fascinante. Plongée dans l'histoire de la seule armée féminine d'élite au monde."
 image: "/amazones-dahomey.jpg"
-categorie: "Histoire"
+categorie: "Histoire & Patrimoine"
 tags:
   [
     "Amazones",

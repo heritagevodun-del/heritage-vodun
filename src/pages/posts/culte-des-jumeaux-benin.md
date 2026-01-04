@@ -4,7 +4,7 @@ title: "Le Culte des Jumeaux : Pourquoi au Bénin, ils ne meurent jamais ?"
 pubDate: 2025-12-26
 description: "Au Bénin, pays qui a l'un des plus forts taux de gémellité au monde, les jumeaux sont vénérés. Découvrez l'histoire touchante des statuettes Ibeji."
 image: "/jumeaux-ibeji.jpeg"
-categorie: "Spiritualité"
+categorie: "Panthéon & Divinités"
 tags:
   [
     "Jumeaux",

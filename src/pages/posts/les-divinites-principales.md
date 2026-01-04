@@ -4,7 +4,7 @@ title: "Au-delà des Mythes : Qui sont les Grandes Divinités du Vodun ?"
 pubDate: 2025-12-20
 description: "Legba n'est pas le diable. Découvrez la véritable nature de Mawu-Lisa, Heviosso, Sakpata et des autres forces qui régissent le panthéon Vodun."
 image: "/divinites-vodun.jpeg"
-categorie: "Divinités"
+categorie: "Panthéon & Divinités"
 ---
 
 Souvent réduit à tort à de la sorcellerie dans la culture populaire occidentale, le Vodun est en réalité une spiritualité complexe, organisée et profondément liée aux forces de la nature. Pour comprendre le Vodun, il faut d'abord rencontrer ceux qui l'habitent.

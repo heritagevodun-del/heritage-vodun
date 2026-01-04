@@ -6,7 +6,7 @@ description: "Rénovée et majestueuse, la Porte du Non-Retour marque l'ultime �
 image: "/porte-non-retour.jpeg"
 type_image: "animation_porte"
 featured: true
-categorie: "Histoire & Mémoire"
+categorie: "Histoire & Patrimoine"
 tags:
   [
     "Porte du Non-Retour",

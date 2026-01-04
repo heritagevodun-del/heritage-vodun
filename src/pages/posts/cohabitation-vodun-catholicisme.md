@@ -4,7 +4,7 @@ title: "Le Miracle de Ouidah : Quand la Croix et le Serpent prient ensemble"
 pubDate: 2025-12-25
 description: "Face à face, la Basilique et le Temple des Pythons se regardent depuis un siècle. Découvrez l'exceptionnelle tolérance religieuse du Bénin, une leçon de paix pour le monde."
 image: "/fa.jpeg"
-categorie: "Spiritualité"
+categorie: "Histoire & Patrimoine"
 tags:
   [
     "Ouidah",

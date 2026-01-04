@@ -6,7 +6,7 @@ description: "Oubliez vos phobies. À Ouidah, le python n'est pas un danger, c'e
 image: "/temple-pythons.png"
 type_image: "standard"
 featured: true
-categorie: "Lieux Sacrés"
+categorie: "Panthéon & Divinités"
 tags:
   [
     "Ouidah",

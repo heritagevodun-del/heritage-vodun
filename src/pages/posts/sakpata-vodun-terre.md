@@ -7,7 +7,7 @@ description: "Qui est Sakpata, le Vodun de la Terre ? Souvent craint pour son li
 type_image: "animation_sakpata"
 image: "/sakpata-vodun-terre.jpg"
 featured: false
-categorie: "Divinité"
+categorie: "Panthéon & Divinités"
 tags:
   [
     "Sakpata",

@@ -4,7 +4,7 @@ title: "Patrice Talon et le Vodun : La Vision Politique d'une Renaissance Cultur
 pubDate: 2025-12-25
 description: "Comment le Président Patrice Talon a transformé le Vodun en levier de développement et de fierté nationale. Analyse d'une stratégie gagnant-gagnant."
 image: "/patrice-talon-vodun.jpeg"
-categorie: "Société & Histoire"
+categorie: "Histoire & Patrimoine"
 tags: ["Patrice Talon",
     "Politique",
     "Bénin",

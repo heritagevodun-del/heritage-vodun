@@ -5,7 +5,7 @@ pubDate: 2025-12-29
 description: "Qu'est-ce qui se passe vraiment dans un couvent Vodun ? Décryptage du processus d'initiation, de la mort symbolique à la renaissance du Vodunsi."
 image: "/initiation-hounkpame.jpg"
 featured: false
-categorie: "Spiritualité"
+categorie: "Rituels & Cérémonies"
 tags:
   [
     "Initiation",
