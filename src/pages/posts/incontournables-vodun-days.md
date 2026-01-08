@@ -1,6 +1,6 @@
 ---
 layout: ../../layouts/PostLayout.astro
-title: "Vodun Days : Les 3 apparitions mystiques à ne pas rater ce 10 Janvier"
+title: "Vodun Days : Les 3 apparitions mystiques à ne pas rater ce 9 Janvier"
 pubDate: 2026-01-08
 description: "Zangbeto, Egungun, Mami Wata... Découvrez les secrets des divinités qui vont danser entre le monde visible et invisible à Ouidah."
 image: "/masques-vodun.jpg"
