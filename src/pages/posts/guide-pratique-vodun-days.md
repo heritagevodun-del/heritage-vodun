@@ -72,7 +72,7 @@ Les Vodun Days sont une invitation à voir le monde autrement. Laissez votre log
 ### Envie d'en savoir plus sur le sens caché de la fête ?
 
 Nous avons décrypté pour vous l'histoire et la symbolique profonde de l'événement.
-👉 **[Lire l'article : Comprendre les Vodun Days 2026](/blog/vodun-days-2026)**
+👉 **[Lire l'article : Comprendre les Vodun Days](/posts/programme-vodun-days-decryptage)**
 
 ---
 
