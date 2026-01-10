@@ -3,7 +3,7 @@ layout: ../../layouts/PostLayout.astro
 title: "Vodun ou Vaudou ? Comprendre l'essence d'une spiritualité millénaire"
 pubDate: 2025-11-20
 description: "Poupées, zombies, sorcellerie ? Hollywood a tout faux. Héritage Vodun rétablit la vérité sur une vision du monde où l'humain, la nature et les ancêtres vivent en harmonie."
-image: "/vodun-intro.jpeg"
+image: "/vodun-intro.jpg"
 categorie: "Sagesse & Spiritualité"
 tags:
   [
