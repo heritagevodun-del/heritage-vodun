@@ -1,6 +1,6 @@
 ---
 layout: ../../layouts/PostLayout.astro
-title: "Ouidah ne s'arrête pas le 10 Janvier : 3 trésors à voir au calme aujourd'hui"
+title: "Ouidah ne s'arrête pas apres les vodun days : 3 trésors à voir au calme aujourd'hui"
 pubDate: 2026-01-11
 description: "La fièvre est retombée ? Profitez de ce dimanche pour découvrir le visage paisible et historique de Ouidah, loin de la foule."
 image: "/ouidah-calme.jpg"
@@ -37,7 +37,6 @@ Le 10 janvier, la route est noire de monde.
 Ce matin, refaites le chemin inverse, de la Porte du Non-Retour vers l'Arbre de l'Oubli.
 
 * **Pourquoi ?**
-
 Le silence et le vent marin donnent à ce lieu une dimension spirituelle bouleversante que la foule masque parfois. C'est le moment de se reconnecter à l'histoire.
 
 ## 3. Le Temple des Pythons (Rencontre privée)
