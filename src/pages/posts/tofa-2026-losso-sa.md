@@ -4,7 +4,7 @@ title: "Tofa 2026 : Le signe 'Losso Sa' décrypté. Invincibilité pour le Béni
 pubDate: 2026-01-11
 description: "Bec en métal, adultère fatal, cailloux contre noix de palme... Le Fâ a parlé via Losso Sa. Découvrez les révélations chocs pour le pays et pour votre vie privée."
 image: "/tofa-2026-losso-sa.jpg"
-categorie: "Spiritualité & Fâ"
+categorie: "Sagesse & Spiritualité"
 tags:
   [
     "Tofa 2026",
