@@ -1,6 +1,6 @@
 ---
 layout: ../../layouts/PostLayout.astro
-title: "Ouidah ne s'arrête pas apres les vodun days : 3 trésors à voir au calme aujourd'hui"
+title: "Ouidah ne s'arrête pas après les vodun days : 3 trésors à voir au calme aujourd'hui"
 pubDate: 2026-01-11
 description: "La fièvre est retombée ? Profitez de ce dimanche pour découvrir le visage paisible et historique de Ouidah, loin de la foule."
 image: "/ouidah-calme.jpg"

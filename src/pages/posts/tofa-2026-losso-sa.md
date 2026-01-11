@@ -33,7 +33,7 @@ tags:
   ]
 ---
 
-Le verdict est tombé ce matin. Le Bénin sera sous l'influence du signe **LOSSO SA** (Loso-Sa) pour l'année 2026.
+Le verdict est tombé. Le Bénin sera sous l'influence du signe **LOSSO SA** (Loso-Sa) pour l'année 2026.
 Consulté par le collège des grands prêtres, le Fâ a livré un message d'une puissance rare.
 
 C'est un signe à double tranchant : il promet l'invincibilité à la Nation, mais déclare la guerre à l'hypocrisie dans nos vies privées.
@@ -49,7 +49,7 @@ Les métaphores utilisées par le Fâ pour décrire le Bénin en 2026 sont sans 
 > *« Nul ne peut discuter l’hégémonie du vent avec les narines. »*
 
 Cela signifie que le Bénin est une force naturelle qu'on ne peut pas arrêter.
-De plus, le Fâ avertit les ennemis de la nation (et les putschistes potentiels) avec cette image terrible : **« 30 noix de palme ne peuvent pas affronter 30 cailloux et rentrer indemnes. »**
+De plus, le Fâ avertit les ennemis de la nation avec cette image terrible : **« 30 noix de palme ne peuvent pas affronter 30 cailloux et rentrer indemnes. »**
 En clair : Quiconque tentera de déstabiliser le pays ou de l'attaquer cette année s'y cassera les dents. Le Bénin sortira vainqueur de toutes les confrontations.
 
 ### 2. La Gouvernance au "Bec en Métal"
