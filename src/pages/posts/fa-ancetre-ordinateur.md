@@ -112,4 +112,5 @@ Le digital ne vient pas tuer la tradition. Il est là pour la révéler.
 ### Envie de décoder votre avenir ?
 
 L'algorithme du Fâ a un message pour vous cette année.
+👉 **[Contactez l'équipe Héritage Vodun pour une orientation](/contact)**
 👉 **[Lire le décryptage du Tofa 2026](/posts/comprendre-tofa-2026)**
