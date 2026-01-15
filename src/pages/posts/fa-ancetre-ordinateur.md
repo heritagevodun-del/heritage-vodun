@@ -6,7 +6,7 @@ pubDate: 2026-01-15
 author: "Mindoguesito"
 image: "/fa-matrix-binary.png"
 featured: true
-categorie: "Science & Tradition"
+categorie: "Sagesse & Spiritualité"
 tags:
   [
     "Science",
