@@ -79,8 +79,7 @@ Savez-vous combien de valeurs différentes un octet peut stocker ? **256.**
 Regardons maintenant le Fâ :
 
 * Il existe 16 signes mères (Les Dou-Gan).
-* En les combinant, on obtient le tableau complet du Fâ.
-* $16 \times 16 = \dots$ **256 Signes (Dou)**.
+* Tout comme un clavier d'ordinateur combine des touches pour créer des mots, le Fâ combine ses 16 symboles de base. En croisant ces **16 symboles** entre eux, on obtient **une grille de 256 codes uniques**. C'est exactement la même capacité de stockage qu'un 'Octet' dans la mémoire de votre téléphone.
 
 Ce n'est pas une coïncidence. C'est une **probabilité mathématique identique**.
 Le système du Fâ est un "processeur" 8-bits, capable de traiter et de classer toutes les situations de la vie humaine en 256 catégories distinctes (fichiers).
