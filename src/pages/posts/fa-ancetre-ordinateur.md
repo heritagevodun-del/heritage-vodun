@@ -2,7 +2,7 @@
 layout: ../../layouts/PostLayout.astro
 title: "Le Fâ : L'Ancêtre Africain de l'Ordinateur ? (La Preuve Scientifique)"
 description: "0 et 1. Ouvert et Fermé. Découvrez comment le système divinatoire du Fâ utilise le même code binaire que votre smartphone, des siècles avant l'invention de l'informatique."
-pubDate: 2026-01-14
+pubDate: 2026-01-15
 author: "Mindoguesito"
 image: "/fa-matrix-binary.png"
 featured: true
