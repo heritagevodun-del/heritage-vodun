@@ -4,6 +4,7 @@ title: "TOFA 2026 : Le Grand Décryptage de LOSSO SA"
 pubDate: 2026-01-14
 description: "Nominations, Trahisons familiales, Minon-Nan et Sécurité nationale. Voici l'analyse intégrale et sans filtre du signe qui gouverne le Bénin en 2026."
 image: "/tofa-2026-benin.png"
+featured: true
 categorie: "Sagesse & Spiritualité"
 tags:
   [

@@ -4,7 +4,7 @@ title: "Vodun Days à Ouidah : Au-delà du Festival, une Renaissance Spirituelle
 pubDate: 2025-12-26
 description: "Tout savoir sur les Vodun Days au Bénin. Programme, rituels sacrés à Ouidah et décryptage de cet événement mondial qui réinvente la fête du 10 janvier."
 image: "/vodun-days-ouidah.jpg"
-featured: true
+featured: false
 categorie: "Rituels & Cérémonies"
 tags:
   [

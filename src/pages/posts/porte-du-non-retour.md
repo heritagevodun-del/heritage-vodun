@@ -5,7 +5,7 @@ pubDate: 2025-12-24
 description: "Rénovée et majestueuse, la Porte du Non-Retour marque l'ultime étape de la Route de l'Esclave. Une plongée émouvante dans l'histoire et le patrimoine mondial."
 image: "/porte-non-retour.jpeg"
 type_image: "animation_porte"
-featured: true
+featured: false
 categorie: "Histoire & Patrimoine"
 tags:
   [

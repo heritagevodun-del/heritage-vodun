@@ -5,7 +5,7 @@ pubDate: 2025-12-25
 description: "Oubliez vos phobies. À Ouidah, le python n'est pas un danger, c'est un protecteur. Plongée au cœur du sanctuaire du peuple Xwéda."
 image: "/temple-pythons.png"
 type_image: "standard"
-featured: true
+featured: false
 categorie: "Panthéon & Divinités"
 tags:
   [
