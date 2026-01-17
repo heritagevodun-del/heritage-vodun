@@ -55,7 +55,7 @@ Pourquoi ? Parce que ce qu'on ne comprend pas fait peur. Et ce qui fait peur fai
 Est-ce qu'on utilise des statuettes dans le Vodun au Bénin ? **Oui.**
 Mais leur fonction est radicalement opposée à celle des films.
 
-Ces statuettes (souvent appelées *Boche* ou liées aux *Ibeji/Venavi* pour les jumeaux) sont des objets de **soin** et de **protection**.
+Ces statuettes (souvent appelées *Boche* ou liées aux *Ibeji/hoovi* pour les jumeaux) sont des objets de **soin** et de **protection**.
 
 * On ne plante pas des clous pour blesser, on noue des cordes pour **"attacher" le mal** et l'empêcher de nuire.
 * On verse des libations pour nourrir l'esprit, pas pour maudire.
