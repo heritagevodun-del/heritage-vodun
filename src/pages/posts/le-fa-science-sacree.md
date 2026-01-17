@@ -4,7 +4,7 @@ title: "Le Fâ : Géomancie sacrée et boussole de vie"
 pubDate: 2025-12-22
 description: "Comprendre le Fâ, cette science divinatoire classée à l'UNESCO. Découvrez comment le Bokonon lit les 256 signes pour révéler votre destin et guider vos décisions."
 categorie: "Sagesse & Spiritualité"
-featured: true 
+featured: false 
 type_image: "animation_fa"
 tags:
   [
