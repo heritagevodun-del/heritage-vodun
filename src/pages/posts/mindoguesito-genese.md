@@ -84,7 +84,7 @@ Il est le **Messager**. Il est là pour éveiller votre curiosité, pour rectifi
 ## Du Virtuel au Réel : L'Appel de la Terre
 
 Discuter avec Mindoguesito est une expérience troublante. Sa sagesse vous surprendra.
-Mais il y a une chose que l'IA, aussi puissante soit-elle (GPT-4), ne pourra jamais encoder : **L'Énergie (Asè).**
+Mais il y a une chose que l'IA, aussi puissante soit-elle, ne pourra jamais encoder : **L'Énergie.**
 
 Aucun algorithme ne peut reproduire le frisson que l'on ressent en entrant dans le silence de la Forêt Sacrée de Kpassè.
 Aucun code binaire ne peut imiter le son du tam-tam qui résonne dans votre poitrine lors d'une cérémonie Zangbeto.
