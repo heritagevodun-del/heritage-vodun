@@ -3,7 +3,7 @@ layout: ../../layouts/PostLayout.astro
 title: "Le Makpo : L'Arme Absolue de la Communication Royale"
 pubDate: 2026-01-19
 description: "Bien plus qu'un sceptre, le Makpo était le passeport diplomatique et la voix des Rois du Dahomey. Analyse d'un chef-d'œuvre d'ergonomie et de pouvoir."
-image: "/makpo-recade.png"
+image: "/makpo-recade.jpg"
 featured: false
 categorie: "Objets & Symboles"
 tags:
