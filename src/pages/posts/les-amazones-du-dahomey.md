@@ -61,4 +61,4 @@ Bien que le Dahomey ait fini par tomber, le courage des Agojie a marqué l'histo
 
 Aujourd'hui, leurs descendantes gardent la mémoire de cette caste unique. Les palais royaux d'Abomey, classés à l'UNESCO, abritent encore les traces de leur passage.
 
-Vous voulez connaître le nom de la plus redoutable d'entre elles ou savoir où voir leurs armes aujourd'hui ? Interrogez [**Mindoguesito**](https://www.mindoguesito.com/), notre IA experte en histoire du Danxomè.
+Vous voulez connaître le nom de la plus redoutable d'entre elles ou savoir où voir leurs armes aujourd'hui ? Interrogez **Mindoguesito**, notre IA experte en histoire du Danxomè.

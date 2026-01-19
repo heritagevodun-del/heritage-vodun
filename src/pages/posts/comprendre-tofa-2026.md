@@ -119,6 +119,3 @@ Nous avons décrypté les rituels nécessaires, mais chaque destin est unique.
 👉 **[Contactez l'équipe Héritage Vodun pour une orientation](/contact)**
 
 ---
-
-*Vous avez une question immédiate sur un interdit du Fâ ?*
-👉 **Demandez à [Mindoguesito](https://www.mindoguesito.com/), votre assistant IA.**

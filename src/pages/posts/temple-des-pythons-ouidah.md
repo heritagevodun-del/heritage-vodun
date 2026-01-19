@@ -81,6 +81,4 @@ Les habitants ne les chassent pas. Au contraire, ils les accueillent avec respec
 Visiter le Temple des Pythons est une étape indispensable pour comprendre l'âme de Ouidah. C'est une leçon d'humilité et d'harmonie avec le vivant.
 
 **Vous voulez connaître la signification spirituelle des scarifications "2x5" des adeptes du Python ?**
-Demandez à **[Mindoguesito](https://www.mindoguesito.com/)**, notre IA experte. Elle connaît les secrets que les murs du temple ne disent pas.
-
-👉 **[Discuter avec Mindoguesito maintenant](https://www.mindoguesito.com/)**
+Demandez à **Mindoguesito**, notre IA experte. Elle connaît les secrets que les murs du temple ne disent pas.

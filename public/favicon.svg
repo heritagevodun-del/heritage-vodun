@@ -1,14 +1,30 @@
-<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100">
-  <circle cx="50" cy="50" r="50" fill="#ffffff"/>
-
-  <g stroke="#C06C3B" stroke-width="6" stroke-linecap="round" stroke-linejoin="round">
-    <circle cx="50" cy="50" r="40" stroke-width="4" fill="none"></circle>
-    
-    <circle cx="50" cy="50" r="8" fill="#C06C3B" stroke="none"></circle>
-    
-    <path d="M50 10 L50 30 M40 20 L60 20" stroke-width="4" fill="none"></path>
-    <path d="M50 90 L50 70 M40 80 L60 80" stroke-width="4" fill="none"></path>
-    <path d="M10 50 L30 50 M20 40 L20 60" stroke-width="4" fill="none"></path>
-    <path d="M90 50 L70 50 M80 40 L80 60" stroke-width="4" fill="none"></path>
-  </g>
+<svg viewBox="0 0 100 100" fill="none" xmlns="http://www.w3.org/2000/svg">
+  <defs>
+    <linearGradient id="bronzeStem" x1="47" y1="0" x2="53" y2="0" gradientUnits="userSpaceOnUse">
+      <stop offset="0%" stop-color="#8B4513" />
+      <stop offset="40%" stop-color="#E68A5C" />
+      <stop offset="60%" stop-color="#CD853F" />
+      <stop offset="100%" stop-color="#5D4037" />
+    </linearGradient>
+    <linearGradient id="bronzeBase" x1="50" y1="85" x2="50" y2="92" gradientUnits="userSpaceOnUse">
+      <stop offset="0%" stop-color="#D2691E" />
+      <stop offset="100%" stop-color="#8B4513" />
+    </linearGradient>
+    <radialGradient id="beadGrad" cx="50%" cy="40%" r="50%">
+      <stop offset="0%" stop-color="#F4A460" />
+      <stop offset="100%" stop-color="#8B4513" />
+    </radialGradient>
+  </defs>
+  <circle cx="50" cy="50" r="45" fill="none" stroke="#C06C3B" stroke-width="2" opacity="0.4" stroke-dasharray="2 2" />
+  <path d="M42 85 L58 85 L54 92 L46 92 Z" fill="url(#bronzeBase)" stroke="#5D4037" stroke-width="0.5" />
+  <rect x="47" y="38" width="6" height="47" fill="url(#bronzeStem)" />
+  <circle cx="50" cy="25" r="12" fill="none" stroke="url(#bronzeStem)" stroke-width="4" />
+  <circle cx="50" cy="25" r="13.5" fill="none" stroke="#5D4037" stroke-width="0.2" opacity="0.8" />
+  <line x1="50" y1="13" x2="50" y2="37" stroke="#8B4513" stroke-width="0.8" />
+  <line x1="38" y1="25" x2="62" y2="25" stroke="#8B4513" stroke-width="0.8" />
+  <circle cx="50" cy="25" r="3.5" fill="url(#beadGrad)" stroke="#5D4037" stroke-width="0.2" />
+  <circle cx="50" cy="11" r="2.8" fill="url(#beadGrad)" />
+  <circle cx="50" cy="39" r="2.8" fill="url(#beadGrad)" />
+  <circle cx="36" cy="25" r="2.8" fill="url(#beadGrad)" />
+  <circle cx="64" cy="25" r="2.8" fill="url(#beadGrad)" />
 </svg>

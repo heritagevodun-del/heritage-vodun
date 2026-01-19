@@ -1,4 +1,5 @@
 ---
+// src/pages/lexique.astro
 import BaseLayout from "../layouts/BaseLayout.astro";
 
 // LISTE ENRICHIE EXPERTE (Encyclopédie Vodun)
@@ -268,9 +269,8 @@ const schemaData = {
       <h1>Le Glossaire Vodun</h1>
       <div class="separateur"></div>
       <p>
-        Pour appréhender la philosophie de nos ancêtres, il faut d'abord
-        maîtriser les mots. Voici les définitions authentiques et clés de notre
-        tradition.
+        Pour appréhender la philosophie de nos ancêtres, il faut d'abord maîiser
+        les mots. Voici les définitions authentiques et clés de notre tradition.
       </p>
 
       <div class="index-alpha">
@@ -299,13 +299,6 @@ const schemaData = {
         })
       }
     </div>
-
-    <div class="cta-floating">
-      <p>Un terme manque ? Une question ?</p>
-      <a href="https://www.mindoguesito.com" target="_blank" class="btn-ask-ai">
-        Demander à Mindoguesito ✨
-      </a>
-    </div>
   </div>
 </BaseLayout>
 
@@ -318,7 +311,7 @@ const schemaData = {
   .lexique-container {
     background-color: #fcfbf9;
     min-height: 100vh;
-    padding-bottom: 120px; /* Plus d'espace pour le bouton flottant */
+    padding-bottom: 80px;
   }
   .lexique-header {
     text-align: center;
@@ -440,53 +433,6 @@ const schemaData = {
     text-align: justify;
   }
 
-  /* --- CTA FLOTTANT --- */
-  .cta-floating {
-    position: fixed;
-    bottom: 30px;
-    right: 30px;
-    background: white;
-    padding: 15px 25px;
-    border-radius: 50px;
-    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.15);
-    display: flex;
-    align-items: center;
-    gap: 15px;
-    border: 1px solid rgba(212, 175, 55, 0.3);
-    z-index: 100;
-    animation: float 4s ease-in-out infinite;
-  }
-  .cta-floating p {
-    margin: 0;
-    font-size: 0.9rem;
-    font-weight: 600;
-    color: #555;
-  }
-  .btn-ask-ai {
-    background: #d4af37;
-    color: white;
-    text-decoration: none;
-    padding: 8px 16px;
-    border-radius: 20px;
-    font-size: 0.85rem;
-    font-weight: 700;
-    transition: all 0.3s;
-  }
-  .btn-ask-ai:hover {
-    background: #b89628;
-    transform: scale(1.05);
-  }
-
-  @keyframes float {
-    0%,
-    100% {
-      transform: translateY(0);
-    }
-    50% {
-      transform: translateY(-10px);
-    }
-  }
-
   /* Responsive */
   @media (max-width: 768px) {
     .lexique-header h1 {
@@ -499,13 +445,6 @@ const schemaData = {
       width: 30px;
       height: 30px;
       font-size: 0.8rem;
-    }
-    .cta-floating {
-      bottom: 20px;
-      right: 20px;
-      left: 20px;
-      justify-content: space-between;
-      flex-direction: row;
     }
   }
 </style>

@@ -1,75 +1,160 @@
 ---
-/* src/components/Navigation.astro */
+// src/components/Navigation.astro
 ---
 
-<nav id="nav-menu" class="nav-links">
-  <a href="/" class="nav-item">Accueil</a>
-  <a href="/about" class="nav-item">À Propos</a>
-  <a href="/lexique" class="nav-item">Lexique</a>
-  <a href="/blog" class="nav-item">Blog</a>
-  <a href="/contact" class="nav-item">Contact</a>
-</nav>
+<div class="nav-links" id="nav-menu">
+  <a href="/">Accueil</a>
+  <a href="/lexique">Lexique</a>
+  <a href="/blog">Récits</a>
+  <a href="/about">Mission</a>
+  <a href="/contact">Contact</a>
+
+  <a href="#" class="special-link open-oracle">
+    <span class="dot"></span> L'Oracle
+  </a>
+</div>
 
 <style>
   .nav-links {
     display: flex;
+    gap: 30px;
     align-items: center;
-    gap: 2.5rem;
   }
 
-  /* --- STYLE DES LIENS AVEC ANIMATION DORÉE --- */
-  .nav-item {
-    text-decoration: none;
+  .nav-links a {
     color: #2f4f4f;
-    font-weight: 600;
-    font-size: 0.95rem;
+    text-decoration: none;
+    font-family: "Lato", sans-serif;
+    font-weight: 700;
     text-transform: uppercase;
+    font-size: 0.9rem;
     letter-spacing: 1px;
     position: relative;
-    padding-bottom: 5px;
-    transition: color 0.3s ease;
+    transition: color 0.3s;
   }
 
-  /* La ligne dorée qui apparait en dessous */
-  .nav-item::after {
+  /* Effet de soulignement au survol (sauf pour le bouton spécial) */
+  .nav-links a:not(.special-link)::after {
     content: "";
     position: absolute;
     width: 0;
     height: 2px;
-    bottom: 0;
+    bottom: -5px;
     left: 0;
     background-color: #c06c3b;
-    transition: width 0.3s ease;
+    transition: width 0.3s;
   }
-
-  .nav-item:hover {
+  .nav-links a:not(.special-link)::before {
+    content: "";
+    position: absolute;
+    width: 0;
+    height: 2px;
+    bottom: -5px;
+    right: 0;
+    background-color: #c06c3b;
+    transition: width 0.3s;
+  }
+  .nav-links a:not(.special-link):hover::after {
+    width: 100%;
+    left: 0;
+  }
+  .nav-links a:hover {
     color: #c06c3b;
   }
 
-  .nav-item:hover::after {
-    width: 100%;
+  /* --- STYLE DU BOUTON ORACLE --- */
+  a.special-link {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    background: rgba(46, 204, 113, 0.1); /* Fond vert très léger par défaut */
+    padding: 8px 16px;
+    border-radius: 20px;
+    color: #2ecc71; /* Texte vert par défaut */
+    border: 1px solid rgba(46, 204, 113, 0.3);
+    transition: all 0.3s cubic-bezier(0.25, 0.8, 0.25, 1);
+  }
+
+  /* AU SURVOL : BLANC SUR VERT */
+  a.special-link:hover {
+    background: #2ecc71; /* Vert Émeraude */
+    color: white !important; /* Texte Blanc forcé */
+    border-color: #2ecc71;
+    transform: translateY(-2px);
+    box-shadow: 0 4px 15px rgba(46, 204, 113, 0.4); /* Ombre Verte Lumineuse */
+  }
+
+  /* Le point vert qui pulse */
+  .dot {
+    width: 8px;
+    height: 8px;
+    background-color: #2ecc71;
+    border-radius: 50%;
+    display: inline-block;
+    box-shadow: 0 0 0 0 rgba(46, 204, 113, 0.7);
+    animation: pulse-green 2s infinite;
+    transition: background-color 0.3s;
+  }
+
+  /* Quand on survole, le point devient blanc pour rester visible */
+  a.special-link:hover .dot {
+    background-color: white;
+    box-shadow: none;
+    animation: none;
+  }
+
+  @keyframes pulse-green {
+    0% {
+      transform: scale(0.95);
+      box-shadow: 0 0 0 0 rgba(46, 204, 113, 0.7);
+    }
+    70% {
+      transform: scale(1);
+      box-shadow: 0 0 0 6px rgba(46, 204, 113, 0);
+    }
+    100% {
+      transform: scale(0.95);
+      box-shadow: 0 0 0 0 rgba(46, 204, 113, 0);
+    }
   }
 
   /* --- MOBILE --- */
-  @media (max-width: 768px) {
+  @media (max-width: 900px) {
     .nav-links {
-      display: none;
-      flex-direction: column;
       position: absolute;
       top: 100%;
       left: 0;
       width: 100%;
       background: white;
-      padding: 2rem;
-      box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
-      border-top: 1px solid #f0f0f0;
-      align-items: center;
-      gap: 1.5rem;
+      flex-direction: column;
+      padding: 20px 0;
+      gap: 20px;
+      border-top: 1px solid #eee;
+      box-shadow: 0 10px 20px rgba(0, 0, 0, 0.05);
+      display: none;
+      opacity: 0;
+      transform: translateY(-10px);
+      transition: all 0.3s ease;
     }
 
-    /* Quand le menu est ouvert (géré par le script global) */
-    :global(.nav-links.active) {
+    .nav-links.active {
       display: flex;
+      opacity: 1;
+      transform: translateY(0);
+    }
+
+    .nav-links a {
+      font-size: 1.1rem;
+      width: 100%;
+      text-align: center;
+      padding: 10px 0;
+    }
+
+    a.special-link {
+      width: auto;
+      margin-top: 10px;
+      /* Sur mobile, on le garde un peu plus visible */
+      background: rgba(46, 204, 113, 0.15);
     }
   }
 </style>

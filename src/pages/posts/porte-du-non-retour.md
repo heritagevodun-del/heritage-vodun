@@ -77,6 +77,6 @@ Ce monument nous rappelle que malgré l'océan et les chaînes, le lien entre l'
 
 **Envie de comprendre l'histoire cachée de chaque symbole gravé sur la porte ?**
 
-Demandez à **[Mindoguesito](https://www.mindoguesito.com/)**, notre guide virtuel expert. Il connait l'histoire de la Route des Esclaves mieux que personne.
+Demandez à **Mindoguesito**, notre guide virtuel expert. Il connait l'histoire de la Route des Esclaves mieux que personne.
 
-👉 **[Interroger l'Expert Virtuel maintenant](https://www.mindoguesito.com/)**
+👉 **[Contactez l'équipe Héritage Vodun pour une orientation](/contact)**

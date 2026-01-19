@@ -77,4 +77,4 @@ Vous souhaitez organiser une visite respectueuse des traditions ou rencontrer un
 👉 **[Contactez notre équipe pour une visite guidée sur mesure](/contact)**
 
 Vous avez une question précise sur un rite que vous avez vu ?
-Demandez à **[Mindoguesito](https://www.mindoguesito.com/)**, notre intelligence artificielle experte. Elle saura vous expliquer la signification des couleurs et des perles des initiés.
+Demandez à **Mindoguesito**, notre intelligence artificielle experte. Elle saura vous expliquer la signification des couleurs et des perles des initiés.

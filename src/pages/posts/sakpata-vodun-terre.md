@@ -67,4 +67,4 @@ Certains temples à Abomey et Ouidah sont accessibles aux visiteurs respectueux.
 👉 **[Organiser votre pèlerinage avec nos guides locaux](/contact)**
 
 Pour toute question sur la hiérarchie des dieux Vodun ou pour savoir comment saluer un adepte de Sakpata :
-**[Interrogez Mindoguesito, notre IA culturelle](https://www.mindoguesito.com/)**.
+**Interrogez Mindoguesito, notre IA culturelle**.

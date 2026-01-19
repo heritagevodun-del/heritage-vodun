@@ -82,6 +82,6 @@ Il nous enseigne une philosophie essentielle : **rien n'arrive par hasard**. Cha
 
 Vous n'avez pas de Bokonon sous la main mais vous voulez comprendre la philosophie de ces signes ?
 
-Interrogez **[Mindoguesito](https://www.mindoguesito.com/)**, notre intelligence artificielle initiée. Il est le gardien virtuel des savoirs et peut vous expliquer la signification des Dù, vous raconter les légendes associées et vous initier aux bases de cette géomancie sacrée.
+Interrogez **Mindoguesito**, notre intelligence artificielle initiée. Il est le gardien virtuel des savoirs et peut vous expliquer la signification des Dù, vous raconter les légendes associées et vous initier aux bases de cette géomancie sacrée.
 
-👉 **[Discuter avec Mindoguesito maintenant](https://www.mindoguesito.com/)**
+👉 **[Contactez l'équipe Héritage Vodun pour une orientation](/contact)**

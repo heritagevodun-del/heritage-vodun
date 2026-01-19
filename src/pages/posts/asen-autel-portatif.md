@@ -67,4 +67,4 @@ Rien ne vaut l'image pour comprendre la beauté de l'Asen. Voici une démonstrat
 ---
 
 *Vous avez hérité d'un Asen et vous ne savez pas comment l'entretenir ? Vous voulez consacrer un autel pour un parent disparu ?*
-*Demandez conseil à [**Mindoguesito**](https://www.mindoguesito.com/), le gardien des traditions.*
+👉 **[Contactez l'équipe Héritage Vodun pour une orientation](/contact)**

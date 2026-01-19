@@ -1,11 +1,12 @@
 ---
 // src/layouts/BaseLayout.astro
 import Navigation from "../components/Navigation.astro";
+import Logo from "../components/Logo.astro"; // 👈 IMPORT DU COMPOSANT LOGO
 import { ClientRouter } from "astro:transitions";
-// 👇 AJOUT : Import du mouchard de vitesse Vercel
+// 👇 Import du mouchard de vitesse Vercel
 import SpeedInsights from "@vercel/speed-insights/astro";
 
-// 1. Imports des polices optimisées (Plus rapide que Google CDN)
+// 1. Imports des polices optimisées
 import "@fontsource/lato/300.css";
 import "@fontsource/lato/400.css";
 import "@fontsource/lato/700.css";
@@ -88,36 +89,7 @@ const socialImageURL = new URL(image, Astro.url);
     <header class="site-header">
       <div class="header-container">
         <a href="/" class="logo-wrapper">
-          <svg
-            class="logo-icon"
-            xmlns="http://www.w3.org/2000/svg"
-            viewBox="0 0 100 100"
-            width="45"
-            height="45"
-          >
-            <circle
-              cx="50"
-              cy="50"
-              r="45"
-              fill="none"
-              stroke="#C06C3B"
-              stroke-width="2"
-              opacity="0.7"></circle>
-            <path d="M42 85 L58 85 L54 92 L46 92 Z" fill="#C06C3B"></path>
-            <rect x="47" y="32" width="6" height="53" fill="#C06C3B"></rect>
-            <circle
-              cx="50"
-              cy="25"
-              r="14"
-              fill="none"
-              stroke="#C06C3B"
-              stroke-width="4"></circle>
-            <circle cx="50" cy="25" r="4" fill="#C06C3B"></circle>
-            <circle cx="50" cy="14" r="2.5" fill="#C06C3B"></circle>
-            <circle cx="50" cy="36" r="2.5" fill="#C06C3B"></circle>
-            <circle cx="39" cy="25" r="2.5" fill="#C06C3B"></circle>
-            <circle cx="61" cy="25" r="2.5" fill="#C06C3B"></circle>
-          </svg>
+          <Logo width="55" height="55" />
           <span class="logo-text">Héritage Vodun</span>
         </a>
 
@@ -228,11 +200,47 @@ const socialImageURL = new URL(image, Astro.url);
       </div>
     </footer>
 
+    <div id="oracle-widget">
+      <div id="oracle-window" class="hidden">
+        <div class="oracle-header">
+          <div class="header-left">
+            <span class="status-dot"></span>
+            <span class="oracle-title">Mindoguesito (En ligne)</span>
+          </div>
+          <button id="close-oracle">×</button>
+        </div>
+
+        <div class="oracle-body-chat">
+          <iframe
+            src="https://www.mindoguesito.com"
+            title="Chat avec Mindoguesito"
+            frameborder="0"
+            allow="microphone;"></iframe>
+        </div>
+      </div>
+
+      <button id="oracle-trigger" aria-label="Ouvrir l'Oracle">
+        <div class="eye-icon">
+          <svg
+            viewBox="0 0 100 100"
+            width="35"
+            height="35"
+            fill="none"
+            stroke="white"
+            stroke-width="6"
+          >
+            <path d="M10 50 Q50 10 90 50 Q50 90 10 50 Z"></path>
+            <circle cx="50" cy="50" r="12" fill="white" stroke="none"></circle>
+          </svg>
+        </div>
+        <div class="pulse-ring"></div>
+      </button>
+    </div>
     <script>
-      // Redirection simple si on est sur le sous-domaine (Client-side fallback)
+      // Redirection simple si on est sur le sous-domaine
       if (window.location.hostname.includes("vercel.app")) {
         window.location.replace(
-          "https://www.heritagevodun.com" + window.location.pathname
+          "https://www.heritagevodun.com" + window.location.pathname,
         );
       }
 
@@ -242,7 +250,6 @@ const socialImageURL = new URL(image, Astro.url);
         const navMenu = document.getElementById("nav-menu");
 
         if (menuBtn && navMenu && menuBtn.parentNode) {
-          // On clone pour retirer les anciens event listeners (sécurité Astro Transitions)
           const newMenuBtn = menuBtn.cloneNode(true) as HTMLElement;
           menuBtn.parentNode.replaceChild(newMenuBtn, menuBtn);
 
@@ -254,10 +261,9 @@ const socialImageURL = new URL(image, Astro.url);
 
         // --- 2. GESTION DU FORMULAIRE FOOTER ---
         const footerForm = document.getElementById(
-          "footer-newsletter-form"
+          "footer-newsletter-form",
         ) as HTMLFormElement | null;
         const footerResult = document.getElementById("footer-result");
-        // On cherche le bouton à l'intérieur du formulaire
         const footerBtn = footerForm
           ? (footerForm.querySelector(".btn-submit") as HTMLButtonElement)
           : null;
@@ -269,7 +275,6 @@ const socialImageURL = new URL(image, Astro.url);
             const object = Object.fromEntries(formData);
             const json = JSON.stringify(object);
 
-            // État "Chargement"
             footerResult.innerHTML = "...";
             footerResult.style.color = "#c06c3b";
             footerBtn.disabled = true;
@@ -285,19 +290,15 @@ const socialImageURL = new URL(image, Astro.url);
             })
               .then(async (response) => {
                 if (response.status == 200) {
-                  // Succès
                   footerResult.innerHTML = "✨ Merci ! Inscription validée.";
                   footerResult.style.color = "#4CAF50";
                   footerForm.reset();
-
-                  // Reset après 3 secondes
                   setTimeout(() => {
                     footerResult.innerHTML = "";
                     footerBtn.disabled = false;
                     footerBtn.style.opacity = "1";
                   }, 3000);
                 } else {
-                  // Erreur
                   footerResult.innerHTML = "Une erreur est survenue.";
                   footerResult.style.color = "red";
                   footerBtn.disabled = false;
@@ -313,6 +314,39 @@ const socialImageURL = new URL(image, Astro.url);
               });
           });
         }
+
+        // --- 3. GESTION DE L'ORACLE (CHATBOT) ---
+        const oracleTrigger = document.getElementById("oracle-trigger");
+        const oracleWindow = document.getElementById("oracle-window");
+        const closeOracle = document.getElementById("close-oracle");
+
+        function toggleOracle() {
+          oracleWindow?.classList.toggle("hidden");
+        }
+
+        if (oracleTrigger) {
+          oracleTrigger.addEventListener("click", toggleOracle);
+        }
+        if (closeOracle) {
+          closeOracle.addEventListener("click", () => {
+            oracleWindow?.classList.add("hidden");
+          });
+        }
+
+        // --- LA TÉLÉCOMMANDE (Trigger à distance) ---
+        const remoteTriggers = document.querySelectorAll(".open-oracle");
+        remoteTriggers.forEach((btn) => {
+          btn.addEventListener("click", (e) => {
+            e.preventDefault();
+            if (oracleWindow) {
+              oracleWindow.classList.remove("hidden");
+              window.scrollTo({
+                top: document.body.scrollHeight,
+                behavior: "smooth",
+              });
+            }
+          });
+        });
       });
     </script>
 
@@ -333,7 +367,7 @@ const socialImageURL = new URL(image, Astro.url);
     display: flex;
     flex-direction: column;
     min-height: 100vh;
-    font-family: "Lato", sans-serif; /* Utilise maintenant la police locale */
+    font-family: "Lato", sans-serif;
     color: #333;
     line-height: 1.6;
     background-color: #fcfcfc;
@@ -548,6 +582,148 @@ const socialImageURL = new URL(image, Astro.url);
     }
     #menu-toggle {
       display: flex;
+    }
+  }
+
+  /* --- 👁️ STYLE ORACLE WIDGET (VERSION CHAT) --- */
+  #oracle-widget {
+    position: fixed;
+    bottom: 25px;
+    right: 25px;
+    z-index: 9999;
+    font-family: "Lato", sans-serif;
+  }
+
+  /* Le Bouton Flottant (Inchangé) */
+  #oracle-trigger {
+    background: #c06c3b;
+    width: 60px;
+    height: 60px;
+    border-radius: 50%;
+    border: none;
+    cursor: pointer;
+    box-shadow: 0 4px 20px rgba(192, 108, 59, 0.4);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    transition:
+      transform 0.3s ease,
+      background 0.3s;
+    position: relative;
+    z-index: 10001; /* Toujours au dessus */
+  }
+  #oracle-trigger:hover {
+    transform: scale(1.1);
+    background: #a05a2f;
+  }
+
+  /* La Fenêtre de Dialogue (PLUS GRANDE) */
+  #oracle-window {
+    position: absolute;
+    bottom: 80px;
+    right: 0;
+    width: 380px; /* Plus large */
+    height: 600px; /* Plus haut pour voir la discussion */
+    max-height: 80vh; /* Pas plus grand que l'écran */
+    background: #fff;
+    border-radius: 12px;
+    box-shadow: 0 5px 40px rgba(0, 0, 0, 0.3);
+    overflow: hidden;
+    transform-origin: bottom right;
+    transition: all 0.3s cubic-bezier(0.19, 1, 0.22, 1);
+    display: flex;
+    flex-direction: column;
+    border: 1px solid rgba(0, 0, 0, 0.1);
+  }
+
+  /* Sur mobile, on prend presque tout l'écran */
+  @media (max-width: 480px) {
+    #oracle-window {
+      width: 90vw; /* 90% de la largeur */
+      height: 70vh;
+      right: -10px;
+    }
+  }
+
+  #oracle-window.hidden {
+    transform: scale(0);
+    opacity: 0;
+    pointer-events: none;
+  }
+
+  /* Header Chat */
+  .oracle-header {
+    background: #1a2e2e;
+    padding: 15px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    color: white;
+    flex-shrink: 0; /* Ne rétrécit pas */
+  }
+  .header-left {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+  }
+  .status-dot {
+    width: 8px;
+    height: 8px;
+    background: #2ecc71;
+    border-radius: 50%;
+    box-shadow: 0 0 5px #2ecc71;
+  }
+  .oracle-title {
+    font-weight: bold;
+    font-size: 0.95rem;
+  }
+
+  #close-oracle {
+    background: none;
+    border: none;
+    color: #aaa;
+    font-size: 1.5rem;
+    cursor: pointer;
+    line-height: 1;
+  }
+  #close-oracle:hover {
+    color: #fff;
+  }
+
+  /* Le Corps qui contient l'Iframe */
+  .oracle-body-chat {
+    flex: 1; /* Prend tout l'espace restant */
+    background: #f5f5f5;
+    position: relative;
+  }
+
+  /* L'Iframe magique */
+  .oracle-body-chat iframe {
+    width: 100%;
+    height: 100%;
+    border: none;
+    display: block;
+  }
+
+  /* Animation */
+  .pulse-ring {
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    border-radius: 50%;
+    border: 2px solid #c06c3b;
+    animation: pulse-glow 2s infinite;
+  }
+  @keyframes pulse-glow {
+    0% {
+      transform: scale(1);
+      opacity: 1;
+    }
+    100% {
+      transform: scale(1.6);
+      opacity: 0;
     }
   }
 </style>

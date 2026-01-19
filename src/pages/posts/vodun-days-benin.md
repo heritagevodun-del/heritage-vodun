@@ -95,6 +95,4 @@ Les Vodun Days se déroulent généralement autour des **9, 10 et 11 janvier** c
 Les Vodun Days ne durent que 3 jours, mais le Vodun se vit toute l'année. Ne repartez pas sans avoir consulté le **Fâ** pour connaître votre chemin de vie, ou sans avoir visité la **Forêt Sacrée de Kpassè** dans le calme.
 
 Vous avez des questions sur les divinités que vous allez croiser (Zangbeto, Egungun...) ?
-Demandez à **[Mindoguesito](https://www.mindoguesito.com/)**, notre IA experte. Elle saura vous expliquer l'histoire cachée derrière chaque masque.
-
-👉 **[Parler au Gardien des Savoirs maintenant](https://www.mindoguesito.com/)**
+Demandez à **Mindoguesito**, notre IA experte. Elle saura vous expliquer l'histoire cachée derrière chaque masque.

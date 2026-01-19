@@ -52,4 +52,6 @@ Si vous avez la chance d'être invité à une cérémonie de jumeaux, vous verre
 
 *La prochaine fois que vous verrez ces petites statuettes de bois sur un étal d'artisanat, ne voyez pas juste du bois sculpté. Voyez l'amour d'une mère qui refuse que le lien sacré se brise.*
 
-Envie d'en savoir plus sur les rituels familiaux béninois ? Posez vos questions délicates à [**Mindoguesito**](https://www.mindoguesito.com/), il saura vous répondre avec tact et sagesse.
+Envie d'en savoir plus sur les rituels familiaux béninois ?
+
+👉 **[Contactez l'équipe Héritage Vodun pour une orientation](/contact)**

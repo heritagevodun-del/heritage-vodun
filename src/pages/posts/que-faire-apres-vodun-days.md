@@ -53,4 +53,4 @@ Ne partez pas sans avoir goûté au **Atassi** (riz et haricots) d'une des vende
 Bon dimanche à tous ceux qui sont encore sur la Terre des Vodun !
 
 ---
-*Une question sur un objet d'art que vous avez vu ? Demandez son origine à [**Mindoguesito**](https://www.mindoguesito.com/).*
+*Une question sur un objet d'art que vous avez vu ? Demandez son origine à **Mindoguesito**.*

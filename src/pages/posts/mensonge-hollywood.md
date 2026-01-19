@@ -84,6 +84,6 @@ Ne laissez plus Netflix faire votre éducation spirituelle.
 
 ### Cherchez la vraie lumière
 
-🧠 **[Posez vos questions taboues à Mindoguesito (Il répond sans juger)](https://www.mindoguesito.com/)**
+🧠 **Posez vos questions taboues à Mindoguesito (Il répond sans juger)**
 
 🇧🇯 **[Visitez les vrais temples à Ouidah (Loin du cinéma)](https://www.heritagevodun.com/contact)**

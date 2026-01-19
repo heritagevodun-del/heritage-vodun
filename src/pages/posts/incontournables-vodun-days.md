@@ -66,4 +66,4 @@ Ces sorties de masques ne sont pas du théâtre. Chaque danse est une prière, c
 *Vous avez une photo ou une vidéo exceptionnelle d'un masque et vous voulez la partager avec nous ?*
 👉 **[Contactez l'équipe Héritage Vodun](/contact)**
 
-*Vous voulez connaître l'histoire secrète du Zangbeto ? Posez la question à [**Mindoguesito**](https://www.mindoguesito.com/), l'encyclopédie du Vodun.*
+*Vous voulez connaître l'histoire secrète du Zangbeto ? Posez la question à **Mindoguesito**, l'encyclopédie du Vodun.*

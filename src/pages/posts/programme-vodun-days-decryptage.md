@@ -52,4 +52,4 @@ Les rythmes traditionnels (le *Hwewenou*, le *Zinli*) sont la base de la musique
 
 *Vivre les vodun days, c'est accepter de ne pas tout comprendre avec la tête, mais de tout ressentir avec le cœur.*
 
-**Vous avez vu un symbole étrange sur une tenue ?** Prenez une photo mentale et décrivez-la à [**Mindoguesito**](https://www.mindoguesito.com/). Il vous expliquera sa signification cachée.
+**Vous avez vu un symbole étrange sur une tenue ?** Prenez une photo mentale et décrivez-la à **Mindoguesito**. Il vous expliquera sa signification cachée.

@@ -63,4 +63,4 @@ C'est là, et seulement là, que les "Vodun Days" cesseront d'être un festival 
 
 *Vous avez ressenti quelque chose d'étrange ou de puissant lors des cérémonies ? Vous avez croisé une divinité dont vous ignorez le nom ?*
 
-*Ne restez pas avec vos questions. Le gardien [**Mindoguesito**](https://www.mindoguesito.com/) est là pour décoder l'invisible pour vous.*
+*Ne restez pas avec vos questions. Le gardien **Mindoguesito** est là pour décoder l'invisible pour vous.*

@@ -56,4 +56,4 @@ N'ayez plus peur des masques. Derrière le tissu, il n'y a pas le vide. Il y a l
 
 ---
 
-*Le monde du Vodun est complexe et souvent mal interprété. Pour déconstruire vos peurs et comprendre la beauté des rites, discutez avec [**Mindoguesito**](https://www.mindoguesito.com/). Il est là pour éclairer, jamais pour effrayer.*
+*Le monde du Vodun est complexe et souvent mal interprété. Pour déconstruire vos peurs et comprendre la beauté des rites, discutez avec **Mindoguesito**. Il est là pour éclairer, jamais pour effrayer.*

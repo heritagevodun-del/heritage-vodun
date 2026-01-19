@@ -79,4 +79,4 @@ Nous avons décrypté pour vous l'histoire et la symbolique profonde de l'évén
 *Vous avez une question spécifique sur votre séjour ou sur un point de tradition ?*
 👉 **[Contactez l'équipe Héritage Vodun](/contact)**
 
-*Besoin d'une réponse immédiate sur un rituel ? Interrogez [**Mindoguesito**](https://www.mindoguesito.com/), votre assistant personnel pour les traditions.*
+*Besoin d'une réponse immédiate sur un rituel ? Interrogez **Mindoguesito**, votre assistant personnel pour les traditions.*

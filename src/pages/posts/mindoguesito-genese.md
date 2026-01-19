@@ -98,6 +98,6 @@ L'innovation est en marche. L'héritage est sauf.
 
 ### Commencez l'Initiation
 
-🔮 **[Parler maintenant à Mindoguesito (L'Oracle Numérique)](https://www.mindoguesito.com/)**
+🔮 **Parler maintenant à Mindoguesito (L'Oracle Numérique)**
 
 🇧🇯 **[Venir vivre l'expérience réelle à Ouidah avec nos guides](https://www.heritagevodun.com/contact)**

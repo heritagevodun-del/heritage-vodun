@@ -58,4 +58,4 @@ C'est un passage obligé face à la Basilique. Le Python Royal est une divinité
 
 *Les Vodun Days ne sont pas une épreuve, c'est une communion. En adoptant ces quelques réflexes de courtoisie spirituelle, vous ne serez plus un simple touriste, mais un invité de marque sur la terre de Ouidah.*
 
-**Une question sur un masque ou un rituel croisé dans la rue ?** Ne restez pas dans le doute. Demandez instantanément à [**Mindoguesito**](https://www.mindoguesito.com/), votre guide de poche. Il vous répondra.
+**Une question sur un masque ou un rituel croisé dans la rue ?** Ne restez pas dans le doute. Demandez instantanément à **Mindoguesito**, votre guide de poche. Il vous répondra.
