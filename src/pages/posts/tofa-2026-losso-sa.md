@@ -1,6 +1,6 @@
 ---
 layout: ../../layouts/PostLayout.astro
-title: "Tofa 2026 : Le signe 'Losso Sa' décrypté. Invincibilité pour le Bénin, Danger pour les Traîtres"
+title: "Tofa 2026 : Le signe 'Losso Sa' décrypté. Invincibilité pour le Bénin"
 pubDate: 2026-01-11
 description: "Bec en métal, adultère fatal, cailloux contre noix de palme... Le Fâ a parlé via Losso Sa. Découvrez les révélations chocs pour le pays et pour votre vie privée."
 image: "/tofa-2026-losso-sa.jpg"
@@ -50,7 +50,7 @@ Les métaphores utilisées par le Fâ pour décrire le Bénin en 2026 sont sans 
 
 Cela signifie que le Bénin est une force naturelle qu'on ne peut pas arrêter.
 De plus, le Fâ avertit les ennemis de la nation avec cette image terrible : **« 30 noix de palme ne peuvent pas affronter 30 cailloux et rentrer indemnes. »**
-En clair : Quiconque tentera de déstabiliser le pays ou de l'attaquer cette année s'y cassera les dents. Le Bénin sortira vainqueur de toutes les confrontations.
+En clair : Quiconque tentera de déstabiliser le pays ou de l'attaquer cette année s'y cassera les dents.
 
 ### 2. La Gouvernance au "Bec en Métal"
 
@@ -58,12 +58,6 @@ C'est la phrase qui va faire couler beaucoup d'encre :
 > *« L'oiseau qui désire manger l'enfant du ver urticant doit pouvoir se forger un bec en métal. »*
 
 **L'interprétation :** Diriger le Bénin en 2026 demande une résilience hors du commun. Le dirigeant est décrit comme "prédestiné". S'il a ce "bec en métal" (cette force de caractère), le pays sera **envahi par la prospérité**. Des jours meilleurs sont confirmés, mais ils s'obtiendront par l'effort, pas par la facilité.
-
-### 3. Gare aux voleurs de la République
-
-Le Fâ n'a pas été tendre avec la corruption. À travers la parabole du "chasseur impotent qui abat un éléphant", le message est clair : les ressources du pays ne doivent pas être volées.
-Le Fâ prévient : *« On retrouvera des caillots de sang sur les herbes. »*
-Ceux qui penseront pouvoir détourner les biens publics sans conséquence subiront un châtiment sévère (justice ou naturel). L'impunité n'aura pas sa place sous Losso Sa.
 
 ---
 
