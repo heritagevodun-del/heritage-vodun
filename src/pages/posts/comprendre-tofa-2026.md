@@ -83,9 +83,6 @@ Le Fâ est formel : en 2026, évitez de montrer à la famille que vous avez réu
 
 L'image est violente : on parle de sang qui risque de couler. Le Fâ annonce des tentatives d'incursions et des affrontements intenses.
 
-**Le message aux Forces de l'Ordre :**
-Que vous soyez aux frontières, en mer, dans les airs ou à la garde présidentielle : **Vigilance maximale.** L'ennemi tentera de passer par la force. Mais le signe assure que si nous restons éveillés, **la victoire est certaine**. Nous pouvons les vaincre.
-
 ## 4. La Femme (Minon-Nan) : La Clé de la Richesse
 
 C'est le grand secret de 2026 pour les hommes qui cherchent l'argent. Le Fâ exige l'harmonie avec le **Minon-Nan** (la force matricielle féminine).
@@ -99,9 +96,9 @@ C'est le grand secret de 2026 pour les hommes qui cherchent l'argent. Le Fâ exi
 Losso Sa ne fait pas de cadeau sur certains aspects de la vie sociale :
 
 * **Les Enfants (Alahassavi) :** Ils sont très exposés cette année (maladies, attaques mystiques). Parents, blindez vos enfants spirituellement avant de penser à vous-mêmes.
-* **La Justice & La Prison :** Tolérance zéro. Une attention particulière aux motocyclistes (la répression reprendra) et aux rassemblements festifs douteux.
+* **La Justice & La Prison :** Tolérance zéro.
 * **L'Avortement :** C'est un **interdit absolu**. Avoir la main dans une interruption de grossesse cette année vous livrera totalement aux aléas malheureux de la vie.
-* **La Sorcellerie & Empoisonnement :** Évitez de manger n'importe où. Cassez les amitiés inutiles.
+* **La Sorcellerie & Empoisonnement :** Évitez de manger n'importe où.
 
 ## Conclusion : Prenez le contrôle
 
