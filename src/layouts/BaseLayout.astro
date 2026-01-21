@@ -1,7 +1,7 @@
 ---
 // src/layouts/BaseLayout.astro
 import Navigation from "../components/Navigation.astro";
-import Logo from "../components/Logo.astro"; // 👈 IMPORT DU COMPOSANT LOGO
+import Logo from "../components/Logo.astro";
 import { ClientRouter } from "astro:transitions";
 // 👇 Import du mouchard de vitesse Vercel
 import SpeedInsights from "@vercel/speed-insights/astro";
@@ -20,6 +20,8 @@ const {
   titrePage = "Héritage Vodun | Guide Spirituel, Fâ & Tourisme à Ouidah",
   description = "Plongez au cœur du Vodun au Bénin. Visites guidées à Ouidah, consultation du Fâ, et histoire de la Route des Esclaves. Une spiritualité authentique.",
   image = "/vodunsi.jpeg",
+  // 👇 AJOUT DE LA SÉCURITÉ SEO (Par défaut à false)
+  noindex = false,
 } = Astro.props;
 
 // Calcul de l'URL canonique
@@ -32,7 +34,14 @@ const socialImageURL = new URL(image, Astro.url);
     <meta charset="utf-8" />
     <ClientRouter />
 
-    <meta name="robots" content="index, follow, max-image-preview:large" />
+    {
+      noindex ? (
+        <meta name="robots" content="noindex, follow" />
+      ) : (
+        <meta name="robots" content="index, follow, max-image-preview:large" />
+      )
+    }
+
     <meta
       name="google-site-verification"
       content="vVcu2NVdsuB7Nu6DtS7nl5cZUPzeALF1fuGVk_Udf7g"

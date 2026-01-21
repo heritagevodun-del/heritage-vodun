@@ -6,7 +6,7 @@ import FaAnimation from "../../components/FaAnimation.astro";
 interface Frontmatter {
   title: string;
   categorie: string;
-  tags?: string[]; // Ajout du tableau de tags
+  tags?: string[];
   pubDate?: string;
   date?: string;
   description: string;
@@ -19,7 +19,7 @@ interface MarkdownPost {
   url: string;
 }
 
-// 1. GÉNÉRATION DES ROUTES DYNAMIQUES (Spécial TAGS)
+// 1. GÉNÉRATION DES ROUTES DYNAMIQUES
 export async function getStaticPaths() {
   const matches = import.meta.glob<MarkdownPost>("../posts/*.md", {
     eager: true,
@@ -29,29 +29,26 @@ export async function getStaticPaths() {
   // Tri du plus récent au plus ancien
   const sortedPosts = allPosts.sort((a, b) => {
     const dateA = new Date(
-      a.frontmatter.pubDate || a.frontmatter.date || ""
+      a.frontmatter.pubDate || a.frontmatter.date || "",
     ).valueOf();
     const dateB = new Date(
-      b.frontmatter.pubDate || b.frontmatter.date || ""
+      b.frontmatter.pubDate || b.frontmatter.date || "",
     ).valueOf();
     return (isNaN(dateB) ? 0 : dateB) - (isNaN(dateA) ? 0 : dateA);
   });
 
-  // 👇 LA CORRECTION EST ICI : On récupère tous les tags (flat)
   const uniqueTags = [
     ...new Set(
       sortedPosts
-        .map((post) => post.frontmatter.tags) // On prend les tableaux de tags
-        .flat() // On les met tous à plat dans une seule liste
-        .filter(Boolean) // On enlève les vides
+        .map((post) => post.frontmatter.tags)
+        .flat()
+        .filter(Boolean),
     ),
   ];
 
-  // Création des routes pour chaque tag unique
   return uniqueTags.map((tag) => {
-    // On filtre les articles qui contiennent ce tag spécifique
     const filteredPosts = sortedPosts.filter((post) =>
-      post.frontmatter.tags?.includes(tag as string)
+      post.frontmatter.tags?.includes(tag as string),
     );
     return {
       params: { tag },
@@ -75,7 +72,7 @@ function formatDate(dateInput: string | Date | undefined) {
   });
 }
 
-// 2. SEO
+// 2. SEO (Schema reste utile pour la structure locale même en noindex)
 const schemaData = {
   "@context": "https://schema.org",
   "@type": "CollectionPage",
@@ -92,7 +89,7 @@ const schemaData = {
 };
 ---
 
-<BaseLayout titrePage={`Sujet : ${tag} | Héritage Vodun`}>
+<BaseLayout titrePage={`Sujet : ${tag} | Héritage Vodun`} noindex={true}>
   <script type="application/ld+json" set:html={JSON.stringify(schemaData)} />
 
   <div class="page-container">
@@ -134,10 +131,9 @@ const schemaData = {
                 <div class="meta-header">
                   <span class="date-publication">
                     {formatDate(
-                      post.frontmatter.pubDate || post.frontmatter.date
+                      post.frontmatter.pubDate || post.frontmatter.date,
                     )}
                   </span>
-                  {/* Petit ajout : Afficher la catégorie principale */}
                   {post.frontmatter.categorie && (
                     <span class="badge-cat">{post.frontmatter.categorie}</span>
                   )}
@@ -159,7 +155,7 @@ const schemaData = {
 </BaseLayout>
 
 <style>
-  /* --- VARIABLES (Votre Design Original) --- */
+  /* --- VARIABLES --- */
   :root {
     --or-vodun: #d4af37;
     --terre: #a0522d;

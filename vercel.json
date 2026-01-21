@@ -10,6 +10,36 @@
       ],
       "destination": "https://www.heritagevodun.com/:path*",
       "permanent": true
+    },
+    {
+      "source": "/categories/Divinités",
+      "destination": "/categories/Panthéon%20&%20Divinités",
+      "permanent": true
+    },
+    {
+      "source": "/categories/Spiritualité",
+      "destination": "/categories/Sagesse%20&%20Spiritualit%C3%A9",
+      "permanent": true
+    },
+    {
+      "source": "/categories/Histoire",
+      "destination": "/categories/Histoire%20&%20Patrimoine",
+      "permanent": true
+    },
+    {
+      "source": "/categories/Histoire%20&%20Mémoire",
+      "destination": "/categories/Histoire%20&%20Patrimoine",
+      "permanent": true
+    },
+    {
+      "source": "/categories/Lieux%20Sacrés",
+      "destination": "/categories/Tourisme%20&%20D%C3%A9couverte",
+      "permanent": true
+    },
+    {
+      "source": "/categories/Événement",
+      "destination": "/categories/Rituels%20&%20C%C3%A9r%C3%A9monies",
+      "permanent": true
     }
   ]
 }
