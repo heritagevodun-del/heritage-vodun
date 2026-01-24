@@ -15,7 +15,18 @@ const description =
           <div class="cercle-exterieur"></div>
           <div class="cercle-interieur">
             <span class="texte-sceau">AUTHENTICITÉ • INTEGRITÉ • SAVOIR</span>
-            <div class="icone-centrale">HVM</div>
+
+            <div class="bloc-logos-centraux">
+              <div class="logo-part">
+                <span class="logo-initiales">HV</span>
+                <span class="logo-nom">Héritage</span>
+              </div>
+              <div class="logo-separator">×</div>
+              <div class="logo-part">
+                <span class="logo-initiales m-style">M</span>
+                <span class="logo-nom">Mindoguesito</span>
+              </div>
+            </div>
           </div>
         </div>
       </div>
@@ -116,7 +127,6 @@ const description =
     background: linear-gradient(to bottom, #fff, var(--blanc-creme));
   }
 
-  /* Le Sceau en CSS Pur (CSS Art) */
   .sceau-container {
     display: flex;
     justify-content: center;
@@ -124,8 +134,8 @@ const description =
   }
 
   .sceau-label {
-    width: 150px;
-    height: 150px;
+    width: 160px; /* Légèrement plus grand pour accueillir les logos */
+    height: 160px;
     position: relative;
     display: flex;
     align-items: center;
@@ -137,44 +147,84 @@ const description =
     position: absolute;
     width: 100%;
     height: 100%;
-    border: 2px solid var(--or-vodun);
+    border: 3px solid var(--or-vodun); /* Bordure un peu plus épaisse */
     border-radius: 50%;
     border-style: double;
-    box-shadow: 0 0 20px rgba(212, 175, 55, 0.2);
+    box-shadow: 0 0 25px rgba(212, 175, 55, 0.25);
     animation: rotateSlow 60s linear infinite;
   }
 
   .cercle-interieur {
-    width: 80%;
-    height: 80%;
-    border: 1px solid var(--vert-foret);
+    width: 82%;
+    height: 82%;
+    border: 1px solid var(--or-clair);
     background: var(--vert-foret);
     border-radius: 50%;
     display: flex;
     align-items: center;
     justify-content: center;
-    color: white;
     flex-direction: column;
-    box-shadow: inset 0 0 15px rgba(0, 0, 0, 0.5);
+    box-shadow: inset 0 0 20px rgba(0, 0, 0, 0.6);
+    position: relative;
   }
 
   .texte-sceau {
-    font-size: 0.55rem;
+    font-size: 0.5rem;
     text-transform: uppercase;
     letter-spacing: 1px;
     position: absolute;
-    top: 12px;
+    top: 15px;
     font-weight: bold;
     color: var(--or-clair);
+    opacity: 0.8;
   }
 
-  .icone-centrale {
-    font-family: "Playfair Display", serif;
-    font-size: 2rem;
-    font-weight: bold;
+  /* 👇 NOUVEAU STYLE POUR LES LOGOS CENTRAUX 👇 */
+  .bloc-logos-centraux {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 8px;
+    margin-top: 18px; /* Pour laisser de la place au texte du haut */
     color: var(--or-vodun);
-    letter-spacing: -2px;
   }
+
+  .logo-part {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+  }
+
+  .logo-initiales {
+    font-family: "Playfair Display", serif;
+    font-size: 1.6rem;
+    font-weight: 800;
+    line-height: 1;
+    letter-spacing: -1px;
+    text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.3);
+  }
+
+  /* Un style un peu différent pour le M de Mindoguesito */
+  .m-style {
+    font-style: italic;
+  }
+
+  .logo-nom {
+    font-size: 0.45rem;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    margin-top: 4px;
+    opacity: 0.9;
+    font-weight: bold;
+  }
+
+  .logo-separator {
+    font-size: 1.4rem;
+    opacity: 0.6;
+    font-weight: 300;
+    margin-bottom: 12px; /* Pour l'aligner avec les initiales */
+  }
+  /* 👆 FIN DU NOUVEAU STYLE 👆 */
 
   h1 {
     font-family: "Playfair Display", serif;
@@ -196,7 +246,7 @@ const description =
     line-height: 1.6;
   }
 
-  /* --- PILIERS --- */
+  /* --- PILIERS (Inchangé) --- */
   .piliers-container {
     max-width: 1200px;
     margin: 0 auto;
@@ -236,7 +286,7 @@ const description =
     line-height: 1.6;
   }
 
-  /* --- MANIFESTE --- */
+  /* --- MANIFESTE (Inchangé) --- */
   .manifeste-section {
     background-color: var(--vert-foret);
     color: white;
@@ -288,7 +338,7 @@ const description =
     letter-spacing: 2px;
   }
 
-  /* --- CTA --- */
+  /* --- CTA (Inchangé) --- */
   .cta-section {
     text-align: center;
     padding: 40px 20px;
@@ -353,6 +403,13 @@ const description =
     }
     .contenu-manifeste {
       padding: 20px;
+    }
+    .sceau-label {
+      width: 140px;
+      height: 140px;
+    }
+    .logo-initiales {
+      font-size: 1.4rem;
     }
   }
 </style>
