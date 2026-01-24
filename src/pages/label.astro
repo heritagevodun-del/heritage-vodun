@@ -10,24 +10,206 @@ const description =
 <BaseLayout titrePage={pageTitle} description={description}>
   <main class="label-page">
     <section class="hero-label animate-enter">
-      <div class="sceau-container">
-        <div class="sceau-label">
-          <div class="cercle-exterieur"></div>
-          <div class="cercle-interieur">
-            <span class="texte-sceau">AUTHENTICITÉ • INTEGRITÉ • SAVOIR</span>
+      <div class="emblemes-container">
+        <div class="logo-wrapper" title="Héritage Vodun - La Tradition">
+          <svg
+            viewBox="0 0 100 100"
+            fill="none"
+            xmlns="http://www.w3.org/2000/svg"
+          >
+            <defs>
+              <linearGradient
+                id="bronzeStem"
+                x1="47"
+                y1="0"
+                x2="53"
+                y2="0"
+                gradientUnits="userSpaceOnUse"
+              >
+                <stop offset="0%" stop-color="#8B4513"></stop>
+                <stop offset="40%" stop-color="#E68A5C"></stop>
+                <stop offset="60%" stop-color="#CD853F"></stop>
+                <stop offset="100%" stop-color="#5D4037"></stop>
+              </linearGradient>
+              <linearGradient
+                id="bronzeBase"
+                x1="50"
+                y1="85"
+                x2="50"
+                y2="92"
+                gradientUnits="userSpaceOnUse"
+              >
+                <stop offset="0%" stop-color="#D2691E"></stop>
+                <stop offset="100%" stop-color="#8B4513"></stop>
+              </linearGradient>
+              <radialGradient id="beadGrad" cx="50%" cy="40%" r="50%">
+                <stop offset="0%" stop-color="#F4A460"></stop>
+                <stop offset="100%" stop-color="#8B4513"></stop>
+              </radialGradient>
+            </defs>
+            <circle
+              cx="50"
+              cy="50"
+              r="45"
+              fill="none"
+              stroke="#C06C3B"
+              stroke-width="0.5"
+              opacity="0.4"
+              stroke-dasharray="2 2"></circle>
+            <circle
+              cx="50"
+              cy="50"
+              r="42"
+              fill="none"
+              stroke="#C06C3B"
+              stroke-width="0.2"
+              opacity="0.2"></circle>
+            <path
+              d="M42 85 L58 85 L54 92 L46 92 Z"
+              fill="url(#bronzeBase)"
+              stroke="#5D4037"
+              stroke-width="0.5"></path>
+            <rect x="47" y="38" width="6" height="47" fill="url(#bronzeStem)"
+            ></rect>
+            <rect x="47" y="38" width="6" height="2" fill="#000" opacity="0.3"
+            ></rect>
+            <circle
+              cx="50"
+              cy="25"
+              r="12"
+              fill="none"
+              stroke="url(#bronzeStem)"
+              stroke-width="4"></circle>
+            <circle
+              cx="50"
+              cy="25"
+              r="13.5"
+              fill="none"
+              stroke="#5D4037"
+              stroke-width="0.2"
+              opacity="0.8"></circle>
+            <circle
+              cx="50"
+              cy="25"
+              r="10.5"
+              fill="none"
+              stroke="#5D4037"
+              stroke-width="0.2"
+              opacity="0.8"></circle>
+            <line
+              x1="50"
+              y1="13"
+              x2="50"
+              y2="37"
+              stroke="#8B4513"
+              stroke-width="0.8"></line>
+            <line
+              x1="38"
+              y1="25"
+              x2="62"
+              y2="25"
+              stroke="#8B4513"
+              stroke-width="0.8"></line>
+            <circle
+              cx="50"
+              cy="25"
+              r="3.5"
+              fill="url(#beadGrad)"
+              stroke="#5D4037"
+              stroke-width="0.2"></circle>
+            <circle cx="50" cy="11" r="2.8" fill="url(#beadGrad)"></circle>
+            <circle cx="50" cy="39" r="2.8" fill="url(#beadGrad)"></circle>
+            <circle cx="36" cy="25" r="2.8" fill="url(#beadGrad)"></circle>
+            <circle cx="64" cy="25" r="2.8" fill="url(#beadGrad)"></circle>
+          </svg>
+          <span class="legende-logo">Héritage Vodun</span>
+        </div>
 
-            <div class="bloc-logos-centraux">
-              <div class="logo-part">
-                <span class="logo-initiales">HV</span>
-                <span class="logo-nom">Héritage</span>
-              </div>
-              <div class="logo-separator">×</div>
-              <div class="logo-part">
-                <span class="logo-initiales m-style">M</span>
-                <span class="logo-nom">Mindoguesito</span>
-              </div>
-            </div>
-          </div>
+        <div class="separator-x">×</div>
+
+        <div class="logo-wrapper" title="Mindoguesito - Le Gardien">
+          <svg
+            viewBox="0 0 320 320"
+            fill="none"
+            xmlns="http://www.w3.org/2000/svg"
+          >
+            <defs>
+              <linearGradient
+                id="goldRoof"
+                x1="160"
+                y1="40"
+                x2="160"
+                y2="140"
+                gradientUnits="userSpaceOnUse"
+              >
+                <stop offset="0%" stop-color="#FFD700"></stop>
+                <stop offset="50%" stop-color="#DAA520"></stop>
+                <stop offset="100%" stop-color="#B8860B"></stop>
+              </linearGradient>
+              <linearGradient
+                id="goldBase"
+                x1="160"
+                y1="260"
+                x2="160"
+                y2="285"
+                gradientUnits="userSpaceOnUse"
+              >
+                <stop offset="0%" stop-color="#DAA520"></stop>
+                <stop offset="100%" stop-color="#8B4513"></stop>
+              </linearGradient>
+              <linearGradient id="woodPillar" x1="0" y1="0" x2="1" y2="0">
+                <stop offset="0%" stop-color="#4E342E"></stop>
+                <stop offset="40%" stop-color="#8D6E63"></stop>
+                <stop offset="60%" stop-color="#8D6E63"></stop>
+                <stop offset="100%" stop-color="#3E2723"></stop>
+              </linearGradient>
+            </defs>
+            <ellipse
+              cx="160"
+              cy="300"
+              rx="130"
+              ry="12"
+              fill="#5d4037"
+              opacity="0.3"
+              filter="blur(8px)"></ellipse>
+            <path
+              d="M90 140V260"
+              stroke="url(#woodPillar)"
+              stroke-width="36"
+              stroke-linecap="butt"></path>
+            <path
+              d="M90 140C100 160 80 180 90 200C100 220 80 240 90 260"
+              stroke="#3E2723"
+              stroke-width="4"
+              fill="none"
+              opacity="0.6"></path>
+            <path
+              d="M230 140V260"
+              stroke="url(#woodPillar)"
+              stroke-width="36"
+              stroke-linecap="butt"></path>
+            <path
+              d="M230 140C220 160 240 180 230 200C220 220 240 240 230 260"
+              stroke="#3E2723"
+              stroke-width="4"
+              fill="none"
+              opacity="0.6"></path>
+            <rect
+              x="60"
+              y="260"
+              width="200"
+              height="25"
+              rx="4"
+              fill="url(#goldBase)"
+              stroke="#8B4513"
+              stroke-width="2"></rect>
+            <path
+              d="M160 40L280 140H40L160 40Z"
+              fill="url(#goldRoof)"
+              stroke="#8B4513"
+              stroke-width="3"></path>
+          </svg>
+          <span class="legende-logo">Mindoguesito</span>
         </div>
       </div>
 
@@ -120,112 +302,62 @@ const description =
     overflow-x: hidden;
   }
 
-  /* --- HERO SCEAU --- */
+  /* --- HERO LOGOS --- */
   .hero-label {
     text-align: center;
-    padding: 80px 20px 60px;
+    padding: 60px 20px 40px;
     background: linear-gradient(to bottom, #fff, var(--blanc-creme));
   }
 
-  .sceau-container {
+  .emblemes-container {
     display: flex;
     justify-content: center;
-    margin-bottom: 40px;
+    align-items: flex-end; /* Aligner sur le bas pour l'équilibre visuel */
+    gap: 20px;
+    margin-bottom: 50px;
+    flex-wrap: wrap;
   }
 
-  .sceau-label {
-    width: 160px; /* Légèrement plus grand pour accueillir les logos */
-    height: 160px;
-    position: relative;
+  .logo-wrapper {
     display: flex;
-    align-items: center;
-    justify-content: center;
-    color: var(--or-vodun);
-  }
-
-  .cercle-exterieur {
-    position: absolute;
-    width: 100%;
-    height: 100%;
-    border: 3px solid var(--or-vodun); /* Bordure un peu plus épaisse */
-    border-radius: 50%;
-    border-style: double;
-    box-shadow: 0 0 25px rgba(212, 175, 55, 0.25);
-    animation: rotateSlow 60s linear infinite;
-  }
-
-  .cercle-interieur {
-    width: 82%;
-    height: 82%;
-    border: 1px solid var(--or-clair);
-    background: var(--vert-foret);
-    border-radius: 50%;
-    display: flex;
-    align-items: center;
-    justify-content: center;
     flex-direction: column;
-    box-shadow: inset 0 0 20px rgba(0, 0, 0, 0.6);
-    position: relative;
+    align-items: center;
+    width: 120px; /* Taille fixe pour l'équilibre */
+    transition: transform 0.3s ease;
   }
 
-  .texte-sceau {
-    font-size: 0.5rem;
+  .logo-wrapper:hover {
+    transform: translateY(-5px);
+  }
+
+  /* Gestion des SVG */
+  .logo-wrapper svg {
+    width: 100%;
+    height: auto;
+    filter: drop-shadow(0 10px 15px rgba(139, 69, 19, 0.15));
+  }
+
+  .legende-logo {
+    font-family: "Playfair Display", serif;
+    font-size: 0.75rem;
     text-transform: uppercase;
     letter-spacing: 1px;
-    position: absolute;
-    top: 15px;
+    color: var(--vert-foret);
+    margin-top: 15px;
     font-weight: bold;
-    color: var(--or-clair);
     opacity: 0.8;
   }
 
-  /* 👇 NOUVEAU STYLE POUR LES LOGOS CENTRAUX 👇 */
-  .bloc-logos-centraux {
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    gap: 8px;
-    margin-top: 18px; /* Pour laisser de la place au texte du haut */
-    color: var(--or-vodun);
-  }
-
-  .logo-part {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-  }
-
-  .logo-initiales {
+  /* Le séparateur X */
+  .separator-x {
     font-family: "Playfair Display", serif;
-    font-size: 1.6rem;
-    font-weight: 800;
-    line-height: 1;
-    letter-spacing: -1px;
-    text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.3);
+    font-size: 2.5rem;
+    color: var(--or-vodun);
+    opacity: 0.5;
+    margin-bottom: 40px; /* Ajustement vertical */
   }
 
-  /* Un style un peu différent pour le M de Mindoguesito */
-  .m-style {
-    font-style: italic;
-  }
-
-  .logo-nom {
-    font-size: 0.45rem;
-    text-transform: uppercase;
-    letter-spacing: 1px;
-    margin-top: 4px;
-    opacity: 0.9;
-    font-weight: bold;
-  }
-
-  .logo-separator {
-    font-size: 1.4rem;
-    opacity: 0.6;
-    font-weight: 300;
-    margin-bottom: 12px; /* Pour l'aligner avec les initiales */
-  }
-  /* 👆 FIN DU NOUVEAU STYLE 👆 */
-
+  /* --- TITRES --- */
   h1 {
     font-family: "Playfair Display", serif;
     font-size: 3rem;
@@ -246,7 +378,7 @@ const description =
     line-height: 1.6;
   }
 
-  /* --- PILIERS (Inchangé) --- */
+  /* --- PILIERS (Standard) --- */
   .piliers-container {
     max-width: 1200px;
     margin: 0 auto;
@@ -286,13 +418,14 @@ const description =
     line-height: 1.6;
   }
 
-  /* --- MANIFESTE (Inchangé) --- */
+  /* --- MANIFESTE --- */
   .manifeste-section {
     background-color: var(--vert-foret);
     color: white;
     padding: 80px 20px;
     margin: 60px 0;
     text-align: center;
+    /* Motif subtil en fond */
     background-image: url("data:image/svg+xml,%3Csvg width='60' height='60' viewBox='0 0 60 60' xmlns='http://www.w3.org/2000/svg'%3E%3Cg fill='none' fill-rule='evenodd'%3E%3Cg fill='%23d4af37' fill-opacity='0.05'%3E%3Cpath d='M36 34v-4h-2v4h-4v2h4v4h2v-4h4v-2h-4zm0-30V0h-2v4h-4v2h4v4h2V6h4V4h-4zM6 34v-4H4v4H0v2h4v4h2v-4h4v-2H6zM6 4V0H4v4H0v2h4v4h2V6h4V4H6z'/%3E%3C/g%3E%3C/g%3E%3C/svg%3E");
   }
 
@@ -301,7 +434,6 @@ const description =
     margin: 0 auto;
     border: 1px solid rgba(212, 175, 55, 0.3);
     padding: 40px;
-    position: relative;
   }
 
   .manifeste-section h2 {
@@ -338,7 +470,7 @@ const description =
     letter-spacing: 2px;
   }
 
-  /* --- CTA (Inchangé) --- */
+  /* --- CTA --- */
   .cta-section {
     text-align: center;
     padding: 40px 20px;
@@ -387,29 +519,20 @@ const description =
     animation: fadeInUp 0.8s ease forwards;
   }
 
-  @keyframes rotateSlow {
-    from {
-      transform: rotate(0deg);
-    }
-    to {
-      transform: rotate(360deg);
-    }
-  }
-
   /* MOBILE */
   @media (max-width: 768px) {
     h1 {
       font-size: 2.2rem;
     }
-    .contenu-manifeste {
-      padding: 20px;
+    .emblemes-container {
+      gap: 10px;
     }
-    .sceau-label {
-      width: 140px;
-      height: 140px;
+    .logo-wrapper {
+      width: 90px;
     }
-    .logo-initiales {
-      font-size: 1.4rem;
+    .separator-x {
+      font-size: 1.8rem;
+      margin-bottom: 25px;
     }
   }
 </style>
