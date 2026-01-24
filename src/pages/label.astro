@@ -1,0 +1,358 @@
+---
+import BaseLayout from "../layouts/BaseLayout.astro";
+
+// Métadonnées pour le Ministre et le SEO
+const pageTitle = "Label Qualité & Certification | Héritage Vodun";
+const description =
+  "Découvrez la Charte de Confiance Héritage Vodun. Le premier label garantissant l'authenticité, l'éthique et la sécurité du tourisme spirituel au Bénin.";
+---
+
+<BaseLayout titrePage={pageTitle} description={description}>
+  <main class="label-page">
+    <section class="hero-label animate-enter">
+      <div class="sceau-container">
+        <div class="sceau-label">
+          <div class="cercle-exterieur"></div>
+          <div class="cercle-interieur">
+            <span class="texte-sceau">AUTHENTICITÉ • INTEGRITÉ • SAVOIR</span>
+            <div class="icone-centrale">HVM</div>
+          </div>
+        </div>
+      </div>
+
+      <h1>Le Label <span class="text-gold">Héritage Vodun</span></h1>
+      <p class="intro-text">
+        Face à la "folklorisation" du sacré, nous établissons le premier
+        standard de qualité pour le tourisme spirituel au Bénin. Une garantie
+        pour le visiteur, une fierté pour le guide.
+      </p>
+    </section>
+
+    <section class="piliers-container">
+      <div class="pilier-card animate-enter" style="animation-delay: 200ms">
+        <div class="icon-pilier">📜</div>
+        <h3>1. Authenticité Historique</h3>
+        <p>
+          Fini les légendes inventées pour les touristes. Chaque guide certifié
+          par le Label s'engage à transmettre l'histoire réelle, vérifiée auprès
+          des anciens et des historiens. Nous distinguons clairement le mythe de
+          la réalité.
+        </p>
+      </div>
+
+      <div class="pilier-card animate-enter" style="animation-delay: 400ms">
+        <div class="icon-pilier">🤝</div>
+        <h3>2. Éthique & Respect</h3>
+        <p>
+          Le Vodun n'est pas un spectacle de zoo. Nos partenaires s'engagent à
+          respecter la dignité des prêtres, le secret des couvents et
+          l'intégrité des visiteurs. Aucune extorsion, aucune mise en scène
+          forcée.
+        </p>
+      </div>
+
+      <div class="pilier-card animate-enter" style="animation-delay: 600ms">
+        <div class="icon-pilier">🛡️</div>
+        <h3>3. Sécurité & Confiance</h3>
+        <p>
+          Un visiteur serein est un visiteur qui revient. Le Label garantit des
+          parcours sécurisés, des tarifs transparents affichés à l'avance et une
+          identité numérique vérifiée pour chaque intervenant.
+        </p>
+      </div>
+    </section>
+
+    <section
+      class="manifeste-section animate-enter"
+      style="animation-delay: 800ms"
+    >
+      <div class="contenu-manifeste">
+        <h2>Notre Engagement envers l'État</h2>
+        <p>
+          <strong>Héritage Vodun</strong> ne se substitue pas aux institutions, il
+          les accompagne. Notre mission est de numériser et structurer l'offre touristique
+          informelle pour en faire un levier de développement économique fiable.
+        </p>
+        <p>
+          Nous construisons la base de données de confiance du Bénin Révélé.
+        </p>
+
+        <div class="signature-bloc">
+          <span class="signature">La Direction Héritage Vodun</span>
+          <div class="date">Ouidah, 2026</div>
+        </div>
+      </div>
+    </section>
+
+    <section class="cta-section animate-enter" style="animation-delay: 1000ms">
+      <h2>Vous êtes Guide ou Gardien de Temple ?</h2>
+      <p>Rejoignez le réseau d'excellence. Demandez votre accréditation.</p>
+      <a href="/contact" class="btn-gold">Demander la Certification →</a>
+    </section>
+  </main>
+</BaseLayout>
+
+<style>
+  /* --- VARIABLES --- */
+  :root {
+    --or-vodun: #d4af37;
+    --or-clair: #f3e5ab;
+    --noir-profond: #1a1a1a;
+    --vert-foret: #2f4f4f;
+    --blanc-creme: #fdfbf7;
+  }
+
+  .label-page {
+    background-color: var(--blanc-creme);
+    font-family: "Lato", sans-serif;
+    padding-bottom: 80px;
+    overflow-x: hidden;
+  }
+
+  /* --- HERO SCEAU --- */
+  .hero-label {
+    text-align: center;
+    padding: 80px 20px 60px;
+    background: linear-gradient(to bottom, #fff, var(--blanc-creme));
+  }
+
+  /* Le Sceau en CSS Pur (CSS Art) */
+  .sceau-container {
+    display: flex;
+    justify-content: center;
+    margin-bottom: 40px;
+  }
+
+  .sceau-label {
+    width: 150px;
+    height: 150px;
+    position: relative;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: var(--or-vodun);
+  }
+
+  .cercle-exterieur {
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    border: 2px solid var(--or-vodun);
+    border-radius: 50%;
+    border-style: double;
+    box-shadow: 0 0 20px rgba(212, 175, 55, 0.2);
+    animation: rotateSlow 60s linear infinite;
+  }
+
+  .cercle-interieur {
+    width: 80%;
+    height: 80%;
+    border: 1px solid var(--vert-foret);
+    background: var(--vert-foret);
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: white;
+    flex-direction: column;
+    box-shadow: inset 0 0 15px rgba(0, 0, 0, 0.5);
+  }
+
+  .texte-sceau {
+    font-size: 0.55rem;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    position: absolute;
+    top: 12px;
+    font-weight: bold;
+    color: var(--or-clair);
+  }
+
+  .icone-centrale {
+    font-family: "Playfair Display", serif;
+    font-size: 2rem;
+    font-weight: bold;
+    color: var(--or-vodun);
+    letter-spacing: -2px;
+  }
+
+  h1 {
+    font-family: "Playfair Display", serif;
+    font-size: 3rem;
+    color: var(--noir-profond);
+    margin-bottom: 20px;
+  }
+
+  .text-gold {
+    color: var(--or-vodun);
+    font-style: italic;
+  }
+
+  .intro-text {
+    font-size: 1.2rem;
+    max-width: 700px;
+    margin: 0 auto;
+    color: #555;
+    line-height: 1.6;
+  }
+
+  /* --- PILIERS --- */
+  .piliers-container {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 40px 20px;
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+    gap: 40px;
+  }
+
+  .pilier-card {
+    background: white;
+    padding: 40px 30px;
+    border-radius: 8px;
+    border-top: 4px solid var(--or-vodun);
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.05);
+    transition: transform 0.3s ease;
+  }
+
+  .pilier-card:hover {
+    transform: translateY(-5px);
+  }
+
+  .icon-pilier {
+    font-size: 3rem;
+    margin-bottom: 20px;
+  }
+
+  h3 {
+    font-family: "Playfair Display", serif;
+    font-size: 1.5rem;
+    color: var(--vert-foret);
+    margin-bottom: 15px;
+  }
+
+  .pilier-card p {
+    color: #666;
+    line-height: 1.6;
+  }
+
+  /* --- MANIFESTE --- */
+  .manifeste-section {
+    background-color: var(--vert-foret);
+    color: white;
+    padding: 80px 20px;
+    margin: 60px 0;
+    text-align: center;
+    background-image: url("data:image/svg+xml,%3Csvg width='60' height='60' viewBox='0 0 60 60' xmlns='http://www.w3.org/2000/svg'%3E%3Cg fill='none' fill-rule='evenodd'%3E%3Cg fill='%23d4af37' fill-opacity='0.05'%3E%3Cpath d='M36 34v-4h-2v4h-4v2h4v4h2v-4h4v-2h-4zm0-30V0h-2v4h-4v2h4v4h2V6h4V4h-4zM6 34v-4H4v4H0v2h4v4h2v-4h4v-2H6zM6 4V0H4v4H0v2h4v4h2V6h4V4H6z'/%3E%3C/g%3E%3C/g%3E%3C/svg%3E");
+  }
+
+  .contenu-manifeste {
+    max-width: 800px;
+    margin: 0 auto;
+    border: 1px solid rgba(212, 175, 55, 0.3);
+    padding: 40px;
+    position: relative;
+  }
+
+  .manifeste-section h2 {
+    font-family: "Playfair Display", serif;
+    color: var(--or-vodun);
+    font-size: 2.2rem;
+    margin-bottom: 30px;
+  }
+
+  .manifeste-section p {
+    font-size: 1.1rem;
+    margin-bottom: 20px;
+    opacity: 0.9;
+  }
+
+  .signature-bloc {
+    margin-top: 40px;
+    display: flex;
+    flex-direction: column;
+    align-items: flex-end;
+  }
+
+  .signature {
+    font-family: "Playfair Display", serif;
+    font-style: italic;
+    font-size: 1.5rem;
+    color: var(--or-vodun);
+  }
+
+  .date {
+    font-size: 0.9rem;
+    opacity: 0.6;
+    text-transform: uppercase;
+    letter-spacing: 2px;
+  }
+
+  /* --- CTA --- */
+  .cta-section {
+    text-align: center;
+    padding: 40px 20px;
+  }
+
+  .cta-section h2 {
+    font-family: "Playfair Display", serif;
+    font-size: 2rem;
+    color: var(--noir-profond);
+  }
+
+  .btn-gold {
+    display: inline-block;
+    background-color: var(--or-vodun);
+    color: white;
+    padding: 15px 40px;
+    border-radius: 50px;
+    text-decoration: none;
+    font-weight: bold;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    margin-top: 30px;
+    transition: all 0.3s;
+    box-shadow: 0 5px 15px rgba(212, 175, 55, 0.4);
+  }
+
+  .btn-gold:hover {
+    background-color: #b5922b;
+    transform: translateY(-3px);
+  }
+
+  /* --- ANIMATIONS --- */
+  @keyframes fadeInUp {
+    from {
+      opacity: 0;
+      transform: translateY(30px);
+    }
+    to {
+      opacity: 1;
+      transform: translateY(0);
+    }
+  }
+
+  .animate-enter {
+    opacity: 0;
+    animation: fadeInUp 0.8s ease forwards;
+  }
+
+  @keyframes rotateSlow {
+    from {
+      transform: rotate(0deg);
+    }
+    to {
+      transform: rotate(360deg);
+    }
+  }
+
+  /* MOBILE */
+  @media (max-width: 768px) {
+    h1 {
+      font-size: 2.2rem;
+    }
+    .contenu-manifeste {
+      padding: 20px;
+    }
+  }
+</style>
