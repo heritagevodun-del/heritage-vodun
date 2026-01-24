@@ -1,6 +1,6 @@
 ---
 layout: ../../layouts/PostLayout.astro
-title: "Vodun Days 2026 : 5 conseils pour réussir votre pèlerinage à Ouidah"
+title: "Vodun Days : 5 conseils pour réussir votre pèlerinage à Ouidah"
 pubDate: 2026-01-08
 description: "Tenue, transport, interdits... Voici le guide de survie indispensable pour vivre les Vodun Days en toute sérénité et dans le respect des traditions."
 image: "/vodun-days-cover.jpg"
