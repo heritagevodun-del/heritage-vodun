@@ -7,14 +7,22 @@
   <a href="/lexique">Lexique</a>
   <a href="/blog">Récits</a>
   <a href="/about">Mission</a>
+  <a href="/label">Le Label</a>
   <a href="/contact">Contact</a>
 
   <a href="#" class="special-link open-oracle">
-    <span class="dot"></span> L'Oracle
+    <span class="dot"></span>
+    <span class="oracle-text">Parler à l'Oracle</span>
   </a>
 </div>
 
 <style>
+  /* --- VARIABLES --- */
+  :root {
+    --or-vodun: #d4af37;
+    --vert-profond: #1a2e2e;
+  }
+
   .nav-links {
     display: flex;
     gap: 30px;
@@ -33,74 +41,66 @@
     transition: color 0.3s;
   }
 
-  /* Effet de soulignement au survol (sauf pour le bouton spécial) */
-  .nav-links a:not(.special-link)::after {
-    content: "";
-    position: absolute;
-    width: 0;
-    height: 2px;
-    bottom: -5px;
-    left: 0;
-    background-color: #c06c3b;
-    transition: width 0.3s;
-  }
+  /* Soulignement animé standard */
+  .nav-links a:not(.special-link)::after,
   .nav-links a:not(.special-link)::before {
     content: "";
     position: absolute;
     width: 0;
     height: 2px;
     bottom: -5px;
-    right: 0;
     background-color: #c06c3b;
     transition: width 0.3s;
   }
+  .nav-links a:not(.special-link)::after {
+    left: 0;
+  }
+  .nav-links a:not(.special-link)::before {
+    right: 0;
+  }
+
   .nav-links a:not(.special-link):hover::after {
     width: 100%;
-    left: 0;
   }
   .nav-links a:hover {
     color: #c06c3b;
   }
 
-  /* --- STYLE DU BOUTON ORACLE --- */
+  /* --- STYLE DU BOUTON ORACLE (DESKTOP) --- */
   a.special-link {
     display: flex;
     align-items: center;
-    gap: 8px;
-    background: rgba(46, 204, 113, 0.1); /* Fond vert très léger par défaut */
-    padding: 8px 16px;
-    border-radius: 20px;
-    color: #2ecc71; /* Texte vert par défaut */
+    gap: 10px;
+    padding: 8px 20px;
+    border-radius: 50px;
     border: 1px solid rgba(46, 204, 113, 0.3);
-    transition: all 0.3s cubic-bezier(0.25, 0.8, 0.25, 1);
+    color: #2f4f4f;
+    transition: all 0.4s ease;
   }
 
-  /* AU SURVOL : BLANC SUR VERT */
+  .oracle-text {
+    font-size: 0.85rem;
+    font-weight: bold;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+  }
+
+  /* Au survol Desktop : Élégance subtile */
   a.special-link:hover {
-    background: #2ecc71; /* Vert Émeraude */
-    color: white !important; /* Texte Blanc forcé */
-    border-color: #2ecc71;
+    border-color: var(--or-vodun);
+    background-color: rgba(212, 175, 55, 0.05);
+    color: var(--or-vodun);
     transform: translateY(-2px);
-    box-shadow: 0 4px 15px rgba(46, 204, 113, 0.4); /* Ombre Verte Lumineuse */
   }
 
-  /* Le point vert qui pulse */
+  /* Le point d'état (Vert = En ligne) */
   .dot {
     width: 8px;
     height: 8px;
     background-color: #2ecc71;
     border-radius: 50%;
-    display: inline-block;
     box-shadow: 0 0 0 0 rgba(46, 204, 113, 0.7);
     animation: pulse-green 2s infinite;
-    transition: background-color 0.3s;
-  }
-
-  /* Quand on survole, le point devient blanc pour rester visible */
-  a.special-link:hover .dot {
-    background-color: white;
-    box-shadow: none;
-    animation: none;
   }
 
   @keyframes pulse-green {
@@ -118,19 +118,20 @@
     }
   }
 
-  /* --- MOBILE --- */
+  /* --- 📱 MOBILE : VERSION PREMIUM & PRO --- */
   @media (max-width: 900px) {
     .nav-links {
       position: absolute;
       top: 100%;
       left: 0;
       width: 100%;
-      background: white;
+      background: rgba(255, 255, 255, 0.98);
+      backdrop-filter: blur(10px);
       flex-direction: column;
-      padding: 20px 0;
-      gap: 20px;
-      border-top: 1px solid #eee;
-      box-shadow: 0 10px 20px rgba(0, 0, 0, 0.05);
+      padding: 30px 0;
+      gap: 25px;
+      border-bottom: 1px solid rgba(0, 0, 0, 0.05);
+      box-shadow: 0 15px 30px rgba(0, 0, 0, 0.1);
       display: none;
       opacity: 0;
       transform: translateY(-10px);
@@ -147,14 +148,32 @@
       font-size: 1.1rem;
       width: 100%;
       text-align: center;
-      padding: 10px 0;
+      padding: 5px 0;
     }
 
+    /* 👇 LE DESIGN PREMIUM MOBILE EST ICI */
     a.special-link {
-      width: auto;
-      margin-top: 10px;
-      /* Sur mobile, on le garde un peu plus visible */
-      background: rgba(46, 204, 113, 0.15);
+      width: 80%; /* Pas trop large, classe */
+      margin: 20px auto 10px; /* Centré avec de l'espace */
+      background-color: var(--vert-profond); /* Fond sombre luxueux */
+      border: 1px solid var(--or-vodun); /* Bordure Or */
+      color: var(--or-vodun) !important; /* Texte Or */
+      justify-content: center;
+      padding: 15px 0; /* Plus haut pour le doigt */
+      box-shadow: 0 5px 15px rgba(26, 46, 46, 0.2);
+    }
+
+    a.special-link .oracle-text {
+      font-family: "Playfair Display", serif; /* Police Royal */
+      font-size: 1rem;
+      letter-spacing: 2px;
+    }
+
+    /* Le point devient Or sur mobile pour matcher */
+    a.special-link .dot {
+      background-color: var(--or-vodun);
+      box-shadow: 0 0 5px var(--or-vodun);
+      animation: none; /* Pas de pulse pour rester sobre/chic */
     }
   }
 </style>
