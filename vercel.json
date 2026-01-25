@@ -11,6 +11,7 @@
       "destination": "https://www.heritagevodun.com/:path*",
       "permanent": true
     },
+
     {
       "source": "/categories/Divinités",
       "destination": "/categories/Panthéon%20&%20Divinités",
@@ -26,6 +27,7 @@
       "destination": "/categories/Panthéon%20&%20Divinités",
       "permanent": true
     },
+
     {
       "source": "/categories/Spiritualité",
       "destination": "/categories/Sagesse%20&%20Spiritualité",
@@ -41,6 +43,7 @@
       "destination": "/categories/Sagesse%20&%20Spiritualité",
       "permanent": true
     },
+
     {
       "source": "/categories/Histoire",
       "destination": "/categories/Histoire%20&%20Patrimoine",
@@ -51,8 +54,14 @@
       "destination": "/categories/Histoire%20&%20Patrimoine",
       "permanent": true
     },
+
     {
-      "source": "/categories/Histoire%20&%20Mémoire",
+      "source": "/categories/Histoire & Mémoire",
+      "destination": "/categories/Histoire%20&%20Patrimoine",
+      "permanent": true
+    },
+    {
+      "source": "/categories/Histoire & Mémoire/",
       "destination": "/categories/Histoire%20&%20Patrimoine",
       "permanent": true
     },
@@ -62,10 +71,16 @@
       "permanent": true
     },
     {
-      "source": "/categories/Histoire & Mémoire/",
+      "source": "/categories/Histoire%20%26%20M%C3%A9moire/",
       "destination": "/categories/Histoire%20&%20Patrimoine",
       "permanent": true
     },
+    {
+      "source": "/categories/Histoire%20&%20M%C3%A9moire/",
+      "destination": "/categories/Histoire%20&%20Patrimoine",
+      "permanent": true
+    },
+
     {
       "source": "/categories/Lieux%20Sacrés",
       "destination": "/categories/Tourisme%20&%20Découverte",
@@ -81,6 +96,7 @@
       "destination": "/categories/Tourisme%20&%20Découverte",
       "permanent": true
     },
+
     {
       "source": "/categories/Événement",
       "destination": "/categories/Rituels%20&%20Cérémonies",
@@ -96,6 +112,7 @@
       "destination": "/categories/Rituels%20&%20Cérémonies",
       "permanent": true
     },
+
     {
       "source": "/categories/Objets%20Sacrés",
       "destination": "/categories/Objets%20&%20Symboles",
