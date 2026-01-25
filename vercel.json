@@ -17,7 +17,12 @@
       "permanent": true
     },
     {
-      "source": "/categories/Divinit%C3%A9s",
+      "source": "/categories/Divinités/",
+      "destination": "/categories/Panthéon%20&%20Divinités",
+      "permanent": true
+    },
+    {
+      "source": "/categories/Divinit%C3%A9s/",
       "destination": "/categories/Panthéon%20&%20Divinités",
       "permanent": true
     },
@@ -27,7 +32,12 @@
       "permanent": true
     },
     {
-      "source": "/categories/Spiritualit%C3%A9",
+      "source": "/categories/Spiritualité/",
+      "destination": "/categories/Sagesse%20&%20Spiritualité",
+      "permanent": true
+    },
+    {
+      "source": "/categories/Spiritualit%C3%A9/",
       "destination": "/categories/Sagesse%20&%20Spiritualité",
       "permanent": true
     },
@@ -37,7 +47,22 @@
       "permanent": true
     },
     {
+      "source": "/categories/Histoire/",
+      "destination": "/categories/Histoire%20&%20Patrimoine",
+      "permanent": true
+    },
+    {
       "source": "/categories/Histoire%20&%20Mémoire",
+      "destination": "/categories/Histoire%20&%20Patrimoine",
+      "permanent": true
+    },
+    {
+      "source": "/categories/Histoire%20&%20Mémoire/",
+      "destination": "/categories/Histoire%20&%20Patrimoine",
+      "permanent": true
+    },
+    {
+      "source": "/categories/Histoire & Mémoire/",
       "destination": "/categories/Histoire%20&%20Patrimoine",
       "permanent": true
     },
@@ -47,7 +72,12 @@
       "permanent": true
     },
     {
-      "source": "/categories/Lieux%20Sacr%C3%A9s",
+      "source": "/categories/Lieux%20Sacrés/",
+      "destination": "/categories/Tourisme%20&%20Découverte",
+      "permanent": true
+    },
+    {
+      "source": "/categories/Lieux%20Sacr%C3%A9s/",
       "destination": "/categories/Tourisme%20&%20Découverte",
       "permanent": true
     },
@@ -57,12 +87,22 @@
       "permanent": true
     },
     {
-      "source": "/categories/%C3%89v%C3%A9nement",
+      "source": "/categories/Événement/",
+      "destination": "/categories/Rituels%20&%20Cérémonies",
+      "permanent": true
+    },
+    {
+      "source": "/categories/%C3%89v%C3%A9nement/",
       "destination": "/categories/Rituels%20&%20Cérémonies",
       "permanent": true
     },
     {
       "source": "/categories/Objets%20Sacrés",
+      "destination": "/categories/Objets%20&%20Symboles",
+      "permanent": true
+    },
+    {
+      "source": "/categories/Objets%20Sacrés/",
       "destination": "/categories/Objets%20&%20Symboles",
       "permanent": true
     }
