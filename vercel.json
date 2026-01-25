@@ -17,8 +17,18 @@
       "permanent": true
     },
     {
+      "source": "/categories/Divinit%C3%A9s",
+      "destination": "/categories/Panthéon%20&%20Divinités",
+      "permanent": true
+    },
+    {
       "source": "/categories/Spiritualité",
-      "destination": "/categories/Sagesse%20&%20Spiritualit%C3%A9",
+      "destination": "/categories/Sagesse%20&%20Spiritualité",
+      "permanent": true
+    },
+    {
+      "source": "/categories/Spiritualit%C3%A9",
+      "destination": "/categories/Sagesse%20&%20Spiritualité",
       "permanent": true
     },
     {
@@ -33,12 +43,27 @@
     },
     {
       "source": "/categories/Lieux%20Sacrés",
-      "destination": "/categories/Tourisme%20&%20D%C3%A9couverte",
+      "destination": "/categories/Tourisme%20&%20Découverte",
+      "permanent": true
+    },
+    {
+      "source": "/categories/Lieux%20Sacr%C3%A9s",
+      "destination": "/categories/Tourisme%20&%20Découverte",
       "permanent": true
     },
     {
       "source": "/categories/Événement",
-      "destination": "/categories/Rituels%20&%20C%C3%A9r%C3%A9monies",
+      "destination": "/categories/Rituels%20&%20Cérémonies",
+      "permanent": true
+    },
+    {
+      "source": "/categories/%C3%89v%C3%A9nement",
+      "destination": "/categories/Rituels%20&%20Cérémonies",
+      "permanent": true
+    },
+    {
+      "source": "/categories/Objets%20Sacrés",
+      "destination": "/categories/Objets%20&%20Symboles",
       "permanent": true
     }
   ]
