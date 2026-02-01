@@ -1,0 +1,121 @@
+---
+// src/pages/manifeste.astro
+// Métadonnées SEO pour l'article
+const title = "Le Bénin face à son destin numérique : L'urgence de la Data Culturelle";
+const description = "Manifeste pour la souveraineté numérique du patrimoine Vodun. Une vision portée par Nova ENT pour l'État Béninois.";
+const publishDate = new Date().toLocaleDateString('fr-FR', { year: 'numeric', month: 'long', day: 'numeric' });
+---
+
+<html lang="fr">
+  <head>
+    <meta charset="utf-8" />
+    <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+    <meta name="viewport" content="width=device-width" />
+    <meta name="generator" content={Astro.generator} />
+    <title>{title} | Héritage Vodun</title>
+    <meta name="description" content={description} />
+    
+    <meta property="og:type" content="article" />
+    <meta property="og:title" content={title} />
+    <meta property="og:description" content={description} />
+    <meta property="og:image" content="https://www.heritagevodun.com/og-manifeste.jpg" /> {/* Assure-toi d'avoir une image impactante ici */}
+
+    <meta property="twitter:card" content="summary_large_image" />
+    <meta property="twitter:title" content={title} />
+    <meta property="twitter:description" content={description} />
+  </head>
+  
+  <body class="bg-[#0a0a0a] text-neutral-100 font-sans selection:bg-amber-600 selection:text-white">
+    
+    <nav class="absolute top-0 left-0 w-full p-6 flex justify-between items-center z-50">
+        <a href="/" class="text-sm font-bold tracking-widest text-amber-500 hover:text-amber-400 uppercase transition-colors">
+            ← Retour à l'accueil
+        </a>
+    </nav>
+
+    <main>
+      <header class="relative pt-32 pb-16 px-6 border-b border-neutral-800 bg-gradient-to-b from-black to-neutral-900">
+        <div class="max-w-4xl mx-auto text-center">
+          <span class="inline-block py-1 px-3 rounded-full bg-amber-900/30 text-amber-500 text-xs font-bold tracking-widest uppercase mb-6 border border-amber-900/50">
+            Tribune Libre • Innovation & Culture
+          </span>
+          <h1 class="text-4xl md:text-6xl font-extrabold tracking-tight leading-tight mb-8 text-transparent bg-clip-text bg-gradient-to-r from-amber-200 via-white to-neutral-400">
+            La Donnée est le nouveau Pétrole, <br class="hidden md:block" />
+            notre Culture est notre Or.
+          </h1>
+          <p class="text-xl text-neutral-400 max-w-2xl mx-auto leading-relaxed">
+            Pourquoi le Bénin doit, dès aujourd'hui, revendiquer sa souveraineté numérique sur le patrimoine Vodun grâce à l'Intelligence Artificielle.
+          </p>
+          <div class="mt-8 text-sm text-neutral-500 font-mono">
+            Publié le {publishDate} par <span class="text-amber-500">GBESSI Aubénas Ronaldo</span>
+          </div>
+        </div>
+      </header>
+
+      <article class="max-w-3xl mx-auto px-6 py-20">
+        
+        <div class="prose prose-lg prose-invert mx-auto mb-16">
+          <p class="text-xl leading-relaxed text-neutral-200">
+            <span class="text-6xl float-left mr-4 mt-[-10px] font-bold text-amber-500">N</span>ous sommes à la croisée des chemins. Alors que le monde entier se rue vers l'Intelligence Artificielle et la digitalisation massive, l'Afrique possède une ressource inexploitée d'une valeur inestimable : <strong>son histoire, sa spiritualité et son identité.</strong>
+          </p>
+          <p class="text-neutral-300 mt-6">
+            Au Bénin, le Vodun n'est pas seulement une religion, c'est un système de connaissances complexe, une philosophie et un art de vivre. Mais aujourd'hui, qui possède la donnée numérique de ce patrimoine ? Google ? Meta ? Des serveurs étrangers ?
+          </p>
+        </div>
+
+        <div class="my-16 pl-8 border-l-4 border-amber-500 py-4 bg-neutral-900/50 rounded-r-xl">
+          <h2 class="text-2xl font-bold text-white mb-4">L'Urgence d'une Infrastructure Numérique Nationale</h2>
+          <p class="text-neutral-300 italic">
+            "Si nous ne digitalisons pas nous-mêmes notre héritage, d'autres le feront à notre place, et mal."
+          </p>
+          <p class="text-neutral-300 mt-4">
+            C'est ici qu'intervient <strong>Nova ENT</strong>. Nous ne créons pas de simples sites web. Nous bâtissons l'infrastructure numérique de la mémoire béninoise.
+          </p>
+        </div>
+
+        <div class="space-y-8 text-neutral-300 text-lg leading-relaxed">
+          <h3 class="text-3xl font-bold text-white">Héritage Vodun & Mindoguesito : Une vision d'État.</h3>
+          <p>
+            Avec <strong>Héritage Vodun</strong>, nous centralisons, authentifions et valorisons le savoir ancestral avec une esthétique digne des plus grands standards internationaux.
+          </p>
+          <p>
+            Avec <strong>Mindoguesito</strong>, l'Oracle Numérique, nous prouvons que l'IA peut parler nos langues, comprendre nos codes et servir nos traditions au lieu de les effacer. Nous développons une IA souveraine.
+          </p>
+          
+          <ul class="grid grid-cols-1 md:grid-cols-2 gap-4 mt-8">
+            <li class="bg-neutral-900 p-4 rounded border border-neutral-800">
+                <strong class="text-amber-500 block mb-2">Digitalisation 3D</strong>
+                Des artefacts pour les musées virtuels nationaux.
+            </li>
+            <li class="bg-neutral-900 p-4 rounded border border-neutral-800">
+                <strong class="text-amber-500 block mb-2">SEO Culturel</strong>
+                Pour dominer les résultats de recherche mondiaux sur le Bénin.
+            </li>
+            <li class="bg-neutral-900 p-4 rounded border border-neutral-800">
+                <strong class="text-amber-500 block mb-2">IA Générative</strong>
+                Pour l'éducation et la préservation des contes et légendes.
+            </li>
+          </ul>
+        </div>
+
+        <div class="mt-20 p-10 bg-gradient-to-br from-neutral-900 to-black rounded-2xl border border-neutral-800 text-center shadow-2xl shadow-amber-900/10">
+          <h3 class="text-2xl font-bold text-white mb-4">Un Partenariat pour l'Avenir</h3>
+          <p class="text-neutral-400 mb-8 max-w-xl mx-auto">
+            L'initiative privée a montré la voie. Il est temps maintenant de passer à l'échelle nationale. <strong>Héritage Vodun</strong> est prêt à devenir le bras armé numérique de la stratégie touristique et culturelle du Bénin.
+          </p>
+          <div class="inline-block text-left border-l-2 border-amber-500 pl-4">
+             <span class="text-white font-bold text-lg block">GBESSI Aubénas Ronaldo</span>
+             <span class="text-amber-500 text-sm uppercase tracking-wider">Fondateur, Nova ENT</span>
+          </div>
+        </div>
+
+      </article>
+      
+    </main>
+    
+    <footer class="py-12 border-t border-neutral-800 text-center text-neutral-600 text-sm bg-black">
+        <p>&copy; {new Date().getFullYear()} Héritage Vodun. Propulsé par Nova ENT.</p>
+    </footer>
+
+  </body>
+</html>
