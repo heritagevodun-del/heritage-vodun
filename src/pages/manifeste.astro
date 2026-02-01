@@ -57,10 +57,10 @@ const publishDate = new Date().toLocaleDateString("fr-FR", {
           </p>
           <p>
             Au Bénin, le Vodun n'est pas seulement une religion, c'est un
-            système de connaissances. Chaque conte, chaque rituel, chaque artefact
-            est une mine de données culturelles qui, si elles sont correctement
-            numérisées, peuvent être utilisées pour enrichir l'IA locale et
-            renforcer la souveraineté numérique du pays.
+            système de connaissances. Chaque conte, chaque rituel, chaque
+            artefact est une mine de données culturelles qui, si elles sont
+            correctement numérisées, peuvent être utilisées pour enrichir l'IA
+            locale et renforcer la souveraineté numérique du pays.
           </p>
         </div>
 
@@ -121,7 +121,7 @@ const publishDate = new Date().toLocaleDateString("fr-FR", {
     </footer>
 
     <style>
-      /* CSS INTÉGRÉ POUR FORCER LE DESIGN */
+      /* CSS INTÉGRÉ ET CORRIGÉ POUR MOBILE */
       :root {
         --bg: #050505;
         --text: #e5e5e5;
@@ -137,6 +137,7 @@ const publishDate = new Date().toLocaleDateString("fr-FR", {
         font-family: "Space Grotesk", sans-serif;
         margin: 0;
         line-height: 1.6;
+        overflow-x: hidden; /* Empêche le scroll horizontal */
       }
 
       h1,
@@ -151,6 +152,8 @@ const publishDate = new Date().toLocaleDateString("fr-FR", {
         max-width: 800px;
         margin: 0 auto;
         padding: 20px;
+        width: 100%; /* Assure que le conteneur ne dépasse pas */
+        box-sizing: border-box; /* Inclut le padding dans la largeur */
       }
 
       /* Nav */
@@ -169,54 +172,71 @@ const publishDate = new Date().toLocaleDateString("fr-FR", {
       /* Header */
       header {
         text-align: center;
-        padding: 60px 0 40px;
+        padding: 40px 0 30px; /* Réduit un peu le padding haut */
         border-bottom: 1px solid var(--border);
       }
+
+      /* --- CORRECTION DU BADGE --- */
       .badge {
+        display: inline-block; /* IMPORTANT: Permet au badge de garder sa forme de bloc */
         background: var(--accent-glow);
         color: var(--accent);
-        padding: 5px 15px;
+        padding: 6px 15px; /* Ajusté pour l'équilibre */
         border-radius: 50px;
         font-size: 0.7rem;
         text-transform: uppercase;
         letter-spacing: 2px;
         border: 1px solid var(--accent);
+        line-height: 1.2; /* Évite que le texte soit trop espacé s'il passe à la ligne */
+        margin-bottom: 15px;
+        max-width: 90%; /* Empêche de toucher les bords sur très petits écrans */
       }
+
       h1 {
-        font-size: 2.5rem;
-        margin-top: 20px;
-        line-height: 1.1;
+        /* Utilisation de CLAMP pour une taille fluide entre mobile et desktop */
+        font-size: clamp(1.8rem, 5vw, 2.5rem);
+        margin-top: 15px;
+        line-height: 1.2;
         color: white;
+        word-wrap: break-word; /* Coupe les mots si trop longs */
       }
+
       .gradient-text {
         background: linear-gradient(to right, #fde68a, #f59e0b);
         -webkit-background-clip: text;
         -webkit-text-fill-color: transparent;
+        display: inline-block; /* Aide le gradient à ne pas casser */
       }
+
       .subtitle {
-        font-size: 1.2rem;
+        font-size: clamp(1rem, 3vw, 1.2rem); /* Taille adaptative */
         color: #888;
         margin-top: 20px;
+        max-width: 600px;
+        margin-left: auto;
+        margin-right: auto;
       }
+
       .meta {
         margin-top: 30px;
-        font-size: 0.9rem;
+        font-size: 0.85rem;
         color: #666;
         font-family: monospace;
       }
 
       /* Article */
       article {
-        padding: 40px 0;
+        padding: 30px 0;
       }
       .intro {
         font-size: 1.1rem;
         color: #ccc;
         margin-bottom: 40px;
       }
+
       .dropcap {
         float: left;
-        font-size: 4rem;
+        font-size: 3.5rem; /* Légèrement réduit pour mobile */
         line-height: 0.8;
         font-weight: bold;
         color: var(--accent);
@@ -224,28 +244,31 @@ const publishDate = new Date().toLocaleDateString("fr-FR", {
         margin-top: 5px;
       }
 
+      /* --- CORRECTION BOX ET LAYOUT MOBILE --- */
       .highlight-box {
         border-left: 4px solid var(--accent);
-        padding-left: 20px;
         margin: 40px 0;
         background: linear-gradient(90deg, var(--surface), transparent);
-        padding: 30px;
+        padding: 20px; /* Padding réduit pour mobile */
         border-radius: 0 10px 10px 0;
       }
+
       .highlight-box h2 {
         color: white;
         margin-top: 0;
+        font-size: 1.5rem; /* Taille adaptée */
       }
+
       .quote {
         font-style: italic;
         color: #aaa;
-        font-size: 1.1rem;
+        font-size: 1rem;
       }
 
       h3 {
-        font-size: 1.8rem;
+        font-size: 1.5rem;
         color: white;
-        margin-top: 50px;
+        margin-top: 40px;
       }
 
       /* Features */
@@ -253,15 +276,25 @@ const publishDate = new Date().toLocaleDateString("fr-FR", {
         list-style: none;
         padding: 0;
         display: grid;
+        /* Par défaut 1 colonne (Mobile First) */
         grid-template-columns: 1fr;
         gap: 15px;
         margin-top: 30px;
       }
+
+      /* Version Desktop */
       @media (min-width: 768px) {
         .features {
           grid-template-columns: 1fr 1fr 1fr;
         }
+        h1 {
+          font-size: 2.5rem;
+        }
+        .highlight-box {
+          padding: 30px;
+        }
       }
+
       .features li {
         background: var(--surface);
         padding: 20px;
@@ -281,8 +314,8 @@ const publishDate = new Date().toLocaleDateString("fr-FR", {
 
       /* Author Box */
       .author-box {
-        margin-top: 60px;
-        padding: 40px;
+        margin-top: 50px;
+        padding: 30px 20px;
         background: var(--surface);
         border: 1px solid var(--border);
         text-align: center;
@@ -295,7 +328,7 @@ const publishDate = new Date().toLocaleDateString("fr-FR", {
         display: block;
         font-weight: bold;
         color: white;
-        font-size: 1.2rem;
+        font-size: 1.1rem;
       }
       .signature .role {
         display: block;
@@ -308,11 +341,24 @@ const publishDate = new Date().toLocaleDateString("fr-FR", {
       /* Footer */
       footer {
         text-align: center;
-        padding: 40px 0;
+        padding: 40px 20px;
         color: #444;
         font-size: 0.8rem;
         border-top: 1px solid var(--border);
         margin-top: 40px;
+      }
+
+      /* --- MEDIA QUERY SPÉCIALE POUR PETITS MOBILES (iPhone SE, etc.) --- */
+      @media (max-width: 400px) {
+        .badge {
+          font-size: 0.6rem; /* Police plus petite */
+          letter-spacing: 1px; /* Espacement réduit pour que ça rentre */
+          padding: 5px 10px;
+          white-space: normal; /* Autorise le retour à la ligne proprement */
+        }
+        h1 {
+          font-size: 1.6rem; /* Titre plus petit */
+        }
       }
     </style>
   </body>
