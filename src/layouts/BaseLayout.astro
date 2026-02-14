@@ -216,15 +216,26 @@ const socialImageURL = new URL(image, Astro.url);
             <span class="status-dot"></span>
             <span class="oracle-title">Mindoguesito (En ligne)</span>
           </div>
-          <button id="close-oracle">×</button>
+          <div class="header-actions">
+            <a
+              href="https://www.mindoguesito.com"
+              target="_blank"
+              class="expand-btn"
+              title="Ouvrir en grand"
+              aria-label="Ouvrir en plein écran">↗</a
+            >
+            <button id="close-oracle" aria-label="Fermer">×</button>
+          </div>
         </div>
 
         <div class="oracle-body-chat">
+          <div id="loader-oracle">Connexion spirituelle...</div>
           <iframe
-            src="https://www.mindoguesito.com"
+            id="mindoguesito-frame"
+            data-src="https://www.mindoguesito.com"
             title="Chat avec Mindoguesito"
             frameborder="0"
-            allow="microphone;"></iframe>
+            allow="microphone; clipboard-write;"></iframe>
         </div>
       </div>
 
@@ -245,6 +256,7 @@ const socialImageURL = new URL(image, Astro.url);
         <div class="pulse-ring"></div>
       </button>
     </div>
+
     <script>
       // Redirection simple si on est sur le sous-domaine
       if (window.location.hostname.includes("vercel.app")) {
@@ -324,31 +336,66 @@ const socialImageURL = new URL(image, Astro.url);
           });
         }
 
-        // --- 3. GESTION DE L'ORACLE (CHATBOT) ---
+        // --- 3. GESTION INTELLIGENTE DE L'ORACLE (LAZY LOAD + CONTEXTE) ---
         const oracleTrigger = document.getElementById("oracle-trigger");
         const oracleWindow = document.getElementById("oracle-window");
         const closeOracle = document.getElementById("close-oracle");
+        const iframe = document.getElementById(
+          "mindoguesito-frame",
+        ) as HTMLIFrameElement;
+        const loader = document.getElementById("loader-oracle");
 
-        function toggleOracle() {
-          oracleWindow?.classList.toggle("hidden");
+        // Fonction : Détermine le contexte selon l'URL de la page
+        function getContextUrl() {
+          const path = window.location.pathname;
+          let context = "heritage_widget"; // Contexte par défaut
+
+          if (path.includes("fa")) context = "fa";
+          else if (path.includes("zangbeto")) context = "zangbeto";
+          else if (path.includes("ouidah")) context = "ouidah";
+          else if (path === "/" || path === "") context = "heritage_home";
+
+          return `https://www.mindoguesito.com/?context=${context}`;
+        }
+
+        function openOracleWidget() {
+          if (!oracleWindow) return;
+          oracleWindow.classList.remove("hidden");
+
+          // Lazy Loading : On charge l'iframe seulement maintenant
+          if (iframe && (!iframe.src || iframe.src === "about:blank")) {
+            iframe.src = getContextUrl();
+            // Cache le loader une fois chargé
+            iframe.onload = () => {
+              if (loader) loader.style.display = "none";
+            };
+          }
+        }
+
+        function closeOracleWidget() {
+          if (oracleWindow) {
+            oracleWindow.classList.add("hidden");
+            // Optionnel : On ne vide pas la src pour ne pas perdre la conversation si on rouvre
+          }
         }
 
         if (oracleTrigger) {
-          oracleTrigger.addEventListener("click", toggleOracle);
+          oracleTrigger.addEventListener("click", openOracleWidget);
         }
         if (closeOracle) {
-          closeOracle.addEventListener("click", () => {
-            oracleWindow?.classList.add("hidden");
-          });
+          closeOracle.addEventListener("click", closeOracleWidget);
         }
 
-        // --- LA TÉLÉCOMMANDE (Trigger à distance) ---
+        // --- LA TÉLÉCOMMANDE (Boutons "Parler au Guide" du site) ---
+        // Intercepte les clics sur les boutons .open-oracle pour ouvrir le widget
+        // au lieu de quitter la page (UX fluide)
         const remoteTriggers = document.querySelectorAll(".open-oracle");
         remoteTriggers.forEach((btn) => {
           btn.addEventListener("click", (e) => {
-            e.preventDefault();
-            if (oracleWindow) {
-              oracleWindow.classList.remove("hidden");
+            e.preventDefault(); // Empêche de suivre le lien href
+            openOracleWidget();
+            // Scroll doux vers le widget si nécessaire sur mobile
+            if (window.innerWidth < 768) {
               window.scrollTo({
                 top: document.body.scrollHeight,
                 behavior: "smooth",
@@ -594,7 +641,7 @@ const socialImageURL = new URL(image, Astro.url);
     }
   }
 
-  /* --- 👁️ STYLE ORACLE WIDGET (VERSION CHAT) --- */
+  /* --- 👁️ STYLE ORACLE WIDGET OPTIMISÉ --- */
   #oracle-widget {
     position: fixed;
     bottom: 25px;
@@ -603,7 +650,7 @@ const socialImageURL = new URL(image, Astro.url);
     font-family: "Lato", sans-serif;
   }
 
-  /* Le Bouton Flottant (Inchangé) */
+  /* Bouton Flottant (Trigger) */
   #oracle-trigger {
     background: #c06c3b;
     width: 60px;
@@ -619,21 +666,21 @@ const socialImageURL = new URL(image, Astro.url);
       transform 0.3s ease,
       background 0.3s;
     position: relative;
-    z-index: 10001; /* Toujours au dessus */
+    z-index: 10001; /* Au dessus de la fenêtre */
   }
   #oracle-trigger:hover {
     transform: scale(1.1);
     background: #a05a2f;
   }
 
-  /* La Fenêtre de Dialogue (PLUS GRANDE) */
+  /* Fenêtre de Chat */
   #oracle-window {
     position: absolute;
     bottom: 80px;
     right: 0;
-    width: 380px; /* Plus large */
-    height: 600px; /* Plus haut pour voir la discussion */
-    max-height: 80vh; /* Pas plus grand que l'écran */
+    width: 380px;
+    height: 600px;
+    max-height: 80vh;
     background: #fff;
     border-radius: 12px;
     box-shadow: 0 5px 40px rgba(0, 0, 0, 0.3);
@@ -645,10 +692,10 @@ const socialImageURL = new URL(image, Astro.url);
     border: 1px solid rgba(0, 0, 0, 0.1);
   }
 
-  /* Sur mobile, on prend presque tout l'écran */
+  /* Responsive Mobile */
   @media (max-width: 480px) {
     #oracle-window {
-      width: 90vw; /* 90% de la largeur */
+      width: 90vw;
       height: 70vh;
       right: -10px;
     }
@@ -668,7 +715,7 @@ const socialImageURL = new URL(image, Astro.url);
     justify-content: space-between;
     align-items: center;
     color: white;
-    flex-shrink: 0; /* Ne rétrécit pas */
+    flex-shrink: 0;
   }
   .header-left {
     display: flex;
@@ -687,6 +734,21 @@ const socialImageURL = new URL(image, Astro.url);
     font-size: 0.95rem;
   }
 
+  .header-actions {
+    display: flex;
+    gap: 12px;
+    align-items: center;
+  }
+  .expand-btn {
+    color: #aaa;
+    text-decoration: none;
+    font-size: 1.2rem;
+    line-height: 1;
+    transition: color 0.2s;
+  }
+  .expand-btn:hover {
+    color: #fff;
+  }
   #close-oracle {
     background: none;
     border: none;
@@ -694,27 +756,52 @@ const socialImageURL = new URL(image, Astro.url);
     font-size: 1.5rem;
     cursor: pointer;
     line-height: 1;
+    transition: color 0.2s;
   }
   #close-oracle:hover {
     color: #fff;
   }
 
-  /* Le Corps qui contient l'Iframe */
+  /* Body Chat (Iframe + Loader) */
   .oracle-body-chat {
-    flex: 1; /* Prend tout l'espace restant */
+    flex: 1;
     background: #f5f5f5;
     position: relative;
+    display: flex; /* Pour centrer le loader */
+    align-items: center;
+    justify-content: center;
   }
 
-  /* L'Iframe magique */
-  .oracle-body-chat iframe {
+  #mindoguesito-frame {
     width: 100%;
     height: 100%;
     border: none;
     display: block;
+    position: relative;
+    z-index: 2; /* Devant le loader */
+    background: transparent; /* Permet de voir le loader si le site est transparent */
   }
 
-  /* Animation */
+  #loader-oracle {
+    position: absolute;
+    color: #888;
+    font-size: 0.9rem;
+    z-index: 1;
+    display: flex;
+    align-items: center;
+    gap: 10px;
+  }
+  #loader-oracle::before {
+    content: "";
+    width: 16px;
+    height: 16px;
+    border: 2px solid #c06c3b;
+    border-top-color: transparent;
+    border-radius: 50%;
+    animation: spin 1s linear infinite;
+  }
+
+  /* Animations */
   .pulse-ring {
     position: absolute;
     top: 0;
@@ -733,6 +820,11 @@ const socialImageURL = new URL(image, Astro.url);
     100% {
       transform: scale(1.6);
       opacity: 0;
+    }
+  }
+  @keyframes spin {
+    to {
+      transform: rotate(360deg);
     }
   }
 </style>
