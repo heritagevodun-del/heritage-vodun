@@ -1,0 +1,135 @@
+---
+// src/components/VeveSymbol.astro
+interface Props {
+  type: "legba" | "sakpata" | "heviesso" | "dan";
+  className?: string;
+}
+
+const { type, className = "" } = Astro.props;
+
+// Couleurs rituelles (Variables CSS natives)
+const colors = {
+  legba: "var(--color-terra)", // Rouge/Terre
+  sakpata: "#8B4513", // Brun/Terre
+  heviesso: "var(--color-gold)", // Rouge/Feu (Ici Or pour le style)
+  dan: "var(--color-tech)", // Arc-en-ciel (Ici Cyan Tech)
+};
+
+const activeColor = colors[type];
+---
+
+<div class={`veve-container ${type} ${className}`} aria-hidden="true">
+  <div class="axis vertical"></div>
+  <div class="axis horizontal"></div>
+
+  <div class="core-symbol">
+    <div class="inner-circle"></div>
+    <div class="cross-points"></div>
+  </div>
+
+  <span class="dot north"></span>
+  <span class="dot south"></span>
+  <span class="dot east"></span>
+  <span class="dot west"></span>
+</div>
+
+<style define:vars={{ activeColor }}>
+  .veve-container {
+    position: relative;
+    width: 64px;
+    height: 64px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    opacity: 0.8;
+    transition:
+      transform 0.3s ease,
+      opacity 0.3s;
+  }
+
+  .veve-container:hover {
+    transform: scale(1.1) rotate(5deg);
+    opacity: 1;
+  }
+
+  /* --- STRUCTURE DE BASE (LA CROIX) --- */
+  .axis {
+    position: absolute;
+    background-color: var(--activeColor);
+    border-radius: 2px;
+  }
+  .vertical {
+    width: 2px;
+    height: 100%;
+  }
+  .horizontal {
+    width: 100%;
+    height: 2px;
+  }
+
+  /* --- CŒUR DU SYMBOLE --- */
+  .core-symbol {
+    position: relative;
+    width: 40%;
+    height: 40%;
+    border: 1px solid var(--activeColor);
+    transform: rotate(45deg); /* Losange */
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+
+  .inner-circle {
+    width: 60%;
+    height: 60%;
+    border: 1px solid var(--activeColor);
+    border-radius: 50%;
+  }
+
+  /* --- VARIATIONS PAR DIVINITÉ (CSS ART) --- */
+
+  /* LEGBA (Le Carrefour - Complexe) */
+  .legba .core-symbol {
+    border-style: double;
+    border-width: 3px;
+  }
+  .legba .dot {
+    background-color: var(--activeColor);
+    width: 4px;
+    height: 4px;
+    border-radius: 50%;
+    position: absolute;
+  }
+  .legba .north {
+    top: 0;
+  }
+  .legba .south {
+    bottom: 0;
+  }
+  .legba .east {
+    right: 0;
+  }
+  .legba .west {
+    left: 0;
+  }
+
+  /* HEVIESSO (La Foudre - Tranchant) */
+  .heviesso .core-symbol {
+    border-radius: 0;
+    border-width: 2px;
+  }
+  .heviesso .inner-circle {
+    border-radius: 0; /* Carré */
+    transform: rotate(45deg);
+  }
+
+  /* DAN (Le Serpent - Ondulation/Courbe) */
+  .dan .axis {
+    height: 80%; /* Plus court */
+  }
+  .dan .core-symbol {
+    border-radius: 50%; /* Cercle parfait */
+    border-width: 2px;
+    border-style: dotted;
+  }
+</style>
