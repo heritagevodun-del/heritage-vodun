@@ -69,7 +69,7 @@ Traiter les deux équitablement est crucial pour éviter la jalousie de l'esprit
 
 Le culte des jumeaux n'est pas qu'une affaire privée. C'est aussi une célébration collective de la vie.
 
-Périodiquement, les familles de jumeaux organisent de grands repas. Si vous êtes invité, vous y mangerez le plat rituel par excellence : un mélange copieux de **haricots (Aklui)** et d'huile rouge. C'est une fête joyeuse, un moment de partage pour apaiser les esprits et remercier les ancêtres pour la protection de la lignée.
+Périodiquement, les familles de jumeaux organisent de grands repas. Si vous êtes invité, vous y mangerez le plat rituel par excellence : un mélange copieux de **haricots** et d'huile rouge. C'est une fête joyeuse, un moment de partage pour apaiser les esprits et remercier les ancêtres pour la protection de la lignée.
 
 ---
 
