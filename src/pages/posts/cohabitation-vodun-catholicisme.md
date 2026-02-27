@@ -3,7 +3,7 @@ layout: ../../layouts/PostLayout.astro
 title: "Syncrétisme à Ouidah : Quand la Croix et le Vodun dialoguent en Paix"
 pubDate: 2025-12-25
 description: "Face à face, la Basilique de l&apos;Immaculée Conception et le Temple des Pythons se regardent. Découvrez l&apos;exceptionnelle tolérance religieuse du Bénin."
-image: "/ouidah-cohabitation.jpg"
+image: "/fa.jpeg"
 categorie: "Histoire & Patrimoine"
 tags:
   [
