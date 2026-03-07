@@ -20,16 +20,19 @@ interface MarkdownPost {
 }
 
 // --- 1. RÉCUPÉRATION DES DONNÉES ---
-const matches = import.meta.glob<MarkdownPost>("./posts/*.md", { eager: true });
+// 👇 CORRECTION ICI : On inclut les .md et les .mdx
+const matches = import.meta.glob<MarkdownPost>("./posts/*.{md,mdx}", {
+  eager: true,
+});
 const allPosts = Object.values(matches);
 
 // Tri du plus récent au plus ancien
 const sortedPosts = allPosts.sort((a, b) => {
   const dateA = new Date(
-    a.frontmatter.pubDate || a.frontmatter.date || ""
+    a.frontmatter.pubDate || a.frontmatter.date || "",
   ).valueOf();
   const dateB = new Date(
-    b.frontmatter.pubDate || b.frontmatter.date || ""
+    b.frontmatter.pubDate || b.frontmatter.date || "",
   ).valueOf();
   return (isNaN(dateB) ? 0 : dateB) - (isNaN(dateA) ? 0 : dateA);
 });
@@ -38,7 +41,7 @@ const sortedPosts = allPosts.sort((a, b) => {
 // Récupérer toutes les catégories uniques pour le menu du haut
 const uniqueCategories = [
   ...new Set(
-    sortedPosts.map((post) => post.frontmatter.categorie).filter(Boolean)
+    sortedPosts.map((post) => post.frontmatter.categorie).filter(Boolean),
   ),
 ];
 
@@ -169,7 +172,7 @@ const schemaData = {
 
                 <span class="date-publication">
                   {formatDate(
-                    post.frontmatter.pubDate || post.frontmatter.date
+                    post.frontmatter.pubDate || post.frontmatter.date,
                   )}
                 </span>
               </div>
