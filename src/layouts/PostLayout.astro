@@ -40,7 +40,7 @@ const formattedDate = new Date(frontmatter.pubDate).toLocaleDateString(
 
     <h1>{frontmatter.titrePage || frontmatter.title}</h1>
 
-    {/* 👇 LOGIQUE D'AFFICHAGE INTELLIGENTE */}
+    {/* 👇 LOGIQUE D'AFFICHAGE INTELLIGENTE CORRIGÉE */}
     {
       frontmatter.type_image === "animation_fa" ? (
         /* CAS 1 : Animation Fâ */
@@ -53,8 +53,10 @@ const formattedDate = new Date(frontmatter.pubDate).toLocaleDateString(
           <SakpataAltar />
         </div>
       ) : (
-        /* CAS 3 : Image Classique (Par défaut) */
-        frontmatter.image && (
+        /* CAS 3 : Image Classique. 
+           On l'affiche UNIQUEMENT si frontmatter.hide_top_image n'est pas "true" */
+        frontmatter.image &&
+        !frontmatter.hide_top_image && (
           <img
             src={frontmatter.image}
             alt={frontmatter.title}
