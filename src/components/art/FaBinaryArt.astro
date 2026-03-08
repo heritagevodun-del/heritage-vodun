@@ -1,0 +1,203 @@
+---
+/*
+  FaBinaryArt.astro - CSS Art
+  Illustre le pont entre le code binaire informatique et le système du Fâ.
+*/
+---
+
+<div class="fa-binary-canvas animate-enter group">
+  {/* Lueur d'arrière-plan */}
+  <div class="bg-glow"></div>
+
+  {/* Grille de fond (Matrix style) */}
+  <div class="grid-overlay"></div>
+
+  <div class="content-wrapper">
+    {/* Côté Gauche : Les traces du Fâ (Amber) */}
+    <div class="fa-marks">
+      <div class="stroke-full"></div>
+      <div class="stroke-split">
+        <div class="half"></div><div class="half"></div>
+      </div>
+      <div class="stroke-full"></div>
+      <div class="stroke-split">
+        <div class="half"></div><div class="half"></div>
+      </div>
+    </div>
+
+    {/* Centre : Transition */}
+    <div class="transition-arrow">=></div>
+
+    {/* Côté Droit : Code Binaire (Cyan) */}
+    <div class="binary-code">
+      <div>1</div>
+      <div>0 0</div>
+      <div>1</div>
+      <div>0 0</div>
+    </div>
+  </div>
+
+  {/* Textes HUD / Cyberpunk */}
+  <div class="hud-bottom-left">PROCESSOR: 8-BIT // ALGORITHM: FÂ</div>
+  <div class="hud-top-right">SYSTEM.DECODE()</div>
+</div>
+
+<style>
+  :root {
+    --fa-amber-bright: #f59e0b;
+    --fa-amber-dim: #b45309;
+    --cyber-cyan: #22d3ee;
+    --cyber-cyan-dim: #0891b2;
+    --bg-dark: #050505;
+  }
+
+  .fa-binary-canvas {
+    position: relative;
+    width: 100%;
+    max-width: 48rem; /* 3xl */
+    margin: 2.5rem auto;
+    height: 20rem; /* h-80 */
+    background-color: var(--bg-dark);
+    border-radius: 1rem;
+    overflow: hidden;
+    border: 1px solid rgba(8, 145, 178, 0.3);
+    box-shadow: 0 0 40px rgba(6, 182, 212, 0.1);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+
+  .bg-glow {
+    position: absolute;
+    width: 16rem;
+    height: 16rem;
+    background-color: rgba(8, 145, 178, 0.2);
+    border-radius: 50%;
+    filter: blur(80px);
+    transition: all 0.7s ease;
+    pointer-events: none;
+  }
+  .group:hover .bg-glow {
+    background-color: rgba(6, 182, 212, 0.3);
+  }
+
+  .grid-overlay {
+    position: absolute;
+    inset: 0;
+    background-image: radial-gradient(
+      rgba(255, 255, 255, 0.1) 1px,
+      transparent 1px
+    );
+    background-size: 20px 20px;
+    opacity: 0.2;
+    mix-blend-mode: overlay;
+  }
+
+  .content-wrapper {
+    position: relative;
+    z-index: 10;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 3rem;
+  }
+  @media (min-width: 768px) {
+    .content-wrapper {
+      flex-direction: row;
+    }
+  }
+
+  /* --- FÂ MARKS --- */
+  .fa-marks {
+    display: flex;
+    flex-direction: column;
+    gap: 0.75rem;
+    opacity: 0.8;
+  }
+  .stroke-full {
+    width: 4rem;
+    height: 0.75rem;
+    background-color: var(--fa-amber-bright);
+    border-radius: 9999px;
+    box-shadow: 0 0 15px rgba(245, 158, 11, 0.6);
+  }
+  .stroke-split {
+    display: flex;
+    gap: 1rem;
+    justify-content: center;
+  }
+  .half {
+    width: 1.5rem;
+    height: 0.75rem;
+    background-color: var(--fa-amber-dim);
+    border-radius: 9999px;
+  }
+
+  /* --- ARROW --- */
+  .transition-arrow {
+    color: rgba(255, 255, 255, 0.3);
+    font-family: monospace;
+    font-size: 1.5rem;
+    animation: pulse-slow 2s cubic-bezier(0.4, 0, 0.6, 1) infinite;
+  }
+
+  /* --- BINARY CODE --- */
+  .binary-code {
+    display: flex;
+    flex-direction: column;
+    gap: 0.5rem;
+    font-family: monospace;
+    font-size: 1.5rem;
+    font-weight: bold;
+    letter-spacing: 0.1em;
+    color: var(--cyber-cyan);
+  }
+
+  /* --- HUD TEXTS --- */
+  .hud-bottom-left {
+    position: absolute;
+    bottom: 1rem;
+    left: 1rem;
+    font-family: monospace;
+    font-size: 0.625rem;
+    color: rgba(6, 182, 212, 0.5);
+    letter-spacing: 0.3em;
+    text-transform: uppercase;
+  }
+  .hud-top-right {
+    position: absolute;
+    top: 1rem;
+    right: 1rem;
+    font-family: monospace;
+    font-size: 0.625rem;
+    color: rgba(245, 158, 11, 0.5);
+    letter-spacing: 0.3em;
+    text-transform: uppercase;
+    animation: pulse-slow 2s cubic-bezier(0.4, 0, 0.6, 1) infinite;
+  }
+
+  /* --- ANIMATIONS --- */
+  @keyframes pulse-slow {
+    0%,
+    100% {
+      opacity: 1;
+    }
+    50% {
+      opacity: 0.5;
+    }
+  }
+
+  @keyframes fadeInUp {
+    from {
+      opacity: 0;
+      transform: translateY(30px);
+    }
+    to {
+      opacity: 1;
+      transform: translateY(0);
+    }
+  }
+  .animate-enter {
+    animation: fadeInUp 1s ease forwards;
+  }
+</style>
