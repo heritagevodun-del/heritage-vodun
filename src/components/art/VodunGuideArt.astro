@@ -1,0 +1,197 @@
+---
+/*
+  VodunGuideArt.astro - CSS Art
+  Représente l&apos;harmonie, le code vestimentaire blanc (lumière) et le respect des énergies.
+*/
+---
+
+<div class="guide-art-canvas animate-enter">
+  <div class="harmony-stage">
+    {/* Énergie du visiteur (Le Blanc pur / La Paix) */}
+    <div class="visitor-light"></div>
+
+    {/* Anneaux de protection / Distances sacrées */}
+    <div class="sacred-ring r1"></div>
+    <div class="sacred-ring r2"></div>
+    <div class="sacred-ring r3"></div>
+
+    {/* Particules d'énergie (La ferveur de Ouidah) */}
+    <div class="spirit-spark sp1"></div>
+    <div class="spirit-spark sp2"></div>
+    <div class="spirit-spark sp3"></div>
+    <div class="spirit-spark sp4"></div>
+  </div>
+</div>
+
+<style>
+  :root {
+    --guide-bg: #1a1a1a;
+    --guide-gold: #d4af37;
+    --guide-white: #fdfbf7;
+    --guide-earth: #8b5a2b;
+  }
+
+  .guide-art-canvas {
+    width: 100%;
+    height: 320px;
+    background: radial-gradient(
+      circle at center,
+      #2c2520 0%,
+      var(--guide-bg) 100%
+    );
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    position: relative;
+    overflow: hidden;
+    margin-bottom: 3rem;
+    border-radius: 8px;
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.4);
+  }
+
+  .harmony-stage {
+    position: relative;
+    width: 250px;
+    height: 250px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+  }
+
+  /* --- LE VISITEUR (Lumière blanche) --- */
+  .visitor-light {
+    position: absolute;
+    width: 60px;
+    height: 60px;
+    background: radial-gradient(
+      circle,
+      var(--guide-white) 0%,
+      rgba(253, 251, 247, 0.2) 80%,
+      transparent 100%
+    );
+    border-radius: 50%;
+    box-shadow: 0 0 30px rgba(253, 251, 247, 0.6);
+    animation: breathe-light 4s ease-in-out infinite;
+    z-index: 3;
+  }
+
+  /* --- ANNEAUX SACRÉS (Les distances à respecter) --- */
+  .sacred-ring {
+    position: absolute;
+    border-radius: 50%;
+    border: 2px solid transparent;
+    z-index: 2;
+  }
+
+  .r1 {
+    width: 100px;
+    height: 100px;
+    border-top: 2px solid var(--guide-gold);
+    border-bottom: 2px solid var(--guide-gold);
+    animation: spin-slow 8s linear infinite;
+  }
+
+  .r2 {
+    width: 150px;
+    height: 150px;
+    border-left: 2px dashed var(--guide-earth);
+    border-right: 2px dashed var(--guide-earth);
+    animation: spin-slow-reverse 12s linear infinite;
+  }
+
+  .r3 {
+    width: 200px;
+    height: 200px;
+    border-top: 1px solid rgba(212, 175, 55, 0.3);
+    border-bottom: 1px solid rgba(212, 175, 55, 0.3);
+    animation: spin-slow 15s linear infinite;
+  }
+
+  /* --- ÉTINCELLES (La ferveur ambiante) --- */
+  .spirit-spark {
+    position: absolute;
+    width: 4px;
+    height: 4px;
+    background: var(--guide-gold);
+    border-radius: 50%;
+    filter: blur(1px);
+    animation: float-spark 3s ease-in-out infinite alternate;
+  }
+  .sp1 {
+    top: 40px;
+    left: 60px;
+    animation-delay: 0s;
+  }
+  .sp2 {
+    bottom: 50px;
+    right: 40px;
+    animation-delay: 0.5s;
+    background: var(--guide-white);
+  }
+  .sp3 {
+    top: 70px;
+    right: 50px;
+    animation-delay: 1s;
+  }
+  .sp4 {
+    bottom: 60px;
+    left: 50px;
+    animation-delay: 1.5s;
+  }
+
+  /* --- ANIMATIONS --- */
+  @keyframes breathe-light {
+    0%,
+    100% {
+      transform: scale(1);
+      opacity: 0.8;
+    }
+    50% {
+      transform: scale(1.3);
+      opacity: 1;
+    }
+  }
+
+  @keyframes spin-slow {
+    0% {
+      transform: rotate(0deg);
+    }
+    100% {
+      transform: rotate(360deg);
+    }
+  }
+
+  @keyframes spin-slow-reverse {
+    0% {
+      transform: rotate(360deg);
+    }
+    100% {
+      transform: rotate(0deg);
+    }
+  }
+
+  @keyframes float-spark {
+    0% {
+      transform: translateY(0) scale(1);
+      opacity: 0.5;
+    }
+    100% {
+      transform: translateY(-20px) scale(1.5);
+      opacity: 1;
+    }
+  }
+
+  @keyframes fadeInUp {
+    from {
+      opacity: 0;
+      transform: translateY(30px);
+    }
+    to {
+      opacity: 1;
+      transform: translateY(0);
+    }
+  }
+  .animate-enter {
+    animation: fadeInUp 1s ease forwards;
+  }
+</style>
