@@ -1,0 +1,198 @@
+---
+/*
+  ZangbetoArt.astro - Œuvre d&apos;art CSS/SVG animée
+  Représente la rotation mystique du Gardien de la Nuit.
+*/
+---
+
+<div class="zangbeto-art-canvas animate-enter">
+  <div class="stage">
+    {/* Particules de poussière soulevées par la rotation */}
+    <div class="dust d1"></div>
+    <div class="dust d2"></div>
+    <div class="dust d3"></div>
+    <div class="dust d4"></div>
+
+    {/* Le Zangbeto */}
+    <div class="zangbeto-cone">
+      <div class="raffia-layer top-layer"></div>
+      <div class="raffia-layer mid-layer"></div>
+      <div class="raffia-layer bottom-layer"></div>
+
+      {/* Cornes/Ornements au sommet */}
+      <div class="horn left"></div>
+      <div class="horn right"></div>
+    </div>
+  </div>
+</div>
+
+<style>
+  :root {
+    --zangbeto-dark: #2c1e16;
+    --zangbeto-straw: #d2b48c;
+    --zangbeto-straw-dark: #8b5a2b;
+    --zangbeto-accent: #800000;
+  }
+
+  .zangbeto-art-canvas {
+    width: 100%;
+    height: 300px;
+    background: radial-gradient(circle at bottom, #4a3b32 0%, #1a1512 100%);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    position: relative;
+    overflow: hidden;
+    margin-bottom: 3rem;
+    border-radius: 8px;
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.3);
+  }
+
+  .stage {
+    position: relative;
+    width: 200px;
+    height: 250px;
+    display: flex;
+    justify-content: center;
+    align-items: flex-end;
+  }
+
+  /* --- LE CONE DU ZANGBETO --- */
+  .zangbeto-cone {
+    position: relative;
+    width: 160px;
+    height: 180px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: flex-end;
+    animation: spin-mystic 0.8s linear infinite;
+    z-index: 2;
+  }
+
+  .raffia-layer {
+    background: repeating-linear-gradient(
+      90deg,
+      var(--zangbeto-straw) 0%,
+      var(--zangbeto-straw) 5px,
+      var(--zangbeto-straw-dark) 5px,
+      var(--zangbeto-straw-dark) 10px
+    );
+    border-radius: 50% 50% 10% 10%;
+    box-shadow: inset 0 -10px 20px rgba(0, 0, 0, 0.5);
+    border-bottom: 5px solid var(--zangbeto-dark);
+  }
+
+  .top-layer {
+    width: 60px;
+    height: 50px;
+    z-index: 3;
+    border-top: 4px solid var(--zangbeto-accent);
+  }
+
+  .mid-layer {
+    width: 110px;
+    height: 70px;
+    margin-top: -20px;
+    z-index: 2;
+  }
+
+  .bottom-layer {
+    width: 160px;
+    height: 90px;
+    margin-top: -30px;
+    z-index: 1;
+    border-bottom: 8px solid var(--zangbeto-dark);
+  }
+
+  /* --- ORNEMENTS --- */
+  .horn {
+    position: absolute;
+    top: -15px;
+    width: 10px;
+    height: 30px;
+    background-color: var(--zangbeto-dark);
+    border-radius: 50% 50% 0 0;
+  }
+  .horn.left {
+    left: 50px;
+    transform: rotate(-30deg);
+  }
+  .horn.right {
+    right: 50px;
+    transform: rotate(30deg);
+  }
+
+  /* --- POUSSIERE (Effet de rotation) --- */
+  .dust {
+    position: absolute;
+    bottom: 0;
+    width: 20px;
+    height: 5px;
+    background-color: rgba(210, 180, 140, 0.4);
+    border-radius: 50%;
+    filter: blur(2px);
+    z-index: 3;
+    animation: dust-fly 1s ease-out infinite;
+  }
+  .d1 {
+    left: -10px;
+    animation-delay: 0s;
+  }
+  .d2 {
+    right: -10px;
+    animation-delay: 0.2s;
+  }
+  .d3 {
+    left: 20px;
+    animation-delay: 0.4s;
+  }
+  .d4 {
+    right: 20px;
+    animation-delay: 0.6s;
+  }
+
+  /* --- ANIMATIONS --- */
+  @keyframes spin-mystic {
+    0% {
+      transform: scaleX(1) translateY(0);
+    }
+    25% {
+      transform: scaleX(0.9) translateY(-2px);
+    }
+    50% {
+      transform: scaleX(-1) translateY(0);
+    }
+    75% {
+      transform: scaleX(-0.9) translateY(-2px);
+    }
+    100% {
+      transform: scaleX(1) translateY(0);
+    }
+  }
+
+  @keyframes dust-fly {
+    0% {
+      transform: translateY(0) scale(1) translateX(0);
+      opacity: 1;
+    }
+    100% {
+      transform: translateY(-30px) scale(2) translateX(-20px);
+      opacity: 0;
+    }
+  }
+
+  @keyframes fadeInUp {
+    from {
+      opacity: 0;
+      transform: translateY(20px);
+    }
+    to {
+      opacity: 1;
+      transform: translateY(0);
+    }
+  }
+  .animate-enter {
+    animation: fadeInUp 1s ease forwards;
+  }
+</style>
