@@ -1,0 +1,238 @@
+---
+/*
+  TofaLossoSaArt.astro - CSS Art
+  Représente le plateau du Fâ, le signe Losso Sa, les noix de palme et le bec en métal.
+*/
+---
+
+<div class="tofa-art-canvas animate-enter">
+  <div class="oracle-stage">
+    {/* Le Plateau de Divination (Opon Ifa) */}
+    <div class="divination-board">
+      {/* Les traces du signe (Binaire) */}
+      <div class="fa-marks">
+        <div class="mark-row"><span class="stroke"></span></div>
+        <div class="mark-row"><span class="stroke"></span></div>
+        <div class="mark-row">
+          <span class="stroke"></span><span class="stroke"></span>
+        </div>
+        <div class="mark-row">
+          <span class="stroke"></span><span class="stroke"></span>
+        </div>
+      </div>
+    </div>
+
+    {/* Le "Bec en Métal" de la prophétie */}
+    <div class="metal-beak">
+      <div class="beak-shine"></div>
+    </div>
+
+    {/* Les Noix de Palme sacrées (Ikin) */}
+    <div class="palm-nut n1"></div>
+    <div class="palm-nut n2"></div>
+    <div class="palm-nut n3"></div>
+    <div class="palm-nut n4"></div>
+    <div class="palm-nut n5"></div>
+  </div>
+</div>
+
+<style>
+  :root {
+    --tofa-wood: #5d4037;
+    --tofa-wood-dark: #3e2723;
+    --tofa-powder: #d7ccc8;
+    --tofa-metal: #90a4ae;
+    --tofa-metal-dark: #455a64;
+    --tofa-glow: #d4af37;
+    --tofa-bg: #1a1512;
+  }
+
+  .tofa-art-canvas {
+    width: 100%;
+    height: 320px;
+    background: radial-gradient(
+      circle at center,
+      #2d241e 0%,
+      var(--tofa-bg) 100%
+    );
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    position: relative;
+    overflow: hidden;
+    margin-bottom: 3rem;
+    border-radius: 8px;
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.6);
+  }
+
+  .oracle-stage {
+    position: relative;
+    width: 250px;
+    height: 250px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+  }
+
+  /* --- LE PLATEAU DE DIVINATION --- */
+  .divination-board {
+    position: absolute;
+    width: 180px;
+    height: 180px;
+    background: linear-gradient(
+      135deg,
+      var(--tofa-wood),
+      var(--tofa-wood-dark)
+    );
+    border-radius: 50%;
+    border: 8px solid #2a1a14;
+    box-shadow:
+      inset 0 0 20px rgba(0, 0, 0, 0.8),
+      0 10px 20px rgba(0, 0, 0, 0.5);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    animation: mystic-spin 20s linear infinite;
+  }
+
+  /* La poudre sacrée (Iyerosun) au centre */
+  .divination-board::after {
+    content: "";
+    position: absolute;
+    width: 120px;
+    height: 120px;
+    background: rgba(215, 204, 200, 0.1);
+    border-radius: 50%;
+    filter: blur(5px);
+  }
+
+  /* Les marques du Signe Losso (Irosun) */
+  .fa-marks {
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+    z-index: 2;
+  }
+  .mark-row {
+    display: flex;
+    justify-content: center;
+    gap: 15px;
+  }
+  .stroke {
+    width: 15px;
+    height: 5px;
+    background: var(--tofa-powder);
+    border-radius: 2px;
+    box-shadow: 0 0 8px rgba(215, 204, 200, 0.6);
+    animation: glow-pulse 3s infinite alternate;
+  }
+
+  /* --- LE BEC EN MÉTAL --- */
+  .metal-beak {
+    position: absolute;
+    bottom: -10px;
+    right: 20px;
+    width: 0;
+    height: 0;
+    border-left: 30px solid transparent;
+    border-right: 20px solid transparent;
+    border-bottom: 90px solid var(--tofa-metal-dark);
+    transform: rotate(35deg);
+    filter: drop-shadow(-5px 5px 10px rgba(0, 0, 0, 0.7));
+    z-index: 3;
+    animation: strike 4s ease-in-out infinite;
+  }
+  .beak-shine {
+    position: absolute;
+    top: 10px;
+    left: -10px;
+    width: 4px;
+    height: 60px;
+    background: var(--tofa-metal);
+    transform: rotate(5deg);
+    opacity: 0.8;
+  }
+
+  /* --- LES NOIX DE PALME (Ikin) --- */
+  .palm-nut {
+    position: absolute;
+    width: 16px;
+    height: 20px;
+    background: #111;
+    border-radius: 40% 60% 50% 50%;
+    box-shadow:
+      inset -3px -3px 5px rgba(255, 255, 255, 0.2),
+      0 5px 10px rgba(0, 0, 0, 0.6);
+    z-index: 4;
+  }
+  .n1 {
+    top: 20px;
+    left: 80px;
+    transform: rotate(15deg);
+  }
+  .n2 {
+    top: 60px;
+    right: 10px;
+    transform: rotate(-45deg);
+  }
+  .n3 {
+    bottom: 40px;
+    left: 15px;
+    transform: rotate(70deg);
+  }
+  .n4 {
+    bottom: 10px;
+    right: 60px;
+    transform: rotate(-20deg);
+  }
+  .n5 {
+    top: 110px;
+    left: -10px;
+    transform: rotate(85deg);
+  }
+
+  /* --- ANIMATIONS --- */
+  @keyframes mystic-spin {
+    0% {
+      transform: rotate(0deg);
+    }
+    100% {
+      transform: rotate(360deg);
+    }
+  }
+
+  @keyframes glow-pulse {
+    0% {
+      opacity: 0.6;
+      box-shadow: 0 0 5px rgba(215, 204, 200, 0.3);
+    }
+    100% {
+      opacity: 1;
+      box-shadow: 0 0 15px rgba(215, 204, 200, 0.8);
+    }
+  }
+
+  @keyframes strike {
+    0%,
+    100% {
+      transform: rotate(35deg) translate(0, 0);
+    }
+    50% {
+      transform: rotate(35deg) translate(-10px, -10px);
+    }
+  }
+
+  @keyframes fadeInUp {
+    from {
+      opacity: 0;
+      transform: translateY(30px);
+    }
+    to {
+      opacity: 1;
+      transform: translateY(0);
+    }
+  }
+  .animate-enter {
+    animation: fadeInUp 1s ease forwards;
+  }
+</style>
