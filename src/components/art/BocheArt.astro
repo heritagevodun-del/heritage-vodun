@@ -1,0 +1,245 @@
+---
+/*
+  BocheArt.astro - CSS Art
+  Représente la statuette protectrice authentique (Boche) irradiant la guérison, 
+  loin du mythe hollywoodien de la poupée vaudou.
+*/
+---
+
+<div class="boche-art-canvas animate-enter">
+  <div class="ritual-stage">
+    {/* Aura de guérison et de protection (Lumière dorée/blanche) */}
+    <div class="healing-aura"></div>
+
+    {/* Le socle sacré */}
+    <div class="sacred-pedestal"></div>
+
+    {/* La statuette Boche (Bois sculpté) */}
+    <div class="boche-statue">
+      {/* Tête abstraite */}
+      <div class="boche-head"></div>
+
+      {/* Corps */}
+      <div class="boche-body">
+        {/* Cordes protectrices (Pour "lier" le mal, pas pour blesser) */}
+        <div class="protective-cord cord1"></div>
+        <div class="protective-cord cord2"></div>
+        <div class="protective-cord cord3"></div>
+      </div>
+    </div>
+
+    {/* Particules de lumière (Énergie bienveillante) */}
+    <div class="light-particle p1"></div>
+    <div class="light-particle p2"></div>
+    <div class="light-particle p3"></div>
+  </div>
+</div>
+
+<style>
+  :root {
+    --boche-wood-dark: #3e2723;
+    --boche-wood-light: #5d4037;
+    --boche-cord: #d7ccc8;
+    --healing-glow: rgba(212, 175, 55, 0.4);
+    --healing-light: #fdfbf7;
+    --stage-bg: #1a1512;
+  }
+
+  .boche-art-canvas {
+    width: 100%;
+    height: 320px;
+    background: radial-gradient(
+      circle at center,
+      #2d241e 0%,
+      var(--stage-bg) 100%
+    );
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    position: relative;
+    overflow: hidden;
+    margin-bottom: 3rem;
+    border-radius: 8px;
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.6);
+  }
+
+  .ritual-stage {
+    position: relative;
+    width: 250px;
+    height: 250px;
+    display: flex;
+    justify-content: center;
+    align-items: flex-end;
+  }
+
+  /* --- AURA DE GUÉRISON --- */
+  .healing-aura {
+    position: absolute;
+    bottom: 30px;
+    width: 160px;
+    height: 200px;
+    background: radial-gradient(
+      ellipse,
+      var(--healing-glow) 0%,
+      transparent 70%
+    );
+    border-radius: 50%;
+    animation: spirit-breathe 4s ease-in-out infinite alternate;
+    z-index: 1;
+  }
+
+  /* --- LE SOCLE SACRÉ --- */
+  .sacred-pedestal {
+    position: absolute;
+    bottom: 20px;
+    width: 120px;
+    height: 15px;
+    background: linear-gradient(90deg, #111, #333, #111);
+    border-radius: 5px;
+    box-shadow: 0 10px 15px rgba(0, 0, 0, 0.8);
+    z-index: 2;
+  }
+
+  /* --- LA STATUETTE BOCHE --- */
+  .boche-statue {
+    position: absolute;
+    bottom: 35px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    z-index: 3;
+    animation: mystic-float 6s ease-in-out infinite;
+  }
+
+  .boche-head {
+    width: 40px;
+    height: 50px;
+    background: linear-gradient(
+      135deg,
+      var(--boche-wood-light),
+      var(--boche-wood-dark)
+    );
+    border-radius: 40% 40% 50% 50%;
+    box-shadow: inset -5px -5px 10px rgba(0, 0, 0, 0.6);
+    margin-bottom: -5px;
+    z-index: 4;
+  }
+
+  .boche-body {
+    width: 35px;
+    height: 90px;
+    background: linear-gradient(
+      135deg,
+      var(--boche-wood-light),
+      var(--boche-wood-dark)
+    );
+    border-radius: 10px;
+    box-shadow:
+      inset -5px -5px 10px rgba(0, 0, 0, 0.6),
+      0 5px 10px rgba(0, 0, 0, 0.5);
+    position: relative;
+    overflow: hidden;
+  }
+
+  /* --- CORDES PROTECTRICES --- */
+  .protective-cord {
+    position: absolute;
+    width: 120%;
+    height: 6px;
+    background: var(--boche-cord);
+    left: -10%;
+    box-shadow:
+      0 2px 4px rgba(0, 0, 0, 0.5),
+      inset 0 1px 2px rgba(255, 255, 255, 0.5);
+  }
+  .cord1 {
+    top: 20px;
+    transform: rotate(15deg);
+  }
+  .cord2 {
+    top: 45px;
+    transform: rotate(-10deg);
+  }
+  .cord3 {
+    top: 70px;
+    transform: rotate(5deg);
+  }
+
+  /* --- PARTICULES DE LUMIÈRE (Bénédiction) --- */
+  .light-particle {
+    position: absolute;
+    width: 6px;
+    height: 6px;
+    background: var(--healing-light);
+    border-radius: 50%;
+    box-shadow: 0 0 10px var(--healing-light);
+    z-index: 4;
+    animation: rise-glow 3s infinite ease-in;
+    opacity: 0;
+  }
+  .p1 {
+    bottom: 40px;
+    left: 50px;
+    animation-delay: 0s;
+  }
+  .p2 {
+    bottom: 60px;
+    right: 40px;
+    animation-delay: 1s;
+  }
+  .p3 {
+    bottom: 30px;
+    left: 90px;
+    animation-delay: 2s;
+  }
+
+  /* --- ANIMATIONS --- */
+  @keyframes spirit-breathe {
+    0% {
+      transform: scale(0.9);
+      opacity: 0.6;
+    }
+    100% {
+      transform: scale(1.1);
+      opacity: 1;
+    }
+  }
+
+  @keyframes mystic-float {
+    0%,
+    100% {
+      transform: translateY(0);
+    }
+    50% {
+      transform: translateY(-3px);
+    }
+  }
+
+  @keyframes rise-glow {
+    0% {
+      transform: translateY(0) scale(0.5);
+      opacity: 0;
+    }
+    50% {
+      opacity: 1;
+    }
+    100% {
+      transform: translateY(-50px) scale(1.2);
+      opacity: 0;
+    }
+  }
+
+  @keyframes fadeInUp {
+    from {
+      opacity: 0;
+      transform: translateY(30px);
+    }
+    to {
+      opacity: 1;
+      transform: translateY(0);
+    }
+  }
+  .animate-enter {
+    animation: fadeInUp 1s ease forwards;
+  }
+</style>
