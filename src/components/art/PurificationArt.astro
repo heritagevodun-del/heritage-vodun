@@ -1,0 +1,241 @@
+---
+/*
+  PurificationArt.astro - CSS Art
+  Représente la calebasse sacrée contenant l&apos;eau lustrale, le sel et les feuilles de basilic.
+*/
+---
+
+<div class="purification-art-canvas animate-enter">
+  <div class="ritual-stage">
+    {/* Aura spirituelle de purification */}
+    <div class="cleansing-aura"></div>
+
+    {/* Grains de sel marin flottants / Énergie */}
+    <div class="salt-sparkles s1"></div>
+    <div class="salt-sparkles s2"></div>
+    <div class="salt-sparkles s3"></div>
+    <div class="salt-sparkles s4"></div>
+
+    {/* La Calebasse */}
+    <div class="calabash">
+      {/* L'eau sacrée à l'intérieur */}
+      <div class="holy-water">
+        {/* Feuilles de basilic/hysope à la surface */}
+        <div class="basil-leaf leaf1"></div>
+        <div class="basil-leaf leaf2"></div>
+        <div class="basil-leaf leaf3"></div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<style>
+  :root {
+    --calabash-dark: #3e2723;
+    --calabash-light: #8d6e63;
+    --water-glow: #e0f7fa;
+    --water-deep: #00acc1;
+    --basil-green: #2e7d32;
+    --salt-white: #ffffff;
+  }
+
+  .purification-art-canvas {
+    width: 100%;
+    height: 320px;
+    background: radial-gradient(circle at bottom, #263238 0%, #101416 100%);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    position: relative;
+    overflow: hidden;
+    margin-bottom: 3rem;
+    border-radius: 8px;
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.5);
+  }
+
+  .ritual-stage {
+    position: relative;
+    width: 250px;
+    height: 200px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+  }
+
+  /* --- AURA DE PURIFICATION --- */
+  .cleansing-aura {
+    position: absolute;
+    width: 180px;
+    height: 180px;
+    background: radial-gradient(
+      circle,
+      rgba(224, 247, 250, 0.15) 0%,
+      transparent 70%
+    );
+    border-radius: 50%;
+    animation: breathe 4s ease-in-out infinite;
+    z-index: 1;
+  }
+
+  /* --- LA CALEBASSE --- */
+  .calabash {
+    position: relative;
+    width: 160px;
+    height: 80px;
+    background: linear-gradient(
+      135deg,
+      var(--calabash-light),
+      var(--calabash-dark)
+    );
+    border-radius: 10px 10px 80px 80px;
+    box-shadow:
+      inset -10px -10px 20px rgba(0, 0, 0, 0.6),
+      0 15px 25px rgba(0, 0, 0, 0.5);
+    z-index: 2;
+    display: flex;
+    justify-content: center;
+    border-top: 4px solid #2a1a17;
+  }
+
+  /* --- L'EAU LUSTRALE --- */
+  .holy-water {
+    position: absolute;
+    top: -5px;
+    width: 140px;
+    height: 20px;
+    background: radial-gradient(
+      ellipse at center,
+      var(--water-glow) 0%,
+      var(--water-deep) 100%
+    );
+    border-radius: 50%;
+    box-shadow:
+      0 0 15px rgba(0, 172, 193, 0.6),
+      inset 0 0 5px rgba(255, 255, 255, 0.8);
+    opacity: 0.9;
+    animation: ripple 3s infinite alternate;
+  }
+
+  /* --- FEUILLES DE BASILIC --- */
+  .basil-leaf {
+    position: absolute;
+    width: 25px;
+    height: 12px;
+    background: var(--basil-green);
+    border-radius: 12px 0 12px 0;
+    box-shadow: inset 2px 2px 4px rgba(255, 255, 255, 0.3);
+  }
+  .leaf1 {
+    top: 2px;
+    left: 30px;
+    transform: rotate(15deg);
+    animation: float 4s ease-in-out infinite;
+  }
+  .leaf2 {
+    top: 5px;
+    right: 40px;
+    transform: rotate(-45deg);
+    animation: float 3.5s ease-in-out infinite 0.5s;
+  }
+  .leaf3 {
+    top: 8px;
+    left: 60px;
+    transform: rotate(70deg);
+    width: 18px;
+    height: 9px;
+    animation: float 5s ease-in-out infinite 1s;
+  }
+
+  /* --- GRAINS DE SEL / ÉNERGIE --- */
+  .salt-sparkles {
+    position: absolute;
+    width: 4px;
+    height: 4px;
+    background: var(--salt-white);
+    border-radius: 50%;
+    box-shadow: 0 0 8px var(--salt-white);
+    z-index: 3;
+    animation: sparkle-rise 2s linear infinite;
+    opacity: 0;
+  }
+  .s1 {
+    left: 60px;
+    bottom: 80px;
+    animation-delay: 0s;
+  }
+  .s2 {
+    right: 70px;
+    bottom: 90px;
+    animation-delay: 0.5s;
+  }
+  .s3 {
+    left: 110px;
+    bottom: 75px;
+    animation-delay: 1s;
+  }
+  .s4 {
+    right: 100px;
+    bottom: 85px;
+    animation-delay: 1.5s;
+  }
+
+  /* --- ANIMATIONS --- */
+  @keyframes breathe {
+    0%,
+    100% {
+      transform: scale(1);
+      opacity: 0.6;
+    }
+    50% {
+      transform: scale(1.2);
+      opacity: 1;
+    }
+  }
+
+  @keyframes ripple {
+    0% {
+      transform: scaleX(1);
+    }
+    100% {
+      transform: scaleX(1.02);
+    }
+  }
+
+  @keyframes float {
+    0%,
+    100% {
+      transform: translateY(0) rotate(inherit);
+    }
+    50% {
+      transform: translateY(-2px) rotate(inherit);
+    }
+  }
+
+  @keyframes sparkle-rise {
+    0% {
+      transform: translateY(0);
+      opacity: 0;
+    }
+    50% {
+      opacity: 1;
+    }
+    100% {
+      transform: translateY(-40px);
+      opacity: 0;
+    }
+  }
+
+  @keyframes fadeInUp {
+    from {
+      opacity: 0;
+      transform: translateY(30px);
+    }
+    to {
+      opacity: 1;
+      transform: translateY(0);
+    }
+  }
+  .animate-enter {
+    animation: fadeInUp 1s ease forwards;
+  }
+</style>
