@@ -1,0 +1,251 @@
+---
+/*
+  PorteNonRetourArt.astro - CSS Art
+  Représente l&apos;arche monumentale de Djègbadji face à l&apos;océan Atlantique.
+*/
+---
+
+<div class="porte-art-canvas animate-enter">
+  {/* L'Océan Atlantique en arrière-plan */}
+  <div class="ocean-bg">
+    <div class="wave wave1"></div>
+    <div class="wave wave2"></div>
+    <div class="wave wave3"></div>
+  </div>
+
+  <div class="monument-stage">
+    {/* La plage / La terre de Ouidah */}
+    <div class="sand-beach"></div>
+
+    {/* L'Arche de la Porte du Non-Retour */}
+    <div class="monument-arch">
+      {/* Pilier Gauche avec motifs */}
+      <div class="pillar left-pillar">
+        <div class="bas-relief"></div>
+        <div class="bas-relief"></div>
+        <div class="bas-relief"></div>
+      </div>
+
+      {/* Pilier Droit avec motifs */}
+      <div class="pillar right-pillar">
+        <div class="bas-relief"></div>
+        <div class="bas-relief"></div>
+        <div class="bas-relief"></div>
+      </div>
+
+      {/* Fronton (Linteau) */}
+      <div class="arch-lintel">
+        <div class="lintel-decor"></div>
+      </div>
+    </div>
+
+    {/* Esprits des Ancêtres (Égoungoun / Présence spirituelle) */}
+    <div class="ancestor-spirit s1"></div>
+    <div class="ancestor-spirit s2"></div>
+  </div>
+</div>
+
+<style>
+  :root {
+    --porte-ochre: #b75d32;
+    --porte-ochre-dark: #8a3a19;
+    --porte-sand: #dcb383;
+    --ocean-deep: #0f3c5b;
+    --ocean-light: #216a99;
+    --sky-dusk: #2a2025;
+  }
+
+  .porte-art-canvas {
+    width: 100%;
+    height: 320px;
+    background: linear-gradient(to bottom, var(--sky-dusk) 0%, #1a2a3a 100%);
+    display: flex;
+    justify-content: center;
+    align-items: flex-end;
+    position: relative;
+    overflow: hidden;
+    margin-bottom: 3rem;
+    border-radius: 8px;
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.6);
+  }
+
+  /* --- L'OCÉAN --- */
+  .ocean-bg {
+    position: absolute;
+    bottom: 0;
+    width: 100%;
+    height: 140px;
+    background: var(--ocean-deep);
+    z-index: 1;
+    overflow: hidden;
+  }
+
+  .wave {
+    position: absolute;
+    width: 200%;
+    height: 100%;
+    background: rgba(33, 106, 153, 0.4);
+    border-radius: 50%;
+    animation: wave-roll 10s infinite linear;
+  }
+  .wave1 {
+    top: 20px;
+    left: -50%;
+    animation-duration: 12s;
+  }
+  .wave2 {
+    top: 40px;
+    left: -30%;
+    background: rgba(33, 106, 153, 0.2);
+    animation-duration: 8s;
+    animation-direction: reverse;
+  }
+  .wave3 {
+    top: 60px;
+    left: -70%;
+    background: rgba(15, 60, 91, 0.8);
+    animation-duration: 15s;
+  }
+
+  .monument-stage {
+    position: relative;
+    width: 300px;
+    height: 250px;
+    display: flex;
+    justify-content: center;
+    align-items: flex-end;
+    z-index: 2;
+  }
+
+  /* --- LA PLAGE --- */
+  .sand-beach {
+    position: absolute;
+    bottom: -20px;
+    width: 400px;
+    height: 60px;
+    background: var(--porte-sand);
+    border-radius: 50%;
+    box-shadow: inset 0 10px 20px rgba(0, 0, 0, 0.3);
+    z-index: 2;
+  }
+
+  /* --- LE MONUMENT --- */
+  .monument-arch {
+    position: relative;
+    width: 180px;
+    height: 160px;
+    z-index: 3;
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-end;
+  }
+
+  .pillar {
+    width: 30px;
+    height: 140px;
+    background: linear-gradient(
+      90deg,
+      var(--porte-ochre-dark),
+      var(--porte-ochre)
+    );
+    border-radius: 2px 2px 0 0;
+    box-shadow: 5px 0 15px rgba(0, 0, 0, 0.5);
+    display: flex;
+    flex-direction: column;
+    justify-content: space-evenly;
+    align-items: center;
+  }
+
+  .bas-relief {
+    width: 20px;
+    height: 20px;
+    background: rgba(0, 0, 0, 0.2);
+    border-radius: 2px;
+    box-shadow:
+      inset 1px 1px 3px rgba(0, 0, 0, 0.5),
+      1px 1px 1px rgba(255, 255, 255, 0.1);
+  }
+
+  .arch-lintel {
+    position: absolute;
+    top: 0;
+    left: -10px;
+    width: 200px;
+    height: 40px;
+    background: linear-gradient(
+      180deg,
+      var(--porte-ochre),
+      var(--porte-ochre-dark)
+    );
+    border-radius: 4px;
+    box-shadow: 0 10px 15px rgba(0, 0, 0, 0.6);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+  }
+
+  .lintel-decor {
+    width: 160px;
+    height: 15px;
+    background: repeating-linear-gradient(
+      90deg,
+      rgba(0, 0, 0, 0.3) 0px,
+      rgba(0, 0, 0, 0.3) 5px,
+      transparent 5px,
+      transparent 10px
+    );
+  }
+
+  /* --- ESPRITS / ÉNERGIE --- */
+  .ancestor-spirit {
+    position: absolute;
+    bottom: 20px;
+    width: 15px;
+    height: 40px;
+    background: rgba(255, 255, 255, 0.1);
+    border-radius: 50% 50% 10px 10px;
+    box-shadow: 0 0 10px rgba(255, 255, 255, 0.2);
+    z-index: 4;
+    animation: spirit-hover 4s ease-in-out infinite alternate;
+  }
+  .s1 {
+    left: 20px;
+    animation-delay: 0s;
+  }
+  .s2 {
+    right: 20px;
+    animation-delay: 2s;
+  }
+
+  /* --- ANIMATIONS --- */
+  @keyframes wave-roll {
+    100% {
+      transform: rotate(360deg);
+    }
+  }
+
+  @keyframes spirit-hover {
+    0% {
+      transform: translateY(0);
+      opacity: 0.5;
+    }
+    100% {
+      transform: translateY(-10px);
+      opacity: 0.8;
+    }
+  }
+
+  @keyframes fadeInUp {
+    from {
+      opacity: 0;
+      transform: translateY(30px);
+    }
+    to {
+      opacity: 1;
+      transform: translateY(0);
+    }
+  }
+  .animate-enter {
+    animation: fadeInUp 1.2s ease forwards;
+  }
+</style>
