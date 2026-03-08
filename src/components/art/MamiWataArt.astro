@@ -1,0 +1,275 @@
+---
+/*
+  MamiWataArt.astro - CSS Art
+  Représente le miroir sacré de la Reine des Océans, l&apos;eau et le serpent divin.
+*/
+---
+
+<div class="mamiwata-art-canvas animate-enter">
+  <div class="ocean-stage">
+    {/* Ondulations de l'eau */}
+    <div class="wave w1"></div>
+    <div class="wave w2"></div>
+    <div class="wave w3"></div>
+
+    {/* Le Miroir Sacré */}
+    <div class="sacred-mirror">
+      <div class="mirror-glass">
+        {/* Reflet magique */}
+        <div class="reflection"></div>
+      </div>
+
+      {/* Le Serpent divin qui s'enroule */}
+      <div class="divine-snake">
+        <div class="snake-head"></div>
+        <div class="snake-body b1"></div>
+        <div class="snake-body b2"></div>
+      </div>
+    </div>
+
+    {/* Gouttes d'eau / Éclats de lumière */}
+    <div class="water-drop d1"></div>
+    <div class="water-drop d2"></div>
+    <div class="water-drop d3"></div>
+  </div>
+</div>
+
+<style>
+  :root {
+    --mw-deep-blue: #011f4b;
+    --mw-ocean: #03396c;
+    --mw-teal: #005b96;
+    --mw-light: #6497b1;
+    --mw-silver: #e0e0e0;
+    --mw-gold: #d4af37;
+    --mw-snake: #2e7d32;
+  }
+
+  .mamiwata-art-canvas {
+    width: 100%;
+    height: 320px;
+    background: radial-gradient(
+      circle at top,
+      var(--mw-ocean) 0%,
+      var(--mw-deep-blue) 100%
+    );
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    position: relative;
+    overflow: hidden;
+    margin-bottom: 3rem;
+    border-radius: 8px;
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.5);
+  }
+
+  .ocean-stage {
+    position: relative;
+    width: 250px;
+    height: 250px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+  }
+
+  /* --- LES VAGUES --- */
+  .wave {
+    position: absolute;
+    bottom: -50px;
+    width: 400px;
+    height: 400px;
+    background: rgba(100, 151, 177, 0.1);
+    border-radius: 40%;
+    animation: wave-spin 10s infinite linear;
+    z-index: 1;
+  }
+  .w1 {
+    background: rgba(0, 91, 150, 0.2);
+    animation-duration: 8s;
+  }
+  .w2 {
+    background: rgba(3, 57, 108, 0.3);
+    animation-duration: 12s;
+    animation-direction: reverse;
+  }
+  .w3 {
+    bottom: -70px;
+    background: rgba(100, 151, 177, 0.15);
+    animation-duration: 15s;
+  }
+
+  /* --- LE MIROIR SACRÉ --- */
+  .sacred-mirror {
+    position: relative;
+    width: 100px;
+    height: 140px;
+    background: var(--mw-gold);
+    border-radius: 50px 50px 10px 10px;
+    padding: 6px;
+    box-shadow: 0 10px 20px rgba(0, 0, 0, 0.4);
+    z-index: 2;
+    animation: float-mirror 4s ease-in-out infinite;
+  }
+
+  .mirror-glass {
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(135deg, #b0bec5 0%, #eceff1 50%, #b0bec5 100%);
+    border-radius: 44px 44px 6px 6px;
+    position: relative;
+    overflow: hidden;
+    box-shadow: inset 0 0 15px rgba(0, 0, 0, 0.2);
+  }
+
+  .reflection {
+    position: absolute;
+    top: -50px;
+    left: -50px;
+    width: 50px;
+    height: 200px;
+    background: rgba(255, 255, 255, 0.4);
+    transform: rotate(45deg);
+    animation: shine 3s infinite;
+  }
+
+  /* --- LE SERPENT DIVIN --- */
+  .divine-snake {
+    position: absolute;
+    top: 20px;
+    left: -20px;
+    width: 140px;
+    height: 140px;
+    z-index: 3;
+  }
+
+  .snake-body {
+    position: absolute;
+    border: 8px solid var(--mw-snake);
+    border-radius: 50%;
+    border-top-color: transparent;
+    border-left-color: transparent;
+  }
+  .b1 {
+    width: 120px;
+    height: 80px;
+    top: 30px;
+    left: 10px;
+    transform: rotate(45deg);
+  }
+  .b2 {
+    width: 100px;
+    height: 60px;
+    top: 10px;
+    left: 20px;
+    transform: rotate(-45deg);
+    border-right-color: transparent;
+    border-bottom-color: var(--mw-snake);
+  }
+
+  .snake-head {
+    position: absolute;
+    top: -5px;
+    right: 15px;
+    width: 20px;
+    height: 15px;
+    background: var(--mw-snake);
+    border-radius: 50%;
+    transform: rotate(30deg);
+  }
+  .snake-head::after {
+    content: "";
+    position: absolute;
+    top: 4px;
+    right: 4px;
+    width: 4px;
+    height: 4px;
+    background: var(--mw-gold);
+    border-radius: 50%;
+  }
+
+  /* --- GOUTTES D'EAU --- */
+  .water-drop {
+    position: absolute;
+    width: 8px;
+    height: 8px;
+    background: var(--mw-light);
+    border-radius: 50%;
+    box-shadow: 0 0 10px var(--mw-light);
+    z-index: 3;
+    animation: rise-drop 3s infinite ease-in;
+  }
+  .d1 {
+    bottom: 20px;
+    left: 40px;
+    animation-delay: 0s;
+  }
+  .d2 {
+    bottom: 40px;
+    right: 50px;
+    animation-delay: 1s;
+  }
+  .d3 {
+    bottom: 10px;
+    left: 100px;
+    animation-delay: 2s;
+  }
+
+  /* --- ANIMATIONS --- */
+  @keyframes wave-spin {
+    100% {
+      transform: rotate(360deg);
+    }
+  }
+
+  @keyframes float-mirror {
+    0%,
+    100% {
+      transform: translateY(0);
+    }
+    50% {
+      transform: translateY(-10px);
+    }
+  }
+
+  @keyframes shine {
+    0% {
+      left: -50px;
+      opacity: 0;
+    }
+    50% {
+      opacity: 1;
+    }
+    100% {
+      left: 150px;
+      opacity: 0;
+    }
+  }
+
+  @keyframes rise-drop {
+    0% {
+      transform: translateY(0) scale(1);
+      opacity: 0;
+    }
+    50% {
+      opacity: 1;
+    }
+    100% {
+      transform: translateY(-60px) scale(0.5);
+      opacity: 0;
+    }
+  }
+
+  @keyframes fadeInUp {
+    from {
+      opacity: 0;
+      transform: translateY(30px);
+    }
+    to {
+      opacity: 1;
+      transform: translateY(0);
+    }
+  }
+  .animate-enter {
+    animation: fadeInUp 1s ease forwards;
+  }
+</style>
