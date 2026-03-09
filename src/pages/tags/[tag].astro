@@ -21,7 +21,8 @@ interface MarkdownPost {
 
 // 1. GÉNÉRATION DES ROUTES DYNAMIQUES
 export async function getStaticPaths() {
-  const matches = import.meta.glob<MarkdownPost>("../posts/*.md", {
+  // CORRECTION ICI : On inclut les .md ET les .mdx
+  const matches = import.meta.glob<MarkdownPost>("../posts/*.{md,mdx}", {
     eager: true,
   });
   const allPosts = Object.values(matches);

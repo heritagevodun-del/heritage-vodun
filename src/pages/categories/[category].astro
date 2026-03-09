@@ -4,20 +4,21 @@ import FaAnimation from "../../components/FaAnimation.astro";
 
 // 1. GÉNÉRATION DES ROUTES (Spécial Catégories)
 export async function getStaticPaths() {
-  const matches = import.meta.glob("../posts/*.md", { eager: true });
+  // CORRECTION ICI : On utilise *.{md,mdx} pour cibler les deux formats
+  const matches = import.meta.glob("../posts/*.{md,mdx}", { eager: true });
   const allPosts = Object.values(matches);
 
   // On récupère toutes les catégories uniques
   const uniqueCategories = [
     ...new Set(
-      allPosts.map((post: any) => post.frontmatter.categorie).filter(Boolean)
+      allPosts.map((post: any) => post.frontmatter.categorie).filter(Boolean),
     ),
   ];
 
   // On crée une page pour chaque catégorie
   return uniqueCategories.map((category) => {
     const filteredPosts = allPosts.filter(
-      (post: any) => post.frontmatter.categorie === category
+      (post: any) => post.frontmatter.categorie === category,
     );
 
     // Tri par date (plus récent en premier)

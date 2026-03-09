@@ -26,8 +26,8 @@ interface Post {
 }
 
 // 1. RÉCUPÉRATION STANDARD (Vite/Astro 5)
-// On utilise import.meta.glob avec eager:true pour charger les données au build
-const postsImport = import.meta.glob("./posts/*.md", { eager: true });
+// CORRECTION ICI : On inclut les .md ET les .mdx
+const postsImport = import.meta.glob("./posts/*.{md,mdx}", { eager: true });
 const allPosts = Object.values(postsImport) as Post[];
 
 // 2. FILTRAGE "À LA UNE"
