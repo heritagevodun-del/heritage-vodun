@@ -1,0 +1,251 @@
+---
+// src/components/art/TassiHangbeArt.astro
+// Un CSS Art premium représentant la puissance militaire et royale de Tassi Hangbé.
+---
+
+<div class="art-container" aria-hidden="true">
+  <div class="royal-seal">
+    <div class="mystic-halo"></div>
+
+    <div class="shield">
+      <div class="spear spear-left"></div>
+      <div class="spear spear-right"></div>
+
+      <div class="crown">
+        <div class="crown-point point-left"></div>
+        <div class="crown-point point-center"></div>
+        <div class="crown-point point-right"></div>
+        <div class="crown-base"></div>
+      </div>
+
+      <div class="queen-eye">
+        <div class="pupil"></div>
+      </div>
+    </div>
+
+    <div class="ember ember-1"></div>
+    <div class="ember ember-2"></div>
+    <div class="ember ember-3"></div>
+  </div>
+</div>
+
+<style>
+  .art-container {
+    width: 100%;
+    height: 350px;
+    background: radial-gradient(circle at center, #1a0505 0%, #050505 100%);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    border-radius: 12px;
+    overflow: hidden;
+    position: relative;
+    border: 1px solid rgba(218, 165, 32, 0.1);
+    box-shadow: inset 0 0 50px rgba(0, 0, 0, 0.8);
+  }
+
+  .royal-seal {
+    position: relative;
+    width: 200px;
+    height: 200px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+  }
+
+  /* LE HALO : Respiration de la mémoire */
+  .mystic-halo {
+    position: absolute;
+    width: 150%;
+    height: 150%;
+    border-radius: 50%;
+    background: radial-gradient(
+      circle,
+      rgba(139, 0, 0, 0.2) 0%,
+      transparent 70%
+    );
+    animation: pulseHalo 4s ease-in-out infinite alternate;
+  }
+
+  /* LE BOUCLIER */
+  .shield {
+    position: relative;
+    width: 120px;
+    height: 140px;
+    background: linear-gradient(135deg, #1a1a1a 0%, #0a0a0a 100%);
+    clip-path: polygon(50% 0%, 100% 20%, 100% 70%, 50% 100%, 0% 70%, 0% 20%);
+    border: 2px solid #daa520;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    box-shadow: 0 0 30px rgba(218, 165, 32, 0.2);
+    z-index: 10;
+    overflow: hidden;
+  }
+  .shield::before {
+    content: "";
+    position: absolute;
+    inset: 0;
+    background: linear-gradient(
+      180deg,
+      rgba(218, 165, 32, 0.1) 0%,
+      transparent 100%
+    );
+  }
+
+  /* LES LANCES (Croisées) */
+  .spear {
+    position: absolute;
+    width: 4px;
+    height: 180px;
+    background: linear-gradient(to bottom, #a0a0a0, #404040);
+    z-index: 1;
+  }
+  .spear::after {
+    content: "";
+    position: absolute;
+    top: -10px;
+    left: -3px;
+    width: 10px;
+    height: 20px;
+    background: #daa520;
+    clip-path: polygon(50% 0%, 100% 100%, 50% 80%, 0% 100%);
+  }
+  .spear-left {
+    transform: rotate(45deg);
+  }
+  .spear-right {
+    transform: rotate(-45deg);
+  }
+
+  /* LA COURONNE */
+  .crown {
+    position: absolute;
+    top: 25px;
+    width: 60px;
+    height: 40px;
+    z-index: 20;
+  }
+  .crown-base {
+    position: absolute;
+    bottom: 0;
+    width: 100%;
+    height: 8px;
+    background: linear-gradient(90deg, #b8860b, #daa520, #b8860b);
+    border-radius: 4px;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.8);
+  }
+  .crown-point {
+    position: absolute;
+    bottom: 5px;
+    width: 16px;
+    height: 25px;
+    background: linear-gradient(to top, #daa520, #ffdf73);
+    clip-path: polygon(50% 0%, 100% 100%, 0% 100%);
+  }
+  .point-left {
+    left: 2px;
+    transform: rotate(-15deg);
+    height: 20px;
+  }
+  .point-center {
+    left: 22px;
+    height: 30px;
+  }
+  .point-right {
+    right: 2px;
+    transform: rotate(15deg);
+    height: 20px;
+  }
+
+  /* L'ŒIL (L'esprit de Tassi Hangbé) */
+  .queen-eye {
+    position: absolute;
+    bottom: 35px;
+    width: 30px;
+    height: 15px;
+    background: #0a0a0a;
+    border: 2px solid #daa520;
+    border-radius: 50% 50% 50% 50% / 100% 100% 0% 0%;
+    transform: rotate(180deg); /* Regard perçant vers le bas/introspectif */
+    display: flex;
+    justify-content: center;
+    align-items: flex-start;
+    padding-top: 2px;
+    z-index: 20;
+    box-shadow: 0 0 15px rgba(139, 0, 0, 0.8);
+  }
+  .pupil {
+    width: 6px;
+    height: 6px;
+    background: #ff2a2a;
+    border-radius: 50%;
+    box-shadow: 0 0 8px #ff0000;
+    animation: eyeGlow 3s infinite alternate;
+  }
+
+  /* PARTICULES (Embers) */
+  .ember {
+    position: absolute;
+    width: 4px;
+    height: 4px;
+    background: #ffdf73;
+    border-radius: 50%;
+    filter: blur(1px);
+    opacity: 0;
+  }
+  .ember-1 {
+    bottom: -10px;
+    left: 30%;
+    animation: floatUp 3s 0s linear infinite;
+  }
+  .ember-2 {
+    bottom: -20px;
+    right: 20%;
+    animation: floatUp 4s 1s linear infinite;
+  }
+  .ember-3 {
+    bottom: -5px;
+    left: 60%;
+    animation: floatUp 3.5s 2s linear infinite;
+  }
+
+  /* ANIMATIONS */
+  @keyframes pulseHalo {
+    0% {
+      transform: scale(0.9);
+      opacity: 0.5;
+    }
+    100% {
+      transform: scale(1.1);
+      opacity: 0.8;
+    }
+  }
+  @keyframes eyeGlow {
+    0% {
+      transform: scale(1);
+      box-shadow: 0 0 5px #ff0000;
+    }
+    100% {
+      transform: scale(1.3);
+      box-shadow: 0 0 15px #ff4d4d;
+    }
+  }
+  @keyframes floatUp {
+    0% {
+      transform: translateY(0) scale(1);
+      opacity: 0;
+    }
+    20% {
+      opacity: 1;
+    }
+    80% {
+      opacity: 0.8;
+    }
+    100% {
+      transform: translateY(-100px) scale(0);
+      opacity: 0;
+    }
+  }
+</style>
