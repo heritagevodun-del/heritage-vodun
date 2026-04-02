@@ -1,179 +1,63 @@
 ---
-// src/components/Navigation.astro
+const currentPath = Astro.url.pathname;
+
+const navLinks = [
+  { name: "Accueil", href: "/" },
+  { name: "Lexique", href: "/lexique" },
+  { name: "Récits", href: "/blog" },
+  { name: "Mission", href: "/about" },
+  { name: "Le Label", href: "/label" },
+  { name: "Contact", href: "/contact" },
+];
 ---
 
-<div class="nav-links" id="nav-menu">
-  <a href="/">Accueil</a>
-  <a href="/lexique">Lexique</a>
-  <a href="/blog">Récits</a>
-  <a href="/about">Mission</a>
-  <a href="/label">Le Label</a>
-  <a href="/contact">Contact</a>
+<nav
+  id="nav-menu"
+  class="hidden md:flex absolute md:relative top-full left-0 w-full md:w-auto bg-dark-bg/95 md:bg-transparent backdrop-blur-md md:backdrop-blur-none flex-col md:flex-row items-center py-8 md:py-0 gap-6 md:gap-8 border-b md:border-none border-white/10 shadow-2xl md:shadow-none transition-all duration-300"
+>
+  {
+    navLinks.map((link) => {
+      // Logique pour déterminer si on est sur la page active
+      const isActive =
+        currentPath === link.href ||
+        (link.href !== "/" && currentPath.startsWith(link.href));
 
-  <a href="#" class="special-link open-oracle">
-    <span class="dot"></span>
-    <span class="oracle-text">Parler à l'Oracle</span>
+      return (
+        <a
+          href={link.href}
+          class={`font-sans font-bold uppercase text-[0.85rem] tracking-widest transition-colors duration-300 relative group w-full md:w-auto text-center ${
+            isActive ? "text-gold" : "text-gray-300 hover:text-gold"
+          }`}
+        >
+          {link.name}
+          {/* Ligne de soulignement animée (uniquement sur Desktop) */}
+          <span
+            class={`hidden md:block absolute -bottom-2 left-0 h-[2px] bg-gold transition-all duration-300 ${isActive ? "w-full" : "w-0 group-hover:w-full"}`}
+          />
+        </a>
+      );
+    })
+  }
+
+  {/* BOUTON ORACLE PREMIUM */}
+  <a
+    href="#"
+    class="open-oracle w-4/5 md:w-auto mt-4 md:mt-0 flex items-center justify-center gap-3 px-6 py-3 md:py-2 rounded-full border border-gold md:border-green-500/30 hover:border-gold md:hover:bg-gold/5 bg-dark-surface md:bg-transparent text-gold md:text-gray-300 hover:text-gold transition-all duration-300 group shadow-[0_5px_15px_rgba(0,0,0,0.3)] md:shadow-none md:hover:-translate-y-0.5"
+  >
+    {/* Point d&apos;état : Vert pulsant sur Desktop, Or fixe sur Mobile */}
+    <span class="relative flex h-2.5 w-2.5">
+      <span
+        class="animate-ping absolute inline-flex h-full w-full rounded-full bg-green-400 md:opacity-75 opacity-0"
+      ></span>
+      <span
+        class="relative inline-flex rounded-full h-2.5 w-2.5 bg-gold md:bg-green-500"
+      ></span>
+    </span>
+
+    <span
+      class="font-serif md:font-sans font-bold text-sm md:text-[0.85rem] uppercase tracking-[2px] md:tracking-[1px]"
+    >
+      Parler à l&apos;Oracle
+    </span>
   </a>
-</div>
-
-<style>
-  /* --- VARIABLES --- */
-  :root {
-    --or-vodun: #d4af37;
-    --vert-profond: #1a2e2e;
-  }
-
-  .nav-links {
-    display: flex;
-    gap: 30px;
-    align-items: center;
-  }
-
-  .nav-links a {
-    color: #2f4f4f;
-    text-decoration: none;
-    font-family: "Lato", sans-serif;
-    font-weight: 700;
-    text-transform: uppercase;
-    font-size: 0.9rem;
-    letter-spacing: 1px;
-    position: relative;
-    transition: color 0.3s;
-  }
-
-  /* Soulignement animé standard */
-  .nav-links a:not(.special-link)::after,
-  .nav-links a:not(.special-link)::before {
-    content: "";
-    position: absolute;
-    width: 0;
-    height: 2px;
-    bottom: -5px;
-    background-color: #c06c3b;
-    transition: width 0.3s;
-  }
-  .nav-links a:not(.special-link)::after {
-    left: 0;
-  }
-  .nav-links a:not(.special-link)::before {
-    right: 0;
-  }
-
-  .nav-links a:not(.special-link):hover::after {
-    width: 100%;
-  }
-  .nav-links a:hover {
-    color: #c06c3b;
-  }
-
-  /* --- STYLE DU BOUTON ORACLE (DESKTOP) --- */
-  a.special-link {
-    display: flex;
-    align-items: center;
-    gap: 10px;
-    padding: 8px 20px;
-    border-radius: 50px;
-    border: 1px solid rgba(46, 204, 113, 0.3);
-    color: #2f4f4f;
-    transition: all 0.4s ease;
-  }
-
-  .oracle-text {
-    font-size: 0.85rem;
-    font-weight: bold;
-    text-transform: uppercase;
-    letter-spacing: 1px;
-  }
-
-  /* Au survol Desktop : Élégance subtile */
-  a.special-link:hover {
-    border-color: var(--or-vodun);
-    background-color: rgba(212, 175, 55, 0.05);
-    color: var(--or-vodun);
-    transform: translateY(-2px);
-  }
-
-  /* Le point d'état (Vert = En ligne) */
-  .dot {
-    width: 8px;
-    height: 8px;
-    background-color: #2ecc71;
-    border-radius: 50%;
-    box-shadow: 0 0 0 0 rgba(46, 204, 113, 0.7);
-    animation: pulse-green 2s infinite;
-  }
-
-  @keyframes pulse-green {
-    0% {
-      transform: scale(0.95);
-      box-shadow: 0 0 0 0 rgba(46, 204, 113, 0.7);
-    }
-    70% {
-      transform: scale(1);
-      box-shadow: 0 0 0 6px rgba(46, 204, 113, 0);
-    }
-    100% {
-      transform: scale(0.95);
-      box-shadow: 0 0 0 0 rgba(46, 204, 113, 0);
-    }
-  }
-
-  /* --- 📱 MOBILE : VERSION PREMIUM & PRO --- */
-  @media (max-width: 900px) {
-    .nav-links {
-      position: absolute;
-      top: 100%;
-      left: 0;
-      width: 100%;
-      background: rgba(255, 255, 255, 0.98);
-      backdrop-filter: blur(10px);
-      flex-direction: column;
-      padding: 30px 0;
-      gap: 25px;
-      border-bottom: 1px solid rgba(0, 0, 0, 0.05);
-      box-shadow: 0 15px 30px rgba(0, 0, 0, 0.1);
-      display: none;
-      opacity: 0;
-      transform: translateY(-10px);
-      transition: all 0.3s ease;
-    }
-
-    .nav-links.active {
-      display: flex;
-      opacity: 1;
-      transform: translateY(0);
-    }
-
-    .nav-links a {
-      font-size: 1.1rem;
-      width: 100%;
-      text-align: center;
-      padding: 5px 0;
-    }
-
-    /* 👇 LE DESIGN PREMIUM MOBILE EST ICI */
-    a.special-link {
-      width: 80%; /* Pas trop large, classe */
-      margin: 20px auto 10px; /* Centré avec de l'espace */
-      background-color: var(--vert-profond); /* Fond sombre luxueux */
-      border: 1px solid var(--or-vodun); /* Bordure Or */
-      color: var(--or-vodun) !important; /* Texte Or */
-      justify-content: center;
-      padding: 15px 0; /* Plus haut pour le doigt */
-      box-shadow: 0 5px 15px rgba(26, 46, 46, 0.2);
-    }
-
-    a.special-link .oracle-text {
-      font-family: "Playfair Display", serif; /* Police Royal */
-      font-size: 1rem;
-      letter-spacing: 2px;
-    }
-
-    /* Le point devient Or sur mobile pour matcher */
-    a.special-link .dot {
-      background-color: var(--or-vodun);
-      box-shadow: 0 0 5px var(--or-vodun);
-      animation: none; /* Pas de pulse pour rester sobre/chic */
-    }
-  }
-</style>
+</nav>
