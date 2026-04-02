@@ -40,50 +40,56 @@ const pageTitle =
 ---
 
 <Layout titrePage={pageTitle}>
-  {/* --- HERO SECTION PREMIUM --- */}
+  {/* --- HERO SECTION PREMIUM RESPONSIVE --- */}
+  {
+    /* Ajustement crucial : -mt-20 et pt-28 sur mobile pour protéger le texte du menu, 
+      et retour au comportement standard sur desktop (md:) */
+  }
   <header
-    class="relative h-[100dvh] w-full flex items-center justify-center overflow-hidden text-white -mt-24"
+    class="relative min-h-[100dvh] md:h-[100dvh] w-full flex items-center justify-center overflow-hidden text-white -mt-20 md:-mt-24 pt-28 pb-16 md:pt-0 md:pb-0"
   >
     <div class="absolute inset-0 z-0">
       <HeroSlider />
       {/* Overlay sombre pour garantir la lisibilité du texte sur le slider */}
-      <div class="absolute inset-0 bg-dark-bg/60 z-10"></div>
+      <div class="absolute inset-0 bg-dark-bg/60 md:bg-dark-bg/50 z-10"></div>
     </div>
 
     {/* Anneaux et Symboles Animés (Totalement refaits en Tailwind) */}
     <div
-      class="absolute inset-0 flex justify-center items-center z-10 pointer-events-none"
+      class="absolute inset-0 flex justify-center items-center z-10 pointer-events-none overflow-hidden"
     >
       <div
-        class="absolute w-[65vh] h-[65vh] rounded-full border border-gold/20 border-l-gold/60 animate-[spin_60s_linear_infinite] shadow-[0_0_20px_rgba(212,175,55,0.15)]"
+        class="absolute w-[80vw] h-[80vw] md:w-[65vh] md:h-[65vh] rounded-full border border-gold/20 border-l-gold/60 animate-[spin_60s_linear_infinite] shadow-[0_0_20px_rgba(212,175,55,0.15)]"
       >
       </div>
       <div
-        class="absolute w-[45vh] h-[45vh] rounded-full border border-dashed border-white/20 animate-[spin_45s_linear_infinite_reverse]"
+        class="absolute w-[60vw] h-[60vw] md:w-[45vh] md:h-[45vh] rounded-full border border-dashed border-white/20 animate-[spin_45s_linear_infinite_reverse]"
       >
       </div>
       <div
-        class="absolute w-[35vh] h-[35vh] rounded-full bg-[radial-gradient(circle,rgba(212,175,55,0.15)_0%,transparent_70%)] animate-pulse flex items-center justify-center"
+        class="absolute w-[40vw] h-[40vw] md:w-[35vh] md:h-[35vh] rounded-full bg-[radial-gradient(circle,rgba(212,175,55,0.15)_0%,transparent_70%)] animate-pulse flex items-center justify-center"
       >
         <VeveSymbol
           type="dan"
-          className="w-24 h-24 opacity-60 animate-[spin_120s_linear_infinite] text-gold"
+          className="w-16 h-16 md:w-24 md:h-24 opacity-60 animate-[spin_120s_linear_infinite] text-gold"
         />
       </div>
     </div>
 
     {/* Contenu Central du Hero */}
-    <div class="relative z-20 text-center max-w-4xl px-6 w-full mt-16">
+    <div
+      class="relative z-20 text-center max-w-4xl px-4 sm:px-6 w-full mt-4 md:mt-16"
+    >
       <div class="animate-fade-up" style="animation-delay: 0.2s;">
         <span
-          class="inline-block border border-gold text-gold px-4 py-2 text-xs uppercase tracking-[0.2em] mb-6 bg-black/40 backdrop-blur-sm"
+          class="inline-block border border-gold text-gold px-3 py-1.5 md:px-4 md:py-2 text-[10px] md:text-xs uppercase tracking-[0.2em] mb-4 md:mb-6 bg-black/40 backdrop-blur-sm"
         >
           Terre des Origines
         </span>
       </div>
 
       <h1
-        class="font-serif text-5xl md:text-7xl leading-[1.1] font-normal mb-6 drop-shadow-2xl animate-fade-up"
+        class="font-serif text-4xl sm:text-5xl md:text-7xl leading-[1.1] font-normal mb-4 md:mb-6 drop-shadow-2xl animate-fade-up"
         style="animation-delay: 0.4s;"
       >
         Héritage <br />
@@ -94,43 +100,45 @@ const pageTitle =
       </h1>
 
       <div
-        class="w-20 h-1 bg-gold mx-auto mb-8 animate-fade-up"
+        class="w-16 md:w-20 h-1 bg-gold mx-auto mb-6 md:mb-8 animate-fade-up"
         style="animation-delay: 0.6s;"
       >
       </div>
 
       <p
-        class="text-lg md:text-xl text-white/90 mb-10 leading-relaxed font-light drop-shadow-lg max-w-2xl mx-auto animate-fade-up"
+        class="text-base sm:text-lg md:text-xl text-white/90 mb-8 md:mb-10 leading-relaxed font-light drop-shadow-lg max-w-2xl mx-auto animate-fade-up px-2"
         style="animation-delay: 0.8s;"
       >
         <strong class="font-bold text-white"
           >Le guide ultime de la spiritualité Vodun à Ouidah (Bénin).</strong
+        ><br class="hidden sm:block" />
+        <span class="block sm:inline mt-2 sm:mt-0"
+          >Une immersion authentique loin du folklore.</span
         ><br />
-        Une immersion authentique loin du folklore.<br />
         Découvrez l&apos;histoire de la Route des Esclaves, consultez le Fâ et dialoguez
         avec nos gardiens.
       </p>
 
       <div
-        class="flex flex-col md:flex-row justify-center gap-6 items-center animate-fade-up"
+        class="flex flex-col sm:flex-row justify-center gap-4 sm:gap-6 items-center animate-fade-up"
         style="animation-delay: 1s;"
       >
         <a
           href="https://www.mindoguesito.com"
-          class="open-oracle flex items-center justify-center px-8 py-4 font-bold uppercase tracking-wider bg-gradient-to-br from-gold to-[#f0c548] text-black rounded-sm shadow-[0_0_20px_rgba(212,175,55,0.4)] animate-[pulse-glow_2.5s_infinite] hover:-translate-y-1 hover:scale-105 transition-all duration-300 w-full md:w-auto"
+          class="open-oracle flex items-center justify-center px-6 py-3.5 md:px-8 md:py-4 font-bold uppercase tracking-wider bg-gradient-to-br from-gold to-[#f0c548] text-black rounded-sm shadow-[0_0_20px_rgba(212,175,55,0.4)] animate-[pulse-glow_2.5s_infinite] hover:-translate-y-1 hover:scale-105 transition-all duration-300 w-full sm:w-auto text-sm md:text-base"
         >
-          <span class="mr-3 text-xl">✨</span> Parler au Guide
+          <span class="mr-3 text-lg md:text-xl">✨</span> Parler au Guide
         </a>
         <a
           href="/about"
-          class="flex items-center justify-center px-8 py-4 font-bold uppercase tracking-wider border border-white/50 text-white rounded-sm hover:bg-white hover:text-black hover:border-white hover:-translate-y-1 transition-all duration-300 w-full md:w-auto"
+          class="flex items-center justify-center px-6 py-3.5 md:px-8 md:py-4 font-bold uppercase tracking-wider border border-white/50 text-white rounded-sm hover:bg-white hover:text-black hover:border-white hover:-translate-y-1 transition-all duration-300 w-full sm:w-auto text-sm md:text-base"
         >
           Découvrir la Mission
         </a>
       </div>
     </div>
 
-    {/* Indicateur de défilement */}
+    {/* Indicateur de défilement (Caché sur mobile pour gagner de la place) */}
     <div
       class="absolute bottom-8 left-1/2 -translate-x-1/2 w-px h-12 bg-white/20 overflow-hidden z-20 hidden md:block"
     >
@@ -140,40 +148,42 @@ const pageTitle =
 
   {/* --- SECTION MANIFESTE --- */}
   <section
-    class="relative py-24 md:py-32 px-6 bg-dark-surface text-center overflow-hidden"
+    class="relative py-20 md:py-32 px-4 sm:px-6 bg-dark-surface text-center overflow-hidden"
   >
     <div
-      class="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 text-[20vw] font-black text-white/[0.02] font-serif pointer-events-none select-none"
+      class="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 text-[25vw] md:text-[20vw] font-black text-white/[0.02] font-serif pointer-events-none select-none"
     >
       VODUN
     </div>
 
     <div class="relative z-10 max-w-3xl mx-auto">
       <span
-        class="block text-gold text-sm uppercase tracking-[0.25em] mb-4 font-bold"
+        class="block text-gold text-xs md:text-sm uppercase tracking-[0.25em] mb-4 font-bold"
         >Notre Identité</span
       >
       <h2
-        class="font-serif text-4xl md:text-6xl text-white mb-10 leading-tight"
+        class="font-serif text-3xl sm:text-4xl md:text-6xl text-white mb-8 md:mb-10 leading-tight"
       >
         Une culture à Ouidah,<br />
         <span class="text-gray-400 italic">pas un mythe.</span>
       </h2>
 
-      <div class="flex flex-col items-center gap-3 opacity-80 mb-10">
-        <div class="w-px h-8 bg-gradient-to-b from-transparent to-gold"></div>
+      <div class="flex flex-col items-center gap-3 opacity-80 mb-8 md:mb-10">
+        <div class="w-px h-6 md:h-8 bg-gradient-to-b from-transparent to-gold">
+        </div>
         <VeveSymbol
           type="legba"
-          className="w-8 h-8 text-gold animate-[pulse_4s_infinite]"
+          className="w-6 h-6 md:w-8 md:h-8 text-gold animate-[pulse_4s_infinite]"
         />
-        <div class="w-px h-8 bg-gradient-to-b from-gold to-transparent"></div>
+        <div class="w-px h-6 md:h-8 bg-gradient-to-b from-gold to-transparent">
+        </div>
       </div>
 
       <p
-        class="text-lg md:text-xl leading-loose text-gray-300 text-left md:text-center"
+        class="text-base sm:text-lg md:text-xl leading-relaxed md:leading-loose text-gray-300 text-left sm:text-center px-2"
       >
         <span
-          class="float-left font-serif text-6xl md:text-7xl leading-[0.8] text-gold mr-4 mt-2"
+          class="float-left font-serif text-5xl md:text-7xl leading-[0.8] text-gold mr-3 md:mr-4 mt-1 md:mt-2"
           >L</span
         >
         e Vodun est bien plus qu&apos;une religion, c&apos;est une célébration de
@@ -187,32 +197,32 @@ const pageTitle =
   {/* --- SECTION ARTICLES À LA UNE --- */}
   {
     featuredPosts.length > 0 && (
-      <section class="py-20 px-6 bg-dark-bg flex justify-center border-t border-white/5">
+      <section class="py-16 md:py-20 px-4 sm:px-6 bg-dark-bg flex justify-center border-t border-white/5">
         <div class="max-w-7xl w-full">
-          <div class="text-center text-gold font-bold uppercase tracking-[0.15em] mb-12 text-sm">
+          <div class="text-center text-gold font-bold uppercase tracking-[0.15em] mb-10 md:mb-12 text-xs md:text-sm">
             À la Une
           </div>
 
-          <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+          <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 md:gap-8">
             {featuredPosts.map((post) => (
-              <div class="group bg-dark-surface border border-gold/20 rounded-lg p-8 relative overflow-hidden flex flex-col items-start shadow-xl hover:-translate-y-2 hover:shadow-[0_15px_40px_rgba(212,175,55,0.15)] transition-all duration-300 h-full">
+              <div class="group bg-dark-surface border border-gold/20 rounded-lg p-6 md:p-8 relative overflow-hidden flex flex-col items-start shadow-xl hover:-translate-y-2 hover:shadow-[0_15px_40px_rgba(212,175,55,0.15)] transition-all duration-300 h-full">
                 <div class="relative z-10 flex flex-col h-full w-full">
                   {post.frontmatter.categorie && (
-                    <span class="self-start bg-gold/10 text-gold border border-gold/20 px-3 py-1 text-xs uppercase tracking-wider mb-6">
+                    <span class="self-start bg-gold/10 text-gold border border-gold/20 px-3 py-1 text-[10px] md:text-xs uppercase tracking-wider mb-4 md:mb-6">
                       {post.frontmatter.categorie}
                     </span>
                   )}
 
-                  <h3 class="font-serif text-2xl text-white mb-4 leading-tight">
+                  <h3 class="font-serif text-xl md:text-2xl text-white mb-3 md:mb-4 leading-tight">
                     {post.frontmatter.title}
                   </h3>
-                  <p class="text-gray-400 mb-8 leading-relaxed flex-grow text-sm">
+                  <p class="text-gray-400 mb-6 md:mb-8 leading-relaxed flex-grow text-xs sm:text-sm">
                     {post.frontmatter.description}
                   </p>
 
                   <a
                     href={post.url}
-                    class="text-gold font-bold uppercase tracking-wider text-sm flex items-center gap-2 group-hover:text-white transition-colors mt-auto"
+                    class="text-gold font-bold uppercase tracking-wider text-xs md:text-sm flex items-center gap-2 group-hover:text-white transition-colors mt-auto"
                   >
                     Lire l&apos;article{" "}
                     <span class="group-hover:translate-x-2 transition-transform duration-300">
@@ -223,7 +233,10 @@ const pageTitle =
 
                 {/* Vévé décoratif en arrière-plan de la carte */}
                 <div class="absolute -bottom-6 -right-6 opacity-5 group-hover:opacity-20 group-hover:scale-110 transition-all duration-500 pointer-events-none text-gold">
-                  <VeveSymbol type="heviesso" className="w-32 h-32" />
+                  <VeveSymbol
+                    type="heviesso"
+                    className="w-24 h-24 md:w-32 md:h-32"
+                  />
                 </div>
               </div>
             ))}

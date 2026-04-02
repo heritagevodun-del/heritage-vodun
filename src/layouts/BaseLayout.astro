@@ -45,7 +45,7 @@ const socialImageURL = new URL(image, Astro.url);
     />
     <link rel="sitemap" href="/sitemap-index.xml" />
 
-    <meta name="viewport" content="width=device-width" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <meta name="theme-color" content="#050505" />
     <link rel="icon" type="image/svg+xml" href="/favicon.svg?v=2" />
     <meta name="generator" content={Astro.generator} />
@@ -92,32 +92,36 @@ const socialImageURL = new URL(image, Astro.url);
   </head>
 
   <body
-    class="bg-dark-bg text-gray-300 font-sans antialiased flex flex-col min-h-screen selection:bg-gold/30 selection:text-white"
+    class="bg-dark-bg text-gray-300 font-sans antialiased flex flex-col min-h-screen selection:bg-gold/30 selection:text-white overflow-x-hidden"
   >
+    {/* --- HEADER RESPONSIVE --- */}
     <header
-      class="sticky top-0 z-50 bg-dark-bg/80 backdrop-blur-md border-b border-white/10 transition-all duration-300"
+      class="sticky top-0 z-50 bg-dark-bg/90 backdrop-blur-lg border-b border-white/10 transition-all duration-300"
     >
       <div
-        class="max-w-7xl mx-auto px-6 py-4 flex justify-between items-center"
+        class="max-w-7xl mx-auto px-4 sm:px-6 py-4 flex justify-between items-center relative"
       >
+        {/* LOGO */}
         <a
           href="/"
-          class="flex items-center gap-4 group decoration-transparent"
+          class="flex items-center gap-3 sm:gap-4 group decoration-transparent z-50"
         >
           <Logo
-            width="45"
-            height="45"
-            class="group-hover:scale-105 transition-transform duration-300"
+            width="40"
+            height="40"
+            class="group-hover:scale-105 transition-transform duration-300 md:w-[45px] md:h-[45px]"
           />
           <span
-            class="font-serif font-bold text-2xl text-gray-100 uppercase tracking-wider group-hover:text-gold transition-colors"
-            >Héritage Vodun</span
+            class="font-serif font-bold text-xl sm:text-2xl text-gray-100 uppercase tracking-wider group-hover:text-gold transition-colors"
           >
+            Héritage Vodun
+          </span>
         </a>
 
+        {/* BOUTON MENU MOBILE */}
         <button
           id="menu-toggle"
-          class="md:hidden flex flex-col gap-1.5 p-2"
+          class="md:hidden flex flex-col gap-1.5 p-2 z-50"
           aria-label="Ouvrir le menu"
         >
           <span class="w-6 h-0.5 bg-gray-300 rounded-full transition-all"
@@ -128,54 +132,72 @@ const socialImageURL = new URL(image, Astro.url);
           ></span>
         </button>
 
-        <Navigation />
+        {/* MENU DE NAVIGATION (Caché sur mobile, visible sur Desktop) */}
+        <div
+          id="nav-menu"
+          class="hidden absolute top-full left-0 w-full bg-dark-bg/95 backdrop-blur-xl border-b border-white/10 flex-col py-6 px-6 shadow-2xl md:static md:flex md:w-auto md:bg-transparent md:border-none md:p-0 md:flex-row md:items-center"
+        >
+          <Navigation />
+        </div>
       </div>
     </header>
 
-    {/* 👇 CORRECTION DU PLEIN ÉCRAN APPLIQUÉE ICI */}
+    {/* --- CONTENU PRINCIPAL --- */}
     <main class="flex-1 w-full">
       <slot />
     </main>
 
+    {/* --- FOOTER RESPONSIVE --- */}
     <footer
-      class="bg-dark-surface border-t border-gold/30 pt-16 pb-8 mt-16 text-gray-400 font-sans"
+      class="bg-dark-surface border-t border-gold/30 pt-12 md:pt-16 pb-8 mt-16 text-gray-400 font-sans"
     >
       <div
-        class="max-w-7xl mx-auto px-6 grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-12 mb-12"
+        class="max-w-7xl mx-auto px-4 sm:px-6 grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-10 md:gap-12 mb-12"
       >
+        {/* Colonne 1 */}
         <div>
           <h3 class="font-serif text-2xl text-white mb-4">Héritage Vodun</h3>
           <p class="text-sm leading-relaxed mb-6">
-            Le portail de référence pour comprendre la spiritualité, l'histoire
-            et les rites du Bénin. Une tradition vivante, expliquée avec respect
-            et authenticité.
+            Le portail de référence pour comprendre la spiritualité,
+            l&apos;histoire et les rites du Bénin. Une tradition vivante,
+            expliquée avec respect et authenticité.
           </p>
         </div>
 
+        {/* Colonne 2 */}
         <div>
           <h4 class="font-serif text-gold text-lg mb-4">Explorer</h4>
           <ul class="space-y-3 text-sm">
             <li>
-              <a href="/" class="hover:text-gold transition-colors">Accueil</a>
+              <a href="/" class="hover:text-gold transition-colors block py-1"
+                >Accueil</a
+              >
             </li>
             <li>
-              <a href="/lexique" class="hover:text-gold transition-colors"
+              <a
+                href="/lexique"
+                class="hover:text-gold transition-colors block py-1"
                 >Le Lexique Sacré</a
               >
             </li>
             <li>
-              <a href="/blog" class="hover:text-gold transition-colors"
+              <a
+                href="/blog"
+                class="hover:text-gold transition-colors block py-1"
                 >Articles & Récits</a
               >
             </li>
             <li>
-              <a href="/about" class="hover:text-gold transition-colors"
+              <a
+                href="/about"
+                class="hover:text-gold transition-colors block py-1"
                 >Notre Mission</a
               >
             </li>
           </ul>
         </div>
 
+        {/* Colonne 3 */}
         <div>
           <h4 class="font-serif text-gold text-lg mb-4">Restez Connecté</h4>
           <p class="text-sm mb-4">
@@ -200,11 +222,11 @@ const socialImageURL = new URL(image, Astro.url);
                 name="email"
                 placeholder="Votre email..."
                 required
-                class="flex-1 bg-white/5 border border-white/10 text-white px-4 py-2 text-sm focus:outline-none focus:border-gold rounded-l-md"
+                class="flex-1 w-full bg-white/5 border border-white/10 text-white px-4 py-3 md:py-2 text-sm focus:outline-none focus:border-gold rounded-l-md"
               />
               <button
                 type="submit"
-                class="bg-gold hover:bg-gold-hover text-white px-4 py-2 font-bold transition-colors rounded-r-md"
+                class="bg-gold hover:bg-gold-hover text-white px-5 py-3 md:py-2 font-bold transition-colors rounded-r-md"
                 >→</button
               >
             </div>
@@ -212,6 +234,7 @@ const socialImageURL = new URL(image, Astro.url);
           </form>
         </div>
 
+        {/* Colonne 4 */}
         <div>
           <h4 class="font-serif text-gold text-lg mb-4">Nous Trouver</h4>
           <div class="space-y-3 text-sm">
@@ -221,14 +244,15 @@ const socialImageURL = new URL(image, Astro.url);
                 href="https://www.google.com/maps/search/?api=1&query=Ouidah+Benin"
                 target="_blank"
                 rel="noopener noreferrer"
-                class="hover:text-gold transition-colors">Ouidah, Bénin</a
+                class="hover:text-gold transition-colors py-1 block"
+                >Ouidah, Bénin</a
               >
             </p>
             <p class="flex items-center gap-2">
               <span>📧</span>
               <a
                 href="mailto:contact@heritagevodun.com"
-                class="hover:text-gold transition-colors"
+                class="hover:text-gold transition-colors py-1 block"
                 >contact@heritagevodun.com</a
               >
             </p>
@@ -242,16 +266,16 @@ const socialImageURL = new URL(image, Astro.url);
       </div>
 
       <div
-        class="max-w-7xl mx-auto px-6 border-t border-white/5 pt-8 flex flex-col md:flex-row justify-between items-center text-xs"
+        class="max-w-7xl mx-auto px-4 sm:px-6 border-t border-white/5 pt-8 flex flex-col md:flex-row justify-between items-center text-xs text-center md:text-left gap-4"
       >
         <p>
           © {new Date().getFullYear()} Héritage Vodun. Tous droits réservés.
         </p>
-        <div class="flex gap-4 mt-4 md:mt-0">
+        <div class="flex flex-wrap justify-center gap-4">
           <a href="#" class="hover:text-white transition-colors"
             >Mentions Légales</a
           >
-          <span class="opacity-30">|</span>
+          <span class="opacity-30 hidden sm:inline">|</span>
           <a href="#" class="hover:text-white transition-colors"
             >Politique de Confidentialité</a
           >
@@ -259,10 +283,15 @@ const socialImageURL = new URL(image, Astro.url);
       </div>
     </footer>
 
-    <div id="oracle-widget" class="fixed bottom-6 right-6 z-[9999] font-sans">
+    {/* --- ORACLE WIDGET RESPONSIVE --- */}
+    <div
+      id="oracle-widget"
+      class="fixed bottom-4 right-4 md:bottom-6 md:right-6 z-[9999] font-sans"
+    >
+      {/* Fenêtre de chat recalibrée pour mobile */}
       <div
         id="oracle-window"
-        class="hidden absolute bottom-20 right-0 w-[90vw] md:w-[380px] h-[70vh] md:h-[600px] max-h-[80vh] bg-white rounded-xl shadow-2xl overflow-hidden flex flex-col border border-black/10 origin-bottom-right transition-all duration-300"
+        class="hidden absolute bottom-20 right-0 w-[calc(100vw-2rem)] sm:w-[380px] h-[70vh] max-h-[600px] bg-white rounded-xl shadow-2xl overflow-hidden flex-col border border-black/10 origin-bottom-right transition-all duration-300"
       >
         <div
           class="bg-dark-surface p-4 flex justify-between items-center text-white shrink-0"
@@ -282,8 +311,8 @@ const socialImageURL = new URL(image, Astro.url);
             >
             <button
               id="close-oracle"
-              class="text-gray-400 hover:text-white text-2xl leading-none transition-colors"
-              aria-label="Fermer">×</button
+              class="text-gray-400 hover:text-white text-3xl leading-none transition-colors pb-1"
+              aria-label="Fermer">&times;</button
             >
           </div>
         </div>
@@ -311,13 +340,12 @@ const socialImageURL = new URL(image, Astro.url);
 
       <button
         id="oracle-trigger"
-        class="relative w-16 h-16 bg-gold hover:bg-gold-hover rounded-full shadow-[0_4px_20px_rgba(212,175,55,0.4)] flex items-center justify-center transition-all hover:scale-110 z-[10001]"
+        class="relative w-14 h-14 md:w-16 md:h-16 bg-gold hover:bg-gold-hover rounded-full shadow-[0_4px_20px_rgba(212,175,55,0.4)] flex items-center justify-center transition-all hover:scale-110 ml-auto"
         aria-label="Ouvrir l'Oracle"
       >
         <svg
           viewBox="0 0 100 100"
-          width="35"
-          height="35"
+          class="w-7 h-7 md:w-9 md:h-9"
           fill="none"
           stroke="white"
           stroke-width="6"
@@ -332,6 +360,7 @@ const socialImageURL = new URL(image, Astro.url);
       </button>
     </div>
 
+    {/* --- SCRIPTS --- */}
     <script>
       if (window.location.hostname.includes("vercel.app")) {
         window.location.replace(
@@ -340,6 +369,7 @@ const socialImageURL = new URL(image, Astro.url);
       }
 
       document.addEventListener("astro:page-load", () => {
+        // GESTION DU MENU MOBILE
         const menuBtn = document.getElementById("menu-toggle");
         const navMenu = document.getElementById("nav-menu");
 
@@ -348,10 +378,18 @@ const socialImageURL = new URL(image, Astro.url);
           menuBtn.parentNode.replaceChild(newMenuBtn, menuBtn);
 
           newMenuBtn.addEventListener("click", () => {
-            navMenu.classList.toggle("hidden");
+            // Bascule le menu
+            if (navMenu.classList.contains("hidden")) {
+              navMenu.classList.remove("hidden");
+              navMenu.classList.add("flex");
+            } else {
+              navMenu.classList.add("hidden");
+              navMenu.classList.remove("flex");
+            }
           });
         }
 
+        // GESTION DE LA NEWSLETTER FOOTER
         const footerForm = document.getElementById(
           "footer-newsletter-form",
         ) as HTMLFormElement | null;
@@ -409,6 +447,7 @@ const socialImageURL = new URL(image, Astro.url);
           });
         }
 
+        // GESTION DE L'ORACLE
         const oracleTrigger = document.getElementById("oracle-trigger");
         const oracleWindow = document.getElementById("oracle-window");
         const closeOracle = document.getElementById("close-oracle");

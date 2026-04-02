@@ -2,6 +2,8 @@
 import BaseLayout from "./BaseLayout.astro";
 import FaAnimation from "../components/FaAnimation.astro";
 import SakpataAltar from "../components/SakpataAltar.astro";
+// 1. IMPORTATION DE LA LIGHTBOX ICI 👇
+import GlobalLightbox from "../components/GlobalLightbox.astro";
 
 // Typage pour rassurer TypeScript
 const { frontmatter } = Astro.props as { frontmatter: any };
@@ -125,4 +127,7 @@ const formattedDate = new Intl.DateTimeFormat("fr-FR", {
       )
     }
   </article>
+
+  {/* 2. AFFICHAGE DE LA LIGHTBOX ICI 👇 */}
+  <GlobalLightbox />
 </BaseLayout>
