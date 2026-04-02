@@ -1,5 +1,5 @@
 ---
-const { width = "45", height = "45" } = Astro.props;
+const { width = "45", height = "45", class: className = "" } = Astro.props;
 ---
 
 <svg
@@ -8,7 +8,7 @@ const { width = "45", height = "45" } = Astro.props;
   height={height}
   fill="none"
   xmlns="http://www.w3.org/2000/svg"
-  class="logo-svg"
+  class={`drop-shadow-[0_2px_10px_rgba(212,175,55,0.4)] transition-transform duration-[400ms] ease-[cubic-bezier(0.175,0.885,0.32,1.275)] ${className}`}
 >
   <defs>
     <linearGradient
@@ -111,16 +111,3 @@ const { width = "45", height = "45" } = Astro.props;
   <circle cx="36" cy="25" r="2.8" fill="url(#beadGrad)"></circle>
   <circle cx="64" cy="25" r="2.8" fill="url(#beadGrad)"></circle>
 </svg>
-
-<style>
-  .logo-svg {
-    /* Ombre portée pour l'effet 3D */
-    filter: drop-shadow(0 2px 4px rgba(139, 69, 19, 0.3));
-    transition: transform 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
-  }
-
-  /* Animation : Zoom majestueux au survol (plus classe que la rotation pour un sceptre) */
-  :global(a:hover) .logo-svg {
-    transform: scale(1.15);
-  }
-</style>

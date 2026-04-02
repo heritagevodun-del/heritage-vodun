@@ -2,173 +2,80 @@
 /*
   SakpataAltar.astro - CSS Art
   Représente le Gozen (jarre sacrée) et l&apos;énergie tellurique d&apos;Ayinon.
+  Optimisé Tailwind v4 - Thème Sombre
 */
 ---
 
-<div class="sakpata-art-canvas animate-enter">
-  <div class="telluric-stage">
+<div
+  class="w-full h-80 bg-[radial-gradient(circle_at_center,#2a120e_0%,#050505_100%)] flex justify-center items-center relative overflow-hidden mb-12 rounded-2xl shadow-[0_15px_40px_rgba(0,0,0,0.5)] border border-white/5 opacity-0 animate-fade-up"
+>
+  {/* Lueur dorée subtile pour intégration au thème */}
+  <div
+    class="absolute top-0 right-0 w-48 h-48 bg-gold/5 rounded-full blur-[50px] pointer-events-none z-0"
+  >
+  </div>
+
+  <div class="relative w-[200px] h-[220px] flex justify-center items-end">
     {/* Énergie de guérison (Aura) */}
-    <div class="healing-aura"></div>
+    <div
+      class="absolute bottom-8 w-40 h-40 bg-[radial-gradient(circle,rgba(139,0,0,0.4)_0%,transparent_60%)] rounded-full animate-earth-pulse z-10"
+    >
+    </div>
 
     {/* La Terre (Socle) */}
-    <div class="earth-mound"></div>
+    <div
+      class="absolute bottom-0 w-[180px] h-10 bg-[#1a1512] rounded-[50%_50%_10%_10%] shadow-[inset_0_10px_10px_rgba(0,0,0,0.8)] z-20"
+    >
+    </div>
 
     {/* La Jarre Sacrée (Gozen) */}
-    <div class="gozen-jar">
-      <div class="jar-neck"></div>
-      <div class="jar-body">
+    <div
+      class="absolute bottom-6 flex flex-col items-center z-30 group cursor-default"
+    >
+      <div
+        class="w-[60px] h-[20px] bg-gradient-to-r from-[#4e342e] via-[#795548] to-[#4e342e] rounded-t-[10px] border-b-[3px] border-[#1a1512]"
+      >
+      </div>
+
+      <div
+        class="w-[110px] h-[100px] bg-gradient-to-br from-[#795548] to-[#3e2723] rounded-[40%_40%_50%_50%] relative shadow-[inset_-10px_-10px_20px_rgba(0,0,0,0.6),0_10px_15px_rgba(0,0,0,0.4)] group-hover:brightness-110 transition-all duration-500"
+      >
         {/* Les trous symboliques du Gozen */}
-        <div class="hole h1"></div>
-        <div class="hole h2"></div>
-        <div class="hole h3"></div>
-        <div class="hole h4"></div>
-        <div class="hole h5"></div>
+        <div
+          class="absolute w-3 h-3 bg-[#1a1512] rounded-full shadow-[inset_2px_2px_5px_rgba(0,0,0,0.8),0_1px_1px_rgba(255,255,255,0.1)] top-[30%] left-[20%]"
+        >
+        </div>
+        <div
+          class="absolute w-3 h-3 bg-[#1a1512] rounded-full shadow-[inset_2px_2px_5px_rgba(0,0,0,0.8),0_1px_1px_rgba(255,255,255,0.1)] top-[25%] right-[25%]"
+        >
+        </div>
+        <div
+          class="absolute w-3 h-3 bg-[#1a1512] rounded-full shadow-[inset_2px_2px_5px_rgba(0,0,0,0.8),0_1px_1px_rgba(255,255,255,0.1)] top-[50%] left-[45%]"
+        >
+        </div>
+        <div
+          class="absolute w-3 h-3 bg-[#1a1512] rounded-full shadow-[inset_2px_2px_5px_rgba(0,0,0,0.8),0_1px_1px_rgba(255,255,255,0.1)] bottom-[25%] left-[30%]"
+        >
+        </div>
+        <div
+          class="absolute w-3 h-3 bg-[#1a1512] rounded-full shadow-[inset_2px_2px_5px_rgba(0,0,0,0.8),0_1px_1px_rgba(255,255,255,0.1)] bottom-[30%] right-[20%]"
+        >
+        </div>
       </div>
     </div>
 
-    {/* Perles rituelles (Rouge / Noir / Blanc) */}
-    <div class="beads-ring"></div>
+    {
+      /* Perles rituelles (Rouge / Noir / Blanc) - Utilisation de transform inline pour la 3D */
+    }
+    <div
+      class="absolute bottom-4 w-[130px] h-[20px] rounded-full border-[6px] border-dashed border-[#8b0000] shadow-[0_0_0_4px_#1a1512,inset_0_0_0_4px_#fdfbf7] z-40 opacity-90 [transform:rotateX(70deg)]"
+    >
+    </div>
   </div>
 </div>
 
 <style>
-  :root {
-    --sakpata-earth: #5d4037;
-    --sakpata-dark: #1a1512;
-    --sakpata-red: #8b0000;
-    --sakpata-white: #fdfbf7;
-    --sakpata-glow: rgba(139, 0, 0, 0.4);
-  }
-
-  .sakpata-art-canvas {
-    width: 100%;
-    height: 320px;
-    background: radial-gradient(circle at center, #3e2723 0%, #1a110e 100%);
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    position: relative;
-    overflow: hidden;
-    margin-bottom: 3rem;
-    border-radius: 8px;
-    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.5);
-  }
-
-  .telluric-stage {
-    position: relative;
-    width: 200px;
-    height: 220px;
-    display: flex;
-    justify-content: center;
-    align-items: flex-end;
-  }
-
-  /* --- AURA DE GUÉRISON --- */
-  .healing-aura {
-    position: absolute;
-    bottom: 30px;
-    width: 160px;
-    height: 160px;
-    background: radial-gradient(
-      circle,
-      var(--sakpata-glow) 0%,
-      transparent 60%
-    );
-    border-radius: 50%;
-    animation: earth-pulse 4s ease-in-out infinite;
-    z-index: 1;
-  }
-
-  /* --- LE MONTICULE DE TERRE --- */
-  .earth-mound {
-    position: absolute;
-    bottom: 0;
-    width: 180px;
-    height: 40px;
-    background: var(--sakpata-dark);
-    border-radius: 50% 50% 10% 10%;
-    box-shadow: inset 0 10px 10px rgba(0, 0, 0, 0.8);
-    z-index: 2;
-  }
-
-  /* --- LA JARRE GOZEN --- */
-  .gozen-jar {
-    position: absolute;
-    bottom: 25px;
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    z-index: 3;
-  }
-
-  .jar-neck {
-    width: 60px;
-    height: 20px;
-    background: linear-gradient(90deg, #4e342e, #795548, #4e342e);
-    border-radius: 10px 10px 0 0;
-    border-bottom: 3px solid var(--sakpata-dark);
-  }
-
-  .jar-body {
-    width: 110px;
-    height: 100px;
-    background: linear-gradient(135deg, #795548, #3e2723);
-    border-radius: 40% 40% 50% 50%;
-    position: relative;
-    box-shadow:
-      inset -10px -10px 20px rgba(0, 0, 0, 0.6),
-      0 10px 15px rgba(0, 0, 0, 0.4);
-  }
-
-  /* Trous du Gozen */
-  .hole {
-    position: absolute;
-    width: 12px;
-    height: 12px;
-    background-color: var(--sakpata-dark);
-    border-radius: 50%;
-    box-shadow:
-      inset 2px 2px 5px rgba(0, 0, 0, 0.8),
-      0 1px 1px rgba(255, 255, 255, 0.1);
-  }
-  .h1 {
-    top: 30%;
-    left: 20%;
-  }
-  .h2 {
-    top: 25%;
-    right: 25%;
-  }
-  .h3 {
-    top: 50%;
-    left: 45%;
-  }
-  .h4 {
-    bottom: 25%;
-    left: 30%;
-  }
-  .h5 {
-    bottom: 30%;
-    right: 20%;
-  }
-
-  /* --- PERLES RITUELLES --- */
-  .beads-ring {
-    position: absolute;
-    bottom: 15px;
-    width: 130px;
-    height: 20px;
-    border-radius: 50%;
-    border: 6px dashed var(--sakpata-red);
-    box-shadow:
-      0 0 0 4px var(--sakpata-dark),
-      inset 0 0 0 4px var(--sakpata-white);
-    z-index: 4;
-    opacity: 0.9;
-    transform: rotateX(70deg);
-  }
-
-  /* --- ANIMATIONS --- */
+  /* Animations complexes conservées en CSS pour de meilleures performances */
   @keyframes earth-pulse {
     0%,
     100% {
@@ -180,8 +87,11 @@
       opacity: 1;
     }
   }
+  .animate-earth-pulse {
+    animation: earth-pulse 4s ease-in-out infinite;
+  }
 
-  @keyframes fadeInUp {
+  @keyframes fadeUp {
     from {
       opacity: 0;
       transform: translateY(30px);
@@ -191,7 +101,7 @@
       transform: translateY(0);
     }
   }
-  .animate-enter {
-    animation: fadeInUp 1s ease forwards;
+  .animate-fade-up {
+    animation: fadeUp 1s ease forwards;
   }
 </style>

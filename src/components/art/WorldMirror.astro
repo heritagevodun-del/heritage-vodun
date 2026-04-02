@@ -1,72 +1,48 @@
 ---
+// src/components/art/MiroirDesMondesArt.astro
 // Composant CSS Art : Miroir des Mondes (Vodun vs Vaudou)
+// Optimisé Tailwind v4 - Thème Sombre & Or
 ---
 
-<div class="visual-container">
-  <div class="world-mirror-art">
-    <div class="visible-world"></div>
-    <div class="axis-mundi"></div>
-    <div class="invisible-world"></div>
-    <div class="energy-particles"></div>
+<div
+  class="w-full h-[350px] bg-gradient-to-b from-[#111827] to-[#050505] rounded-xl mb-12 overflow-hidden shadow-[0_15px_35px_rgba(0,0,0,0.6)] border border-[#d4af37]/15 flex justify-center items-center opacity-0 animate-fade-up"
+>
+  <div
+    class="relative w-full h-full flex flex-col justify-center items-center animate-cosmic-breath"
+  >
+    {/* Monde Visible (Or / Terre / Vivants) */}
+    <div
+      class="w-[120px] h-[60px] bg-[radial-gradient(ellipse_at_bottom,#d4af37_0%,transparent_70%)] rounded-t-[120px] opacity-90 shadow-[0_-10px_30px_rgba(212,175,55,0.2)]"
+    >
+    </div>
+
+    {/* Axis Mundi (La frontière poreuse) */}
+    <div
+      class="w-[250px] h-[2px] bg-gradient-to-r from-transparent via-[#d4af37] to-transparent relative z-10 shadow-[0_0_15px_#d4af37]"
+    >
+    </div>
+
+    {/* Monde Invisible (Bleu Mystique / Esprits / Ancêtres) */}
+    <div
+      class="w-[120px] h-[60px] bg-[radial-gradient(ellipse_at_top,#3b82f6_0%,transparent_70%)] rounded-b-[120px] opacity-60 shadow-[0_10px_30px_rgba(59,130,246,0.2)]"
+    >
+    </div>
+
+    {/* Particules d&apos;énergie trans-dimensionnelles */}
+    <div
+      class="absolute w-1.5 h-1.5 bg-[#d4af37] rounded-full top-[120px] left-[40%] animate-ping opacity-50"
+    >
+    </div>
+    <div
+      class="absolute w-1.5 h-1.5 bg-[#3b82f6] rounded-full bottom-[120px] right-[40%] animate-ping opacity-50 [animation-delay:1s]"
+    >
+    </div>
   </div>
 </div>
 
 <style>
-  .visual-container {
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    width: 100%;
-    height: 350px;
-    background: linear-gradient(180deg, #111827 0%, #030712 100%);
-    border-radius: 12px;
-    margin-bottom: 3rem;
-    overflow: hidden;
-    box-shadow: 0 15px 35px rgba(0, 0, 0, 0.4);
-    border: 1px solid rgba(218, 165, 32, 0.15);
-  }
-  .world-mirror-art {
-    position: relative;
-    width: 100%;
-    height: 100%;
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    align-items: center;
-    animation: cosmicBreath 8s ease-in-out infinite;
-  }
-  .visible-world {
-    width: 120px;
-    height: 60px;
-    background: radial-gradient(ellipse at bottom, #daa520 0%, transparent 70%);
-    border-top-left-radius: 120px;
-    border-top-right-radius: 120px;
-    opacity: 0.9;
-    box-shadow: 0 -10px 30px rgba(218, 165, 32, 0.2);
-  }
-  .axis-mundi {
-    width: 100%;
-    height: 2px;
-    background: linear-gradient(
-      90deg,
-      transparent 0%,
-      #daa520 50%,
-      transparent 100%
-    );
-    position: relative;
-    z-index: 10;
-    box-shadow: 0 0 15px #daa520;
-  }
-  .invisible-world {
-    width: 120px;
-    height: 60px;
-    background: radial-gradient(ellipse at top, #3b82f6 0%, transparent 70%);
-    border-bottom-left-radius: 120px;
-    border-bottom-right-radius: 120px;
-    opacity: 0.6;
-    box-shadow: 0 10px 30px rgba(59, 130, 246, 0.2);
-  }
-  @keyframes cosmicBreath {
+  /* --- ANIMATIONS COMPLEXES --- */
+  @keyframes cosmic-breath {
     0%,
     100% {
       transform: scale(1);
@@ -76,5 +52,22 @@
       transform: scale(1.05);
       opacity: 1;
     }
+  }
+  .animate-cosmic-breath {
+    animation: cosmic-breath 8s ease-in-out infinite;
+  }
+
+  @keyframes fadeUp {
+    from {
+      opacity: 0;
+      transform: translateY(30px);
+    }
+    to {
+      opacity: 1;
+      transform: translateY(0);
+    }
+  }
+  .animate-fade-up {
+    animation: fadeUp 1s ease forwards;
   }
 </style>

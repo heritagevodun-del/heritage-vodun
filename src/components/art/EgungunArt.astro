@@ -2,186 +2,73 @@
 /*
   EgungunArt.astro - CSS Art animé
   Représente le tourbillon majestueux des étoffes et le souffle de l&apos;Ancêtre.
+  Optimisé Tailwind v4 - Thème Sombre
 */
 ---
 
-<div class="egungun-art-canvas animate-enter">
-  <div class="spirit-stage">
-    {/* Énergie spirituelle / Ashe */}
-    <div class="ashe-glow"></div>
+<div
+  class="w-full h-80 bg-[radial-gradient(circle_at_center,#2d1f1b_0%,#050505_100%)] flex justify-center items-center relative overflow-hidden mb-12 rounded-2xl shadow-[0_15px_40px_rgba(0,0,0,0.6)] border border-white/5 opacity-0 animate-fade-up"
+>
+  <div class="relative w-[250px] h-[250px] flex justify-center items-center">
+    {/* Énergie spirituelle / Ashe (Lueur dorée) */}
+    <div
+      class="absolute w-[180px] h-[180px] bg-[radial-gradient(circle,rgba(212,175,55,0.3)_0%,transparent_60%)] rounded-full animate-spirit-pulse z-10"
+    >
+    </div>
 
     {/* Le Masque Egungun (Superposition d'étoffes) */}
-    <div class="egungun-figure">
-      {/* Couches de tissus colorés */}
-      <div class="fabric-layer base-layer"></div>
-      <div class="fabric-layer mid-layer"></div>
-      <div class="fabric-layer top-layer">
-        {/* Cauris sacrés (masque) */}
-        <div class="cowrie c1"></div>
-        <div class="cowrie c2"></div>
-        <div class="cowrie c3"></div>
+    <div
+      class="relative w-[140px] h-[200px] flex flex-col items-center justify-start animate-mystic-sway z-20"
+    >
+      {/* Panneaux de tissus volant au vent (Arrière-plan) */}
+      <div
+        class="absolute top-[80px] w-[40px] h-[100px] bg-[#d4af37] z-0 rounded-b-[20px] left-[-20px] origin-top-right animate-fabric-flap-left shadow-[0_5px_15px_rgba(0,0,0,0.4)]"
+      >
+      </div>
+      <div
+        class="absolute top-[80px] w-[40px] h-[100px] bg-[#d4af37] z-0 rounded-b-[20px] right-[-20px] origin-top-left animate-fabric-flap-right shadow-[0_5px_15px_rgba(0,0,0,0.4)]"
+      >
       </div>
 
-      {/* Panneaux de tissus volant au vent */}
-      <div class="panel p-left"></div>
-      <div class="panel p-right"></div>
+      {/* Couche de Tissus - Base (Rouge) */}
+      <div
+        class="absolute top-[40px] w-[140px] h-[160px] bg-[repeating-linear-gradient(45deg,#c62828,#c62828_10px,#8e0000_10px,#8e0000_20px)] rounded-[10px_10px_50px_50px] shadow-[0_5px_15px_rgba(0,0,0,0.4)] z-10"
+      >
+      </div>
+
+      {/* Couche de Tissus - Milieu (Vert) */}
+      <div
+        class="absolute top-[20px] w-[110px] h-[140px] bg-[repeating-linear-gradient(-45deg,#2e7d32,#2e7d32_10px,#1b5e20_10px,#1b5e20_20px)] rounded-[10px_10px_50px_50px] shadow-[0_5px_15px_rgba(0,0,0,0.4)] border-b-[5px] border-[#d4af37] z-20"
+      >
+      </div>
+
+      {/* Couche de Tissus - Sommet (Masque/Visage) */}
+      <div
+        class="absolute top-0 w-[80px] h-[100px] bg-[#1a1512] border-[4px] border-[#d4af37] rounded-[40px_40px_10px_10px] z-30 flex flex-col items-center pt-[15px] shadow-[0_5px_15px_rgba(0,0,0,0.4)]"
+      >
+        {/* Cauris sacrés (masque) */}
+        <div
+          class="w-[8px] h-[14px] bg-[#fdfbf7] rounded-full mb-[5px] shadow-[inset_0_0_3px_rgba(0,0,0,0.5)] relative flex justify-center items-center"
+        >
+          <div class="w-[2px] h-[10px] bg-[#ccc] rounded-full"></div>
+        </div>
+        <div
+          class="w-[8px] h-[14px] bg-[#fdfbf7] rounded-full mb-[5px] shadow-[inset_0_0_3px_rgba(0,0,0,0.5)] relative flex justify-center items-center"
+        >
+          <div class="w-[2px] h-[10px] bg-[#ccc] rounded-full"></div>
+        </div>
+        <div
+          class="w-[8px] h-[14px] bg-[#fdfbf7] rounded-full mb-[5px] shadow-[inset_0_0_3px_rgba(0,0,0,0.5)] relative flex justify-center items-center"
+        >
+          <div class="w-[2px] h-[10px] bg-[#ccc] rounded-full"></div>
+        </div>
+      </div>
     </div>
   </div>
 </div>
 
 <style>
-  :root {
-    --egungun-red: #c62828;
-    --egungun-gold: #f9a825;
-    --egungun-green: #2e7d32;
-    --egungun-dark: #212121;
-    --cowrie-white: #fdfbf7;
-  }
-
-  .egungun-art-canvas {
-    width: 100%;
-    height: 320px;
-    background: radial-gradient(circle at center, #3e2723 0%, #1a110e 100%);
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    position: relative;
-    overflow: hidden;
-    margin-bottom: 3rem;
-    border-radius: 8px;
-    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.5);
-  }
-
-  .spirit-stage {
-    position: relative;
-    width: 250px;
-    height: 250px;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-  }
-
-  /* --- ÉNERGIE (ASHE) --- */
-  .ashe-glow {
-    position: absolute;
-    width: 180px;
-    height: 180px;
-    background: radial-gradient(
-      circle,
-      rgba(249, 168, 37, 0.3) 0%,
-      transparent 60%
-    );
-    border-radius: 50%;
-    animation: spirit-pulse 3s ease-in-out infinite alternate;
-    z-index: 1;
-  }
-
-  /* --- FIGURE EGUNGUN --- */
-  .egungun-figure {
-    position: relative;
-    width: 140px;
-    height: 200px;
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    justify-content: flex-start;
-    animation: mystic-sway 4s ease-in-out infinite;
-    z-index: 2;
-  }
-
-  /* Couches de Tissus */
-  .fabric-layer {
-    position: absolute;
-    border-radius: 10px 10px 50px 50px;
-    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.4);
-  }
-
-  .base-layer {
-    top: 40px;
-    width: 140px;
-    height: 160px;
-    background: repeating-linear-gradient(
-      45deg,
-      var(--egungun-red),
-      var(--egungun-red) 10px,
-      #8e0000 10px,
-      #8e0000 20px
-    );
-    z-index: 2;
-  }
-
-  .mid-layer {
-    top: 20px;
-    width: 110px;
-    height: 140px;
-    background: repeating-linear-gradient(
-      -45deg,
-      var(--egungun-green),
-      var(--egungun-green) 10px,
-      #1b5e20 10px,
-      #1b5e20 20px
-    );
-    z-index: 3;
-    border-bottom: 5px solid var(--egungun-gold);
-  }
-
-  .top-layer {
-    top: 0;
-    width: 80px;
-    height: 100px;
-    background: var(--egungun-dark);
-    border: 4px solid var(--egungun-gold);
-    border-radius: 40px 40px 10px 10px;
-    z-index: 4;
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    padding-top: 15px;
-  }
-
-  /* Cauris (Visage symbolique) */
-  .cowrie {
-    width: 8px;
-    height: 14px;
-    background: var(--cowrie-white);
-    border-radius: 50%;
-    margin-bottom: 5px;
-    box-shadow: inset 0 0 3px rgba(0, 0, 0, 0.5);
-    position: relative;
-  }
-  .cowrie::after {
-    content: "";
-    position: absolute;
-    top: 2px;
-    bottom: 2px;
-    left: 3px;
-    right: 3px;
-    background: #ccc;
-    border-radius: 50%;
-  }
-
-  /* Panneaux Volants (Le vent / Le souffle) */
-  .panel {
-    position: absolute;
-    top: 80px;
-    width: 40px;
-    height: 100px;
-    background: var(--egungun-gold);
-    z-index: 1;
-    border-radius: 0 0 20px 20px;
-  }
-  .p-left {
-    left: -20px;
-    transform-origin: top right;
-    animation: fabric-flap-left 2s ease-in-out infinite;
-  }
-  .p-right {
-    right: -20px;
-    transform-origin: top left;
-    animation: fabric-flap-right 2.2s ease-in-out infinite;
-  }
-
-  /* --- ANIMATIONS --- */
+  /* Animations complexes du souffle et de l'énergie */
   @keyframes spirit-pulse {
     0% {
       transform: scale(0.9);
@@ -191,6 +78,9 @@
       transform: scale(1.2);
       opacity: 1;
     }
+  }
+  .animate-spirit-pulse {
+    animation: spirit-pulse 3s ease-in-out infinite alternate;
   }
 
   @keyframes mystic-sway {
@@ -205,6 +95,9 @@
       transform: translateY(-5px) rotate(3deg);
     }
   }
+  .animate-mystic-sway {
+    animation: mystic-sway 4s ease-in-out infinite;
+  }
 
   @keyframes fabric-flap-left {
     0%,
@@ -214,6 +107,9 @@
     50% {
       transform: rotate(35deg);
     }
+  }
+  .animate-fabric-flap-left {
+    animation: fabric-flap-left 2s ease-in-out infinite;
   }
 
   @keyframes fabric-flap-right {
@@ -225,8 +121,11 @@
       transform: rotate(-35deg);
     }
   }
+  .animate-fabric-flap-right {
+    animation: fabric-flap-right 2.2s ease-in-out infinite;
+  }
 
-  @keyframes fadeInUp {
+  @keyframes fadeUp {
     from {
       opacity: 0;
       transform: translateY(30px);
@@ -236,7 +135,7 @@
       transform: translateY(0);
     }
   }
-  .animate-enter {
-    animation: fadeInUp 1s ease forwards;
+  .animate-fade-up {
+    animation: fadeUp 1s ease forwards;
   }
 </style>

@@ -2,183 +2,75 @@
 /*
   PurificationArt.astro - CSS Art
   Représente la calebasse sacrée contenant l&apos;eau lustrale, le sel et les feuilles de basilic.
+  Optimisé Tailwind v4 - Thème Sombre & Pur
 */
 ---
 
-<div class="purification-art-canvas animate-enter">
-  <div class="ritual-stage">
+<div
+  class="w-full h-80 bg-[radial-gradient(circle_at_bottom,#1a202c_0%,#050505_100%)] flex justify-center items-center relative overflow-hidden mb-12 rounded-2xl shadow-[0_15px_40px_rgba(0,0,0,0.6)] border border-cyan-900/30 opacity-0 animate-fade-up"
+>
+  <div class="relative w-[250px] h-[200px] flex justify-center items-center">
     {/* Aura spirituelle de purification */}
-    <div class="cleansing-aura"></div>
+    <div
+      class="absolute w-[180px] h-[180px] bg-[radial-gradient(circle,rgba(224,247,250,0.15)_0%,transparent_70%)] rounded-full animate-breathe z-10"
+    >
+    </div>
 
     {/* Grains de sel marin flottants / Énergie */}
-    <div class="salt-sparkles s1"></div>
-    <div class="salt-sparkles s2"></div>
-    <div class="salt-sparkles s3"></div>
-    <div class="salt-sparkles s4"></div>
+    <div
+      class="absolute w-[4px] h-[4px] bg-white rounded-full shadow-[0_0_8px_white] z-30 animate-sparkle-rise opacity-0 left-[60px] bottom-[80px] [animation-delay:0s]"
+    >
+    </div>
+    <div
+      class="absolute w-[4px] h-[4px] bg-white rounded-full shadow-[0_0_8px_white] z-30 animate-sparkle-rise opacity-0 right-[70px] bottom-[90px] [animation-delay:0.5s]"
+    >
+    </div>
+    <div
+      class="absolute w-[4px] h-[4px] bg-white rounded-full shadow-[0_0_8px_white] z-30 animate-sparkle-rise opacity-0 left-[110px] bottom-[75px] [animation-delay:1s]"
+    >
+    </div>
+    <div
+      class="absolute w-[4px] h-[4px] bg-white rounded-full shadow-[0_0_8px_white] z-30 animate-sparkle-rise opacity-0 right-[100px] bottom-[85px] [animation-delay:1.5s]"
+    >
+    </div>
 
     {/* La Calebasse */}
-    <div class="calabash">
+    <div
+      class="relative w-[160px] h-[80px] bg-gradient-to-br from-[#8d6e63] to-[#3e2723] rounded-[10px_10px_80px_80px] shadow-[inset_-10px_-10px_20px_rgba(0,0,0,0.6),0_15px_25px_rgba(0,0,0,0.5)] z-20 flex justify-center border-t-[4px] border-[#2a1a17]"
+    >
       {/* L'eau sacrée à l'intérieur */}
-      <div class="holy-water">
-        {/* Feuilles de basilic/hysope à la surface */}
-        <div class="basil-leaf leaf1"></div>
-        <div class="basil-leaf leaf2"></div>
-        <div class="basil-leaf leaf3"></div>
+      <div
+        class="absolute -top-[5px] w-[140px] h-[20px] bg-[radial-gradient(ellipse_at_center,#e0f7fa_0%,#00acc1_100%)] rounded-full shadow-[0_0_15px_rgba(0,172,193,0.6),inset_0_0_5px_rgba(255,255,255,0.8)] opacity-90 animate-ripple"
+      >
+        {
+          /* Feuilles de basilic/hysope à la surface (Conteneurs pour rotation isolée) */
+        }
+        <div class="absolute top-[2px] left-[30px] rotate-[15deg]">
+          <div
+            class="w-[25px] h-[12px] bg-[#2e7d32] rounded-[12px_0_12px_0] shadow-[inset_2px_2px_4px_rgba(255,255,255,0.3)] animate-float"
+          >
+          </div>
+        </div>
+
+        <div class="absolute top-[5px] right-[40px] -rotate-[45deg]">
+          <div
+            class="w-[25px] h-[12px] bg-[#2e7d32] rounded-[12px_0_12px_0] shadow-[inset_2px_2px_4px_rgba(255,255,255,0.3)] animate-float [animation-delay:0.5s]"
+          >
+          </div>
+        </div>
+
+        <div class="absolute top-[8px] left-[60px] rotate-[70deg]">
+          <div
+            class="w-[18px] h-[9px] bg-[#2e7d32] rounded-[12px_0_12px_0] shadow-[inset_2px_2px_4px_rgba(255,255,255,0.3)] animate-float [animation-delay:1s]"
+          >
+          </div>
+        </div>
       </div>
     </div>
   </div>
 </div>
 
 <style>
-  :root {
-    --calabash-dark: #3e2723;
-    --calabash-light: #8d6e63;
-    --water-glow: #e0f7fa;
-    --water-deep: #00acc1;
-    --basil-green: #2e7d32;
-    --salt-white: #ffffff;
-  }
-
-  .purification-art-canvas {
-    width: 100%;
-    height: 320px;
-    background: radial-gradient(circle at bottom, #263238 0%, #101416 100%);
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    position: relative;
-    overflow: hidden;
-    margin-bottom: 3rem;
-    border-radius: 8px;
-    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.5);
-  }
-
-  .ritual-stage {
-    position: relative;
-    width: 250px;
-    height: 200px;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-  }
-
-  /* --- AURA DE PURIFICATION --- */
-  .cleansing-aura {
-    position: absolute;
-    width: 180px;
-    height: 180px;
-    background: radial-gradient(
-      circle,
-      rgba(224, 247, 250, 0.15) 0%,
-      transparent 70%
-    );
-    border-radius: 50%;
-    animation: breathe 4s ease-in-out infinite;
-    z-index: 1;
-  }
-
-  /* --- LA CALEBASSE --- */
-  .calabash {
-    position: relative;
-    width: 160px;
-    height: 80px;
-    background: linear-gradient(
-      135deg,
-      var(--calabash-light),
-      var(--calabash-dark)
-    );
-    border-radius: 10px 10px 80px 80px;
-    box-shadow:
-      inset -10px -10px 20px rgba(0, 0, 0, 0.6),
-      0 15px 25px rgba(0, 0, 0, 0.5);
-    z-index: 2;
-    display: flex;
-    justify-content: center;
-    border-top: 4px solid #2a1a17;
-  }
-
-  /* --- L'EAU LUSTRALE --- */
-  .holy-water {
-    position: absolute;
-    top: -5px;
-    width: 140px;
-    height: 20px;
-    background: radial-gradient(
-      ellipse at center,
-      var(--water-glow) 0%,
-      var(--water-deep) 100%
-    );
-    border-radius: 50%;
-    box-shadow:
-      0 0 15px rgba(0, 172, 193, 0.6),
-      inset 0 0 5px rgba(255, 255, 255, 0.8);
-    opacity: 0.9;
-    animation: ripple 3s infinite alternate;
-  }
-
-  /* --- FEUILLES DE BASILIC --- */
-  .basil-leaf {
-    position: absolute;
-    width: 25px;
-    height: 12px;
-    background: var(--basil-green);
-    border-radius: 12px 0 12px 0;
-    box-shadow: inset 2px 2px 4px rgba(255, 255, 255, 0.3);
-  }
-  .leaf1 {
-    top: 2px;
-    left: 30px;
-    transform: rotate(15deg);
-    animation: float 4s ease-in-out infinite;
-  }
-  .leaf2 {
-    top: 5px;
-    right: 40px;
-    transform: rotate(-45deg);
-    animation: float 3.5s ease-in-out infinite 0.5s;
-  }
-  .leaf3 {
-    top: 8px;
-    left: 60px;
-    transform: rotate(70deg);
-    width: 18px;
-    height: 9px;
-    animation: float 5s ease-in-out infinite 1s;
-  }
-
-  /* --- GRAINS DE SEL / ÉNERGIE --- */
-  .salt-sparkles {
-    position: absolute;
-    width: 4px;
-    height: 4px;
-    background: var(--salt-white);
-    border-radius: 50%;
-    box-shadow: 0 0 8px var(--salt-white);
-    z-index: 3;
-    animation: sparkle-rise 2s linear infinite;
-    opacity: 0;
-  }
-  .s1 {
-    left: 60px;
-    bottom: 80px;
-    animation-delay: 0s;
-  }
-  .s2 {
-    right: 70px;
-    bottom: 90px;
-    animation-delay: 0.5s;
-  }
-  .s3 {
-    left: 110px;
-    bottom: 75px;
-    animation-delay: 1s;
-  }
-  .s4 {
-    right: 100px;
-    bottom: 85px;
-    animation-delay: 1.5s;
-  }
-
   /* --- ANIMATIONS --- */
   @keyframes breathe {
     0%,
@@ -191,6 +83,9 @@
       opacity: 1;
     }
   }
+  .animate-breathe {
+    animation: breathe 4s ease-in-out infinite;
+  }
 
   @keyframes ripple {
     0% {
@@ -200,15 +95,22 @@
       transform: scaleX(1.02);
     }
   }
+  .animate-ripple {
+    animation: ripple 3s infinite alternate;
+  }
 
+  /* Animation isolée de la flottaison (n'écrase plus la rotation) */
   @keyframes float {
     0%,
     100% {
-      transform: translateY(0) rotate(inherit);
+      transform: translateY(0);
     }
     50% {
-      transform: translateY(-2px) rotate(inherit);
+      transform: translateY(-2px);
     }
+  }
+  .animate-float {
+    animation: float 4s ease-in-out infinite;
   }
 
   @keyframes sparkle-rise {
@@ -224,8 +126,11 @@
       opacity: 0;
     }
   }
+  .animate-sparkle-rise {
+    animation: sparkle-rise 2s linear infinite;
+  }
 
-  @keyframes fadeInUp {
+  @keyframes fadeUp {
     from {
       opacity: 0;
       transform: translateY(30px);
@@ -235,7 +140,7 @@
       transform: translateY(0);
     }
   }
-  .animate-enter {
-    animation: fadeInUp 1s ease forwards;
+  .animate-fade-up {
+    animation: fadeUp 1s ease forwards;
   }
 </style>

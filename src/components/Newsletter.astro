@@ -63,7 +63,7 @@
             />
             <button
               type="submit"
-              class="bg-gold hover:bg-gold-hover text-black border border-gold hover:border-gold-hover px-8 py-4 rounded-md font-bold uppercase tracking-wider transition-all duration-300 disabled:opacity-50 disabled:cursor-not-allowed disabled:grayscale min-w-[160px] shadow-[0_4px_15px_rgba(212,175,55,0.3)] hover:shadow-[0_6px_20px_rgba(212,175,55,0.5)] hover:-translate-y-0.5 btn-inscription"
+              class="bg-gold hover:bg-gold-hover text-black border border-gold hover:border-gold-hover px-8 py-4 rounded-md font-bold uppercase tracking-wider transition-all duration-300 disabled:opacity-50 disabled:cursor-not-allowed disabled:grayscale min-w-[160px] shadow-[0_4px_15px_rgba(212,175,55,0.3)] hover:shadow-[0_6px_20px_rgba(212,175,55,0.5)] hover:-translate-y-0.5 btn-inscription flex items-center justify-center"
             >
               <span class="btn-text">S&apos;inscrire</span>
               <span class="btn-loader hidden">...</span>
@@ -105,10 +105,11 @@
         const json = JSON.stringify(object);
 
         resNews.innerHTML = "";
+        resNews.className =
+          "mt-4 font-bold min-h-[24px] text-sm transition-colors duration-300 message-resultat";
         btn.disabled = true;
 
-        if (btnText) btnText.style.display = "none";
-        // Correction de l'affichage du loader (Tailwind utilise .hidden)
+        if (btnText) btnText.classList.add("hidden");
         if (btnLoader) btnLoader.classList.remove("hidden");
 
         fetch("https://api.web3forms.com/submit", {
@@ -123,22 +124,22 @@
             if (response.status == 200) {
               resNews.innerHTML =
                 "✨ Merci. Votre inscription est confirmée. Bienvenue dans le Cercle.";
-              resNews.style.color = "#d4af37"; // Or pour le succès sur fond noir
+              resNews.classList.add("text-gold");
               formNews.reset();
             } else {
               resNews.innerHTML =
                 "Une erreur est survenue. Veuillez réessayer.";
-              resNews.style.color = "#ef4444"; // Rouge Tailwind
+              resNews.classList.add("text-red-500");
             }
           })
           .catch((error) => {
             resNews.innerHTML = "Erreur de connexion.";
-            resNews.style.color = "#ef4444";
+            resNews.classList.add("text-red-500");
             console.error(error);
           })
           .finally(() => {
             btn.disabled = false;
-            if (btnText) btnText.style.display = "inline";
+            if (btnText) btnText.classList.remove("hidden");
             if (btnLoader) btnLoader.classList.add("hidden");
           });
       });

@@ -1,5 +1,5 @@
 ---
-/* src/components/HeroSlider.astro */
+/* src/components/HeroSlider.astro - Version Premium Sombre */
 const slides = [
   { img: "/vodun-intro.jpg", alt: "Tradition Vodun à Ouidah" },
   { img: "/divinites-vodun.jpeg", alt: "Cérémonie des Divinités" },
@@ -9,18 +9,24 @@ const slides = [
 ];
 ---
 
-<div class="hero-slider-background">
+<div class="absolute inset-0 z-0 overflow-hidden bg-dark-bg">
   {
     slides.map((slide, index) => (
-      <div class={`slide ${index === 0 ? "active" : ""}`}>
+      <div
+        class={`hero-slide absolute inset-0 transition-opacity duration-[2500ms] ease-in-out will-change-opacity ${index === 0 ? "opacity-100 z-10" : "opacity-0 z-0"}`}
+      >
         <img
           src={slide.img}
           alt={slide.alt}
+          class={`w-full h-full object-cover transition-transform duration-[8000ms] ease-out ${index === 0 ? "scale-100" : "scale-110"}`}
           loading={index === 0 ? "eager" : "lazy"}
           fetchpriority={index === 0 ? "high" : "auto"}
           decoding="async"
         />
-        <div class="overlay-gradient" />
+        {/* Overlay progressif : assombrit le fond pour faire ressortir l'Or */}
+        <div class="absolute inset-0 bg-[radial-gradient(circle_at_center,rgba(0,0,0,0.3)_0%,rgba(5,5,5,0.85)_100%)] pointer-events-none" />
+        {/* Dégradé de base pour le fondu avec la section suivante */}
+        <div class="absolute inset-x-0 bottom-0 h-32 bg-gradient-to-t from-dark-bg to-transparent pointer-events-none" />
       </div>
     ))
   }
@@ -28,82 +34,38 @@ const slides = [
 
 <script>
   document.addEventListener("astro:page-load", () => {
-    const slides = document.querySelectorAll(".hero-slider-background .slide");
+    const slides = document.querySelectorAll(".hero-slide");
+    const images = document.querySelectorAll(".hero-slide img");
     if (slides.length <= 1) return;
 
     let current = 0;
     const total = slides.length;
 
     const nextSlide = () => {
-      slides[current].classList.remove("active");
+      // Retirer le slide actif actuel
+      slides[current].classList.remove("opacity-100", "z-10");
+      slides[current].classList.add("opacity-0", "z-0");
+      images[current].classList.add("scale-110");
+      images[current].classList.remove("scale-100");
+
+      // Passer au suivant
       current = (current + 1) % total;
-      slides[current].classList.add("active");
+
+      // Activer le nouveau slide
+      slides[current].classList.remove("opacity-0", "z-0");
+      slides[current].classList.add("opacity-100", "z-10");
+      images[current].classList.remove("scale-110");
+      images[current].classList.add("scale-100");
     };
 
-    const interval = setInterval(nextSlide, 6000);
+    const interval = setInterval(nextSlide, 7000); // 7s pour laisser le temps au zoom de se déployer
 
     document.addEventListener(
       "astro:before-swap",
       () => {
         clearInterval(interval);
       },
-      { once: true }
+      { once: true },
     );
   });
 </script>
-
-<style>
-  .hero-slider-background {
-    position: absolute;
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 100%;
-    z-index: 0;
-    overflow: hidden;
-    background: #050505;
-  }
-
-  .slide {
-    position: absolute;
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 100%;
-    opacity: 0;
-    will-change: opacity, transform;
-    transition: opacity 2.5s ease-in-out;
-    z-index: 0;
-  }
-
-  .slide.active {
-    opacity: 1;
-    z-index: 1;
-  }
-
-  .slide img {
-    width: 100%;
-    height: 100%;
-    object-fit: cover;
-    transform: scale(1.05);
-    transition: transform 8s ease-out;
-  }
-
-  .slide.active img {
-    transform: scale(1);
-  }
-
-  .overlay-gradient {
-    position: absolute;
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 100%;
-    background: radial-gradient(
-      circle at center,
-      rgba(0, 0, 0, 0.2) 0%,
-      rgba(0, 0, 0, 0.7) 100%
-    );
-    pointer-events: none;
-  }
-</style>

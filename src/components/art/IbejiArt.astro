@@ -1,173 +1,91 @@
 ---
 /*
-  IbejiArt.astro - Œuvre d&apos;art CSS/SVG animée
+  IbejiArt.astro - Œuvre d&apos;art CSS animée
   Représente les statuettes jumelles sacrées Venavi/Ibeji avec une âme partagée.
+  Optimisé Tailwind v4 - Thème Sombre & Or
 */
 ---
 
-<div class="ibeji-art-canvas animate-enter">
-  <div class="altar-stage">
-    {/* Le Halo d'âme partagée */}
-    <div class="shared-soul-glow"></div>
+<div
+  class="w-full h-80 bg-[radial-gradient(circle_at_center,#2a221d_0%,#050505_100%)] flex justify-center items-center relative overflow-hidden mb-12 rounded-2xl shadow-[0_15px_40px_rgba(0,0,0,0.6)] border border-gold/5 opacity-0 animate-fade-up"
+>
+  <div class="relative w-[250px] h-[250px] flex justify-center items-end">
+    {/* Le Halo d'âme partagée (Or) */}
+    <div
+      class="absolute top-[20px] w-[180px] h-[180px] bg-[radial-gradient(circle,rgba(212,175,55,0.4)_0%,transparent_70%)] rounded-full animate-soul-breathe z-10"
+    >
+    </div>
 
     {/* Le socle sacré */}
-    <div class="pedestal"></div>
+    <div
+      class="absolute bottom-[20px] w-[180px] h-[15px] bg-[#2c1e16] rounded-[4px] border-b-[4px] border-[#110b08] z-20 shadow-[0_10px_15px_rgba(0,0,0,0.8)]"
+    >
+    </div>
 
     {/* Statuette Gauche */}
-    <div class="venavi left">
-      <div class="v-head"></div>
-      <div class="v-neck">
-        <div class="beads"></div>
+    <div
+      class="absolute bottom-[35px] left-[65px] w-[40px] h-[130px] flex flex-col items-center z-30 animate-gentle-sway [animation-delay:0s]"
+    >
+      {/* Tête */}
+      <div
+        class="w-[35px] h-[45px] bg-gradient-to-br from-[#5d4037] to-[#3e2723] rounded-[40%_40%_50%_50%] shadow-[inset_-5px_-5px_10px_rgba(0,0,0,0.5)]"
+      >
       </div>
-      <div class="v-body"></div>
+
+      {/* Cou et perles */}
+      <div class="w-[15px] h-[15px] bg-[#3e2723] relative">
+        <div
+          class="absolute top-[5px] -left-[5px] w-[25px] h-[8px] bg-[repeating-linear-gradient(90deg,#8e0000_0%,#8e0000_4px,#fdfbf7_4px,#fdfbf7_8px)] rounded-[4px] shadow-[0_2px_4px_rgba(0,0,0,0.5)]"
+        >
+        </div>
+      </div>
+
+      {/* Corps */}
+      <div
+        class="w-[30px] h-[70px] bg-gradient-to-br from-[#5d4037] to-[#3e2723] rounded-t-[10px] shadow-[inset_-5px_-5px_10px_rgba(0,0,0,0.5)] relative"
+      >
+        {/* Patine d'usure */}
+        <div
+          class="absolute top-[10px] left-[10px] w-[10px] h-[50px] bg-white/5 rounded-[10px]"
+        >
+        </div>
+      </div>
     </div>
 
     {/* Statuette Droite */}
-    <div class="venavi right">
-      <div class="v-head"></div>
-      <div class="v-neck">
-        <div class="beads"></div>
+    <div
+      class="absolute bottom-[35px] right-[65px] w-[40px] h-[130px] flex flex-col items-center z-30 animate-gentle-sway [animation-delay:-3s]"
+    >
+      {/* Tête */}
+      <div
+        class="w-[35px] h-[45px] bg-gradient-to-br from-[#5d4037] to-[#3e2723] rounded-[40%_40%_50%_50%] shadow-[inset_-5px_-5px_10px_rgba(0,0,0,0.5)]"
+      >
       </div>
-      <div class="v-body"></div>
+
+      {/* Cou et perles */}
+      <div class="w-[15px] h-[15px] bg-[#3e2723] relative">
+        <div
+          class="absolute top-[5px] -left-[5px] w-[25px] h-[8px] bg-[repeating-linear-gradient(90deg,#8e0000_0%,#8e0000_4px,#fdfbf7_4px,#fdfbf7_8px)] rounded-[4px] shadow-[0_2px_4px_rgba(0,0,0,0.5)]"
+        >
+        </div>
+      </div>
+
+      {/* Corps */}
+      <div
+        class="w-[30px] h-[70px] bg-gradient-to-br from-[#5d4037] to-[#3e2723] rounded-t-[10px] shadow-[inset_-5px_-5px_10px_rgba(0,0,0,0.5)] relative"
+      >
+        {/* Patine d'usure */}
+        <div
+          class="absolute top-[10px] left-[10px] w-[10px] h-[50px] bg-white/5 rounded-[10px]"
+        >
+        </div>
+      </div>
     </div>
   </div>
 </div>
 
 <style>
-  :root {
-    --wood-dark: #3e2723;
-    --wood-light: #5d4037;
-    --bead-red: #8e0000;
-    --bead-white: #fdfbf7;
-    --soul-gold: rgba(212, 175, 55, 0.4);
-  }
-
-  .ibeji-art-canvas {
-    width: 100%;
-    height: 320px;
-    background: linear-gradient(to bottom, #1a1a1a 0%, #2a221d 100%);
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    position: relative;
-    overflow: hidden;
-    margin-bottom: 3rem;
-    border-radius: 8px;
-    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.4);
-  }
-
-  .altar-stage {
-    position: relative;
-    width: 250px;
-    height: 250px;
-    display: flex;
-    justify-content: center;
-    align-items: flex-end;
-  }
-
-  /* --- LE HALO SPIRITUEL (Âme unique) --- */
-  .shared-soul-glow {
-    position: absolute;
-    top: 20px;
-    width: 180px;
-    height: 180px;
-    background: radial-gradient(circle, var(--soul-gold) 0%, transparent 70%);
-    border-radius: 50%;
-    animation: soul-breathe 4s ease-in-out infinite;
-    z-index: 1;
-  }
-
-  /* --- LE SOCLE --- */
-  .pedestal {
-    position: absolute;
-    bottom: 20px;
-    width: 180px;
-    height: 15px;
-    background-color: #2c1e16;
-    border-radius: 4px;
-    border-bottom: 4px solid #110b08;
-    z-index: 2;
-  }
-
-  /* --- LES STATUETTES VENAVI --- */
-  .venavi {
-    position: absolute;
-    bottom: 35px;
-    width: 40px;
-    height: 130px;
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    z-index: 3;
-    animation: gentle-sway 6s ease-in-out infinite;
-  }
-
-  .left {
-    left: 65px;
-    animation-delay: 0s;
-  }
-  .right {
-    right: 65px;
-    animation-delay: 3s;
-  }
-
-  /* Tête stylisée (bois) */
-  .v-head {
-    width: 35px;
-    height: 45px;
-    background: linear-gradient(135deg, var(--wood-light), var(--wood-dark));
-    border-radius: 40% 40% 50% 50%;
-    box-shadow: inset -5px -5px 10px rgba(0, 0, 0, 0.5);
-  }
-
-  /* Cou et perles */
-  .v-neck {
-    width: 15px;
-    height: 15px;
-    background-color: var(--wood-dark);
-    position: relative;
-  }
-
-  .beads {
-    position: absolute;
-    top: 5px;
-    left: -5px;
-    width: 25px;
-    height: 8px;
-    background: repeating-linear-gradient(
-      90deg,
-      var(--bead-red) 0%,
-      var(--bead-red) 4px,
-      var(--bead-white) 4px,
-      var(--bead-white) 8px
-    );
-    border-radius: 4px;
-    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.5);
-  }
-
-  /* Corps de la statuette */
-  .v-body {
-    width: 30px;
-    height: 70px;
-    background: linear-gradient(135deg, var(--wood-light), var(--wood-dark));
-    border-radius: 10px 10px 0 0;
-    box-shadow: inset -5px -5px 10px rgba(0, 0, 0, 0.5);
-    position: relative;
-  }
-
-  /* Ligne de patine (usure due aux caresses/rituels) */
-  .v-body::after {
-    content: "";
-    position: absolute;
-    top: 10px;
-    left: 10px;
-    width: 10px;
-    height: 50px;
-    background: rgba(255, 255, 255, 0.05);
-    border-radius: 10px;
-  }
-
-  /* --- ANIMATIONS --- */
+  /* --- ANIMATIONS COMPLEXES --- */
   @keyframes soul-breathe {
     0%,
     100% {
@@ -179,6 +97,9 @@
       opacity: 1;
     }
   }
+  .animate-soul-breathe {
+    animation: soul-breathe 4s ease-in-out infinite;
+  }
 
   @keyframes gentle-sway {
     0%,
@@ -186,11 +107,14 @@
       transform: translateY(0);
     }
     50% {
-      transform: translateY(-2px);
+      transform: translateY(-3px);
     }
   }
+  .animate-gentle-sway {
+    animation: gentle-sway 6s ease-in-out infinite;
+  }
 
-  @keyframes fadeInUp {
+  @keyframes fadeUp {
     from {
       opacity: 0;
       transform: translateY(20px);
@@ -200,7 +124,7 @@
       transform: translateY(0);
     }
   }
-  .animate-enter {
-    animation: fadeInUp 1.2s ease forwards;
+  .animate-fade-up {
+    animation: fadeUp 1.2s ease forwards;
   }
 </style>

@@ -3,188 +3,96 @@
 const { mode = "hero" } = Astro.props;
 ---
 
-<div class={`fa-container ${mode}`}>
-  <div class="fa-glow"></div>
-  <div class="fa-grid"></div>
+<div
+  class={`relative overflow-hidden flex flex-col items-center justify-center border border-gold/10 bg-dark-bg ${mode === "hero" ? "py-20 px-6 rounded-2xl my-10 shadow-[0_20px_40px_-10px_rgba(0,0,0,0.8),inset_0_0_40px_rgba(217,119,6,0.05)] w-full" : "w-full h-full min-h-[220px] p-0"}`}
+>
+  {/* Effet de lueur divine en arrière-plan */}
+  <div
+    class="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-64 h-64 bg-[radial-gradient(circle,rgba(217,119,6,0.15)_0%,transparent_70%)] blur-[40px] z-0"
+  >
+  </div>
 
-  <div class="fa-oracle">
-    <div class="fa-column">
-      <div class="fa-dot open pulse-1"></div>
-      <div class="fa-dot closed pulse-2"></div>
-      <div class="fa-dot closed pulse-3"></div>
-      <div class="fa-dot open pulse-4"></div>
+  {/* Grille binaire/informatique */}
+  <div
+    class="absolute inset-0 bg-[linear-gradient(rgba(255,255,255,0.03)_1px,transparent_1px),linear-gradient(90deg,rgba(255,255,255,0.03)_1px,transparent_1px)] bg-[size:20px_20px] z-10"
+  >
+  </div>
+
+  {/* LA MATRICE (Points et Animation) */}
+  <div
+    class={`inline-flex items-center z-20 ${mode === "hero" ? "gap-8" : "gap-5 scale-75"}`}
+  >
+    <div class="flex flex-col gap-4">
+      <div
+        class={`fa-dot open animate-[fa-pulse_4s_infinite_ease-in-out_0s] ${mode === "hero" ? "w-9 h-3 rounded-md my-1.5" : "w-6 h-6 rounded-full"}`}
+      >
+      </div>
+      <div
+        class={`fa-dot closed ${mode === "hero" ? "w-9 h-3 rounded-md my-1.5" : "w-6 h-6 rounded-full"}`}
+      >
+      </div>
+      <div
+        class={`fa-dot closed ${mode === "hero" ? "w-9 h-3 rounded-md my-1.5" : "w-6 h-6 rounded-full"}`}
+      >
+      </div>
+      <div
+        class={`fa-dot open animate-[fa-pulse_4s_infinite_ease-in-out_1.5s] ${mode === "hero" ? "w-9 h-3 rounded-md my-1.5" : "w-6 h-6 rounded-full"}`}
+      >
+      </div>
     </div>
 
-    <div class="fa-center-line"></div>
+    {/* La ligne d'énergie au centre de l'Opele */}
+    <div
+      class={`w-px bg-gradient-to-b from-transparent via-gold/50 to-transparent ${mode === "hero" ? "h-32" : "h-20"}`}
+    >
+    </div>
 
-    <div class="fa-column">
-      <div class="fa-dot open pulse-5"></div>
-      <div class="fa-dot closed pulse-6"></div>
-      <div class="fa-dot open pulse-7"></div>
-      <div class="fa-dot closed pulse-8"></div>
+    <div class="flex flex-col gap-4">
+      <div
+        class={`fa-dot open animate-[fa-pulse_4s_infinite_ease-in-out_2s] ${mode === "hero" ? "w-9 h-3 rounded-md my-1.5" : "w-6 h-6 rounded-full"}`}
+      >
+      </div>
+      <div
+        class={`fa-dot closed ${mode === "hero" ? "w-9 h-3 rounded-md my-1.5" : "w-6 h-6 rounded-full"}`}
+      >
+      </div>
+      <div
+        class={`fa-dot open animate-[fa-pulse_4s_infinite_ease-in-out_3s] ${mode === "hero" ? "w-9 h-3 rounded-md my-1.5" : "w-6 h-6 rounded-full"}`}
+      >
+      </div>
+      <div
+        class={`fa-dot closed ${mode === "hero" ? "w-9 h-3 rounded-md my-1.5" : "w-6 h-6 rounded-full"}`}
+      >
+      </div>
     </div>
   </div>
 
   {
     mode === "hero" && (
-      <div class="fa-footer">
-        <p class="fa-caption">La danse binaire de l&apos;invisible</p>
-        <p class="fa-data">DÙ: LOSSO-SA // SYSTEM.READY</p>
+      <div class="relative z-20 mt-10 text-center">
+        <p class="text-white/80 font-serif italic text-lg mb-2">
+          La danse binaire de l&apos;invisible
+        </p>
+        <p class="text-amber-500/50 font-mono text-[0.65rem] tracking-[0.3em] uppercase m-0">
+          DÙ: LOSSO-SA // SYSTEM.READY
+        </p>
       </div>
     )
   }
 </div>
 
 <style>
-  /* --- CONFIGURATION GÉNÉRALE --- */
-  .fa-container {
-    background-color: #050505; /* Noir absolu prestige */
-    position: relative;
-    overflow: hidden;
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    justify-content: center;
-    border: 1px solid rgba(217, 119, 6, 0.1); /* Bordure ambre très subtile */
-  }
-
-  /* Effet de lueur divine en arrière-plan */
-  .fa-glow {
-    position: absolute;
-    top: 50%;
-    left: 50%;
-    transform: translate(-50%, -50%);
-    width: 250px;
-    height: 250px;
-    background: radial-gradient(
-      circle,
-      rgba(217, 119, 6, 0.15) 0%,
-      rgba(0, 0, 0, 0) 70%
-    );
-    filter: blur(40px);
-    z-index: 0;
-  }
-
-  /* Grille binaire/informatique */
-  .fa-grid {
-    position: absolute;
-    inset: 0;
-    background-image:
-      linear-gradient(rgba(255, 255, 255, 0.03) 1px, transparent 1px),
-      linear-gradient(90deg, rgba(255, 255, 255, 0.03) 1px, transparent 1px);
-    background-size: 20px 20px;
-    z-index: 1;
-  }
-
-  /* --- MODE HERO (Dans l'article) --- */
-  .hero {
-    padding: 80px 20px 60px;
-    border-radius: 16px;
-    margin: 40px 0;
-    box-shadow:
-      0 20px 40px -10px rgba(0, 0, 0, 0.8),
-      inset 0 0 40px rgba(217, 119, 6, 0.05);
-    width: 100%;
-  }
-
-  /* --- MODE VIGNETTE (Dans le blog) --- */
-  .vignette {
-    width: 100%;
-    height: 100%;
-    min-height: 220px;
-    padding: 0;
-    border-radius: 12px 12px 0 0;
-    border-bottom: none;
-  }
-
-  /* --- LA MATRICE (Points et Animation) --- */
-  .fa-oracle {
-    display: inline-flex;
-    align-items: center;
-    gap: 30px;
-    z-index: 2;
-  }
-
-  .vignette .fa-oracle {
-    gap: 20px;
-    transform: scale(0.7);
-  }
-
-  .fa-column {
-    display: flex;
-    flex-direction: column;
-    gap: 15px;
-  }
-
-  /* La ligne d'énergie au centre de l'Opele */
-  .fa-center-line {
-    width: 1px;
-    height: 120px;
-    background: linear-gradient(
-      to bottom,
-      transparent,
-      rgba(217, 119, 6, 0.5),
-      transparent
-    );
-  }
-
-  .vignette .fa-center-line {
-    height: 80px;
-  }
-
-  .fa-dot {
-    width: 24px;
-    height: 24px;
-    border-radius: 50%;
-    transition: all 0.3s ease;
-  }
-
-  .hero .fa-dot {
-    width: 36px;
-    height: 12px; /* Style "barre" plus fidèle à l'écriture originelle du Fa */
-    border-radius: 6px;
-    margin: 6px 0;
-  }
-
-  /* Symbole Ouvert (Ligne simple / Point lumineux) */
+  /* Définition des couleurs spécifiques au FA qui ne sont pas dans Tailwind de base */
   .fa-dot.open {
-    background-color: #f59e0b; /* Amber 500 */
+    background-color: #f59e0b;
     box-shadow: 0 0 20px rgba(245, 158, 11, 0.4);
   }
-
-  /* Symbole Fermé (Double ligne / Point éteint) */
   .fa-dot.closed {
     background-color: #171717;
-    border: 2px solid #78350f; /* Amber 900 */
+    border: 2px solid #78350f;
     box-shadow: inset 0 0 10px rgba(0, 0, 0, 0.8);
   }
 
-  /* Typographie Footer (Hero) */
-  .fa-footer {
-    position: relative;
-    z-index: 2;
-    margin-top: 40px;
-    text-align: center;
-  }
-
-  .fa-caption {
-    color: rgba(255, 255, 255, 0.8);
-    font-family: "Playfair Display", serif;
-    font-style: italic;
-    font-size: 1.1rem;
-    margin: 0 0 10px 0;
-  }
-
-  .fa-data {
-    color: rgba(245, 158, 11, 0.5);
-    font-family: monospace;
-    font-size: 0.65rem;
-    letter-spacing: 0.3em;
-    text-transform: uppercase;
-    margin: 0;
-  }
-
-  /* --- ANIMATIONS HAUTE FIDÉLITÉ --- */
   @keyframes fa-pulse {
     0%,
     100% {
@@ -196,19 +104,5 @@ const { mode = "hero" } = Astro.props;
       opacity: 1;
       box-shadow: 0 0 30px rgba(245, 158, 11, 0.8);
     }
-  }
-
-  /* Seuls les points ouverts pulsent avec de l'énergie */
-  .open.pulse-1 {
-    animation: fa-pulse 4s infinite ease-in-out 0s;
-  }
-  .open.pulse-4 {
-    animation: fa-pulse 4s infinite ease-in-out 1.5s;
-  }
-  .open.pulse-5 {
-    animation: fa-pulse 4s infinite ease-in-out 2s;
-  }
-  .open.pulse-7 {
-    animation: fa-pulse 4s infinite ease-in-out 3s;
   }
 </style>

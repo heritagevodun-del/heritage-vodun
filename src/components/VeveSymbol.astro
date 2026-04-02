@@ -7,111 +7,58 @@ interface Props {
 
 const { type, className = "" } = Astro.props;
 
-// Couleurs rituelles (Variables CSS natives)
-const colors = {
-  legba: "var(--color-terra)", // Rouge/Terre
-  sakpata: "#8B4513", // Brun/Terre
-  heviesso: "var(--color-gold)", // Rouge/Feu (Ici Or pour le style)
-  dan: "var(--color-tech)", // Arc-en-ciel (Ici Cyan Tech)
+// Couleurs rituelles adaptées au thème sombre avec lueur (Glow)
+const colorMap = {
+  legba: "text-[#a0522d] drop-shadow-[0_0_8px_rgba(160,82,45,0.6)]", // Terre brûlée (Rouge/Sang)
+  sakpata: "text-[#8B4513] drop-shadow-[0_0_8px_rgba(139,69,19,0.6)]", // Brun profond (Terre)
+  heviesso: "text-gold drop-shadow-[0_0_8px_rgba(212,175,55,0.6)]", // Or électrique (Foudre)
+  dan: "text-cyan-400 drop-shadow-[0_0_8px_rgba(34,211,238,0.6)]", // Cyan mystique (Arc-en-ciel)
 };
 
-const activeColor = colors[type];
+const activeColorClass = colorMap[type];
 ---
 
-<div class={`veve-container ${type} ${className}`} aria-hidden="true">
-  <div class="axis vertical"></div>
-  <div class="axis horizontal"></div>
+<div
+  class={`relative w-16 h-16 flex items-center justify-center opacity-80 transition-all duration-300 hover:scale-110 hover:rotate-6 hover:opacity-100 ${activeColorClass} ${type} ${className}`}
+  aria-hidden="true"
+>
+  {/* Axes de la croix (Héritent de la couleur via bg-current) */}
+  <div class="absolute w-0.5 h-full bg-current rounded-sm axis-v"></div>
+  <div class="absolute w-full h-0.5 bg-current rounded-sm axis-h"></div>
 
-  <div class="core-symbol">
-    <div class="inner-circle"></div>
-    <div class="cross-points"></div>
+  {/* Cœur du symbole (Hérite de la couleur via border-current) */}
+  <div
+    class="relative w-[40%] h-[40%] border border-current flex items-center justify-center rotate-45 core-symbol transition-all duration-300"
+  >
+    <div
+      class="w-[60%] h-[60%] border border-current rounded-full inner-circle transition-all duration-300"
+    >
+    </div>
   </div>
 
-  <span class="dot north"></span>
-  <span class="dot south"></span>
-  <span class="dot east"></span>
-  <span class="dot west"></span>
+  {/* Points cardinaux spécifiques à Legba */}
+  {
+    type === "legba" && (
+      <>
+        <span class="absolute w-1.5 h-1.5 bg-current rounded-full top-0" />
+        <span class="absolute w-1.5 h-1.5 bg-current rounded-full bottom-0" />
+        <span class="absolute w-1.5 h-1.5 bg-current rounded-full right-0" />
+        <span class="absolute w-1.5 h-1.5 bg-current rounded-full left-0" />
+      </>
+    )
+  }
 </div>
 
-<style define:vars={{ activeColor }}>
-  .veve-container {
-    position: relative;
-    width: 64px;
-    height: 64px;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    opacity: 0.8;
-    transition:
-      transform 0.3s ease,
-      opacity 0.3s;
-  }
-
-  .veve-container:hover {
-    transform: scale(1.1) rotate(5deg);
-    opacity: 1;
-  }
-
-  /* --- STRUCTURE DE BASE (LA CROIX) --- */
-  .axis {
-    position: absolute;
-    background-color: var(--activeColor);
-    border-radius: 2px;
-  }
-  .vertical {
-    width: 2px;
-    height: 100%;
-  }
-  .horizontal {
-    width: 100%;
-    height: 2px;
-  }
-
-  /* --- CŒUR DU SYMBOLE --- */
-  .core-symbol {
-    position: relative;
-    width: 40%;
-    height: 40%;
-    border: 1px solid var(--activeColor);
-    transform: rotate(45deg); /* Losange */
-    display: flex;
-    align-items: center;
-    justify-content: center;
-  }
-
-  .inner-circle {
-    width: 60%;
-    height: 60%;
-    border: 1px solid var(--activeColor);
-    border-radius: 50%;
-  }
-
-  /* --- VARIATIONS PAR DIVINITÉ (CSS ART) --- */
+<style>
+  /* --- VARIATIONS STRUCTURELLES PAR DIVINITÉ --- */
 
   /* LEGBA (Le Carrefour - Complexe) */
   .legba .core-symbol {
     border-style: double;
     border-width: 3px;
   }
-  .legba .dot {
-    background-color: var(--activeColor);
-    width: 4px;
-    height: 4px;
-    border-radius: 50%;
-    position: absolute;
-  }
-  .legba .north {
-    top: 0;
-  }
-  .legba .south {
-    bottom: 0;
-  }
-  .legba .east {
-    right: 0;
-  }
-  .legba .west {
-    left: 0;
-  }
+
+  /* SAKPATA (La Terre - Standard, conserve la forme de base) */
 
   /* HEVIESSO (La Foudre - Tranchant) */
   .heviesso .core-symbol {
@@ -119,16 +66,19 @@ const activeColor = colors[type];
     border-width: 2px;
   }
   .heviesso .inner-circle {
-    border-radius: 0; /* Carré */
+    border-radius: 0; /* Devient un carré interne */
     transform: rotate(45deg);
   }
 
   /* DAN (Le Serpent - Ondulation/Courbe) */
-  .dan .axis {
-    height: 80%; /* Plus court */
+  .dan .axis-v {
+    height: 80%;
+  }
+  .dan .axis-h {
+    width: 80%;
   }
   .dan .core-symbol {
-    border-radius: 50%; /* Cercle parfait */
+    border-radius: 50%; /* Devient un cercle parfait */
     border-width: 2px;
     border-style: dotted;
   }
