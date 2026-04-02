@@ -104,7 +104,7 @@ const socialImageURL = new URL(image, Astro.url);
         {/* LOGO */}
         <a
           href="/"
-          class="flex items-center gap-3 sm:gap-4 group decoration-transparent z-50"
+          class="flex items-center gap-3 sm:gap-4 group decoration-transparent z-[60]"
         >
           <Logo
             width="40"
@@ -121,7 +121,7 @@ const socialImageURL = new URL(image, Astro.url);
         {/* BOUTON MENU MOBILE */}
         <button
           id="menu-toggle"
-          class="md:hidden flex flex-col gap-1.5 p-2 z-50"
+          class="md:hidden flex flex-col gap-1.5 p-2 z-[60]"
           aria-label="Ouvrir le menu"
         >
           <span class="w-6 h-0.5 bg-gray-300 rounded-full transition-all"
@@ -132,13 +132,10 @@ const socialImageURL = new URL(image, Astro.url);
           ></span>
         </button>
 
-        {/* MENU DE NAVIGATION (Caché sur mobile, visible sur Desktop) */}
-        <div
-          id="nav-menu"
-          class="hidden absolute top-full left-0 w-full bg-dark-bg/95 backdrop-blur-xl border-b border-white/10 flex-col py-6 px-6 shadow-2xl md:static md:flex md:w-auto md:bg-transparent md:border-none md:p-0 md:flex-row md:items-center"
-        >
-          <Navigation />
-        </div>
+        {
+          /* CONTENEUR DU MENU (Le composant Navigation.astro gère maintenant lui-même sa classe id="nav-menu") */
+        }
+        <Navigation />
       </div>
     </header>
 
@@ -154,17 +151,15 @@ const socialImageURL = new URL(image, Astro.url);
       <div
         class="max-w-7xl mx-auto px-4 sm:px-6 grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-10 md:gap-12 mb-12"
       >
-        {/* Colonne 1 */}
         <div>
           <h3 class="font-serif text-2xl text-white mb-4">Héritage Vodun</h3>
           <p class="text-sm leading-relaxed mb-6">
-            Le portail de référence pour comprendre la spiritualité,
-            l&apos;histoire et les rites du Bénin. Une tradition vivante,
-            expliquée avec respect et authenticité.
+            Le portail de référence pour comprendre la spiritualité, l'histoire
+            et les rites du Bénin. Une tradition vivante, expliquée avec respect
+            et authenticité.
           </p>
         </div>
 
-        {/* Colonne 2 */}
         <div>
           <h4 class="font-serif text-gold text-lg mb-4">Explorer</h4>
           <ul class="space-y-3 text-sm">
@@ -197,7 +192,6 @@ const socialImageURL = new URL(image, Astro.url);
           </ul>
         </div>
 
-        {/* Colonne 3 */}
         <div>
           <h4 class="font-serif text-gold text-lg mb-4">Restez Connecté</h4>
           <p class="text-sm mb-4">
@@ -234,7 +228,6 @@ const socialImageURL = new URL(image, Astro.url);
           </form>
         </div>
 
-        {/* Colonne 4 */}
         <div>
           <h4 class="font-serif text-gold text-lg mb-4">Nous Trouver</h4>
           <div class="space-y-3 text-sm">
@@ -288,7 +281,6 @@ const socialImageURL = new URL(image, Astro.url);
       id="oracle-widget"
       class="fixed bottom-4 right-4 md:bottom-6 md:right-6 z-[9999] font-sans"
     >
-      {/* Fenêtre de chat recalibrée pour mobile */}
       <div
         id="oracle-window"
         class="hidden absolute bottom-20 right-0 w-[calc(100vw-2rem)] sm:w-[380px] h-[70vh] max-h-[600px] bg-white rounded-xl shadow-2xl overflow-hidden flex-col border border-black/10 origin-bottom-right transition-all duration-300"
@@ -312,7 +304,7 @@ const socialImageURL = new URL(image, Astro.url);
             <button
               id="close-oracle"
               class="text-gray-400 hover:text-white text-3xl leading-none transition-colors pb-1"
-              aria-label="Fermer">&times;</button
+              aria-label="Fermer">×</button
             >
           </div>
         </div>
@@ -369,16 +361,18 @@ const socialImageURL = new URL(image, Astro.url);
       }
 
       document.addEventListener("astro:page-load", () => {
-        // GESTION DU MENU MOBILE
+        // GESTION CORRIGÉE DU MENU MOBILE
         const menuBtn = document.getElementById("menu-toggle");
+        // On cible spécifiquement l'ID nav-menu généré par Navigation.astro
         const navMenu = document.getElementById("nav-menu");
 
-        if (menuBtn && navMenu && menuBtn.parentNode) {
+        if (menuBtn && navMenu) {
+          // Retire les anciens écouteurs (crucial avec View Transitions)
           const newMenuBtn = menuBtn.cloneNode(true) as HTMLElement;
-          menuBtn.parentNode.replaceChild(newMenuBtn, menuBtn);
+          menuBtn.parentNode?.replaceChild(newMenuBtn, menuBtn);
 
           newMenuBtn.addEventListener("click", () => {
-            // Bascule le menu
+            // Logique de bascule stricte
             if (navMenu.classList.contains("hidden")) {
               navMenu.classList.remove("hidden");
               navMenu.classList.add("flex");
