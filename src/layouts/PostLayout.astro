@@ -3,97 +3,120 @@ import BaseLayout from "./BaseLayout.astro";
 import FaAnimation from "../components/FaAnimation.astro";
 import SakpataAltar from "../components/SakpataAltar.astro";
 
-// 👇 On dit à TypeScript que frontmatter peut contenir n'importe quoi (any)
+// Typage pour rassurer TypeScript
 const { frontmatter } = Astro.props as { frontmatter: any };
 
 // Formatage de la date en français
-const formattedDate = new Date(frontmatter.pubDate).toLocaleDateString(
-  "fr-FR",
-  {
-    day: "numeric",
-    month: "long",
-    year: "numeric",
-  },
-);
+const date = new Date(frontmatter.pubDate || frontmatter.date || Date.now());
+const formattedDate = new Intl.DateTimeFormat("fr-FR", {
+  day: "numeric",
+  month: "long",
+  year: "numeric",
+}).format(date);
 ---
 
 <BaseLayout
-  titrePage={frontmatter.titrePage || frontmatter.title}
+  titrePage={`${frontmatter.titrePage || frontmatter.title} | Héritage Vodun`}
   description={frontmatter.description}
   image={frontmatter.image}
 >
-  <div class="blog-container">
-    {/* LIEN CATÉGORIE */}
-    {
-      frontmatter.categorie && (
-        <a href={`/categories/${frontmatter.categorie}`} class="category-badge">
-          {frontmatter.categorie}
-        </a>
-      )
-    }
+  <article class="max-w-4xl mx-auto mt-8 mb-24 px-4">
+    {/* --- EN-TÊTE DE L'ARTICLE --- */}
+    <header class="text-center mb-16">
+      {
+        frontmatter.categorie && (
+          <a
+            href={`/categories/${frontmatter.categorie}`}
+            class="inline-block px-4 py-1.5 rounded-full bg-gold/10 text-gold border border-gold/30 text-sm font-bold uppercase tracking-widest hover:bg-gold hover:text-white transition-all duration-300 hover:-translate-y-0.5 mb-6"
+          >
+            {frontmatter.categorie}
+          </a>
+        )
+      }
 
-    <div class="meta-info">
-      <p>
-        {formattedDate} | Par {frontmatter.author || "Héritage Vodun"}
-      </p>
+      <div
+        class="text-gray-500 font-sans text-sm uppercase tracking-widest mb-6"
+      >
+        <time datetime={date.toISOString()}>{formattedDate}</time> | Par {
+          frontmatter.author || "Héritage Vodun"
+        }
+      </div>
+
+      <h1
+        class="font-serif text-4xl md:text-5xl lg:text-6xl text-white font-bold leading-tight mb-8"
+      >
+        {frontmatter.titrePage || frontmatter.title}
+      </h1>
+    </header>
+
+    {/* --- MÉDIA PRINCIPAL (Animation ou Image) --- */}
+    <div class="mb-16">
+      {
+        frontmatter.type_image === "animation_fa" ? (
+          <div class="w-full rounded-2xl overflow-hidden shadow-2xl border border-white/10">
+            <FaAnimation />
+          </div>
+        ) : frontmatter.type_image === "animation_sakpata" ? (
+          <div class="w-full rounded-2xl overflow-hidden shadow-2xl border border-white/10">
+            <SakpataAltar />
+          </div>
+        ) : (
+          frontmatter.image &&
+          !frontmatter.hide_top_image && (
+            <div class="w-full h-[40vh] md:h-[60vh] rounded-2xl overflow-hidden border border-white/10 shadow-2xl relative">
+              <div class="absolute inset-0 bg-gradient-to-t from-dark-bg via-transparent to-transparent z-10" />
+              <img
+                src={frontmatter.image}
+                alt={frontmatter.title}
+                class="w-full h-full object-cover transform hover:scale-105 transition-transform duration-700"
+              />
+            </div>
+          )
+        )
+      }
     </div>
 
-    <h1>{frontmatter.titrePage || frontmatter.title}</h1>
-
-    {/* 👇 LOGIQUE D'AFFICHAGE INTELLIGENTE CORRIGÉE */}
-    {
-      frontmatter.type_image === "animation_fa" ? (
-        /* CAS 1 : Animation Fâ */
-        <div class="featured-animation">
-          <FaAnimation />
-        </div>
-      ) : frontmatter.type_image === "animation_sakpata" ? (
-        /* CAS 2 : Animation Sakpata */
-        <div class="featured-animation">
-          <SakpataAltar />
-        </div>
-      ) : (
-        /* CAS 3 : Image Classique. 
-           On l'affiche UNIQUEMENT si frontmatter.hide_top_image n'est pas "true" */
-        frontmatter.image &&
-        !frontmatter.hide_top_image && (
-          <img
-            src={frontmatter.image}
-            alt={frontmatter.title}
-            class="featured-image"
-          />
-        )
-      )
-    }
-
-    <div class="content">
+    {/* --- CONTENU MDX (Géré automatiquement par Tailwind Typography) --- */}
+    <div
+      class="prose prose-invert prose-lg md:prose-xl mx-auto prose-headings:font-serif prose-headings:font-bold prose-headings:text-gold prose-p:font-sans prose-p:text-gray-300 prose-p:leading-relaxed prose-a:text-gold hover:prose-a:text-gold-hover prose-strong:text-white prose-blockquote:border-gold prose-blockquote:bg-gold/5 prose-blockquote:py-2 prose-blockquote:px-6 prose-blockquote:rounded-r-lg prose-blockquote:font-serif prose-blockquote:italic"
+    >
       <slot />
     </div>
 
-    {/* 👇 NOUVEAU : ENCART IA APRÈS LECTURE */}
-    <div class="ai-cta-block">
-      <div class="ai-icon">✨</div>
-      <div class="ai-text">
-        <h3>Une question sur ce sujet ?</h3>
-        <p>
-          Ne restez pas avec des doutes. Demandez des précisions à <strong
-            >Mindoguesito</strong
-          >, notre gardien numérique.
-        </p>
-      </div>
-      <button class="btn-ask-oracle open-oracle">
-        Interroger l&apos;Esprit →
+    {/* --- ENCART IA (APPEL À L'ACTION) --- */}
+    <div
+      class="mt-20 mb-8 p-8 bg-gradient-to-br from-white/5 to-transparent border border-gold/20 rounded-2xl flex flex-col items-center text-center shadow-2xl relative overflow-hidden group"
+    >
+      <div class="absolute top-0 left-0 w-full h-1 bg-gold"></div>
+      <div class="text-4xl mb-4 animate-[bounce_3s_infinite]">✨</div>
+      <h3 class="font-serif text-2xl text-white mb-2">
+        Une question sur ce sujet ?
+      </h3>
+      <p class="text-gray-400 mb-8 max-w-lg">
+        Ne restez pas avec des doutes. Demandez des précisions à <strong
+          class="text-white">Mindoguesito</strong
+        >, notre gardien numérique.
+      </p>
+      <button
+        class="open-oracle bg-gold hover:bg-gold-hover text-white px-8 py-3 rounded-full font-bold transition-all duration-300 shadow-[0_4px_15px_rgba(212,175,55,0.3)] hover:shadow-[0_6px_20px_rgba(212,175,55,0.5)] hover:-translate-y-1"
+      >
+        Interroger l&apos;Esprit &rarr;
       </button>
     </div>
 
-    {/* TAGS */}
+    {/* --- TAGS --- */}
     {
       frontmatter.tags && (
-        <div class="tags-section">
-          <h3>Sujets abordés dans cet article :</h3>
-          <div class="tags-list">
+        <div class="mt-12 pt-8 border-t border-white/10">
+          <h3 class="font-serif text-xl text-white mb-6 text-center">
+            Sujets abordés dans cet article :
+          </h3>
+          <div class="flex flex-wrap gap-3 justify-center">
             {frontmatter.tags.map((tag: string) => (
-              <a href={`/tags/${tag}`} class="tag-badge">
+              <a
+                href={`/tags/${tag}`}
+                class="px-4 py-1.5 rounded-full bg-white/5 border border-white/10 text-gray-400 text-sm hover:text-white hover:bg-gold hover:border-gold transition-all duration-300 font-sans tracking-wide"
+              >
                 #{tag}
               </a>
             ))}
@@ -101,215 +124,5 @@ const formattedDate = new Date(frontmatter.pubDate).toLocaleDateString(
         </div>
       )
     }
-  </div>
+  </article>
 </BaseLayout>
-
-<style>
-  .blog-container {
-    max-width: 800px;
-    margin: 4rem auto;
-    padding: 0 1.5rem;
-    font-family: "Lato", sans-serif;
-    color: #333;
-  }
-
-  /* Badge Catégorie */
-  .category-badge {
-    display: inline-block;
-    background-color: rgba(192, 108, 59, 0.1);
-    color: #c06c3b;
-    padding: 4px 12px;
-    border-radius: 20px;
-    font-size: 0.85rem;
-    font-weight: 700;
-    text-transform: uppercase;
-    letter-spacing: 1px;
-    margin-bottom: 1rem;
-    border: 1px solid rgba(192, 108, 59, 0.3);
-    text-decoration: none;
-    transition: all 0.3s ease;
-  }
-
-  .category-badge:hover {
-    background-color: #c06c3b;
-    color: white;
-    transform: translateY(-2px);
-  }
-
-  .meta-info {
-    color: #888;
-    font-size: 0.9rem;
-    text-transform: uppercase;
-    letter-spacing: 1px;
-    margin-bottom: 1rem;
-  }
-
-  h1 {
-    font-family: "Playfair Display", serif;
-    color: #1a2e2e;
-    font-size: 2.5rem;
-    margin-bottom: 2rem;
-    line-height: 1.2;
-  }
-
-  .featured-image {
-    width: 100%;
-    height: auto;
-    border-radius: 8px;
-    margin-bottom: 3rem;
-    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
-  }
-
-  .featured-animation {
-    margin-bottom: 3rem;
-    overflow: hidden;
-    border-radius: 8px;
-    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
-  }
-
-  /* --- Contenu --- */
-  .content {
-    font-size: 1.15rem;
-    line-height: 1.8;
-  }
-  .content :global(h2) {
-    font-family: "Playfair Display", serif;
-    color: #c06c3b;
-    margin-top: 3rem;
-    margin-bottom: 1.5rem;
-    font-size: 1.8rem;
-  }
-  .content :global(h3) {
-    color: #1a2e2e;
-    margin-top: 2rem;
-    font-weight: bold;
-    font-size: 1.3rem;
-  }
-  .content :global(blockquote) {
-    border-left: 4px solid #c06c3b;
-    padding-left: 1.5rem;
-    font-style: italic;
-    background: #f9f9f9;
-    padding: 1.5rem;
-    margin: 2rem 0;
-    border-radius: 0 8px 8px 0;
-  }
-  .content :global(ul) {
-    margin-bottom: 2rem;
-    padding-left: 1.5rem;
-  }
-  .content :global(li) {
-    margin-bottom: 0.5rem;
-  }
-  .content :global(strong) {
-    color: #c06c3b;
-  }
-  .content :global(a) {
-    color: #c06c3b;
-    text-decoration: underline;
-  }
-
-  /* --- BLOC APPEL IA (CTA) --- */
-  .ai-cta-block {
-    margin-top: 4rem;
-    margin-bottom: 2rem;
-    padding: 2rem;
-    background: linear-gradient(135deg, #fdfbf7 0%, #fff 100%);
-    border: 1px solid rgba(192, 108, 59, 0.2);
-    border-radius: 12px;
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    text-align: center;
-    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.05);
-    position: relative;
-    overflow: hidden;
-  }
-  /* Petite barre déco en haut */
-  .ai-cta-block::before {
-    content: "";
-    position: absolute;
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 4px;
-    background: #c06c3b;
-  }
-
-  .ai-icon {
-    font-size: 2rem;
-    margin-bottom: 1rem;
-    animation: float 3s ease-in-out infinite;
-  }
-  .ai-text h3 {
-    font-family: "Playfair Display", serif;
-    font-size: 1.4rem;
-    color: #1a2e2e;
-    margin-bottom: 0.5rem;
-  }
-  .ai-text p {
-    font-size: 1rem;
-    color: #666;
-    max-width: 500px;
-    margin: 0 auto 1.5rem;
-  }
-  .btn-ask-oracle {
-    background: #c06c3b;
-    color: white;
-    border: none;
-    padding: 12px 25px;
-    border-radius: 30px;
-    font-weight: bold;
-    font-size: 1rem;
-    cursor: pointer;
-    transition: all 0.3s ease;
-    box-shadow: 0 4px 15px rgba(192, 108, 59, 0.3);
-  }
-  .btn-ask-oracle:hover {
-    transform: translateY(-2px);
-    box-shadow: 0 6px 20px rgba(192, 108, 59, 0.4);
-    background: #a05a2f;
-  }
-
-  @keyframes float {
-    0%,
-    100% {
-      transform: translateY(0);
-    }
-    50% {
-      transform: translateY(-5px);
-    }
-  }
-
-  /* STYLE TAGS */
-  .tags-section {
-    padding-top: 2rem;
-    border-top: 1px solid #eee;
-  }
-  .tags-section h3 {
-    font-family: "Playfair Display", serif;
-    font-size: 1.2rem;
-    color: #1a2e2e;
-    margin-bottom: 1rem;
-  }
-  .tags-list {
-    display: flex;
-    flex-wrap: wrap;
-    gap: 10px;
-  }
-  .tag-badge {
-    background-color: #f4f4f4;
-    color: #555;
-    padding: 6px 14px;
-    border-radius: 6px;
-    font-size: 0.9rem;
-    text-decoration: none !important;
-    transition: all 0.3s ease;
-    border: 1px solid transparent;
-  }
-  .tag-badge:hover {
-    background-color: #c06c3b;
-    color: white;
-    transform: translateY(-2px);
-  }
-</style>

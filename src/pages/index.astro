@@ -5,16 +5,12 @@ import Newsletter from "../components/Newsletter.astro";
 import HeroSlider from "../components/HeroSlider.astro";
 import VeveSymbol from "../components/VeveSymbol.astro";
 
-// --- DÉFINITION TYPE (Pour robustesse) ---
 interface Frontmatter {
   title: string;
   pubDate: string;
   description: string;
   author: string;
-  image: {
-    url: string;
-    alt: string;
-  };
+  image: { url: string; alt: string };
   tags: string[];
   featured?: boolean;
   categorie?: string;
@@ -25,8 +21,7 @@ interface Post {
   url: string;
 }
 
-// 1. RÉCUPÉRATION STANDARD (Vite/Astro 5)
-// CORRECTION ICI : On inclut les .md ET les .mdx
+// 1. RÉCUPÉRATION DES ARTICLES (.md et .mdx)
 const postsImport = import.meta.glob("./posts/*.{md,mdx}", { eager: true });
 const allPosts = Object.values(postsImport) as Post[];
 
@@ -38,112 +33,197 @@ const featuredPosts = allPosts
       new Date(b.frontmatter.pubDate).valueOf() -
       new Date(a.frontmatter.pubDate).valueOf(),
   )
-  .slice(0, 3); // Garde les 3 plus récents
+  .slice(0, 3);
 
 const pageTitle =
   "Héritage Vodun | Spiritualité, Fâ & Tourisme Culturel à Ouidah (Bénin)";
 ---
 
 <Layout titrePage={pageTitle}>
-  <header class="hero-section">
-    <HeroSlider />
+  {/* --- HERO SECTION PREMIUM --- */}
+  <header
+    class="relative h-[100dvh] w-full flex items-center justify-center overflow-hidden text-white -mt-24"
+  >
+    <div class="absolute inset-0 z-0">
+      <HeroSlider />
+      {/* Overlay sombre pour garantir la lisibilité du texte sur le slider */}
+      <div class="absolute inset-0 bg-dark-bg/60 z-10"></div>
+    </div>
 
-    <div class="sanctuaire-container">
-      <div class="anneau-sacre externe"></div>
-      <div class="anneau-sacre interne"></div>
-      <div class="coeur-lumineux">
-        <VeveSymbol type="dan" className="hero-veve" />
+    {/* Anneaux et Symboles Animés (Totalement refaits en Tailwind) */}
+    <div
+      class="absolute inset-0 flex justify-center items-center z-10 pointer-events-none"
+    >
+      <div
+        class="absolute w-[65vh] h-[65vh] rounded-full border border-gold/20 border-l-gold/60 animate-[spin_60s_linear_infinite] shadow-[0_0_20px_rgba(212,175,55,0.15)]"
+      >
+      </div>
+      <div
+        class="absolute w-[45vh] h-[45vh] rounded-full border border-dashed border-white/20 animate-[spin_45s_linear_infinite_reverse]"
+      >
+      </div>
+      <div
+        class="absolute w-[35vh] h-[35vh] rounded-full bg-[radial-gradient(circle,rgba(212,175,55,0.15)_0%,transparent_70%)] animate-pulse flex items-center justify-center"
+      >
+        <VeveSymbol
+          type="dan"
+          className="w-24 h-24 opacity-60 animate-[spin_120s_linear_infinite] text-gold"
+        />
       </div>
     </div>
 
-    <div class="hero-content">
-      <div class="anim-entry delay-1">
-        <span class="badge-gold">Terre des Origines</span>
+    {/* Contenu Central du Hero */}
+    <div class="relative z-20 text-center max-w-4xl px-6 w-full mt-16">
+      <div class="animate-fade-up" style="animation-delay: 0.2s;">
+        <span
+          class="inline-block border border-gold text-gold px-4 py-2 text-xs uppercase tracking-[0.2em] mb-6 bg-black/40 backdrop-blur-sm"
+        >
+          Terre des Origines
+        </span>
       </div>
 
-      <h1 class="anim-entry delay-2">
+      <h1
+        class="font-serif text-5xl md:text-7xl leading-[1.1] font-normal mb-6 drop-shadow-2xl animate-fade-up"
+        style="animation-delay: 0.4s;"
+      >
         Héritage <br />
-        <span class="text-gradient">Vodun</span>
+        <span
+          class="font-bold italic bg-gradient-to-r from-white to-gold bg-clip-text text-transparent"
+          >Vodun</span
+        >
       </h1>
 
-      <div class="separator anim-entry delay-3"></div>
+      <div
+        class="w-20 h-1 bg-gold mx-auto mb-8 animate-fade-up"
+        style="animation-delay: 0.6s;"
+      >
+      </div>
 
-      <p class="description anim-entry delay-3">
-        <strong
+      <p
+        class="text-lg md:text-xl text-white/90 mb-10 leading-relaxed font-light drop-shadow-lg max-w-2xl mx-auto animate-fade-up"
+        style="animation-delay: 0.8s;"
+      >
+        <strong class="font-bold text-white"
           >Le guide ultime de la spiritualité Vodun à Ouidah (Bénin).</strong
         ><br />
         Une immersion authentique loin du folklore.<br />
-        Découvrez l'histoire de la Route des Esclaves, consultez le Fâ et dialoguez
+        Découvrez l&apos;histoire de la Route des Esclaves, consultez le Fâ et dialoguez
         avec nos gardiens.
       </p>
 
-      <div class="actions anim-entry delay-4">
+      <div
+        class="flex flex-col md:flex-row justify-center gap-6 items-center animate-fade-up"
+        style="animation-delay: 1s;"
+      >
         <a
           href="https://www.mindoguesito.com"
-          class="btn-action btn-gold-pulse open-oracle"
-          title="Discuter avec Mindoguesito"
-          aria-label="Ouvrir le chat avec le Guide des Savoirs"
+          class="open-oracle flex items-center justify-center px-8 py-4 font-bold uppercase tracking-wider bg-gradient-to-br from-gold to-[#f0c548] text-black rounded-sm shadow-[0_0_20px_rgba(212,175,55,0.4)] animate-[pulse-glow_2.5s_infinite] hover:-translate-y-1 hover:scale-105 transition-all duration-300 w-full md:w-auto"
         >
-          <span class="icon-btn">✨</span> Parler au Guide
+          <span class="mr-3 text-xl">✨</span> Parler au Guide
         </a>
-
-        <a href="/about" class="btn-action btn-outline-prestige">
+        <a
+          href="/about"
+          class="flex items-center justify-center px-8 py-4 font-bold uppercase tracking-wider border border-white/50 text-white rounded-sm hover:bg-white hover:text-black hover:border-white hover:-translate-y-1 transition-all duration-300 w-full md:w-auto"
+        >
           Découvrir la Mission
         </a>
       </div>
     </div>
 
-    <div class="scroll-indicator">
-      <span></span>
+    {/* Indicateur de défilement */}
+    <div
+      class="absolute bottom-8 left-1/2 -translate-x-1/2 w-px h-12 bg-white/20 overflow-hidden z-20 hidden md:block"
+    >
+      <span class="block w-full h-1/2 bg-gold animate-scroll-drop"></span>
     </div>
   </header>
 
-  <section class="intro-manifeste">
-    <div class="watermark">VODUN</div>
+  {/* --- SECTION MANIFESTE --- */}
+  <section
+    class="relative py-24 md:py-32 px-6 bg-dark-surface text-center overflow-hidden"
+  >
+    <div
+      class="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 text-[20vw] font-black text-white/[0.02] font-serif pointer-events-none select-none"
+    >
+      VODUN
+    </div>
 
-    <div class="container-manifeste">
-      <span class="sur-titre">Notre Identité</span>
-
-      <h2>
+    <div class="relative z-10 max-w-3xl mx-auto">
+      <span
+        class="block text-gold text-sm uppercase tracking-[0.25em] mb-4 font-bold"
+        >Notre Identité</span
+      >
+      <h2
+        class="font-serif text-4xl md:text-6xl text-white mb-10 leading-tight"
+      >
         Une culture à Ouidah,<br />
-        <span class="italic-highlight">pas un mythe.</span>
+        <span class="text-gray-400 italic">pas un mythe.</span>
       </h2>
 
-      <div class="veve-separator">
-        <div class="line-top"></div>
-        <VeveSymbol type="legba" className="separator-icon" />
-        <div class="line-bottom"></div>
+      <div class="flex flex-col items-center gap-3 opacity-80 mb-10">
+        <div class="w-px h-8 bg-gradient-to-b from-transparent to-gold"></div>
+        <VeveSymbol
+          type="legba"
+          className="w-8 h-8 text-gold animate-[pulse_4s_infinite]"
+        />
+        <div class="w-px h-8 bg-gradient-to-b from-gold to-transparent"></div>
       </div>
 
-      <p class="texte-pro">
-        <span class="lettrine">L</span>e Vodun est bien plus qu'une religion,
-        c'est une célébration de la vie et des éléments. À travers ce sanctuaire
-        numérique, nous brisons les chaînes des préjugés pour révéler l'identité
-        béninoise : de la sagesse mathématique du <strong>Fâ</strong> aux rites des
-        divinités.
+      <p
+        class="text-lg md:text-xl leading-loose text-gray-300 text-left md:text-center"
+      >
+        <span
+          class="float-left font-serif text-6xl md:text-7xl leading-[0.8] text-gold mr-4 mt-2"
+          >L</span
+        >
+        e Vodun est bien plus qu&apos;une religion, c&apos;est une célébration de
+        la vie et des éléments. À travers ce sanctuaire numérique, nous brisons les
+        chaînes des préjugés pour révéler l&apos;identité béninoise : de la sagesse
+        mathématique du <strong class="text-white">Fâ</strong> aux rites des divinités.
       </p>
     </div>
   </section>
 
+  {/* --- SECTION ARTICLES À LA UNE --- */}
   {
     featuredPosts.length > 0 && (
-      <section class="featured-section">
-        <div class="container-featured">
-          <div class="featured-label">À la Une</div>
+      <section class="py-20 px-6 bg-dark-bg flex justify-center border-t border-white/5">
+        <div class="max-w-7xl w-full">
+          <div class="text-center text-gold font-bold uppercase tracking-[0.15em] mb-12 text-sm">
+            À la Une
+          </div>
 
-          <div class="featured-grid">
+          <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
             {featuredPosts.map((post) => (
-              <div class="featured-card">
-                <div class="featured-content">
-                  <span class="featured-cat">{post.frontmatter.categorie}</span>
-                  <h3>{post.frontmatter.title}</h3>
-                  <p class="excerpt">{post.frontmatter.description}</p>
-                  <a href={post.url} class="btn-read-more">
-                    Lire l'article <span class="arrow">→</span>
+              <div class="group bg-dark-surface border border-gold/20 rounded-lg p-8 relative overflow-hidden flex flex-col items-start shadow-xl hover:-translate-y-2 hover:shadow-[0_15px_40px_rgba(212,175,55,0.15)] transition-all duration-300 h-full">
+                <div class="relative z-10 flex flex-col h-full w-full">
+                  {post.frontmatter.categorie && (
+                    <span class="self-start bg-gold/10 text-gold border border-gold/20 px-3 py-1 text-xs uppercase tracking-wider mb-6">
+                      {post.frontmatter.categorie}
+                    </span>
+                  )}
+
+                  <h3 class="font-serif text-2xl text-white mb-4 leading-tight">
+                    {post.frontmatter.title}
+                  </h3>
+                  <p class="text-gray-400 mb-8 leading-relaxed flex-grow text-sm">
+                    {post.frontmatter.description}
+                  </p>
+
+                  <a
+                    href={post.url}
+                    class="text-gold font-bold uppercase tracking-wider text-sm flex items-center gap-2 group-hover:text-white transition-colors mt-auto"
+                  >
+                    Lire l&apos;article{" "}
+                    <span class="group-hover:translate-x-2 transition-transform duration-300">
+                      →
+                    </span>
                   </a>
                 </div>
-                <div class="featured-deco">
-                  <VeveSymbol type="heviesso" className="card-veve" />
+
+                {/* Vévé décoratif en arrière-plan de la carte */}
+                <div class="absolute -bottom-6 -right-6 opacity-5 group-hover:opacity-20 group-hover:scale-110 transition-all duration-500 pointer-events-none text-gold">
+                  <VeveSymbol type="heviesso" className="w-32 h-32" />
                 </div>
               </div>
             ))}
@@ -156,439 +236,11 @@ const pageTitle =
   <Newsletter />
 </Layout>
 
+{
+  /* Seules deux animations hyper-spécifiques nécessitent de rester dans un tag style */
+}
 <style>
-  /* --- HERO & GENERAL --- */
-  .hero-section {
-    position: relative;
-    height: 100dvh;
-    width: 100%;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    overflow: hidden;
-    color: white;
-    transform: translateZ(0);
-  }
-  .sanctuaire-container {
-    position: absolute;
-    width: 100%;
-    height: 100%;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    z-index: 1;
-    pointer-events: none;
-  }
-  .anneau-sacre {
-    position: absolute;
-    border-radius: 50%;
-    box-shadow: 0 0 20px rgba(212, 175, 55, 0.15);
-    will-change: transform;
-  }
-  .externe {
-    width: 65vh;
-    height: 65vh;
-    border: 1px solid rgba(212, 175, 55, 0.3);
-    border-left: 1px solid rgba(212, 175, 55, 0.8);
-    animation: rot-clock 60s infinite linear;
-  }
-  .interne {
-    width: 45vh;
-    height: 45vh;
-    border: 1px dashed rgba(255, 255, 255, 0.2);
-    animation: rot-anti 45s infinite linear;
-  }
-  .coeur-lumineux {
-    width: 35vh;
-    height: 35vh;
-    background: radial-gradient(
-      circle,
-      rgba(212, 175, 55, 0.12) 0%,
-      transparent 70%
-    );
-    animation: pulse 6s infinite ease-in-out;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-  }
-  /* Style spécifique pour le Vévé dans le Hero */
-  :global(.hero-veve) {
-    width: 100px !important;
-    height: 100px !important;
-    opacity: 0.6;
-    animation: rot-clock 120s infinite linear;
-  }
-
-  .hero-content {
-    position: relative;
-    z-index: 10;
-    text-align: center;
-    max-width: 900px;
-    padding: 0 20px;
-    width: 100%;
-  }
-  .badge-gold {
-    display: inline-block;
-    border: 1px solid #d4af37;
-    color: #d4af37;
-    padding: 8px 16px;
-    font-size: 0.8rem;
-    text-transform: uppercase;
-    letter-spacing: 3px;
-    margin-bottom: 25px;
-    background: rgba(0, 0, 0, 0.4);
-    backdrop-filter: blur(5px);
-  }
-  h1 {
-    font-family: "Playfair Display", serif;
-    font-size: 5rem;
-    line-height: 1.05;
-    font-weight: 400;
-    margin-bottom: 20px;
-    text-shadow: 0 10px 30px rgba(0, 0, 0, 0.6);
-  }
-  .text-gradient {
-    font-weight: 700;
-    background: linear-gradient(to right, #ffffff 10%, #d4af37 90%);
-    -webkit-background-clip: text;
-    -webkit-text-fill-color: transparent;
-    font-style: italic;
-  }
-  .separator {
-    width: 80px;
-    height: 3px;
-    background: #d4af37;
-    margin: 0 auto 30px;
-  }
-  .description {
-    font-size: 1.3rem;
-    color: rgba(255, 255, 255, 0.95);
-    margin-bottom: 40px;
-    line-height: 1.6;
-    font-weight: 300;
-    text-shadow: 0 2px 4px rgba(0, 0, 0, 0.8);
-  }
-  .actions {
-    display: flex;
-    justify-content: center;
-    gap: 25px;
-    flex-wrap: wrap;
-    margin-top: 15px;
-  }
-  .btn-action {
-    display: inline-flex;
-    align-items: center;
-    justify-content: center;
-    padding: 18px 38px;
-    font-size: 1rem;
-    text-decoration: none;
-    text-transform: uppercase;
-    letter-spacing: 1.5px;
-    font-weight: 700;
-    transition: all 0.3s cubic-bezier(0.25, 0.46, 0.45, 0.94);
-    border-radius: 2px;
-  }
-  .btn-gold-pulse {
-    background: linear-gradient(135deg, #d4af37 0%, #f0c548 100%);
-    color: #1a1a1a;
-    border: none;
-    box-shadow: 0 0 20px rgba(212, 175, 55, 0.4);
-    animation: pulse-glow 2.5s infinite;
-  }
-  .btn-gold-pulse:hover {
-    transform: translateY(-3px) scale(1.02);
-    box-shadow: 0 10px 30px rgba(212, 175, 55, 0.7);
-    background: linear-gradient(135deg, #f0c548 0%, #ffdf80 100%);
-  }
-  .btn-outline-prestige {
-    background: transparent;
-    color: #fff;
-    border: 1px solid rgba(255, 255, 255, 0.5);
-  }
-  .btn-outline-prestige:hover {
-    background: #fcfcfc;
-    color: #1a1a1a;
-    border-color: #fcfcfc;
-    transform: translateY(-3px);
-    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.3);
-  }
-  .icon-btn {
-    margin-right: 10px;
-    font-size: 1.2rem;
-  }
-
-  /* --- INTRO MANIFESTE & VÉVÉ SEPARATOR --- */
-  .intro-manifeste {
-    position: relative;
-    padding: 100px 20px;
-    background-color: #fcfbf9;
-    text-align: center;
-    overflow: hidden;
-  }
-  .watermark {
-    position: absolute;
-    top: 50%;
-    left: 50%;
-    transform: translate(-50%, -50%);
-    font-size: 20vw;
-    font-weight: 900;
-    color: rgba(0, 0, 0, 0.03);
-    font-family: "Playfair Display", serif;
-    pointer-events: none;
-    z-index: 0;
-  }
-  .container-manifeste {
-    position: relative;
-    z-index: 1;
-    max-width: 800px;
-    margin: 0 auto;
-  }
-  .sur-titre {
-    color: #d4af37;
-    font-size: 0.85rem;
-    text-transform: uppercase;
-    letter-spacing: 4px;
-    display: block;
-    margin-bottom: 15px;
-    font-weight: 700;
-  }
-  .intro-manifeste h2 {
-    font-family: "Playfair Display", serif;
-    font-size: 3.8rem;
-    color: #1a1a1a;
-    margin-bottom: 40px;
-    line-height: 1.2;
-  }
-  .italic-highlight {
-    color: #2f4f4f;
-    font-style: italic;
-  }
-
-  /* Nouveau Séparateur Vévé */
-  .veve-separator {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    gap: 10px;
-    margin: 0 auto 40px;
-    opacity: 0.8;
-  }
-  .line-top,
-  .line-bottom {
-    width: 1px;
-    height: 30px;
-    background: linear-gradient(to bottom, transparent, #d4af37);
-  }
-  .line-bottom {
-    background: linear-gradient(to bottom, #d4af37, transparent);
-  }
-  /* Animation douce du symbole */
-  :global(.separator-icon) {
-    animation: pulse-slow 4s infinite;
-  }
-
-  .texte-pro {
-    font-size: 1.25rem;
-    line-height: 1.9;
-    color: #555;
-    text-align: justify;
-    text-align-last: center;
-  }
-  .lettrine {
-    float: left;
-    font-family: "Playfair Display", serif;
-    font-size: 4rem;
-    line-height: 0.8;
-    color: #d4af37;
-    margin-right: 15px;
-    margin-top: 5px;
-  }
-
-  /* --- FEATURED SECTION & CSS ART --- */
-  .featured-section {
-    padding: 60px 20px 100px;
-    background-color: #fcfbf9;
-    display: flex;
-    justify-content: center;
-  }
-  .container-featured {
-    max-width: 1200px;
-    width: 100%;
-    position: relative;
-  }
-  .featured-label {
-    text-align: center;
-    color: #d4af37;
-    font-weight: 700;
-    text-transform: uppercase;
-    letter-spacing: 2px;
-    margin-bottom: 40px;
-    font-size: 0.9rem;
-  }
-  .featured-grid {
-    display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-    gap: 30px;
-  }
-  .featured-card {
-    background: #1a1a1a;
-    color: white;
-    border-radius: 4px;
-    padding: 40px 30px;
-    position: relative;
-    overflow: hidden;
-    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
-    border: 1px solid rgba(212, 175, 55, 0.2);
-    display: flex;
-    flex-direction: column;
-    align-items: flex-start;
-    text-align: left;
-    transition: transform 0.3s ease;
-    height: 100%;
-  }
-  .featured-card:hover {
-    transform: translateY(-5px);
-    box-shadow: 0 15px 40px rgba(212, 175, 55, 0.15);
-  }
-  .featured-cat {
-    background: rgba(212, 175, 55, 0.2);
-    color: #d4af37;
-    padding: 4px 10px;
-    font-size: 0.7rem;
-    text-transform: uppercase;
-    letter-spacing: 1.5px;
-    margin-bottom: 20px;
-    display: inline-block;
-  }
-  .featured-card h3 {
-    font-family: "Playfair Display", serif;
-    font-size: 1.8rem;
-    margin-bottom: 15px;
-    line-height: 1.2;
-    color: #fff;
-    min-height: 2.4em;
-  }
-  .featured-card p.excerpt {
-    color: rgba(255, 255, 255, 0.7);
-    font-size: 1rem;
-    margin-bottom: 30px;
-    line-height: 1.6;
-    flex-grow: 1;
-    z-index: 2; /* Au dessus du Vévé */
-    position: relative;
-  }
-  .btn-read-more {
-    color: #d4af37;
-    text-decoration: none;
-    font-weight: 700;
-    text-transform: uppercase;
-    letter-spacing: 1px;
-    border-bottom: 1px solid transparent;
-    transition: all 0.3s;
-    padding-bottom: 3px;
-    font-size: 0.9rem;
-    position: relative;
-    z-index: 2;
-  }
-  .btn-read-more:hover {
-    color: white;
-    border-bottom-color: #d4af37;
-  }
-  .arrow {
-    display: inline-block;
-    transition: transform 0.3s;
-  }
-  .btn-read-more:hover .arrow {
-    transform: translateX(5px);
-  }
-
-  /* --- LE VÉVÉ EN ARRIÈRE PLAN DES CARTES --- */
-  .featured-deco {
-    position: absolute;
-    bottom: -20px;
-    right: -20px;
-    pointer-events: none;
-    opacity: 0.1;
-    transition:
-      opacity 0.3s ease,
-      transform 0.3s ease;
-  }
-  .featured-card:hover .featured-deco {
-    opacity: 0.2;
-    transform: scale(1.1);
-  }
-  :global(.card-veve) {
-    width: 150px !important;
-    height: 150px !important;
-  }
-
-  /* ANIMATIONS */
-  @keyframes pulse-glow {
-    0% {
-      box-shadow: 0 0 0 0 rgba(212, 175, 55, 0.6);
-    }
-    70% {
-      box-shadow: 0 0 0 15px rgba(212, 175, 55, 0);
-    }
-    100% {
-      box-shadow: 0 0 0 0 rgba(212, 175, 55, 0);
-    }
-  }
-  @keyframes rot-clock {
-    from {
-      transform: rotate(0deg);
-    }
-    to {
-      transform: rotate(360deg);
-    }
-  }
-  @keyframes rot-anti {
-    from {
-      transform: rotate(360deg);
-    }
-    to {
-      transform: rotate(0deg);
-    }
-  }
-  @keyframes pulse {
-    0%,
-    100% {
-      transform: scale(1);
-      opacity: 0.5;
-    }
-    50% {
-      transform: scale(1.1);
-      opacity: 0.7;
-    }
-  }
-  @keyframes pulse-slow {
-    0%,
-    100% {
-      opacity: 0.6;
-      transform: scale(0.95);
-    }
-    50% {
-      opacity: 1;
-      transform: scale(1);
-    }
-  }
-  .scroll-indicator {
-    position: absolute;
-    bottom: 30px;
-    left: 50%;
-    transform: translateX(-50%);
-    width: 1px;
-    height: 50px;
-    background: rgba(255, 255, 255, 0.2);
-  }
-  .scroll-indicator span {
-    display: block;
-    width: 100%;
-    height: 50%;
-    background: #d4af37;
-    animation: scrollDrop 2s infinite;
-  }
-  @keyframes scrollDrop {
+  @keyframes scroll-drop {
     0% {
       transform: translateY(-100%);
     }
@@ -596,24 +248,11 @@ const pageTitle =
       transform: translateY(200%);
     }
   }
-  .anim-entry {
-    opacity: 0;
-    animation: fadeInUp 1s ease-out forwards;
-    will-change: transform, opacity;
+  .animate-scroll-drop {
+    animation: scroll-drop 2s infinite;
   }
-  .delay-1 {
-    animation-delay: 0.2s;
-  }
-  .delay-2 {
-    animation-delay: 0.5s;
-  }
-  .delay-3 {
-    animation-delay: 0.8s;
-  }
-  .delay-4 {
-    animation-delay: 1.1s;
-  }
-  @keyframes fadeInUp {
+
+  @keyframes fade-up {
     from {
       opacity: 0;
       transform: translateY(30px);
@@ -623,59 +262,8 @@ const pageTitle =
       transform: translateY(0);
     }
   }
-
-  /* RESPONSIVE */
-  @media (max-width: 768px) {
-    h1 {
-      font-size: 3rem;
-      margin-bottom: 15px;
-    }
-    .description {
-      font-size: 1.1rem;
-      padding: 0 10px;
-    }
-    .actions {
-      flex-direction: column;
-      gap: 15px;
-      width: 100%;
-      align-items: center;
-      padding: 0 20px;
-    }
-    .btn-action {
-      width: 100%;
-      max-width: 320px;
-      text-align: center;
-      padding: 16px 20px;
-    }
-    .externe {
-      width: 85vw;
-      height: 85vw;
-      max-width: 400px;
-      max-height: 400px;
-    }
-    .interne {
-      width: 60vw;
-      height: 60vw;
-      max-width: 280px;
-      max-height: 280px;
-    }
-    .coeur-lumineux {
-      width: 40vw;
-      height: 40vw;
-    }
-    .intro-manifeste {
-      padding: 80px 20px;
-    }
-    .intro-manifeste h2 {
-      font-size: 2.2rem;
-    }
-    .texte-pro {
-      text-align: left;
-      text-align-last: left;
-      font-size: 1.1rem;
-    }
-    .featured-grid {
-      grid-template-columns: 1fr;
-    }
+  .animate-fade-up {
+    opacity: 0;
+    animation: fade-up 1s ease-out forwards;
   }
 </style>

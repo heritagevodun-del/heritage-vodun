@@ -1,22 +1,40 @@
 ---
-// src/components/Newsletter.astro - Version Optimisée & Sécurisée
+// src/components/Newsletter.astro - Version Tailwind v4 Premium
 ---
 
-<section class="newsletter-section">
-  <div class="container">
-    <div class="invitation-card">
-      <div class="ornement-haut"></div>
+<section
+  class="py-24 px-6 bg-gradient-to-b from-dark-bg to-dark-surface flex justify-center border-t border-white/5 relative overflow-hidden"
+>
+  {/* Lueur d'arrière-plan */}
+  <div
+    class="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[800px] h-[800px] bg-gold/5 rounded-full blur-[100px] pointer-events-none"
+  >
+  </div>
 
-      <div class="contenu">
-        <span class="sous-titre">Le Cercle des Initiés</span>
-        <h2>Restez connecté à la Source</h2>
-        <p>
+  <div class="w-full max-w-4xl relative z-10">
+    <div
+      class="bg-dark-surface border border-gold/30 rounded-2xl p-10 md:p-16 text-center relative shadow-[0_10px_40px_rgba(0,0,0,0.5),0_0_20px_rgba(212,175,55,0.1)] animate-[breathing-glow_6s_infinite_ease-in-out]"
+    >
+      {/* Ornement Haut */}
+      <div class="text-gold text-2xl mb-6 select-none">✦</div>
+
+      <div class="max-w-2xl mx-auto">
+        <span
+          class="block text-gold text-xs uppercase tracking-[0.25em] font-bold mb-4"
+          >Le Cercle des Initiés</span
+        >
+        <h2
+          class="font-serif text-4xl md:text-5xl text-white mb-6 leading-tight"
+        >
+          Restez connecté à la Source
+        </h2>
+        <p class="font-sans text-gray-400 text-lg leading-relaxed mb-10">
           Rejoignez-nous. Recevez les dates des cérémonies, la sagesse du Fâ et
-          l'essence de nos traditions directement dans votre cœur (et votre
+          l&apos;essence de nos traditions directement dans votre cœur (et votre
           boîte mail).
         </p>
 
-        <form id="form-newsletter" class="formulaire">
+        <form id="form-newsletter" class="w-full max-w-md mx-auto">
           <input
             type="hidden"
             name="access_key"
@@ -34,43 +52,51 @@
             style="display: none;"
           />
 
-          <div class="input-group">
+          <div class="flex flex-col md:flex-row gap-3 justify-center">
             <input
               type="email"
               name="email"
               placeholder="Votre adresse email..."
               required
-              class="champ-email"
+              class="flex-1 px-5 py-4 rounded-md border border-white/10 bg-white/5 text-white font-sans focus:outline-none focus:border-gold focus:ring-1 focus:ring-gold transition-all duration-300 placeholder-gray-500"
               aria-label="Adresse email pour la newsletter"
             />
-            <button type="submit" class="btn-inscription">
-              <span class="btn-text">S'inscrire</span>
-              <span class="btn-loader" style="display: none;">...</span>
+            <button
+              type="submit"
+              class="bg-gold hover:bg-gold-hover text-black border border-gold hover:border-gold-hover px-8 py-4 rounded-md font-bold uppercase tracking-wider transition-all duration-300 disabled:opacity-50 disabled:cursor-not-allowed disabled:grayscale min-w-[160px] shadow-[0_4px_15px_rgba(212,175,55,0.3)] hover:shadow-[0_6px_20px_rgba(212,175,55,0.5)] hover:-translate-y-0.5 btn-inscription"
+            >
+              <span class="btn-text">S&apos;inscrire</span>
+              <span class="btn-loader hidden">...</span>
             </button>
           </div>
-          <p class="message-resultat" id="resultat-newsletter"></p>
+          <p
+            class="mt-4 font-bold min-h-[24px] text-sm transition-colors duration-300 message-resultat"
+            id="resultat-newsletter"
+          >
+          </p>
         </form>
 
-        <p class="rgpd">Nous respectons votre tranquillité. Pas de spam.</p>
+        <p class="text-xs text-gray-600 mt-8 italic">
+          Nous respectons votre tranquillité. Pas de spam.
+        </p>
       </div>
 
-      <div class="ornement-bas"></div>
+      {/* Ornement Bas */}
+      <div class="text-gold text-2xl mt-8 select-none">✦</div>
     </div>
   </div>
 </section>
 
 <script>
-  // On utilise astro:page-load pour que le script se relance à chaque navigation
   document.addEventListener("astro:page-load", () => {
     const formNews = document.getElementById(
-      "form-newsletter"
+      "form-newsletter",
     ) as HTMLFormElement;
     const resNews = document.getElementById("resultat-newsletter");
     const btn = document.querySelector(".btn-inscription") as HTMLButtonElement;
     const btnText = document.querySelector(".btn-text") as HTMLElement;
     const btnLoader = document.querySelector(".btn-loader") as HTMLElement;
 
-    // Sécurité : on ne lance le script que si le formulaire est présent sur la page
     if (formNews && resNews && btn) {
       formNews.addEventListener("submit", function (e) {
         e.preventDefault();
@@ -78,12 +104,12 @@
         const object = Object.fromEntries(formData);
         const json = JSON.stringify(object);
 
-        // Feedback visuel : On charge
         resNews.innerHTML = "";
-        btn.disabled = true; // Empêche le double clic
-        btn.style.opacity = "0.7";
+        btn.disabled = true;
+
         if (btnText) btnText.style.display = "none";
-        if (btnLoader) btnLoader.style.display = "inline-block";
+        // Correction de l'affichage du loader (Tailwind utilise .hidden)
+        if (btnLoader) btnLoader.classList.remove("hidden");
 
         fetch("https://api.web3forms.com/submit", {
           method: "POST",
@@ -95,29 +121,25 @@
         })
           .then(async (response) => {
             if (response.status == 200) {
-              // SUCCÈS
               resNews.innerHTML =
                 "✨ Merci. Votre inscription est confirmée. Bienvenue dans le Cercle.";
-              resNews.style.color = "#2f4f4f";
+              resNews.style.color = "#d4af37"; // Or pour le succès sur fond noir
               formNews.reset();
             } else {
-              // ERREUR
               resNews.innerHTML =
                 "Une erreur est survenue. Veuillez réessayer.";
-              resNews.style.color = "#d9534f";
+              resNews.style.color = "#ef4444"; // Rouge Tailwind
             }
           })
           .catch((error) => {
             resNews.innerHTML = "Erreur de connexion.";
-            resNews.style.color = "#d9534f";
+            resNews.style.color = "#ef4444";
             console.error(error);
           })
           .finally(() => {
-            // Remise à zéro du bouton
             btn.disabled = false;
-            btn.style.opacity = "1";
             if (btnText) btnText.style.display = "inline";
-            if (btnLoader) btnLoader.style.display = "none";
+            if (btnLoader) btnLoader.classList.add("hidden");
           });
       });
     }
@@ -125,177 +147,20 @@
 </script>
 
 <style>
-  /* --- Section Globale --- */
-  .newsletter-section {
-    padding: 80px 20px 100px;
-    background: linear-gradient(to bottom, #ffffff, #fdfbf7);
-    display: flex;
-    justify-content: center;
-  }
-
-  .container {
-    width: 100%;
-    max-width: 800px;
-  }
-
-  /* --- La Carte "Invitation" --- */
-  .invitation-card {
-    background-color: #fffcf5;
-    border: 1px solid rgba(212, 175, 55, 0.3);
-    border-radius: 8px;
-    padding: 60px 40px;
-    text-align: center;
-    position: relative;
-    box-shadow:
-      0 10px 40px rgba(0, 0, 0, 0.05),
-      0 0 20px rgba(212, 175, 55, 0.1);
-    /* Optimisation GPU */
-    will-change: transform, box-shadow;
-    animation: breathing-glow 6s infinite ease-in-out;
-  }
-
-  /* Ornements */
-  .ornement-haut::before,
-  .ornement-bas::after {
-    content: "✦";
-    font-size: 1.5rem;
-    color: #d4af37;
-    display: block;
-    margin-bottom: 20px;
-  }
-  .ornement-bas::after {
-    margin-top: 20px;
-    margin-bottom: 0;
-  }
-
-  /* --- Typographie --- */
-  .sous-titre {
-    color: #d4af37;
-    text-transform: uppercase;
-    letter-spacing: 3px;
-    font-size: 0.8rem;
-    font-weight: bold;
-    display: block;
-    margin-bottom: 15px;
-  }
-
-  h2 {
-    font-family: "Playfair Display", serif;
-    font-size: 2.5rem;
-    color: #2f4f4f;
-    margin-bottom: 20px;
-  }
-
-  p {
-    font-family: "Lato", sans-serif;
-    color: #666;
-    line-height: 1.6;
-    margin-bottom: 30px;
-    font-size: 1.1rem;
-    max-width: 600px;
-    margin-left: auto;
-    margin-right: auto;
-  }
-
-  /* --- Formulaire --- */
-  .input-group {
-    display: flex;
-    gap: 10px;
-    justify-content: center;
-    flex-wrap: wrap;
-    max-width: 500px;
-    margin: 0 auto;
-  }
-
-  .champ-email {
-    flex: 1;
-    min-width: 250px;
-    padding: 15px 20px;
-    border-radius: 4px;
-    border: 1px solid #e0e0e0;
-    background-color: white;
-    color: #333;
-    font-family: "Lato", sans-serif;
-    outline: none;
-    transition: all 0.3s;
-  }
-
-  .champ-email:focus {
-    border-color: #d4af37;
-    box-shadow: 0 0 0 3px rgba(212, 175, 55, 0.1);
-  }
-
-  .btn-inscription {
-    background-color: #d4af37;
-    color: #1a1a1a;
-    border: none;
-    padding: 15px 30px;
-    border-radius: 4px;
-    font-weight: bold;
-    text-transform: uppercase;
-    letter-spacing: 1px;
-    cursor: pointer;
-    transition: all 0.3s;
-    border: 1px solid #d4af37;
-    min-width: 140px; /* Pour éviter que le bouton change de taille pendant le chargement */
-  }
-
-  .btn-inscription:hover:not(:disabled) {
-    background-color: transparent;
-    color: #d4af37;
-    transform: translateY(-2px);
-  }
-
-  .btn-inscription:disabled {
-    cursor: not-allowed;
-    filter: grayscale(0.5);
-  }
-
-  .rgpd {
-    font-size: 0.8rem;
-    color: #999;
-    margin-top: 25px;
-    margin-bottom: 0;
-    font-style: italic;
-  }
-
-  .message-resultat {
-    margin-top: 15px;
-    font-weight: bold;
-    min-height: 24px;
-    transition: color 0.3s;
-  }
-
-  /* --- Animation --- */
+  /* L'animation de respiration de la carte (seul style gardé pour les performances GPU) */
   @keyframes breathing-glow {
     0%,
     100% {
       box-shadow:
-        0 10px 40px rgba(0, 0, 0, 0.05),
+        0 10px 40px rgba(0, 0, 0, 0.5),
         0 0 20px rgba(212, 175, 55, 0.1);
       border-color: rgba(212, 175, 55, 0.3);
     }
     50% {
       box-shadow:
-        0 15px 50px rgba(0, 0, 0, 0.08),
+        0 15px 50px rgba(0, 0, 0, 0.6),
         0 0 35px rgba(212, 175, 55, 0.3);
       border-color: rgba(212, 175, 55, 0.6);
-    }
-  }
-
-  /* --- Mobile --- */
-  @media (max-width: 768px) {
-    .invitation-card {
-      padding: 40px 20px;
-    }
-    h2 {
-      font-size: 2rem;
-    }
-    .input-group {
-      flex-direction: column;
-    }
-    .btn-inscription {
-      width: 100%;
     }
   }
 </style>

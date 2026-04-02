@@ -17,7 +17,6 @@ const navLinks = [
 >
   {
     navLinks.map((link) => {
-      // Logique pour déterminer si on est sur la page active
       const isActive =
         currentPath === link.href ||
         (link.href !== "/" && currentPath.startsWith(link.href));
@@ -30,7 +29,6 @@ const navLinks = [
           }`}
         >
           {link.name}
-          {/* Ligne de soulignement animée (uniquement sur Desktop) */}
           <span
             class={`hidden md:block absolute -bottom-2 left-0 h-[2px] bg-gold transition-all duration-300 ${isActive ? "w-full" : "w-0 group-hover:w-full"}`}
           />
@@ -39,12 +37,74 @@ const navLinks = [
     })
   }
 
+  {/* SÉLECTEUR DE LANGUE (i18n) */}
+  <div class="relative group mt-2 md:mt-0">
+    <button
+      class="flex items-center gap-2 text-gray-300 hover:text-gold transition-colors font-sans uppercase text-sm tracking-wider px-2 py-2"
+      aria-label="Changer de langue"
+    >
+      <svg
+        xmlns="http://www.w3.org/2000/svg"
+        width="18"
+        height="18"
+        viewBox="0 0 24 24"
+        fill="none"
+        stroke="currentColor"
+        stroke-width="2"
+        stroke-linecap="round"
+        stroke-linejoin="round"
+      >
+        <circle cx="12" cy="12" r="10"></circle>
+        <line x1="2" y1="12" x2="22" y2="12"></line>
+        <path
+          d="M12 2a15.3 15.3 0 0 1 4 10 15.3 15.3 0 0 1-4 10 15.3 15.3 0 0 1-4-10 15.3 15.3 0 0 1 4-10z"
+        ></path>
+      </svg>
+      <span class="md:hidden lg:inline">FR</span>
+    </button>
+
+    {/* Menu Déroulant des Langues */}
+    <div
+      class="absolute right-0 md:left-1/2 md:-translate-x-1/2 mt-2 w-40 bg-dark-surface border border-white/10 rounded-lg shadow-2xl opacity-0 invisible group-hover:opacity-100 group-hover:visible transition-all duration-300 flex flex-col overflow-hidden z-50"
+    >
+      <a
+        href="/"
+        class="px-4 py-3 text-sm text-gold bg-white/5 hover:bg-gold/10 transition-colors flex items-center gap-2 border-b border-white/5"
+        >🇫🇷 Français</a
+      >
+      <a
+        href="/en"
+        class="px-4 py-3 text-sm text-gray-300 hover:bg-white/5 transition-colors flex items-center gap-2 border-b border-white/5"
+        >🇬🇧 English</a
+      >
+      <a
+        href="/pt"
+        class="px-4 py-3 text-sm text-gray-300 hover:bg-white/5 transition-colors flex items-center gap-2 border-b border-white/5"
+        >🇵🇹 Português</a
+      >
+      <a
+        href="/es"
+        class="px-4 py-3 text-sm text-gray-300 hover:bg-white/5 transition-colors flex items-center gap-2 border-b border-white/5"
+        >🇪🇸 Español</a
+      >
+      <a
+        href="/yo"
+        class="px-4 py-3 text-sm text-gray-300 hover:bg-white/5 transition-colors flex items-center gap-2 border-b border-white/5"
+        >🇳🇬 Yorùbá</a
+      >
+      <a
+        href="/fon"
+        class="px-4 py-3 text-sm text-gray-300 hover:bg-white/5 transition-colors flex items-center gap-2"
+        >🇧🇯 Fongbè</a
+      >
+    </div>
+  </div>
+
   {/* BOUTON ORACLE PREMIUM */}
   <a
     href="#"
     class="open-oracle w-4/5 md:w-auto mt-4 md:mt-0 flex items-center justify-center gap-3 px-6 py-3 md:py-2 rounded-full border border-gold md:border-green-500/30 hover:border-gold md:hover:bg-gold/5 bg-dark-surface md:bg-transparent text-gold md:text-gray-300 hover:text-gold transition-all duration-300 group shadow-[0_5px_15px_rgba(0,0,0,0.3)] md:shadow-none md:hover:-translate-y-0.5"
   >
-    {/* Point d&apos;état : Vert pulsant sur Desktop, Or fixe sur Mobile */}
     <span class="relative flex h-2.5 w-2.5">
       <span
         class="animate-ping absolute inline-flex h-full w-full rounded-full bg-green-400 md:opacity-75 opacity-0"
@@ -53,7 +113,6 @@ const navLinks = [
         class="relative inline-flex rounded-full h-2.5 w-2.5 bg-gold md:bg-green-500"
       ></span>
     </span>
-
     <span
       class="font-serif md:font-sans font-bold text-sm md:text-[0.85rem] uppercase tracking-[2px] md:tracking-[1px]"
     >

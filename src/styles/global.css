@@ -1,5 +1,5 @@
 @import "tailwindcss";
-
+@plugin "@tailwindcss/typography";
 @theme {
   /* Configuration de nos polices locales */
   --font-sans: "Lato", sans-serif;
