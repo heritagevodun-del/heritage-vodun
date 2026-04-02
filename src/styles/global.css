@@ -1,0 +1,22 @@
+@import "tailwindcss";
+
+@theme {
+  /* Configuration de nos polices locales */
+  --font-sans: "Lato", sans-serif;
+  --font-serif: "Playfair Display", serif;
+  
+  /* Notre palette de couleurs personnalisée */
+  --color-gold: #d4af37;
+  --color-gold-hover: #b08d2b;
+  --color-dark-bg: #050505;
+  --color-dark-surface: #0a0a0a;
+}
+
+/* Animations conservées pour le widget Oracle */
+@keyframes pulse-glow {
+  0% { transform: scale(1); opacity: 1; }
+  100% { transform: scale(1.6); opacity: 0; }
+}
+@keyframes spin-slow {
+  to { transform: rotate(360deg); }
+}
