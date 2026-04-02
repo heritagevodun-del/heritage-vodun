@@ -25,23 +25,50 @@ const schemaData = {
 <BaseLayout titrePage="Notre Mission | Héritage Vodun & Innovation">
   <script type="application/ld+json" set:html={JSON.stringify(schemaData)} />
 
-  <div class="page-container">
-    <header class="about-header animate-fade-down">
-      <span class="sur-titre">Tradition & Innovation</span>
-      <h1>Notre Mission</h1>
-      <div class="ligne-or"></div>
-      <p class="slogan">"Quand la Sagesse Ancestrale rencontre le Futur"</p>
+  <div class="min-h-screen bg-dark-bg pb-24 overflow-x-hidden">
+    {/* --- HEADER --- */}
+    <header
+      class="text-center pt-24 pb-16 px-6 relative bg-[radial-gradient(circle_at_top,#1a1a1a_0%,#050505_100%)] opacity-0 animate-fade-down"
+    >
+      <span
+        class="block text-gold text-xs uppercase tracking-[0.25em] font-bold mb-4"
+        >Tradition & Innovation</span
+      >
+      <h1 class="font-serif text-5xl md:text-6xl text-white mb-6 leading-tight">
+        Notre Mission
+      </h1>
+      <div class="w-16 h-1 bg-gold mx-auto mb-8 rounded-full"></div>
+      <p
+        class="font-serif italic text-xl md:text-2xl text-gray-400 max-w-2xl mx-auto"
+      >
+        "Quand la Sagesse Ancestrale rencontre le Futur"
+      </p>
     </header>
 
-    <main class="conteneur-principal">
-      <article class="bloc-texte animate-fade-up delay-1">
-        <h2>L'Origine d'une Ambition</h2>
-        <div class="texte-riche">
+    <main class="max-w-5xl mx-auto px-6">
+      {/* --- ORIGINE --- */}
+      <article
+        class="mb-24 opacity-0 animate-fade-up"
+        style="animation-delay: 200ms;"
+      >
+        <h2
+          class="font-serif text-3xl md:text-4xl text-white mb-8 inline-block relative after:content-[''] after:block after:w-10 after:h-1 after:bg-gold after:mt-3"
+        >
+          L&apos;Origine d&apos;une Ambition
+        </h2>
+
+        <div
+          class="text-lg text-gray-300 leading-relaxed space-y-6 text-justify"
+        >
           <p>
-            <span class="lettrine">T</span>out est parti d'une frustration.
-            Celle de voir le <strong>Bénin</strong>, berceau mondial du Vodun,
-            trop souvent réduit à des clichés de magie noire ou de folklore pour
-            touristes.
+            <span
+              class="float-left font-serif text-6xl md:text-7xl leading-[0.8] text-gold pr-4 pt-2 font-bold"
+              >T</span
+            >
+            out est parti d&apos;une frustration. Celle de voir le <strong
+              class="text-white">Bénin</strong
+            >, berceau mondial du Vodun, trop souvent réduit à des clichés de
+            magie noire ou de folklore pour touristes.
           </p>
           <p>
             Nous savions que derrière le rideau se cachait une philosophie
@@ -50,43 +77,72 @@ const schemaData = {
             génération connectée ? Comment rendre le sacré accessible sans le
             profaner ?
           </p>
-          <p class="citation-block">
+          <p
+            class="border-l-4 border-gold pl-6 py-4 mt-8 bg-gold/5 italic text-xl text-gold font-serif rounded-r-lg"
+          >
             "Héritage Vodun est né pour être ce pont. Un pied dans la terre
-            rouge de Ouidah, l'autre dans le numérique."
+            rouge de Ouidah, l&apos;autre dans le numérique."
           </p>
         </div>
       </article>
 
-      <section class="bloc-valeurs animate-fade-up delay-2">
-        <h2>Nos 3 Piliers Fondateurs</h2>
-        <p class="intro-section">
+      {/* --- 3 PILIERS --- */}
+      <section
+        class="mb-24 opacity-0 animate-fade-up"
+        style="animation-delay: 400ms;"
+      >
+        <h2
+          class="font-serif text-3xl md:text-4xl text-white mb-8 inline-block relative after:content-[''] after:block after:w-10 after:h-1 after:bg-gold after:mt-3"
+        >
+          Nos 3 Piliers Fondateurs
+        </h2>
+        <p class="text-lg text-gray-400 mb-10">
           Nous ne sommes pas une simple agence de tourisme, ni un musée
           poussiéreux. Nous sommes des gardiens actifs :
         </p>
 
-        <div class="grille-valeurs">
-          <div class="carte-valeur">
-            <div class="icone" aria-hidden="true">🏛️</div>
-            <h3>Mémoire</h3>
-            <p>
-              Préserver l'histoire authentique, de la Route des Esclaves aux
-              Royaumes du Dahomey, pour que rien ne s'efface.
+        <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
+          <div
+            class="group bg-dark-surface border-t-4 border-transparent hover:border-gold p-10 rounded-lg text-center shadow-xl transition-all duration-300 hover:-translate-y-2 hover:shadow-[0_20px_40px_rgba(0,0,0,0.3)]"
+          >
+            <div class="text-5xl mb-6" aria-hidden="true">🏛️</div>
+            <h3
+              class="font-serif text-2xl text-white mb-4 group-hover:text-gold transition-colors"
+            >
+              Mémoire
+            </h3>
+            <p class="text-gray-400 leading-relaxed">
+              Préserver l&apos;histoire authentique, de la Route des Esclaves
+              aux Royaumes du Dahomey, pour que rien ne s&apos;efface.
             </p>
           </div>
 
-          <div class="carte-valeur">
-            <div class="icone" aria-hidden="true">🤖</div>
-            <h3>Innovation</h3>
-            <p>
-              Avec <strong>Mindoguesito</strong>, notre IA, nous offrons un
-              accès instantané et bienveillant aux savoirs complexes.
+          <div
+            class="group bg-dark-surface border-t-4 border-transparent hover:border-gold p-10 rounded-lg text-center shadow-xl transition-all duration-300 hover:-translate-y-2 hover:shadow-[0_20px_40px_rgba(0,0,0,0.3)]"
+          >
+            <div class="text-5xl mb-6" aria-hidden="true">🤖</div>
+            <h3
+              class="font-serif text-2xl text-white mb-4 group-hover:text-gold transition-colors"
+            >
+              Innovation
+            </h3>
+            <p class="text-gray-400 leading-relaxed">
+              Avec <strong class="text-white">Mindoguesito</strong>, notre IA,
+              nous offrons un accès instantané et bienveillant aux savoirs
+              complexes.
             </p>
           </div>
 
-          <div class="carte-valeur">
-            <div class="icone" aria-hidden="true">🌿</div>
-            <h3>Authenticité</h3>
-            <p>
+          <div
+            class="group bg-dark-surface border-t-4 border-transparent hover:border-gold p-10 rounded-lg text-center shadow-xl transition-all duration-300 hover:-translate-y-2 hover:shadow-[0_20px_40px_rgba(0,0,0,0.3)]"
+          >
+            <div class="text-5xl mb-6" aria-hidden="true">🌿</div>
+            <h3
+              class="font-serif text-2xl text-white mb-4 group-hover:text-gold transition-colors"
+            >
+              Authenticité
+            </h3>
+            <p class="text-gray-400 leading-relaxed">
               Aucun folklore "pour touriste". Nous vous emmenons dans les vrais
               temples, rencontrer les vrais dignitaires.
             </p>
@@ -94,45 +150,83 @@ const schemaData = {
         </div>
       </section>
 
-      <section class="bloc-innovation animate-fade-up delay-3">
-        <div class="innovation-content">
-          <h2>La Révolution Mindoguesito</h2>
-          <p>
-            Nous avons créé la première Intelligence Artificielle dédiée à la
-            culture Vodun. Elle ne remplace pas les prêtres, elle est leur
-            <strong>messagère numérique</strong>.
-          </p>
-          <ul class="liste-avantages">
-            <li>✨ Réponses disponibles 24h/24</li>
-            <li>✨ Explications sans jugement</li>
-            <li>✨ Gardienne des mythes et légendes</li>
-          </ul>
+      {/* --- INNOVATION IA --- */}
+      <section
+        class="bg-dark-surface border border-white/5 rounded-2xl p-10 md:p-16 flex flex-col md:flex-row items-center gap-12 shadow-2xl mb-24 opacity-0 animate-fade-up relative overflow-hidden"
+        style="animation-delay: 600ms;"
+      >
+        <div
+          class="absolute top-0 right-0 w-64 h-64 bg-gold/5 rounded-full blur-[80px] pointer-events-none"
+        >
+        </div>
 
+        <div class="flex-1 relative z-10">
+          <h2 class="font-serif text-3xl md:text-4xl text-white mb-6">
+            La Révolution Mindoguesito
+          </h2>
+          <p class="text-lg text-gray-300 mb-6 leading-relaxed">
+            Nous avons créé la première Intelligence Artificielle dédiée à la
+            culture Vodun. Elle ne remplace pas les prêtres, elle est leur <strong
+              class="text-gold">messagère numérique</strong
+            >.
+          </p>
+          <ul class="space-y-3 mb-8">
+            <li class="text-gold font-bold flex items-center gap-3">
+              <span>✨</span> Réponses disponibles 24h/24
+            </li>
+            <li class="text-gold font-bold flex items-center gap-3">
+              <span>✨</span> Explications sans jugement
+            </li>
+            <li class="text-gold font-bold flex items-center gap-3">
+              <span>✨</span> Gardienne des mythes et légendes
+            </li>
+          </ul>
           <a
             href="https://www.mindoguesito.com"
-            class="btn-decouvrir open-oracle"
+            class="open-oracle inline-block bg-gold hover:bg-gold-hover text-black font-bold uppercase tracking-widest px-8 py-4 rounded transition-all duration-300 hover:-translate-y-1 shadow-[0_5px_15px_rgba(212,175,55,0.2)]"
           >
-            Discuter avec l'IA →
+            Discuter avec l&apos;IA &rarr;
           </a>
         </div>
-        <div class="innovation-image">
-          <div class="cercle-ia"></div>
+
+        <div class="hidden md:flex flex-1 justify-center relative z-10">
+          <div
+            class="w-48 h-48 rounded-full bg-[radial-gradient(circle,rgba(212,175,55,0.2)_0%,transparent_70%)] shadow-[0_0_50px_rgba(212,175,55,0.15)] animate-[pulse_4s_infinite_ease-in-out]"
+          >
+          </div>
         </div>
       </section>
 
-      <section class="bloc-texte dernier-bloc animate-fade-up delay-4">
-        <h2>Rejoignez le Cercle</h2>
-        <p>
+      {/* --- APPEL FINAL --- */}
+      <section
+        class="text-center opacity-0 animate-fade-up"
+        style="animation-delay: 800ms;"
+      >
+        <h2
+          class="font-serif text-3xl md:text-4xl text-white mb-6 inline-block relative after:content-[''] after:block after:w-10 after:h-1 after:bg-gold after:mt-3"
+        >
+          Rejoignez le Cercle
+        </h2>
+        <p
+          class="text-lg text-gray-400 mb-10 max-w-2xl mx-auto leading-relaxed"
+        >
           Que vous soyez descendant en quête de racines, chercheur de vérité ou
           simple voyageur, votre place est ici. Le Vodun est une table ouverte.
         </p>
 
-        <div class="appel-final-container">
-          <p class="appel-final">
+        <div
+          class="bg-white/5 border border-white/10 p-10 md:p-12 rounded-xl shadow-2xl max-w-3xl mx-auto backdrop-blur-sm"
+        >
+          <p class="font-serif font-bold text-gold text-2xl mb-8 italic">
             "Nul ne connaît la fin du chemin, mais nous connaissons ceux qui
-            l'ont ouvert."
+            l&apos;ont ouvert."
           </p>
-          <a href="/contact" class="btn-rejoindre">Planifier mon voyage</a>
+          <a
+            href="/contact"
+            class="block md:inline-block w-full md:w-auto bg-white hover:bg-gold text-black px-10 py-4 font-bold uppercase tracking-wider rounded transition-all duration-300 hover:-translate-y-1 hover:shadow-[0_5px_20px_rgba(212,175,55,0.3)]"
+          >
+            Planifier mon voyage
+          </a>
         </div>
       </section>
     </main>
@@ -140,289 +234,6 @@ const schemaData = {
 </BaseLayout>
 
 <style>
-  /* --- VARIABLES --- */
-  :root {
-    --or-vodun: #d4af37;
-    --terre: #a0522d;
-    --gris-sombre: #1a1a1a;
-    --fond-page: #fdfbf7;
-    --fond-carte: #ffffff;
-  }
-
-  .page-container {
-    background-color: var(--fond-page);
-    padding-bottom: 100px;
-    overflow-x: hidden;
-  }
-
-  /* --- HEADER --- */
-  .about-header {
-    text-align: center;
-    padding: 100px 20px 80px;
-    background: radial-gradient(circle at top, #fff 0%, var(--fond-page) 100%);
-  }
-  .sur-titre {
-    font-family: "Lato", sans-serif;
-    text-transform: uppercase;
-    letter-spacing: 3px;
-    font-size: 0.85rem;
-    color: var(--terre);
-    display: block;
-    margin-bottom: 15px;
-    font-weight: 700;
-  }
-  h1 {
-    font-family: "Playfair Display", serif;
-    font-size: 4rem;
-    color: var(--gris-sombre);
-    margin: 0;
-    line-height: 1.1;
-  }
-  .ligne-or {
-    width: 60px;
-    height: 4px;
-    background-color: var(--or-vodun);
-    margin: 25px auto;
-    border-radius: 2px;
-  }
-  .slogan {
-    font-family: "Playfair Display", serif;
-    font-style: italic;
-    color: #555;
-    font-size: 1.5rem;
-    max-width: 600px;
-    margin: 0 auto;
-  }
-
-  /* --- CONTENU GÉNÉRAL --- */
-  .conteneur-principal {
-    max-width: 1000px;
-    margin: 0 auto;
-    padding: 0 20px;
-  }
-  h2 {
-    font-family: "Playfair Display", serif;
-    font-size: 2.5rem;
-    color: var(--gris-sombre);
-    margin-bottom: 30px;
-    position: relative;
-    display: inline-block;
-  }
-  h2::after {
-    content: "";
-    display: block;
-    width: 40px;
-    height: 2px;
-    background: var(--or-vodun);
-    margin-top: 10px;
-  }
-  p {
-    font-family: "Lato", sans-serif;
-    font-size: 1.15rem;
-    line-height: 1.8;
-    color: #444;
-    margin-bottom: 25px;
-    text-align: justify;
-  }
-  .bloc-texte {
-    margin-bottom: 100px;
-  }
-  .lettrine {
-    float: left;
-    font-family: "Playfair Display", serif;
-    font-size: 4.5rem;
-    line-height: 0.8;
-    padding-right: 15px;
-    padding-top: 8px;
-    color: var(--or-vodun);
-    font-weight: bold;
-  }
-  .citation-block {
-    border-left: 4px solid var(--or-vodun);
-    padding-left: 20px;
-    font-style: italic;
-    font-size: 1.3rem;
-    color: var(--terre);
-    margin-top: 30px;
-    background: rgba(212, 175, 55, 0.05);
-    padding: 20px;
-    border-radius: 0 8px 8px 0;
-  }
-
-  /* --- GRILLE VALEURS --- */
-  .grille-valeurs {
-    display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
-    gap: 40px;
-    margin-top: 40px;
-  }
-  .carte-valeur {
-    background: var(--fond-carte);
-    padding: 40px 30px;
-    border-radius: 4px;
-    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.03);
-    text-align: center;
-    border-top: 4px solid transparent;
-    transition: all 0.4s ease;
-  }
-  .carte-valeur:hover {
-    transform: translateY(-10px);
-    border-top-color: var(--or-vodun);
-    box-shadow: 0 20px 40px rgba(0, 0, 0, 0.08);
-  }
-  .icone {
-    font-size: 3rem;
-    margin-bottom: 20px;
-  }
-  .carte-valeur h3 {
-    font-family: "Playfair Display", serif;
-    color: var(--gris-sombre);
-    font-size: 1.6rem;
-    margin-bottom: 15px;
-  }
-  .carte-valeur p {
-    font-size: 1rem;
-    color: #666;
-    text-align: center;
-    margin-bottom: 0;
-  }
-
-  /* --- BLOC INNOVATION --- */
-  .bloc-innovation {
-    margin: 100px 0;
-    background: #1a1a1a;
-    color: white;
-    border-radius: 8px;
-    padding: 50px;
-    display: flex;
-    align-items: center;
-    gap: 40px;
-    box-shadow: 0 20px 50px rgba(0, 0, 0, 0.2);
-    position: relative;
-    overflow: hidden;
-  }
-  .innovation-content {
-    flex: 2;
-    z-index: 2;
-  }
-  .innovation-content h2 {
-    color: white;
-    margin-bottom: 20px;
-  }
-  .innovation-content p {
-    color: rgba(255, 255, 255, 0.8);
-    text-align: left;
-  }
-  .liste-avantages {
-    list-style: none;
-    padding: 0;
-    margin: 25px 0;
-  }
-  .liste-avantages li {
-    font-size: 1.1rem;
-    margin-bottom: 10px;
-    color: #d4af37;
-    font-weight: bold;
-  }
-  .btn-decouvrir {
-    display: inline-block;
-    background: #d4af37;
-    color: #1a1a1a;
-    padding: 12px 30px;
-    text-decoration: none;
-    font-weight: bold;
-    border-radius: 4px;
-    transition: transform 0.3s;
-  }
-  .btn-decouvrir:hover {
-    transform: scale(1.05);
-    background: #f0c548;
-  }
-  .innovation-image {
-    flex: 1;
-    display: flex;
-    justify-content: center;
-    z-index: 1;
-  }
-  .cercle-ia {
-    width: 200px;
-    height: 200px;
-    border-radius: 50%;
-    background: radial-gradient(
-      circle,
-      rgba(212, 175, 55, 0.4) 0%,
-      transparent 70%
-    );
-    box-shadow: 0 0 50px rgba(212, 175, 55, 0.2);
-    animation: pulse 4s infinite ease-in-out;
-  }
-
-  /* --- APPEL FINAL (MODIFIÉ POUR RESPONSIVE) --- */
-  .dernier-bloc {
-    text-align: center;
-    margin-bottom: 0;
-  }
-  .dernier-bloc h2::after {
-    margin: 10px auto;
-  }
-  .appel-final-container {
-    margin-top: 40px;
-    background: white;
-    padding: 40px;
-    border-radius: 8px;
-    box-shadow: 0 10px 40px rgba(0, 0, 0, 0.05);
-    display: inline-block; /* Comportement par défaut desktop */
-  }
-  .appel-final {
-    font-family: "Playfair Display", serif;
-    font-weight: bold;
-    color: var(--terre);
-    font-size: 1.6rem;
-    margin-bottom: 30px;
-    font-style: italic;
-    text-align: center;
-  }
-  .btn-rejoindre {
-    display: inline-block; /* Important pour le padding et le responsive */
-    background: var(--gris-sombre);
-    color: white;
-    padding: 15px 40px;
-    text-decoration: none;
-    font-weight: bold;
-    text-transform: uppercase;
-    letter-spacing: 1px;
-    border-radius: 4px; /* Un peu d'arrondi c'est plus moderne */
-    transition: all 0.3s ease;
-  }
-  .btn-rejoindre:hover {
-    background: var(--or-vodun);
-    color: black;
-    transform: translateY(-2px);
-    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
-  }
-
-  /* --- ANIMATIONS --- */
-  @keyframes pulse {
-    0% {
-      transform: scale(0.95);
-      opacity: 0.5;
-    }
-    50% {
-      transform: scale(1.1);
-      opacity: 0.8;
-    }
-    100% {
-      transform: scale(0.95);
-      opacity: 0.5;
-    }
-  }
-  .animate-fade-down {
-    animation: fadeDown 1s ease-out forwards;
-  }
-  .animate-fade-up {
-    opacity: 0;
-    animation: fadeUp 0.8s ease-out forwards;
-  }
   @keyframes fadeDown {
     from {
       opacity: 0;
@@ -433,6 +244,10 @@ const schemaData = {
       transform: translateY(0);
     }
   }
+  .animate-fade-down {
+    animation: fadeDown 1s ease-out forwards;
+  }
+
   @keyframes fadeUp {
     from {
       opacity: 0;
@@ -443,71 +258,7 @@ const schemaData = {
       transform: translateY(0);
     }
   }
-  .delay-1 {
-    animation-delay: 0.2s;
-  }
-  .delay-2 {
-    animation-delay: 0.4s;
-  }
-  .delay-3 {
-    animation-delay: 0.6s;
-  }
-  .delay-4 {
-    animation-delay: 0.8s;
-  }
-
-  /* --- RESPONSIVE OPTIMISÉ --- */
-  @media (max-width: 768px) {
-    /* Typographie adaptée */
-    h1 {
-      font-size: 2.5rem;
-    }
-    h2 {
-      font-size: 1.8rem;
-    }
-    .lettrine {
-      font-size: 3.5rem;
-    }
-
-    /* Layout */
-    .page-container {
-      padding-bottom: 50px;
-    }
-    .about-header {
-      padding: 60px 20px 40px;
-    }
-    .grille-valeurs {
-      grid-template-columns: 1fr;
-    }
-    .bloc-innovation {
-      flex-direction: column;
-      padding: 30px 20px;
-      text-align: center;
-    }
-    .innovation-content p {
-      text-align: center;
-    }
-    .innovation-image {
-      display: none;
-    }
-
-    /* FIX BOUTON MOBILE */
-    .appel-final-container {
-      width: 100%; /* Prend toute la largeur disponible */
-      box-sizing: border-box; /* Inclut le padding dans le calcul de largeur */
-      padding: 30px 20px; /* Marges internes réduites */
-      margin-top: 20px;
-    }
-    .appel-final {
-      font-size: 1.2rem;
-      margin-bottom: 25px;
-    }
-    .btn-rejoindre {
-      display: block; /* Devient un bloc pour prendre la largeur */
-      width: 100%; /* Remplit le conteneur */
-      text-align: center; /* Centre le texte */
-      padding: 15px 10px; /* Padding ajusté */
-      box-sizing: border-box;
-    }
+  .animate-fade-up {
+    animation: fadeUp 0.8s ease-out forwards;
   }
 </style>
