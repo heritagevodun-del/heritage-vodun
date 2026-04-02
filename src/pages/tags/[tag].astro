@@ -21,13 +21,11 @@ interface MarkdownPost {
 
 // 1. GÉNÉRATION DES ROUTES DYNAMIQUES
 export async function getStaticPaths() {
-  // CORRECTION ICI : On inclut les .md ET les .mdx
   const matches = import.meta.glob<MarkdownPost>("../posts/*.{md,mdx}", {
     eager: true,
   });
   const allPosts = Object.values(matches);
 
-  // Tri du plus récent au plus ancien
   const sortedPosts = allPosts.sort((a, b) => {
     const dateA = new Date(
       a.frontmatter.pubDate || a.frontmatter.date || "",
@@ -73,7 +71,7 @@ function formatDate(dateInput: string | Date | undefined) {
   });
 }
 
-// 2. SEO (Schema reste utile pour la structure locale même en noindex)
+// 2. SEO
 const schemaData = {
   "@context": "https://schema.org",
   "@type": "CollectionPage",
@@ -93,61 +91,87 @@ const schemaData = {
 <BaseLayout titrePage={`Sujet : ${tag} | Héritage Vodun`} noindex={true}>
   <script type="application/ld+json" set:html={JSON.stringify(schemaData)} />
 
-  <div class="page-container">
-    <header class="tag-header animate-enter">
-      <span class="sous-titre">Exploration par mot-clé</span>
-      <h1>#{tag}</h1>
-      <div class="separateur"></div>
-      <p>
+  <div class="min-h-screen bg-dark-bg pb-24">
+    {/* --- EN-TÊTE --- */}
+    <header
+      class="text-center pt-20 pb-16 px-6 max-w-3xl mx-auto opacity-0 animate-fade-up"
+    >
+      <span
+        class="block text-gold text-xs uppercase tracking-[0.25em] font-bold mb-4"
+        >Exploration par mot-clé</span
+      >
+      <h1
+        class="font-serif text-5xl md:text-6xl text-white mb-6 leading-tight capitalize"
+      >
+        #{tag}
+      </h1>
+      <div class="w-16 h-1 bg-gold mx-auto mb-8 rounded-full"></div>
+      <p class="text-lg text-gray-400 font-sans">
         {posts.length} article{posts.length > 1 ? "s" : ""} trouvé{
           posts.length > 1 ? "s" : ""
-        } sur le thème : <strong>{tag}</strong>
+        } sur le thème : <strong class="text-white">{tag}</strong>
       </p>
     </header>
 
-    <section class="blog-grid">
+    {/* --- GRILLE D'ARTICLES --- */}
+    <section
+      class="max-w-7xl mx-auto px-6 grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-10"
+    >
       {
         posts.map((post: MarkdownPost, index: number) => (
           <article
-            class="carte-article"
-            style={`animation-delay: ${Math.min(index * 100, 1000)}ms`}
+            class="group bg-dark-surface border border-white/5 hover:border-gold/30 rounded-xl overflow-hidden flex flex-col shadow-xl hover:shadow-[0_15px_40px_rgba(212,175,55,0.12)] transition-all duration-500 hover:-translate-y-2 opacity-0 animate-fade-up"
+            style={`animation-delay: ${Math.min((index + 2) * 100, 1000)}ms`}
           >
             <a
               href={post.url}
-              class="lien-global"
-              aria-label={post.frontmatter.title}
+              class="block relative w-full h-60 overflow-hidden bg-black"
+              aria-label={`Lire l'article : ${post.frontmatter.title}`}
             >
-              <div class="conteneur-image">
-                {post.frontmatter.type_image === "animation_fa" ? (
-                  <FaAnimation mode="vignette" />
-                ) : (
-                  <div
-                    class="image-cover"
-                    style={`background-image: url(${post.frontmatter.image});`}
-                  />
-                )}
-              </div>
-
-              <div class="contenu-carte">
-                <div class="meta-header">
-                  <span class="date-publication">
-                    {formatDate(
-                      post.frontmatter.pubDate || post.frontmatter.date,
-                    )}
-                  </span>
-                  {post.frontmatter.categorie && (
-                    <span class="badge-cat">{post.frontmatter.categorie}</span>
-                  )}
+              {post.frontmatter.type_image === "animation_fa" ? (
+                <FaAnimation mode="vignette" />
+              ) : post.frontmatter.image ? (
+                <div
+                  class="absolute inset-0 bg-cover bg-center transition-transform duration-700 group-hover:scale-110"
+                  style={`background-image: url(${post.frontmatter.image});`}
+                  role="img"
+                  aria-label={post.frontmatter.title}
+                />
+              ) : (
+                <div class="absolute inset-0 bg-[radial-gradient(circle_at_center,#1a1a1a_0%,#050505_100%)] flex items-center justify-center">
+                  <div class="w-12 h-12 border-2 border-gold/30 rotate-45" />
                 </div>
+              )}
+              <div class="absolute inset-0 bg-gradient-to-t from-dark-surface via-transparent to-transparent opacity-90" />
+            </a>
 
-                <h3>{post.frontmatter.title}</h3>
-                <p class="description">{post.frontmatter.description}</p>
-
-                <span class="lire-plus">
-                  Lire l'article <span class="fleche">&rarr;</span>
+            <div class="p-8 flex flex-col flex-grow relative z-10">
+              <div class="flex justify-between items-center mb-5">
+                {post.frontmatter.categorie && (
+                  <span class="bg-gold/10 text-gold border border-gold/20 px-3 py-1 text-xs font-bold uppercase tracking-wider rounded">
+                    {post.frontmatter.categorie}
+                  </span>
+                )}
+                <span class="text-gray-500 text-xs font-sans italic">
+                  {formatDate(
+                    post.frontmatter.pubDate || post.frontmatter.date,
+                  )}
                 </span>
               </div>
-            </a>
+
+              <a href={post.url} class="flex flex-col flex-grow">
+                <h3 class="font-serif text-2xl text-white mb-4 leading-snug group-hover:text-gold transition-colors">
+                  {post.frontmatter.title}
+                </h3>
+                <p class="text-gray-400 text-sm leading-relaxed mb-8 line-clamp-3 flex-grow">
+                  {post.frontmatter.description}
+                </p>
+
+                <span class="mt-auto flex items-center gap-2 text-gold font-bold uppercase tracking-wider text-sm transition-all duration-300 group-hover:gap-4">
+                  Lire l&apos;article <span class="text-lg">&rarr;</span>
+                </span>
+              </a>
+            </div>
           </article>
         ))
       }
@@ -156,194 +180,7 @@ const schemaData = {
 </BaseLayout>
 
 <style>
-  /* --- VARIABLES --- */
-  :root {
-    --or-vodun: #d4af37;
-    --terre: #a0522d;
-    --gris-sombre: #2f4f4f;
-    --fond-page: #fdfbf7;
-  }
-
-  .page-container {
-    background-color: var(--fond-page);
-    min-height: 100vh;
-    padding-bottom: 80px;
-  }
-
-  /* --- HEADER --- */
-  .tag-header {
-    text-align: center;
-    padding: 80px 20px 60px;
-    max-width: 800px;
-    margin: 0 auto;
-  }
-
-  .tag-header h1 {
-    font-family: "Playfair Display", serif;
-    font-size: 3.5rem;
-    color: var(--gris-sombre);
-    margin: 10px 0;
-    text-transform: capitalize;
-  }
-
-  .sous-titre {
-    font-family: "Lato", sans-serif;
-    color: var(--terre);
-    text-transform: uppercase;
-    letter-spacing: 3px;
-    font-size: 0.85rem;
-    font-weight: bold;
-  }
-
-  .separateur {
-    width: 60px;
-    height: 3px;
-    background-color: var(--or-vodun);
-    margin: 20px auto;
-  }
-
-  /* --- GRILLE --- */
-  .blog-grid {
-    display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
-    gap: 40px;
-    padding: 0 5%;
-    max-width: 1400px;
-    margin: 0 auto;
-  }
-
-  /* --- CARTE ARTICLE --- */
-  .carte-article {
-    background: white;
-    border-radius: 12px;
-    overflow: hidden;
-    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.05);
-    transition: all 0.4s ease;
-    border: 1px solid rgba(0, 0, 0, 0.03);
-    opacity: 0;
-    animation: fadeInUp 0.8s ease forwards;
-    will-change: transform;
-  }
-
-  .carte-article:hover {
-    transform: translateY(-10px);
-    box-shadow: 0 20px 40px rgba(0, 0, 0, 0.12);
-  }
-
-  .lien-global {
-    text-decoration: none;
-    color: inherit;
-    display: flex;
-    flex-direction: column;
-    height: 100%;
-  }
-
-  /* --- IMAGE --- */
-  .conteneur-image {
-    width: 100%;
-    height: 220px;
-    overflow: hidden;
-    background-color: var(--gris-sombre);
-    position: relative;
-  }
-
-  .image-cover {
-    width: 100%;
-    height: 100%;
-    background-size: cover;
-    background-position: center;
-    transition: transform 0.6s ease;
-  }
-
-  .carte-article:hover .image-cover {
-    transform: scale(1.1);
-  }
-
-  /* --- CONTENU --- */
-  .contenu-carte {
-    padding: 30px;
-    display: flex;
-    flex-direction: column;
-    flex-grow: 1;
-  }
-
-  .meta-header {
-    margin-bottom: 15px;
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-  }
-
-  .date-publication {
-    font-family: "Lato", sans-serif;
-    font-size: 0.8rem;
-    color: #999;
-    font-style: italic;
-  }
-
-  .badge-cat {
-    font-size: 0.7rem;
-    text-transform: uppercase;
-    color: var(--or-vodun);
-    border: 1px solid var(--or-vodun);
-    padding: 2px 8px;
-    border-radius: 10px;
-  }
-
-  h3 {
-    font-family: "Playfair Display", serif;
-    font-size: 1.5rem;
-    color: var(--gris-sombre);
-    margin: 0 0 15px;
-    line-height: 1.3;
-    transition: color 0.3s;
-  }
-
-  .carte-article:hover h3 {
-    color: var(--terre);
-  }
-
-  .description {
-    font-family: "Lato", sans-serif;
-    font-size: 1rem;
-    color: #555;
-    line-height: 1.6;
-    margin-bottom: 25px;
-    flex-grow: 1;
-    display: -webkit-box;
-    -webkit-line-clamp: 3;
-    -webkit-box-orient: vertical;
-    overflow: hidden;
-  }
-
-  .lire-plus {
-    font-family: "Lato", sans-serif;
-    font-weight: bold;
-    color: var(--gris-sombre);
-    font-size: 0.9rem;
-    display: flex;
-    align-items: center;
-    gap: 8px;
-    transition: gap 0.3s;
-    margin-top: auto;
-  }
-
-  .fleche {
-    font-size: 1.2rem;
-    color: var(--or-vodun);
-    transition: transform 0.3s;
-  }
-
-  .carte-article:hover .lire-plus {
-    gap: 15px;
-    color: var(--terre);
-  }
-  .carte-article:hover .fleche {
-    transform: translateX(5px);
-  }
-
-  /* --- ANIMATIONS --- */
-  @keyframes fadeInUp {
+  @keyframes fade-up {
     from {
       opacity: 0;
       transform: translateY(30px);
@@ -353,7 +190,7 @@ const schemaData = {
       transform: translateY(0);
     }
   }
-  .animate-enter {
-    animation: fadeInUp 1s ease forwards;
+  .animate-fade-up {
+    animation: fade-up 0.8s ease-out forwards;
   }
 </style>
