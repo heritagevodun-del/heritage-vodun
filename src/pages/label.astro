@@ -8,14 +8,22 @@ const description =
 ---
 
 <BaseLayout titrePage={pageTitle} description={description}>
-  <main class="label-page">
-    <section class="hero-label animate-enter">
-      <div class="emblemes-container">
-        <div class="logo-wrapper" title="Héritage Vodun - La Tradition">
+  <div class="min-h-screen bg-dark-bg pb-24 overflow-x-hidden">
+    {/* --- HERO SECTION --- */}
+    <section
+      class="relative text-center pt-24 pb-20 px-6 bg-[radial-gradient(ellipse_at_top,#1a1a1a_0%,#050505_100%)] opacity-0 animate-fade-down"
+    >
+      <div class="flex justify-center items-end gap-4 md:gap-8 mb-16 flex-wrap">
+        {/* LOGO 1: Héritage Vodun */}
+        <div
+          class="flex flex-col items-center w-24 md:w-32 group transition-transform duration-500 hover:-translate-y-2"
+          title="Héritage Vodun - La Tradition"
+        >
           <svg
             viewBox="0 0 100 100"
             fill="none"
             xmlns="http://www.w3.org/2000/svg"
+            class="w-full h-auto drop-shadow-[0_10px_15px_rgba(212,175,55,0.2)]"
           >
             <defs>
               <linearGradient
@@ -122,16 +130,28 @@ const description =
             <circle cx="36" cy="25" r="2.8" fill="url(#beadGrad)"></circle>
             <circle cx="64" cy="25" r="2.8" fill="url(#beadGrad)"></circle>
           </svg>
-          <span class="legende-logo">Héritage Vodun</span>
+          <span
+            class="font-serif text-[0.65rem] md:text-xs text-gold uppercase tracking-widest mt-4 font-bold opacity-80 group-hover:opacity-100 transition-opacity"
+            >Héritage Vodun</span
+          >
         </div>
 
-        <div class="separator-x">×</div>
+        <div
+          class="font-serif text-3xl md:text-5xl text-gold/30 mb-8 md:mb-10 px-2 select-none"
+        >
+          ×
+        </div>
 
-        <div class="logo-wrapper" title="Mindoguesito - Le Gardien">
+        {/* LOGO 2: Mindoguesito */}
+        <div
+          class="flex flex-col items-center w-24 md:w-32 group transition-transform duration-500 hover:-translate-y-2"
+          title="Mindoguesito - Le Gardien"
+        >
           <svg
             viewBox="0 0 320 320"
             fill="none"
             xmlns="http://www.w3.org/2000/svg"
+            class="w-full h-auto drop-shadow-[0_10px_15px_rgba(212,175,55,0.2)]"
           >
             <defs>
               <linearGradient
@@ -209,301 +229,165 @@ const description =
               stroke="#8B4513"
               stroke-width="3"></path>
           </svg>
-          <span class="legende-logo">Mindoguesito</span>
+          <span
+            class="font-serif text-[0.65rem] md:text-xs text-gold uppercase tracking-widest mt-4 font-bold opacity-80 group-hover:opacity-100 transition-opacity"
+            >Mindoguesito</span
+          >
         </div>
       </div>
 
-      <h1>Le Label <span class="text-gold">Héritage Vodun</span></h1>
-      <p class="intro-text">
+      <h1 class="font-serif text-5xl md:text-6xl text-white mb-6 leading-tight">
+        Le Label <span
+          class="font-bold italic bg-gradient-to-r from-white to-gold bg-clip-text text-transparent"
+          >Héritage Vodun</span
+        >
+      </h1>
+      <div class="w-16 h-1 bg-gold mx-auto mb-8 rounded-full"></div>
+      <p
+        class="text-lg md:text-xl text-gray-400 max-w-3xl mx-auto leading-relaxed font-sans"
+      >
         Face à la "folklorisation" du sacré, nous établissons le premier
         standard de qualité pour le tourisme spirituel au Bénin. Une garantie
         pour le visiteur, une fierté pour le guide.
       </p>
     </section>
 
-    <section class="piliers-container">
-      <div class="pilier-card animate-enter" style="animation-delay: 200ms">
-        <div class="icon-pilier">📜</div>
-        <h3>1. Authenticité Historique</h3>
-        <p>
+    {/* --- LES 3 PILIERS DU LABEL --- */}
+    <section
+      class="max-w-6xl mx-auto px-6 py-20 grid grid-cols-1 md:grid-cols-3 gap-10"
+    >
+      <div
+        class="bg-dark-surface p-10 rounded-xl border-t-4 border-gold shadow-xl hover:-translate-y-2 transition-all duration-300 opacity-0 animate-fade-up"
+        style="animation-delay: 200ms;"
+      >
+        <div class="text-5xl mb-6">📜</div>
+        <h3 class="font-serif text-2xl text-white mb-4">
+          1. Authenticité Historique
+        </h3>
+        <p class="text-gray-400 leading-relaxed text-sm md:text-base">
           Fini les légendes inventées pour les touristes. Chaque guide certifié
-          par le Label s'engage à transmettre l'histoire réelle, vérifiée auprès
-          des anciens et des historiens. Nous distinguons clairement le mythe de
-          la réalité.
+          par le Label s&apos;engage à transmettre l&apos;histoire réelle,
+          vérifiée auprès des anciens et des historiens. Nous distinguons
+          clairement le mythe de la réalité.
         </p>
       </div>
 
-      <div class="pilier-card animate-enter" style="animation-delay: 400ms">
-        <div class="icon-pilier">🤝</div>
-        <h3>2. Éthique & Respect</h3>
-        <p>
-          Le Vodun n'est pas un spectacle de zoo. Nos partenaires s'engagent à
-          respecter la dignité des prêtres, le secret des couvents et
-          l'intégrité des visiteurs. Aucune extorsion, aucune mise en scène
-          forcée.
+      <div
+        class="bg-dark-surface p-10 rounded-xl border-t-4 border-gold shadow-xl hover:-translate-y-2 transition-all duration-300 opacity-0 animate-fade-up"
+        style="animation-delay: 400ms;"
+      >
+        <div class="text-5xl mb-6">🤝</div>
+        <h3 class="font-serif text-2xl text-white mb-4">
+          2. Éthique & Respect
+        </h3>
+        <p class="text-gray-400 leading-relaxed text-sm md:text-base">
+          Le Vodun n&apos;est pas un spectacle de zoo. Nos partenaires
+          s&apos;engagent à respecter la dignité des prêtres, le secret des
+          couvents et l&apos;intégrité des visiteurs. Aucune extorsion, aucune
+          mise en scène forcée.
         </p>
       </div>
 
-      <div class="pilier-card animate-enter" style="animation-delay: 600ms">
-        <div class="icon-pilier">🛡️</div>
-        <h3>3. Sécurité & Confiance</h3>
-        <p>
+      <div
+        class="bg-dark-surface p-10 rounded-xl border-t-4 border-gold shadow-xl hover:-translate-y-2 transition-all duration-300 opacity-0 animate-fade-up"
+        style="animation-delay: 600ms;"
+      >
+        <div class="text-5xl mb-6">🛡️</div>
+        <h3 class="font-serif text-2xl text-white mb-4">
+          3. Sécurité & Confiance
+        </h3>
+        <p class="text-gray-400 leading-relaxed text-sm md:text-base">
           Un visiteur serein est un visiteur qui revient. Le Label garantit des
-          parcours sécurisés, des tarifs transparents affichés à l'avance et une
-          identité numérique vérifiée pour chaque intervenant.
+          parcours sécurisés, des tarifs transparents affichés à l&apos;avance
+          et une identité numérique vérifiée pour chaque intervenant.
         </p>
       </div>
     </section>
 
+    {/* --- MANIFESTE INSTITUTIONNEL --- */}
     <section
-      class="manifeste-section animate-enter"
-      style="animation-delay: 800ms"
+      class="max-w-4xl mx-auto px-6 mb-24 opacity-0 animate-fade-up"
+      style="animation-delay: 800ms;"
     >
-      <div class="contenu-manifeste">
-        <h2>Notre Engagement envers l'État</h2>
-        <p>
-          <strong>Héritage Vodun</strong> ne se substitue pas aux institutions, il
-          les accompagne. Notre mission est de numériser et structurer l'offre touristique
-          informelle pour en faire un levier de développement économique fiable.
-        </p>
-        <p>
-          Nous construisons la base de données de confiance du Bénin Révélé.
-        </p>
+      <div
+        class="bg-dark-surface/50 border border-gold/30 p-10 md:p-16 rounded-2xl relative overflow-hidden backdrop-blur-md"
+      >
+        {/* Lueur décorative */}
+        <div
+          class="absolute top-0 right-0 w-64 h-64 bg-gold/10 rounded-full blur-[80px] pointer-events-none"
+        >
+        </div>
 
-        <div class="signature-bloc">
-          <span class="signature">La Direction Héritage Vodun</span>
-          <div class="date">Ouidah, 2026</div>
+        <div class="relative z-10 text-center">
+          <h2 class="font-serif text-3xl md:text-4xl text-white mb-8">
+            Notre Engagement envers l&apos;État
+          </h2>
+          <div
+            class="text-lg text-gray-300 leading-relaxed space-y-6 max-w-2xl mx-auto text-left md:text-center"
+          >
+            <p>
+              <strong class="text-gold">Héritage Vodun</strong> ne se substitue pas
+              aux institutions, il les accompagne. Notre mission est de numériser
+              et structurer l&apos;offre touristique informelle pour en faire un levier
+              de développement économique fiable.
+            </p>
+            <p>
+              Nous construisons la base de données de confiance du Bénin Révélé.
+            </p>
+          </div>
+
+          <div
+            class="mt-12 pt-8 border-t border-gold/20 flex flex-col items-end max-w-2xl mx-auto text-right"
+          >
+            <span class="font-serif italic text-2xl text-gold mb-1"
+              >La Direction Héritage Vodun</span
+            >
+            <span
+              class="font-sans text-xs uppercase tracking-widest text-gray-500"
+              >Ouidah, 2026</span
+            >
+          </div>
         </div>
       </div>
     </section>
 
-    <section class="cta-section animate-enter" style="animation-delay: 1000ms">
-      <h2>Vous êtes Guide ou Gardien de Temple ?</h2>
-      <p>Rejoignez le réseau d'excellence.</p>
-      <a href="/contact" class="btn-gold">Rejoindre le label →</a>
+    {/* --- CTA --- */}
+    <section
+      class="text-center px-6 opacity-0 animate-fade-up"
+      style="animation-delay: 1000ms;"
+    >
+      <h2 class="font-serif text-3xl text-white mb-4">
+        Vous êtes Guide ou Gardien de Temple ?
+      </h2>
+      <p class="font-sans text-gray-400 mb-8">
+        Rejoignez le réseau d&apos;excellence.
+      </p>
+      <a
+        href="/contact"
+        class="inline-block bg-gold hover:bg-gold-hover text-black font-bold uppercase tracking-widest px-10 py-4 rounded-full transition-all duration-300 hover:shadow-[0_0_20px_rgba(212,175,55,0.4)] hover:-translate-y-1"
+      >
+        Rejoindre le label &rarr;
+      </a>
     </section>
-  </main>
+  </div>
 </BaseLayout>
 
 <style>
-  /* --- VARIABLES --- */
-  :root {
-    --or-vodun: #d4af37;
-    --or-clair: #f3e5ab;
-    --noir-profond: #1a1a1a;
-    --vert-foret: #2f4f4f;
-    --blanc-creme: #fdfbf7;
+  @keyframes fadeDown {
+    from {
+      opacity: 0;
+      transform: translateY(-30px);
+    }
+    to {
+      opacity: 1;
+      transform: translateY(0);
+    }
+  }
+  .animate-fade-down {
+    animation: fadeDown 1s ease-out forwards;
   }
 
-  .label-page {
-    background-color: var(--blanc-creme);
-    font-family: "Lato", sans-serif;
-    padding-bottom: 80px;
-    overflow-x: hidden;
-  }
-
-  /* --- HERO LOGOS --- */
-  .hero-label {
-    text-align: center;
-    padding: 60px 20px 40px;
-    background: linear-gradient(to bottom, #fff, var(--blanc-creme));
-  }
-
-  .emblemes-container {
-    display: flex;
-    justify-content: center;
-    align-items: flex-end; /* Aligner sur le bas pour l'équilibre visuel */
-    gap: 20px;
-    margin-bottom: 50px;
-    flex-wrap: wrap;
-  }
-
-  .logo-wrapper {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    width: 120px; /* Taille fixe pour l'équilibre */
-    transition: transform 0.3s ease;
-  }
-
-  .logo-wrapper:hover {
-    transform: translateY(-5px);
-  }
-
-  /* Gestion des SVG */
-  .logo-wrapper svg {
-    width: 100%;
-    height: auto;
-    filter: drop-shadow(0 10px 15px rgba(139, 69, 19, 0.15));
-  }
-
-  .legende-logo {
-    font-family: "Playfair Display", serif;
-    font-size: 0.75rem;
-    text-transform: uppercase;
-    letter-spacing: 1px;
-    color: var(--vert-foret);
-    margin-top: 15px;
-    font-weight: bold;
-    opacity: 0.8;
-  }
-
-  /* Le séparateur X */
-  .separator-x {
-    font-family: "Playfair Display", serif;
-    font-size: 2.5rem;
-    color: var(--or-vodun);
-    opacity: 0.5;
-    margin-bottom: 40px; /* Ajustement vertical */
-  }
-
-  /* --- TITRES --- */
-  h1 {
-    font-family: "Playfair Display", serif;
-    font-size: 3rem;
-    color: var(--noir-profond);
-    margin-bottom: 20px;
-  }
-
-  .text-gold {
-    color: var(--or-vodun);
-    font-style: italic;
-  }
-
-  .intro-text {
-    font-size: 1.2rem;
-    max-width: 700px;
-    margin: 0 auto;
-    color: #555;
-    line-height: 1.6;
-  }
-
-  /* --- PILIERS (Standard) --- */
-  .piliers-container {
-    max-width: 1200px;
-    margin: 0 auto;
-    padding: 40px 20px;
-    display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-    gap: 40px;
-  }
-
-  .pilier-card {
-    background: white;
-    padding: 40px 30px;
-    border-radius: 8px;
-    border-top: 4px solid var(--or-vodun);
-    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.05);
-    transition: transform 0.3s ease;
-  }
-
-  .pilier-card:hover {
-    transform: translateY(-5px);
-  }
-
-  .icon-pilier {
-    font-size: 3rem;
-    margin-bottom: 20px;
-  }
-
-  h3 {
-    font-family: "Playfair Display", serif;
-    font-size: 1.5rem;
-    color: var(--vert-foret);
-    margin-bottom: 15px;
-  }
-
-  .pilier-card p {
-    color: #666;
-    line-height: 1.6;
-  }
-
-  /* --- MANIFESTE --- */
-  .manifeste-section {
-    background-color: var(--vert-foret);
-    color: white;
-    padding: 80px 20px;
-    margin: 60px 0;
-    text-align: center;
-    /* Motif subtil en fond */
-    background-image: url("data:image/svg+xml,%3Csvg width='60' height='60' viewBox='0 0 60 60' xmlns='http://www.w3.org/2000/svg'%3E%3Cg fill='none' fill-rule='evenodd'%3E%3Cg fill='%23d4af37' fill-opacity='0.05'%3E%3Cpath d='M36 34v-4h-2v4h-4v2h4v4h2v-4h4v-2h-4zm0-30V0h-2v4h-4v2h4v4h2V6h4V4h-4zM6 34v-4H4v4H0v2h4v4h2v-4h4v-2H6zM6 4V0H4v4H0v2h4v4h2V6h4V4H6z'/%3E%3C/g%3E%3C/g%3E%3C/svg%3E");
-  }
-
-  .contenu-manifeste {
-    max-width: 800px;
-    margin: 0 auto;
-    border: 1px solid rgba(212, 175, 55, 0.3);
-    padding: 40px;
-  }
-
-  .manifeste-section h2 {
-    font-family: "Playfair Display", serif;
-    color: var(--or-vodun);
-    font-size: 2.2rem;
-    margin-bottom: 30px;
-  }
-
-  .manifeste-section p {
-    font-size: 1.1rem;
-    margin-bottom: 20px;
-    opacity: 0.9;
-  }
-
-  .signature-bloc {
-    margin-top: 40px;
-    display: flex;
-    flex-direction: column;
-    align-items: flex-end;
-  }
-
-  .signature {
-    font-family: "Playfair Display", serif;
-    font-style: italic;
-    font-size: 1.5rem;
-    color: var(--or-vodun);
-  }
-
-  .date {
-    font-size: 0.9rem;
-    opacity: 0.6;
-    text-transform: uppercase;
-    letter-spacing: 2px;
-  }
-
-  /* --- CTA --- */
-  .cta-section {
-    text-align: center;
-    padding: 40px 20px;
-  }
-
-  .cta-section h2 {
-    font-family: "Playfair Display", serif;
-    font-size: 2rem;
-    color: var(--noir-profond);
-  }
-
-  .btn-gold {
-    display: inline-block;
-    background-color: var(--or-vodun);
-    color: white;
-    padding: 15px 40px;
-    border-radius: 50px;
-    text-decoration: none;
-    font-weight: bold;
-    text-transform: uppercase;
-    letter-spacing: 1px;
-    margin-top: 30px;
-    transition: all 0.3s;
-    box-shadow: 0 5px 15px rgba(212, 175, 55, 0.4);
-  }
-
-  .btn-gold:hover {
-    background-color: #b5922b;
-    transform: translateY(-3px);
-  }
-
-  /* --- ANIMATIONS --- */
-  @keyframes fadeInUp {
+  @keyframes fadeUp {
     from {
       opacity: 0;
       transform: translateY(30px);
@@ -513,26 +397,7 @@ const description =
       transform: translateY(0);
     }
   }
-
-  .animate-enter {
-    opacity: 0;
-    animation: fadeInUp 0.8s ease forwards;
-  }
-
-  /* MOBILE */
-  @media (max-width: 768px) {
-    h1 {
-      font-size: 2.2rem;
-    }
-    .emblemes-container {
-      gap: 10px;
-    }
-    .logo-wrapper {
-      width: 90px;
-    }
-    .separator-x {
-      font-size: 1.8rem;
-      margin-bottom: 25px;
-    }
+  .animate-fade-up {
+    animation: fadeUp 0.8s ease-out forwards;
   }
 </style>
