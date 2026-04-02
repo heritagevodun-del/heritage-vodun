@@ -1,90 +1,92 @@
 ---
-/* GlobalLightbox.astro 
-  Détecte automatiquement toutes les images de l&apos;article et permet de les afficher en plein écran.
-*/
+/* GlobalLightbox.astro - Version Infaillible avec Délégation d'Événements */
 ---
 
-{/* La Fenêtre Modale (Cachée par défaut) */}
 <dialog
   id="global-lightbox"
-  class="backdrop:bg-[#050505]/95 bg-transparent p-0 w-screen h-screen max-w-none max-h-none border-none m-0 focus:outline-none"
+  class="backdrop:bg-[#050505]/95 bg-transparent p-0 w-screen h-screen max-w-none max-h-none border-none m-0 focus:outline-none overflow-hidden z-[99999]"
 >
   <div
-    class="flex flex-col items-center justify-center w-full h-full p-4 md:p-10 cursor-zoom-out"
-    id="lightbox-close-zone"
+    class="flex flex-col items-center justify-center w-full h-full p-4 cursor-zoom-out"
   >
     <img
       id="lightbox-img"
       src=""
       alt="Zoom"
-      class="max-w-full max-h-[85vh] object-contain rounded-md shadow-[0_0_50px_rgba(212,175,55,0.15)] border border-white/10"
+      class="max-w-full max-h-[85vh] object-contain rounded-md shadow-[0_0_50px_rgba(212,175,55,0.15)] border border-white/10 pointer-events-none"
     />
 
     <span
-      class="text-[#d4af37] font-mono text-[10px] tracking-[0.3em] uppercase mt-6 border border-[#d4af37]/30 px-6 py-2 rounded-full pointer-events-none"
+      class="text-gold font-mono text-[10px] tracking-[0.3em] uppercase mt-6 border border-gold/30 px-6 py-2 rounded-full pointer-events-none"
     >
-      Fermer l&apos;image
+      Fermer
     </span>
   </div>
 </dialog>
 
 <script>
-  function initLightbox() {
+  // La "Délégation d'événements" : on écoute sur le document entier.
+  // Cela fonctionne même si Astro recharge la page ou si les images arrivent en retard.
+  document.addEventListener("click", (e) => {
+    const target = e.target as HTMLElement;
     const dialog = document.getElementById(
       "global-lightbox",
     ) as HTMLDialogElement;
     const lightboxImg = document.getElementById(
       "lightbox-img",
     ) as HTMLImageElement;
-    const closeZone = document.getElementById("lightbox-close-zone");
 
     if (!dialog || !lightboxImg) return;
 
-    // Cible toutes les images dans la balise principale de l'article
-    // Ajustez 'main img' ou 'article img' selon la structure de votre site
-    const images = document.querySelectorAll(
-      "article img, main img, .prose img",
-    );
+    // 1. SI ON CLIQUE SUR UNE IMAGE DANS L'ARTICLE (.prose img)
+    if (target.matches(".prose img")) {
+      e.preventDefault(); // Empêche tout comportement par défaut
+      const imgTarget = target as HTMLImageElement;
 
-    images.forEach((img: any) => {
-      // Ajoute le curseur de zoom et un petit effet de survol
-      img.classList.add(
-        "cursor-zoom-in",
-        "transition-transform",
-        "duration-300",
-        "hover:scale-[1.02]",
-        "hover:shadow-lg",
-      );
+      // On transfère la source de l'image cliquée vers la Lightbox
+      lightboxImg.src = imgTarget.src;
+      lightboxImg.alt = imgTarget.alt || "Image en plein écran";
 
-      // Au clic, on copie la source de l'image dans la modale et on l'ouvre
-      img.addEventListener("click", () => {
-        lightboxImg.src = img.src;
-        lightboxImg.alt = img.alt || "Image de l'article";
-        dialog.showModal();
-      });
-    });
-
-    // Fermer la modale au clic sur la zone ou le fond
-    if (closeZone) {
-      closeZone.addEventListener("click", () => dialog.close());
+      // On affiche la fenêtre
+      dialog.showModal();
+      return; // On arrête l'exécution ici
     }
-    dialog.addEventListener("click", (e) => {
-      if (e.target === dialog) dialog.close();
-    });
-  }
 
-  // Exécution au chargement classique et lors des transitions Astro
-  document.addEventListener("DOMContentLoaded", initLightbox);
-  document.addEventListener("astro:page-load", initLightbox);
+    // 2. SI ON CLIQUE DANS LA FENÊTRE POUR LA FERMER
+    if (dialog.open) {
+      // Un clic n'importe où quand la modale est ouverte va la fermer
+      dialog.close();
+    }
+  });
 </script>
 
-<style>
-  /* Animations fluides */
-  dialog[open] {
-    animation: fadeIn 0.3s ease-out forwards;
+<style is:global>
+  /* FORCAGE CSS : Transforme toutes les images des articles en boutons de zoom */
+  .prose img {
+    cursor: zoom-in !important;
+    transition:
+      transform 0.3s ease,
+      box-shadow 0.3s ease;
+    border-radius: 0.5rem; /* Coins légèrement arrondis */
+    position: relative;
+    z-index: 10;
   }
 
-  dialog::backdrop {
+  /* Effet de survol doux sur ordinateur */
+  @media (hover: hover) {
+    .prose img:hover {
+      transform: scale(1.02);
+      box-shadow: 0 10px 25px rgba(0, 0, 0, 0.5);
+      border: 1px solid rgba(212, 175, 55, 0.3);
+    }
+  }
+
+  /* --- ANIMATIONS DE LA LIGHTBOX --- */
+  #global-lightbox[open] {
+    animation: fadeIn 0.3s cubic-bezier(0.165, 0.84, 0.44, 1) forwards;
+  }
+
+  #global-lightbox::backdrop {
     background: rgba(5, 5, 5, 0.95);
     animation: fadeIn 0.3s ease-out forwards;
   }
@@ -100,8 +102,8 @@
     }
   }
 
-  /* Empêche la page de défiler derrière l'image zoomée */
-  html:has(dialog[open]) {
-    overflow: hidden;
+  /* BLOQUER LE DÉFILEMENT DE LA PAGE QUAND LA LIGHTBOX EST OUVERTE */
+  html:has(#global-lightbox[open]) {
+    overflow: hidden !important;
   }
 </style>
