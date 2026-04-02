@@ -1,5 +1,4 @@
 ---
-// src/pages/contact.astro
 import BaseLayout from "../layouts/BaseLayout.astro";
 
 // SEO : Schema.org pour la page Contact
@@ -23,127 +22,201 @@ const schemaData = {
 <BaseLayout titrePage="Contact & Réservation | L'Arbre à Palabre">
   <script type="application/ld+json" set:html={JSON.stringify(schemaData)} />
 
-  <div class="page-container">
-    <div class="header-contact animate-fade-down">
-      <span class="sur-titre">L'Arbre à Palabre</span>
-      <h1>Parlons ensemble</h1>
-      <div class="ligne-or"></div>
-      <p class="intro-text">
-        Sous l'arbre à palabre, la parole se libère. Que ce soit pour organiser
-        votre voyage ou proposer un partenariat, nous sommes à votre écoute.
+  <div class="min-h-screen bg-dark-bg pb-24 overflow-x-hidden">
+    {/* --- HEADER --- */}
+    <div
+      class="text-center pt-24 pb-16 px-6 max-w-3xl mx-auto opacity-0 animate-fade-down relative z-10"
+    >
+      <span
+        class="block text-gold text-xs uppercase tracking-[0.25em] font-bold mb-4"
+        >L&apos;Arbre à Palabre</span
+      >
+      <h1 class="font-serif text-5xl md:text-6xl text-white mb-6 leading-tight">
+        Parlons ensemble
+      </h1>
+      <div class="w-16 h-1 bg-gold mx-auto mb-8 rounded-full"></div>
+      <p class="text-lg text-gray-400 leading-relaxed font-sans">
+        Sous l&apos;arbre à palabre, la parole se libère. Que ce soit pour
+        organiser votre voyage ou proposer un partenariat, nous sommes à votre
+        écoute.
       </p>
     </div>
 
-    <div class="conteneur-layout">
-      <aside class="sidebar-info animate-fade-right">
-        <div class="info-card special-ai">
-          <div class="icon-wrapper">✨</div>
-          <h3>Une question sur le Vodun ?</h3>
-          <p>
-            Vous voulez savoir ce qu'est le Fâ ou l'histoire d'un masque ? Pas
-            besoin d'attendre un email !
+    {/* --- LAYOUT PRINCIPAL --- */}
+    <div
+      class="max-w-6xl mx-auto px-6 grid grid-cols-1 lg:grid-cols-3 gap-10 lg:gap-16 relative z-10"
+    >
+      {/* --- SIDEBAR INFO --- */}
+      <aside
+        class="flex flex-col gap-8 order-2 lg:order-1 opacity-0 animate-fade-right"
+        style="animation-delay: 200ms;"
+      >
+        {/* Carte IA */}
+        <div
+          class="bg-gradient-to-br from-gold/10 to-transparent border border-gold/30 p-8 rounded-xl text-center shadow-[0_10px_30px_rgba(212,175,55,0.1)] hover:shadow-[0_15px_40px_rgba(212,175,55,0.2)] transition-all duration-300"
+        >
+          <div class="text-4xl mb-4 animate-[bounce_3s_infinite]">✨</div>
+          <h3 class="font-serif text-2xl text-white mb-3">
+            Une question sur le Vodun ?
+          </h3>
+          <p class="text-gray-400 text-sm leading-relaxed mb-6">
+            Vous voulez savoir ce qu&apos;est le Fâ ou l&apos;histoire d&apos;un
+            masque ? Pas besoin d&apos;attendre un email !
           </p>
-
           <a
             href="https://www.mindoguesito.com"
-            class="btn-ai-action open-oracle"
+            class="open-oracle inline-block bg-gold hover:bg-gold-hover text-black font-bold uppercase tracking-widest text-xs px-6 py-3 rounded-full transition-all duration-300 hover:-translate-y-1 shadow-[0_5px_15px_rgba(212,175,55,0.2)]"
           >
-            Demander à Mindoguesito (Immédiat)
+            Demander à Mindoguesito
           </a>
         </div>
 
-        <div class="info-card">
-          <div class="icon-wrapper">📍</div>
-          <h3>Localisation</h3>
-          <p>Ouidah, Bénin<br />Cité historique</p>
+        {/* Carte Localisation */}
+        <div
+          class="bg-dark-surface border border-white/5 p-8 rounded-xl text-center"
+        >
+          <div class="text-4xl mb-4 opacity-80">📍</div>
+          <h3 class="font-serif text-xl text-white mb-2">Localisation</h3>
+          <p class="text-gray-400 text-sm leading-relaxed">
+            Ouidah, Bénin<br />Cité historique
+          </p>
         </div>
       </aside>
 
-      <main class="form-section animate-fade-up">
-        <div class="carte-contact">
-          <div class="contenu-carte">
-            <h2>Envoyer un message officiel</h2>
-            <p class="sous-titre-form">
-              Pour les demandes de guides, presse ou collaborations.
-            </p>
-
-            <form id="form-contact" class="formulaire">
-              <input
-                type="hidden"
-                name="access_key"
-                value="90fd8cd4-08c6-427b-9e44-ae19d6c3f487"
-              />
-              <input
-                type="hidden"
-                name="subject"
-                id="hidden-subject"
-                value="Nouveau Message Site Web"
-              />
-              <input
-                type="checkbox"
-                name="botcheck"
-                class="hidden"
-                style="display: none;"
-              />
-
-              <div class="grid-2-cols">
-                <div class="groupe-input">
-                  <label for="nom">Nom complet</label>
-                  <input
-                    type="text"
-                    id="nom"
-                    name="name"
-                    required
-                    placeholder="Votre Nom"
-                  />
-                </div>
-                <div class="groupe-input">
-                  <label for="email-contact">Email</label>
-                  <input
-                    type="email"
-                    id="email-contact"
-                    name="email"
-                    required
-                    placeholder="votre@email.com"
-                  />
-                </div>
-              </div>
-
-              <div class="groupe-input">
-                <label for="sujet-select">Objet de la demande</label>
-                <div class="select-wrapper">
-                  <select id="sujet-select" name="topic" required>
-                    <option value="" disabled selected
-                      >-- Choisissez un sujet --</option
-                    >
-                    <option value="Voyage">Organiser une visite à Ouidah</option
-                    >
-                    <option value="Partenariat"
-                      >Proposition de Partenariat</option
-                    >
-                    <option value="Presse">Presse & Médias</option>
-                    <option value="Autre">Autre demande</option>
-                  </select>
-                </div>
-              </div>
-
-              <div class="groupe-input">
-                <label for="message">Votre Message</label>
-                <textarea
-                  id="message"
-                  name="message"
-                  rows="5"
-                  required
-                  placeholder="Dites-nous en plus sur votre projet..."
-                ></textarea>
-              </div>
-
-              <button type="submit" class="btn-envoi">Envoyer le message</button
-              >
-
-              <div id="resultat-contact" class="message-resultat"></div>
-            </form>
+      {/* --- FORMULAIRE --- */}
+      <main
+        class="lg:col-span-2 order-1 lg:order-2 opacity-0 animate-fade-up"
+        style="animation-delay: 400ms;"
+      >
+        <div
+          class="bg-dark-surface border border-gold/20 rounded-2xl p-8 md:p-12 shadow-2xl relative overflow-hidden"
+        >
+          {/* Lueur déco */}
+          <div
+            class="absolute top-0 right-0 w-64 h-64 bg-gold/5 rounded-full blur-[80px] pointer-events-none"
+          >
           </div>
+
+          <h2
+            class="font-serif text-3xl md:text-4xl text-white mb-2 relative z-10"
+          >
+            Envoyer un message officiel
+          </h2>
+          <p class="text-gray-400 text-sm mb-10 relative z-10">
+            Pour les demandes de guides, presse ou collaborations.
+          </p>
+
+          <form id="form-contact" class="flex flex-col gap-6 relative z-10">
+            <input
+              type="hidden"
+              name="access_key"
+              value="90fd8cd4-08c6-427b-9e44-ae19d6c3f487"
+            />
+            <input
+              type="hidden"
+              name="subject"
+              id="hidden-subject"
+              value="Nouveau Message Site Web"
+            />
+            <input
+              type="checkbox"
+              name="botcheck"
+              class="hidden"
+              style="display: none;"
+            />
+
+            <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+              <div class="flex flex-col gap-2">
+                <label
+                  for="nom"
+                  class="text-xs font-bold uppercase tracking-widest text-gold"
+                  >Nom complet</label
+                >
+                <input
+                  type="text"
+                  id="nom"
+                  name="name"
+                  required
+                  placeholder="Votre Nom"
+                  class="bg-black/50 border border-white/10 rounded-md px-4 py-3 text-white placeholder-gray-600 focus:outline-none focus:border-gold focus:ring-1 focus:ring-gold transition-all duration-300"
+                />
+              </div>
+              <div class="flex flex-col gap-2">
+                <label
+                  for="email-contact"
+                  class="text-xs font-bold uppercase tracking-widest text-gold"
+                  >Email</label
+                >
+                <input
+                  type="email"
+                  id="email-contact"
+                  name="email"
+                  required
+                  placeholder="votre@email.com"
+                  class="bg-black/50 border border-white/10 rounded-md px-4 py-3 text-white placeholder-gray-600 focus:outline-none focus:border-gold focus:ring-1 focus:ring-gold transition-all duration-300"
+                />
+              </div>
+            </div>
+
+            <div class="flex flex-col gap-2">
+              <label
+                for="sujet-select"
+                class="text-xs font-bold uppercase tracking-widest text-gold"
+                >Objet de la demande</label
+              >
+              <div class="relative">
+                <select
+                  id="sujet-select"
+                  name="topic"
+                  required
+                  class="w-full bg-black/50 border border-white/10 rounded-md px-4 py-3 text-white appearance-none cursor-pointer focus:outline-none focus:border-gold focus:ring-1 focus:ring-gold transition-all duration-300 [&>option]:bg-dark-surface [&>option]:text-white"
+                >
+                  <option value="" disabled selected
+                    >-- Choisissez un sujet --</option
+                  >
+                  <option value="Voyage">Organiser une visite à Ouidah</option>
+                  <option value="Partenariat">Proposition de Partenariat</option
+                  >
+                  <option value="Presse">Presse & Médias</option>
+                  <option value="Autre">Autre demande</option>
+                </select>
+                <div
+                  class="absolute right-4 top-1/2 -translate-y-1/2 pointer-events-none text-gold text-xs"
+                >
+                  ▼
+                </div>
+              </div>
+            </div>
+
+            <div class="flex flex-col gap-2">
+              <label
+                for="message"
+                class="text-xs font-bold uppercase tracking-widest text-gold"
+                >Votre Message</label
+              >
+              <textarea
+                id="message"
+                name="message"
+                rows="5"
+                required
+                placeholder="Dites-nous en plus sur votre projet..."
+                class="bg-black/50 border border-white/10 rounded-md px-4 py-3 text-white placeholder-gray-600 focus:outline-none focus:border-gold focus:ring-1 focus:ring-gold transition-all duration-300 resize-y"
+              ></textarea>
+            </div>
+
+            <button
+              type="submit"
+              class="btn-envoi bg-gold hover:bg-gold-hover text-black font-bold uppercase tracking-widest py-4 rounded-md transition-all duration-300 mt-4 disabled:opacity-50 disabled:cursor-not-allowed hover:-translate-y-1 shadow-[0_5px_15px_rgba(212,175,55,0.2)]"
+            >
+              Envoyer le message
+            </button>
+
+            <div
+              id="resultat-contact"
+              class="hidden text-center font-bold text-sm mt-2 p-4 rounded-md"
+            >
+            </div>
+          </form>
         </div>
       </main>
     </div>
@@ -157,8 +230,7 @@ const schemaData = {
   const subjectSelect = document.getElementById("sujet-select");
   const hiddenSubject = document.getElementById("hidden-subject");
 
-  if (form) {
-    // Mise à jour dynamique du sujet de l'email
+  if (form && result && btn && subjectSelect && hiddenSubject) {
     subjectSelect.addEventListener("change", (e) => {
       hiddenSubject.value = `[Héritage Vodun] Nouveau message : ${e.target.value}`;
     });
@@ -170,9 +242,10 @@ const schemaData = {
       const json = JSON.stringify(object);
 
       result.innerHTML = "Envoi en cours...";
-      result.className = "message-resultat loading";
-      if (btn) btn.innerHTML = "Patientez...";
-      if (btn) btn.disabled = true;
+      result.className =
+        "block text-center font-bold text-sm mt-2 p-4 rounded-md text-gold"; // Style Loading
+      btn.innerHTML = "Patientez...";
+      btn.disabled = true;
 
       fetch("https://api.web3forms.com/submit", {
         method: "POST",
@@ -183,339 +256,76 @@ const schemaData = {
         body: json,
       })
         .then(async (response) => {
-          let json = await response.json();
+          let jsonResponse = await response.json();
           if (response.status == 200) {
             result.innerHTML =
               "✨ Message reçu !<br>Nous vous répondrons sous peu.";
-            result.className = "message-resultat success";
+            result.className =
+              "block text-center font-bold text-sm mt-2 p-4 rounded-md bg-green-900/30 text-green-400 border border-green-500/30"; // Style Success
             form.reset();
-            if (btn) btn.innerHTML = "Message Envoyé";
+            btn.innerHTML = "Message Envoyé";
           } else {
             console.log(response);
-            result.innerHTML = json.message || "Erreur lors de l'envoi.";
-            result.className = "message-resultat error";
-            if (btn) btn.innerHTML = "Réessayer";
-            if (btn) btn.disabled = false;
+            result.innerHTML =
+              jsonResponse.message || "Erreur lors de l'envoi.";
+            result.className =
+              "block text-center font-bold text-sm mt-2 p-4 rounded-md bg-red-900/30 text-red-400 border border-red-500/30"; // Style Error
+            btn.innerHTML = "Réessayer";
+            btn.disabled = false;
           }
         })
         .catch((error) => {
           console.log(error);
           result.innerHTML = "Erreur de connexion.";
-          result.className = "message-resultat error";
-          if (btn) btn.innerHTML = "Réessayer";
-          if (btn) btn.disabled = false;
+          result.className =
+            "block text-center font-bold text-sm mt-2 p-4 rounded-md bg-red-900/30 text-red-400 border border-red-500/30"; // Style Error
+          btn.innerHTML = "Réessayer";
+          btn.disabled = false;
         });
     });
   }
 </script>
 
 <style>
-  /* --- VARIABLES --- */
-  :root {
-    --or-vodun: #d4af37;
-    --terre: #a0522d;
-    --gris-sombre: #2f4f4f;
-    --fond-page: #fdfbf7;
-  }
-
-  .page-container {
-    background-color: var(--fond-page);
-    padding-bottom: 80px;
-    min-height: 90vh;
-  }
-
-  /* --- HEADER --- */
-  .header-contact {
-    text-align: center;
-    padding: 80px 20px 60px;
-    max-width: 800px;
-    margin: 0 auto;
-  }
-  .sur-titre {
-    text-transform: uppercase;
-    letter-spacing: 3px;
-    color: var(--terre);
-    font-size: 0.9rem;
-    font-weight: 700;
-    display: block;
-    margin-bottom: 15px;
-  }
-  h1 {
-    font-family: "Playfair Display", serif;
-    font-size: 3.5rem;
-    color: var(--gris-sombre);
-    margin: 0;
-    line-height: 1.1;
-  }
-  .ligne-or {
-    width: 60px;
-    height: 3px;
-    background-color: var(--or-vodun);
-    margin: 20px auto;
-  }
-  .intro-text {
-    font-family: "Lato", sans-serif;
-    font-size: 1.1rem;
-    color: #555;
-    line-height: 1.6;
-  }
-
-  /* --- LAYOUT GRID (Sidebar + Form) --- */
-  .conteneur-layout {
-    max-width: 1100px;
-    margin: 0 auto;
-    padding: 0 20px;
-    display: grid;
-    grid-template-columns: 1fr 2fr; /* Sidebar plus petite */
-    gap: 40px;
-    align-items: start;
-  }
-
-  /* SIDEBAR INFO */
-  .sidebar-info {
-    display: flex;
-    flex-direction: column;
-    gap: 20px;
-  }
-  .info-card {
-    background: white;
-    padding: 30px;
-    border-radius: 8px;
-    border: 1px solid rgba(0, 0, 0, 0.05);
-    text-align: center;
-  }
-  .special-ai {
-    background: #2f4f4f;
-    color: white;
-    box-shadow: 0 10px 30px rgba(47, 79, 79, 0.2);
-    border: none;
-  }
-  .special-ai h3,
-  .special-ai p {
-    color: white;
-  }
-  .icon-wrapper {
-    font-size: 2rem;
-    margin-bottom: 10px;
-  }
-  .info-card h3 {
-    font-family: "Playfair Display", serif;
-    margin-bottom: 10px;
-    font-size: 1.2rem;
-  }
-  .info-card p {
-    font-size: 0.95rem;
-    line-height: 1.5;
-    color: #666;
-    margin-bottom: 20px;
-  }
-  .btn-ai-action {
-    display: inline-block;
-    background: var(--or-vodun);
-    color: #1a1a1a;
-    padding: 10px 20px;
-    border-radius: 4px;
-    text-decoration: none;
-    font-weight: bold;
-    font-size: 0.9rem;
-    transition: transform 0.2s;
-  }
-  .btn-ai-action:hover {
-    transform: scale(1.05);
-  }
-
-  /* FORM SECTION */
-  .carte-contact {
-    background: white;
-    border-radius: 12px;
-    box-shadow: 0 20px 60px rgba(0, 0, 0, 0.08);
-    overflow: hidden;
-    border-top: 5px solid var(--terre);
-  }
-  .contenu-carte {
-    padding: 45px;
-  }
-  h2 {
-    font-family: "Playfair Display", serif;
-    font-size: 2rem;
-    margin-bottom: 10px;
-    color: var(--gris-sombre);
-  }
-  .sous-titre-form {
-    color: #666;
-    margin-bottom: 30px;
-  }
-
-  /* INPUTS */
-  .formulaire {
-    display: flex;
-    flex-direction: column;
-    gap: 20px;
-  }
-  .grid-2-cols {
-    display: grid;
-    grid-template-columns: 1fr 1fr;
-    gap: 20px;
-  }
-  .groupe-input {
-    display: flex;
-    flex-direction: column;
-    gap: 8px;
-  }
-  label {
-    font-weight: 700;
-    color: var(--gris-sombre);
-    font-size: 0.85rem;
-    text-transform: uppercase;
-    letter-spacing: 1px;
-  }
-  input,
-  textarea,
-  select {
-    width: 100%;
-    padding: 14px;
-    border: 2px solid #eee;
-    border-radius: 6px;
-    font-family: "Lato", sans-serif;
-    font-size: 1rem;
-    background: #fafafa;
-    transition: all 0.3s;
-  }
-  input:focus,
-  textarea:focus,
-  select:focus {
-    outline: none;
-    border-color: var(--or-vodun);
-    background: white;
-  }
-
-  /* SELECT CUSTOM */
-  .select-wrapper {
-    position: relative;
-  }
-  .select-wrapper::after {
-    content: "▼";
-    font-size: 0.8rem;
-    color: #888;
-    position: absolute;
-    right: 15px;
-    top: 50%;
-    transform: translateY(-50%);
-    pointer-events: none;
-  }
-  select {
-    appearance: none;
-    cursor: pointer;
-  }
-
-  /* BUTTON */
-  .btn-envoi {
-    padding: 16px;
-    border: none;
-    border-radius: 6px;
-    font-weight: bold;
-    cursor: pointer;
-    font-size: 1rem;
-    text-transform: uppercase;
-    letter-spacing: 1px;
-    background: linear-gradient(135deg, var(--terre), #8b4513);
-    color: white;
-    transition: all 0.3s;
-    box-shadow: 0 4px 15px rgba(160, 82, 45, 0.3);
-  }
-  .btn-envoi:hover:not(:disabled) {
-    transform: translateY(-2px);
-    box-shadow: 0 6px 20px rgba(160, 82, 45, 0.4);
-  }
-  .btn-envoi:disabled {
-    opacity: 0.7;
-    cursor: not-allowed;
-  }
-
-  /* MESSAGES RETOUR */
-  .message-resultat {
-    text-align: center;
-    font-weight: bold;
-    margin-top: 10px;
-    padding: 15px;
-    border-radius: 6px;
-    display: none;
-  }
-  .message-resultat.loading {
-    display: block;
-    color: var(--or-vodun);
-  }
-  .message-resultat.success {
-    display: block;
-    background: #e8f5e9;
-    color: #2e7d32;
-    border: 1px solid #c8e6c9;
-  }
-  .message-resultat.error {
-    display: block;
-    background: #ffebee;
-    color: #c62828;
-    border: 1px solid #ffcdd2;
-  }
-
-  /* ANIMATIONS */
-  .animate-fade-down {
-    animation: fadeDown 0.8s ease-out forwards;
-  }
-  .animate-fade-right {
-    opacity: 0;
-    animation: fadeRight 0.8s ease-out 0.2s forwards;
-  }
-  .animate-fade-up {
-    opacity: 0;
-    animation: fadeUp 0.8s ease-out 0.4s forwards;
-  }
-
   @keyframes fadeDown {
     from {
       opacity: 0;
-      transform: translateY(-20px);
+      transform: translateY(-30px);
     }
     to {
       opacity: 1;
       transform: translateY(0);
     }
   }
+  .animate-fade-down {
+    animation: fadeDown 0.8s ease-out forwards;
+  }
+
   @keyframes fadeRight {
     from {
       opacity: 0;
-      transform: translateX(-20px);
+      transform: translateX(-30px);
     }
     to {
       opacity: 1;
       transform: translateX(0);
     }
   }
+  .animate-fade-right {
+    animation: fadeRight 0.8s ease-out forwards;
+  }
+
   @keyframes fadeUp {
     from {
       opacity: 0;
-      transform: translateY(20px);
+      transform: translateY(30px);
     }
     to {
       opacity: 1;
       transform: translateY(0);
     }
   }
-
-  /* RESPONSIVE */
-  @media (max-width: 900px) {
-    .conteneur-layout {
-      grid-template-columns: 1fr;
-      gap: 30px;
-    }
-    .sidebar-info {
-      order: 2;
-    } /* Sidebar en bas sur mobile */
-    .form-section {
-      order: 1;
-    }
-    .grid-2-cols {
-      grid-template-columns: 1fr;
-    }
+  .animate-fade-up {
+    animation: fadeUp 0.8s ease-out forwards;
   }
 </style>
