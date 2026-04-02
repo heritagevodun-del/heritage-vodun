@@ -66,11 +66,12 @@ const formattedDate = new Intl.DateTimeFormat("fr-FR", {
           frontmatter.image &&
           !frontmatter.hide_top_image && (
             <div class="w-full h-[40vh] md:h-[60vh] rounded-2xl overflow-hidden border border-white/10 shadow-2xl relative">
-              <div class="absolute inset-0 bg-gradient-to-t from-dark-bg via-transparent to-transparent z-10" />
+              <div class="absolute inset-0 bg-gradient-to-t from-dark-bg via-transparent to-transparent z-10 pointer-events-none" />
+              {/* Ajout de 'zoomable-image' et 'cursor-zoom-in' sur l'image principale */}
               <img
                 src={frontmatter.image}
                 alt={frontmatter.title}
-                class="w-full h-full object-cover transform hover:scale-105 transition-transform duration-700"
+                class="zoomable-image w-full h-full object-cover transform hover:scale-105 transition-transform duration-700 cursor-zoom-in relative z-20"
               />
             </div>
           )
@@ -130,4 +131,42 @@ const formattedDate = new Intl.DateTimeFormat("fr-FR", {
 
   {/* 2. AFFICHAGE DE LA LIGHTBOX ICI 👇 */}
   <GlobalLightbox />
+
+  {
+    /* SCRIPT FORCEUR ASTRO : Garantit l'attachement du clic à chaque chargement d'article */
+  }
+  <script>
+    document.addEventListener("astro:page-load", () => {
+      const modal = document.getElementById(
+        "global-lightbox",
+      ) as HTMLDialogElement;
+      const modalImg = document.getElementById(
+        "lightbox-img",
+      ) as HTMLImageElement;
+
+      if (!modal || !modalImg) return;
+
+      // On cible l'image d'en-tête (.zoomable-image) ET toutes les images du texte (.prose img)
+      const articleImages = document.querySelectorAll(
+        ".zoomable-image, .prose img",
+      );
+
+      articleImages.forEach((img: any) => {
+        // On force le curseur visuellement
+        img.style.cursor = "zoom-in";
+        img.classList.add("hover:opacity-90", "transition-opacity");
+
+        // On écrase tout ancien événement et on attache le nôtre directement
+        img.onclick = (e: Event) => {
+          e.preventDefault();
+          e.stopPropagation();
+
+          modalImg.src = img.src;
+          modalImg.alt = img.alt || "Image de l'article agrandie";
+
+          modal.showModal();
+        };
+      });
+    });
+  </script>
 </BaseLayout>
