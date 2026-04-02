@@ -114,7 +114,7 @@ const termes = [
   },
   {
     mot: "Hounnongan",
-    def: "Dignitaire de très haut rang dans la hiérarchie Vodun. Il assiste le Hounnon et joue un rôle clé dans les cérémonies publiques et secrètes.",
+    def: "Dignitaire de très haut rang dans la hiérarchie Vodun. Il assiste le Hounnon et joue un rôle clé dans ceremonies publiques et secrètes.",
   },
   {
     mot: "Ikin",
@@ -263,20 +263,33 @@ const schemaData = {
 <BaseLayout titrePage="Lexique Sacré | Glossaire du Vodun & Ouidah">
   <script type="application/ld+json" set:html={JSON.stringify(schemaData)} />
 
-  <div class="lexique-container">
-    <header class="lexique-header">
-      <span class="sous-titre">Comprendre les mots sacrés</span>
-      <h1>Le Glossaire Vodun</h1>
-      <div class="separateur"></div>
-      <p>
-        Pour appréhender la philosophie de nos ancêtres, il faut d'abord maîiser
-        les mots. Voici les définitions authentiques et clés de notre tradition.
+  <div class="min-h-screen bg-dark-bg pb-24">
+    {/* --- HEADER --- */}
+    <header
+      class="text-center pt-24 pb-16 px-6 max-w-3xl mx-auto opacity-0 animate-fade-down"
+    >
+      <span
+        class="block text-gold text-xs uppercase tracking-[0.25em] font-bold mb-4"
+        >Comprendre les mots sacrés</span
+      >
+      <h1 class="font-serif text-5xl md:text-6xl text-white mb-6 leading-tight">
+        Le Glossaire Vodun
+      </h1>
+      <div class="w-16 h-1 bg-gold mx-auto mb-8 rounded-full"></div>
+      <p class="text-lg text-gray-400 leading-relaxed font-sans">
+        Pour appréhender la philosophie de nos ancêtres, il faut d&apos;abord
+        maîtriser les mots. Voici les définitions authentiques et clés de notre
+        tradition.
       </p>
 
-      <div class="index-alpha">
+      {/* --- INDEX ALPHABÉTIQUE --- */}
+      <div class="flex flex-wrap justify-center gap-3 mt-12">
         {
           lettres.map((lettre) => (
-            <a href={`#lettre-${lettre}`} class="lettre-lien">
+            <a
+              href={`#lettre-${lettre}`}
+              class="flex items-center justify-center w-12 h-12 rounded-full border border-gold/40 text-gold font-bold text-lg hover:bg-gold hover:text-black transition-all duration-300 hover:-translate-y-1 shadow-[0_4px_10px_rgba(212,175,55,0.05)] hover:shadow-[0_6px_15px_rgba(212,175,55,0.2)]"
+            >
               {lettre}
             </a>
           ))
@@ -284,15 +297,29 @@ const schemaData = {
       </div>
     </header>
 
-    <div class="liste-definitions">
+    {/* --- LISTE DES DÉFINITIONS --- */}
+    <div
+      class="max-w-4xl mx-auto px-6 flex flex-col gap-8 opacity-0 animate-fade-up"
+      style="animation-delay: 200ms;"
+    >
       {
         termes.map((item) => {
           const premiereLettre = item.mot.charAt(0).toUpperCase();
           return (
-            <div class="definition-card" id={`lettre-${premiereLettre}`}>
-              <div class="card-content">
-                <h2>{item.mot}</h2>
-                <p>{item.def}</p>
+            <div
+              class="group bg-dark-surface p-8 md:p-10 rounded-xl border-l-4 border-gold/50 shadow-xl hover:border-gold hover:translate-x-2 transition-all duration-300 scroll-mt-32 relative overflow-hidden"
+              id={`lettre-${premiereLettre}`}
+            >
+              {/* Lueur de survol subtile */}
+              <div class="absolute inset-0 bg-gradient-to-r from-gold/5 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-500 pointer-events-none" />
+
+              <div class="relative z-10">
+                <h2 class="font-serif text-3xl text-white mb-4 relative inline-block after:content-[''] after:absolute after:-bottom-2 after:left-0 after:w-12 after:h-0.5 after:bg-gold/30 group-hover:after:bg-gold transition-colors duration-300">
+                  {item.mot}
+                </h2>
+                <p class="font-sans text-lg text-gray-400 leading-relaxed text-justify mt-4">
+                  {item.def}
+                </p>
               </div>
             </div>
           );
@@ -303,148 +330,31 @@ const schemaData = {
 </BaseLayout>
 
 <style>
-  /* Ajout du défilement fluide pour toute la page */
-  :global(html) {
-    scroll-behavior: smooth;
-  }
-
-  .lexique-container {
-    background-color: #fcfbf9;
-    min-height: 100vh;
-    padding-bottom: 80px;
-  }
-  .lexique-header {
-    text-align: center;
-    padding: 80px 20px 40px;
-    max-width: 800px;
-    margin: 0 auto;
-  }
-  .sous-titre {
-    color: #a0522d;
-    text-transform: uppercase;
-    letter-spacing: 3px;
-    font-size: 0.85rem;
-    font-weight: 700;
-    display: block;
-    margin-bottom: 10px;
-  }
-  h1 {
-    font-family: "Playfair Display", serif;
-    font-size: 3.5rem;
-    color: #1a1a1a;
-    margin: 0;
-    line-height: 1.1;
-  }
-  .separateur {
-    width: 60px;
-    height: 3px;
-    background-color: #d4af37;
-    margin: 25px auto;
-  }
-  .lexique-header p {
-    font-family: "Lato", sans-serif;
-    font-size: 1.15rem;
-    color: #555;
-    line-height: 1.6;
-  }
-
-  /* --- INDEX ALPHABÉTIQUE --- */
-  .index-alpha {
-    margin-top: 30px;
-    display: flex;
-    justify-content: center;
-    flex-wrap: wrap;
-    gap: 10px;
-  }
-  .lettre-lien {
-    display: inline-flex;
-    justify-content: center;
-    align-items: center;
-    width: 35px;
-    height: 35px;
-    border: 1px solid #d4af37;
-    color: #a0522d;
-    text-decoration: none;
-    border-radius: 50%;
-    font-weight: bold;
-    font-size: 0.9rem;
-    transition: all 0.3s ease;
-  }
-  .lettre-lien:hover {
-    background-color: #d4af37;
-    color: white;
-    transform: translateY(-2px);
-  }
-
-  /* LISTE DES DÉFINITIONS */
-  .liste-definitions {
-    max-width: 900px;
-    margin: 0 auto;
-    padding: 0 20px;
-    display: flex;
-    flex-direction: column;
-    gap: 25px;
-  }
-
-  .definition-card {
-    background: white;
-    padding: 35px;
-    border-radius: 8px;
-    border-left: 4px solid #a0522d;
-    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.03);
-    transition: all 0.3s ease;
-
-    /* Correction du scroll pour ne pas être caché par le menu */
-    scroll-margin-top: 100px;
-  }
-
-  .definition-card:hover {
-    transform: translateX(5px);
-    box-shadow: 0 8px 25px rgba(0, 0, 0, 0.08);
-    border-left-color: #d4af37;
-  }
-
-  .definition-card h2 {
-    font-family: "Playfair Display", serif;
-    color: #2f4f4f;
-    margin-top: 0;
-    font-size: 2rem;
-    margin-bottom: 15px;
-    position: relative;
-    display: inline-block;
-  }
-
-  .definition-card h2::after {
-    content: "";
-    position: absolute;
-    bottom: -5px;
-    left: 0;
-    width: 30px;
-    height: 2px;
-    background-color: rgba(212, 175, 55, 0.3);
-  }
-
-  .definition-card p {
-    font-family: "Lato", sans-serif;
-    font-size: 1.1rem;
-    line-height: 1.8;
-    color: #444;
-    margin-bottom: 0;
-    text-align: justify;
-  }
-
-  /* Responsive */
-  @media (max-width: 768px) {
-    .lexique-header h1 {
-      font-size: 2.5rem;
+  @keyframes fadeDown {
+    from {
+      opacity: 0;
+      transform: translateY(-30px);
     }
-    .definition-card {
-      padding: 25px;
+    to {
+      opacity: 1;
+      transform: translateY(0);
     }
-    .lettre-lien {
-      width: 30px;
-      height: 30px;
-      font-size: 0.8rem;
+  }
+  .animate-fade-down {
+    animation: fadeDown 0.8s ease-out forwards;
+  }
+
+  @keyframes fadeUp {
+    from {
+      opacity: 0;
+      transform: translateY(30px);
     }
+    to {
+      opacity: 1;
+      transform: translateY(0);
+    }
+  }
+  .animate-fade-up {
+    animation: fadeUp 0.8s ease-out forwards;
   }
 </style>
