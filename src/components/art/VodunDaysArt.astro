@@ -1,0 +1,68 @@
+---
+/* VodunDaysArt.astro 
+   Composant CSS Art représentant le Tambour Sacré (Sato / Goumbé).
+   Symbole des rythmes de transe et de la célébration des Vodun Days.
+*/
+---
+
+<div class="relative w-full h-[350px] md:h-[450px] flex items-center justify-center overflow-hidden bg-[#050505] rounded-3xl border border-white/5 my-12 shadow-[0_20px_60px_rgba(0,0,0,0.8)]">
+  
+  {/* ONDES SONORES (Vibrations spirituelles de la Fête) */}
+  <div class="absolute w-[100px] h-[100px] border-2 border-gold/40 rounded-full animate-[sound-wave_3s_ease-out_infinite]"></div>
+  <div class="absolute w-[100px] h-[100px] border-2 border-red-500/30 rounded-full animate-[sound-wave_3s_ease-out_infinite_1s]"></div>
+  <div class="absolute w-[100px] h-[100px] border-2 border-white/20 rounded-full animate-[sound-wave_3s_ease-out_infinite_2s]"></div>
+
+  {/* AURA LUMINEUSE DE LA PLAGE DE OUIDAH */}
+  <div class="absolute w-[250px] h-[250px] bg-gold/10 blur-[70px] rounded-full animate-[pulse-glow_4s_infinite]"></div>
+
+  {/* LE TAMBOUR SACRÉ EN LÉVITATION */}
+  <div class="relative z-10 w-[120px] md:w-[150px] h-[180px] md:h-[220px] animate-[drum-bounce_2s_infinite]">
+    
+    {/* Corps du tambour (Bois d'ébène) */}
+    <div class="absolute inset-0 bg-gradient-to-b from-[#5c2a0d] via-[#3a1805] to-[#1a0a02] rounded-[30%] shadow-2xl"></div>
+    
+    {/* Cordages entrelacés (Effet CSS géométrique) */}
+    <div class="absolute inset-0 overflow-hidden rounded-[30%] opacity-40">
+      <div class="w-full h-full bg-[repeating-linear-gradient(45deg,transparent,transparent_15px,#d4af37_15px,#d4af37_17px)]"></div>
+      <div class="w-full h-full bg-[repeating-linear-gradient(-45deg,transparent,transparent_15px,#d4af37_15px,#d4af37_17px)] mix-blend-overlay"></div>
+    </div>
+
+    {/* Peau de résonance (Haut du tambour) */}
+    <div class="absolute -top-4 left-0 w-full h-[30px] md:h-[40px] bg-gradient-to-r from-[#e6c280] via-[#f5deb3] to-[#c29b57] rounded-[50%] shadow-[0_5px_15px_rgba(0,0,0,0.6)] border-b-4 border-[#8b4513]"></div>
+
+    {/* Base protectrice */}
+    <div class="absolute -bottom-2 left-[10%] w-[80%] h-[20px] bg-gradient-to-r from-[#2a1205] to-[#1a0a02] rounded-[50%] shadow-[0_-5px_10px_rgba(0,0,0,0.5)]"></div>
+  </div>
+
+  {/* ÉTINCELLES DE TRANSE (Feu de joie) */}
+  <div class="absolute bottom-16 flex gap-16 z-20">
+    <div class="w-2 h-2 bg-gold rounded-full blur-[1px] animate-[float-up_2s_ease-in_infinite]"></div>
+    <div class="w-3 h-3 bg-red-500 rounded-full blur-[2px] animate-[float-up_3s_ease-in_infinite_0.5s]"></div>
+    <div class="w-1.5 h-1.5 bg-white rounded-full blur-[1px] animate-[float-up_2.5s_ease-in_infinite_1s]"></div>
+  </div>
+
+  {/* OMBRE PORTÉE */}
+  <div class="absolute bottom-8 left-1/2 -translate-x-1/2 w-[140px] md:w-[180px] h-6 bg-black/90 rounded-full blur-[8px]"></div>
+</div>
+
+<style is:global>
+  @keyframes sound-wave {
+    0% { transform: scale(1); opacity: 1; }
+    100% { transform: scale(4.5); opacity: 0; }
+  }
+
+  @keyframes drum-bounce {
+    0%, 100% { transform: translateY(0) scale(1); }
+    50% { transform: translateY(-5px) scale(1.02); }
+  }
+
+  @keyframes float-up {
+    0% { transform: translateY(0) scale(1); opacity: 1; }
+    100% { transform: translateY(-120px) scale(0); opacity: 0; }
+  }
+
+  @keyframes pulse-glow {
+    0%, 100% { opacity: 0.3; transform: scale(1); }
+    50% { opacity: 0.7; transform: scale(1.1); }
+  }
+</style>

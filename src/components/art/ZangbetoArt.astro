@@ -1,121 +1,115 @@
 ---
-/*
-  ZangbetoArt.astro - Œuvre d&apos;art CSS animée
-  Représente la rotation mystique du Gardien de la Nuit (Zangbeto).
-  Optimisé Tailwind v4 - Thème Sombre & Or
+/* ZangbetoArt.astro 
+  Composant CSS Art simulant la rotation mystérieuse du Gardien de la Nuit.
+  Utilise Tailwind v4 et des animations CSS natives optimisées.
 */
 ---
 
 <div
-  class="w-full h-80 bg-[radial-gradient(circle_at_bottom,#4a3b32_0%,#050505_100%)] flex justify-center items-center relative overflow-hidden mb-12 rounded-2xl shadow-[0_15px_40px_rgba(0,0,0,0.6)] border border-gold/5 opacity-0 animate-fade-up"
+  class="zangbeto-container relative w-full h-[350px] md:h-[450px] flex items-center justify-center overflow-hidden bg-[#050505] rounded-3xl border border-white/5 my-12 shadow-[0_20px_60px_rgba(0,0,0,0.8)]"
 >
-  <div class="relative w-[200px] h-[250px] flex justify-center items-end pb-8">
-    {/* Particules de poussière / Énergie de rotation */}
+  {/* L'AURA SPIRITUELLE (EFFET DE FOND) */}
+  <div
+    class="absolute w-[200px] h-[200px] rounded-full bg-gold/10 blur-[80px] animate-[pulse-glow_4s_infinite]"
+  >
+  </div>
+
+  {/* LE ZANGBÉTO EN ROTATION */}
+  <div
+    class="zangbeto-masque relative w-[180px] md:w-[240px] h-[280px] md:h-[350px] animate-[float_6s_ease-in-out_infinite]"
+  >
+    {/* STRUCTURE DU CÔNE (Calques de raphia simulés par des gradients) */}
     <div
-      class="absolute bottom-10 left-[-10px] w-5 h-1.5 bg-[#d2b48c]/40 rounded-full blur-[2px] animate-dust-fly"
-    >
-    </div>
-    <div
-      class="absolute bottom-12 right-[-10px] w-5 h-1.5 bg-[#d4af37]/30 rounded-full blur-[2px] animate-dust-fly [animation-delay:0.2s]"
-    >
-    </div>
-    <div
-      class="absolute bottom-8 left-1/4 w-5 h-1.5 bg-[#d2b48c]/20 rounded-full blur-[2px] animate-dust-fly [animation-delay:0.4s]"
-    >
-    </div>
-    <div
-      class="absolute bottom-14 right-1/4 w-5 h-1.5 bg-[#d4af37]/40 rounded-full blur-[2px] animate-dust-fly [animation-delay:0.6s]"
+      class="absolute inset-0 bg-gradient-to-b from-[#8b4513] via-[#cd853f] to-[#deb887] clip-path-zangbeto shadow-inner opacity-90"
     >
     </div>
 
-    {/* Le Zangbeto (Cône de Raphia) */}
+    {/* EFFET DE TEXTURE ROTATIVE (Lignes CSS pour simuler le mouvement) */}
     <div
-      class="relative w-[160px] h-[180px] flex flex-col items-center justify-end animate-zangbeto-spin z-10"
+      class="absolute inset-0 z-10 animate-[spin-slow_2s_linear_infinite] opacity-30"
     >
-      {/* Cornes au sommet */}
       <div
-        class="absolute -top-4 left-[50px] w-2.5 h-7 bg-[#2c1e16] rounded-t-full -rotate-30"
-      >
-      </div>
-      <div
-        class="absolute -top-4 right-[50px] w-2.5 h-7 bg-[#2c1e16] rounded-t-full rotate-30"
-      >
-      </div>
-
-      {/* Couches de Raphia (Utilisation de dégradés pour simuler la paille) */}
-      <div
-        class="w-[60px] h-[50px] bg-[repeating-linear-gradient(90deg,#d2b48c_0%,#d2b48c_5px,#8b5a2b_5px,#8b5a2b_10px)] rounded-[50%_50%_10%_10%] shadow-[inset_0_-5px_10px_rgba(0,0,0,0.5)] border-t-4 border-[#800000] z-30"
-      >
-      </div>
-
-      <div
-        class="w-[110px] h-[70px] -mt-5 bg-[repeating-linear-gradient(90deg,#d2b48c_0%,#d2b48c_5px,#8b5a2b_5px,#8b5a2b_10px)] rounded-[50%_50%_10%_10%] shadow-[inset_0_-10px_15px_rgba(0,0,0,0.5)] border-b-4 border-[#2c1e16] z-20"
-      >
-      </div>
-
-      <div
-        class="w-[160px] h-[90px] -mt-8 bg-[repeating-linear-gradient(90deg,#d2b48c_0%,#d2b48c_5px,#8b5a2b_5px,#8b5a2b_10px)] rounded-[50%_50%_10%_10%] shadow-[inset_0_-15px_20px_rgba(0,0,0,0.6)] border-b-8 border-[#2c1e16] z-10"
+        class="w-full h-full bg-[repeating-linear-gradient(90deg,rgba(0,0,0,0.2)_0px,rgba(0,0,0,0.2)_1px,transparent_1px,transparent_10px)]"
       >
       </div>
     </div>
 
-    {/* Ombre portée au sol */}
+    {/* LES YEUX MYSTÉRIEUX (Cachés au centre) */}
     <div
-      class="absolute bottom-6 w-[140px] h-4 bg-black/40 rounded-full blur-md -z-10"
+      class="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 flex gap-10 z-20"
+    >
+      <div
+        class="w-4 h-4 bg-gold rounded-full blur-[3px] animate-[pulse_1.5s_infinite]"
+      >
+      </div>
+      <div
+        class="w-4 h-4 bg-gold rounded-full blur-[3px] animate-[pulse_1.5s_infinite]"
+      >
+      </div>
+    </div>
+
+    {/* BASE DU CÔNE (Bordure dorée protectrice) */}
+    <div
+      class="absolute -bottom-1 left-0 w-full h-3 bg-gold rounded-full blur-[2px] z-10 opacity-70"
     >
     </div>
   </div>
+
+  {/* L'OMBRE PORTÉE LÉVITANTE */}
+  <div
+    class="absolute bottom-10 left-1/2 -translate-x-1/2 w-[150px] md:w-[200px] h-6 bg-black/70 rounded-full blur-[10px] animate-[shadow-scale_6s_ease-in-out_infinite]"
+  >
+  </div>
 </div>
 
-<style>
-  /* --- ANIMATIONS --- */
+<style is:global>
+  /* Définition des animations spécifiques au Zangbéto */
 
-  /* Rotation mystique : combine mise à l'échelle et balancement */
-  @keyframes zangbeto-spin {
+  @keyframes float {
     0%,
     100% {
-      transform: scaleX(1) translateY(0);
-    }
-    25% {
-      transform: scaleX(0.85) translateY(-3px);
+      transform: translateY(0px) rotate(-1deg);
     }
     50% {
-      transform: scaleX(-1) translateY(0);
+      transform: translateY(-20px) rotate(1deg);
     }
-    75% {
-      transform: scaleX(-0.85) translateY(-3px);
-    }
-  }
-  .animate-zangbeto-spin {
-    animation: zangbeto-spin 0.7s linear infinite;
   }
 
-  /* Poussière éjectée par la force centrifuge */
-  @keyframes dust-fly {
-    0% {
-      transform: translate(0, 0) scale(1);
-      opacity: 0.8;
-    }
+  @keyframes shadow-scale {
+    0%,
     100% {
-      transform: translate(-30px, -40px) scale(2);
-      opacity: 0;
+      transform: translateX(-100%) scale(1);
+      opacity: 0.7;
+    }
+    50% {
+      transform: translateX(-100%) scale(0.85);
+      opacity: 0.4;
     }
   }
-  .animate-dust-fly {
-    animation: dust-fly 1s ease-out infinite;
-  }
 
-  @keyframes fadeUp {
+  @keyframes spin-slow {
     from {
-      opacity: 0;
-      transform: translateY(30px);
+      transform: rotateY(0deg);
     }
     to {
-      opacity: 1;
-      transform: translateY(0);
+      transform: rotateY(360deg);
     }
   }
-  .animate-fade-up {
-    animation: fadeUp 1s ease forwards;
+
+  @keyframes pulse-glow {
+    0%,
+    100% {
+      opacity: 0.1;
+      transform: scale(1);
+    }
+    50% {
+      opacity: 0.2;
+      transform: scale(1.1);
+    }
+  }
+
+  /* Forme conique du Zangbéto */
+  .clip-path-zangbeto {
+    clip-path: polygon(50% 0%, 100% 100%, 0% 100%);
   }
 </style>
