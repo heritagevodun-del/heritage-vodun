@@ -1,7 +1,7 @@
 ---
 /* ZangbetoArt.astro 
-  Composant CSS Art simulant la rotation mystérieuse du Gardien de la Nuit.
-  Utilise Tailwind v4 et des animations CSS natives optimisées.
+  Composant CSS Art Premium simulant le Gardien de la Nuit.
+  Architecture en 3 couches (tiers de raphia) avec animations de transe organiques.
 */
 ---
 
@@ -10,106 +10,154 @@
 >
   {/* L'AURA SPIRITUELLE (EFFET DE FOND) */}
   <div
-    class="absolute w-[200px] h-[200px] rounded-full bg-gold/10 blur-[80px] animate-[pulse-glow_4s_infinite]"
+    class="absolute w-[250px] h-[250px] bg-[#d4af37]/10 blur-[80px] rounded-full animate-[pulse-glow-z_4s_infinite]"
   >
   </div>
 
-  {/* LE ZANGBÉTO EN ROTATION */}
+  {/* LE ZANGBÉTO EN LÉVITATION ET TRANSE */}
   <div
-    class="zangbeto-masque relative w-[180px] md:w-[240px] h-[280px] md:h-[350px] animate-[float_6s_ease-in-out_infinite]"
+    class="relative w-[200px] md:w-[260px] h-[300px] md:h-[380px] flex flex-col items-center justify-end pb-8 animate-[float-zangbeto_4s_ease-in-out_infinite]"
   >
-    {/* STRUCTURE DU CÔNE (Calques de raphia simulés par des gradients) */}
+    {/* La Corne Sommitale (Le sommet du masque) */}
     <div
-      class="absolute inset-0 bg-gradient-to-b from-[#8b4513] via-[#cd853f] to-[#deb887] clip-path-zangbeto shadow-inner opacity-90"
+      class="w-6 h-16 bg-gradient-to-b from-[#1a0a02] to-[#4a2e15] rounded-t-full -mb-6 z-40 shadow-xl"
     >
     </div>
 
-    {/* EFFET DE TEXTURE ROTATIVE (Lignes CSS pour simuler le mouvement) */}
+    {/* ÉTAGE 1 : Le haut du masque */}
     <div
-      class="absolute inset-0 z-10 animate-[spin-slow_2s_linear_infinite] opacity-30"
+      class="relative w-[45%] h-[25%] bg-gradient-to-b from-[#5c3a21] to-[#7b4f2c] rounded-t-[60px] rounded-b-[15px] z-30 shadow-[0_10px_20px_rgba(0,0,0,0.6)] overflow-hidden"
     >
+      {/* Texture Raphia */}
       <div
-        class="w-full h-full bg-[repeating-linear-gradient(90deg,rgba(0,0,0,0.2)_0px,rgba(0,0,0,0.2)_1px,transparent_1px,transparent_10px)]"
+        class="absolute inset-0 bg-[repeating-linear-gradient(90deg,transparent,transparent_3px,rgba(0,0,0,0.3)_3px,rgba(0,0,0,0.3)_5px)]"
       >
       </div>
     </div>
 
-    {/* LES YEUX MYSTÉRIEUX (Cachés au centre) */}
+    {/* ÉTAGE 2 : Le milieu du masque (Danse de gauche à droite) */}
     <div
-      class="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 flex gap-10 z-20"
+      class="relative w-[75%] h-[35%] bg-gradient-to-b from-[#7b4f2c] to-[#966236] rounded-t-[80px] rounded-b-[20px] -mt-8 z-20 shadow-[0_15px_30px_rgba(0,0,0,0.7)] overflow-hidden animate-[swirl-left_3s_ease-in-out_infinite_alternate]"
     >
+      {/* Texture Raphia */}
       <div
-        class="w-4 h-4 bg-gold rounded-full blur-[3px] animate-[pulse_1.5s_infinite]"
-      >
-      </div>
-      <div
-        class="w-4 h-4 bg-gold rounded-full blur-[3px] animate-[pulse_1.5s_infinite]"
+        class="absolute inset-0 bg-[repeating-linear-gradient(90deg,transparent,transparent_4px,rgba(0,0,0,0.25)_4px,rgba(0,0,0,0.25)_7px)]"
       >
       </div>
     </div>
 
-    {/* BASE DU CÔNE (Bordure dorée protectrice) */}
+    {/* ÉTAGE 3 : La base large du masque (Danse de droite à gauche) */}
     <div
-      class="absolute -bottom-1 left-0 w-full h-3 bg-gold rounded-full blur-[2px] z-10 opacity-70"
+      class="relative w-full h-[45%] bg-gradient-to-b from-[#966236] to-[#3d2411] rounded-t-[100px] rounded-b-[25px] -mt-10 z-10 shadow-[0_25px_50px_rgba(0,0,0,0.9)] overflow-hidden animate-[swirl-right_3s_ease-in-out_infinite_alternate]"
     >
+      {/* Texture Raphia */}
+      <div
+        class="absolute inset-0 bg-[repeating-linear-gradient(90deg,transparent,transparent_5px,rgba(0,0,0,0.3)_5px,rgba(0,0,0,0.3)_8px)]"
+      >
+      </div>
+      {/* Base mystique (lumière dorée qui émane de l'intérieur vide) */}
+      <div
+        class="absolute bottom-0 w-full h-6 bg-gradient-to-t from-gold/50 to-transparent blur-[2px]"
+      >
+      </div>
+    </div>
+
+    {/* PARTICULES MAGIQUES (Poussière de lévitation sous le masque) */}
+    <div class="absolute -bottom-2 w-[80%] h-12 flex justify-between px-6 z-50">
+      <div
+        class="w-1.5 h-1.5 bg-gold rounded-full blur-[1px] animate-[dust_2s_infinite]"
+      >
+      </div>
+      <div
+        class="w-2.5 h-2.5 bg-[#cd853f] rounded-full blur-[1px] animate-[dust_2.5s_infinite_0.4s]"
+      >
+      </div>
+      <div
+        class="w-2 h-2 bg-gold/70 rounded-full blur-[1px] animate-[dust_1.8s_infinite_0.8s]"
+      >
+      </div>
+      <div
+        class="w-1 h-1 bg-white rounded-full animate-[dust_2.2s_infinite_0.2s]"
+      >
+      </div>
     </div>
   </div>
 
-  {/* L'OMBRE PORTÉE LÉVITANTE */}
+  {/* L'OMBRE PORTÉE FIXE (S'agrandit et rétrécit avec la lévitation) */}
   <div
-    class="absolute bottom-10 left-1/2 -translate-x-1/2 w-[150px] md:w-[200px] h-6 bg-black/70 rounded-full blur-[10px] animate-[shadow-scale_6s_ease-in-out_infinite]"
+    class="absolute bottom-8 left-1/2 -translate-x-1/2 w-[160px] md:w-[200px] h-6 bg-black/90 rounded-full blur-[10px] animate-[shadow-pulse-z_4s_ease-in-out_infinite]"
   >
   </div>
 </div>
 
 <style is:global>
-  /* Définition des animations spécifiques au Zangbéto */
+  /* ANIMATIONS DU ZANGBÉTO */
 
-  @keyframes float {
+  /* Lévitation globale fluide */
+  @keyframes float-zangbeto {
     0%,
     100% {
-      transform: translateY(0px) rotate(-1deg);
+      transform: translateY(0);
     }
     50% {
-      transform: translateY(-20px) rotate(1deg);
+      transform: translateY(-15px);
     }
   }
 
-  @keyframes shadow-scale {
+  /* Gestion correcte de l'ombre sans casser le centrage (-translate-x-1/2) */
+  @keyframes shadow-pulse-z {
     0%,
     100% {
-      transform: translateX(-100%) scale(1);
-      opacity: 0.7;
+      transform: translateX(-50%) scale(1);
+      opacity: 0.8;
     }
     50% {
-      transform: translateX(-100%) scale(0.85);
+      transform: translateX(-50%) scale(0.85);
       opacity: 0.4;
     }
   }
 
-  @keyframes spin-slow {
-    from {
-      transform: rotateY(0deg);
+  /* Oscillation du raphia (Transe) */
+  @keyframes swirl-left {
+    0% {
+      transform: rotate(-2deg) translateX(-3px);
     }
-    to {
-      transform: rotateY(360deg);
+    100% {
+      transform: rotate(2deg) translateX(3px);
     }
   }
 
-  @keyframes pulse-glow {
+  @keyframes swirl-right {
+    0% {
+      transform: rotate(1.5deg) translateX(2px);
+    }
+    100% {
+      transform: rotate(-1.5deg) translateX(-2px);
+    }
+  }
+
+  /* Particules de poussière dorée */
+  @keyframes dust {
+    0% {
+      transform: translateY(0) scale(1);
+      opacity: 1;
+    }
+    100% {
+      transform: translateY(-50px) scale(0);
+      opacity: 0;
+    }
+  }
+
+  /* Aura de fond */
+  @keyframes pulse-glow-z {
     0%,
     100% {
-      opacity: 0.1;
+      opacity: 0.2;
       transform: scale(1);
     }
     50% {
-      opacity: 0.2;
+      opacity: 0.4;
       transform: scale(1.1);
     }
-  }
-
-  /* Forme conique du Zangbéto */
-  .clip-path-zangbeto {
-    clip-path: polygon(50% 0%, 100% 100%, 0% 100%);
   }
 </style>
