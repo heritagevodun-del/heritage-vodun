@@ -1,163 +1,97 @@
 ---
-/* ZangbetoArt.astro 
-  Composant CSS Art Premium simulant le Gardien de la Nuit.
-  Architecture en 3 couches (tiers de raphia) avec animations de transe organiques.
-*/
+// ZangbetoArt.astro
+// Animation CSS Art représentant la transe et le mystère du vide
 ---
 
 <div
-  class="zangbeto-container relative w-full h-[350px] md:h-[450px] flex items-center justify-center overflow-hidden bg-[#050505] rounded-3xl border border-white/5 my-12 shadow-[0_20px_60px_rgba(0,0,0,0.8)]"
+  class="relative w-full h-96 md:h-[30rem] bg-gray-950 rounded-2xl overflow-hidden flex items-center justify-center border border-white/10 shadow-2xl mb-12 group cursor-crosshair"
 >
-  {/* L'AURA SPIRITUELLE (EFFET DE FOND) */}
+  {/* Décor nocturne et brume */}
   <div
-    class="absolute w-[250px] h-[250px] bg-[#d4af37]/10 blur-[80px] rounded-full animate-[pulse-glow-z_4s_infinite]"
+    class="absolute inset-0 bg-[radial-gradient(ellipse_at_top,_var(--tw-gradient-stops))] from-gray-900 via-gray-950 to-black z-0"
+  >
+  </div>
+  <div
+    class="absolute bottom-0 w-full h-1/3 bg-gradient-to-t from-black to-transparent z-10"
   >
   </div>
 
-  {/* LE ZANGBÉTO EN LÉVITATION ET TRANSE */}
+  {/* Halo magique au sol (Le mystère) */}
   <div
-    class="relative w-[200px] md:w-[260px] h-[300px] md:h-[380px] flex flex-col items-center justify-end pb-8 animate-[float-zangbeto_4s_ease-in-out_infinite]"
+    class="absolute bottom-12 w-64 md:w-96 h-12 bg-gold/20 blur-2xl rounded-[100%] animate-pulse z-10"
   >
-    {/* La Corne Sommitale (Le sommet du masque) */}
+  </div>
+
+  {/* Le Zangbéto (Structure en lévitation) */}
+  <div
+    class="relative z-20 flex flex-col items-center animate-[bounce_3s_ease-in-out_infinite]"
+  >
+    {/* Sommet / Corne */}
     <div
-      class="w-6 h-16 bg-gradient-to-b from-[#1a0a02] to-[#4a2e15] rounded-t-full -mb-6 z-40 shadow-xl"
+      class="w-4 h-16 bg-gradient-to-b from-amber-900 to-black rounded-t-full mb-[-10px] z-40 border border-black/50"
     >
     </div>
 
-    {/* ÉTAGE 1 : Le haut du masque */}
+    {/* Étages de Raphia (Superpositions de CSS) */}
     <div
-      class="relative w-[45%] h-[25%] bg-gradient-to-b from-[#5c3a21] to-[#7b4f2c] rounded-t-[60px] rounded-b-[15px] z-30 shadow-[0_10px_20px_rgba(0,0,0,0.6)] overflow-hidden"
+      class="relative w-32 h-20 bg-gradient-to-b from-amber-800 to-amber-950 rounded-t-[40%] z-30 border-b-8 border-black shadow-inner"
     >
-      {/* Texture Raphia */}
       <div
-        class="absolute inset-0 bg-[repeating-linear-gradient(90deg,transparent,transparent_3px,rgba(0,0,0,0.3)_3px,rgba(0,0,0,0.3)_5px)]"
-      >
-      </div>
-    </div>
-
-    {/* ÉTAGE 2 : Le milieu du masque (Danse de gauche à droite) */}
-    <div
-      class="relative w-[75%] h-[35%] bg-gradient-to-b from-[#7b4f2c] to-[#966236] rounded-t-[80px] rounded-b-[20px] -mt-8 z-20 shadow-[0_15px_30px_rgba(0,0,0,0.7)] overflow-hidden animate-[swirl-left_3s_ease-in-out_infinite_alternate]"
-    >
-      {/* Texture Raphia */}
-      <div
-        class="absolute inset-0 bg-[repeating-linear-gradient(90deg,transparent,transparent_4px,rgba(0,0,0,0.25)_4px,rgba(0,0,0,0.25)_7px)]"
+        class="absolute inset-0 opacity-20 bg-[repeating-linear-gradient(90deg,transparent,transparent_2px,#000_2px,#000_4px)]"
       >
       </div>
     </div>
 
-    {/* ÉTAGE 3 : La base large du masque (Danse de droite à gauche) */}
     <div
-      class="relative w-full h-[45%] bg-gradient-to-b from-[#966236] to-[#3d2411] rounded-t-[100px] rounded-b-[25px] -mt-10 z-10 shadow-[0_25px_50px_rgba(0,0,0,0.9)] overflow-hidden animate-[swirl-right_3s_ease-in-out_infinite_alternate]"
+      class="relative w-48 h-24 bg-gradient-to-b from-amber-700 to-amber-900 rounded-t-[40%] mt-[-20px] z-20 border-b-8 border-black shadow-[0_10px_20px_rgba(0,0,0,0.8)]"
     >
-      {/* Texture Raphia */}
       <div
-        class="absolute inset-0 bg-[repeating-linear-gradient(90deg,transparent,transparent_5px,rgba(0,0,0,0.3)_5px,rgba(0,0,0,0.3)_8px)]"
-      >
-      </div>
-      {/* Base mystique (lumière dorée qui émane de l'intérieur vide) */}
-      <div
-        class="absolute bottom-0 w-full h-6 bg-gradient-to-t from-gold/50 to-transparent blur-[2px]"
+        class="absolute inset-0 opacity-20 bg-[repeating-linear-gradient(90deg,transparent,transparent_2px,#000_2px,#000_4px)]"
       >
       </div>
     </div>
 
-    {/* PARTICULES MAGIQUES (Poussière de lévitation sous le masque) */}
-    <div class="absolute -bottom-2 w-[80%] h-12 flex justify-between px-6 z-50">
+    <div
+      class="relative w-64 h-32 bg-gradient-to-b from-amber-600 to-amber-800 rounded-t-[30%] mt-[-30px] z-10 border-b-8 border-black shadow-[0_20px_40px_rgba(0,0,0,0.9)] transform group-hover:rotate-3 transition-transform duration-500"
+    >
       <div
-        class="w-1.5 h-1.5 bg-gold rounded-full blur-[1px] animate-[dust_2s_infinite]"
+        class="absolute inset-0 opacity-30 bg-[repeating-linear-gradient(90deg,transparent,transparent_2px,#000_2px,#000_4px)]"
       >
       </div>
+
+      {/* Lueur interne (le vide habité) */}
       <div
-        class="w-2.5 h-2.5 bg-[#cd853f] rounded-full blur-[1px] animate-[dust_2.5s_infinite_0.4s]"
-      >
-      </div>
-      <div
-        class="w-2 h-2 bg-gold/70 rounded-full blur-[1px] animate-[dust_1.8s_infinite_0.8s]"
-      >
-      </div>
-      <div
-        class="w-1 h-1 bg-white rounded-full animate-[dust_2.2s_infinite_0.2s]"
+        class="absolute bottom-0 left-1/2 -translate-x-1/2 w-48 h-10 bg-gold/40 blur-xl rounded-full animate-pulse"
       >
       </div>
     </div>
   </div>
 
-  {/* L'OMBRE PORTÉE FIXE (S'agrandit et rétrécit avec la lévitation) */}
+  {/* Particules magiques flottantes */}
   <div
-    class="absolute bottom-8 left-1/2 -translate-x-1/2 w-[160px] md:w-[200px] h-6 bg-black/90 rounded-full blur-[10px] animate-[shadow-pulse-z_4s_ease-in-out_infinite]"
+    class="absolute inset-0 z-30 pointer-events-none mix-blend-screen opacity-30"
   >
+    <div
+      class="absolute top-1/4 left-1/4 w-2 h-2 bg-gold rounded-full animate-[ping_4s_infinite]"
+    >
+    </div>
+    <div
+      class="absolute top-1/2 right-1/3 w-1.5 h-1.5 bg-white rounded-full animate-[ping_3s_infinite_1s]"
+    >
+    </div>
+    <div
+      class="absolute bottom-1/3 left-1/3 w-2 h-2 bg-gold rounded-full animate-[ping_5s_infinite_2s]"
+    >
+    </div>
+  </div>
+
+  {/* Étiquette d'interface */}
+  <div
+    class="absolute top-4 right-4 z-40 bg-black/50 backdrop-blur-md border border-white/10 px-3 py-1 rounded-full flex items-center space-x-2"
+  >
+    <div class="w-2 h-2 rounded-full bg-gold animate-pulse"></div>
+    <span class="text-xs font-mono text-gray-300 uppercase tracking-widest"
+      >Transe Active</span
+    >
   </div>
 </div>
-
-<style is:global>
-  /* ANIMATIONS DU ZANGBÉTO */
-
-  /* Lévitation globale fluide */
-  @keyframes float-zangbeto {
-    0%,
-    100% {
-      transform: translateY(0);
-    }
-    50% {
-      transform: translateY(-15px);
-    }
-  }
-
-  /* Gestion correcte de l'ombre sans casser le centrage (-translate-x-1/2) */
-  @keyframes shadow-pulse-z {
-    0%,
-    100% {
-      transform: translateX(-50%) scale(1);
-      opacity: 0.8;
-    }
-    50% {
-      transform: translateX(-50%) scale(0.85);
-      opacity: 0.4;
-    }
-  }
-
-  /* Oscillation du raphia (Transe) */
-  @keyframes swirl-left {
-    0% {
-      transform: rotate(-2deg) translateX(-3px);
-    }
-    100% {
-      transform: rotate(2deg) translateX(3px);
-    }
-  }
-
-  @keyframes swirl-right {
-    0% {
-      transform: rotate(1.5deg) translateX(2px);
-    }
-    100% {
-      transform: rotate(-1.5deg) translateX(-2px);
-    }
-  }
-
-  /* Particules de poussière dorée */
-  @keyframes dust {
-    0% {
-      transform: translateY(0) scale(1);
-      opacity: 1;
-    }
-    100% {
-      transform: translateY(-50px) scale(0);
-      opacity: 0;
-    }
-  }
-
-  /* Aura de fond */
-  @keyframes pulse-glow-z {
-    0%,
-    100% {
-      opacity: 0.2;
-      transform: scale(1);
-    }
-    50% {
-      opacity: 0.4;
-      transform: scale(1.1);
-    }
-  }
-</style>
