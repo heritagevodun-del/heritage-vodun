@@ -1,6 +1,7 @@
 ---
 import BaseLayout from "../../layouts/BaseLayout.astro";
-import FaAnimation from "../../components/FaAnimation.astro";
+// IMPORT DU LOGO POUR LE PLACEHOLDER PAR DÉFAUT
+import Logo from "../../components/Logo.astro";
 
 // --- DÉFINITION DES TYPES ---
 interface Frontmatter {
@@ -128,9 +129,8 @@ const schemaData = {
               class="block relative w-full h-60 overflow-hidden bg-black"
               aria-label={`Lire l'article : ${post.frontmatter.title}`}
             >
-              {post.frontmatter.type_image === "animation_fa" ? (
-                <FaAnimation mode="vignette" />
-              ) : post.frontmatter.image ? (
+              {/* LOGIQUE UNIVERSELLE D'AFFICHAGE DE LA MINIATURE */}
+              {post.frontmatter.image ? (
                 <div
                   class="absolute inset-0 bg-cover bg-center transition-transform duration-700 group-hover:scale-110"
                   style={`background-image: url(${post.frontmatter.image});`}
@@ -138,8 +138,14 @@ const schemaData = {
                   aria-label={post.frontmatter.title}
                 />
               ) : (
-                <div class="absolute inset-0 bg-[radial-gradient(circle_at_center,#1a1a1a_0%,#050505_100%)] flex items-center justify-center">
-                  <div class="w-12 h-12 border-2 border-gold/30 rotate-45" />
+                /* LE PLACEHOLDER ÉLÉGANT (Filet de sécurité) */
+                <div class="absolute inset-0 bg-[radial-gradient(circle_at_center,#1a1a1a_0%,#050505_100%)] flex flex-col items-center justify-center gap-4 group-hover:scale-105 transition-transform duration-700">
+                  <div class="w-20 h-20 bg-gold/10 rounded-full flex items-center justify-center shadow-[0_0_30px_rgba(212,175,55,0.15)]">
+                    <Logo width="40" height="40" class="opacity-80" />
+                  </div>
+                  <span class="text-gold/50 font-serif italic text-sm tracking-widest uppercase">
+                    Chroniques du Sacré
+                  </span>
                 </div>
               )}
               <div class="absolute inset-0 bg-gradient-to-t from-dark-surface via-transparent to-transparent opacity-90" />
