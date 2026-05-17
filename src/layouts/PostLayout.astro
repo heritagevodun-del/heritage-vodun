@@ -1,6 +1,5 @@
 ---
 import BaseLayout from "./BaseLayout.astro";
-import FaAnimation from "../components/FaAnimation.astro";
 import SakpataAltar from "../components/SakpataAltar.astro";
 // 1. IMPORTATION DE LA LIGHTBOX ET DU COMPTEUR ICI 👇
 import GlobalLightbox from "../components/GlobalLightbox.astro";
@@ -63,11 +62,7 @@ const formattedDate = new Intl.DateTimeFormat("fr-FR", {
     {/* --- MÉDIA PRINCIPAL (Animation ou Image) --- */}
     <div class="mb-16">
       {
-        frontmatter.type_image === "animation_fa" ? (
-          <div class="w-full rounded-2xl overflow-hidden shadow-2xl border border-white/10">
-            <FaAnimation />
-          </div>
-        ) : frontmatter.type_image === "animation_sakpata" ? (
+        frontmatter.type_image === "animation_sakpata" ? (
           <div class="w-full rounded-2xl overflow-hidden shadow-2xl border border-white/10">
             <SakpataAltar />
           </div>
