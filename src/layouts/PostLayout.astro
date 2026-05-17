@@ -1,7 +1,7 @@
 ---
 import BaseLayout from "./BaseLayout.astro";
 import SakpataAltar from "../components/SakpataAltar.astro";
-// 1. IMPORTATION DE LA LIGHTBOX ET DU COMPTEUR ICI 👇
+import Breadcrumbs from "../components/Breadcrumbs.astro";
 import GlobalLightbox from "../components/GlobalLightbox.astro";
 import ViewCounter from "../components/ViewCounter.astro";
 
@@ -22,14 +22,28 @@ const formattedDate = new Intl.DateTimeFormat("fr-FR", {
   description={frontmatter.description}
   image={frontmatter.image}
 >
-  <article class="max-w-4xl mx-auto mt-8 mb-24 px-4">
-    {/* --- EN-TÊTE DE L'ARTICLE --- */}
-    <header class="text-center mb-16">
+  <article data-pagefind-body class="max-w-4xl mx-auto mt-4 mb-24 px-4">
+    <div class="mb-6 border-b border-white/5 pb-2" data-pagefind-ignore>
+      <Breadcrumbs
+        customPaths={[
+          {
+            label: frontmatter.categorie || "Articles",
+            href: frontmatter.categorie
+              ? `/categories/${frontmatter.categorie}`
+              : "/blog",
+          },
+          { label: frontmatter.title, href: Astro.url.pathname },
+        ]}
+      />
+    </div>
+
+    <header class="text-center mb-16 mt-8">
       {
         frontmatter.categorie && (
           <a
             href={`/categories/${frontmatter.categorie}`}
             class="inline-block px-4 py-1.5 rounded-full bg-gold/10 text-gold border border-gold/30 text-sm font-bold uppercase tracking-widest hover:bg-gold hover:text-white transition-all duration-300 hover:-translate-y-0.5 mb-6"
+            data-pagefind-ignore
           >
             {frontmatter.categorie}
           </a>
@@ -50,8 +64,7 @@ const formattedDate = new Intl.DateTimeFormat("fr-FR", {
         {frontmatter.titrePage || frontmatter.title}
       </h1>
 
-      {/* --- PREUVE SOCIALE : COMPTEUR DE VUES --- */}
-      <div class="flex justify-center items-center mb-8">
+      <div class="flex justify-center items-center mb-8" data-pagefind-ignore>
         <ViewCounter
           slug={frontmatter.slug ||
             Astro.url.pathname.replace(/\/$/, "").split("/").pop()}
@@ -59,11 +72,13 @@ const formattedDate = new Intl.DateTimeFormat("fr-FR", {
       </div>
     </header>
 
-    {/* --- MÉDIA PRINCIPAL (Animation ou Image) --- */}
     <div class="mb-16">
       {
         frontmatter.type_image === "animation_sakpata" ? (
-          <div class="w-full rounded-2xl overflow-hidden shadow-2xl border border-white/10">
+          <div
+            class="w-full rounded-2xl overflow-hidden shadow-2xl border border-white/10"
+            data-pagefind-ignore
+          >
             <SakpataAltar />
           </div>
         ) : (
@@ -71,28 +86,36 @@ const formattedDate = new Intl.DateTimeFormat("fr-FR", {
           !frontmatter.hide_top_image && (
             <div class="w-full h-[40vh] md:h-[60vh] rounded-2xl overflow-hidden border border-white/10 shadow-2xl relative">
               <div class="absolute inset-0 bg-gradient-to-t from-dark-bg via-transparent to-transparent z-10 pointer-events-none" />
-              {/* Ajout de 'zoomable-image' et 'cursor-zoom-in' sur l'image principale */}
-              <img
-                src={frontmatter.image}
-                alt={frontmatter.title}
-                class="zoomable-image w-full h-full object-cover transform hover:scale-105 transition-transform duration-700 cursor-zoom-in relative z-20"
-              />
+
+              <picture>
+                <source
+                  srcset={frontmatter.image.replace(/\.(png|jpe?g)$/i, ".webp")}
+                  type="image/webp"
+                />
+                <img
+                  src={frontmatter.image}
+                  alt={frontmatter.title}
+                  class="zoomable-image w-full h-full object-cover transform hover:scale-105 transition-transform duration-700 cursor-zoom-in relative z-20"
+                  data-pagefind-meta="image[src], image_alt[alt]"
+                  fetchpriority="high"
+                  decoding="async"
+                />
+              </picture>
             </div>
           )
         )
       }
     </div>
 
-    {/* --- CONTENU MDX (Géré automatiquement par Tailwind Typography) --- */}
     <div
       class="prose prose-invert prose-lg md:prose-xl mx-auto prose-headings:font-serif prose-headings:font-bold prose-headings:text-gold prose-p:font-sans prose-p:text-gray-300 prose-p:leading-relaxed prose-a:text-gold hover:prose-a:text-gold-hover prose-strong:text-white prose-blockquote:border-gold prose-blockquote:bg-gold/5 prose-blockquote:py-2 prose-blockquote:px-6 prose-blockquote:rounded-r-lg prose-blockquote:font-serif prose-blockquote:italic"
     >
       <slot />
     </div>
 
-    {/* --- ENCART IA (APPEL À L'ACTION) --- */}
     <div
       class="mt-20 mb-8 p-8 bg-gradient-to-br from-white/5 to-transparent border border-gold/20 rounded-2xl flex flex-col items-center text-center shadow-2xl relative overflow-hidden group"
+      data-pagefind-ignore
     >
       <div class="absolute top-0 left-0 w-full h-1 bg-gold"></div>
       <div class="text-4xl mb-4 animate-[bounce_3s_infinite]">✨</div>
@@ -111,10 +134,9 @@ const formattedDate = new Intl.DateTimeFormat("fr-FR", {
       </button>
     </div>
 
-    {/* --- TAGS --- */}
     {
       frontmatter.tags && (
-        <div class="mt-12 pt-8 border-t border-white/10">
+        <div class="mt-12 pt-8 border-t border-white/10" data-pagefind-ignore>
           <h3 class="font-serif text-xl text-white mb-6 text-center">
             Sujets abordés dans cet article :
           </h3>
@@ -133,12 +155,8 @@ const formattedDate = new Intl.DateTimeFormat("fr-FR", {
     }
   </article>
 
-  {/* 2. AFFICHAGE DE LA LIGHTBOX ICI 👇 */}
   <GlobalLightbox />
 
-  {
-    /* SCRIPT FORCEUR ASTRO : Garantit l'attachement du clic à chaque chargement d'article */
-  }
   <script>
     document.addEventListener("astro:page-load", () => {
       const modal = document.getElementById(
@@ -150,22 +168,26 @@ const formattedDate = new Intl.DateTimeFormat("fr-FR", {
 
       if (!modal || !modalImg) return;
 
-      // On cible l'image d'en-tête (.zoomable-image) ET toutes les images du texte (.prose img)
       const articleImages = document.querySelectorAll(
         ".zoomable-image, .prose img",
       );
 
       articleImages.forEach((img: any) => {
-        // On force le curseur visuellement
+        // OPTIMISATION SEO : Injection du lazy loading sur les images dans le texte
+        if (!img.classList.contains("zoomable-image")) {
+          img.setAttribute("loading", "lazy");
+          img.setAttribute("decoding", "async");
+        }
+
         img.style.cursor = "zoom-in";
         img.classList.add("hover:opacity-90", "transition-opacity");
 
-        // On écrase tout ancien événement et on attache le nôtre directement
         img.onclick = (e: Event) => {
           e.preventDefault();
           e.stopPropagation();
 
-          modalImg.src = img.src;
+          // La Lightbox affiche l'image cliquée (WebP ou JPG natif)
+          modalImg.src = img.currentSrc || img.src;
           modalImg.alt = img.alt || "Image de l'article agrandie";
 
           modal.showModal();
