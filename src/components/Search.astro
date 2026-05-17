@@ -1,0 +1,229 @@
+---
+// src/components/Search.astro
+---
+
+{/* 1. Le Bouton de déclenchement (À intégrer dans votre Navigation) */}
+<button
+  id="search-trigger"
+  class="flex items-center gap-3 px-4 py-2 text-sm text-gray-300 bg-white/5 hover:bg-white/10 border border-gold/20 hover:border-gold/60 rounded-lg transition-all duration-300"
+  aria-label="Rechercher sur le site"
+>
+  <svg
+    xmlns="http://www.w3.org/2000/svg"
+    class="h-4 w-4 text-gold"
+    fill="none"
+    viewBox="0 0 24 24"
+    stroke="currentColor"
+  >
+    <path
+      stroke-linecap="round"
+      stroke-linejoin="round"
+      stroke-width="2"
+      d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z"></path>
+  </svg>
+  <span class="hidden sm:inline">Explorer l&apos;Oracle...</span>
+  <kbd
+    class="hidden md:flex items-center justify-center gap-1 font-mono text-[10px] bg-black/50 text-gray-400 px-2 py-1 rounded border border-gray-700"
+  >
+    <span>CTRL</span><span>K</span>
+  </kbd>
+</button>
+
+{/* 2. La Modale (Command Palette) */}
+<div
+  id="search-modal"
+  class="fixed inset-0 z-[100] bg-[#020104]/80 backdrop-blur-md hidden flex-col items-center pt-16 md:pt-32 px-4 transition-opacity duration-300 opacity-0"
+>
+  {/* Conteneur principal */}
+  <div
+    id="search-container"
+    class="w-full max-w-3xl bg-[#0a0505] border border-gold/30 rounded-2xl shadow-[0_30px_70px_rgba(0,0,0,0.9),0_0_30px_rgba(212,175,55,0.1)] relative overflow-hidden transform scale-95 transition-transform duration-300 flex flex-col max-h-[80vh]"
+  >
+    {/* En-tête */}
+    <div
+      class="p-4 border-b border-red-900/30 flex justify-between items-center bg-gradient-to-r from-[#0a0505] to-[#140505]"
+    >
+      <span
+        class="text-gold font-serif tracking-[0.2em] text-xs md:text-sm uppercase flex items-center gap-2"
+      >
+        <svg
+          xmlns="http://www.w3.org/2000/svg"
+          class="h-5 w-5"
+          fill="none"
+          viewBox="0 0 24 24"
+          stroke="currentColor"
+          ><path
+            stroke-linecap="round"
+            stroke-linejoin="round"
+            stroke-width="2"
+            d="M19.428 15.428a2 2 0 00-1.022-.547l-2.387-.477a6 6 0 00-3.86.517l-.318.158a6 6 0 01-3.86.517L6.05 15.21a2 2 0 00-1.806.547M8 4h8l-1 1v5.172a2 2 0 00.586 1.414l5 5c1.26 1.26.367 3.414-1.415 3.414H4.828c-1.782 0-2.674-2.154-1.414-3.414l5-5A2 2 0 009 10.172V5L8 4z"
+          ></path></svg
+        >
+        Oracle de Recherche
+      </span>
+      <button
+        id="close-search"
+        class="text-gray-500 hover:text-white transition-colors p-1"
+      >
+        <svg
+          class="w-6 h-6"
+          fill="none"
+          stroke="currentColor"
+          viewBox="0 0 24 24"
+          ><path
+            stroke-linecap="round"
+            stroke-linejoin="round"
+            stroke-width="2"
+            d="M6 18L18 6M6 6l12 12"></path></svg
+        >
+      </button>
+    </div>
+
+    {/* Zone d'injection Pagefind */}
+    <div class="p-4 md:p-6 overflow-y-auto flex-1 custom-scrollbar">
+      <div id="pagefind-search"></div>
+    </div>
+  </div>
+</div>
+
+{/* 3. Styles globaux pour surcharger Pagefind aux couleurs du site */}
+<style is:global>
+  :root {
+    --pagefind-ui-scale: 1;
+    --pagefind-ui-primary: #d4af37; /* Or */
+    --pagefind-ui-text: #e5e7eb;
+    --pagefind-ui-background: transparent;
+    --pagefind-ui-border: rgba(212, 175, 55, 0.2);
+    --pagefind-ui-tag: #1a0b0b;
+    --pagefind-ui-border-width: 1px;
+    --pagefind-ui-border-radius: 8px;
+    --pagefind-ui-image-border-radius: 8px;
+    --pagefind-ui-image-box-ratio: 16 / 9;
+    --pagefind-ui-font: "Lato", sans-serif;
+  }
+
+  /* Cache l'input par défaut si on veut tout styliser, mais Pagefind le fait bien. */
+  .pagefind-ui__search-input {
+    font-size: 1.1rem !important;
+    font-weight: 300 !important;
+    background-color: rgba(255, 255, 255, 0.02) !important;
+  }
+  .pagefind-ui__search-input:focus {
+    outline: none !important;
+    border-color: var(--pagefind-ui-primary) !important;
+    box-shadow: 0 0 15px rgba(212, 175, 55, 0.1) !important;
+  }
+  .pagefind-ui__result-title {
+    font-family: "Playfair Display", serif !important;
+    font-weight: 700 !important;
+    letter-spacing: 0.05em;
+  }
+  .pagefind-ui__result-excerpt {
+    color: #9ca3af !important;
+    font-weight: 300;
+  }
+  mark {
+    background-color: rgba(212, 175, 55, 0.2) !important;
+    color: #d4af37 !important;
+    font-weight: bold;
+  }
+</style>
+
+{/* 4. Logique de la Modale et Initialisation de Pagefind */}
+<script is:inline>
+  document.addEventListener("DOMContentLoaded", () => {
+    const trigger = document.getElementById("search-trigger");
+    const modal = document.getElementById("search-modal");
+    const container = document.getElementById("search-container");
+    const closeBtn = document.getElementById("close-search");
+    let pagefindLoaded = false;
+
+    const openModal = async () => {
+      // Affichage de la modale
+      modal.classList.remove("hidden");
+      // Petit délai pour l'animation d'opacité
+      setTimeout(() => {
+        modal.classList.remove("opacity-0");
+        container.classList.remove("scale-95");
+      }, 10);
+
+      // Chargement dynamique de Pagefind uniquement à l'ouverture (Optimisation Performance)
+      if (!pagefindLoaded) {
+        try {
+          // On injecte le CSS et JS générés par la commande build de Pagefind
+          const cssLink = document.createElement("link");
+          cssLink.rel = "stylesheet";
+          cssLink.href = "/pagefind/pagefind-ui.css";
+          document.head.appendChild(cssLink);
+
+          const script = document.createElement("script");
+          script.src = "/pagefind/pagefind-ui.js";
+          script.onload = () => {
+            new PagefindUI({
+              element: "#pagefind-search",
+              showImages: true,
+              showSubResults: true,
+              translations: {
+                placeholder: "Rechercher une divinité, un article...",
+                clear_search: "Effacer",
+                load_more: "Voir plus de résultats",
+                search_label: "Recherche sur le site",
+                filters_label: "Filtres",
+                zero_results:
+                  "L'Oracle n'a trouvé aucun résultat pour [SEARCH_TERM]",
+                many_results: "[COUNT] révélations trouvées pour [SEARCH_TERM]",
+                one_result: "Une révélation trouvée pour [SEARCH_TERM]",
+                alt_search:
+                  "Aucun résultat trouvé pour [SEARCH_TERM]. Affichage des résultats pour [DIFFERENT_TERM] à la place",
+                search_suggestion:
+                  "Aucun résultat trouvé pour [SEARCH_TERM]. Essayez une des recherches suivantes :",
+                searching: "Consultation de l'Oracle...",
+              },
+            });
+            document.querySelector(".pagefind-ui__search-input")?.focus();
+          };
+          document.body.appendChild(script);
+          pagefindLoaded = true;
+        } catch (e) {
+          console.error(
+            "Erreur lors du chargement de l'Oracle de recherche",
+            e,
+          );
+        }
+      } else {
+        // Si déjà chargé, on focus juste l'input
+        setTimeout(() => {
+          document.querySelector(".pagefind-ui__search-input")?.focus();
+        }, 100);
+      }
+    };
+
+    const closeModal = () => {
+      modal.classList.add("opacity-0");
+      container.classList.add("scale-95");
+      setTimeout(() => {
+        modal.classList.add("hidden");
+      }, 300);
+    };
+
+    // Écouteurs d'événements
+    trigger.addEventListener("click", openModal);
+    closeBtn.addEventListener("click", closeModal);
+
+    // Fermeture en cliquant en dehors
+    modal.addEventListener("click", (e) => {
+      if (e.target === modal) closeModal();
+    });
+
+    // Raccourci clavier (Cmd+K ou Ctrl+K) et Échap pour fermer
+    document.addEventListener("keydown", (e) => {
+      if ((e.metaKey || e.ctrlKey) && e.key === "k") {
+        e.preventDefault();
+        openModal();
+      }
+      if (e.key === "Escape" && !modal.classList.contains("hidden")) {
+        closeModal();
+      }
+    });
+  });
+</script>
