@@ -1,0 +1,235 @@
+---
+/*
+  NanaBulukuArt.astro - CSS Art
+  Allégorie de la Matrice Originelle, du Souffle Incréé.
+  Optimisé Tailwind v4 - 100% CSS (Zéro JS) - Thème Abyssal/Cosmique
+*/
+---
+
+<div
+  class="relative w-full max-w-3xl mx-auto my-10 h-96 md:h-[32rem] bg-[#020108] rounded-2xl overflow-hidden border border-indigo-900/30 shadow-[0_20px_50px_rgba(0,0,0,0.9)] flex items-center justify-center group opacity-0 animate-fade-up select-none"
+>
+  {/* Lueur d'arrière-plan (Réagit au hover) */}
+  <div
+    class="absolute inset-0 bg-[radial-gradient(circle_at_center,rgba(49,27,146,0.15)_0%,#020108_80%)] transition-colors duration-1000 group-hover:bg-[radial-gradient(circle_at_center,rgba(138,43,226,0.2)_0%,#020108_80%)]"
+  >
+  </div>
+
+  {/* Bruit visuel (Texture de l'espace primitif) */}
+  <div
+    class="absolute inset-0 bg-[url('data:image/svg+xml,%3Csvg viewBox=%220 0 200 200%22 xmlns=%22http://www.w3.org/2000/svg%22%3E%3Cfilter id=%22n%22%3E%3CfeTurbulence type=%22fractalNoise%22 baseFrequency=%220.65%22 numOctaves=%223%22 stitchTiles=%22stitch%22/%3E%3C/filter%3E%3Crect width=%22100%25%22 height=%22100%25%22 filter=%22url(%23n)%22 opacity=%220.08%22/%3E%3C/svg%3E')] mix-blend-overlay pointer-events-none"
+  >
+  </div>
+
+  {/* Titre Arrière-plan (Éthéré) */}
+  <div
+    class="absolute top-8 md:top-12 w-full text-center z-0 transition-transform duration-1000 group-hover:scale-105"
+  >
+    <h1
+      class="font-serif text-6xl md:text-8xl m-0 text-transparent bg-clip-text bg-gradient-to-b from-indigo-900/40 to-transparent uppercase tracking-[0.2em] font-black"
+    >
+      NANA BULUKU
+    </h1>
+  </div>
+
+  {/* L'Émanation : Noyau Cosmique et Dualité */}
+  <div
+    class="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 z-10 w-64 h-64 md:w-80 md:h-80 flex items-center justify-center transition-transform duration-1000 group-hover:scale-110"
+  >
+    {/* Anneau de Dan (Le Serpent Cosmique - Rotation continue) */}
+    <div
+      class="absolute w-full h-full border-[1px] border-dashed border-indigo-500/30 rounded-full animate-spin-slow [transform-style:preserve-3d] [transform:rotateX(60deg)_rotateY(20deg)]"
+    >
+    </div>
+
+    {/* Anneau de Dan (Contre-rotation) */}
+    <div
+      class="absolute w-[90%] h-[90%] border-[2px] border-dotted border-purple-500/20 rounded-full animate-spin-reverse-slow [transform-style:preserve-3d] [transform:rotateX(-60deg)_rotateY(-20deg)]"
+    >
+    </div>
+
+    {/* Dualité : Mawu (Lune/Bleu) et Lisa (Soleil/Or) */}
+    <div class="absolute w-40 h-40 animate-orbit">
+      <div
+        class="absolute top-0 left-1/2 -translate-x-1/2 w-4 h-4 bg-cyan-300 rounded-full blur-[2px] shadow-[0_0_20px_10px_rgba(0,255,255,0.4)]"
+      >
+      </div>
+    </div>
+    <div class="absolute w-40 h-40 animate-orbit-reverse">
+      <div
+        class="absolute bottom-0 left-1/2 -translate-x-1/2 w-4 h-4 bg-amber-400 rounded-full blur-[2px] shadow-[0_0_20px_10px_rgba(255,170,0,0.4)]"
+      >
+      </div>
+    </div>
+
+    {/* Le Noyau Incréé (L'Énergie Mère) */}
+    <div
+      class="absolute w-12 h-12 md:w-16 md:h-16 bg-white rounded-full blur-[4px] animate-pulse-core shadow-[0_0_80px_30px_#4b0082,inset_0_0_20px_#ffffff]"
+    >
+    </div>
+  </div>
+
+  {/* Particules Stellaires (L'origine de la matière) */}
+  <div class="absolute inset-0 z-15 overflow-hidden pointer-events-none">
+    <div
+      class="absolute top-[60%] left-[30%] w-1 h-1 bg-cyan-200 rounded-full shadow-[0_0_8px_#00ffff] animate-float opacity-0 [animation-delay:0.5s]"
+    >
+    </div>
+    <div
+      class="absolute top-[40%] left-[70%] w-1.5 h-1.5 bg-purple-300 rounded-full shadow-[0_0_10px_#8a2be2] animate-float opacity-0 [animation-delay:2s]"
+    >
+    </div>
+    <div
+      class="absolute top-[70%] left-[55%] w-1 h-1 bg-white rounded-full shadow-[0_0_8px_#ffffff] animate-float opacity-0 [animation-delay:1.2s]"
+    >
+    </div>
+    <div
+      class="absolute top-[35%] left-[40%] w-2 h-2 bg-indigo-400 rounded-full shadow-[0_0_15px_#4b0082] animate-float opacity-0 [animation-delay:3.5s]"
+    >
+    </div>
+  </div>
+
+  {/* Textes HUD / Informations */}
+  <div
+    class="absolute bottom-6 w-full text-center z-30 transition-transform duration-700 group-hover:-translate-y-1"
+  >
+    <h2
+      class="font-sans text-sm md:text-base font-bold text-white tracking-[0.4em] uppercase drop-shadow-[0_4px_10px_rgba(0,0,0,1)]"
+    >
+      La Matrice Suprême
+    </h2>
+    <div
+      class="text-[0.55rem] md:text-[0.65rem] text-indigo-300/80 tracking-[0.3em] mt-2 uppercase font-light"
+    >
+      LE SOUFFLE INCRÉÉ. L&apos;ABSOLU.
+    </div>
+  </div>
+
+  {/* Décorations de coin */}
+  <div
+    class="absolute top-4 left-4 font-mono text-[0.625rem] text-purple-500/50 tracking-[0.3em] uppercase select-none"
+  >
+    AXIS: GENESIS
+  </div>
+  <div
+    class="absolute bottom-4 right-4 font-mono text-[0.625rem] text-cyan-500/50 tracking-[0.3em] uppercase animate-pulse-slow select-none"
+  >
+    MATRIX.ONLINE()
+  </div>
+</div>
+
+<style>
+  /* --- Animations 100% CSS --- */
+  @keyframes fadeUp {
+    from {
+      opacity: 0;
+      transform: translateY(30px);
+    }
+    to {
+      opacity: 1;
+      transform: translateY(0);
+    }
+  }
+  .animate-fade-up {
+    animation: fadeUp 1s cubic-bezier(0.16, 1, 0.3, 1) forwards;
+  }
+
+  @keyframes pulseCore {
+    0%,
+    100% {
+      transform: scale(0.85);
+      opacity: 0.9;
+    }
+    50% {
+      transform: scale(1.1);
+      opacity: 1;
+      box-shadow:
+        0 0 100px 40px #8a2be2,
+        inset 0 0 30px #ffffff;
+    }
+  }
+  .animate-pulse-core {
+    animation: pulseCore 4s infinite alternate ease-in-out;
+  }
+
+  @keyframes spinSlow {
+    from {
+      transform: rotateX(60deg) rotateY(20deg) rotateZ(0deg);
+    }
+    to {
+      transform: rotateX(60deg) rotateY(20deg) rotateZ(360deg);
+    }
+  }
+  .animate-spin-slow {
+    animation: spinSlow 20s linear infinite;
+  }
+
+  @keyframes spinReverseSlow {
+    from {
+      transform: rotateX(-60deg) rotateY(-20deg) rotateZ(360deg);
+    }
+    to {
+      transform: rotateX(-60deg) rotateY(-20deg) rotateZ(0deg);
+    }
+  }
+  .animate-spin-reverse-slow {
+    animation: spinReverseSlow 25s linear infinite;
+  }
+
+  @keyframes orbit {
+    from {
+      transform: rotate(0deg);
+    }
+    to {
+      transform: rotate(360deg);
+    }
+  }
+  .animate-orbit {
+    animation: orbit 8s linear infinite;
+  }
+
+  @keyframes orbitReverse {
+    from {
+      transform: rotate(360deg);
+    }
+    to {
+      transform: rotate(0deg);
+    }
+  }
+  .animate-orbit-reverse {
+    animation: orbitReverse 12s linear infinite;
+  }
+
+  @keyframes pulseSlow {
+    0%,
+    100% {
+      opacity: 0.3;
+    }
+    50% {
+      opacity: 0.8;
+    }
+  }
+  .animate-pulse-slow {
+    animation: pulseSlow 3s infinite alternate;
+  }
+
+  @keyframes float {
+    0% {
+      transform: translateY(0) scale(0.8);
+      opacity: 0;
+    }
+    20% {
+      opacity: 0.8;
+    }
+    80% {
+      opacity: 0.5;
+    }
+    100% {
+      transform: translateY(-100px) scale(1.5);
+      opacity: 0;
+    }
+  }
+  .animate-float {
+    animation: float 6s infinite ease-in;
+  }
+</style>
