@@ -110,41 +110,37 @@ const socialImageURL = new URL(image, Astro.url);
       class="sticky top-0 z-50 bg-dark-bg/90 backdrop-blur-lg border-b border-white/10 transition-all duration-300"
     >
       <div
-        class="max-w-[1400px] mx-auto px-4 sm:px-6 py-3 lg:py-4 flex justify-between items-center relative"
+        class="max-w-[1400px] mx-auto px-4 sm:px-6 py-3 lg:py-4 flex justify-between items-center gap-4 xl:gap-8 relative"
       >
-        {/* 1. GAUCHE : Logo & Identité */}
-        <div class="flex items-center shrink-0 w-auto lg:w-1/4">
-          <a
-            href="/"
-            class="flex items-center gap-3 sm:gap-4 group decoration-transparent z-[60]"
+        {/* 1. GAUCHE : Logo & Identité (Verrouillé sans écrasement) */}
+        <a
+          href="/"
+          class="flex items-center gap-3 sm:gap-4 group decoration-transparent z-[60] shrink-0"
+        >
+          <Logo
+            width="40"
+            height="40"
+            class="group-hover:scale-105 transition-transform duration-300 md:w-[45px] md:h-[45px]"
+          />
+          <span
+            class="font-serif font-bold text-lg sm:text-xl lg:text-2xl text-gray-100 uppercase tracking-wider group-hover:text-gold transition-colors hidden md:block whitespace-nowrap"
           >
-            <Logo
-              width="40"
-              height="40"
-              class="group-hover:scale-105 transition-transform duration-300 md:w-[45px] md:h-[45px]"
-            />
-            <span
-              class="font-serif font-bold text-lg sm:text-xl lg:text-2xl text-gray-100 uppercase tracking-wider group-hover:text-gold transition-colors hidden md:block"
-            >
-              Héritage Vodun
-            </span>
-          </a>
-        </div>
+            Héritage Vodun
+          </span>
+        </a>
 
-        {/* 2. MILIEU : Menu centralisé */}
-        <div class="flex-1 flex justify-center static w-full lg:w-2/4">
+        {/* 2. MILIEU : Menu centralisé (Aéré et Flexible) */}
+        <div class="flex-1 flex justify-end xl:justify-center static z-[50]">
           <Navigation />
         </div>
 
         {/* 3. DROITE : Recherche & Déclencheur Mobile */}
-        <div
-          class="flex items-center justify-end gap-3 sm:gap-5 z-[60] shrink-0 w-auto lg:w-1/4"
-        >
+        <div class="flex items-center gap-3 sm:gap-5 z-[60] shrink-0">
           <Search />
 
           <button
             id="menu-toggle"
-            class="lg:hidden flex flex-col gap-1.5 p-2.5 bg-white/5 border border-white/10 rounded-lg hover:bg-gold/20 hover:border-gold/50 transition-colors"
+            class="xl:hidden flex flex-col gap-1.5 p-2.5 bg-white/5 border border-white/10 rounded-lg hover:bg-gold/20 hover:border-gold/50 transition-colors"
             aria-label="Ouvrir le menu"
           >
             <span class="w-5 h-0.5 bg-gray-300 rounded-full transition-all"

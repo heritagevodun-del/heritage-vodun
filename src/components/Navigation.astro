@@ -13,7 +13,7 @@ const navLinks = [
 
 <nav
   id="nav-menu"
-  class="hidden lg:flex absolute lg:relative top-full left-0 w-full lg:w-auto bg-[#050505]/95 lg:bg-transparent backdrop-blur-xl lg:backdrop-blur-none flex-col lg:flex-row items-center py-6 lg:py-0 px-4 lg:px-0 gap-4 lg:gap-6 xl:gap-8 border-b lg:border-none border-white/10 shadow-2xl lg:shadow-none transition-all duration-300 z-50"
+  class="hidden xl:flex absolute xl:relative top-full left-0 w-full xl:w-auto bg-[#050505]/95 xl:bg-transparent backdrop-blur-xl xl:backdrop-blur-none flex-col xl:flex-row items-center py-6 xl:py-0 px-4 xl:px-0 gap-4 xl:gap-6 xl:gap-8 border-b xl:border-none border-white/10 shadow-2xl xl:shadow-none transition-all duration-300 z-50"
 >
   {
     navLinks.map((link) => {
@@ -24,15 +24,15 @@ const navLinks = [
       return (
         <a
           href={link.href}
-          class={`w-full lg:w-auto py-3 lg:py-0 font-sans font-bold uppercase text-[0.8rem] xl:text-[0.85rem] tracking-widest transition-all duration-300 relative group text-center lg:text-left rounded-md lg:rounded-none hover:bg-white/5 lg:hover:bg-transparent ${
+          class={`w-full xl:w-auto py-3 xl:py-0 font-sans font-bold uppercase text-[0.8rem] xl:text-[0.85rem] tracking-widest transition-all duration-300 relative group text-center xl:text-left rounded-md xl:rounded-none hover:bg-white/5 xl:hover:bg-transparent ${
             isActive
-              ? "text-gold bg-white/5 lg:bg-transparent"
+              ? "text-gold bg-white/5 xl:bg-transparent"
               : "text-gray-300 hover:text-gold"
           }`}
         >
           {link.name}
           <span
-            class={`hidden lg:block absolute -bottom-2 left-0 h-[2px] bg-gold transition-all duration-300 ${isActive ? "w-full" : "w-0 group-hover:w-full"}`}
+            class={`hidden xl:block absolute -bottom-2 left-0 h-[2px] bg-gold transition-all duration-300 ${isActive ? "w-full" : "w-0 group-hover:w-full"}`}
           />
         </a>
       );
@@ -41,11 +41,11 @@ const navLinks = [
 
   {/* SÉLECTEUR DE LANGUE (i18n) */}
   <div
-    class="relative group mt-4 lg:mt-0 w-full lg:w-auto flex justify-center lg:ml-2"
+    class="relative group mt-4 xl:mt-0 w-full xl:w-auto flex justify-center xl:ml-2"
   >
     <button
       id="lang-btn"
-      class="flex items-center justify-center gap-1.5 text-gray-300 hover:text-gold transition-colors font-sans uppercase text-sm tracking-wider px-4 py-3 lg:px-2 lg:py-2 rounded-md hover:bg-white/5 lg:hover:bg-transparent w-full lg:w-auto cursor-pointer"
+      class="flex items-center justify-center gap-1.5 text-gray-300 hover:text-gold transition-colors font-sans uppercase text-sm tracking-wider px-4 py-3 xl:px-2 xl:py-2 rounded-md hover:bg-white/5 xl:hover:bg-transparent w-full xl:w-auto cursor-pointer"
       aria-label="Changer de langue"
     >
       <svg
@@ -71,7 +71,7 @@ const navLinks = [
     {/* Menu Déroulant des Langues */}
     <div
       id="lang-dropdown"
-      class="absolute top-full right-auto lg:left-1/2 lg:-translate-x-1/2 mt-1 w-48 lg:w-40 bg-dark-surface border border-white/10 rounded-lg shadow-2xl opacity-0 invisible lg:group-hover:opacity-100 lg:group-hover:visible transition-all duration-300 flex flex-col overflow-hidden z-50 origin-top"
+      class="absolute top-full right-auto xl:left-1/2 xl:-translate-x-1/2 mt-1 w-48 lg:w-40 bg-dark-surface border border-white/10 rounded-lg shadow-2xl opacity-0 invisible xl:group-hover:opacity-100 xl:group-hover:visible transition-all duration-300 flex flex-col overflow-hidden z-50 origin-top"
     >
       <a
         href="/fon"
@@ -109,18 +109,18 @@ const navLinks = [
   {/* BOUTON ORACLE PREMIUM */}
   <a
     href="#"
-    class="open-oracle w-full max-w-[280px] lg:w-auto mt-6 lg:mt-0 flex items-center justify-center gap-2.5 px-4 lg:px-5 py-4 lg:py-1.5 rounded-full border border-gold lg:border-green-500/30 hover:border-gold lg:hover:bg-gold/5 bg-gold/10 lg:bg-transparent text-gold lg:text-gray-300 hover:text-gold transition-all duration-300 shadow-[0_5px_15px_rgba(212,175,55,0.2)] lg:shadow-none lg:hover:-translate-y-0.5 mx-auto xl:ml-2"
+    class="open-oracle w-full max-w-[280px] xl:w-auto mt-6 xl:mt-0 flex items-center justify-center gap-2.5 px-4 xl:px-5 py-4 xl:py-1.5 rounded-full border border-gold xl:border-green-500/30 hover:border-gold xl:hover:bg-gold/5 bg-gold/10 xl:bg-transparent text-gold xl:text-gray-300 hover:text-gold transition-all duration-300 shadow-[0_5px_15px_rgba(212,175,55,0.2)] xl:shadow-none xl:hover:-translate-y-0.5 mx-auto xl:ml-2"
   >
     <span class="relative flex h-2 w-2">
       <span
-        class="animate-ping absolute inline-flex h-full w-full rounded-full bg-gold lg:bg-green-400 lg:opacity-75 opacity-100"
+        class="animate-ping absolute inline-flex h-full w-full rounded-full bg-gold lg:bg-green-400 xl:opacity-75 opacity-100"
       ></span>
       <span
         class="relative inline-flex rounded-full h-2 w-2 bg-gold lg:bg-green-500"
       ></span>
     </span>
     <span
-      class="font-serif lg:font-sans font-bold text-[0.95rem] lg:text-[0.75rem] xl:text-[0.8rem] uppercase tracking-[2px] lg:tracking-[1px] whitespace-nowrap"
+      class="font-serif xl:font-sans font-bold text-[0.95rem] xl:text-[0.75rem] xl:text-[0.8rem] uppercase tracking-[2px] xl:tracking-[1px] whitespace-nowrap"
     >
       Parler à l'Oracle
     </span>
