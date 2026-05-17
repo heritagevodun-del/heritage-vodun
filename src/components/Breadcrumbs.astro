@@ -2,34 +2,29 @@
 // src/components/Breadcrumbs.astro
 
 interface Props {
-  // Optionnel : Permet de forcer une hiérarchie spécifique (ex: pour les articles)
   customPaths?: { label: string; href: string }[];
 }
 
 const { customPaths } = Astro.props;
 const currentPath = Astro.url.pathname;
 
-// Logique pour construire automatiquement le fil d'ariane si customPaths n'est pas fourni
 let paths = [{ label: "Accueil", href: "/" }];
 
 if (customPaths) {
   paths = [...paths, ...customPaths];
 } else {
-  // Découpage de l'URL actuelle (ex: /posts/legba -> ['posts', 'legba'])
   const pathSegments = currentPath
     .split("/")
     .filter((segment) => segment !== "");
 
   let accumulatedPath = "";
-  pathSegments.forEach((segment, index) => {
+  pathSegments.forEach((segment) => {
     accumulatedPath += `/${segment}`;
 
-    // Remplacement des tirets par des espaces et mise en majuscule de la première lettre
     let formattedLabel = segment.replace(/-/g, " ");
     formattedLabel =
       formattedLabel.charAt(0).toUpperCase() + formattedLabel.slice(1);
 
-    // Si on est dans les articles, on peut renommer "Posts" ou "Blog" pour l'UI
     if (segment.toLowerCase() === "posts") {
       formattedLabel = "Articles";
     }
@@ -41,7 +36,6 @@ if (customPaths) {
   });
 }
 
-// Construction du script JSON-LD pour le SEO (Schema.org BreadcrumbList)
 const schemaData = {
   "@context": "https://schema.org",
   "@type": "BreadcrumbList",
@@ -56,9 +50,11 @@ const schemaData = {
 
 <nav
   aria-label="Fil d'Ariane"
-  class="w-full max-w-4xl mx-auto px-4 py-4 md:py-6 text-sm text-gray-400"
+  class="w-full bg-[#0e0a11]/40 border border-white/5 rounded-xl px-5 py-3.5 my-6 backdrop-blur-sm shadow-sm"
 >
-  <ol class="flex flex-wrap items-center gap-2 m-0 p-0 list-none font-sans">
+  <ol
+    class="flex flex-wrap items-center gap-1.5 m-0 p-0 list-none font-sans text-xs md:text-sm tracking-wider"
+  >
     {
       paths.map((path, index) => {
         const isLast = index === paths.length - 1;
@@ -66,30 +62,27 @@ const schemaData = {
         return (
           <li class="flex items-center">
             {isLast ? (
-              // L'élément actuel (non cliquable, couleur or ou blanche)
               <span
-                class="text-gold-vodun font-semibold uppercase tracking-wider"
+                class="text-gold font-bold uppercase drop-shadow-[0_2px_4px_rgba(0,0,0,0.4)]"
                 aria-current="page"
               >
                 {path.label}
               </span>
             ) : (
-              // Les éléments parents (cliquables, avec effet de survol)
               <>
                 <a
                   href={path.href}
-                  class="hover:text-white transition-colors duration-200 uppercase tracking-wider"
+                  class="text-gray-200 hover:text-gold font-medium uppercase transition-colors duration-200"
                 >
                   {path.label}
                 </a>
-                {/* Le séparateur (Chevron SVG) */}
                 <svg
                   xmlns="http://www.w3.org/2000/svg"
-                  class="h-4 w-4 mx-2 text-gray-600"
+                  class="h-3.5 w-3.5 mx-2 text-gold/40 shrink-0"
                   fill="none"
                   viewBox="0 0 24 24"
                   stroke="currentColor"
-                  stroke-width="2"
+                  stroke-width="2.5"
                 >
                   <path
                     stroke-linecap="round"
@@ -106,12 +99,10 @@ const schemaData = {
   </ol>
 </nav>
 
-{/* Injection du script SEO dans le <head> de la page via Astro */}
 <script type="application/ld+json" set:html={JSON.stringify(schemaData)} />
 
 <style>
-  /* Ajout d'une couleur Tailwind personnalisée si vous ne l'avez pas configurée globalement */
-  .text-gold-vodun {
+  .text-gold {
     color: #d4af37;
   }
 </style>
