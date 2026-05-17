@@ -27,19 +27,19 @@
 {/* 2. La Modale (Command Palette) */}
 <div
   id="search-modal"
-  class="fixed inset-0 z-[100] bg-[#020104]/80 backdrop-blur-md hidden flex-col items-center pt-16 md:pt-32 px-4 transition-opacity duration-300 opacity-0"
+  class="fixed inset-0 z-[100] bg-[#020104]/90 backdrop-blur-md hidden flex-col items-center pt-16 md:pt-24 px-4 transition-opacity duration-300 opacity-0"
 >
   {/* Conteneur principal */}
   <div
     id="search-container"
-    class="w-full max-w-3xl bg-[#0a0505] border border-gold/30 rounded-2xl shadow-[0_30px_70px_rgba(0,0,0,0.9),0_0_30px_rgba(212,175,55,0.1)] relative overflow-hidden transform scale-95 transition-transform duration-300 flex flex-col max-h-[80vh]"
+    class="w-full max-w-3xl bg-[#0a0505] border border-gold/30 rounded-2xl shadow-[0_30px_70px_rgba(0,0,0,0.9),0_0_40px_rgba(212,175,55,0.15)] relative overflow-hidden transform scale-95 transition-transform duration-300 flex flex-col max-h-[85vh]"
   >
-    {/* En-tête */}
+    {/* En-tête de la modale */}
     <div
-      class="p-4 border-b border-red-900/30 flex justify-between items-center bg-gradient-to-r from-[#0a0505] to-[#140505]"
+      class="p-4 md:p-5 border-b border-white/10 flex justify-between items-center bg-gradient-to-r from-[#0a0505] to-[#140a0a]"
     >
       <span
-        class="text-gold font-serif tracking-[0.2em] text-xs md:text-sm uppercase flex items-center gap-2"
+        class="text-gold font-serif tracking-[0.2em] text-xs md:text-sm uppercase flex items-center gap-3"
       >
         <svg
           xmlns="http://www.w3.org/2000/svg"
@@ -58,10 +58,11 @@
       </span>
       <button
         id="close-search"
-        class="text-gray-500 hover:text-white transition-colors p-1"
+        class="text-gray-400 hover:text-white bg-white/5 hover:bg-white/10 rounded-full p-2 transition-colors"
+        title="Fermer (Échap)"
       >
         <svg
-          class="w-6 h-6"
+          class="w-5 h-5"
           fill="none"
           stroke="currentColor"
           viewBox="0 0 24 24"
@@ -75,77 +76,164 @@
     </div>
 
     {/* Zone d'injection Pagefind */}
-    <div class="p-4 md:p-6 overflow-y-auto flex-1 custom-scrollbar">
+    <div
+      class="p-4 md:p-8 overflow-y-auto flex-1 custom-scrollbar bg-[#050202]"
+    >
       <div id="pagefind-search"></div>
     </div>
   </div>
 </div>
 
-{/* 3. Styles globaux pour surcharger Pagefind aux couleurs du site */}
+{/* 3. Styles globaux pour Surcharger STRICTEMENT Pagefind */}
 <style is:global>
+  /* Variables de base Pagefind */
   :root {
     --pagefind-ui-scale: 1;
     --pagefind-ui-primary: #d4af37; /* Or */
-    --pagefind-ui-text: #e5e7eb;
+    --pagefind-ui-text: #e5e7eb; /* Gris clair text */
     --pagefind-ui-background: transparent;
-    --pagefind-ui-border: rgba(212, 175, 55, 0.2);
-    --pagefind-ui-tag: #1a0b0b;
+    --pagefind-ui-border: rgba(255, 255, 255, 0.1); /* Bordure subtile */
+    --pagefind-ui-tag: rgba(212, 175, 55, 0.1);
     --pagefind-ui-border-width: 1px;
-    --pagefind-ui-border-radius: 8px;
+    --pagefind-ui-border-radius: 12px;
     --pagefind-ui-image-border-radius: 8px;
     --pagefind-ui-image-box-ratio: 16 / 9;
     --pagefind-ui-font: "Lato", sans-serif;
   }
 
-  /* Cache l'input par défaut si on veut tout styliser, mais Pagefind le fait bien. */
+  /* --- CIBLAGE CSS STRICT POUR ÉCRASER LES STYLES PAR DÉFAUT --- */
+
+  /* 1. L'Input de Recherche (La barre où l'on tape) */
   .pagefind-ui__search-input {
     font-size: 1.1rem !important;
-    font-weight: 300 !important;
-    background-color: rgba(255, 255, 255, 0.02) !important;
+    font-weight: 400 !important;
+    color: #ffffff !important; /* Texte tapé bien blanc */
+    background-color: rgba(255, 255, 255, 0.03) !important;
+    padding: 1.2rem 1.5rem 1.2rem 3rem !important; /* Espace pour la loupe */
   }
+
   .pagefind-ui__search-input:focus {
     outline: none !important;
     border-color: var(--pagefind-ui-primary) !important;
-    box-shadow: 0 0 15px rgba(212, 175, 55, 0.1) !important;
+    background-color: rgba(255, 255, 255, 0.05) !important;
+    box-shadow: 0 0 0 2px rgba(212, 175, 55, 0.2) !important;
   }
-  .pagefind-ui__result-title {
+
+  .pagefind-ui__search-input::placeholder {
+    color: #6b7280 !important; /* Gris neutre pour le placeholder */
+  }
+
+  /* 2. Le Bouton "Effacer" (Croix dans l'input) */
+  .pagefind-ui__search-clear {
+    background-color: transparent !important;
+    color: #9ca3af !important;
+  }
+  .pagefind-ui__search-clear:hover {
+    color: #ffffff !important;
+  }
+
+  /* 3. Bloc de Résultat Individuel */
+  .pagefind-ui__result {
+    border-bottom: 1px solid rgba(255, 255, 255, 0.05) !important;
+    padding: 1.5rem 0 !important;
+    transition:
+      transform 0.2s ease,
+      opacity 0.2s ease;
+  }
+
+  .pagefind-ui__result:hover {
+    transform: translateX(4px);
+  }
+
+  /* Titre du Résultat */
+  .pagefind-ui__result-title,
+  .pagefind-ui__result-title .pagefind-ui__result-link {
     font-family: "Playfair Display", serif !important;
     font-weight: 700 !important;
-    letter-spacing: 0.05em;
+    color: #d4af37 !important; /* Titre en Or */
+    font-size: 1.3rem !important;
+    letter-spacing: 0.02em;
+    text-decoration: none !important;
+    transition: color 0.2s ease;
   }
+
+  .pagefind-ui__result-title .pagefind-ui__result-link:hover {
+    color: #fce79a !important; /* Or clair au survol */
+  }
+
+  /* Extrait de Texte (Excerpt) */
   .pagefind-ui__result-excerpt {
-    color: #9ca3af !important;
-    font-weight: 300;
+    color: #9ca3af !important; /* Gris clair lisible */
+    font-weight: 300 !important;
+    line-height: 1.6 !important;
+    margin-top: 0.75rem !important;
   }
-  mark {
-    background-color: rgba(212, 175, 55, 0.2) !important;
+
+  /* Surlignage du mot recherché (Mark) */
+  .pagefind-ui__result-excerpt mark {
+    background-color: rgba(212, 175, 55, 0.15) !important;
+    color: #ffffff !important;
+    font-weight: 700 !important;
+    padding: 0 4px !important;
+    border-radius: 4px !important;
+    border-bottom: 1px solid #d4af37 !important;
+  }
+
+  /* Méta-données (Date, Auteur) si Pagefind les remonte */
+  .pagefind-ui__message {
+    color: #6b7280 !important;
+    font-size: 0.9rem !important;
+    padding-bottom: 1rem !important;
+    font-style: italic;
+  }
+
+  /* Bouton "Voir plus" */
+  .pagefind-ui__button {
+    background-color: rgba(212, 175, 55, 0.1) !important;
     color: #d4af37 !important;
-    font-weight: bold;
+    border: 1px solid rgba(212, 175, 55, 0.3) !important;
+    font-weight: 600 !important;
+    text-transform: uppercase !important;
+    letter-spacing: 0.05em !important;
+    border-radius: 8px !important;
+    transition: all 0.3s ease !important;
+  }
+  .pagefind-ui__button:hover {
+    background-color: #d4af37 !important;
+    color: #000000 !important;
   }
 </style>
 
-{/* 4. Logique de la Modale et Initialisation de Pagefind */}
+{/* 4. Logique JS Corrigée pour Astro (ViewTransitions) */}
 <script is:inline>
-  document.addEventListener("DOMContentLoaded", () => {
-    const trigger = document.getElementById("search-trigger");
+  // On utilise astro:page-load pour que les événements soient réattachés après chaque navigation
+  document.addEventListener("astro:page-load", () => {
+    // 1. DÉTENTE ET CLONAGE (CORRECTION DU BUG DU CLIC UNIQUE)
+    // À cause de ViewTransitions, l'ancien bouton peut garder de vieux écouteurs "morts".
+    // On clone le bouton pour le purifier.
+    const oldTrigger = document.getElementById("search-trigger");
+    if (!oldTrigger) return;
+
+    const trigger = oldTrigger.cloneNode(true);
+    oldTrigger.parentNode.replaceChild(trigger, oldTrigger);
+
     const modal = document.getElementById("search-modal");
     const container = document.getElementById("search-container");
     const closeBtn = document.getElementById("close-search");
-    let pagefindLoaded = false;
 
-    const openModal = async () => {
-      // Affichage de la modale
+    if (!modal || !container || !closeBtn) return;
+
+    // 2. FONCTIONS D'OUVERTURE ET FERMETURE
+    const openModal = () => {
       modal.classList.remove("hidden");
-      // Petit délai pour l'animation d'opacité
       setTimeout(() => {
         modal.classList.remove("opacity-0");
         container.classList.remove("scale-95");
       }, 10);
 
-      // Chargement dynamique de Pagefind uniquement à l'ouverture (Optimisation Performance)
-      if (!pagefindLoaded) {
+      // Chargement différé de Pagefind
+      if (!window.pagefindLoaded) {
         try {
-          // On injecte le CSS et JS générés par la commande build de Pagefind
           const cssLink = document.createElement("link");
           cssLink.rel = "stylesheet";
           cssLink.href = "/pagefind/pagefind-ui.css";
@@ -159,34 +247,33 @@
               showImages: true,
               showSubResults: true,
               translations: {
-                placeholder: "Rechercher une divinité, un article...",
+                placeholder: "Rechercher une divinité, un mythe...",
                 clear_search: "Effacer",
                 load_more: "Voir plus de résultats",
-                search_label: "Recherche sur le site",
+                search_label: "Recherche",
                 filters_label: "Filtres",
                 zero_results:
                   "L'Oracle n'a trouvé aucun résultat pour [SEARCH_TERM]",
                 many_results: "[COUNT] révélations trouvées pour [SEARCH_TERM]",
                 one_result: "Une révélation trouvée pour [SEARCH_TERM]",
                 alt_search:
-                  "Aucun résultat trouvé pour [SEARCH_TERM]. Affichage des résultats pour [DIFFERENT_TERM] à la place",
-                search_suggestion:
-                  "Aucun résultat trouvé pour [SEARCH_TERM]. Essayez une des recherches suivantes :",
-                searching: "Consultation de l'Oracle...",
+                  "Aucun résultat trouvé pour [SEARCH_TERM]. Affichage pour [DIFFERENT_TERM]",
+                search_suggestion: "Aucun résultat trouvé. Essayez :",
+                searching: "Consultation des esprits...",
               },
             });
-            document.querySelector(".pagefind-ui__search-input")?.focus();
+            // Focus l'input une fois chargé
+            setTimeout(() => {
+              document.querySelector(".pagefind-ui__search-input")?.focus();
+            }, 100);
           };
           document.body.appendChild(script);
-          pagefindLoaded = true;
+          window.pagefindLoaded = true; // On stocke ça globalement sur la fenêtre
         } catch (e) {
-          console.error(
-            "Erreur lors du chargement de l'Oracle de recherche",
-            e,
-          );
+          console.error("Erreur Pagefind", e);
         }
       } else {
-        // Si déjà chargé, on focus juste l'input
+        // Déjà chargé, on focus juste
         setTimeout(() => {
           document.querySelector(".pagefind-ui__search-input")?.focus();
         }, 100);
@@ -201,16 +288,15 @@
       }, 300);
     };
 
-    // Écouteurs d'événements
+    // 3. ATTACHEMENT DES NOUVEAUX ÉCOUTEURS
     trigger.addEventListener("click", openModal);
+
     closeBtn.addEventListener("click", closeModal);
 
-    // Fermeture en cliquant en dehors
     modal.addEventListener("click", (e) => {
       if (e.target === modal) closeModal();
     });
 
-    // Raccourci clavier (Cmd+K ou Ctrl+K) et Échap pour fermer
     document.addEventListener("keydown", (e) => {
       if ((e.metaKey || e.ctrlKey) && e.key === "k") {
         e.preventDefault();
