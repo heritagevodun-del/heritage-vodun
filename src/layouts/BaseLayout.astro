@@ -45,7 +45,7 @@ const socialImageURL = new URL(image, Astro.url);
     <link rel="sitemap" href="/sitemap-index.xml" />
 
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <meta name="theme-color" content="#050505" />
+    <meta name="theme-color" content="#120e0c" />
     <link rel="icon" type="image/svg+xml" href="/favicon.svg?v=2" />
     <meta name="generator" content={Astro.generator} />
 
@@ -91,7 +91,7 @@ const socialImageURL = new URL(image, Astro.url);
   </head>
 
   <body
-    class="bg-dark-bg text-gray-300 font-sans antialiased flex flex-col min-h-screen selection:bg-gold/30 selection:text-white overflow-x-hidden"
+    class="bg-dark-bg text-vodun-kaolin font-sans antialiased flex flex-col min-h-screen selection:bg-gold/30 selection:text-white overflow-x-hidden"
   >
     {/* --- BARRE DE PROGRESSION LECTURE --- */}
     <div
@@ -123,7 +123,7 @@ const socialImageURL = new URL(image, Astro.url);
             class="group-hover:scale-105 transition-transform duration-300 md:w-[45px] md:h-[45px]"
           />
           <span
-            class="font-serif font-bold text-lg sm:text-xl lg:text-2xl text-gray-100 uppercase tracking-wider group-hover:text-gold transition-colors hidden md:block whitespace-nowrap"
+            class="font-serif font-bold text-lg sm:text-xl lg:text-2xl text-vodun-kaolin uppercase tracking-wider group-hover:text-gold transition-colors hidden md:block whitespace-nowrap"
           >
             Héritage Vodun
           </span>
@@ -143,11 +143,11 @@ const socialImageURL = new URL(image, Astro.url);
             class="xl:hidden flex flex-col gap-1.5 p-2.5 bg-white/5 border border-white/10 rounded-lg hover:bg-gold/20 hover:border-gold/50 transition-colors"
             aria-label="Ouvrir le menu"
           >
-            <span class="w-5 h-0.5 bg-gray-300 rounded-full transition-all"
+            <span class="w-5 h-0.5 bg-vodun-cendre rounded-full transition-all"
             ></span>
-            <span class="w-5 h-0.5 bg-gray-300 rounded-full transition-all"
+            <span class="w-5 h-0.5 bg-vodun-cendre rounded-full transition-all"
             ></span>
-            <span class="w-5 h-0.5 bg-gray-300 rounded-full transition-all"
+            <span class="w-5 h-0.5 bg-vodun-cendre rounded-full transition-all"
             ></span>
           </button>
         </div>
@@ -159,13 +159,15 @@ const socialImageURL = new URL(image, Astro.url);
     </main>
 
     <footer
-      class="bg-dark-surface border-t border-gold/30 pt-12 md:pt-16 pb-8 mt-16 text-gray-400 font-sans"
+      class="bg-dark-surface border-t border-gold/30 pt-12 md:pt-16 pb-8 mt-16 text-vodun-cendre font-sans"
     >
       <div
         class="max-w-7xl mx-auto px-4 sm:px-6 grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-10 md:gap-12 mb-12"
       >
         <div>
-          <h3 class="font-serif text-2xl text-white mb-4">Héritage Vodun</h3>
+          <h3 class="font-serif text-2xl text-vodun-kaolin mb-4">
+            Héritage Vodun
+          </h3>
           <p class="text-sm leading-relaxed mb-6">
             Le portail de référence pour comprendre la spiritualité, l'histoire
             et les rites du Bénin. Une tradition vivante, expliquée avec respect
@@ -229,11 +231,11 @@ const socialImageURL = new URL(image, Astro.url);
                 name="email"
                 placeholder="Votre email..."
                 required
-                class="flex-1 w-full bg-white/5 border border-white/10 text-white px-4 py-3 md:py-2 text-sm focus:outline-none focus:border-gold rounded-l-md"
+                class="flex-1 w-full bg-white/5 border border-white/10 text-vodun-kaolin px-4 py-3 md:py-2 text-sm focus:outline-none focus:border-gold rounded-l-md"
               />
               <button
                 type="submit"
-                class="bg-gold hover:bg-gold-hover text-white px-5 py-3 md:py-2 font-bold transition-colors rounded-r-md"
+                class="bg-gold hover:bg-gold-hover text-vodun-bg px-5 py-3 md:py-2 font-bold transition-colors rounded-r-md"
                 >→</button
               >
             </div>
@@ -278,11 +280,11 @@ const socialImageURL = new URL(image, Astro.url);
           © {new Date().getFullYear()} Héritage Vodun. Tous droits réservés.
         </p>
         <div class="flex flex-wrap justify-center gap-4">
-          <a href="#" class="hover:text-white transition-colors"
+          <a href="#" class="hover:text-vodun-kaolin transition-colors"
             >Mentions Légales</a
           >
           <span class="opacity-30 hidden sm:inline">|</span>
-          <a href="#" class="hover:text-white transition-colors"
+          <a href="#" class="hover:text-vodun-kaolin transition-colors"
             >Politique de Confidentialité</a
           >
         </div>
@@ -299,7 +301,7 @@ const socialImageURL = new URL(image, Astro.url);
         class="hidden absolute bottom-20 right-0 w-[calc(100vw-2rem)] sm:w-[380px] h-[70vh] max-h-[600px] bg-white rounded-xl shadow-2xl overflow-hidden flex-col border border-black/10 origin-bottom-right transition-all duration-300"
       >
         <div
-          class="bg-dark-surface p-4 flex justify-between items-center text-white shrink-0"
+          class="bg-dark-surface p-4 flex justify-between items-center text-vodun-kaolin shrink-0"
         >
           <div class="flex items-center gap-2">
             <span
@@ -311,12 +313,12 @@ const socialImageURL = new URL(image, Astro.url);
             <a
               href="https://www.mindoguesito.com"
               target="_blank"
-              class="text-gray-400 hover:text-white text-lg transition-colors leading-none"
+              class="text-vodun-cendre hover:text-vodun-kaolin text-lg transition-colors leading-none"
               title="Ouvrir en grand">↗</a
             >
             <button
               id="close-oracle"
-              class="text-gray-400 hover:text-white text-3xl leading-none transition-colors pb-1"
+              class="text-vodun-cendre hover:text-vodun-kaolin text-3xl leading-none transition-colors pb-1"
               aria-label="Fermer">×</button
             >
           </div>
@@ -352,11 +354,16 @@ const socialImageURL = new URL(image, Astro.url);
           viewBox="0 0 100 100"
           class="w-7 h-7 md:w-9 md:h-9"
           fill="none"
-          stroke="white"
+          stroke="var(--color-vodun-bg)"
           stroke-width="6"
         >
           <path d="M10 50 Q50 10 90 50 Q50 90 10 50 Z"></path>
-          <circle cx="50" cy="50" r="12" fill="white" stroke="none"></circle>
+          <circle
+            cx="50"
+            cy="50"
+            r="12"
+            fill="var(--color-vodun-bg)"
+            stroke="none"></circle>
         </svg>
         <div
           class="absolute inset-0 rounded-full border-2 border-gold animate-[pulse-glow_2s_infinite]"

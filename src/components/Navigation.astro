@@ -13,7 +13,7 @@ const navLinks = [
 
 <nav
   id="nav-menu"
-  class="hidden xl:flex absolute xl:relative top-full left-0 w-full xl:w-auto bg-[#050505]/95 xl:bg-transparent backdrop-blur-xl xl:backdrop-blur-none flex-col xl:flex-row items-center py-6 xl:py-0 px-4 xl:px-0 gap-4 xl:gap-6 xl:gap-8 border-b xl:border-none border-white/10 shadow-2xl xl:shadow-none transition-all duration-300 z-50"
+  class="hidden xl:flex absolute xl:relative top-full left-0 w-full xl:w-auto bg-dark-bg/95 xl:bg-transparent backdrop-blur-xl xl:backdrop-blur-none flex-col xl:flex-row items-center py-6 xl:py-0 px-4 xl:px-0 gap-4 xl:gap-6 xl:gap-8 border-b xl:border-none border-white/10 shadow-2xl xl:shadow-none transition-all duration-300 z-50"
 >
   {
     navLinks.map((link) => {
@@ -27,7 +27,7 @@ const navLinks = [
           class={`w-full xl:w-auto py-3 xl:py-0 font-sans font-bold uppercase text-[0.8rem] xl:text-[0.85rem] tracking-widest transition-all duration-300 relative group text-center xl:text-left rounded-md xl:rounded-none hover:bg-white/5 xl:hover:bg-transparent ${
             isActive
               ? "text-gold bg-white/5 xl:bg-transparent"
-              : "text-gray-300 hover:text-gold"
+              : "text-vodun-cendre hover:text-gold"
           }`}
         >
           {link.name}
@@ -45,7 +45,7 @@ const navLinks = [
   >
     <button
       id="lang-btn"
-      class="flex items-center justify-center gap-1.5 text-gray-300 hover:text-gold transition-colors font-sans uppercase text-sm tracking-wider px-4 py-3 xl:px-2 xl:py-2 rounded-md hover:bg-white/5 xl:hover:bg-transparent w-full xl:w-auto cursor-pointer"
+      class="flex items-center justify-center gap-1.5 text-vodun-cendre hover:text-gold transition-colors font-sans uppercase text-sm tracking-wider px-4 py-3 xl:px-2 xl:py-2 rounded-md hover:bg-white/5 xl:hover:bg-transparent w-full xl:w-auto cursor-pointer"
       aria-label="Changer de langue"
     >
       <svg
@@ -75,7 +75,7 @@ const navLinks = [
     >
       <a
         href="/fon"
-        class="px-4 py-3 text-sm text-gray-300 hover:bg-white/5 transition-colors flex items-center gap-3"
+        class="px-4 py-3 text-sm text-vodun-cendre hover:bg-white/5 transition-colors flex items-center gap-3"
         >🇧🇯 Fongbé</a
       >
       <a
@@ -85,22 +85,22 @@ const navLinks = [
       >
       <a
         href="/en"
-        class="px-4 py-3 text-sm text-gray-300 hover:bg-white/5 transition-colors flex items-center gap-3 border-b border-white/5"
+        class="px-4 py-3 text-sm text-vodun-cendre hover:bg-white/5 transition-colors flex items-center gap-3 border-b border-white/5"
         >🇬🇧 English</a
       >
       <a
         href="/pt"
-        class="px-4 py-3 text-sm text-gray-300 hover:bg-white/5 transition-colors flex items-center gap-3 border-b border-white/5"
+        class="px-4 py-3 text-sm text-vodun-cendre hover:bg-white/5 transition-colors flex items-center gap-3 border-b border-white/5"
         >🇵🇹 Português</a
       >
       <a
         href="/es"
-        class="px-4 py-3 text-sm text-gray-300 hover:bg-white/5 transition-colors flex items-center gap-3 border-b border-white/5"
+        class="px-4 py-3 text-sm text-vodun-cendre hover:bg-white/5 transition-colors flex items-center gap-3 border-b border-white/5"
         >🇪🇸 Español</a
       >
       <a
         href="/yo"
-        class="px-4 py-3 text-sm text-gray-300 hover:bg-white/5 transition-colors flex items-center gap-3 border-b border-white/5"
+        class="px-4 py-3 text-sm text-vodun-cendre hover:bg-white/5 transition-colors flex items-center gap-3 border-b border-white/5"
         >🇳🇬 Yorùbá</a
       >
     </div>
@@ -109,7 +109,7 @@ const navLinks = [
   {/* BOUTON ORACLE PREMIUM */}
   <a
     href="#"
-    class="open-oracle w-full max-w-[280px] xl:w-auto mt-6 xl:mt-0 flex items-center justify-center gap-2.5 px-4 xl:px-5 py-4 xl:py-1.5 rounded-full border border-gold xl:border-green-500/30 hover:border-gold xl:hover:bg-gold/5 bg-gold/10 xl:bg-transparent text-gold xl:text-gray-300 hover:text-gold transition-all duration-300 shadow-[0_5px_15px_rgba(212,175,55,0.2)] xl:shadow-none xl:hover:-translate-y-0.5 mx-auto xl:ml-2"
+    class="open-oracle w-full max-w-[280px] xl:w-auto mt-6 xl:mt-0 flex items-center justify-center gap-2.5 px-4 xl:px-5 py-4 xl:py-1.5 rounded-full border border-gold xl:border-green-500/30 hover:border-gold xl:hover:bg-gold/5 bg-gold/10 xl:bg-transparent text-gold xl:text-vodun-kaolin hover:text-gold transition-all duration-300 shadow-[0_5px_15px_rgba(212,175,55,0.2)] xl:shadow-none xl:hover:-translate-y-0.5 mx-auto xl:ml-2"
   >
     <span class="relative flex h-2 w-2">
       <span
@@ -133,7 +133,7 @@ const navLinks = [
     const langDropdown = document.getElementById("lang-dropdown");
 
     if (langBtn && langDropdown) {
-      const newLangBtn = langBtn.cloneNode(true);
+      const newLangBtn = langBtn.cloneNode(true) as HTMLElement;
       langBtn.parentNode?.replaceChild(newLangBtn, langBtn);
 
       newLangBtn.addEventListener("click", (e) => {
