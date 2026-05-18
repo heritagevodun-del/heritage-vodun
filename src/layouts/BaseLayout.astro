@@ -5,7 +5,9 @@ import Search from "../components/Search.astro";
 import { ClientRouter } from "astro:transitions";
 import SpeedInsights from "@vercel/speed-insights/astro";
 
+// L'IMPORT QUI PLANTAIT : ASSUREZ-VOUS QUE LE DOSSIER S'APPELLE "styles" et le fichier "global.css" EN MINUSCULES
 import "../styles/global.css";
+
 import "@fontsource/lato/300.css";
 import "@fontsource/lato/400.css";
 import "@fontsource/lato/700.css";
@@ -45,7 +47,7 @@ const socialImageURL = new URL(image, Astro.url);
     <link rel="sitemap" href="/sitemap-index.xml" />
 
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <meta name="theme-color" content="#110c0a" />
+    <meta name="theme-color" content="#120e0c" />
     <link rel="icon" type="image/svg+xml" href="/favicon.svg?v=2" />
     <meta name="generator" content={Astro.generator} />
 

@@ -6,10 +6,8 @@ import ViewCounter from "../components/ViewCounter.astro";
 import type { ImageMetadata } from "astro";
 import { Image, getImage } from "astro:assets";
 
-// Typage pour rassurer TypeScript
 const { frontmatter } = Astro.props as { frontmatter: any };
 
-// Formatage de la date en français
 const date = new Date(frontmatter.pubDate || frontmatter.date || Date.now());
 const formattedDate = new Intl.DateTimeFormat("fr-FR", {
   day: "numeric",
@@ -19,19 +17,31 @@ const formattedDate = new Intl.DateTimeFormat("fr-FR", {
 
 const isProd = import.meta.env.PROD;
 
-// --- AUTOMATISATION WEBP & ASSETS ---
-// 1. On liste dynamiquement toutes les images du dossier src/assets/
-const images = import.meta.glob<{ default: ImageMetadata }>(
+// --- RÉSOLUTION ROBUSTE DE L'IMAGE ---
+const assetsImages = import.meta.glob<{ default: ImageMetadata }>(
   "/src/assets/**/*.{jpeg,jpg,png,gif,webp}",
 );
 
-// 2. On recompose le chemin d'après le frontmatter (ex: "/mon-image.jpg" -> "/src/assets/mon-image.jpg")
-const imagePath = frontmatter.image ? `/src/assets${frontmatter.image}` : null;
-let optimizedOgImage = frontmatter.image; // Fallback de sécurité
+let imageFn: (() => Promise<{ default: ImageMetadata }>) | null = null;
+let optimizedOgImage = frontmatter.image;
 
-// 3. Si l'image existe bien dans src/assets, on génère son URL WebP pour le SEO
-if (imagePath && images[imagePath]) {
-  const imgMeta = await images[imagePath]();
+if (frontmatter.image) {
+  // 1. On nettoie le nom de l'image (on retire le '/' du début s'il y en a un)
+  // "/fa.jpeg" devient "fa.jpeg"
+  const cleanImageName = frontmatter.image.replace(/^\/+/, "");
+
+  // 2. On reconstruit le chemin strict attendu par import.meta.glob
+  const expectedPath = `/src/assets/${cleanImageName}`;
+
+  // 3. On associe la fonction de rendu si le fichier existe vraiment
+  if (assetsImages[expectedPath]) {
+    imageFn = assetsImages[expectedPath];
+  }
+}
+
+// Préparation de l'image SEO (OpenGraph)
+if (imageFn) {
+  const imgMeta = await imageFn();
   const ogImage = await getImage({
     src: imgMeta.default,
     format: "webp",
@@ -109,12 +119,12 @@ if (imagePath && images[imagePath]) {
     {/* --- IMAGE DE COUVERTURE AUTOMATISÉE --- */}
     <div class="mb-12">
       {
-        imagePath && images[imagePath] && !frontmatter.hide_top_image && (
+        imageFn && !frontmatter.hide_top_image && (
           <div class="w-full h-[40vh] md:h-[60vh] rounded-2xl overflow-hidden border border-white/10 shadow-2xl relative">
             <div class="absolute inset-0 bg-gradient-to-t from-dark-bg via-transparent to-transparent z-10 pointer-events-none" />
 
             <Image
-              src={images[imagePath]()}
+              src={imageFn()}
               alt={frontmatter.title}
               format="webp"
               quality={90}
