@@ -50,7 +50,7 @@ const schemaData = {
 
 <nav
   aria-label="Fil d'Ariane"
-  class="w-full bg-[#0e0a11]/40 border border-white/5 rounded-xl px-5 py-3.5 my-6 backdrop-blur-sm shadow-sm"
+  class="w-full bg-dark-surface border border-white/5 rounded-xl px-5 py-3.5 my-6 backdrop-blur-sm shadow-sm"
 >
   <ol
     class="flex flex-wrap items-center gap-1.5 m-0 p-0 list-none font-sans text-xs md:text-sm tracking-wider"
@@ -72,7 +72,7 @@ const schemaData = {
               <>
                 <a
                   href={path.href}
-                  class="text-gray-200 hover:text-gold font-medium uppercase transition-colors duration-200"
+                  class="text-vodun-cendre hover:text-gold font-medium uppercase transition-colors duration-200"
                 >
                   {path.label}
                 </a>
@@ -100,9 +100,3 @@ const schemaData = {
 </nav>
 
 <script type="application/ld+json" set:html={JSON.stringify(schemaData)} />
-
-<style>
-  .text-gold {
-    color: #d4af37;
-  }
-</style>

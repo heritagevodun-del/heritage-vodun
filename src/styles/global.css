@@ -2,24 +2,24 @@
 @plugin "@tailwindcss/typography";
 
 @theme {
-  /* Configuration de nos polices locales */
+  /* Polices Locales */
   --font-sans: "Lato", sans-serif;
   --font-serif: "Playfair Display", serif;
 
-  /* --- PALETTE VODUN PREMIUM --- */
-  /* Nous quittons le noir/gris pur pour des teintes organiques, chaudes et reposantes (idéal jour & nuit) */
+  /* --- PALETTE VODUN PREMIUM (RÉVISÉE ET IMPOSÉE) --- */
+  /* Nous quittons le #050505 pour un brun-noir riche (Terre Mouillée), et le blanc dur pour le Kaolin doux. */
   
-  --color-vodun-bg: #120e0c; /* Nuit profonde teintée de terre brune */
-  --color-vodun-surface: #1a1411; /* Conteneurs et cartes (Légèrement plus clair) */
+  --color-vodun-bg: #110c0a; /* Nuit profonde teintée de terre brune (Reposant) */
+  --color-vodun-surface: #191310; /* Cartes et conteneurs */
   
-  --color-vodun-kaolin: #f4eee1; /* Blanc Kaolin doux : Évite l'éblouissement du blanc pur */
-  --color-vodun-cendre: #a3998f; /* Gris chaud pour les textes secondaires */
+  --color-vodun-kaolin: #f3ede0; /* Blanc Kaolin doux (Couleur principale du texte) */
+  --color-vodun-cendre: #a2988e; /* Gris chaud (Texte secondaire) */
   
-  --color-laterite: #8c3b26; /* Terre rouge de Ouidah */
-  --color-gold: #d4af37; /* L'Or sacré traditionnel */
-  --color-gold-hover: #b08d2b;
+  --color-laterite: #8a3a25; /* Terre rouge de Ouidah */
+  --color-gold: #d3ae36; /* Or royal */
+  --color-gold-hover: #ae8b2a;
 
-  /* Remplacement global intelligent : On force Tailwind à utiliser nos nouvelles teintes ! */
+  /* Mappage strict pour forcer l'utilisation dans tout le site */
   --color-dark-bg: var(--color-vodun-bg);
   --color-dark-surface: var(--color-vodun-surface);
 }
@@ -28,6 +28,8 @@
   body {
     background-color: var(--color-vodun-bg);
     color: var(--color-vodun-kaolin);
+    font-family: var(--font-sans);
+    -webkit-font-smoothing: antialiased;
   }
 }
 

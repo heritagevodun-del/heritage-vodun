@@ -3,31 +3,31 @@
 ---
 
 <div
-  class="heviosso-container relative w-full h-[400px] bg-[#0a0706] rounded-xl overflow-hidden border border-white/5 flex items-center justify-center select-none shadow-inner group"
+  class="heviosso-container relative w-full h-[400px] bg-dark-surface rounded-xl overflow-hidden border border-white/5 flex items-center justify-center select-none shadow-inner group"
 >
   {/* --- EFFETS DE NUAGES INTERNES --- */}
   <div
-    class="absolute inset-0 bg-radial-gradient from-transparent via-[#120e0c]/80 to-[#0a0706] z-10"
+    class="absolute inset-0 bg-radial-gradient from-transparent via-dark-bg/80 to-dark-surface z-10"
   >
   </div>
   <div
-    class="absolute inset-0 opacity-20 mix-blend-color-dodge bg-[radial-gradient(ellipse_at_top,_var(--tw-gradient-stops))] from-[#8c3b26] via-transparent to-transparent pointer-events-none"
+    class="absolute inset-0 opacity-20 mix-blend-color-dodge bg-[radial-gradient(ellipse_at_top,_var(--tw-gradient-stops))] from-[var(--color-laterite)] via-transparent to-transparent pointer-events-none"
   >
   </div>
 
-  {/* --- GRILLE ÉLECTRIQUE / FLASHES D&apos;ORAGE ANIMÉS --- */}
+  {/* --- GRILLE ÉLECTRIQUE / FLASHES D'ORAGE ANIMÉS --- */}
   <div
-    class="lightning-flash flash-1 absolute inset-0 bg-[#f4eee1]/5 opacity-0 pointer-events-none z-20"
+    class="lightning-flash flash-1 absolute inset-0 bg-white/5 opacity-0 pointer-events-none z-20"
   >
   </div>
   <div
-    class="lightning-flash flash-2 absolute inset-0 bg-gradient-to-b from-[#d4af37]/10 to-transparent opacity-0 pointer-events-none z-20"
+    class="lightning-flash flash-2 absolute inset-0 bg-gradient-to-b from-gold/10 to-transparent opacity-0 pointer-events-none z-20"
   >
   </div>
 
   {/* --- LE SOCLE SACRÉ / ÉMANATION DE PUISSANCE --- */}
   <div
-    class="absolute bottom-0 w-full h-24 bg-gradient-to-t from-[#120e0c] to-transparent z-10"
+    class="absolute bottom-0 w-full h-24 bg-gradient-to-t from-dark-bg to-transparent z-10"
   >
   </div>
 
@@ -37,11 +37,11 @@
   >
     {/* Éclairs directionnels jaillissant du symbole */}
     <div
-      class="bolt-line left-bolt absolute -left-20 top-0 w-24 h-[2px] bg-gradient-to-r from-transparent to-[#d4af37] rotate-[35deg] opacity-70"
+      class="bolt-line left-bolt absolute -left-20 top-0 w-24 h-[2px] bg-gradient-to-r from-transparent to-gold rotate-[35deg] opacity-70"
     >
     </div>
     <div
-      class="bolt-line right-bolt absolute -right-20 top-0 w-24 h-[2px] bg-gradient-to-l from-transparent to-[#d4af37] -rotate-[35deg] opacity-70"
+      class="bolt-line right-bolt absolute -right-20 top-0 w-24 h-[2px] bg-gradient-to-l from-transparent to-gold -rotate-[35deg] opacity-70"
     >
     </div>
 
@@ -50,13 +50,13 @@
       viewBox="0 0 200 240"
       class="w-40 h-48 drop-shadow-[0_0_25px_rgba(212,175,55,0.4)] axe-svg"
     >
-      {/* Halo d&apos;énergie résiduelle */}
+      {/* Halo d'énergie résiduelle */}
       <circle
         cx="100"
         cy="80"
         r="45"
         fill="none"
-        stroke="#8c3b26"
+        stroke="var(--color-laterite)"
         stroke-width="1"
         stroke-dasharray="4 4"
         class="animate-spin-slow"></circle>
@@ -65,35 +65,54 @@
       <path
         d="M 100 80 Q 55 50 25 80 Q 55 110 100 80 Z"
         fill="url(#gold-gradient)"
-        stroke="#8c3b26"
+        stroke="var(--color-laterite)"
         stroke-width="2"></path>
 
       {/* Lame double droite */}
       <path
         d="M 100 80 Q 145 50 175 80 Q 145 110 100 80 Z"
         fill="url(#gold-gradient)"
-        stroke="#8c3b26"
+        stroke="var(--color-laterite)"
         stroke-width="2"></path>
 
       {/* Le Cœur de la foudre (Gemme de feu au centre de la hache) */}
-      <circle cx="100" cy="80" r="12" fill="#8c3b26" class="animate-pulse"
-      ></circle>
-      <circle cx="100" cy="80" r="6" fill="#f4eee1"></circle>
+      <circle
+        cx="100"
+        cy="80"
+        r="12"
+        fill="var(--color-laterite)"
+        class="animate-pulse"></circle>
+      <circle cx="100" cy="80" r="6" fill="var(--color-vodun-kaolin)"></circle>
 
       {/* Le Manche en bois sacré orné de lanières de cuivre */}
       <path
         d="M 96 80 L 96 220 C 96 225, 104 225, 104 220 L 104 80 Z"
-        fill="#1a1411"
-        stroke="#d4af37"
+        fill="var(--color-vodun-bg)"
+        stroke="var(--color-gold)"
         stroke-width="1.5"></path>
 
       {/* Gravures rituelles sur le manche */}
-      <line x1="96" y1="120" x2="104" y2="125" stroke="#8c3b26" stroke-width="2"
-      ></line>
-      <line x1="96" y1="150" x2="104" y2="155" stroke="#8c3b26" stroke-width="2"
-      ></line>
-      <line x1="96" y1="180" x2="104" y2="185" stroke="#8c3b26" stroke-width="2"
-      ></line>
+      <line
+        x1="96"
+        y1="120"
+        x2="104"
+        y2="125"
+        stroke="var(--color-laterite)"
+        stroke-width="2"></line>
+      <line
+        x1="96"
+        y1="150"
+        x2="104"
+        y2="155"
+        stroke="var(--color-laterite)"
+        stroke-width="2"></line>
+      <line
+        x1="96"
+        y1="180"
+        x2="104"
+        y2="185"
+        stroke="var(--color-laterite)"
+        stroke-width="2"></line>
 
       {/* Définition des dégradés de métaux sacrés */}
       <defs>
@@ -106,7 +125,7 @@
     </svg>
 
     <span
-      class="text-[10px] font-sans font-bold uppercase tracking-[0.3em] text-[#d4af37]/60 mt-4 bg-[#1a1411]/50 px-3 py-1 rounded-full border border-white/5 backdrop-blur-sm"
+      class="text-[10px] font-sans font-bold uppercase tracking-[0.3em] text-gold mt-4 bg-dark-bg/50 px-3 py-1 rounded-full border border-white/5 backdrop-blur-sm"
     >
       Sô-kpi Sacré
     </span>
@@ -114,7 +133,7 @@
 </div>
 
 <style>
-  /* --- KEYFRAMES CSS ART EXPERT POUR L&apos;ORAGE ASYNCHRONE --- */
+  /* --- KEYFRAMES CSS ART EXPERT POUR L'ORAGE ASYNCHRONE --- */
   @keyframes lightning-strike-1 {
     0%,
     94%,

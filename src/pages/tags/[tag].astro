@@ -2,6 +2,8 @@
 import BaseLayout from "../../layouts/BaseLayout.astro";
 // IMPORT DU LOGO POUR LE PLACEHOLDER PAR DÉFAUT
 import Logo from "../../components/Logo.astro";
+import type { ImageMetadata } from "astro";
+import { Image } from "astro:assets";
 
 // --- DÉFINITION DES TYPES ---
 interface Frontmatter {
@@ -60,6 +62,11 @@ export async function getStaticPaths() {
 const { tag } = Astro.params;
 const { posts } = Astro.props;
 
+// Récupération globale des images du dossier src/assets
+const assetsImages = import.meta.glob<{ default: ImageMetadata }>(
+  "/src/assets/**/*.{jpeg,jpg,png,gif,webp}",
+);
+
 // Fonction format
 function formatDate(dateInput: string | Date | undefined) {
   if (!dateInput) return "";
@@ -102,15 +109,15 @@ const schemaData = {
         >Exploration par mot-clé</span
       >
       <h1
-        class="font-serif text-5xl md:text-6xl text-white mb-6 leading-tight capitalize"
+        class="font-serif text-5xl md:text-6xl text-vodun-kaolin mb-6 leading-tight capitalize"
       >
         #{tag}
       </h1>
       <div class="w-16 h-1 bg-gold mx-auto mb-8 rounded-full"></div>
-      <p class="text-lg text-gray-400 font-sans">
+      <p class="text-lg text-vodun-cendre font-sans">
         {posts.length} article{posts.length > 1 ? "s" : ""} trouvé{
           posts.length > 1 ? "s" : ""
-        } sur le thème : <strong class="text-white">{tag}</strong>
+        } sur le thème : <strong class="text-gold">{tag}</strong>
       </p>
     </header>
 
@@ -119,67 +126,77 @@ const schemaData = {
       class="max-w-7xl mx-auto px-6 grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-10"
     >
       {
-        posts.map((post: MarkdownPost, index: number) => (
-          <article
-            class="group bg-dark-surface border border-white/5 hover:border-gold/30 rounded-xl overflow-hidden flex flex-col shadow-xl hover:shadow-[0_15px_40px_rgba(212,175,55,0.12)] transition-all duration-500 hover:-translate-y-2 opacity-0 animate-fade-up"
-            style={`animation-delay: ${Math.min((index + 2) * 100, 1000)}ms`}
-          >
-            <a
-              href={post.url}
-              class="block relative w-full h-60 overflow-hidden bg-black"
-              aria-label={`Lire l'article : ${post.frontmatter.title}`}
+        posts.map((post: MarkdownPost, index: number) => {
+          // Reconstitution du chemin de l'image pour astro:assets
+          const imagePath = post.frontmatter.image
+            ? `/src/assets${post.frontmatter.image}`
+            : null;
+          const imageFn = imagePath ? assetsImages[imagePath] : null;
+
+          return (
+            <article
+              class="group bg-dark-surface border border-white/5 hover:border-gold/30 rounded-xl overflow-hidden flex flex-col shadow-xl hover:shadow-[0_15px_40px_rgba(212,175,55,0.12)] transition-all duration-500 hover:-translate-y-2 opacity-0 animate-fade-up"
+              style={`animation-delay: ${Math.min((index + 2) * 100, 1000)}ms`}
             >
-              {/* LOGIQUE UNIVERSELLE D'AFFICHAGE DE LA MINIATURE */}
-              {post.frontmatter.image ? (
-                <div
-                  class="absolute inset-0 bg-cover bg-center transition-transform duration-700 group-hover:scale-110"
-                  style={`background-image: url(${post.frontmatter.image});`}
-                  role="img"
-                  aria-label={post.frontmatter.title}
-                />
-              ) : (
-                /* LE PLACEHOLDER ÉLÉGANT (Filet de sécurité) */
-                <div class="absolute inset-0 bg-[radial-gradient(circle_at_center,#1a1a1a_0%,#050505_100%)] flex flex-col items-center justify-center gap-4 group-hover:scale-105 transition-transform duration-700">
-                  <div class="w-20 h-20 bg-gold/10 rounded-full flex items-center justify-center shadow-[0_0_30px_rgba(212,175,55,0.15)]">
-                    <Logo width="40" height="40" class="opacity-80" />
+              <a
+                href={post.url}
+                class="block relative w-full h-60 overflow-hidden bg-dark-bg"
+                aria-label={`Lire l'article : ${post.frontmatter.title}`}
+              >
+                {/* LOGIQUE D'AFFICHAGE OPTIMISÉE AVEC ASTRO:ASSETS */}
+                {imageFn ? (
+                  <Image
+                    src={imageFn()}
+                    alt={post.frontmatter.title}
+                    format="webp"
+                    quality={80}
+                    class="absolute inset-0 w-full h-full object-cover transition-transform duration-700 group-hover:scale-110"
+                  />
+                ) : (
+                  /* LE PLACEHOLDER ÉLÉGANT */
+                  <div class="absolute inset-0 bg-[radial-gradient(circle_at_center,var(--color-vodun-surface)_0%,var(--color-vodun-bg)_100%)] flex flex-col items-center justify-center gap-4 group-hover:scale-105 transition-transform duration-700">
+                    <div class="w-20 h-20 bg-gold/10 rounded-full flex items-center justify-center shadow-[0_0_30px_rgba(212,175,55,0.15)]">
+                      <Logo width="40" height="40" class="opacity-80" />
+                    </div>
+                    <span class="text-gold/50 font-serif italic text-sm tracking-widest uppercase">
+                      Chroniques du Sacré
+                    </span>
                   </div>
-                  <span class="text-gold/50 font-serif italic text-sm tracking-widest uppercase">
-                    Chroniques du Sacré
+                )}
+                {/* Dégradé pour fluidifier la transition avec le fond de la carte */}
+                <div class="absolute inset-0 bg-gradient-to-t from-dark-surface via-transparent to-transparent opacity-90 pointer-events-none" />
+              </a>
+
+              <div class="p-8 flex flex-col flex-grow relative z-10">
+                <div class="flex justify-between items-center mb-5">
+                  {post.frontmatter.categorie && (
+                    <span class="bg-gold/10 text-gold border border-gold/20 px-3 py-1 text-xs font-bold uppercase tracking-wider rounded">
+                      {post.frontmatter.categorie}
+                    </span>
+                  )}
+                  <span class="text-vodun-cendre text-xs font-sans italic">
+                    {formatDate(
+                      post.frontmatter.pubDate || post.frontmatter.date,
+                    )}
                   </span>
                 </div>
-              )}
-              <div class="absolute inset-0 bg-gradient-to-t from-dark-surface via-transparent to-transparent opacity-90" />
-            </a>
 
-            <div class="p-8 flex flex-col flex-grow relative z-10">
-              <div class="flex justify-between items-center mb-5">
-                {post.frontmatter.categorie && (
-                  <span class="bg-gold/10 text-gold border border-gold/20 px-3 py-1 text-xs font-bold uppercase tracking-wider rounded">
-                    {post.frontmatter.categorie}
+                <a href={post.url} class="flex flex-col flex-grow">
+                  <h3 class="font-serif text-2xl text-vodun-kaolin mb-4 leading-snug group-hover:text-gold transition-colors">
+                    {post.frontmatter.title}
+                  </h3>
+                  <p class="text-vodun-cendre text-sm leading-relaxed mb-8 line-clamp-3 flex-grow">
+                    {post.frontmatter.description}
+                  </p>
+
+                  <span class="mt-auto flex items-center gap-2 text-gold font-bold uppercase tracking-wider text-sm transition-all duration-300 group-hover:gap-4">
+                    Lire l&apos;article <span class="text-lg">&rarr;</span>
                   </span>
-                )}
-                <span class="text-gray-500 text-xs font-sans italic">
-                  {formatDate(
-                    post.frontmatter.pubDate || post.frontmatter.date,
-                  )}
-                </span>
+                </a>
               </div>
-
-              <a href={post.url} class="flex flex-col flex-grow">
-                <h3 class="font-serif text-2xl text-white mb-4 leading-snug group-hover:text-gold transition-colors">
-                  {post.frontmatter.title}
-                </h3>
-                <p class="text-gray-400 text-sm leading-relaxed mb-8 line-clamp-3 flex-grow">
-                  {post.frontmatter.description}
-                </p>
-
-                <span class="mt-auto flex items-center gap-2 text-gold font-bold uppercase tracking-wider text-sm transition-all duration-300 group-hover:gap-4">
-                  Lire l&apos;article <span class="text-lg">&rarr;</span>
-                </span>
-              </a>
-            </div>
-          </article>
-        ))
+            </article>
+          );
+        })
       }
     </section>
   </div>
