@@ -14,13 +14,16 @@ export default defineConfig({
   integrations: [sitemap(), mdx()],
   vite: {
     plugins: [tailwindcss()],
+    optimizeDeps: {
+      include: ["tailwindcss", "@tailwindcss/typography"],
+    },
   },
   // 👇 L'ARCHITECTURE MULTILINGUE (i18n)
   i18n: {
     defaultLocale: "fr",
     locales: ["fr", "en", "es", "pt", "yo", "fon"],
     routing: {
-      prefixDefaultLocale: false, // Le français reste sur heritagevodun.com/ (sans /fr/)
+      prefixDefaultLocale: false,
     },
   },
 });
