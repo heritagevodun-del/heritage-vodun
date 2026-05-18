@@ -4,13 +4,16 @@ import Layout from "../layouts/BaseLayout.astro";
 import Newsletter from "../components/Newsletter.astro";
 import HeroSlider from "../components/HeroSlider.astro";
 import VeveSymbol from "../components/VeveSymbol.astro";
+import Logo from "../components/Logo.astro";
+import type { ImageMetadata } from "astro";
+import { Image } from "astro:assets";
 
 interface Frontmatter {
   title: string;
   pubDate: string;
   description: string;
   author: string;
-  image: { url: string; alt: string };
+  image?: string;
   tags: string[];
   featured?: boolean;
   categorie?: string;
@@ -25,7 +28,12 @@ interface Post {
 const postsImport = import.meta.glob("./posts/*.{md,mdx}", { eager: true });
 const allPosts = Object.values(postsImport) as Post[];
 
-// 2. FILTRAGE "À LA UNE"
+// 2. RÉCUPÉRATION DES ASSETS (Pour les miniatures à la une)
+const assetsImages = import.meta.glob<{ default: ImageMetadata }>(
+  "/src/assets/**/*.{jpeg,jpg,png,gif,webp}",
+);
+
+// 3. FILTRAGE "À LA UNE"
 const featuredPosts = allPosts
   .filter((post) => post.frontmatter.featured === true)
   .sort(
@@ -46,7 +54,7 @@ const pageTitle =
       et retour au comportement standard sur desktop (md:) */
   }
   <header
-    class="relative min-h-[100dvh] md:h-[100dvh] w-full flex items-center justify-center overflow-hidden text-white -mt-20 md:-mt-24 pt-28 pb-16 md:pt-0 md:pb-0"
+    class="relative min-h-[100dvh] md:h-[100dvh] w-full flex items-center justify-center overflow-hidden text-vodun-kaolin -mt-20 md:-mt-24 pt-28 pb-16 md:pt-0 md:pb-0"
   >
     <div class="absolute inset-0 z-0">
       <HeroSlider />
@@ -54,7 +62,7 @@ const pageTitle =
       <div class="absolute inset-0 bg-dark-bg/60 md:bg-dark-bg/50 z-10"></div>
     </div>
 
-    {/* Anneaux et Symboles Animés (Totalement refaits en Tailwind) */}
+    {/* Anneaux et Symboles Animés */}
     <div
       class="absolute inset-0 flex justify-center items-center z-10 pointer-events-none overflow-hidden"
     >
@@ -82,7 +90,7 @@ const pageTitle =
     >
       <div class="animate-fade-up" style="animation-delay: 0.2s;">
         <span
-          class="inline-block border border-gold text-gold px-3 py-1.5 md:px-4 md:py-2 text-[10px] md:text-xs uppercase tracking-[0.2em] mb-4 md:mb-6 bg-black/40 backdrop-blur-sm"
+          class="inline-block border border-gold text-gold px-3 py-1.5 md:px-4 md:py-2 text-[10px] md:text-xs uppercase tracking-[0.2em] mb-4 md:mb-6 bg-dark-bg/40 backdrop-blur-sm"
         >
           Terre des Origines
         </span>
@@ -93,10 +101,7 @@ const pageTitle =
         style="animation-delay: 0.4s;"
       >
         Héritage <br />
-        <span
-          class="font-bold italic bg-gradient-to-r from-white to-gold bg-clip-text text-transparent"
-          >Vodun</span
-        >
+        <span class="font-bold italic text-gold"> Vodun </span>
       </h1>
 
       <div
@@ -106,7 +111,7 @@ const pageTitle =
       </div>
 
       <p
-        class="text-base sm:text-lg md:text-xl text-white/90 mb-8 md:mb-10 leading-relaxed font-light drop-shadow-lg max-w-2xl mx-auto animate-fade-up px-2"
+        class="text-base sm:text-lg md:text-xl text-vodun-kaolin mb-8 md:mb-10 leading-relaxed font-light drop-shadow-lg max-w-2xl mx-auto animate-fade-up px-2"
         style="animation-delay: 0.8s;"
       >
         <strong class="font-bold text-white"
@@ -125,20 +130,20 @@ const pageTitle =
       >
         <a
           href="https://www.mindoguesito.com"
-          class="open-oracle flex items-center justify-center px-6 py-3.5 md:px-8 md:py-4 font-bold uppercase tracking-wider bg-gradient-to-br from-gold to-[#f0c548] text-black rounded-sm shadow-[0_0_20px_rgba(212,175,55,0.4)] animate-[pulse-glow_2.5s_infinite] hover:-translate-y-1 hover:scale-105 transition-all duration-300 w-full sm:w-auto text-sm md:text-base"
+          class="open-oracle flex items-center justify-center px-6 py-3.5 md:px-8 md:py-4 font-bold uppercase tracking-wider bg-gradient-to-br from-gold to-gold-hover text-dark-bg rounded-sm shadow-[0_0_20px_rgba(212,175,55,0.4)] animate-[pulse-glow_2.5s_infinite] hover:-translate-y-1 hover:scale-105 transition-all duration-300 w-full sm:w-auto text-sm md:text-base"
         >
           <span class="mr-3 text-lg md:text-xl">✨</span> Parler au Guide
         </a>
         <a
           href="/about"
-          class="flex items-center justify-center px-6 py-3.5 md:px-8 md:py-4 font-bold uppercase tracking-wider border border-white/50 text-white rounded-sm hover:bg-white hover:text-black hover:border-white hover:-translate-y-1 transition-all duration-300 w-full sm:w-auto text-sm md:text-base"
+          class="flex items-center justify-center px-6 py-3.5 md:px-8 md:py-4 font-bold uppercase tracking-wider border border-white/50 text-vodun-kaolin rounded-sm hover:bg-white hover:text-dark-bg hover:border-white hover:-translate-y-1 transition-all duration-300 w-full sm:w-auto text-sm md:text-base"
         >
           Découvrir la Mission
         </a>
       </div>
     </div>
 
-    {/* Indicateur de défilement (Caché sur mobile pour gagner de la place) */}
+    {/* Indicateur de défilement */}
     <div
       class="absolute bottom-8 left-1/2 -translate-x-1/2 w-px h-12 bg-white/20 overflow-hidden z-20 hidden md:block"
     >
@@ -162,10 +167,10 @@ const pageTitle =
         >Notre Identité</span
       >
       <h2
-        class="font-serif text-3xl sm:text-4xl md:text-6xl text-white mb-8 md:mb-10 leading-tight"
+        class="font-serif text-3xl sm:text-4xl md:text-6xl text-vodun-kaolin mb-8 md:mb-10 leading-tight"
       >
         Une culture à Ouidah,<br />
-        <span class="text-gray-400 italic">pas un mythe.</span>
+        <span class="text-vodun-cendre italic">pas un mythe.</span>
       </h2>
 
       <div class="flex flex-col items-center gap-3 opacity-80 mb-8 md:mb-10">
@@ -180,7 +185,7 @@ const pageTitle =
       </div>
 
       <p
-        class="text-base sm:text-lg md:text-xl leading-relaxed md:leading-loose text-gray-300 text-left sm:text-center px-2"
+        class="text-base sm:text-lg md:text-xl leading-relaxed md:leading-loose text-vodun-cendre text-left sm:text-center px-2"
       >
         <span
           class="float-left font-serif text-5xl md:text-7xl leading-[0.8] text-gold mr-3 md:mr-4 mt-1 md:mt-2"
@@ -189,7 +194,7 @@ const pageTitle =
         e Vodun est bien plus qu&apos;une religion, c&apos;est une célébration de
         la vie et des éléments. À travers ce sanctuaire numérique, nous brisons les
         chaînes des préjugés pour révéler l&apos;identité béninoise : de la sagesse
-        mathématique du <strong class="text-white">Fâ</strong> aux rites des divinités.
+        mathématique du <strong class="text-gold">Fâ</strong> aux rites des divinités.
       </p>
     </div>
   </section>
@@ -204,42 +209,71 @@ const pageTitle =
           </div>
 
           <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 md:gap-8">
-            {featuredPosts.map((post) => (
-              <div class="group bg-dark-surface border border-gold/20 rounded-lg p-6 md:p-8 relative overflow-hidden flex flex-col items-start shadow-xl hover:-translate-y-2 hover:shadow-[0_15px_40px_rgba(212,175,55,0.15)] transition-all duration-300 h-full">
-                <div class="relative z-10 flex flex-col h-full w-full">
-                  {post.frontmatter.categorie && (
-                    <span class="self-start bg-gold/10 text-gold border border-gold/20 px-3 py-1 text-[10px] md:text-xs uppercase tracking-wider mb-4 md:mb-6">
-                      {post.frontmatter.categorie}
-                    </span>
-                  )}
+            {featuredPosts.map((post) => {
+              // LOGIQUE DE RÉSOLUTION D'IMAGE STRICTE (Identique au blog)
+              let imageFn = null;
+              if (post.frontmatter.image) {
+                const cleanImageName = post.frontmatter.image.replace(
+                  /^\/+/,
+                  "",
+                );
+                const expectedPath = `/src/assets/${cleanImageName}`;
+                if (assetsImages[expectedPath]) {
+                  imageFn = assetsImages[expectedPath];
+                }
+              }
 
-                  <h3 class="font-serif text-xl md:text-2xl text-white mb-3 md:mb-4 leading-tight">
-                    {post.frontmatter.title}
-                  </h3>
-                  <p class="text-gray-400 mb-6 md:mb-8 leading-relaxed flex-grow text-xs sm:text-sm">
-                    {post.frontmatter.description}
-                  </p>
+              return (
+                <div class="group bg-dark-surface border border-gold/20 rounded-lg overflow-hidden relative flex flex-col shadow-xl hover:-translate-y-2 hover:shadow-[0_15px_40px_rgba(212,175,55,0.15)] transition-all duration-300 h-[450px]">
+                  {/* --- L'IMAGE EN FOND (AVEC OVERLAY) --- */}
+                  <div class="absolute inset-0 w-full h-full">
+                    {imageFn ? (
+                      <Image
+                        src={imageFn()}
+                        alt={post.frontmatter.title}
+                        format="webp"
+                        quality={80}
+                        class="w-full h-full object-cover transition-transform duration-700 group-hover:scale-110"
+                      />
+                    ) : (
+                      <div class="w-full h-full bg-[radial-gradient(circle_at_center,var(--color-vodun-surface)_0%,var(--color-vodun-bg)_100%)] flex flex-col items-center justify-center gap-4 transition-transform duration-700 group-hover:scale-105">
+                        <div class="w-16 h-16 bg-gold/10 rounded-full flex items-center justify-center">
+                          <Logo width="30" height="30" class="opacity-80" />
+                        </div>
+                      </div>
+                    )}
+                    {/* Le dégradé sombre pour que le texte soit toujours lisible */}
+                    <div class="absolute inset-0 bg-gradient-to-t from-dark-bg via-dark-surface/80 to-transparent opacity-90" />
+                  </div>
 
-                  <a
-                    href={post.url}
-                    class="text-gold font-bold uppercase tracking-wider text-xs md:text-sm flex items-center gap-2 group-hover:text-white transition-colors mt-auto"
-                  >
-                    Lire l&apos;article{" "}
-                    <span class="group-hover:translate-x-2 transition-transform duration-300">
-                      →
-                    </span>
-                  </a>
+                  {/* --- LE CONTENU PAR DESSUS --- */}
+                  <div class="relative z-10 flex flex-col h-full w-full p-6 md:p-8">
+                    {post.frontmatter.categorie && (
+                      <span class="self-start bg-gold/10 text-gold border border-gold/20 px-3 py-1 text-[10px] md:text-xs uppercase tracking-wider mb-4 md:mb-6">
+                        {post.frontmatter.categorie}
+                      </span>
+                    )}
+
+                    <h3 class="font-serif text-xl md:text-2xl text-vodun-kaolin mb-3 md:mb-4 leading-tight group-hover:text-gold transition-colors">
+                      {post.frontmatter.title}
+                    </h3>
+                    <p class="text-vodun-cendre mb-6 md:mb-8 leading-relaxed flex-grow text-xs sm:text-sm line-clamp-3">
+                      {post.frontmatter.description}
+                    </p>
+
+                    <a
+                      href={post.url}
+                      class="text-gold font-bold uppercase tracking-wider text-xs md:text-sm flex items-center gap-2 group-hover:text-vodun-kaolin transition-colors mt-auto"
+                    >
+                      Lire l&apos;article{" "}
+                      <span class="group-hover:translate-x-2 transition-transform duration-300">
+                        →
+                      </span>
+                    </a>
+                  </div>
                 </div>
-
-                {/* Vévé décoratif en arrière-plan de la carte */}
-                <div class="absolute -bottom-6 -right-6 opacity-5 group-hover:opacity-20 group-hover:scale-110 transition-all duration-500 pointer-events-none text-gold">
-                  <VeveSymbol
-                    type="heviesso"
-                    className="w-24 h-24 md:w-32 md:h-32"
-                  />
-                </div>
-              </div>
-            ))}
+              );
+            })}
           </div>
         </div>
       </section>
@@ -249,9 +283,6 @@ const pageTitle =
   <Newsletter />
 </Layout>
 
-{
-  /* Seules deux animations hyper-spécifiques nécessitent de rester dans un tag style */
-}
 <style>
   @keyframes scroll-drop {
     0% {

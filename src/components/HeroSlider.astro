@@ -1,12 +1,30 @@
 ---
-/* src/components/HeroSlider.astro - Version Premium Sombre */
-const slides = [
-  { img: "/vodun-intro.jpg", alt: "Tradition Vodun à Ouidah" },
-  { img: "/divinites-vodun.jpeg", alt: "Cérémonie des Divinités" },
-  { img: "/fa.jpeg", alt: "Consultation du Fâ" },
-  { img: "/vodunsi.jpeg", alt: "Danse des Vodunsi" },
-  { img: "/esprit.jpeg", alt: "Spiritualité et Esprit" },
+/* src/components/HeroSlider.astro - Version Premium Sombre avec astro:assets */
+import type { ImageMetadata } from "astro";
+import { Image } from "astro:assets";
+
+// Récupération dynamique de toutes les images du dossier assets
+const assetsImages = import.meta.glob<{ default: ImageMetadata }>(
+  "/src/assets/**/*.{jpeg,jpg,png,gif,webp}",
+);
+
+// On référence les images par leur vrai nom (sans le / de public)
+const rawSlides = [
+  { img: "vodun-intro.jpg", alt: "Tradition Vodun à Ouidah" },
+  { img: "divinites-vodun.jpeg", alt: "Cérémonie des Divinités" },
+  { img: "fa.jpeg", alt: "Consultation du Fâ" },
+  { img: "vodunsi.jpeg", alt: "Danse des Vodunsi" },
+  { img: "esprit.jpeg", alt: "Spiritualité et Esprit" },
 ];
+
+// Construction du tableau final avec les résolveurs d'images
+const slides = rawSlides.map((slide) => {
+  const expectedPath = `/src/assets/${slide.img}`;
+  return {
+    ...slide,
+    imageFn: assetsImages[expectedPath] || null,
+  };
+});
 ---
 
 <div class="absolute inset-0 z-0 overflow-hidden bg-dark-bg">
@@ -15,14 +33,24 @@ const slides = [
       <div
         class={`hero-slide absolute inset-0 transition-opacity duration-[2500ms] ease-in-out will-change-opacity ${index === 0 ? "opacity-100 z-10" : "opacity-0 z-0"}`}
       >
-        <img
-          src={slide.img}
-          alt={slide.alt}
-          class={`w-full h-full object-cover transition-transform duration-[8000ms] ease-out ${index === 0 ? "scale-100" : "scale-110"}`}
-          loading={index === 0 ? "eager" : "lazy"}
-          fetchpriority={index === 0 ? "high" : "auto"}
-          decoding="async"
-        />
+        {/* LOGIQUE D'AFFICHAGE OPTIMISÉE AVEC ASTRO:ASSETS */}
+        {slide.imageFn ? (
+          <Image
+            src={slide.imageFn()}
+            alt={slide.alt}
+            format="webp"
+            quality={85}
+            class={`hero-img w-full h-full object-cover transition-transform duration-[8000ms] ease-out ${index === 0 ? "scale-100" : "scale-110"}`}
+            loading={index === 0 ? "eager" : "lazy"}
+            fetchpriority={index === 0 ? "high" : "auto"}
+            decoding="async"
+          />
+        ) : (
+          <div
+            class={`hero-img w-full h-full bg-dark-surface transition-transform duration-[8000ms] ease-out ${index === 0 ? "scale-100" : "scale-110"}`}
+          />
+        )}
+
         {/* Overlay progressif : assombrit le fond pour faire ressortir l'Or */}
         <div class="absolute inset-0 bg-[radial-gradient(circle_at_center,rgba(0,0,0,0.3)_0%,rgba(5,5,5,0.85)_100%)] pointer-events-none" />
         {/* Dégradé de base pour le fondu avec la section suivante */}
@@ -35,7 +63,8 @@ const slides = [
 <script>
   document.addEventListener("astro:page-load", () => {
     const slides = document.querySelectorAll(".hero-slide");
-    const images = document.querySelectorAll(".hero-slide img");
+    // On cible la classe spécifique .hero-img pour inclure les div fallback si une image manque
+    const images = document.querySelectorAll(".hero-img");
     if (slides.length <= 1) return;
 
     let current = 0;
