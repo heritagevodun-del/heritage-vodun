@@ -1,40 +1,48 @@
 ---
-// src/components/Newsletter.astro - Version Tailwind v4 Premium
+// src/components/Newsletter.astro - Version Premium Ultime (Syntaxe Astro Stricte)
+import VeveSymbol from "./VeveSymbol.astro";
 ---
 
 <section
-  class="py-24 px-6 bg-gradient-to-b from-dark-bg to-dark-surface flex justify-center border-t border-white/5 relative overflow-hidden"
+  class="py-24 md:py-32 px-4 sm:px-6 bg-dark-bg flex justify-center relative overflow-hidden"
 >
-  {/* Lueur d'arrière-plan */}
   <div
-    class="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[800px] h-[800px] bg-gold/5 rounded-full blur-[100px] pointer-events-none"
+    class="absolute top-0 right-0 w-[600px] h-[600px] bg-gold/10 rounded-full blur-[120px] pointer-events-none translate-x-1/3 -translate-y-1/3"
+  >
+  </div>
+  <div
+    class="absolute bottom-0 left-0 w-[500px] h-[500px] bg-laterite/10 rounded-full blur-[100px] pointer-events-none -translate-x-1/3 translate-y-1/3"
   >
   </div>
 
   <div class="w-full max-w-4xl relative z-10">
     <div
-      class="bg-dark-surface border border-gold/30 rounded-2xl p-10 md:p-16 text-center relative shadow-[0_10px_40px_rgba(0,0,0,0.5),0_0_20px_rgba(212,175,55,0.1)] animate-[breathing-glow_6s_infinite_ease-in-out]"
+      class="bg-dark-surface/90 backdrop-blur-xl border border-white/5 rounded-3xl p-10 md:p-16 text-center relative shadow-2xl animate-[breathing-glow_6s_infinite_ease-in-out]"
     >
-      {/* Ornement Haut */}
-      <div class="text-gold text-2xl mb-6 select-none">✦</div>
+      <div
+        class="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 opacity-[0.03] pointer-events-none z-0 text-gold flex items-center justify-center w-full h-full"
+      >
+        <VeveSymbol type="dan" className="w-96 h-96" />
+      </div>
 
-      <div class="max-w-2xl mx-auto">
+      <div class="max-w-2xl mx-auto relative z-10">
         <span
-          class="block text-gold text-xs uppercase tracking-[0.25em] font-bold mb-4"
+          class="inline-block text-gold text-xs uppercase tracking-[0.3em] font-bold mb-6 pb-2 border-b border-gold/30"
           >Le Cercle des Initiés</span
         >
         <h2
-          class="font-serif text-4xl md:text-5xl text-white mb-6 leading-tight"
+          class="font-serif text-4xl md:text-5xl lg:text-6xl text-vodun-kaolin mb-6 leading-tight drop-shadow-sm"
         >
           Restez connecté à la Source
         </h2>
-        <p class="font-sans text-gray-400 text-lg leading-relaxed mb-10">
-          Rejoignez-nous. Recevez les dates des cérémonies, la sagesse du Fâ et
-          l&apos;essence de nos traditions directement dans votre cœur (et votre
-          boîte mail).
+        <p
+          class="font-sans text-vodun-cendre text-lg md:text-xl leading-relaxed mb-10 max-w-xl mx-auto"
+        >
+          Recevez les dates des cérémonies, la sagesse du Fâ et l&apos;essence
+          de nos traditions directement dans votre cœur (et votre boîte mail).
         </p>
 
-        <form id="form-newsletter" class="w-full max-w-md mx-auto">
+        <form id="form-newsletter" class="w-full max-w-lg mx-auto">
           <input
             type="hidden"
             name="access_key"
@@ -52,37 +60,87 @@
             style="display: none;"
           />
 
-          <div class="flex flex-col md:flex-row gap-3 justify-center">
-            <input
-              type="email"
-              name="email"
-              placeholder="Votre adresse email..."
-              required
-              class="flex-1 px-5 py-4 rounded-md border border-white/10 bg-white/5 text-white font-sans focus:outline-none focus:border-gold focus:ring-1 focus:ring-gold transition-all duration-300 placeholder-gray-500"
-              aria-label="Adresse email pour la newsletter"
-            />
+          <div
+            class="flex flex-col sm:flex-row gap-4 justify-center items-stretch"
+          >
+            <div class="relative flex-1 group">
+              <input
+                type="email"
+                name="email"
+                placeholder="Votre adresse email..."
+                required
+                class="w-full px-6 py-4 md:py-5 rounded-xl border border-white/10 bg-dark-bg/80 text-vodun-kaolin font-sans focus:outline-none focus:border-gold focus:ring-1 focus:ring-gold transition-all duration-300 placeholder-white/30 shadow-inner"
+                aria-label="Adresse email pour la newsletter"
+              />
+              <div
+                class="absolute right-4 top-1/2 -translate-y-1/2 text-white/20 group-focus-within:text-gold transition-colors"
+              >
+                <svg
+                  xmlns="http://www.w3.org/2000/svg"
+                  width="20"
+                  height="20"
+                  viewBox="0 0 24 24"
+                  fill="none"
+                  stroke="currentColor"
+                  stroke-width="2"
+                  stroke-linecap="round"
+                  stroke-linejoin="round"
+                  ><path
+                    d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"
+                  ></path><polyline points="22,6 12,13 2,6"></polyline></svg
+                >
+              </div>
+            </div>
+
             <button
               type="submit"
-              class="bg-gold hover:bg-gold-hover text-black border border-gold hover:border-gold-hover px-8 py-4 rounded-md font-bold uppercase tracking-wider transition-all duration-300 disabled:opacity-50 disabled:cursor-not-allowed disabled:grayscale min-w-[160px] shadow-[0_4px_15px_rgba(212,175,55,0.3)] hover:shadow-[0_6px_20px_rgba(212,175,55,0.5)] hover:-translate-y-0.5 btn-inscription flex items-center justify-center"
+              class="bg-gold hover:bg-gold-hover text-dark-bg border border-transparent px-8 py-4 md:py-5 rounded-xl font-bold uppercase tracking-widest transition-all duration-300 disabled:opacity-50 disabled:cursor-not-allowed disabled:grayscale sm:min-w-[180px] shadow-[0_4px_20px_rgba(212,175,55,0.25)] hover:shadow-[0_8px_30px_rgba(212,175,55,0.4)] hover:-translate-y-1 btn-inscription flex items-center justify-center relative overflow-hidden group/btn"
             >
-              <span class="btn-text">S&apos;inscrire</span>
-              <span class="btn-loader hidden">...</span>
+              <div
+                class="absolute inset-0 bg-white/20 translate-y-full group-hover/btn:translate-y-0 transition-transform duration-500 ease-out"
+              >
+              </div>
+
+              <span class="btn-text relative z-10 flex items-center gap-2">
+                S&apos;inscrire <span class="text-xl leading-none">&rarr;</span>
+              </span>
+              <span
+                class="btn-loader hidden relative z-10 flex items-center gap-2"
+              >
+                <div
+                  class="w-4 h-4 border-2 border-dark-bg border-t-transparent rounded-full animate-spin"
+                >
+                </div>
+                En cours...
+              </span>
             </button>
           </div>
           <p
-            class="mt-4 font-bold min-h-[24px] text-sm transition-colors duration-300 message-resultat"
+            class="mt-6 font-medium h-6 text-sm transition-colors duration-300 message-resultat flex items-center justify-center"
             id="resultat-newsletter"
           >
           </p>
         </form>
 
-        <p class="text-xs text-gray-600 mt-8 italic">
-          Nous respectons votre tranquillité. Pas de spam.
+        <p
+          class="text-xs text-vodun-cendre/60 mt-6 italic flex items-center justify-center gap-2 font-sans"
+        >
+          <svg
+            xmlns="http://www.w3.org/2000/svg"
+            width="12"
+            height="12"
+            viewBox="0 0 24 24"
+            fill="none"
+            stroke="currentColor"
+            stroke-width="2"
+            stroke-linecap="round"
+            stroke-linejoin="round"
+            ><rect x="3" y="11" width="18" height="11" rx="2" ry="2"
+            ></rect><path d="M7 11V7a5 5 0 0 1 10 0v4"></path></svg
+          >
+          <span>Vos données sont protégées et sacrées.</span>
         </p>
       </div>
-
-      {/* Ornement Bas */}
-      <div class="text-gold text-2xl mt-8 select-none">✦</div>
     </div>
   </div>
 </section>
@@ -106,7 +164,7 @@
 
         resNews.innerHTML = "";
         resNews.className =
-          "mt-4 font-bold min-h-[24px] text-sm transition-colors duration-300 message-resultat";
+          "mt-6 font-medium h-6 text-sm transition-colors duration-300 message-resultat flex items-center justify-center";
         btn.disabled = true;
 
         if (btnText) btnText.classList.add("hidden");
@@ -123,18 +181,24 @@
           .then(async (response) => {
             if (response.status == 200) {
               resNews.innerHTML =
-                "✨ Merci. Votre inscription est confirmée. Bienvenue dans le Cercle.";
-              resNews.classList.add("text-gold");
+                "✨ Inscription confirmée. Bienvenue dans le Cercle.";
+              resNews.classList.add("text-[#4CAF50]");
               formNews.reset();
+
+              setTimeout(() => {
+                resNews.innerHTML = "";
+                resNews.className =
+                  "mt-6 font-medium h-6 text-sm transition-colors duration-300 message-resultat flex items-center justify-center";
+              }, 5000);
             } else {
               resNews.innerHTML =
                 "Une erreur est survenue. Veuillez réessayer.";
-              resNews.classList.add("text-red-500");
+              resNews.classList.add("text-[#e74c3c]");
             }
           })
           .catch((error) => {
-            resNews.innerHTML = "Erreur de connexion.";
-            resNews.classList.add("text-red-500");
+            resNews.innerHTML = "Erreur de connexion. Vérifiez votre réseau.";
+            resNews.classList.add("text-[#e74c3c]");
             console.error(error);
           })
           .finally(() => {
@@ -148,20 +212,19 @@
 </script>
 
 <style>
-  /* L'animation de respiration de la carte (seul style gardé pour les performances GPU) */
   @keyframes breathing-glow {
     0%,
     100% {
       box-shadow:
-        0 10px 40px rgba(0, 0, 0, 0.5),
-        0 0 20px rgba(212, 175, 55, 0.1);
-      border-color: rgba(212, 175, 55, 0.3);
+        0 10px 40px rgba(0, 0, 0, 0.4),
+        0 0 0 1px rgba(255, 255, 255, 0.05),
+        0 0 15px rgba(212, 175, 55, 0.08);
     }
     50% {
       box-shadow:
-        0 15px 50px rgba(0, 0, 0, 0.6),
-        0 0 35px rgba(212, 175, 55, 0.3);
-      border-color: rgba(212, 175, 55, 0.6);
+        0 20px 50px rgba(0, 0, 0, 0.6),
+        0 0 0 1px rgba(212, 175, 55, 0.2),
+        0 0 30px rgba(212, 175, 55, 0.15);
     }
   }
 </style>
