@@ -210,7 +210,7 @@ const pageTitle =
 
           <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 md:gap-8">
             {featuredPosts.map((post) => {
-              // LOGIQUE DE RÉSOLUTION D'IMAGE STRICTE (Identique au blog)
+              // LOGIQUE DE RÉSOLUTION D'IMAGE STRICTE
               let imageFn = null;
               if (post.frontmatter.image) {
                 const cleanImageName = post.frontmatter.image.replace(
@@ -224,60 +224,57 @@ const pageTitle =
               }
 
               return (
-                <div class="group bg-dark-surface border border-gold/20 rounded-lg overflow-hidden relative flex flex-col shadow-xl hover:-translate-y-2 hover:shadow-[0_15px_40px_rgba(212,175,55,0.15)] transition-all duration-300 h-[450px]">
-                  {/* --- L'IMAGE EN FOND --- */}
-                  <div class="absolute inset-0 w-full h-full">
+                <article class="group bg-dark-surface border border-white/5 hover:border-gold/30 rounded-xl overflow-hidden flex flex-col shadow-xl hover:shadow-[0_15px_40px_rgba(212,175,55,0.12)] transition-all duration-500 hover:-translate-y-2 h-[480px]">
+                  {/* --- PARTIE HAUTE : L'IMAGE (45%) --- */}
+                  <a
+                    href={post.url}
+                    class="relative h-[45%] w-full overflow-hidden bg-dark-bg shrink-0 block"
+                  >
                     {imageFn ? (
                       <Image
                         src={imageFn()}
                         alt={post.frontmatter.title}
                         format="webp"
                         quality={80}
-                        class="w-full h-full object-cover transition-transform duration-700 group-hover:scale-110"
+                        class="absolute inset-0 w-full h-full object-cover transition-transform duration-700 group-hover:scale-110"
                       />
                     ) : (
-                      <div class="w-full h-full bg-[radial-gradient(circle_at_center,var(--color-vodun-surface)_0%,var(--color-vodun-bg)_100%)] flex flex-col items-center justify-center gap-4 transition-transform duration-700 group-hover:scale-105">
+                      <div class="absolute inset-0 bg-[radial-gradient(circle_at_center,var(--color-vodun-surface)_0%,var(--color-vodun-bg)_100%)] flex items-center justify-center transition-transform duration-700 group-hover:scale-105">
                         <div class="w-16 h-16 bg-gold/10 rounded-full flex items-center justify-center">
                           <Logo width="30" height="30" class="opacity-80" />
                         </div>
                       </div>
                     )}
-                    {/* OVERLAY RENFORCÉ POUR LA LISIBILITÉ 
-                      - De noir pur à 95% en bas (from-dark-bg/95)
-                      - Noir à 80% au milieu (via-dark-bg/80)
-                      - Noir à 40% en haut (to-dark-bg/40) pour voir l'image
-                    */}
-                    <div class="absolute inset-0 bg-gradient-to-t from-dark-bg/95 via-dark-bg/80 to-dark-bg/40 z-10" />
-                  </div>
+                    <div class="absolute inset-0 ring-1 ring-inset ring-black/20 pointer-events-none" />
+                  </a>
 
-                  {/* --- LE CONTENU PAR DESSUS --- */}
-                  <div class="relative z-20 flex flex-col h-full w-full p-6 md:p-8">
+                  {/* --- PARTIE BASSE : LE CONTENU (55%) --- */}
+                  <div class="relative flex flex-col flex-grow p-6 md:p-8 bg-dark-surface z-10 border-t border-white/5">
                     {post.frontmatter.categorie && (
-                      <span class="self-start bg-gold/10 text-gold border border-gold/20 px-3 py-1 text-[10px] md:text-xs uppercase tracking-wider mb-4 md:mb-6">
-                        {post.frontmatter.categorie}
+                      <span class="self-start text-gold text-[10px] md:text-xs font-bold uppercase tracking-widest mb-3 md:mb-4">
+                        — {post.frontmatter.categorie}
                       </span>
                     )}
 
-                    <h3 class="font-serif text-xl md:text-2xl text-vodun-kaolin font-bold mb-3 md:mb-4 leading-tight group-hover:text-gold transition-colors drop-shadow-[0_2px_4px_rgba(0,0,0,0.8)]">
-                      {post.frontmatter.title}
+                    <h3 class="font-serif text-xl md:text-2xl text-vodun-kaolin mb-3 leading-snug group-hover:text-gold transition-colors line-clamp-2">
+                      <a href={post.url} class="focus:outline-none">
+                        {post.frontmatter.title}
+                      </a>
                     </h3>
 
-                    {/* Texte de description avec une lisibilité maximale */}
-                    <p class="text-white/90 mb-6 md:mb-8 leading-relaxed flex-grow text-xs sm:text-sm line-clamp-3 drop-shadow-[0_1px_2px_rgba(0,0,0,0.8)] font-medium">
+                    <p class="text-vodun-cendre mb-6 leading-relaxed flex-grow text-sm line-clamp-3">
                       {post.frontmatter.description}
                     </p>
 
                     <a
                       href={post.url}
-                      class="text-gold font-bold uppercase tracking-wider text-xs md:text-sm flex items-center gap-2 group-hover:text-white transition-colors mt-auto"
+                      class="mt-auto inline-flex items-center gap-2 text-gold font-bold uppercase tracking-wider text-xs md:text-sm transition-all duration-300 group-hover:gap-4 w-fit"
                     >
                       Lire l&apos;article{" "}
-                      <span class="group-hover:translate-x-2 transition-transform duration-300">
-                        →
-                      </span>
+                      <span class="text-lg leading-none">&rarr;</span>
                     </a>
                   </div>
-                </div>
+                </article>
               );
             })}
           </div>
