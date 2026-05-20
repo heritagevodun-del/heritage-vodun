@@ -1,0 +1,315 @@
+---
+// src/components/art/SakpataArt.astro
+// Composant Premium : Le Sanctuaire d'Ayinon (Terre Nourricière et Pharmacopée)
+// Architecture : Astro + SVG SMIL + CSS Natif (Zéro JS) - 100% Responsive
+---
+
+<div
+  class="relative w-full max-w-4xl mx-auto my-12 aspect-square sm:aspect-video md:aspect-[21/9] min-h-[28rem] bg-[#0c0805] rounded-3xl overflow-hidden border border-[#d97706]/30 shadow-[0_30px_60px_rgba(0,0,0,0.8),inset_0_0_80px_rgba(12,8,5,1)] group opacity-0 animate-fade-up select-none"
+>
+  {/* Lueur Chaleureuse (L'énergie vitale du sol) */}
+  <div
+    class="absolute inset-0 bg-[radial-gradient(circle_at_50%_50%,#3d1a0a_0%,transparent_65%)] animate-[pulse_6s_ease-in-out_infinite]"
+  >
+  </div>
+
+  {/* Texture de sol fertile (SVG Natif) */}
+  <svg
+    class="absolute inset-0 w-full h-full opacity-10 mix-blend-overlay pointer-events-none"
+    xmlns="http://www.w3.org/2000/svg"
+  >
+    <filter id="soilNoise">
+      <feTurbulence
+        type="fractalNoise"
+        baseFrequency="0.9"
+        numOctaves="3"
+        stitchTiles="stitch"></feTurbulence>
+    </filter>
+    <rect width="100%" height="100%" filter="url(#soilNoise)"></rect>
+  </svg>
+
+  <div class="absolute inset-0 flex items-center justify-center">
+    <svg
+      viewBox="0 0 800 450"
+      class="w-full h-full"
+      xmlns="http://www.w3.org/2000/svg"
+      preserveAspectRatio="xMidYMid meet"
+    >
+      <defs>
+        {/* Dégradés Bienveillants */}
+        <linearGradient id="terracottaGrad" x1="0%" y1="0%" x2="0%" y2="100%">
+          <stop offset="0%" stop-color="#f59e0b"></stop>
+          {/* Or / Lumière du soleil */}
+          <stop offset="40%" stop-color="#b45309"></stop>
+          {/* Terre cuite vibrante */}
+          <stop offset="100%" stop-color="#451a03"></stop>
+          {/* Humus profond */}
+        </linearGradient>
+
+        <linearGradient id="healingFlora" x1="0%" y1="100%" x2="100%" y2="0%">
+          <stop offset="0%" stop-color="#047857"></stop>
+          <stop offset="50%" stop-color="#34d399"></stop>
+          <stop offset="100%" stop-color="#a7f3d0"></stop>
+        </linearGradient>
+
+        {/* Filtres de douceur et de guérison */}
+        <filter id="kaolinGlow" x="-50%" y="-50%" width="200%" height="200%">
+          <feGaussianBlur stdDeviation="4" result="blur1"></feGaussianBlur>
+          <feGaussianBlur stdDeviation="10" result="blur2"></feGaussianBlur>
+          <feMerge>
+            <feMergeNode in="blur2"></feMergeNode>
+            <feMergeNode in="blur1"></feMergeNode>
+            <feMergeNode in="SourceGraphic"></feMergeNode>
+          </feMerge>
+        </filter>
+
+        <filter id="softShadow" x="-20%" y="-20%" width="140%" height="140%">
+          <feDropShadow
+            dx="0"
+            dy="10"
+            stdDeviation="8"
+            flood-color="#000"
+            flood-opacity="0.6"></feDropShadow>
+        </filter>
+      </defs>
+
+      {/* ================= ONDES DE CROISSANCE BIOLOGIQUE ================= */}
+      <g opacity="0.3" filter="url(#kaolinGlow)">
+        <circle
+          cx="400"
+          cy="225"
+          r="140"
+          fill="none"
+          stroke="#d97706"
+          stroke-width="1.5"
+          stroke-dasharray="8 12"
+          class="ayinon-spin-slow"
+          transform-origin="400 225"></circle>
+        <circle
+          cx="400"
+          cy="225"
+          r="200"
+          fill="none"
+          stroke="#10b981"
+          stroke-width="1"
+          stroke-dasharray="4 24"
+          class="ayinon-spin-reverse"
+          transform-origin="400 225"></circle>
+      </g>
+
+      {
+        /* ================= LE GOZEN (La Jarre Matricielle Protectrice) ================= */
+      }
+      <g filter="url(#softShadow)">
+        {/* Corps rond et accueillant de la jarre */}
+        <path
+          d="M 330 90 C 330 90, 240 180, 280 320 C 300 380, 500 380, 520 320 C 560 180, 470 90, 470 90 Z"
+          fill="url(#terracottaGrad)"
+          stroke="#290f02"
+          stroke-width="2"></path>
+
+        {/* Col de la jarre */}
+        <ellipse
+          cx="400"
+          cy="90"
+          rx="70"
+          ry="15"
+          fill="#78350f"
+          stroke="#b45309"
+          stroke-width="2"></ellipse>
+        <ellipse cx="400" cy="85" rx="60" ry="10" fill="#290f02"></ellipse>
+
+        {/* Constellation de Kaolin (Perforations de lumière purificatrice) */}
+        <g fill="#fdfbf7" filter="url(#kaolinGlow)">
+          {/* Lignes harmonieuses de points blancs */}
+          <circle cx="400" cy="150" r="4"
+            ><animate
+              attributeName="opacity"
+              values="0.4;1;0.4"
+              dur="3s"
+              repeatCount="indefinite"></animate></circle
+          >
+          <circle cx="350" cy="180" r="3.5"
+            ><animate
+              attributeName="opacity"
+              values="0.4;1;0.4"
+              dur="4s"
+              repeatCount="indefinite"></animate></circle
+          >
+          <circle cx="450" cy="180" r="3.5"
+            ><animate
+              attributeName="opacity"
+              values="0.4;1;0.4"
+              dur="3.5s"
+              repeatCount="indefinite"></animate></circle
+          >
+          <circle cx="320" cy="230" r="4.5"
+            ><animate
+              attributeName="opacity"
+              values="0.4;1;0.4"
+              dur="5s"
+              repeatCount="indefinite"></animate></circle
+          >
+          <circle cx="480" cy="230" r="4.5"
+            ><animate
+              attributeName="opacity"
+              values="0.4;1;0.4"
+              dur="4.5s"
+              repeatCount="indefinite"></animate></circle
+          >
+          <circle cx="360" cy="280" r="4"
+            ><animate
+              attributeName="opacity"
+              values="0.4;1;0.4"
+              dur="3s"
+              repeatCount="indefinite"></animate></circle
+          >
+          <circle cx="440" cy="280" r="4"
+            ><animate
+              attributeName="opacity"
+              values="0.4;1;0.4"
+              dur="4s"
+              repeatCount="indefinite"></animate></circle
+          >
+          <circle cx="400" cy="330" r="5"
+            ><animate
+              attributeName="opacity"
+              values="0.4;1;0.4"
+              dur="6s"
+              repeatCount="indefinite"></animate></circle
+          >
+        </g>
+      </g>
+
+      {
+        /* ================= LA PHARMACOPÉE (Éclosion végétale) ================= */
+      }
+      {
+        /* Au lieu de ronces agressives, des pousses de feuilles lumineuses bercent la base */
+      }
+      <g filter="url(#kaolinGlow)">
+        {/* Pousse Gauche */}
+        <path
+          d="M 400 370 Q 250 350, 200 200 Q 220 220, 250 280 Q 300 350, 400 370 Z"
+          fill="url(#healingFlora)"
+          opacity="0.9"></path>
+        <path
+          d="M 230 260 Q 200 200, 150 220 Q 180 250, 230 260 Z"
+          fill="url(#healingFlora)"></path>
+        <path
+          d="M 280 320 Q 200 300, 180 340 Q 220 340, 280 320 Z"
+          fill="url(#healingFlora)"></path>
+
+        {/* Pousse Droite */}
+        <path
+          d="M 400 370 Q 550 350, 600 200 Q 580 220, 550 280 Q 500 350, 400 370 Z"
+          fill="url(#healingFlora)"
+          opacity="0.9"></path>
+        <path
+          d="M 570 260 Q 600 200, 650 220 Q 620 250, 570 260 Z"
+          fill="url(#healingFlora)"></path>
+        <path
+          d="M 520 320 Q 600 300, 620 340 Q 580 340, 520 320 Z"
+          fill="url(#healingFlora)"></path>
+
+        {/* Cœur floral / Graine de vie à la base */}
+        <circle cx="400" cy="370" r="12" fill="#10b981">
+          <animate
+            attributeName="r"
+            values="10;14;10"
+            dur="4s"
+            repeatCount="indefinite"></animate>
+        </circle>
+        <circle cx="400" cy="370" r="6" fill="#fdfbf7"></circle>
+      </g>
+
+      {
+        /* ================= PARTICULES D'ABONDANCE (Graines et Rosée) ================= */
+      }
+      <g>
+        {/* Particules flottant doucement vers le haut */}
+        {
+          [...Array(15)].map((_, i) => (
+            <circle
+              cx={200 + Math.random() * 400}
+              cy="450"
+              r={Math.random() * 3 + 1}
+              fill={i % 2 === 0 ? "#fdfbf7" : "#34d399"}
+              filter="url(#kaolinGlow)"
+            >
+              <animate
+                attributeName="cy"
+                from="450"
+                to="-50"
+                dur={`${8 + Math.random() * 10}s`}
+                begin={`${Math.random() * 5}s`}
+                repeatCount="indefinite"
+              />
+              <animate
+                attributeName="opacity"
+                values="0;0.8;0"
+                dur={`${8 + Math.random() * 10}s`}
+                begin={`${Math.random() * 5}s`}
+                repeatCount="indefinite"
+              />
+            </circle>
+          ))
+        }
+      </g>
+    </svg>
+  </div>
+
+  {/* HUD - Interfaces de régulation pacifique */}
+  <div
+    class="absolute bottom-4 sm:bottom-6 left-4 sm:left-8 font-mono text-[0.55rem] sm:text-[0.65rem] text-[#d97706]/80 tracking-[0.2em] sm:tracking-[0.3em] uppercase pointer-events-none drop-shadow-[0_0_5px_rgba(217,119,6,0.8)]"
+  >
+    <span class="hidden sm:inline">MATRIX: </span>AYINON_CORE // HARMONY_SYNC
+  </div>
+
+  <div
+    class="absolute top-4 sm:top-6 right-4 sm:right-8 font-mono text-[0.55rem] sm:text-[0.65rem] text-[#10b981]/80 tracking-[0.2em] sm:tracking-[0.3em] uppercase animate-pulse pointer-events-none drop-shadow-[0_0_5px_rgba(16,185,129,0.8)] flex items-center gap-2"
+  >
+    <span
+      class="w-1.5 h-1.5 bg-[#10b981] rounded-full animate-ping hidden sm:block"
+    ></span>
+    BIOSPHERE_ACTIVE
+  </div>
+
+  {/* Ligne d'horizon lumineuse et stable à la base */}
+  <div
+    class="absolute bottom-0 left-0 right-0 h-[2px] bg-gradient-to-r from-transparent via-[#10b981]/40 to-transparent shadow-[0_0_20px_#10b981]"
+  >
+  </div>
+</div>
+
+<style>
+  @keyframes fadeUp {
+    from {
+      opacity: 0;
+      transform: translateY(30px);
+    }
+    to {
+      opacity: 1;
+      transform: translateY(0);
+    }
+  }
+  .animate-fade-up {
+    animation: fadeUp 1.2s cubic-bezier(0.16, 1, 0.3, 1) forwards;
+  }
+
+  /* Rotations douces de l'écosystème */
+  .ayinon-spin-slow {
+    animation: spin 40s linear infinite;
+  }
+  .ayinon-spin-reverse {
+    animation: spin 60s linear infinite reverse;
+  }
+  @keyframes spin {
+    from {
+      transform: rotate(0deg);
+    }
+    to {
+      transform: rotate(360deg);
+    }
+  }
+</style>
