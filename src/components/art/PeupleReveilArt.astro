@@ -1,92 +1,99 @@
 ---
 /*
   PeupleReveilArt.astro - CSS Art
-  Allégorie de la dignité retrouvée : L'aube dorée illuminant 
-  le peuple qui se tient debout, fier et inébranlable.
+  Allégorie de la dignité retrouvée : L&apos;aube dorée illuminant 
+  le peuple qui se dresse comme un monument inébranlable.
+  Optimisé Tailwind v4 - 100% Responsive - Zéro JS
 */
 ---
 
 <div
-  class="w-full h-80 md:h-[28rem] bg-[radial-gradient(ellipse_at_bottom,#1a1410_0%,#050505_100%)] flex justify-center items-end relative overflow-hidden mb-12 rounded-2xl shadow-[0_20px_50px_rgba(0,0,0,0.8)] border border-white/5 opacity-0 animate-fade-up group"
+  class="relative w-full max-w-4xl mx-auto my-12 h-80 md:h-[32rem] bg-[#020202] rounded-2xl overflow-hidden border border-white/5 shadow-[0_30px_60px_rgba(0,0,0,0.9)] flex justify-center items-end opacity-0 animate-fade-up group select-none"
 >
-  {/* L'Aube (Le réveil, la lumière) */}
+  {/* L&apos;Aube (Le Soleil Naissant) */}
   <div
-    class="absolute bottom-[-150px] w-[300px] md:w-[500px] h-[300px] md:h-[500px] rounded-full bg-[radial-gradient(circle,rgba(212,175,55,0.4)_0%,transparent_70%)] blur-2xl animate-pulse-slow z-0"
+    class="absolute bottom-0 left-1/2 -translate-x-1/2 w-64 h-32 md:w-96 md:h-48 bg-gradient-to-t from-amber-500 via-amber-600/40 to-transparent rounded-t-full blur-2xl animate-pulse-slow z-0"
   >
   </div>
   <div
-    class="absolute bottom-[-50px] w-[150px] md:w-[200px] h-[150px] md:h-[200px] rounded-full bg-gold/30 blur-xl animate-pulse-glow z-0"
+    class="absolute -bottom-10 left-1/2 -translate-x-1/2 w-40 h-40 md:w-56 md:h-56 bg-[#d4af37] rounded-full blur-xl animate-pulse-glow z-0 opacity-60"
   >
   </div>
 
-  {/* Les Piliers (Le peuple qui se dresse) */}
+  {/* Grille de perspective (Le chemin parcouru) */}
   <div
-    class="relative z-10 flex items-end justify-center space-x-3 md:space-x-6 w-full px-4 pb-0"
+    class="absolute bottom-0 w-full h-32 bg-[linear-gradient(rgba(212,175,55,0.1)_1px,transparent_1px),linear-gradient(90deg,rgba(212,175,55,0.1)_1px,transparent_1px)] bg-[size:40px_10px] [transform:perspective(500px)_rotateX(60deg)] opacity-30 z-0"
   >
-    {/* Pilier 1 (Ancêtres) */}
+  </div>
+
+  {/* Les Piliers (La Nation Debout) */}
+  <div
+    class="relative z-10 flex items-end justify-center gap-2 md:gap-4 w-full px-4 pb-0"
+  >
+    {/* Pilier 1 (Les Ancêtres) */}
     <div
-      class="w-10 md:w-16 h-32 md:h-48 bg-gradient-to-t from-black via-[#3e2723] to-[#5d4037] rounded-t-sm border-t border-white/10 shadow-[inset_0_5px_15px_rgba(0,0,0,0.8)] transform transition-transform duration-700 group-hover:-translate-y-2"
+      class="w-12 md:w-20 h-32 md:h-48 bg-gradient-to-t from-[#0a0a0a] to-[#3e2723] shadow-2xl transform transition-transform duration-700 group-hover:-translate-y-2 [clip-path:polygon(50%_0%,100%_15%,100%_100%,0%_100%,0%_15%)] border-t border-amber-900/50"
     >
     </div>
 
-    {/* Pilier 2 (Jeunesse) */}
+    {/* Pilier 2 (La Force du Peuple) */}
     <div
-      class="w-12 md:w-20 h-48 md:h-64 bg-gradient-to-t from-black via-[#4e342e] to-[#795548] rounded-t-sm border-t border-white/20 shadow-[inset_0_5px_15px_rgba(0,0,0,0.8)] transform transition-transform duration-700 delay-75 group-hover:-translate-y-4"
+      class="w-14 md:w-24 h-48 md:h-72 bg-gradient-to-t from-[#0a0a0a] via-[#2d1b15] to-[#5d4037] shadow-2xl transform transition-transform duration-700 delay-75 group-hover:-translate-y-4 [clip-path:polygon(50%_0%,100%_10%,100%_100%,0%_100%,0%_10%)] border-t border-amber-800/60 z-10"
     >
     </div>
 
-    {/* Pilier Central (La Nation / L'Amazone abstraite) */}
+    {/* Pilier Central (La Dignité Retrouvée / L&apos;Axe Souverain) */}
     <div
-      class="relative w-16 md:w-28 h-64 md:h-[22rem] bg-gradient-to-t from-black via-amber-900 to-gold rounded-t-md border-t-2 border-gold/80 shadow-[0_0_30px_rgba(212,175,55,0.3)] transform transition-transform duration-1000 z-20 group-hover:scale-105"
+      class="relative w-20 md:w-32 h-64 md:h-[26rem] bg-gradient-to-t from-[#050505] via-[#5c3a21] to-[#d4af37] shadow-[0_0_40px_rgba(212,175,55,0.4)] transform transition-transform duration-1000 z-20 group-hover:scale-105 [clip-path:polygon(50%_0%,100%_12%,100%_100%,0%_100%,0%_12%)]"
     >
-      {/* Ligne de force centrale */}
+      {/* Ligne de lumière centrale (Le code source) */}
       <div
-        class="absolute top-0 bottom-0 left-1/2 -translate-x-1/2 w-px bg-gradient-to-b from-white/50 to-transparent"
+        class="absolute top-0 bottom-0 left-1/2 -translate-x-1/2 w-[2px] bg-gradient-to-b from-white/90 via-amber-300/50 to-transparent"
       >
       </div>
-      {/* Couronne de lumière */}
+      {/* Cœur lumineux */}
       <div
-        class="absolute -top-4 left-1/2 -translate-x-1/2 w-8 h-2 bg-white/80 blur-sm rounded-full"
+        class="absolute top-4 left-1/2 -translate-x-1/2 w-4 h-4 bg-white rounded-full blur-[2px] shadow-[0_0_15px_#ffffff]"
       >
       </div>
     </div>
 
-    {/* Pilier 4 (Tradition) */}
+    {/* Pilier 4 (La Jeunesse) */}
     <div
-      class="w-12 md:w-20 h-40 md:h-56 bg-gradient-to-t from-black via-[#4e342e] to-[#795548] rounded-t-sm border-t border-white/20 shadow-[inset_0_5px_15px_rgba(0,0,0,0.8)] transform transition-transform duration-700 delay-100 group-hover:-translate-y-3"
+      class="w-14 md:w-24 h-40 md:h-60 bg-gradient-to-t from-[#0a0a0a] via-[#2d1b15] to-[#5d4037] shadow-2xl transform transition-transform duration-700 delay-100 group-hover:-translate-y-3 [clip-path:polygon(50%_0%,100%_10%,100%_100%,0%_100%,0%_10%)] border-t border-amber-800/60 z-10"
     >
     </div>
 
-    {/* Pilier 5 (Avenir) */}
+    {/* Pilier 5 (L&apos;Avenir) */}
     <div
-      class="w-10 md:w-16 h-24 md:h-36 bg-gradient-to-t from-black via-[#3e2723] to-[#5d4037] rounded-t-sm border-t border-white/10 shadow-[inset_0_5px_15px_rgba(0,0,0,0.8)] transform transition-transform duration-700 delay-150 group-hover:-translate-y-1"
+      class="w-12 md:w-20 h-28 md:h-40 bg-gradient-to-t from-[#0a0a0a] to-[#3e2723] shadow-2xl transform transition-transform duration-700 delay-150 group-hover:-translate-y-1 [clip-path:polygon(50%_0%,100%_15%,100%_100%,0%_100%,0%_15%)] border-t border-amber-900/50"
     >
     </div>
   </div>
 
-  {/* Particules d'élévation spirituelle */}
+  {/* Particules d&apos;élévation spirituelle */}
   <div class="absolute inset-0 z-30 pointer-events-none">
     <div
-      class="absolute w-1.5 h-1.5 bg-gold rounded-full blur-[1px] animate-rise opacity-0 left-[20%] bottom-10 [animation-delay:0.5s]"
+      class="absolute w-1.5 h-1.5 bg-[#d4af37] rounded-full blur-[1px] animate-rise opacity-0 left-[30%] bottom-10 [animation-delay:0.5s]"
     >
     </div>
     <div
-      class="absolute w-2 h-2 bg-white rounded-full blur-[1px] animate-rise opacity-0 left-[45%] bottom-5 [animation-delay:1.2s]"
+      class="absolute w-2 h-2 bg-white rounded-full blur-[1px] animate-rise opacity-0 left-[50%] bottom-5 [animation-delay:1.2s]"
     >
     </div>
     <div
-      class="absolute w-1 h-1 bg-gold rounded-full blur-[1px] animate-rise opacity-0 right-[35%] bottom-16 [animation-delay:2.5s]"
+      class="absolute w-1 h-1 bg-[#d4af37] rounded-full blur-[1px] animate-rise opacity-0 right-[40%] bottom-16 [animation-delay:2.5s]"
     >
     </div>
     <div
-      class="absolute w-2 h-2 bg-amber-200 rounded-full blur-[1px] animate-rise opacity-0 right-[15%] bottom-8 [animation-delay:0.8s]"
+      class="absolute w-2 h-2 bg-amber-200 rounded-full blur-[1px] animate-rise opacity-0 right-[25%] bottom-8 [animation-delay:0.8s]"
     >
     </div>
   </div>
 
-  {/* Ligne de base (Terre mère) */}
+  {/* Base Tellurique (L&apos;ancrage au sol) */}
   <div
-    class="absolute bottom-0 w-full h-2 bg-gradient-to-r from-transparent via-gold/40 to-transparent z-40"
+    class="absolute bottom-0 w-full h-1 bg-gradient-to-r from-transparent via-[#d4af37] to-transparent z-40 opacity-80 shadow-[0_0_15px_#d4af37]"
   >
   </div>
 </div>
@@ -103,31 +110,33 @@
     }
   }
   .animate-fade-up {
-    animation: fadeUp 1s cubic-bezier(0.16, 1, 0.3, 1) forwards;
+    animation: fadeUp 1.2s cubic-bezier(0.16, 1, 0.3, 1) forwards;
   }
 
   @keyframes pulseSlow {
     0%,
     100% {
-      transform: scale(1);
-      opacity: 0.5;
+      opacity: 0.6;
+      transform: scale(1) translateX(-50%);
     }
     50% {
-      transform: scale(1.1);
-      opacity: 0.8;
+      opacity: 0.9;
+      transform: scale(1.05) translateX(-48%);
     }
   }
   .animate-pulse-slow {
-    animation: pulseSlow 8s ease-in-out infinite;
+    animation: pulseSlow 6s ease-in-out infinite;
   }
 
   @keyframes pulseGlow {
     0%,
     100% {
       opacity: 0.4;
+      transform: scale(1) translateX(-50%);
     }
     50% {
-      opacity: 1;
+      opacity: 0.8;
+      transform: scale(1.1) translateX(-45%);
     }
   }
   .animate-pulse-glow {
@@ -146,11 +155,11 @@
       opacity: 0.8;
     }
     100% {
-      transform: translateY(-200px) scale(1.5);
+      transform: translateY(-250px) scale(1.5);
       opacity: 0;
     }
   }
   .animate-rise {
-    animation: rise 4s infinite ease-in;
+    animation: rise 5s infinite ease-in;
   }
 </style>
