@@ -5,7 +5,7 @@ import Search from "../components/Search.astro";
 import { ClientRouter } from "astro:transitions";
 import SpeedInsights from "@vercel/speed-insights/astro";
 
-// L'IMPORT QUI PLANTAIT : ASSUREZ-VOUS QUE LE DOSSIER S'APPELLE "styles" et le fichier "global.css" EN MINUSCULES
+// L’IMPORT QUI PLANTAIT : ASSUREZ-VOUS QUE LE DOSSIER S’APPELLE "styles" et le fichier "global.css" EN MINUSCULES
 import "../styles/global.css";
 
 import "@fontsource/lato/300.css";
@@ -23,8 +23,13 @@ const {
   noindex = false,
 } = Astro.props;
 
-const canonicalURL = new URL(Astro.url.pathname, Astro.site);
-const socialImageURL = new URL(image, Astro.url);
+// FORÇAGE DE L'URL ABSOLUE POUR LES RÉSEAUX SOCIAUX
+const canonicalURL = new URL(Astro.url.pathname, Astro.site ?? Astro.url);
+// Cette constante s'attend à trouver l'image dans le dossier /public
+const socialImageURL = new URL(
+  image,
+  Astro.site ?? "https://www.heritagevodun.com",
+);
 ---
 
 <html lang="fr" class="scroll-smooth">
@@ -55,26 +60,33 @@ const socialImageURL = new URL(image, Astro.url);
     <meta name="description" content={description} />
     <link rel="canonical" href={canonicalURL} />
 
+    {/* --- OPEN GRAPH (FACEBOOK, LINKEDIN, WHATSAPP) --- */}
+    <meta property="og:site_name" content="Héritage Vodun" />
     <meta property="og:type" content="website" />
-    <meta property="og:url" content={Astro.url} />
+    <meta property="og:url" content={canonicalURL} />
     <meta property="og:title" content={titrePage} />
     <meta property="og:description" content={description} />
     <meta property="og:image" content={socialImageURL} />
+    <meta property="og:image:alt" content={titrePage} />
 
-    <meta property="twitter:card" content="summary_large_image" />
-    <meta property="twitter:url" content={Astro.url} />
-    <meta property="twitter:title" content={titrePage} />
-    <meta property="twitter:description" content={description} />
-    <meta property="twitter:image" content={socialImageURL} />
+    {/* --- TWITTER CARDS --- */}
+    <meta name="twitter:card" content="summary_large_image" />
+    <meta name="twitter:url" content={canonicalURL} />
+    <meta name="twitter:title" content={titrePage} />
+    <meta name="twitter:description" content={description} />
+    <meta name="twitter:image" content={socialImageURL} />
 
-    <script type="application/ld+json" is:inline>
+    <script
+      type="application/ld+json"
+      is:inline
+      set:html={`
       {
         "@context": "https://schema.org",
         "@type": "TravelAgency",
         "name": "Héritage Vodun",
         "url": "https://www.heritagevodun.com",
-        "image": "https://www.heritagevodun.com/vodunsi.jpeg",
-        "description": "Guide culturel et spirituel à Ouidah. Spécialiste du Vodun, du Fâ et de l'histoire du Bénin.",
+        "image": "${socialImageURL}",
+        "description": "Guide culturel et spirituel à Ouidah. Spécialiste du Vodun, du Fâ et de l’histoire du Bénin.",
         "address": {
           "@type": "PostalAddress",
           "addressLocality": "Ouidah",
@@ -89,7 +101,8 @@ const socialImageURL = new URL(image, Astro.url);
         "telephone": "+2290169783365",
         "priceRange": "$$"
       }
-    </script>
+    `}
+    />
   </head>
 
   <body
@@ -171,7 +184,7 @@ const socialImageURL = new URL(image, Astro.url);
             Héritage Vodun
           </h3>
           <p class="text-sm leading-relaxed mb-6">
-            Le portail de référence pour comprendre la spiritualité, l'histoire
+            Le portail de référence pour comprendre la spiritualité, l’histoire
             et les rites du Bénin. Une tradition vivante, expliquée avec respect
             et authenticité.
           </p>
@@ -350,7 +363,7 @@ const socialImageURL = new URL(image, Astro.url);
       <button
         id="oracle-trigger"
         class="relative w-14 h-14 md:w-16 md:h-16 bg-gold hover:bg-gold-hover rounded-full shadow-[0_4px_20px_rgba(212,175,55,0.4)] flex items-center justify-center transition-all hover:scale-110 ml-auto"
-        aria-label="Ouvrir l'Oracle"
+        aria-label="Ouvrir l’Oracle"
       >
         <svg
           viewBox="0 0 100 100"
