@@ -1,0 +1,259 @@
+---
+/*
+  GouArt.astro - CSS Art
+  Allégorie de la Forge : Le Cyber-Gubasa (Glaive Sacré) Tranchant dans la Chambre de Trempe.
+  Design : Tech-Sombre / Symétrie Industrielle (100% CSS, Zéro JS)
+*/
+---
+
+<div
+  class="relative w-full max-w-3xl mx-auto my-10 h-96 md:h-[32rem] bg-[#030101] rounded-2xl overflow-hidden border border-red-900/40 shadow-[0_25px_60px_rgba(0,0,0,0.95)] flex items-center justify-center group opacity-0 animate-fade-up select-none"
+>
+  {/* 1. ATMOSPHÈRE : HAUTE TEMPÉRATURE */}
+  <div
+    class="absolute inset-0 bg-[radial-gradient(circle_at_center,rgba(220,38,38,0.15)_0%,#030101_60%)] group-hover:bg-[radial-gradient(circle_at_center,rgba(234,88,12,0.25)_0%,#030101_60%)] transition-all duration-1000"
+  >
+  </div>
+  <div
+    class="absolute inset-0 bg-[url('data:image/svg+xml,%3Csvg viewBox=%220 0 200 200%22 xmlns=%22http://www.w3.org/2000/svg%22%3E%3Cfilter id=%22n%22%3E%3CfeTurbulence type=%22fractalNoise%22 baseFrequency=%220.85%22 numOctaves=%223%22 stitchTiles=%22stitch%22/%3E%3C/filter%3E%3Crect width=%22100%25%22 height=%22100%25%22 filter=%22url(%23n)%22 opacity=%220.04%22/%3E%3C/svg%3E')] mix-blend-overlay z-0"
+  >
+  </div>
+
+  {/* Grille de calibrage */}
+  <div
+    class="absolute inset-0 bg-[linear-gradient(rgba(255,255,255,0.02)_1px,transparent_1px),linear-gradient(90deg,rgba(255,255,255,0.02)_1px,transparent_1px)] bg-[size:40px_40px] mix-blend-overlay z-0 [mask-image:linear-gradient(to_bottom,transparent,black_20%,black_80%,transparent)]"
+  >
+  </div>
+
+  {/* 2. LE GUBASA (Lame Sacrée de Gou - Forme Tranchante) */}
+  <div
+    class="relative w-32 h-[280px] md:h-[340px] flex flex-col items-center z-20 transition-transform duration-700 group-hover:scale-105"
+  >
+    {/* LA LAME (Ultra-Tranchante, Biseautée en 3D via clip-path) */}
+    <div
+      class="relative w-14 md:w-16 h-[200px] md:h-[250px] shadow-[0_0_50px_rgba(234,88,12,0.5)] overflow-hidden"
+      style="clip-path: polygon(50% 0%, 100% 15%, 85% 100%, 15% 100%, 0% 15%);"
+    >
+      {/* Face Gauche (Éclairée par la forge) */}
+      <div
+        class="absolute inset-y-0 left-0 w-1/2 bg-gradient-to-t from-[#171717] via-red-600 to-yellow-400"
+      >
+      </div>
+
+      {/* Face Droite (Dans l&apos;ombre, crée l&apos;effet biseauté) */}
+      <div
+        class="absolute inset-y-0 right-0 w-1/2 bg-gradient-to-t from-[#0a0a0a] via-red-950 to-orange-600"
+      >
+      </div>
+
+      {/* L&apos;arête centrale ultra-fine (Le fil de la lame) */}
+      <div
+        class="absolute inset-y-0 left-1/2 -translate-x-1/2 w-[1px] bg-gradient-to-b from-white via-yellow-200 to-transparent shadow-[0_0_10px_#fff]"
+      >
+      </div>
+
+      {/* Cœur chauffé à blanc (Plasma pulsant le long de l&apos;arête) */}
+      <div
+        class="absolute top-2 bottom-8 left-1/2 -translate-x-1/2 w-1 md:w-1.5 bg-white blur-[2px] shadow-[0_0_15px_#fff,0_0_30px_#fef08a] animate-pulse-core"
+      >
+      </div>
+    </div>
+
+    {/* LA GARDE (Métal froid, forme angulaire agressive) */}
+    <div
+      class="w-24 md:w-28 h-5 bg-gradient-to-r from-[#0a0a0a] via-[#525252] to-[#0a0a0a] shadow-[0_10px_20px_rgba(0,0,0,0.9)] z-10 -mt-2 relative"
+      style="clip-path: polygon(10% 0%, 90% 0%, 100% 100%, 0% 100%);"
+    >
+      {/* Reflet sur la garde */}
+      <div class="absolute top-1 inset-x-2 h-[1px] bg-stone-400/50"></div>
+    </div>
+
+    {/* LE MANCHE */}
+    <div
+      class="w-6 md:w-8 h-[60px] md:h-[70px] bg-gradient-to-r from-[#0a0a0a] via-[#262626] to-[#0a0a0a] border-x border-stone-700 relative flex flex-col justify-evenly items-center"
+    >
+      {/* Grips texturés */}
+      <div class="w-full h-1 bg-stone-900 border-y border-stone-800"></div>
+      <div class="w-full h-1 bg-stone-900 border-y border-stone-800"></div>
+      <div class="w-full h-1 bg-stone-900 border-y border-stone-800"></div>
+    </div>
+
+    {/* LE POMMEAU (Finition en pointe biseautée) */}
+    <div
+      class="w-12 md:w-16 h-6 bg-gradient-to-r from-[#171717] via-[#525252] to-[#171717] shadow-[0_5px_10px_rgba(0,0,0,0.9)]"
+      style="clip-path: polygon(0% 0%, 100% 0%, 70% 100%, 30% 100%);"
+    >
+    </div>
+
+    {/* 3. L&apos;ALGORITHME DE FORGE (Scanner de Trempe) */}
+    <div
+      class="absolute top-0 w-32 md:w-40 h-1.5 bg-white rounded-full blur-[1px] shadow-[0_0_20px_#fff,0_0_40px_#38bdf8] animate-forge-scan mix-blend-screen z-30 pointer-events-none"
+    >
+    </div>
+  </div>
+
+  {/* 4. ACIER EN FUSION (Gouttes de plasma) */}
+  <div class="absolute inset-0 z-15 pointer-events-none overflow-hidden">
+    <div
+      class="absolute top-[40%] left-[49%] w-1.5 h-1.5 bg-yellow-300 rounded-full shadow-[0_0_10px_#fef08a] animate-drip-metal opacity-0"
+    >
+    </div>
+    <div
+      class="absolute top-[30%] left-[51%] w-2 h-2 bg-orange-400 rounded-full shadow-[0_0_15px_#f97316] animate-drip-metal-fast opacity-0 [animation-delay:1.5s]"
+    >
+    </div>
+    <div
+      class="absolute top-[50%] left-[50%] w-1 h-1 bg-white rounded-full shadow-[0_0_10px_#fff] animate-drip-metal opacity-0 [animation-delay:0.8s]"
+    >
+    </div>
+  </div>
+
+  {/* 5. HUD : MÉTRIQUES DE FORGE */}
+  <div
+    class="absolute top-6 left-6 font-mono text-[0.6rem] md:text-xs text-red-500/60 tracking-[0.2em] uppercase z-40"
+  >
+    <span
+      class="block text-white/90 drop-shadow-[0_0_5px_rgba(255,255,255,0.5)]"
+      >GOU_GUBASA_SYS</span
+    >
+  </div>
+
+  <div
+    class="absolute bottom-6 right-6 font-mono text-[0.6rem] md:text-xs text-orange-500/50 tracking-[0.2em] uppercase text-right z-40 flex items-center gap-2"
+  >
+    <div class="flex flex-col gap-1 items-end"></div>
+    <span
+      class="w-1.5 h-1.5 bg-orange-500 rounded-full shadow-[0_0_8px_#f97316] animate-ping"
+    ></span>
+  </div>
+
+  {/* 6. TYPOGRAPHIE D&apos;ARRIÈRE-PLAN */}
+  <div
+    class="absolute inset-x-0 top-[40%] text-center pointer-events-none z-10 transition-transform duration-1000 group-hover:scale-105"
+  >
+    <span
+      class="font-serif text-8xl md:text-9xl font-black text-transparent bg-clip-text bg-gradient-to-b from-red-900/20 to-transparent tracking-[0.1em] uppercase drop-shadow-[0_4px_10px_rgba(0,0,0,0.8)]"
+      >GOU</span
+    >
+  </div>
+</div>
+
+<style>
+  /* --- Apparition Générale --- */
+  @keyframes fadeUp {
+    from {
+      opacity: 0;
+      transform: translateY(30px);
+    }
+    to {
+      opacity: 1;
+      transform: translateY(0);
+    }
+  }
+  .animate-fade-up {
+    animation: fadeUp 1s cubic-bezier(0.16, 1, 0.3, 1) forwards;
+  }
+
+  /* --- Cœur du Plasma (Respiration thermique sur le fil de la lame) --- */
+  @keyframes pulseCore {
+    0%,
+    100% {
+      opacity: 0.7;
+      transform: translateX(-50%) scaleX(0.7);
+    }
+    50% {
+      opacity: 1;
+      transform: translateX(-50%) scaleX(1.3);
+    }
+  }
+  .animate-pulse-core {
+    animation: pulseCore 2s infinite alternate ease-in-out;
+  }
+
+  /* --- Scanner de Trempe (L&apos;Algorithme qui parcourt la lame) --- */
+  @keyframes forgeScan {
+    0% {
+      top: 5%;
+      opacity: 0;
+      transform: scaleX(0.5);
+    }
+    10% {
+      opacity: 1;
+      transform: scaleX(1);
+    }
+    45% {
+      opacity: 1;
+      transform: scaleX(1.2);
+    }
+    50% {
+      top: 75%;
+      opacity: 0;
+      transform: scaleX(0.5);
+    }
+    100% {
+      top: 75%;
+      opacity: 0;
+    }
+  }
+  .animate-forge-scan {
+    animation: forgeScan 4s infinite cubic-bezier(0.4, 0, 0.2, 1);
+  }
+
+  /* --- Gouttes de Métal en Fusion (Gravité fluide) --- */
+  @keyframes dripMetal {
+    0% {
+      transform: translateY(0) scale(1);
+      opacity: 0;
+    }
+    10% {
+      opacity: 1;
+    }
+    80% {
+      transform: translateY(150px) scale(0.5);
+      opacity: 1;
+    }
+    100% {
+      transform: translateY(200px) scale(0);
+      opacity: 0;
+    }
+  }
+  .animate-drip-metal {
+    animation: dripMetal 3s infinite cubic-bezier(0.5, 0, 1, 1);
+  }
+
+  @keyframes dripMetalFast {
+    0% {
+      transform: translateY(0) scale(1.2);
+      opacity: 0;
+    }
+    10% {
+      opacity: 1;
+    }
+    80% {
+      transform: translateY(180px) scale(0.6);
+      opacity: 1;
+    }
+    100% {
+      transform: translateY(240px) scale(0);
+      opacity: 0;
+    }
+  }
+  .animate-drip-metal-fast {
+    animation: dripMetalFast 2.2s infinite cubic-bezier(0.5, 0, 1, 1);
+  }
+
+  /* --- Clignotement Texte --- */
+  @keyframes flickerText {
+    0%,
+    100% {
+      opacity: 0.8;
+    }
+    50% {
+      opacity: 1;
+      filter: drop-shadow(0 0 5px #fff);
+    }
+  }
+  .animate-flicker-text {
+    animation: flickerText 0.5s infinite alternate;
+  }
+</style>
