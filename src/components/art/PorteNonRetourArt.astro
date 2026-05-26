@@ -1,136 +1,176 @@
 ---
 /*
   PorteNonRetourArt.astro - CSS Art
-  Représente l&apos;arche monumentale de Djègbadji face à l&apos;océan Atlantique.
-  Optimisé Tailwind v4 - Thème Nuit Éternelle
+  Allégorie : La Porte du Non-Retour (Ouidah) sous la lumière du soleil.
+  Design : Lumineux / Heure Dorée / Architecture Ocre et Terre (100% CSS)
 */
 ---
 
 <div
-  class="w-full h-80 bg-gradient-to-b from-[#2a2025] to-dark-bg flex justify-center items-end relative overflow-hidden mb-12 rounded-2xl shadow-[0_15px_40px_rgba(0,0,0,0.6)] border border-white/5 opacity-0 animate-fade-up"
+  class="relative w-full max-w-4xl mx-auto my-12 h-[28rem] md:h-[34rem] bg-[#fef3c7] rounded-3xl overflow-hidden border border-amber-200 shadow-[0_20px_50px_rgba(180,83,9,0.15)] flex flex-col items-center justify-end opacity-0 animate-fade-up select-none group"
 >
-  {/* L'Océan Atlantique en arrière-plan */}
+  {/* 1. LE CIEL LUMINEUX ET LE SOLEIL (Heure Dorée) */}
   <div
-    class="absolute bottom-0 w-full h-[140px] bg-[#0f3c5b] z-0 overflow-hidden"
+    class="absolute inset-0 bg-gradient-to-b from-orange-300 via-amber-100 to-yellow-50 z-0"
   >
+  </div>
+
+  {/* Le Soleil Majestueux */}
+  <div
+    class="absolute top-[30%] left-1/2 -translate-x-1/2 w-48 h-48 bg-white rounded-full blur-[4px] shadow-[0_0_80px_#fde047,0_0_120px_#f59e0b] animate-sun-pulse z-0"
+  >
+  </div>
+
+  {/* Rayons de lumière (God Rays) */}
+  <div
+    class="absolute top-[20%] left-1/2 -translate-x-1/2 w-[200%] h-[200%] bg-[conic-gradient(from_0deg,transparent_0deg,rgba(255,255,255,0.4)_15deg,transparent_30deg,rgba(255,255,255,0.4)_45deg,transparent_60deg)] animate-spin-slow mix-blend-overlay z-0 opacity-50"
+  >
+  </div>
+
+  {/* 2. L'OCÉAN ATLANTIQUE (Bleu/Teal vibrant) */}
+  <div
+    class="absolute bottom-[20%] w-full h-[40%] bg-gradient-to-b from-[#0369a1] to-[#082f49] z-0 overflow-hidden border-t border-sky-300/50"
+  >
+    {/* Reflets du soleil sur l'eau */}
     <div
-      class="absolute top-[20px] -left-1/2 w-[200%] h-full bg-[#216a99]/40 rounded-[50%] animate-wave-roll [animation-duration:12s]"
+      class="absolute top-0 left-1/2 -translate-x-1/2 w-[40%] h-full bg-gradient-to-b from-yellow-200/60 via-amber-400/30 to-transparent blur-[8px]"
+    >
+    </div>
+    {/* Vagues subtiles (Lignes horizontales) */}
+    <div
+      class="absolute top-4 left-0 w-[200%] h-1 bg-sky-200/30 blur-[1px] animate-wave-slide"
     >
     </div>
     <div
-      class="absolute top-[40px] -left-[30%] w-[200%] h-full bg-[#216a99]/20 rounded-[50%] animate-wave-roll-reverse [animation-duration:8s]"
-    >
-    </div>
-    <div
-      class="absolute top-[60px] -left-[70%] w-[200%] h-full bg-[#0f3c5b]/80 rounded-[50%] animate-wave-roll [animation-duration:15s]"
+      class="absolute top-12 left-0 w-[200%] h-1.5 bg-sky-100/20 blur-[2px] animate-wave-slide-reverse"
     >
     </div>
   </div>
 
-  <div class="relative w-[300px] h-[250px] flex justify-center items-end z-10">
-    {/* La plage / La terre de Ouidah */}
+  {/* 3. LA PLAGE / TERRE DE OUIDAH (Sable chaud z-10) */}
+  <div
+    class="absolute bottom-0 w-full h-[25%] bg-gradient-to-b from-[#e3a971] via-[#c2844d] to-[#9c612e] z-10 shadow-[inset_0_10px_20px_rgba(0,0,0,0.1)]"
+  >
+  </div>
+  {/* Courbe du rivage */}
+  <div
+    class="absolute bottom-[20%] w-[120%] h-[50px] bg-[#e3a971] rounded-[50%] blur-[2px] z-10"
+  >
+  </div>
+
+  {/* 4. TYPOGRAPHIE MÉMORIELLE (Dans le ciel - z-15) */}
+  <div
+    class="absolute top-[10%] inset-x-0 text-center pointer-events-none z-15 transition-transform duration-1000 group-hover:scale-105"
+  >
+  </div>
+
+  {/* 5. LE MONUMENT MONOLITHIQUE (Teintes Ocre, Brique et Bronze - z-30) */}
+  <div
+    class="relative z-30 w-[240px] md:w-[320px] h-[280px] md:h-[350px] flex flex-col items-center justify-end mb-4 md:mb-8"
+  >
+    {/* Base / Marches du monument */}
     <div
-      class="absolute -bottom-[20px] w-[400px] h-[60px] bg-[#dcb383]/80 rounded-[50%] shadow-[inset_0_10px_20px_rgba(0,0,0,0.4)] z-10"
+      class="w-[110%] h-[15px] bg-gradient-to-r from-[#8a4224] via-[#a65633] to-[#8a4224] rounded-sm shadow-[0_5px_10px_rgba(0,0,0,0.3)] z-40 border-b border-[#5c2813]"
     >
     </div>
 
-    {/* L'Arche de la Porte du Non-Retour */}
-    <div
-      class="relative w-[180px] h-[160px] z-20 flex justify-between items-end"
-    >
-      {/* Fronton (Linteau) */}
+    {/* LA PORTE (Structure Architecturale) */}
+    <div class="relative w-full h-full flex flex-col items-center">
+      {/* Fronton Supérieur (L'Arc de triomphe) */}
       <div
-        class="absolute top-0 -left-[10px] w-[200px] h-[40px] bg-gradient-to-b from-[#d4af37] to-[#8a3a19] rounded-[4px] shadow-[0_10px_15px_rgba(0,0,0,0.6)] flex justify-center items-center z-30"
+        class="absolute top-0 w-[105%] h-[70px] md:h-[90px] bg-gradient-to-b from-[#b85a30] via-[#9e4620] to-[#783010] shadow-[0_15px_20px_rgba(0,0,0,0.4),inset_0_2px_5px_rgba(255,255,255,0.2)] border-b-4 border-[#5c2109] z-40 flex flex-col items-center justify-center p-2"
       >
-        {/* Décors en bas-relief (Frise) */}
+        {/* Bas-relief central (Représentation stylisée des fresques) */}
         <div
-          class="w-[160px] h-[15px] bg-[repeating-linear-gradient(90deg,rgba(0,0,0,0.3)_0px,rgba(0,0,0,0.3)_5px,transparent_5px,transparent_10px)]"
+          class="w-[90%] h-[40%] border-2 border-amber-900/40 flex items-center justify-around px-2 bg-[#8c3e1b]"
         >
+          <div class="w-4 h-full bg-amber-900/30"></div>
+          <div class="w-4 h-full bg-amber-900/30"></div>
+          <div class="w-4 h-full bg-amber-900/30"></div>
+          <div class="w-4 h-full bg-amber-900/30"></div>
+          <div class="w-4 h-full bg-amber-900/30"></div>
         </div>
       </div>
 
-      {/* Pilier Gauche */}
+      {/* Les Deux Piliers Colossaux */}
       <div
-        class="w-[30px] h-[140px] bg-gradient-to-r from-[#8a3a19] to-[#b75d32] rounded-[2px_2px_0_0] shadow-[5px_0_15px_rgba(0,0,0,0.5)] flex flex-col justify-evenly items-center pt-[20px]"
+        class="absolute top-[70px] md:top-[90px] w-[95%] h-[calc(100%-70px)] md:h-[calc(100%-90px)] flex justify-between px-2 md:px-4 z-30"
       >
+        {/* Pilier Gauche */}
         <div
-          class="w-[20px] h-[20px] bg-black/20 rounded-[2px] shadow-[inset_1px_1px_3px_rgba(0,0,0,0.5),1px_1px_1px_rgba(255,255,255,0.1)]"
+          class="w-[60px] md:w-[80px] h-full bg-gradient-to-r from-[#7a3215] via-[#a34a26] to-[#63250d] shadow-[10px_0_15px_rgba(0,0,0,0.3),inset_-2px_0_0_rgba(255,255,255,0.1)] flex flex-col items-center py-6 gap-6 md:gap-10"
         >
+          {/* Gravures / Statues de bronze encastrées */}
+          <div
+            class="w-8 md:w-10 h-16 md:h-20 bg-gradient-to-b from-[#5c3e1e] to-[#2e1d0c] rounded-t-full shadow-[inset_0_4px_8px_rgba(0,0,0,0.7)] border border-amber-800/50"
+          >
+          </div>
+          <div
+            class="w-8 md:w-10 h-16 md:h-20 bg-gradient-to-b from-[#5c3e1e] to-[#2e1d0c] rounded-t-full shadow-[inset_0_4px_8px_rgba(0,0,0,0.7)] border border-amber-800/50"
+          >
+          </div>
         </div>
+
+        {/* Pilier Droit */}
         <div
-          class="w-[20px] h-[20px] bg-black/20 rounded-[2px] shadow-[inset_1px_1px_3px_rgba(0,0,0,0.5),1px_1px_1px_rgba(255,255,255,0.1)]"
+          class="w-[60px] md:w-[80px] h-full bg-gradient-to-l from-[#7a3215] via-[#a34a26] to-[#63250d] shadow-[-10px_0_15px_rgba(0,0,0,0.3),inset_2px_0_0_rgba(255,255,255,0.1)] flex flex-col items-center py-6 gap-6 md:gap-10"
         >
-        </div>
-        <div
-          class="w-[20px] h-[20px] bg-black/20 rounded-[2px] shadow-[inset_1px_1px_3px_rgba(0,0,0,0.5),1px_1px_1px_rgba(255,255,255,0.1)]"
-        >
+          {/* Gravures / Statues de bronze encastrées */}
+          <div
+            class="w-8 md:w-10 h-16 md:h-20 bg-gradient-to-b from-[#5c3e1e] to-[#2e1d0c] rounded-t-full shadow-[inset_0_4px_8px_rgba(0,0,0,0.7)] border border-amber-800/50"
+          >
+          </div>
+          <div
+            class="w-8 md:w-10 h-16 md:h-20 bg-gradient-to-b from-[#5c3e1e] to-[#2e1d0c] rounded-t-full shadow-[inset_0_4px_8px_rgba(0,0,0,0.7)] border border-amber-800/50"
+          >
+          </div>
         </div>
       </div>
 
-      {/* Pilier Droit */}
+      {/* Le Vide Central (L'Arche ouverte sur le soleil et l'océan) */}
       <div
-        class="w-[30px] h-[140px] bg-gradient-to-r from-[#8a3a19] to-[#b75d32] rounded-[2px_2px_0_0] shadow-[5px_0_15px_rgba(0,0,0,0.5)] flex flex-col justify-evenly items-center pt-[20px]"
+        class="absolute top-[70px] md:top-[90px] w-[110px] md:w-[140px] h-full z-10 flex justify-center overflow-hidden"
       >
+        {/* Ombres portées intérieures pour marquer l'épaisseur de l'arche */}
         <div
-          class="w-[20px] h-[20px] bg-black/20 rounded-[2px] shadow-[inset_1px_1px_3px_rgba(0,0,0,0.5),1px_1px_1px_rgba(255,255,255,0.1)]"
+          class="absolute top-0 left-0 w-6 h-full bg-gradient-to-r from-black/50 to-transparent"
         >
         </div>
         <div
-          class="w-[20px] h-[20px] bg-black/20 rounded-[2px] shadow-[inset_1px_1px_3px_rgba(0,0,0,0.5),1px_1px_1px_rgba(255,255,255,0.1)]"
+          class="absolute top-0 right-0 w-6 h-full bg-gradient-to-l from-black/50 to-transparent"
         >
         </div>
         <div
-          class="w-[20px] h-[20px] bg-black/20 rounded-[2px] shadow-[inset_1px_1px_3px_rgba(0,0,0,0.5),1px_1px_1px_rgba(255,255,255,0.1)]"
+          class="absolute top-0 w-full h-8 bg-gradient-to-b from-black/60 to-transparent"
         >
         </div>
       </div>
     </div>
+  </div>
 
-    {/* Esprits des Ancêtres (Égoungoun / Présence spirituelle) */}
+  {
+    /* 6. PARTICULES DE LUMIÈRE (Poussière dorée au lieu d'âmes sombres - z-40) */
+  }
+  <div
+    class="absolute inset-0 z-40 pointer-events-none overflow-hidden mix-blend-screen"
+  >
     <div
-      class="absolute bottom-[20px] left-[20px] w-[15px] h-[40px] bg-white/10 rounded-[50%_50%_10px_10px] shadow-[0_0_10px_rgba(255,255,255,0.2)] z-30 animate-spirit-hover [animation-delay:0s]"
+      class="absolute bottom-[10%] left-[45%] w-2 h-2 bg-yellow-200 blur-[1px] rounded-full animate-dust-float [animation-delay:0s]"
     >
     </div>
     <div
-      class="absolute bottom-[20px] right-[20px] w-[15px] h-[40px] bg-white/10 rounded-[50%_50%_10px_10px] shadow-[0_0_10px_rgba(255,255,255,0.2)] z-30 animate-spirit-hover [animation-delay:2s]"
+      class="absolute bottom-[20%] left-[52%] w-1.5 h-1.5 bg-white blur-[1px] rounded-full animate-dust-float [animation-delay:1.5s]"
+    >
+    </div>
+    <div
+      class="absolute bottom-[15%] right-[45%] w-2 h-2 bg-amber-200 blur-[2px] rounded-full animate-dust-float [animation-delay:3s]"
     >
     </div>
   </div>
 </div>
 
 <style>
-  /* --- ANIMATIONS COMPLEXES --- */
-  @keyframes wave-roll {
-    100% {
-      transform: rotate(360deg);
-    }
-  }
-  @keyframes wave-roll-reverse {
-    100% {
-      transform: rotate(-360deg);
-    }
-  }
-  .animate-wave-roll {
-    animation: wave-roll 10s infinite linear;
-  }
-  .animate-wave-roll-reverse {
-    animation: wave-roll-reverse 10s infinite linear;
-  }
-
-  @keyframes spirit-hover {
-    0% {
-      transform: translateY(0);
-      opacity: 0.5;
-    }
-    100% {
-      transform: translateY(-10px);
-      opacity: 0.8;
-    }
-  }
-  .animate-spirit-hover {
-    animation: spirit-hover 4s ease-in-out infinite alternate;
-  }
-
+  /* --- Apparition Générale --- */
   @keyframes fadeUp {
     from {
       opacity: 0;
@@ -142,6 +182,83 @@
     }
   }
   .animate-fade-up {
-    animation: fadeUp 1.2s ease forwards;
+    animation: fadeUp 1s cubic-bezier(0.16, 1, 0.3, 1) forwards;
+  }
+
+  /* --- Pulsation du Soleil --- */
+  @keyframes sunPulse {
+    0%,
+    100% {
+      transform: translateX(-50%) scale(1);
+      opacity: 0.9;
+    }
+    50% {
+      transform: translateX(-50%) scale(1.05);
+      opacity: 1;
+      filter: brightness(1.1);
+    }
+  }
+  .animate-sun-pulse {
+    animation: sunPulse 4s infinite alternate ease-in-out;
+  }
+
+  /* --- Rotation des Rayons (God Rays) --- */
+  @keyframes spinSlow {
+    from {
+      transform: translateX(-50%) rotate(0deg);
+    }
+    to {
+      transform: translateX(-50%) rotate(360deg);
+    }
+  }
+  .animate-spin-slow {
+    animation: spinSlow 60s linear infinite;
+    transform-origin: center;
+  }
+
+  /* --- Mouvement des Vagues --- */
+  @keyframes waveSlide {
+    0% {
+      transform: translateX(0);
+    }
+    100% {
+      transform: translateX(-50%);
+    }
+  }
+  .animate-wave-slide {
+    animation: waveSlide 15s linear infinite;
+  }
+
+  @keyframes waveSlideReverse {
+    0% {
+      transform: translateX(-50%);
+    }
+    100% {
+      transform: translateX(0);
+    }
+  }
+  .animate-wave-slide-reverse {
+    animation: waveSlideReverse 20s linear infinite;
+  }
+
+  /* --- Particules de lumière (Poussière flottante) --- */
+  @keyframes dustFloat {
+    0% {
+      transform: translate(0, 0) scale(1);
+      opacity: 0;
+    }
+    20% {
+      opacity: 0.8;
+    }
+    80% {
+      opacity: 0.5;
+    }
+    100% {
+      transform: translate(-20px, -150px) scale(1.5);
+      opacity: 0;
+    }
+  }
+  .animate-dust-float {
+    animation: dustFloat 8s infinite ease-out;
   }
 </style>

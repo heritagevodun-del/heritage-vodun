@@ -1,97 +1,228 @@
 ---
-// ZangbetoArt.astro
-// Animation CSS Art représentant la transe et le mystère du vide
+/*
+  ZangbetoArt.astro - CSS Art
+  Allégorie du Zangbeto : Le Gardien de la Nuit.
+  Design : Tech-Sombre / Nuit Nuancée / Rotation Frénétique (100% CSS)
+*/
 ---
 
 <div
-  class="relative w-full h-96 md:h-[30rem] bg-gray-950 rounded-2xl overflow-hidden flex items-center justify-center border border-white/10 shadow-2xl mb-12 group cursor-crosshair"
+  class="relative w-full max-w-4xl mx-auto my-12 h-[28rem] md:h-[34rem] bg-[#0a0502] rounded-3xl overflow-hidden border border-amber-950/40 shadow-[0_30px_60px_rgba(0,0,0,0.8)] flex items-center justify-center opacity-0 animate-fade-up select-none group"
 >
-  {/* Décor nocturne et brume */}
+  {/* 1. L'OBSCURITÉ NUANCÉE (Nuit terrestre et atmosphère) */}
+  {/* Dégradé de fond : De l'acajou très sombre au sol crépusculaire */}
   <div
-    class="absolute inset-0 bg-[radial-gradient(ellipse_at_top,_var(--tw-gradient-stops))] from-gray-900 via-gray-950 to-black z-0"
-  >
-  </div>
-  <div
-    class="absolute bottom-0 w-full h-1/3 bg-gradient-to-t from-black to-transparent z-10"
+    class="absolute inset-0 bg-gradient-to-b from-[#1c0f0a] via-[#0d0704] to-[#050201] z-0"
   >
   </div>
 
-  {/* Halo magique au sol (Le mystère) */}
+  {/* Backlight atmosphérique très subtil pour détacher la silhouette */}
   <div
-    class="absolute bottom-12 w-64 md:w-96 h-12 bg-gold/20 blur-2xl rounded-[100%] animate-pulse z-10"
+    class="absolute inset-0 bg-[radial-gradient(ellipse_at_center,rgba(180,83,9,0.15)_0%,transparent_70%)] z-0 mix-blend-screen"
   >
   </div>
 
-  {/* Le Zangbéto (Structure en lévitation) */}
+  {/* Texture / Bruit de la nuit */}
   <div
-    class="relative z-20 flex flex-col items-center animate-[bounce_3s_ease-in-out_infinite]"
+    class="absolute inset-0 bg-[url('data:image/svg+xml,%3Csvg viewBox=%220 0 200 200%22 xmlns=%22http://www.w3.org/2000/svg%22%3E%3Cfilter id=%22n%22%3E%3CfeTurbulence type=%22fractalNoise%22 baseFrequency=%220.85%22 numOctaves=%223%22 stitchTiles=%22stitch%22/%3E%3C/filter%3E%3Crect width=%22100%25%22 height=%22100%25%22 filter=%22url(%23n)%22 opacity=%220.08%22/%3E%3C/svg%3E')] mix-blend-overlay pointer-events-none z-0"
   >
-    {/* Sommet / Corne */}
+  </div>
+
+  {/* 2. TYPOGRAPHIE MONUMENTALE (En arrière-plan - z-10) */}
+  <div
+    class="absolute inset-0 flex items-center justify-center z-10 pointer-events-none px-4"
+  >
+    <h1
+      class="font-serif text-4xl sm:text-5xl md:text-6xl lg:text-7xl font-black text-transparent bg-clip-text bg-gradient-to-b from-[#fce79a]/20 via-[#d4af37]/10 to-transparent uppercase tracking-[0.25em] drop-shadow-[0_2px_10px_rgba(0,0,0,0.9)] w-full text-center transition-transform duration-1000 group-hover:scale-105"
+    >
+      ZANGBETO
+    </h1>
+  </div>
+
+  {/* 3. LE VORTEX SOMBRE (La transe au sol) */}
+  <div
+    class="absolute bottom-8 md:bottom-12 flex items-center justify-center z-15 pointer-events-none"
+  >
+    {/* Ombre d'ancrage au sol (plus douce) */}
     <div
-      class="w-4 h-16 bg-gradient-to-b from-amber-900 to-black rounded-t-full mb-[-10px] z-40 border border-black/50"
+      class="absolute w-48 md:w-72 h-10 bg-[#020101]/80 blur-[8px] rounded-[100%]"
     >
     </div>
 
-    {/* Étages de Raphia (Superpositions de CSS) */}
+    {/* Anneaux de vent/poussière (Force centrifuge) */}
     <div
-      class="relative w-32 h-20 bg-gradient-to-b from-amber-800 to-amber-950 rounded-t-[40%] z-30 border-b-8 border-black shadow-inner"
+      class="absolute w-48 md:w-72 h-16 border border-[#5c3a21]/30 rounded-[100%] animate-spin-vortex"
+      style="border-style: dashed;"
     >
+    </div>
+  </div>
+
+  {/* 4. LA STRUCTURE ZANGBETO (z-20) */}
+  <div
+    class="relative z-20 flex flex-col items-center justify-end h-[70%] animate-levitate pb-4 mt-8"
+  >
+    {/* Le grand conteneur qui gère la rotation frénétique */}
+    <div
+      class="relative flex flex-col items-center animate-zangbeto-spin origin-bottom"
+    >
+      {/* Sommet (La corne / L'antenne mystique) */}
       <div
-        class="absolute inset-0 opacity-20 bg-[repeating-linear-gradient(90deg,transparent,transparent_2px,#000_2px,#000_4px)]"
+        class="w-2 md:w-3 h-12 md:h-16 bg-gradient-to-b from-[#78350f] to-[#2a170b] rounded-t-full -mb-2 z-40 border border-[#451a03] shadow-[0_0_15px_rgba(0,0,0,0.8)]"
       >
       </div>
-    </div>
 
-    <div
-      class="relative w-48 h-24 bg-gradient-to-b from-amber-700 to-amber-900 rounded-t-[40%] mt-[-20px] z-20 border-b-8 border-black shadow-[0_10px_20px_rgba(0,0,0,0.8)]"
-    >
+      {/* Strate 1 (Haut) - Raphia texturé */}
       <div
-        class="absolute inset-0 opacity-20 bg-[repeating-linear-gradient(90deg,transparent,transparent_2px,#000_2px,#000_4px)]"
+        class="w-24 h-20 md:w-32 md:h-24 bg-gradient-to-b from-amber-600 via-amber-800 to-[#451a03] -mb-6 z-30 shadow-[inset_0_-10px_20px_rgba(0,0,0,0.8),0_10px_15px_rgba(0,0,0,0.9)] relative overflow-hidden"
+        style="clip-path: polygon(40% 0%, 60% 0%, 100% 100%, 0% 100%);"
       >
-      </div>
-    </div>
-
-    <div
-      class="relative w-64 h-32 bg-gradient-to-b from-amber-600 to-amber-800 rounded-t-[30%] mt-[-30px] z-10 border-b-8 border-black shadow-[0_20px_40px_rgba(0,0,0,0.9)] transform group-hover:rotate-3 transition-transform duration-500"
-    >
-      <div
-        class="absolute inset-0 opacity-30 bg-[repeating-linear-gradient(90deg,transparent,transparent_2px,#000_2px,#000_4px)]"
-      >
+        <div
+          class="absolute inset-0 bg-[repeating-linear-gradient(85deg,rgba(253,230,138,0.15),rgba(253,230,138,0.15)_2px,rgba(20,10,5,0.8)_3px,rgba(20,10,5,0.8)_5px)]"
+        >
+        </div>
+        <div
+          class="absolute inset-0 bg-gradient-to-r from-black/70 via-transparent to-black/70"
+        >
+        </div>
       </div>
 
-      {/* Lueur interne (le vide habité) */}
+      {/* Strate 2 (Milieu) */}
       <div
-        class="absolute bottom-0 left-1/2 -translate-x-1/2 w-48 h-10 bg-gold/40 blur-xl rounded-full animate-pulse"
+        class="w-40 h-28 md:w-56 md:h-32 bg-gradient-to-b from-amber-700 via-[#78350f] to-[#2a170b] -mb-8 z-20 shadow-[inset_0_-15px_30px_rgba(0,0,0,0.9),0_15px_20px_rgba(0,0,0,0.95)] relative overflow-hidden"
+        style="clip-path: polygon(25% 0%, 75% 0%, 100% 100%, 0% 100%);"
       >
+        <div
+          class="absolute inset-0 bg-[repeating-linear-gradient(95deg,rgba(253,230,138,0.1),rgba(253,230,138,0.1)_3px,rgba(20,10,5,0.9)_4px,rgba(20,10,5,0.9)_7px)]"
+        >
+        </div>
+        <div
+          class="absolute inset-0 bg-gradient-to-r from-black/80 via-transparent to-black/80"
+        >
+        </div>
+      </div>
+
+      {/* Strate 3 (Base large) */}
+      <div
+        class="w-56 h-36 md:w-80 md:h-44 bg-gradient-to-b from-[#78350f] via-[#451a03] to-[#1a0d05] z-10 shadow-[inset_0_-20px_40px_rgba(0,0,0,1),0_20px_40px_rgba(0,0,0,0.7)] relative overflow-hidden border-b-4 border-amber-900/60"
+        style="clip-path: polygon(15% 0%, 85% 0%, 100% 100%, 0% 100%);"
+      >
+        <div
+          class="absolute inset-0 bg-[repeating-linear-gradient(88deg,rgba(252,211,77,0.05),rgba(252,211,77,0.05)_4px,rgba(10,5,0,0.95)_5px,rgba(10,5,0,0.95)_9px)]"
+        >
+        </div>
+        <div
+          class="absolute inset-0 bg-gradient-to-r from-black/90 via-transparent to-black/90"
+        >
+        </div>
       </div>
     </div>
   </div>
 
-  {/* Particules magiques flottantes */}
-  <div
-    class="absolute inset-0 z-30 pointer-events-none mix-blend-screen opacity-30"
-  >
+  {/* 5. PARTICULES MAGIQUES (Émanant du vide - z-30) */}
+  <div class="absolute inset-0 z-30 pointer-events-none overflow-hidden">
     <div
-      class="absolute top-1/4 left-1/4 w-2 h-2 bg-gold rounded-full animate-[ping_4s_infinite]"
+      class="absolute bottom-[15%] left-[30%] w-1.5 h-1.5 bg-[#fce79a]/60 rounded-full blur-[1px] animate-spark-rise [animation-delay:0s]"
     >
     </div>
     <div
-      class="absolute top-1/2 right-1/3 w-1.5 h-1.5 bg-white rounded-full animate-[ping_3s_infinite_1s]"
+      class="absolute bottom-[20%] right-[35%] w-1 h-1 bg-[#d4af37]/80 rounded-full animate-spark-rise [animation-delay:0.5s]"
     >
     </div>
     <div
-      class="absolute bottom-1/3 left-1/3 w-2 h-2 bg-gold rounded-full animate-[ping_5s_infinite_2s]"
+      class="absolute bottom-[10%] left-[45%] w-1 h-1 bg-white/40 rounded-full animate-spark-rise [animation-delay:1.2s]"
     >
     </div>
-  </div>
-
-  {/* Étiquette d'interface */}
-  <div
-    class="absolute top-4 right-4 z-40 bg-black/50 backdrop-blur-md border border-white/10 px-3 py-1 rounded-full flex items-center space-x-2"
-  >
-    <div class="w-2 h-2 rounded-full bg-gold animate-pulse"></div>
-    <span class="text-xs font-mono text-gray-300 uppercase tracking-widest"
-      >Transe Active</span
+    <div
+      class="absolute bottom-[12%] right-[40%] w-2 h-2 bg-amber-600/50 rounded-full blur-[2px] animate-spark-rise [animation-delay:1.8s]"
     >
+    </div>
   </div>
 </div>
+
+<style>
+  /* --- Apparition Générale --- */
+  @keyframes fadeUp {
+    from {
+      opacity: 0;
+      transform: translateY(30px);
+    }
+    to {
+      opacity: 1;
+      transform: translateY(0);
+    }
+  }
+  .animate-fade-up {
+    animation: fadeUp 1s cubic-bezier(0.16, 1, 0.3, 1) forwards;
+  }
+
+  /* --- Lévitation du Zangbeto --- */
+  @keyframes levitate {
+    0%,
+    100% {
+      transform: translateY(0);
+    }
+    50% {
+      transform: translateY(-12px);
+    }
+  }
+  .animate-levitate {
+    animation: levitate 3s infinite ease-in-out;
+  }
+
+  /* --- Rotation Frénétique (Illusion CSS 3D) --- */
+  @keyframes zangbetoSpin {
+    0% {
+      transform: scaleX(1) skewX(0deg);
+    }
+    25% {
+      transform: scaleX(0.85) skewX(-2deg);
+    }
+    50% {
+      transform: scaleX(1) skewX(0deg);
+      filter: brightness(1.1);
+    }
+    75% {
+      transform: scaleX(0.85) skewX(2deg);
+    }
+    100% {
+      transform: scaleX(1) skewX(0deg);
+    }
+  }
+  .animate-zangbeto-spin {
+    animation: zangbetoSpin 0.35s infinite linear;
+  }
+
+  /* --- Vortex au vent --- */
+  @keyframes spinVortex {
+    from {
+      transform: rotate(0deg) scale(1);
+    }
+    50% {
+      transform: rotate(180deg) scale(1.02);
+    }
+    to {
+      transform: rotate(360deg) scale(1);
+    }
+  }
+  .animate-spin-vortex {
+    animation: spinVortex 2s infinite linear;
+  }
+
+  /* --- Étincelles du vide --- */
+  @keyframes sparkRise {
+    0% {
+      transform: translateY(0) rotate(0deg);
+      opacity: 0;
+    }
+    20% {
+      opacity: 1;
+    }
+    100% {
+      transform: translateY(-250px) rotate(360deg);
+      opacity: 0;
+    }
+  }
+  .animate-spark-rise {
+    animation: sparkRise 3s infinite ease-out;
+  }
+</style>
