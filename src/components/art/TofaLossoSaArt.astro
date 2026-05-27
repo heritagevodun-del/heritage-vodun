@@ -1,132 +1,154 @@
 ---
-/*
-  TofaLossoSaArt.astro - CSS Art
-  Représente le plateau du Fâ, le signe Losso Sa, les noix de palme et le bec en métal.
-  Optimisé Tailwind v4 - Thème Sombre & Or
-*/
+layout: false;
 ---
 
 <div
-  class="w-full h-80 bg-[radial-gradient(circle_at_center,#2d241e_0%,#050505_100%)] flex justify-center items-center relative overflow-hidden mb-12 rounded-2xl shadow-[0_15px_40px_rgba(0,0,0,0.6)] border border-[#d4af37]/5 opacity-0 animate-fade-up"
+  class="relative w-full max-w-4xl mx-auto my-12 h-[28rem] md:h-[34rem] bg-[#fcf9f2] rounded-3xl overflow-hidden border border-amber-100 shadow-[0_20px_50px_rgba(217,119,6,0.08)] flex items-center justify-center opacity-0 animate-fade-up select-none group"
 >
-  <div class="relative w-[250px] h-[250px] flex justify-center items-center">
-    {/* Le Plateau de Divination (Opon Ifa) */}
+  <div
+    class="absolute inset-0 bg-gradient-to-br from-[#ffffff] via-[#fcf9f2] to-[#f5ead5] z-0"
+  >
+  </div>
+
+  <div
+    class="absolute inset-0 bg-[linear-gradient(rgba(217,119,6,0.03)_1px,transparent_1px),linear-gradient(90deg,rgba(217,119,6,0.03)_1px,transparent_1px)] bg-[size:40px_40px] z-0 pointer-events-none"
+  >
+  </div>
+
+  <div
+    class="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-80 md:w-[32rem] h-80 md:h-[32rem] bg-white rounded-full blur-[50px] z-0 animate-pulse-light"
+  >
+  </div>
+
+  <div
+    class="absolute top-[10%] inset-x-0 flex items-center justify-center z-10 pointer-events-none px-4"
+  >
+  </div>
+
+  <div
+    class="relative z-20 flex items-center justify-center w-72 h-72 md:w-[26rem] md:h-[26rem] rounded-full bg-gradient-to-br from-[#8a4224] via-[#5c2813] to-[#3a1005] shadow-[0_25px_50px_rgba(69,26,3,0.3)] border-8 border-[#3a1005] transition-transform duration-1000 hover:-translate-y-2 animate-float"
+  >
     <div
-      class="absolute w-[180px] h-[180px] bg-gradient-to-br from-[#5d4037] to-[#3e2723] rounded-full border-[8px] border-[#2a1a14] shadow-[inset_0_0_20px_rgba(0,0,0,0.8),0_10px_20px_rgba(0,0,0,0.5)] flex justify-center items-center animate-mystic-spin z-10"
+      class="absolute inset-0 rounded-full bg-[repeating-linear-gradient(45deg,transparent,transparent_4px,rgba(0,0,0,0.1)_5px,rgba(0,0,0,0.1)_8px)] opacity-50 mix-blend-multiply"
     >
-      {/* La poudre sacrée (Iyerosun) au centre */}
+    </div>
+    <div
+      class="absolute inset-0 rounded-full border border-[#b85a30] opacity-50"
+    >
+    </div>
+
+    <div
+      class="relative w-56 h-56 md:w-[21rem] md:h-[21rem] rounded-full bg-[#fdfbf7] shadow-[inset_0_8px_20px_rgba(0,0,0,0.15)] flex flex-col items-center justify-center overflow-hidden"
+    >
       <div
-        class="absolute w-[120px] h-[120px] bg-[#d7ccc8]/10 rounded-full blur-[5px]"
+        class="absolute inset-0 bg-[url('data:image/svg+xml,%3Csvg viewBox=%220 0 200 200%22 xmlns=%22http://www.w3.org/2000/svg%22%3E%3Cfilter id=%22n%22%3E%3CfeTurbulence type=%22fractalNoise%22 baseFrequency=%221.5%22 numOctaves=%222%22 stitchTiles=%22stitch%22/%3E%3C/filter%3E%3Crect width=%22100%25%22 height=%22100%25%22 filter=%22url(%23n)%22 opacity=%220.03%22/%3E%3C/svg%3E')] mix-blend-multiply pointer-events-none"
       >
       </div>
 
-      {/* Les traces du signe Losso Sa (Binaire) */}
-      <div class="flex flex-col gap-2 z-20">
-        <div class="flex justify-center gap-[15px]">
-          <span
-            class="w-[15px] h-[5px] bg-[#d7ccc8] rounded-[2px] shadow-[0_0_8px_rgba(215,204,200,0.6)] animate-glow-pulse"
-          ></span>
+      <div class="flex flex-col gap-5 md:gap-7 z-10 w-32 md:w-40 mt-4">
+        <div class="flex justify-between items-center w-full">
+          <div class="flex gap-2 md:gap-3">
+            <div
+              class="w-3 h-3 md:w-4 md:h-4 bg-[#3a1005] rounded-full shadow-[inset_1px_1px_2px_rgba(0,0,0,0.8),0_1px_1px_rgba(255,255,255,0.8)]"
+            >
+            </div>
+            <div
+              class="w-3 h-3 md:w-4 md:h-4 bg-[#3a1005] rounded-full shadow-[inset_1px_1px_2px_rgba(0,0,0,0.8),0_1px_1px_rgba(255,255,255,0.8)]"
+            >
+            </div>
+          </div>
+          <div class="flex gap-2 md:gap-3">
+            <div
+              class="w-3 h-3 md:w-4 md:h-4 bg-[#3a1005] rounded-full shadow-[inset_1px_1px_2px_rgba(0,0,0,0.8),0_1px_1px_rgba(255,255,255,0.8)]"
+            >
+            </div>
+            <div
+              class="w-3 h-3 md:w-4 md:h-4 bg-[#3a1005] rounded-full shadow-[inset_1px_1px_2px_rgba(0,0,0,0.8),0_1px_1px_rgba(255,255,255,0.8)]"
+            >
+            </div>
+          </div>
         </div>
-        <div class="flex justify-center gap-[15px]">
-          <span
-            class="w-[15px] h-[5px] bg-[#d7ccc8] rounded-[2px] shadow-[0_0_8px_rgba(215,204,200,0.6)] animate-glow-pulse"
-          ></span>
+
+        <div class="flex justify-between items-center w-full">
+          <div
+            class="w-3 h-3 md:w-4 md:h-4 bg-[#3a1005] rounded-full shadow-[inset_1px_1px_2px_rgba(0,0,0,0.8),0_1px_1px_rgba(255,255,255,0.8)] ml-[10px] md:ml-[14px]"
+          >
+          </div>
+          <div
+            class="w-3 h-3 md:w-4 md:h-4 bg-[#3a1005] rounded-full shadow-[inset_1px_1px_2px_rgba(0,0,0,0.8),0_1px_1px_rgba(255,255,255,0.8)] mr-[10px] md:mr-[14px]"
+          >
+          </div>
         </div>
-        <div class="flex justify-center gap-[15px]">
-          <span
-            class="w-[15px] h-[5px] bg-[#d7ccc8] rounded-[2px] shadow-[0_0_8px_rgba(215,204,200,0.6)] animate-glow-pulse"
-          ></span>
-          <span
-            class="w-[15px] h-[5px] bg-[#d7ccc8] rounded-[2px] shadow-[0_0_8px_rgba(215,204,200,0.6)] animate-glow-pulse"
-          ></span>
+
+        <div class="flex justify-between items-center w-full">
+          <div
+            class="w-3 h-3 md:w-4 md:h-4 bg-[#3a1005] rounded-full shadow-[inset_1px_1px_2px_rgba(0,0,0,0.8),0_1px_1px_rgba(255,255,255,0.8)] ml-[10px] md:ml-[14px]"
+          >
+          </div>
+          <div class="flex gap-2 md:gap-3">
+            <div
+              class="w-3 h-3 md:w-4 md:h-4 bg-[#3a1005] rounded-full shadow-[inset_1px_1px_2px_rgba(0,0,0,0.8),0_1px_1px_rgba(255,255,255,0.8)]"
+            >
+            </div>
+            <div
+              class="w-3 h-3 md:w-4 md:h-4 bg-[#3a1005] rounded-full shadow-[inset_1px_1px_2px_rgba(0,0,0,0.8),0_1px_1px_rgba(255,255,255,0.8)]"
+            >
+            </div>
+          </div>
         </div>
-        <div class="flex justify-center gap-[15px]">
-          <span
-            class="w-[15px] h-[5px] bg-[#d7ccc8] rounded-[2px] shadow-[0_0_8px_rgba(215,204,200,0.6)] animate-glow-pulse"
-          ></span>
-          <span
-            class="w-[15px] h-[5px] bg-[#d7ccc8] rounded-[2px] shadow-[0_0_8px_rgba(215,204,200,0.6)] animate-glow-pulse"
-          ></span>
+
+        <div class="flex justify-between items-center w-full">
+          <div
+            class="w-3 h-3 md:w-4 md:h-4 bg-[#3a1005] rounded-full shadow-[inset_1px_1px_2px_rgba(0,0,0,0.8),0_1px_1px_rgba(255,255,255,0.8)] ml-[10px] md:ml-[14px]"
+          >
+          </div>
+          <div class="flex gap-2 md:gap-3">
+            <div
+              class="w-3 h-3 md:w-4 md:h-4 bg-[#3a1005] rounded-full shadow-[inset_1px_1px_2px_rgba(0,0,0,0.8),0_1px_1px_rgba(255,255,255,0.8)]"
+            >
+            </div>
+            <div
+              class="w-3 h-3 md:w-4 md:h-4 bg-[#3a1005] rounded-full shadow-[inset_1px_1px_2px_rgba(0,0,0,0.8),0_1px_1px_rgba(255,255,255,0.8)]"
+            >
+            </div>
+          </div>
         </div>
       </div>
-    </div>
 
-    {/* Le "Bec en Métal" de la prophétie */}
-    <div
-      class="absolute -bottom-[10px] right-[20px] w-0 h-0 border-l-[30px] border-r-[20px] border-b-[90px] border-l-transparent border-r-transparent border-b-[#455a64] rotate-[35deg] drop-shadow-[-5px_5px_10px_rgba(0,0,0,0.7)] z-20 animate-strike"
-    >
-      {/* Brillance du métal */}
-      <div
-        class="absolute top-[10px] -left-[10px] w-[4px] h-[60px] bg-[#90a4ae] rotate-[5deg] opacity-80"
-      >
+      <div class="flex flex-col items-center mt-6 md:mt-8 z-10">
+        <span
+          class="font-serif text-xl md:text-2xl font-bold text-[#3a1005] uppercase tracking-[0.2em] drop-shadow-[0_1px_1px_rgba(255,255,255,0.8)]"
+        >
+          LOSSO SA
+        </span>
+        <span
+          class="font-sans text-xs md:text-sm font-semibold text-[#8a4224] uppercase tracking-[0.3em] mt-1 opacity-90"
+        >
+          TOFA 2026
+        </span>
       </div>
     </div>
+  </div>
 
-    {/* Les Noix de Palme sacrées (Ikin) */}
+  <div
+    class="absolute inset-0 z-30 pointer-events-none overflow-hidden mix-blend-overlay"
+  >
     <div
-      class="absolute w-[16px] h-[20px] bg-[#111] rounded-[40%_60%_50%_50%] shadow-[inset_-3px_-3px_5px_rgba(255,255,255,0.2),0_5px_10px_rgba(0,0,0,0.6)] z-30 top-[20px] left-[80px] rotate-[15deg]"
+      class="absolute bottom-[20%] left-[30%] w-2 h-2 bg-white blur-[1px] rounded-full animate-float-up [animation-delay:0s]"
     >
     </div>
     <div
-      class="absolute w-[16px] h-[20px] bg-[#111] rounded-[40%_60%_50%_50%] shadow-[inset_-3px_-3px_5px_rgba(255,255,255,0.2),0_5px_10px_rgba(0,0,0,0.6)] z-30 top-[60px] right-[10px] -rotate-[45deg]"
+      class="absolute top-[25%] right-[25%] w-3 h-3 bg-amber-100 blur-[2px] rounded-full animate-float-up [animation-delay:1.5s]"
     >
     </div>
     <div
-      class="absolute w-[16px] h-[20px] bg-[#111] rounded-[40%_60%_50%_50%] shadow-[inset_-3px_-3px_5px_rgba(255,255,255,0.2),0_5px_10px_rgba(0,0,0,0.6)] z-30 bottom-[40px] left-[15px] rotate-[70deg]"
-    >
-    </div>
-    <div
-      class="absolute w-[16px] h-[20px] bg-[#111] rounded-[40%_60%_50%_50%] shadow-[inset_-3px_-3px_5px_rgba(255,255,255,0.2),0_5px_10px_rgba(0,0,0,0.6)] z-30 bottom-[10px] right-[60px] -rotate-[20deg]"
-    >
-    </div>
-    <div
-      class="absolute w-[16px] h-[20px] bg-[#111] rounded-[40%_60%_50%_50%] shadow-[inset_-3px_-3px_5px_rgba(255,255,255,0.2),0_5px_10px_rgba(0,0,0,0.6)] z-30 top-[110px] -left-[10px] rotate-[85deg]"
+      class="absolute bottom-[40%] left-[20%] w-1.5 h-1.5 bg-white rounded-full animate-float-up [animation-delay:0.8s]"
     >
     </div>
   </div>
 </div>
 
 <style>
-  /* --- ANIMATIONS COMPLEXES --- */
-  @keyframes mystic-spin {
-    0% {
-      transform: rotate(0deg);
-    }
-    100% {
-      transform: rotate(360deg);
-    }
-  }
-  .animate-mystic-spin {
-    animation: mystic-spin 20s linear infinite;
-  }
-
-  @keyframes glow-pulse {
-    0% {
-      opacity: 0.6;
-      box-shadow: 0 0 5px rgba(215, 204, 200, 0.3);
-    }
-    100% {
-      opacity: 1;
-      box-shadow: 0 0 15px rgba(215, 204, 200, 0.8);
-    }
-  }
-  .animate-glow-pulse {
-    animation: glow-pulse 3s infinite alternate;
-  }
-
-  @keyframes strike {
-    0%,
-    100% {
-      transform: rotate(35deg) translate(0, 0);
-    }
-    50% {
-      transform: rotate(35deg) translate(-10px, -10px);
-    }
-  }
-  .animate-strike {
-    animation: strike 4s ease-in-out infinite;
-  }
-
   @keyframes fadeUp {
     from {
       opacity: 0;
@@ -138,6 +160,54 @@
     }
   }
   .animate-fade-up {
-    animation: fadeUp 1s ease forwards;
+    animation: fadeUp 1s cubic-bezier(0.16, 1, 0.3, 1) forwards;
+  }
+
+  @keyframes pulseLight {
+    0%,
+    100% {
+      opacity: 0.6;
+      transform: translate(-50%, -50%) scale(0.95);
+    }
+    50% {
+      opacity: 1;
+      transform: translate(-50%, -50%) scale(1.05);
+    }
+  }
+  .animate-pulse-light {
+    animation: pulseLight 6s infinite alternate ease-in-out;
+  }
+
+  @keyframes float {
+    0%,
+    100% {
+      transform: translateY(0) rotate(0deg);
+    }
+    50% {
+      transform: translateY(-8px) rotate(1deg);
+    }
+  }
+  .animate-float {
+    animation: float 8s ease-in-out infinite;
+  }
+
+  @keyframes floatUp {
+    0% {
+      transform: translateY(0) scale(0.8);
+      opacity: 0;
+    }
+    20% {
+      opacity: 0.8;
+    }
+    80% {
+      opacity: 0.4;
+    }
+    100% {
+      transform: translateY(-150px) scale(1.2);
+      opacity: 0;
+    }
+  }
+  .animate-float-up {
+    animation: floatUp 6s infinite ease-out;
   }
 </style>
