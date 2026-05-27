@@ -1,0 +1,135 @@
+---
+/* MindoguesitoArt.astro */
+---
+
+<div
+  class="relative w-full max-w-4xl mx-auto my-12 h-[28rem] md:h-[34rem] bg-[#f8f5e8] rounded-3xl overflow-hidden shadow-[0_20px_50px_rgba(62,39,35,0.15)] flex items-center justify-center opacity-0 animate-fade-up"
+>
+  <div
+    class="absolute inset-0 bg-[radial-gradient(circle_at_center,rgba(255,255,255,0.6)_0%,transparent_100%)] pointer-events-none"
+  >
+  </div>
+
+  <div
+    class="relative w-full max-w-[400px] aspect-square flex items-center justify-center transition-transform duration-1000 hover:scale-105 animate-float"
+  >
+    <svg
+      viewBox="0 0 320 320"
+      fill="none"
+      xmlns="http://www.w3.org/2000/svg"
+      class="w-full h-full drop-shadow-[0_15px_25px_rgba(62,39,35,0.25)]"
+    >
+      <defs>
+        <linearGradient
+          id="goldRoof"
+          x1="160"
+          y1="40"
+          x2="160"
+          y2="140"
+          gradientUnits="userSpaceOnUse"
+        >
+          <stop offset="0%" stop-color="#FFD700"></stop>
+          <stop offset="50%" stop-color="#DAA520"></stop>
+          <stop offset="100%" stop-color="#B8860B"></stop>
+        </linearGradient>
+
+        <linearGradient
+          id="goldBase"
+          x1="160"
+          y1="260"
+          x2="160"
+          y2="285"
+          gradientUnits="userSpaceOnUse"
+        >
+          <stop offset="0%" stop-color="#DAA520"></stop>
+          <stop offset="100%" stop-color="#8B4513"></stop>
+        </linearGradient>
+
+        <linearGradient id="woodPillar" x1="0" y1="0" x2="1" y2="0">
+          <stop offset="0%" stop-color="#4E342E"></stop>
+          <stop offset="40%" stop-color="#8D6E63"></stop>
+          <stop offset="60%" stop-color="#8D6E63"></stop>
+          <stop offset="100%" stop-color="#3E2723"></stop>
+        </linearGradient>
+      </defs>
+
+      <ellipse
+        cx="160"
+        cy="300"
+        rx="130"
+        ry="12"
+        fill="#5d4037"
+        opacity="0.3"
+        filter="blur(8px)"></ellipse>
+
+      <path
+        d="M90 140V260"
+        stroke="url(#woodPillar)"
+        stroke-width="36"
+        stroke-linecap="butt"></path>
+      <path
+        d="M90 140C100 160 80 180 90 200C100 220 80 240 90 260"
+        stroke="#3E2723"
+        stroke-width="4"
+        fill="none"
+        opacity="0.6"></path>
+
+      <path
+        d="M230 140V260"
+        stroke="url(#woodPillar)"
+        stroke-width="36"
+        stroke-linecap="butt"></path>
+      <path
+        d="M230 140C220 160 240 180 230 200C220 220 240 240 230 260"
+        stroke="#3E2723"
+        stroke-width="4"
+        fill="none"
+        opacity="0.6"></path>
+
+      <rect
+        x="60"
+        y="260"
+        width="200"
+        height="25"
+        rx="4"
+        fill="url(#goldBase)"
+        stroke="#8B4513"
+        stroke-width="2"></rect>
+
+      <path
+        d="M160 40L280 140H40L160 40Z"
+        fill="url(#goldRoof)"
+        stroke="#8B4513"
+        stroke-width="3"></path>
+    </svg>
+  </div>
+</div>
+
+<style>
+  @keyframes fadeUp {
+    from {
+      opacity: 0;
+      transform: translateY(30px);
+    }
+    to {
+      opacity: 1;
+      transform: translateY(0);
+    }
+  }
+  .animate-fade-up {
+    animation: fadeUp 1s cubic-bezier(0.16, 1, 0.3, 1) forwards;
+  }
+
+  @keyframes float {
+    0%,
+    100% {
+      transform: translateY(0);
+    }
+    50% {
+      transform: translateY(-12px);
+    }
+  }
+  .animate-float {
+    animation: float 6s ease-in-out infinite;
+  }
+</style>

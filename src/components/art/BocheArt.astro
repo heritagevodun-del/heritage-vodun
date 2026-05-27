@@ -1,179 +1,175 @@
 ---
 /*
-  BocheArt.astro - CSS Art
-  Allégorie du Bochio (Boche) : Le Gardien Protecteur et Guérisseur.
-  Détruit le mythe hollywoodien. Restaure l'ancrage, le bois sculpté et la charge sacrée.
-  Design : Tech-Sombre / Bois Brut / Émanation Dorée (100% CSS)
+  BocheArt.astro
 */
 ---
 
 <div
-  class="relative w-full max-w-4xl mx-auto my-12 h-[28rem] md:h-[34rem] bg-[#030101] rounded-3xl overflow-hidden border border-amber-950/30 shadow-[0_30px_60px_rgba(245,158,11,0.1)] flex items-center justify-center opacity-0 animate-fade-up select-none group"
+  class="relative w-full max-w-4xl mx-auto my-12 h-[28rem] md:h-[34rem] bg-[#fffbf0] rounded-3xl overflow-hidden border border-amber-200 shadow-[0_20px_50px_rgba(180,83,9,0.1)] flex items-center justify-center opacity-0 animate-fade-up select-none group"
 >
-  {/* 1. LE SANCTUAIRE (Ambiance Terre/Nuit) */}
   <div
-    class="absolute inset-0 bg-gradient-to-b from-[#1a0803] via-[#0a0301] to-[#030101] z-0"
+    class="absolute inset-0 bg-gradient-to-b from-[#fde68a] via-[#fef3c7] to-[#fffbf0] z-0"
+  >
+  </div>
+  <div
+    class="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-64 md:w-96 h-64 md:h-96 bg-white rounded-full blur-[60px] shadow-[0_0_80px_#fde047] z-0 animate-pulse-sun"
   >
   </div>
 
-  {/* Texture tellurique (Bois/Terre) */}
-  <div
-    class="absolute inset-0 bg-[url('data:image/svg+xml,%3Csvg viewBox=%220 0 200 200%22 xmlns=%22http://www.w3.org/2000/svg%22%3E%3Cfilter id=%22n%22%3E%3CfeTurbulence type=%22fractalNoise%22 baseFrequency=%220.85%22 numOctaves=%223%22 stitchTiles=%22stitch%22/%3E%3C/filter%3E%3Crect width=%22100%25%22 height=%22100%25%22 filter=%22url(%23n)%22 opacity=%220.08%22/%3E%3C/svg%3E')] mix-blend-overlay pointer-events-none z-0"
-  >
-  </div>
-
-  {/* 2. TYPOGRAPHIE MONUMENTALE (En arrière-plan - z-10) */}
   <div
     class="absolute inset-0 flex items-center justify-center z-10 pointer-events-none px-4"
   >
     <h1
-      class="font-serif text-5xl sm:text-7xl md:text-8xl lg:text-9xl font-black text-transparent bg-clip-text bg-gradient-to-b from-[#fce79a]/15 via-[#d4af37]/5 to-transparent uppercase tracking-[0.25em] drop-shadow-[0_2px_10px_rgba(0,0,0,0.9)] w-full text-center transition-transform duration-1000 group-hover:scale-105"
+      class="font-serif text-6xl md:text-8xl lg:text-9xl font-black text-amber-900/5 uppercase tracking-[0.2em] w-full text-center transition-transform duration-1000 group-hover:scale-105"
     >
       BOCHIO
     </h1>
   </div>
 
-  {/* 3. L'AUTEL TERRESTRE (Sol d'ancrage - z-15) */}
   <div
-    class="absolute bottom-10 md:bottom-16 flex flex-col items-center justify-center z-15 pointer-events-none"
+    class="absolute bottom-0 w-full h-[25%] bg-gradient-to-t from-[#d97706] to-transparent opacity-20 z-10"
   >
-    {/* Base mystique (Le socle d'énergie) */}
+  </div>
+  <div
+    class="absolute bottom-12 w-48 md:w-64 h-8 bg-amber-900/30 blur-[10px] rounded-[100%] z-15"
+  >
+  </div>
+
+  <div
+    class="relative z-20 flex flex-col items-center mt-4 transition-transform duration-700 hover:-translate-y-2"
+  >
     <div
-      class="w-48 md:w-64 h-12 bg-amber-700/20 blur-[25px] rounded-[100%] animate-pulse-slow"
+      class="relative w-16 h-20 md:w-20 md:h-24 bg-gradient-to-r from-[#78350f] via-[#5c2813] to-[#381406] shadow-[inset_-5px_0_15px_rgba(0,0,0,0.6),5px_5px_10px_rgba(0,0,0,0.2)] rounded-[40%_40%_45%_45%] z-30 flex flex-col items-center justify-center gap-1.5 md:gap-2 pt-2"
     >
+      <div
+        class="absolute inset-0 bg-[repeating-linear-gradient(85deg,transparent,transparent_2px,rgba(0,0,0,0.15)_3px,rgba(0,0,0,0.15)_5px)] rounded-[40%_40%_45%_45%] pointer-events-none"
+      >
+      </div>
+
+      <div
+        class="absolute top-[35%] w-10 md:w-12 h-4 bg-[#f8fafc] opacity-80 blur-[1px] rounded-full"
+      >
+      </div>
+
+      <div class="flex gap-3 md:gap-4 z-10">
+        <div
+          class="w-2.5 h-2.5 md:w-3 md:h-3 bg-[#1a0904] rounded-full shadow-[inset_0_2px_4px_rgba(0,0,0,0.9)]"
+        >
+        </div>
+        <div
+          class="w-2.5 h-2.5 md:w-3 md:h-3 bg-[#1a0904] rounded-full shadow-[inset_0_2px_4px_rgba(0,0,0,0.9)]"
+        >
+        </div>
+      </div>
+
+      <div
+        class="w-5 md:w-6 h-1 md:h-1.5 bg-[#1a0904] rounded-full shadow-[inset_0_1px_2px_rgba(0,0,0,0.9)] z-10 mt-1"
+      >
+      </div>
     </div>
+
     <div
-      class="absolute w-32 md:w-48 h-6 bg-[#d4af37]/40 blur-[15px] rounded-[100%] shadow-[0_0_30px_#f59e0b]"
+      class="relative w-8 md:w-10 h-6 bg-[#451a03] -mt-2 z-20 shadow-[inset_0_5px_10px_rgba(0,0,0,0.5)] flex flex-col justify-evenly overflow-hidden"
     >
+      <div
+        class="w-full h-1 bg-[#d4b58e] shadow-[0_1px_2px_rgba(0,0,0,0.5)] rotate-2 scale-110"
+      >
+      </div>
+      <div
+        class="w-full h-1 bg-[#d4b58e] shadow-[0_1px_2px_rgba(0,0,0,0.5)] -rotate-2 scale-110"
+      >
+      </div>
     </div>
+
     <div
-      class="absolute w-64 md:w-96 h-1 bg-gradient-to-r from-transparent via-amber-900/50 to-transparent blur-[2px]"
+      class="relative w-20 h-32 md:w-24 md:h-40 bg-gradient-to-r from-[#78350f] via-[#5c2813] to-[#381406] shadow-[inset_-8px_0_20px_rgba(0,0,0,0.7),5px_10px_15px_rgba(0,0,0,0.3)] rounded-[15px_15px_10px_10px] -mt-1 z-10 flex flex-col items-center"
+    >
+      <div
+        class="absolute inset-0 bg-[repeating-linear-gradient(88deg,transparent,transparent_3px,rgba(0,0,0,0.2)_4px,rgba(0,0,0,0.2)_8px)] rounded-[15px_15px_10px_10px]"
+      >
+      </div>
+
+      <div
+        class="absolute top-4 -left-3 md:-left-4 w-5 md:w-6 h-20 md:h-24 bg-gradient-to-b from-[#5c2813] to-[#381406] rounded-full shadow-[inset_-2px_0_10px_rgba(0,0,0,0.6)] rotate-12 -z-10"
+      >
+      </div>
+      <div
+        class="absolute top-4 -right-3 md:-right-4 w-5 md:w-6 h-20 md:h-24 bg-gradient-to-b from-[#5c2813] to-[#381406] rounded-full shadow-[inset_2px_0_10px_rgba(0,0,0,0.6)] -rotate-12 -z-10"
+      >
+      </div>
+
+      <div
+        class="absolute top-[25%] w-8 h-10 md:w-10 md:h-12 bg-[#2a1208] rounded-full shadow-[inset_0_0_8px_rgba(0,0,0,0.8)] flex items-center justify-center border border-[#451a03] z-10"
+      >
+        <div
+          class="w-3 h-6 md:w-4 md:h-8 bg-[#fef08a] rounded-[50%_50%_40%_40%] shadow-[inset_0_0_4px_#ca8a04] flex items-center justify-center"
+        >
+          <div class="w-0.5 h-4 bg-[#854d0e]"></div>
+        </div>
+      </div>
+
+      <div
+        class="absolute top-[45%] -left-[5%] w-[110%] h-3 bg-gradient-to-b from-[#e6c29a] to-[#bda382] shadow-[0_3px_4px_rgba(0,0,0,0.5),inset_0_1px_1px_rgba(255,255,255,0.4)] rotate-[8deg] z-20"
+      >
+        <div
+          class="absolute inset-0 bg-[repeating-linear-gradient(90deg,rgba(0,0,0,0.2),rgba(0,0,0,0.2)_1px,transparent_2px,transparent_3px)]"
+        >
+        </div>
+      </div>
+      <div
+        class="absolute top-[60%] -left-[5%] w-[110%] h-3.5 bg-gradient-to-b from-[#e6c29a] to-[#bda382] shadow-[0_3px_4px_rgba(0,0,0,0.5),inset_0_1px_1px_rgba(255,255,255,0.4)] -rotate-[5deg] z-20"
+      >
+        <div
+          class="absolute inset-0 bg-[repeating-linear-gradient(90deg,rgba(0,0,0,0.2),rgba(0,0,0,0.2)_1px,transparent_2px,transparent_3px)]"
+        >
+        </div>
+      </div>
+      <div
+        class="absolute top-[75%] -left-[5%] w-[110%] h-3 bg-gradient-to-b from-[#e6c29a] to-[#bda382] shadow-[0_3px_4px_rgba(0,0,0,0.5),inset_0_1px_1px_rgba(255,255,255,0.4)] rotate-[12deg] z-20"
+      >
+        <div
+          class="absolute inset-0 bg-[repeating-linear-gradient(90deg,rgba(0,0,0,0.2),rgba(0,0,0,0.2)_1px,transparent_2px,transparent_3px)]"
+        >
+        </div>
+      </div>
+    </div>
+
+    <div class="flex gap-2 md:gap-3 -mt-2 z-0">
+      <div
+        class="w-6 md:w-8 h-12 md:h-16 bg-gradient-to-b from-[#381406] to-[#1a0902] rounded-[0_0_8px_8px] shadow-[inset_-3px_0_10px_rgba(0,0,0,0.8)] border-b-4 border-[#451a03]"
+      >
+      </div>
+      <div
+        class="w-6 md:w-8 h-12 md:h-16 bg-gradient-to-b from-[#381406] to-[#1a0902] rounded-[0_0_8px_8px] shadow-[inset_-3px_0_10px_rgba(0,0,0,0.8)] border-b-4 border-[#451a03]"
+      >
+      </div>
+    </div>
+
+    <div
+      class="relative w-8 md:w-10 h-8 md:h-12 bg-gradient-to-r from-[#2a0f02] to-[#1a0902] shadow-[inset_-4px_0_10px_rgba(0,0,0,0.8)] rounded-[0_0_50%_50%] -mt-1 -z-10"
     >
     </div>
   </div>
 
-  {/* 4. LE BOCHIO (La Statuette Sculptée - z-20) */}
   <div
-    class="relative z-20 flex flex-col items-center justify-end h-[65%] mt-12 transition-transform duration-1000 group-hover:-translate-y-2"
-  >
-    {/* Aura de Guérison (Kaolin blanc et Or, irradiant de la statue) */}
-    <div
-      class="absolute top-1/4 w-40 h-64 bg-gradient-to-b from-white/10 via-amber-400/20 to-transparent blur-[30px] rounded-full animate-healing-breathe pointer-events-none"
-    >
-    </div>
-
-    {/* LA TÊTE (Bois sculpté à la serpe) */}
-    <div
-      class="relative w-16 h-20 md:w-20 md:h-24 bg-gradient-to-br from-[#4a2511] via-[#2a1208] to-[#120703] shadow-[inset_-5px_-5px_15px_rgba(0,0,0,0.9),inset_2px_2px_5px_rgba(255,255,255,0.1)] z-30"
-      style="clip-path: polygon(30% 0%, 70% 0%, 100% 30%, 90% 100%, 10% 100%, 0% 30%);"
-    >
-      {/* Texture du bois brut */}
-      <div
-        class="absolute inset-0 bg-[repeating-linear-gradient(85deg,rgba(0,0,0,0.5),rgba(0,0,0,0.5)_2px,transparent_3px,transparent_6px)] opacity-60"
-      >
-      </div>
-
-      {/* Traces de Kaolin (Argile sacrée blanche sur le visage) */}
-      <div
-        class="absolute top-[30%] left-1/2 -translate-x-1/2 w-8 h-4 bg-white/30 blur-[3px] rounded-full"
-      >
-      </div>
-    </div>
-
-    {/* LE COU (Cordes superposées) */}
-    <div
-      class="relative w-12 md:w-14 h-6 bg-[#2a1208] -mt-2 z-20 shadow-[inset_0_5px_10px_rgba(0,0,0,0.8)] flex flex-col justify-evenly"
-    >
-      <div
-        class="w-full h-1 bg-[#d7ccc8] shadow-[0_2px_2px_rgba(0,0,0,0.8)] opacity-80"
-      >
-      </div>
-      <div
-        class="w-full h-1 bg-[#d7ccc8] shadow-[0_2px_2px_rgba(0,0,0,0.8)] opacity-80"
-      >
-      </div>
-    </div>
-
-    {/* LE CORPS (Le Monolithe Protecteur) */}
-    <div
-      class="relative w-24 h-40 md:w-32 md:h-52 bg-gradient-to-br from-[#3d1d0c] via-[#240e05] to-[#0a0301] shadow-[inset_-8px_-8px_20px_rgba(0,0,0,0.9),0_20px_30px_rgba(0,0,0,0.9)] -mt-2 z-10 overflow-hidden"
-      style="clip-path: polygon(15% 0%, 85% 0%, 100% 100%, 0% 100%);"
-    >
-      {/* Texture du bois massif */}
-      <div
-        class="absolute inset-0 bg-[repeating-linear-gradient(88deg,rgba(0,0,0,0.6),rgba(0,0,0,0.6)_3px,transparent_4px,transparent_8px)] opacity-50"
-      >
-      </div>
-      <div
-        class="absolute inset-0 bg-[repeating-linear-gradient(to_bottom,rgba(0,0,0,0.4),rgba(0,0,0,0.4)_1px,transparent_2px,transparent_10px)] opacity-30"
-      >
-      </div>
-
-      {/* LA CHARGE SACRÉE (Le Cœur / Le "Zon" de guérison) */}
-      <div
-        class="absolute top-[30%] left-1/2 -translate-x-1/2 w-8 h-10 md:w-10 md:h-14 bg-[#0a0301] shadow-[inset_0_0_10px_rgba(0,0,0,1)] flex items-center justify-center rounded-[50%_50%_40%_40%]"
-      >
-        <div
-          class="w-3 h-5 bg-[#fce79a] blur-[2px] rounded-full shadow-[0_0_15px_#fde047,0_0_30px_#f59e0b] animate-core-beat"
-        >
-        </div>
-      </div>
-
-      {/* LES LIGATURES DE PROTECTION (Cordes croisées bloquant le mal) */}
-      <div
-        class="absolute top-[20%] -left-[10%] w-[120%] h-2 bg-[#bcaaa4] shadow-[0_3px_5px_rgba(0,0,0,0.9),inset_0_1px_1px_rgba(255,255,255,0.4)] rotate-[15deg]"
-      >
-        <div
-          class="absolute inset-0 bg-[repeating-linear-gradient(90deg,rgba(0,0,0,0.4),rgba(0,0,0,0.4)_1px,transparent_2px,transparent_3px)]"
-        >
-        </div>
-      </div>
-      <div
-        class="absolute top-[45%] -left-[10%] w-[120%] h-2.5 bg-[#a1887f] shadow-[0_3px_5px_rgba(0,0,0,0.9),inset_0_1px_1px_rgba(255,255,255,0.4)] -rotate-[10deg]"
-      >
-        <div
-          class="absolute inset-0 bg-[repeating-linear-gradient(90deg,rgba(0,0,0,0.4),rgba(0,0,0,0.4)_1px,transparent_2px,transparent_3px)]"
-        >
-        </div>
-      </div>
-      <div
-        class="absolute top-[70%] -left-[10%] w-[120%] h-2 bg-[#bcaaa4] shadow-[0_3px_5px_rgba(0,0,0,0.9),inset_0_1px_1px_rgba(255,255,255,0.4)] rotate-[5deg]"
-      >
-        <div
-          class="absolute inset-0 bg-[repeating-linear-gradient(90deg,rgba(0,0,0,0.4),rgba(0,0,0,0.4)_1px,transparent_2px,transparent_3px)]"
-        >
-        </div>
-      </div>
-    </div>
-  </div>
-
-  {
-    /* 5. ÉMANATIONS DE GUÉRISON (Particules pures montant vers le ciel - z-30) */
-  }
-  <div
-    class="absolute inset-0 z-30 pointer-events-none overflow-hidden mix-blend-screen"
+    class="absolute inset-0 z-30 pointer-events-none overflow-hidden mix-blend-overlay"
   >
     <div
-      class="absolute bottom-[20%] left-[40%] w-2 h-2 bg-white blur-[1px] rounded-full shadow-[0_0_10px_#fff] animate-rise-glow [animation-delay:0s]"
+      class="absolute bottom-[20%] left-[35%] w-2 h-2 bg-white blur-[1px] rounded-full animate-float-up [animation-delay:0s]"
     >
     </div>
     <div
-      class="absolute bottom-[25%] right-[42%] w-1.5 h-1.5 bg-[#fce79a] blur-[1px] rounded-full shadow-[0_0_10px_#f59e0b] animate-rise-glow [animation-delay:1.5s]"
+      class="absolute bottom-[40%] right-[35%] w-3 h-3 bg-yellow-100 blur-[2px] rounded-full animate-float-up [animation-delay:1.5s]"
     >
     </div>
     <div
-      class="absolute bottom-[15%] left-[48%] w-1 h-1 bg-white rounded-full animate-rise-glow [animation-delay:0.8s]"
-    >
-    </div>
-    <div
-      class="absolute bottom-[18%] right-[48%] w-2 h-2 bg-[#d4af37] blur-[1px] rounded-full animate-rise-glow [animation-delay:2.5s]"
+      class="absolute bottom-[30%] left-[45%] w-1.5 h-1.5 bg-white rounded-full animate-float-up [animation-delay:0.8s]"
     >
     </div>
   </div>
 </div>
 
 <style>
-  /* --- Apparition Générale --- */
   @keyframes fadeUp {
     from {
       opacity: 0;
@@ -188,72 +184,38 @@
     animation: fadeUp 1s cubic-bezier(0.16, 1, 0.3, 1) forwards;
   }
 
-  /* --- Respiration de l'Aura de Guérison --- */
-  @keyframes healingBreathe {
-    0%,
-    100% {
-      transform: scale(0.95);
-      opacity: 0.5;
-    }
-    50% {
-      transform: scale(1.05);
-      opacity: 0.8;
-      filter: brightness(1.2);
-    }
-  }
-  .animate-healing-breathe {
-    animation: healingBreathe 5s infinite alternate ease-in-out;
-  }
-
-  /* --- Pulsation du Cœur Sacré --- */
-  @keyframes coreBeat {
+  @keyframes pulseSun {
     0%,
     100% {
       opacity: 0.7;
-      transform: scale(0.9);
+      transform: translate(-50%, -50%) scale(0.95);
     }
     50% {
       opacity: 1;
-      transform: scale(1.1);
-      filter: brightness(1.3);
+      transform: translate(-50%, -50%) scale(1.05);
     }
   }
-  .animate-core-beat {
-    animation: coreBeat 3s infinite alternate ease-in-out;
+  .animate-pulse-sun {
+    animation: pulseSun 6s infinite alternate ease-in-out;
   }
 
-  /* --- Pulsation de l'Autel --- */
-  @keyframes pulseSlow {
-    0%,
-    100% {
-      opacity: 0.4;
-    }
-    50% {
-      opacity: 0.7;
-    }
-  }
-  .animate-pulse-slow {
-    animation: pulseSlow 4s infinite alternate ease-in-out;
-  }
-
-  /* --- Élévation des Particules Pures --- */
-  @keyframes riseGlow {
+  @keyframes floatUp {
     0% {
       transform: translateY(0) scale(0.8);
       opacity: 0;
     }
     20% {
-      opacity: 1;
+      opacity: 0.8;
     }
     80% {
-      opacity: 0.6;
+      opacity: 0.4;
     }
     100% {
-      transform: translateY(-200px) scale(1.2);
+      transform: translateY(-150px) scale(1.2);
       opacity: 0;
     }
   }
-  .animate-rise-glow {
-    animation: riseGlow 4s infinite ease-out;
+  .animate-float-up {
+    animation: floatUp 5s infinite ease-out;
   }
 </style>
