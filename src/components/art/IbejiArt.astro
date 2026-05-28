@@ -1,123 +1,276 @@
 ---
-/*
-  IbejiArt.astro - Œuvre d&apos;art CSS animée
-  Représente les statuettes jumelles sacrées Venavi/Ibeji avec une âme partagée.
-  Optimisé Tailwind v4 - Thème Sombre & Or
-*/
+layout: false;
 ---
 
 <div
-  class="w-full h-80 bg-[radial-gradient(circle_at_center,#2a221d_0%,#050505_100%)] flex justify-center items-center relative overflow-hidden mb-12 rounded-2xl shadow-[0_15px_40px_rgba(0,0,0,0.6)] border border-gold/5 opacity-0 animate-fade-up"
+  class="relative w-full max-w-4xl mx-auto my-12 h-[28rem] md:h-[34rem] bg-[#0c0806] rounded-3xl overflow-hidden border border-amber-900/30 shadow-[0_20px_50px_rgba(0,0,0,0.8)] flex items-center justify-center opacity-0 animate-fade-up select-none group"
 >
-  <div class="relative w-[250px] h-[250px] flex justify-center items-end">
-    {/* Le Halo d'âme partagée (Or) */}
-    <div
-      class="absolute top-[20px] w-[180px] h-[180px] bg-[radial-gradient(circle,rgba(212,175,55,0.4)_0%,transparent_70%)] rounded-full animate-soul-breathe z-10"
-    >
+  <div
+    class="absolute inset-0 bg-[radial-gradient(ellipse_at_center,rgba(212,175,55,0.15)_0%,transparent_70%)] z-0"
+  >
+  </div>
+  <div
+    class="absolute inset-0 bg-[linear-gradient(rgba(212,175,55,0.03)_1px,transparent_1px),linear-gradient(90deg,rgba(212,175,55,0.03)_1px,transparent_1px)] bg-[size:30px_30px] z-0 pointer-events-none"
+  >
+  </div>
+
+  <div
+    class="absolute w-72 md:w-96 h-72 md:h-96 bg-amber-500/10 rounded-full blur-[50px] animate-soul-breathe z-10 pointer-events-none"
+  >
+  </div>
+  <div
+    class="absolute w-40 md:w-56 h-40 md:h-56 bg-amber-400/20 rounded-full blur-[30px] animate-soul-breathe-inner z-10 pointer-events-none"
+  >
+  </div>
+
+  <div
+    class="relative z-20 flex flex-col items-center justify-end h-full pb-16 md:pb-20 animate-float"
+  >
+    <div class="flex gap-10 md:gap-16 items-end mb-[-4px] md:mb-[-6px] z-20">
+      <div class="flex flex-col items-center animate-gentle-sway">
+        <div
+          class="w-12 h-16 md:w-16 md:h-20 bg-gradient-to-br from-[#5d4037] to-[#2c1e16] rounded-[45%_45%_50%_50%] shadow-[inset_-4px_-4px_10px_rgba(0,0,0,0.8),0_8px_15px_rgba(0,0,0,0.6)] border border-[#7a5447]/40 z-30 flex flex-col items-center pt-3 md:pt-4"
+        >
+          <div class="flex gap-2 md:gap-3 mb-1.5 md:mb-2">
+            <div
+              class="w-2 h-0.5 md:w-2.5 md:h-1 bg-[#1a100b] rounded-full shadow-[0_1px_0_rgba(255,255,255,0.1)]"
+            >
+            </div>
+            <div
+              class="w-2 h-0.5 md:w-2.5 md:h-1 bg-[#1a100b] rounded-full shadow-[0_1px_0_rgba(255,255,255,0.1)]"
+            >
+            </div>
+          </div>
+          <div
+            class="w-1 h-2 md:w-1.5 md:h-2.5 bg-[#1a100b]/50 rounded-full mb-1 md:mb-1.5"
+          >
+          </div>
+          <div
+            class="w-3 h-0.5 md:w-4 md:h-1 bg-[#1a100b] rounded-full shadow-[0_1px_0_rgba(255,255,255,0.1)]"
+          >
+          </div>
+        </div>
+
+        <div
+          class="w-14 h-3 md:w-20 md:h-4 bg-[repeating-linear-gradient(90deg,#8e0000_0%,#8e0000_6px,#fdfbf7_6px,#fdfbf7_12px)] rounded-full shadow-[0_4px_8px_rgba(0,0,0,0.9)] z-40 -mt-2 md:-mt-3"
+        >
+        </div>
+
+        <div
+          class="relative flex flex-col items-center -mt-2 z-20 w-24 md:w-32"
+        >
+          <div
+            class="absolute top-[10%] left-[10px] md:left-[16px] w-3.5 h-16 md:w-5 md:h-24 bg-gradient-to-b from-[#4a3022] to-[#1a100b] rounded-full rotate-[18deg] shadow-[inset_-2px_-2px_6px_rgba(0,0,0,0.8),0_4px_6px_rgba(0,0,0,0.5)] z-10 origin-top"
+          >
+          </div>
+          <div
+            class="absolute top-[10%] right-[10px] md:right-[16px] w-3.5 h-16 md:w-5 md:h-24 bg-gradient-to-b from-[#4a3022] to-[#1a100b] rounded-full -rotate-[18deg] shadow-[inset_-2px_-2px_6px_rgba(0,0,0,0.8),0_4px_6px_rgba(0,0,0,0.5)] z-10 origin-top"
+          >
+          </div>
+
+          <div
+            class="relative w-14 h-14 md:w-20 md:h-20 bg-gradient-to-br from-white via-pink-50 to-pink-200 rounded-[40%_40%_25%_25%] shadow-[inset_-4px_-4px_10px_rgba(0,0,0,0.1),0_4px_10px_rgba(0,0,0,0.5)] border border-pink-100 z-20 flex justify-center overflow-hidden"
+          >
+            <div
+              class="absolute inset-0 bg-[linear-gradient(90deg,transparent_20%,rgba(0,0,0,0.05)_50%,transparent_80%)]"
+            >
+            </div>
+          </div>
+
+          <div
+            class="relative w-16 h-16 md:w-24 md:h-24 bg-gradient-to-b from-white to-pink-300 rounded-[20%_20%_15%_15%] shadow-[inset_0_-10px_20px_rgba(0,0,0,0.2),0_5px_10px_rgba(0,0,0,0.5)] border-t-[3px] border-pink-400 z-30 -mt-4 md:-mt-6 overflow-hidden flex flex-col items-center"
+          >
+            <div
+              class="absolute inset-0 bg-[repeating-linear-gradient(45deg,transparent,transparent_3px,rgba(244,114,182,0.1)_4px,rgba(244,114,182,0.1)_6px)]"
+            >
+            </div>
+            <div
+              class="absolute inset-0 bg-[linear-gradient(90deg,rgba(0,0,0,0.1)_0%,transparent_20%,transparent_80%,rgba(0,0,0,0.1)_100%)]"
+            >
+            </div>
+
+            <div
+              class="w-full h-2 md:h-3 bg-[repeating-linear-gradient(90deg,#8e0000_0%,#8e0000_4px,#fdfbf7_4px,#fdfbf7_8px)] shadow-[0_3px_5px_rgba(0,0,0,0.5)] mt-2 md:mt-3 z-20"
+            >
+            </div>
+
+            <div
+              class="flex justify-center gap-1.5 md:gap-2 mt-1.5 md:mt-2 z-30"
+            >
+              <div
+                class="w-1.5 h-2.5 md:w-2 md:h-3 bg-[#fdfbf7] rounded-full shadow-[0_1px_2px_rgba(0,0,0,0.5)] border-[0.5px] border-pink-200 flex justify-center overflow-hidden"
+              >
+                <div class="w-[1px] h-full bg-[#2c1e16] opacity-30"></div>
+              </div>
+              <div
+                class="w-1.5 h-2.5 md:w-2 md:h-3 bg-[#fdfbf7] rounded-full shadow-[0_1px_2px_rgba(0,0,0,0.5)] border-[0.5px] border-pink-200 flex justify-center overflow-hidden"
+              >
+                <div class="w-[1px] h-full bg-[#2c1e16] opacity-30"></div>
+              </div>
+              <div
+                class="w-1.5 h-2.5 md:w-2 md:h-3 bg-[#fdfbf7] rounded-full shadow-[0_1px_2px_rgba(0,0,0,0.5)] border-[0.5px] border-pink-200 flex justify-center overflow-hidden"
+              >
+                <div class="w-[1px] h-full bg-[#2c1e16] opacity-30"></div>
+              </div>
+            </div>
+          </div>
+
+          <div class="flex justify-between w-8 md:w-12 z-10 -mt-2 md:-mt-3">
+            <div
+              class="w-2.5 h-8 md:w-3.5 md:h-12 bg-gradient-to-b from-[#4a3022] to-[#0c0806] rounded-b-[4px] shadow-[0_4px_6px_rgba(0,0,0,0.8)]"
+            >
+            </div>
+            <div
+              class="w-2.5 h-8 md:w-3.5 md:h-12 bg-gradient-to-b from-[#4a3022] to-[#0c0806] rounded-b-[4px] shadow-[0_4px_6px_rgba(0,0,0,0.8)]"
+            >
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div
+        class="flex flex-col items-center animate-gentle-sway [animation-delay:-3s]"
+      >
+        <div
+          class="w-12 h-16 md:w-16 md:h-20 bg-gradient-to-br from-[#5d4037] to-[#2c1e16] rounded-[45%_45%_50%_50%] shadow-[inset_-4px_-4px_10px_rgba(0,0,0,0.8),0_8px_15px_rgba(0,0,0,0.6)] border border-[#7a5447]/40 z-30 flex flex-col items-center pt-3 md:pt-4"
+        >
+          <div class="flex gap-2 md:gap-3 mb-1.5 md:mb-2">
+            <div
+              class="w-2 h-0.5 md:w-2.5 md:h-1 bg-[#1a100b] rounded-full shadow-[0_1px_0_rgba(255,255,255,0.1)]"
+            >
+            </div>
+            <div
+              class="w-2 h-0.5 md:w-2.5 md:h-1 bg-[#1a100b] rounded-full shadow-[0_1px_0_rgba(255,255,255,0.1)]"
+            >
+            </div>
+          </div>
+          <div
+            class="w-1 h-2 md:w-1.5 md:h-2.5 bg-[#1a100b]/50 rounded-full mb-1 md:mb-1.5"
+          >
+          </div>
+          <div
+            class="w-3 h-0.5 md:w-4 md:h-1 bg-[#1a100b] rounded-full shadow-[0_1px_0_rgba(255,255,255,0.1)]"
+          >
+          </div>
+        </div>
+
+        <div
+          class="w-14 h-3 md:w-20 md:h-4 bg-[repeating-linear-gradient(90deg,#8e0000_0%,#8e0000_6px,#fdfbf7_6px,#fdfbf7_12px)] rounded-full shadow-[0_4px_8px_rgba(0,0,0,0.9)] z-40 -mt-2 md:-mt-3"
+        >
+        </div>
+
+        <div
+          class="relative flex flex-col items-center -mt-2 z-20 w-24 md:w-32"
+        >
+          <div
+            class="absolute top-[10%] left-[10px] md:left-[16px] w-3.5 h-16 md:w-5 md:h-24 bg-gradient-to-b from-[#4a3022] to-[#1a100b] rounded-full rotate-[18deg] shadow-[inset_-2px_-2px_6px_rgba(0,0,0,0.8),0_4px_6px_rgba(0,0,0,0.5)] z-10 origin-top"
+          >
+          </div>
+          <div
+            class="absolute top-[10%] right-[10px] md:right-[16px] w-3.5 h-16 md:w-5 md:h-24 bg-gradient-to-b from-[#4a3022] to-[#1a100b] rounded-full -rotate-[18deg] shadow-[inset_-2px_-2px_6px_rgba(0,0,0,0.8),0_4px_6px_rgba(0,0,0,0.5)] z-10 origin-top"
+          >
+          </div>
+
+          <div
+            class="relative w-14 h-14 md:w-20 md:h-20 bg-gradient-to-br from-white via-pink-50 to-pink-200 rounded-[40%_40%_25%_25%] shadow-[inset_-4px_-4px_10px_rgba(0,0,0,0.1),0_4px_10px_rgba(0,0,0,0.5)] border border-pink-100 z-20 flex justify-center overflow-hidden"
+          >
+            <div
+              class="absolute inset-0 bg-[linear-gradient(90deg,transparent_20%,rgba(0,0,0,0.05)_50%,transparent_80%)]"
+            >
+            </div>
+          </div>
+
+          <div
+            class="relative w-16 h-16 md:w-24 md:h-24 bg-gradient-to-b from-white to-pink-300 rounded-[20%_20%_15%_15%] shadow-[inset_0_-10px_20px_rgba(0,0,0,0.2),0_5px_10px_rgba(0,0,0,0.5)] border-t-[3px] border-pink-400 z-30 -mt-4 md:-mt-6 overflow-hidden flex flex-col items-center"
+          >
+            <div
+              class="absolute inset-0 bg-[repeating-linear-gradient(45deg,transparent,transparent_3px,rgba(244,114,182,0.1)_4px,rgba(244,114,182,0.1)_6px)]"
+            >
+            </div>
+            <div
+              class="absolute inset-0 bg-[linear-gradient(90deg,rgba(0,0,0,0.1)_0%,transparent_20%,transparent_80%,rgba(0,0,0,0.1)_100%)]"
+            >
+            </div>
+
+            <div
+              class="w-full h-2 md:h-3 bg-[repeating-linear-gradient(90deg,#8e0000_0%,#8e0000_4px,#fdfbf7_4px,#fdfbf7_8px)] shadow-[0_3px_5px_rgba(0,0,0,0.5)] mt-2 md:mt-3 z-20"
+            >
+            </div>
+
+            <div
+              class="flex justify-center gap-1.5 md:gap-2 mt-1.5 md:mt-2 z-30"
+            >
+              <div
+                class="w-1.5 h-2.5 md:w-2 md:h-3 bg-[#fdfbf7] rounded-full shadow-[0_1px_2px_rgba(0,0,0,0.5)] border-[0.5px] border-pink-200 flex justify-center overflow-hidden"
+              >
+                <div class="w-[1px] h-full bg-[#2c1e16] opacity-30"></div>
+              </div>
+              <div
+                class="w-1.5 h-2.5 md:w-2 md:h-3 bg-[#fdfbf7] rounded-full shadow-[0_1px_2px_rgba(0,0,0,0.5)] border-[0.5px] border-pink-200 flex justify-center overflow-hidden"
+              >
+                <div class="w-[1px] h-full bg-[#2c1e16] opacity-30"></div>
+              </div>
+              <div
+                class="w-1.5 h-2.5 md:w-2 md:h-3 bg-[#fdfbf7] rounded-full shadow-[0_1px_2px_rgba(0,0,0,0.5)] border-[0.5px] border-pink-200 flex justify-center overflow-hidden"
+              >
+                <div class="w-[1px] h-full bg-[#2c1e16] opacity-30"></div>
+              </div>
+            </div>
+          </div>
+
+          <div class="flex justify-between w-8 md:w-12 z-10 -mt-2 md:-mt-3">
+            <div
+              class="w-2.5 h-8 md:w-3.5 md:h-12 bg-gradient-to-b from-[#4a3022] to-[#0c0806] rounded-b-[4px] shadow-[0_4px_6px_rgba(0,0,0,0.8)]"
+            >
+            </div>
+            <div
+              class="w-2.5 h-8 md:w-3.5 md:h-12 bg-gradient-to-b from-[#4a3022] to-[#0c0806] rounded-b-[4px] shadow-[0_4px_6px_rgba(0,0,0,0.8)]"
+            >
+            </div>
+          </div>
+        </div>
+      </div>
     </div>
 
-    {/* Le socle sacré */}
     <div
-      class="absolute bottom-[20px] w-[180px] h-[15px] bg-[#2c1e16] rounded-[4px] border-b-[4px] border-[#110b08] z-20 shadow-[0_10px_15px_rgba(0,0,0,0.8)]"
+      class="w-56 md:w-80 h-6 md:h-8 bg-gradient-to-b from-[#3a251a] to-[#1a100b] rounded-md shadow-[0_20px_30px_rgba(0,0,0,1),inset_0_2px_4px_rgba(255,255,255,0.15)] border-b-4 border-[#0c0806] z-10"
     >
     </div>
+  </div>
 
-    {/* Statuette Gauche */}
-    <div
-      class="absolute bottom-[35px] left-[65px] w-[40px] h-[130px] flex flex-col items-center z-30 animate-gentle-sway [animation-delay:0s]"
+  <div
+    class="absolute bottom-6 md:bottom-8 inset-x-0 flex flex-col items-center justify-center z-50 pointer-events-none"
+  >
+    <span
+      class="font-sans text-xs md:text-sm font-bold text-amber-500/90 tracking-[0.6em] uppercase drop-shadow-[0_2px_10px_rgba(212,175,55,0.6)]"
     >
-      {/* Tête */}
-      <div
-        class="w-[35px] h-[45px] bg-gradient-to-br from-[#5d4037] to-[#3e2723] rounded-[40%_40%_50%_50%] shadow-[inset_-5px_-5px_10px_rgba(0,0,0,0.5)]"
-      >
-      </div>
+      HOHOVI
+    </span>
+  </div>
 
-      {/* Cou et perles */}
-      <div class="w-[15px] h-[15px] bg-[#3e2723] relative">
-        <div
-          class="absolute top-[5px] -left-[5px] w-[25px] h-[8px] bg-[repeating-linear-gradient(90deg,#8e0000_0%,#8e0000_4px,#fdfbf7_4px,#fdfbf7_8px)] rounded-[4px] shadow-[0_2px_4px_rgba(0,0,0,0.5)]"
-        >
-        </div>
-      </div>
-
-      {/* Corps */}
-      <div
-        class="w-[30px] h-[70px] bg-gradient-to-br from-[#5d4037] to-[#3e2723] rounded-t-[10px] shadow-[inset_-5px_-5px_10px_rgba(0,0,0,0.5)] relative"
-      >
-        {/* Patine d'usure */}
-        <div
-          class="absolute top-[10px] left-[10px] w-[10px] h-[50px] bg-white/5 rounded-[10px]"
-        >
-        </div>
-      </div>
+  <div
+    class="absolute inset-0 z-40 pointer-events-none overflow-hidden mix-blend-screen"
+  >
+    <div
+      class="absolute bottom-[20%] left-[35%] w-1.5 h-1.5 bg-amber-300 rounded-full shadow-[0_0_8px_#fcd34d] animate-sparkle-rise [animation-delay:0s]"
+    >
     </div>
-
-    {/* Statuette Droite */}
     <div
-      class="absolute bottom-[35px] right-[65px] w-[40px] h-[130px] flex flex-col items-center z-30 animate-gentle-sway [animation-delay:-3s]"
+      class="absolute bottom-[25%] right-[35%] w-2 h-2 bg-amber-200 rounded-full shadow-[0_0_12px_#fde68a] animate-sparkle-rise [animation-delay:1.5s]"
     >
-      {/* Tête */}
-      <div
-        class="w-[35px] h-[45px] bg-gradient-to-br from-[#5d4037] to-[#3e2723] rounded-[40%_40%_50%_50%] shadow-[inset_-5px_-5px_10px_rgba(0,0,0,0.5)]"
-      >
-      </div>
-
-      {/* Cou et perles */}
-      <div class="w-[15px] h-[15px] bg-[#3e2723] relative">
-        <div
-          class="absolute top-[5px] -left-[5px] w-[25px] h-[8px] bg-[repeating-linear-gradient(90deg,#8e0000_0%,#8e0000_4px,#fdfbf7_4px,#fdfbf7_8px)] rounded-[4px] shadow-[0_2px_4px_rgba(0,0,0,0.5)]"
-        >
-        </div>
-      </div>
-
-      {/* Corps */}
-      <div
-        class="w-[30px] h-[70px] bg-gradient-to-br from-[#5d4037] to-[#3e2723] rounded-t-[10px] shadow-[inset_-5px_-5px_10px_rgba(0,0,0,0.5)] relative"
-      >
-        {/* Patine d'usure */}
-        <div
-          class="absolute top-[10px] left-[10px] w-[10px] h-[50px] bg-white/5 rounded-[10px]"
-        >
-        </div>
-      </div>
+    </div>
+    <div
+      class="absolute bottom-[40%] left-[48%] w-1.5 h-1.5 bg-white rounded-full shadow-[0_0_10px_#fff] animate-sparkle-rise [animation-delay:0.8s]"
+    >
     </div>
   </div>
 </div>
 
 <style>
-  /* --- ANIMATIONS COMPLEXES --- */
-  @keyframes soul-breathe {
-    0%,
-    100% {
-      transform: scale(1);
-      opacity: 0.8;
-    }
-    50% {
-      transform: scale(1.1);
-      opacity: 1;
-    }
-  }
-  .animate-soul-breathe {
-    animation: soul-breathe 4s ease-in-out infinite;
-  }
-
-  @keyframes gentle-sway {
-    0%,
-    100% {
-      transform: translateY(0);
-    }
-    50% {
-      transform: translateY(-3px);
-    }
-  }
-  .animate-gentle-sway {
-    animation: gentle-sway 6s ease-in-out infinite;
-  }
-
   @keyframes fadeUp {
     from {
       opacity: 0;
-      transform: translateY(20px);
+      transform: translateY(30px);
     }
     to {
       opacity: 1;
@@ -125,6 +278,83 @@
     }
   }
   .animate-fade-up {
-    animation: fadeUp 1.2s ease forwards;
+    animation: fadeUp 1.2s cubic-bezier(0.16, 1, 0.3, 1) forwards;
+  }
+
+  @keyframes float {
+    0%,
+    100% {
+      transform: translateY(0);
+    }
+    50% {
+      transform: translateY(-10px);
+    }
+  }
+  .animate-float {
+    animation: float 6s ease-in-out infinite;
+  }
+
+  @keyframes soulBreathe {
+    0%,
+    100% {
+      transform: scale(0.9);
+      opacity: 0.6;
+    }
+    50% {
+      transform: scale(1.15);
+      opacity: 1;
+    }
+  }
+  .animate-soul-breathe {
+    animation: soulBreathe 5s ease-in-out infinite;
+  }
+
+  @keyframes soulBreatheInner {
+    0%,
+    100% {
+      transform: scale(0.8);
+      opacity: 0.8;
+    }
+    50% {
+      transform: scale(1.2);
+      opacity: 1;
+    }
+  }
+  .animate-soul-breathe-inner {
+    animation: soulBreatheInner 4s ease-in-out infinite alternate;
+  }
+
+  @keyframes gentleSway {
+    0%,
+    100% {
+      transform: translateY(0) rotate(0deg);
+    }
+    50% {
+      transform: translateY(-4px) rotate(1deg);
+    }
+  }
+  .animate-gentle-sway {
+    animation: gentleSway 5s ease-in-out infinite;
+  }
+
+  @keyframes sparkleRise {
+    0% {
+      transform: translateY(0) scale(0.5);
+      opacity: 0;
+    }
+    20% {
+      opacity: 1;
+      transform: translateY(-20px) scale(1.2);
+    }
+    80% {
+      opacity: 0.8;
+    }
+    100% {
+      transform: translateY(-120px) scale(0.5);
+      opacity: 0;
+    }
+  }
+  .animate-sparkle-rise {
+    animation: sparkleRise 4s infinite ease-out;
   }
 </style>

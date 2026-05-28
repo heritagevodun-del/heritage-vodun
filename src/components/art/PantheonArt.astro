@@ -1,0 +1,273 @@
+---
+layout: false;
+---
+
+<div
+  class="relative w-full max-w-4xl mx-auto my-12 h-[32rem] md:h-[40rem] bg-[#131b20] rounded-3xl overflow-hidden border border-indigo-900/40 shadow-[0_20px_50px_rgba(0,0,0,0.6)] flex items-center justify-center opacity-0 animate-fade-up select-none group"
+>
+  {/* Grille cosmique et fond profond */}
+  <div
+    class="absolute inset-0 bg-[radial-gradient(ellipse_at_center,rgba(49,46,129,0.15)_0%,transparent_70%)] z-0"
+  >
+  </div>
+  <div
+    class="absolute inset-0 bg-[linear-gradient(rgba(148,163,184,0.03)_1px,transparent_1px),linear-gradient(90deg,rgba(148,163,184,0.03)_1px,transparent_1px)] bg-[size:40px_40px] z-0 pointer-events-none mix-blend-screen"
+  >
+  </div>
+
+  <div
+    class="absolute top-[8%] inset-x-0 flex flex-col items-center justify-center z-10 pointer-events-none px-4"
+  >
+    <h1
+      class="font-serif text-5xl md:text-7xl lg:text-8xl font-black text-indigo-50/5 uppercase tracking-[0.3em] w-full text-center transition-transform duration-1000 group-hover:scale-105"
+    >
+      PANTHÉON
+    </h1>
+  </div>
+
+  {/* Le Système Orbital */}
+  <div
+    class="relative w-[320px] h-[320px] md:w-[480px] md:h-[480px] flex items-center justify-center z-20 mt-8"
+  >
+    {/* Anneaux de gravité */}
+    <div
+      class="absolute inset-0 rounded-full border-[2px] border-dashed border-indigo-500/20 animate-spin-very-slow"
+    >
+    </div>
+    <div
+      class="absolute inset-[15%] rounded-full border border-indigo-400/10 animate-spin-slow-reverse"
+    >
+    </div>
+
+    {/* Conteneur des satellites en orbite */}
+    <div
+      class="absolute inset-0 animate-orbit flex items-center justify-center"
+    >
+      {/* Hêviosso (Feu/Foudre) - Top */}
+      <div
+        class="absolute -top-6 md:-top-10 w-16 h-16 md:w-20 md:h-20 bg-gradient-to-br from-red-500 to-red-900 rounded-full shadow-[0_0_30px_rgba(220,38,38,0.5),inset_0_0_15px_rgba(255,255,255,0.4)] flex items-center justify-center animate-counter-spin"
+      >
+        <div
+          class="w-6 h-10 md:w-8 md:h-12 bg-white/90 shadow-[0_0_10px_#fff]"
+          style="clip-path: polygon(100% 0, 40% 50%, 80% 50%, 0 100%, 60% 50%, 20% 50%);"
+        >
+        </div>
+      </div>
+
+      {/* Sakpata (Terre/Maladie) - Bottom */}
+      <div
+        class="absolute -bottom-6 md:-bottom-10 w-16 h-16 md:w-20 md:h-20 bg-gradient-to-br from-[#8b5a2b] to-[#3e2723] rounded-full shadow-[0_0_30px_rgba(139,90,43,0.5),inset_0_0_15px_rgba(0,0,0,0.8)] flex items-center justify-center animate-counter-spin"
+      >
+        <div
+          class="w-full h-full bg-[radial-gradient(rgba(0,0,0,0.6)_3px,transparent_3px)] bg-[size:8px_8px] rounded-full mix-blend-overlay"
+        >
+        </div>
+        <div
+          class="absolute w-10 h-10 md:w-12 md:h-12 border-4 border-amber-900/40 rounded-full"
+        >
+        </div>
+      </div>
+
+      {/* Gou (Métal/Guerre) - Left */}
+      <div
+        class="absolute -left-6 md:-left-10 w-16 h-16 md:w-20 md:h-20 bg-gradient-to-br from-slate-300 via-slate-500 to-slate-800 shadow-[0_0_30px_rgba(148,163,184,0.4),inset_0_0_15px_rgba(255,255,255,0.6)] flex items-center justify-center animate-counter-spin"
+        style="clip-path: polygon(25% 0%, 75% 0%, 100% 50%, 75% 100%, 25% 100%, 0% 50%);"
+      >
+        <div
+          class="w-10 h-10 md:w-12 md:h-12 bg-slate-900 shadow-[inset_0_0_10px_rgba(0,0,0,1)] flex items-center justify-center"
+          style="clip-path: polygon(25% 0%, 75% 0%, 100% 50%, 75% 100%, 25% 100%, 0% 50%);"
+        >
+          <div class="w-4 h-4 md:w-6 md:h-6 bg-slate-400 rounded-full"></div>
+        </div>
+      </div>
+
+      {/* Dan (Continuité/Arc-en-ciel) - Right */}
+      <div
+        class="absolute -right-6 md:-right-10 w-16 h-16 md:w-20 md:h-20 bg-[conic-gradient(from_0deg,red,orange,yellow,green,blue,indigo,violet,red)] rounded-full shadow-[0_0_30px_rgba(168,85,247,0.5)] flex items-center justify-center animate-spin-fast"
+      >
+        <div
+          class="w-10 h-10 md:w-12 md:h-12 bg-[#131b20] rounded-full shadow-[inset_0_0_15px_rgba(0,0,0,1)] border-2 border-white/10"
+        >
+        </div>
+      </div>
+    </div>
+
+    {/* Le Noyau Mawu-Lisa (Création Binaire) */}
+    <div
+      class="relative w-28 h-28 md:w-40 md:h-40 rounded-full shadow-[0_0_60px_rgba(251,191,36,0.3),0_0_60px_rgba(226,232,240,0.3)] flex overflow-hidden border-[4px] border-[#131b20] animate-core-breathe z-30"
+    >
+      {/* Lisa (Masculin / Soleil / Or) */}
+      <div
+        class="w-1/2 h-full bg-gradient-to-br from-amber-200 via-amber-500 to-amber-700 relative overflow-hidden"
+      >
+        <div
+          class="absolute inset-0 bg-[radial-gradient(circle_at_20%_50%,rgba(255,255,255,0.6)_0%,transparent_50%)]"
+        >
+        </div>
+      </div>
+
+      {/* Mawu (Féminin / Lune / Argent) */}
+      <div
+        class="w-1/2 h-full bg-gradient-to-br from-slate-100 via-slate-400 to-slate-800 relative overflow-hidden"
+      >
+        <div
+          class="absolute inset-0 bg-[radial-gradient(circle_at_80%_50%,rgba(255,255,255,0.8)_0%,transparent_50%)]"
+        >
+        </div>
+      </div>
+
+      <div
+        class="absolute inset-0 bg-[linear-gradient(90deg,rgba(0,0,0,0.5)_0%,transparent_45%,transparent_55%,rgba(0,0,0,0.5)_100%)]"
+      >
+      </div>
+
+      {/* Le lien subtil au centre */}
+      <div
+        class="absolute top-0 left-1/2 -translate-x-1/2 w-1 h-full bg-black/40 blur-[1px]"
+      >
+      </div>
+    </div>
+  </div>
+
+  <div
+    class="absolute bottom-6 md:bottom-8 inset-x-0 flex flex-col items-center justify-center z-50 pointer-events-none"
+  >
+  </div>
+
+  {/* Poussière d'étoiles dynamique */}
+  <div
+    class="absolute inset-0 z-40 pointer-events-none overflow-hidden mix-blend-screen"
+  >
+    <div
+      class="absolute bottom-[20%] left-[25%] w-1.5 h-1.5 bg-indigo-300 rounded-full shadow-[0_0_8px_#a5b4fc] animate-sparkle-rise [animation-delay:0s]"
+    >
+    </div>
+    <div
+      class="absolute top-[30%] right-[25%] w-2 h-2 bg-amber-200 rounded-full shadow-[0_0_12px_#fde68a] animate-sparkle-rise [animation-delay:1.5s]"
+    >
+    </div>
+    <div
+      class="absolute bottom-[40%] right-[40%] w-1.5 h-1.5 bg-red-400 rounded-full shadow-[0_0_8px_#f87171] animate-sparkle-rise [animation-delay:0.8s]"
+    >
+    </div>
+    <div
+      class="absolute top-[45%] left-[35%] w-2 h-2 bg-slate-100 rounded-full shadow-[0_0_10px_#f1f5f9] animate-sparkle-rise [animation-delay:2.2s]"
+    >
+    </div>
+  </div>
+</div>
+
+<style>
+  @keyframes fadeUp {
+    from {
+      opacity: 0;
+      transform: translateY(30px);
+    }
+    to {
+      opacity: 1;
+      transform: translateY(0);
+    }
+  }
+  .animate-fade-up {
+    animation: fadeUp 1.2s cubic-bezier(0.16, 1, 0.3, 1) forwards;
+  }
+
+  @keyframes spinVerySlow {
+    from {
+      transform: rotate(0deg);
+    }
+    to {
+      transform: rotate(360deg);
+    }
+  }
+  .animate-spin-very-slow {
+    animation: spinVerySlow 40s linear infinite;
+  }
+
+  @keyframes spinSlowReverse {
+    from {
+      transform: rotate(360deg);
+    }
+    to {
+      transform: rotate(0deg);
+    }
+  }
+  .animate-spin-slow-reverse {
+    animation: spinSlowReverse 30s linear infinite;
+  }
+
+  /* Animation principale de l'orbite cosmique */
+  @keyframes orbit {
+    from {
+      transform: rotate(0deg);
+    }
+    to {
+      transform: rotate(360deg);
+    }
+  }
+  .animate-orbit {
+    animation: orbit 25s linear infinite;
+  }
+
+  /* Contre-rotation pour que les icônes restent droites pendant l'orbite */
+  @keyframes counterSpin {
+    from {
+      transform: rotate(360deg);
+    }
+    to {
+      transform: rotate(0deg);
+    }
+  }
+  .animate-counter-spin {
+    animation: counterSpin 25s linear infinite;
+  }
+
+  @keyframes spinFast {
+    from {
+      transform: rotate(0deg);
+    }
+    to {
+      transform: rotate(360deg);
+    }
+  }
+  .animate-spin-fast {
+    animation: spinFast 5s linear infinite;
+  }
+
+  @keyframes coreBreathe {
+    0%,
+    100% {
+      transform: scale(1) rotate(-35deg);
+    }
+    50% {
+      transform: scale(1.08) rotate(-35deg);
+      box-shadow:
+        0 0 80px rgba(251, 191, 36, 0.4),
+        0 0 80px rgba(226, 232, 240, 0.4);
+    }
+  }
+  .animate-core-breathe {
+    animation: coreBreathe 6s ease-in-out infinite;
+  }
+
+  @keyframes sparkleRise {
+    0% {
+      transform: translateY(0) scale(0.5);
+      opacity: 0;
+    }
+    20% {
+      opacity: 1;
+      transform: translateY(-20px) scale(1.2);
+    }
+    80% {
+      opacity: 0.8;
+    }
+    100% {
+      transform: translateY(-120px) scale(0.5);
+      opacity: 0;
+    }
+  }
+  .animate-sparkle-rise {
+    animation: sparkleRise 5s infinite ease-out;
+  }
+</style>

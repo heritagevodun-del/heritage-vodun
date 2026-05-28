@@ -1,158 +1,178 @@
 ---
-/*
-  FaArt.astro - CSS Art
-  Allégorie de l’Opon Ifa : Le pont entre le code binaire et le système du Fâ.
-  Design : Matrice Holographique / Tech-Sombre (Zéro JS)
-*/
+layout: false;
 ---
 
 <div
-  class="relative w-full max-w-3xl mx-auto my-10 h-96 md:h-[32rem] bg-[#020101] rounded-2xl overflow-hidden border border-amber-900/30 shadow-[0_20px_50px_rgba(0,0,0,0.8)] flex flex-col items-center justify-center group opacity-0 animate-fade-up select-none"
+  class="relative w-full max-w-4xl mx-auto my-12 h-[28rem] md:h-[34rem] bg-[#fcf9f2] rounded-3xl overflow-hidden border border-amber-100 shadow-[0_20px_50px_rgba(217,119,6,0.08)] flex items-center justify-center opacity-0 animate-fade-up select-none group"
 >
-  {/* 1. FOND MATRICIEL & TEXTURE */}
   <div
-    class="absolute inset-0 bg-[radial-gradient(circle_at_center,rgba(212,175,55,0.08)_0%,transparent_70%)]"
-  >
-  </div>
-  <div
-    class="absolute inset-0 bg-[linear-gradient(rgba(212,175,55,0.03)_1px,transparent_1px),linear-gradient(90deg,rgba(212,175,55,0.03)_1px,transparent_1px)] bg-[size:30px_30px] [mask-image:radial-gradient(ellipse_at_center,black_20%,transparent_80%)] pointer-events-none"
+    class="absolute inset-0 bg-gradient-to-br from-[#ffffff] via-[#fcf9f2] to-[#f5ead5] z-0"
   >
   </div>
 
-  {/* 2. ANNEAUX CYBERNÉTIQUES (L’Opon 2.0) */}
   <div
-    class="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[300px] h-[300px] md:w-[400px] md:h-[400px] flex items-center justify-center pointer-events-none"
+    class="absolute inset-0 bg-[linear-gradient(rgba(217,119,6,0.03)_1px,transparent_1px),linear-gradient(90deg,rgba(217,119,6,0.03)_1px,transparent_1px)] bg-[size:40px_40px] z-0 pointer-events-none"
   >
-    {/* Anneau Externe (Lent) */}
+  </div>
+
+  <div
+    class="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-80 md:w-[32rem] h-80 md:h-[32rem] bg-amber-50 rounded-full blur-[50px] z-0 animate-pulse-light"
+  >
+  </div>
+
+  <div
+    class="absolute top-[8%] inset-x-0 flex flex-col items-center justify-center z-30 pointer-events-none px-4"
+  >
+    <h1
+      class="font-serif text-6xl md:text-8xl lg:text-[9rem] font-black text-amber-900/5 uppercase tracking-[0.2em] w-full text-center transition-transform duration-1000 group-hover:scale-105"
+    >
+      FÂ
+    </h1>
+  </div>
+
+  <div
+    class="relative z-20 flex flex-col items-center justify-center w-72 h-72 md:w-[26rem] md:h-[26rem] mt-8 animate-float"
+  >
     <div
-      class="absolute inset-0 rounded-full border border-amber-500/10 border-dashed animate-[spin_20s_linear_infinite]"
+      class="absolute inset-0 rounded-full border border-amber-200/60 animate-spin-slow"
     >
+      <div
+        class="absolute top-0 left-1/2 -translate-x-1/2 -translate-y-1/2 w-2 h-2 bg-amber-400 rounded-full shadow-[0_0_10px_#f59e0b]"
+      >
+      </div>
+      <div
+        class="absolute bottom-0 left-1/2 -translate-x-1/2 translate-y-1/2 w-2 h-2 bg-amber-400 rounded-full shadow-[0_0_10px_#f59e0b]"
+      >
+      </div>
     </div>
-    {/* Anneau Interne (Rapide, sens inverse) */}
+
     <div
-      class="absolute inset-8 rounded-full border-2 border-amber-500/20 border-dotted animate-[spin_15s_linear_infinite_reverse]"
+      class="absolute inset-6 rounded-full border border-dashed border-amber-300/50 animate-spin-slow-reverse"
     >
     </div>
-    {/* Anneau Central (Brillance) */}
     <div
-      class="absolute inset-16 rounded-full border border-amber-400/30 shadow-[0_0_30px_rgba(212,175,55,0.1)]"
+      class="absolute inset-12 rounded-full border border-amber-100/80 shadow-[inset_0_0_20px_rgba(251,191,36,0.1)]"
     >
     </div>
-  </div>
 
-  {/* 3. TITRE HOLOGRAPHIQUE (z-30) */}
-  <div
-    class="absolute top-8 w-full text-center z-30 pointer-events-none transition-transform duration-700 group-hover:scale-105"
-  >
-    <h2
-      class="font-mono text-xl md:text-2xl font-bold text-transparent bg-clip-text bg-gradient-to-r from-amber-200 via-amber-500 to-amber-200 tracking-[0.3em] uppercase drop-shadow-[0_0_10px_rgba(212,175,55,0.5)]"
-    >
-      ODU : LOSSA-SA
-    </h2>
-    <p
-      class="text-[0.6rem] md:text-xs text-amber-500/60 font-mono tracking-[0.4em] mt-2"
-    >
-      ALGORITHME BINAIRE PRIMORDIAL
-    </p>
-  </div>
-
-  {/* 4. LE CIRCUIT DE DIVINATION (Signes I et II) */}
-  <div
-    class="relative z-20 flex gap-12 md:gap-20 items-center justify-center mt-12 p-8 rounded-full"
-  >
-    {/* Scanner Laser (Ligne lumineuse qui descend) */}
     <div
-      class="absolute top-0 left-0 w-full h-[2px] bg-amber-300 shadow-[0_0_15px_#fceeb5,0_0_30px_#d4af37] animate-scan opacity-70 z-30 pointer-events-none"
+      class="absolute inset-0 flex items-center justify-center animate-spin-very-slow"
+    >
+      <div class="w-[70%] h-[70%] border border-amber-200/40 rotate-45"></div>
+      <div
+        class="absolute w-[70%] h-[70%] border border-amber-200/40 rotate-[135deg]"
+      >
+      </div>
+    </div>
+
+    <div
+      class="relative w-32 h-32 md:w-40 md:h-40 bg-white rounded-full shadow-[0_15px_35px_rgba(217,119,6,0.15),inset_0_0_15px_rgba(251,191,36,0.2)] flex items-center justify-center overflow-hidden z-20 border border-amber-50"
+    >
+      <div
+        class="absolute inset-0 bg-[repeating-linear-gradient(45deg,transparent,transparent_4px,rgba(251,191,36,0.05)_5px,rgba(251,191,36,0.05)_8px)] pointer-events-none"
+      >
+      </div>
+
+      <div class="relative flex gap-4 md:gap-6 z-10">
+        <div class="flex flex-col gap-2 md:gap-3 items-center">
+          <div
+            class="w-2.5 h-2.5 md:w-3 md:h-3 bg-gradient-to-br from-[#78350f] to-[#451a03] rounded-full shadow-[0_2px_4px_rgba(0,0,0,0.2)] animate-node-pulse [animation-delay:0s]"
+          >
+          </div>
+          <div class="flex gap-1.5 md:gap-2">
+            <div
+              class="w-2.5 h-2.5 md:w-3 md:h-3 bg-gradient-to-br from-[#78350f] to-[#451a03] rounded-full shadow-[0_2px_4px_rgba(0,0,0,0.2)] animate-node-pulse [animation-delay:0.2s]"
+            >
+            </div>
+            <div
+              class="w-2.5 h-2.5 md:w-3 md:h-3 bg-gradient-to-br from-[#78350f] to-[#451a03] rounded-full shadow-[0_2px_4px_rgba(0,0,0,0.2)] animate-node-pulse [animation-delay:0.2s]"
+            >
+            </div>
+          </div>
+          <div class="flex gap-1.5 md:gap-2">
+            <div
+              class="w-2.5 h-2.5 md:w-3 md:h-3 bg-gradient-to-br from-[#78350f] to-[#451a03] rounded-full shadow-[0_2px_4px_rgba(0,0,0,0.2)] animate-node-pulse [animation-delay:0.4s]"
+            >
+            </div>
+            <div
+              class="w-2.5 h-2.5 md:w-3 md:h-3 bg-gradient-to-br from-[#78350f] to-[#451a03] rounded-full shadow-[0_2px_4px_rgba(0,0,0,0.2)] animate-node-pulse [animation-delay:0.4s]"
+            >
+            </div>
+          </div>
+          <div
+            class="w-2.5 h-2.5 md:w-3 md:h-3 bg-gradient-to-br from-[#78350f] to-[#451a03] rounded-full shadow-[0_2px_4px_rgba(0,0,0,0.2)] animate-node-pulse [animation-delay:0.6s]"
+          >
+          </div>
+        </div>
+
+        <div class="w-px h-[90%] bg-amber-200/60 self-center"></div>
+
+        <div class="flex flex-col gap-2 md:gap-3 items-center">
+          <div class="flex gap-1.5 md:gap-2">
+            <div
+              class="w-2.5 h-2.5 md:w-3 md:h-3 bg-gradient-to-br from-[#78350f] to-[#451a03] rounded-full shadow-[0_2px_4px_rgba(0,0,0,0.2)] animate-node-pulse [animation-delay:0.8s]"
+            >
+            </div>
+            <div
+              class="w-2.5 h-2.5 md:w-3 md:h-3 bg-gradient-to-br from-[#78350f] to-[#451a03] rounded-full shadow-[0_2px_4px_rgba(0,0,0,0.2)] animate-node-pulse [animation-delay:0.8s]"
+            >
+            </div>
+          </div>
+          <div
+            class="w-2.5 h-2.5 md:w-3 md:h-3 bg-gradient-to-br from-[#78350f] to-[#451a03] rounded-full shadow-[0_2px_4px_rgba(0,0,0,0.2)] animate-node-pulse [animation-delay:1s]"
+          >
+          </div>
+          <div
+            class="w-2.5 h-2.5 md:w-3 md:h-3 bg-gradient-to-br from-[#78350f] to-[#451a03] rounded-full shadow-[0_2px_4px_rgba(0,0,0,0.2)] animate-node-pulse [animation-delay:1.2s]"
+          >
+          </div>
+          <div class="flex gap-1.5 md:gap-2">
+            <div
+              class="w-2.5 h-2.5 md:w-3 md:h-3 bg-gradient-to-br from-[#78350f] to-[#451a03] rounded-full shadow-[0_2px_4px_rgba(0,0,0,0.2)] animate-node-pulse [animation-delay:1.4s]"
+            >
+            </div>
+            <div
+              class="w-2.5 h-2.5 md:w-3 md:h-3 bg-gradient-to-br from-[#78350f] to-[#451a03] rounded-full shadow-[0_2px_4px_rgba(0,0,0,0.2)] animate-node-pulse [animation-delay:1.4s]"
+            >
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="absolute bottom-[-10%] flex flex-col items-center">
+      <span
+        class="font-sans text-sm md:text-base font-bold text-[#3a1005] tracking-[0.3em] uppercase drop-shadow-[0_1px_1px_rgba(255,255,255,0.8)]"
+      >
+        SCIENCE SOUVERAINE
+      </span>
+      <span
+        class="font-serif text-[0.6rem] md:text-xs text-[#8a4224] tracking-[0.4em] uppercase mt-1 opacity-90"
+      >
+        ALGORITHME COSMIQUE
+      </span>
+    </div>
+  </div>
+
+  <div
+    class="absolute inset-0 z-30 pointer-events-none overflow-hidden mix-blend-overlay"
+  >
+    <div
+      class="absolute bottom-[20%] left-[25%] w-2 h-2 bg-white blur-[1px] rounded-full animate-float-up [animation-delay:0s]"
     >
     </div>
-
-    {/* COLONNE GAUCHE (Sa : II, I, I, I) */}
-    <div class="flex flex-col gap-5 md:gap-6">
-      {/* Ligne 1 : II */}
-      <div class="flex gap-3 justify-center">
-        <div
-          class="w-6 h-2 md:w-8 md:h-2.5 bg-amber-500/20 border border-amber-400/50 rounded-sm shadow-[0_0_15px_rgba(212,175,55,0.4)] relative overflow-hidden group-hover:bg-amber-400 group-hover:shadow-[0_0_20px_#d4af37] transition-all duration-500 delay-100"
-        >
-        </div>
-        <div
-          class="w-6 h-2 md:w-8 md:h-2.5 bg-amber-500/20 border border-amber-400/50 rounded-sm shadow-[0_0_15px_rgba(212,175,55,0.4)] relative overflow-hidden group-hover:bg-amber-400 group-hover:shadow-[0_0_20px_#d4af37] transition-all duration-500 delay-100"
-        >
-        </div>
-      </div>
-      {/* Ligne 2 : I */}
-      <div
-        class="w-16 h-2 md:w-20 md:h-2.5 bg-amber-500/20 border border-amber-400/50 rounded-sm shadow-[0_0_15px_rgba(212,175,55,0.4)] mx-auto group-hover:bg-amber-400 group-hover:shadow-[0_0_20px_#d4af37] transition-all duration-500 delay-200"
-      >
-      </div>
-      {/* Ligne 3 : I */}
-      <div
-        class="w-16 h-2 md:w-20 md:h-2.5 bg-amber-500/20 border border-amber-400/50 rounded-sm shadow-[0_0_15px_rgba(212,175,55,0.4)] mx-auto group-hover:bg-amber-400 group-hover:shadow-[0_0_20px_#d4af37] transition-all duration-500 delay-300"
-      >
-      </div>
-      {/* Ligne 4 : I */}
-      <div
-        class="w-16 h-2 md:w-20 md:h-2.5 bg-amber-500/20 border border-amber-400/50 rounded-sm shadow-[0_0_15px_rgba(212,175,55,0.4)] mx-auto group-hover:bg-amber-400 group-hover:shadow-[0_0_20px_#d4af37] transition-all duration-500 delay-400"
-      >
-      </div>
+    <div
+      class="absolute top-[25%] right-[25%] w-3 h-3 bg-amber-200 blur-[2px] rounded-full animate-float-up [animation-delay:1.5s]"
+    >
     </div>
-
-    {/* COLONNE DROITE (Lossou : I, I, II, II) */}
-    <div class="flex flex-col gap-5 md:gap-6">
-      {/* Ligne 1 : I */}
-      <div
-        class="w-16 h-2 md:w-20 md:h-2.5 bg-amber-500/20 border border-amber-400/50 rounded-sm shadow-[0_0_15px_rgba(212,175,55,0.4)] mx-auto group-hover:bg-amber-400 group-hover:shadow-[0_0_20px_#d4af37] transition-all duration-500 delay-100"
-      >
-      </div>
-      {/* Ligne 2 : I */}
-      <div
-        class="w-16 h-2 md:w-20 md:h-2.5 bg-amber-500/20 border border-amber-400/50 rounded-sm shadow-[0_0_15px_rgba(212,175,55,0.4)] mx-auto group-hover:bg-amber-400 group-hover:shadow-[0_0_20px_#d4af37] transition-all duration-500 delay-200"
-      >
-      </div>
-      {/* Ligne 3 : II */}
-      <div class="flex gap-3 justify-center">
-        <div
-          class="w-6 h-2 md:w-8 md:h-2.5 bg-amber-500/20 border border-amber-400/50 rounded-sm shadow-[0_0_15px_rgba(212,175,55,0.4)] group-hover:bg-amber-400 group-hover:shadow-[0_0_20px_#d4af37] transition-all duration-500 delay-300"
-        >
-        </div>
-        <div
-          class="w-6 h-2 md:w-8 md:h-2.5 bg-amber-500/20 border border-amber-400/50 rounded-sm shadow-[0_0_15px_rgba(212,175,55,0.4)] group-hover:bg-amber-400 group-hover:shadow-[0_0_20px_#d4af37] transition-all duration-500 delay-300"
-        >
-        </div>
-      </div>
-      {/* Ligne 4 : II */}
-      <div class="flex gap-3 justify-center">
-        <div
-          class="w-6 h-2 md:w-8 md:h-2.5 bg-amber-500/20 border border-amber-400/50 rounded-sm shadow-[0_0_15px_rgba(212,175,55,0.4)] group-hover:bg-amber-400 group-hover:shadow-[0_0_20px_#d4af37] transition-all duration-500 delay-400"
-        >
-        </div>
-        <div
-          class="w-6 h-2 md:w-8 md:h-2.5 bg-amber-500/20 border border-amber-400/50 rounded-sm shadow-[0_0_15px_rgba(212,175,55,0.4)] group-hover:bg-amber-400 group-hover:shadow-[0_0_20px_#d4af37] transition-all duration-500 delay-400"
-        >
-        </div>
-      </div>
+    <div
+      class="absolute bottom-[35%] left-[45%] w-1.5 h-1.5 bg-white rounded-full animate-float-up [animation-delay:0.8s]"
+    >
     </div>
-  </div>
-
-  {/* 5. ÉLÉMENTS HUD (Décorations informatiques) */}
-  <div
-    class="absolute bottom-4 left-6 font-mono text-[0.6rem] text-amber-500/50 tracking-[0.2em] uppercase hidden sm:block"
-  >
-    <span class="block mb-1">SYS.GEOMANCY.INIT()</span>
-    <span class="block text-amber-300/30">MATRIX_SIZE: 256</span>
-  </div>
-  <div
-    class="absolute bottom-4 right-6 font-mono text-[0.6rem] text-amber-500/50 tracking-[0.2em] uppercase flex items-center gap-2"
-  >
-    <div class="flex flex-col gap-1 items-end">
-      <span>PROCESSING_FATE</span>
-      <span class="text-amber-300/30">1001 1001 0110 0110</span>
-    </div>
-    <span class="w-1.5 h-1.5 bg-amber-500 rounded-full animate-ping"></span>
   </div>
 </div>
 
 <style>
-  /* --- Animations --- */
   @keyframes fadeUp {
     from {
       opacity: 0;
@@ -167,23 +187,104 @@
     animation: fadeUp 1s cubic-bezier(0.16, 1, 0.3, 1) forwards;
   }
 
-  @keyframes scan {
+  @keyframes pulseLight {
+    0%,
+    100% {
+      opacity: 0.5;
+      transform: translate(-50%, -50%) scale(0.95);
+    }
+    50% {
+      opacity: 0.8;
+      transform: translate(-50%, -50%) scale(1.05);
+    }
+  }
+  .animate-pulse-light {
+    animation: pulseLight 5s infinite alternate ease-in-out;
+  }
+
+  @keyframes float {
+    0%,
+    100% {
+      transform: translateY(0);
+    }
+    50% {
+      transform: translateY(-10px);
+    }
+  }
+  .animate-float {
+    animation: float 6s ease-in-out infinite;
+  }
+
+  @keyframes spinSlow {
+    from {
+      transform: rotate(0deg);
+    }
+    to {
+      transform: rotate(360deg);
+    }
+  }
+  .animate-spin-slow {
+    animation: spinSlow 20s linear infinite;
+  }
+
+  @keyframes spinSlowReverse {
+    from {
+      transform: rotate(360deg);
+    }
+    to {
+      transform: rotate(0deg);
+    }
+  }
+  .animate-spin-slow-reverse {
+    animation: spinSlowReverse 25s linear infinite;
+  }
+
+  @keyframes spinVerySlow {
+    from {
+      transform: rotate(0deg);
+    }
+    to {
+      transform: rotate(360deg);
+    }
+  }
+  .animate-spin-very-slow {
+    animation: spinVerySlow 40s linear infinite;
+  }
+
+  @keyframes nodePulse {
+    0%,
+    100% {
+      opacity: 0.7;
+      transform: scale(1);
+      filter: brightness(1);
+    }
+    50% {
+      opacity: 1;
+      transform: scale(1.15);
+      filter: brightness(1.3);
+    }
+  }
+  .animate-node-pulse {
+    animation: nodePulse 3s infinite alternate ease-in-out;
+  }
+
+  @keyframes floatUp {
     0% {
-      top: -10%;
+      transform: translateY(0) scale(0.8);
       opacity: 0;
     }
-    10% {
-      opacity: 1;
+    20% {
+      opacity: 0.8;
     }
-    90% {
-      opacity: 1;
+    80% {
+      opacity: 0.4;
     }
     100% {
-      top: 110%;
+      transform: translateY(-160px) scale(1.2);
       opacity: 0;
     }
   }
-  .animate-scan {
-    animation: scan 3s ease-in-out infinite;
+  .animate-float-up {
+    animation: floatUp 6s infinite ease-out;
   }
 </style>
