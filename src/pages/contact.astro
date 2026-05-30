@@ -20,7 +20,11 @@ const schemaData = {
 ---
 
 <BaseLayout titrePage="Contact & Réservation | L'Arbre à Palabre">
-  <script type="application/ld+json" set:html={JSON.stringify(schemaData)} />
+  <script
+    is:inline
+    type="application/ld+json"
+    set:html={JSON.stringify(schemaData)}
+  />
 
   <div class="min-h-screen bg-dark-bg pb-24 overflow-x-hidden">
     {/* --- HEADER --- */}
@@ -36,9 +40,9 @@ const schemaData = {
       </h1>
       <div class="w-16 h-1 bg-gold mx-auto mb-8 rounded-full"></div>
       <p class="text-lg text-gray-400 leading-relaxed font-sans">
-        Sous l&apos;arbre à palabre, la parole se libère. Que ce soit pour
-        organiser votre voyage ou proposer un partenariat, nous sommes à votre
-        écoute.
+        Sous l&apos;arbre à palabre, la parole se libère et les liens se
+        tissent. Que ce soit pour organiser votre voyage ou proposer une
+        alliance, nous sommes à votre écoute.
       </p>
     </div>
 
@@ -57,17 +61,18 @@ const schemaData = {
         >
           <div class="text-4xl mb-4 animate-[bounce_3s_infinite]">✨</div>
           <h3 class="font-serif text-2xl text-white mb-3">
-            Une question sur le Vodun ?
+            Une question sur notre héritage ?
           </h3>
           <p class="text-gray-400 text-sm leading-relaxed mb-6">
-            Vous voulez savoir ce qu&apos;est le Fâ ou l&apos;histoire d&apos;un
-            masque ? Pas besoin d&apos;attendre un email !
+            Vous souhaitez comprendre l&apos;essence du Fâ ou l&apos;histoire
+            d&apos;une divinité ? Notre conseiller spirituel numérique est à
+            votre écoute immédiate.
           </p>
           <a
             href="https://www.mindoguesito.com"
             class="open-oracle inline-block bg-gold hover:bg-gold-hover text-black font-bold uppercase tracking-widest text-xs px-6 py-3 rounded-full transition-all duration-300 hover:-translate-y-1 shadow-[0_5px_15px_rgba(212,175,55,0.2)]"
           >
-            Demander à Mindoguesito
+            Consulter notre Guide
           </a>
         </div>
 
@@ -78,7 +83,7 @@ const schemaData = {
           <div class="text-4xl mb-4 opacity-80">📍</div>
           <h3 class="font-serif text-xl text-white mb-2">Localisation</h3>
           <p class="text-gray-400 text-sm leading-relaxed">
-            Ouidah, Bénin<br />Cité historique
+            Ouidah, Bénin<br />La Cité Historique
           </p>
         </div>
       </aside>
@@ -100,10 +105,11 @@ const schemaData = {
           <h2
             class="font-serif text-3xl md:text-4xl text-white mb-2 relative z-10"
           >
-            Envoyer un message officiel
+            Écrire à l&apos;équipe du domaine
           </h2>
           <p class="text-gray-400 text-sm mb-10 relative z-10">
-            Pour les demandes de guides, presse ou collaborations.
+            Pour organiser votre venue, proposer une alliance ou pour toute
+            demande presse.
           </p>
 
           <form id="form-contact" class="flex flex-col gap-6 relative z-10">
@@ -162,7 +168,7 @@ const schemaData = {
               <label
                 for="sujet-select"
                 class="text-xs font-bold uppercase tracking-widest text-gold"
-                >Objet de la demande</label
+                >Objet du message</label
               >
               <div class="relative">
                 <select
@@ -175,7 +181,8 @@ const schemaData = {
                     >-- Choisissez un sujet --</option
                   >
                   <option value="Voyage">Organiser une visite à Ouidah</option>
-                  <option value="Partenariat">Proposition de Partenariat</option
+                  <option value="Partenariat"
+                    >Proposition d&apos;alliance / Partenariat</option
                   >
                   <option value="Presse">Presse & Médias</option>
                   <option value="Autre">Autre demande</option>
@@ -199,7 +206,7 @@ const schemaData = {
                 name="message"
                 rows="5"
                 required
-                placeholder="Dites-nous en plus sur votre projet..."
+                placeholder="Partagez avec nous les détails de votre démarche..."
                 class="bg-black/50 border border-white/10 rounded-md px-4 py-3 text-white placeholder-gray-600 focus:outline-none focus:border-gold focus:ring-1 focus:ring-gold transition-all duration-300 resize-y"
               ></textarea>
             </div>
@@ -208,7 +215,7 @@ const schemaData = {
               type="submit"
               class="btn-envoi bg-gold hover:bg-gold-hover text-black font-bold uppercase tracking-widest py-4 rounded-md transition-all duration-300 mt-4 disabled:opacity-50 disabled:cursor-not-allowed hover:-translate-y-1 shadow-[0_5px_15px_rgba(212,175,55,0.2)]"
             >
-              Envoyer le message
+              Transmettre le message
             </button>
 
             <div
@@ -259,15 +266,15 @@ const schemaData = {
           let jsonResponse = await response.json();
           if (response.status == 200) {
             result.innerHTML =
-              "✨ Message reçu !<br>Nous vous répondrons sous peu.";
+              "✨ Message reçu !<br>Nous vous répondrons dans les plus brefs délais.";
             result.className =
               "block text-center font-bold text-sm mt-2 p-4 rounded-md bg-green-900/30 text-green-400 border border-green-500/30"; // Style Success
             form.reset();
-            btn.innerHTML = "Message Envoyé";
+            btn.innerHTML = "Message Transmis";
           } else {
             console.log(response);
             result.innerHTML =
-              jsonResponse.message || "Erreur lors de l'envoi.";
+              jsonResponse.message || "Erreur lors de l&apos;envoi.";
             result.className =
               "block text-center font-bold text-sm mt-2 p-4 rounded-md bg-red-900/30 text-red-400 border border-red-500/30"; // Style Error
             btn.innerHTML = "Réessayer";

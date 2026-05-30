@@ -97,7 +97,11 @@ const schemaData = {
 ---
 
 <BaseLayout titrePage={`Sujet : ${tag} | Héritage Vodun`} noindex={true}>
-  <script type="application/ld+json" set:html={JSON.stringify(schemaData)} />
+  <script
+    is:inline
+    type="application/ld+json"
+    set:html={JSON.stringify(schemaData)}
+  />
 
   <div class="min-h-screen bg-dark-bg pb-24">
     {/* --- EN-TÊTE --- */}
@@ -141,7 +145,7 @@ const schemaData = {
               <a
                 href={post.url}
                 class="block relative w-full h-60 overflow-hidden bg-dark-bg"
-                aria-label={`Lire l'article : ${post.frontmatter.title}`}
+                aria-label={`Lire l&apos;article : ${post.frontmatter.title}`}
               >
                 {/* LOGIQUE D'AFFICHAGE OPTIMISÉE AVEC ASTRO:ASSETS */}
                 {imageFn ? (

@@ -88,7 +88,11 @@ const schemaData = {
 ---
 
 <BaseLayout titrePage="Le Blog | Chroniques du Sacré">
-  <script type="application/ld+json" set:html={JSON.stringify(schemaData)} />
+  <script
+    is:inline
+    type="application/ld+json"
+    set:html={JSON.stringify(schemaData)}
+  />
 
   <div class="min-h-screen bg-dark-bg pb-24">
     {/* --- EN-TÊTE --- */}
