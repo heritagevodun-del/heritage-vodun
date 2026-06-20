@@ -1,0 +1,125 @@
+---
+// FaHumanNatureBalanceArt.astro - Représentation littérale de l'équilibre Homme-Nature
+---
+
+<div
+  class="flex justify-center items-center py-10 w-full"
+  aria-label="La balance du Fâ mettant en équilibre l'Humain et la Nature"
+>
+  {/* Conteneur circulaire doux représentant le monde */}
+  <div
+    class="relative w-80 h-80 bg-stone-50 rounded-full border border-stone-200 shadow-[inset_0_0_40px_rgba(0,0,0,0.02)] flex justify-center items-end pb-8"
+  >
+    {/* --- LE PILIER CENTRAL (L'axe du Fâ) --- */}
+    <div class="absolute bottom-8 w-6 h-48 bg-stone-800 rounded-t-lg z-10">
+    </div>
+    <div
+      class="absolute bottom-6 w-32 h-4 bg-stone-800 rounded-full z-10 shadow-md"
+    >
+    </div>
+    <div class="absolute bottom-4 w-48 h-2 bg-stone-300 rounded-full z-0"></div>
+
+    {/* Point de pivot (L'œil de l'équilibre) */}
+    <div
+      class="absolute top-[80px] w-6 h-6 bg-amber-500 rounded-full border-4 border-stone-800 z-30 shadow-sm flex justify-center items-center"
+    >
+      <div class="w-1.5 h-1.5 bg-stone-900 rounded-full"></div>
+    </div>
+
+    {/* --- LE FLÉAU ET LES PLATEAUX (Animés subtilement) --- */}
+    <div
+      class="absolute top-[88px] w-64 h-2 bg-stone-800 rounded-full origin-center animate-seesaw z-20"
+    >
+      {/* CÔTÉ GAUCHE : LA NATURE (Un Arbre) */}
+      <div
+        class="absolute -left-2 top-1 w-20 flex flex-col items-center animate-counter-seesaw origin-top"
+      >
+        {/* Fils suspenseurs */}
+        <div
+          class="w-16 h-20 border-b-2 border-l border-r border-stone-400 opacity-60"
+          style="clip-path: polygon(50% 0%, 0% 100%, 100% 100%);"
+        >
+        </div>
+        {/* Plateau */}
+        <div
+          class="w-20 h-2.5 bg-stone-800 rounded-full shadow-md relative z-10 -mt-0.5"
+        >
+        </div>
+
+        {/* L'Élément : L'Arbre */}
+        <div class="absolute bottom-2 flex flex-col items-center">
+          {/* Feuillage */}
+          <div
+            class="w-14 h-14 bg-emerald-600 rounded-full shadow-inner mb-[-12px] z-10 border-2 border-emerald-700/50"
+          >
+          </div>
+          {/* Tronc */}
+          <div class="w-3 h-8 bg-amber-900 rounded-sm"></div>
+        </div>
+      </div>
+
+      {/* CÔTÉ DROIT : L'HUMAIN (Une Silhouette) */}
+      <div
+        class="absolute -right-2 top-1 w-20 flex flex-col items-center animate-counter-seesaw origin-top"
+      >
+        {/* Fils suspenseurs */}
+        <div
+          class="w-16 h-20 border-b-2 border-l border-r border-stone-400 opacity-60"
+          style="clip-path: polygon(50% 0%, 0% 100%, 100% 100%);"
+        >
+        </div>
+        {/* Plateau */}
+        <div
+          class="w-20 h-2.5 bg-stone-800 rounded-full shadow-md relative z-10 -mt-0.5"
+        >
+        </div>
+
+        {/* L'Élément : L'Être Humain */}
+        <div class="absolute bottom-2 flex flex-col items-center">
+          {/* Tête */}
+          <div
+            class="w-5 h-5 bg-stone-700 rounded-full mb-1 z-10 border border-stone-600"
+          >
+          </div>
+          {/* Épaules / Buste */}
+          <div
+            class="w-10 h-10 bg-stone-700"
+            style="border-radius: 20px 20px 4px 4px;"
+          >
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<style>
+  /* Le fléau de la balance oscille très légèrement pour montrer qu'elle est active, mais en équilibre */
+  @keyframes seesaw {
+    0%,
+    100% {
+      transform: rotate(-1.5deg);
+    }
+    50% {
+      transform: rotate(1.5deg);
+    }
+  }
+
+  /* Les plateaux restent parfaitement droits par rapport à la gravité */
+  @keyframes counter-seesaw {
+    0%,
+    100% {
+      transform: rotate(1.5deg);
+    }
+    50% {
+      transform: rotate(-1.5deg);
+    }
+  }
+
+  .animate-seesaw {
+    animation: seesaw 5s ease-in-out infinite;
+  }
+  .animate-counter-seesaw {
+    animation: counter-seesaw 5s ease-in-out infinite;
+  }
+</style>
