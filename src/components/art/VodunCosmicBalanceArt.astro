@@ -1,0 +1,246 @@
+---
+// VodunCosmicBalanceArt.astro
+// Composant Ultra-Premium : L&apos;Arbre de Vie brisant la Cage du Système
+// Architecture : Astro + SVG Natif + Physique CSS (60fps)
+// Métaphore Littérale : Compréhensible par tous (Nature vs Enfermement)
+---
+
+<div
+  class="relative w-full max-w-3xl mx-auto aspect-video rounded-3xl overflow-hidden bg-[#2A231C] border border-[#d4af37]/20 shadow-[0_40px_80px_rgba(0,0,0,0.6),inset_0_0_60px_rgba(0,0,0,0.4)] group mb-16 mt-8"
+  aria-label="Un arbre majestueux brisant les barreaux gris d'une prison, avec un humain libre à ses pieds"
+>
+  {/* Lueur d'espoir en arrière-plan */}
+  <div
+    class="absolute inset-0 bg-[radial-gradient(circle_at_50%_70%,#4a331c_0%,#2A231C_80%)]"
+  >
+  </div>
+
+  <div class="absolute inset-0 flex items-center justify-center">
+    <svg
+      viewBox="0 0 800 450"
+      class="w-full h-full overflow-visible"
+      xmlns="http://www.w3.org/2000/svg"
+      preserveAspectRatio="xMidYMid meet"
+    >
+      <defs>
+        {/* Dégradé pour le système (Froid, industriel, gris) */}
+        <linearGradient id="systemGray" x1="0%" y1="0%" x2="100%" y2="0%">
+          <stop offset="0%" stop-color="#3f3f46"></stop>
+          <stop offset="50%" stop-color="#52525b"></stop>
+          <stop offset="100%" stop-color="#27272a"></stop>
+        </linearGradient>
+
+        {/* Dégradés pour la Nature (Chaud, vivant, vibrant) */}
+        <linearGradient id="treeTrunk" x1="0%" y1="0%" x2="100%" y2="0%">
+          <stop offset="0%" stop-color="#452714"></stop>
+          <stop offset="50%" stop-color="#784421"></stop>
+          <stop offset="100%" stop-color="#2c170a"></stop>
+        </linearGradient>
+
+        <linearGradient id="leafGreen" x1="0%" y1="0%" x2="0%" y2="100%">
+          <stop offset="0%" stop-color="#34d399"></stop>
+          <stop offset="50%" stop-color="#059669"></stop>
+          <stop offset="100%" stop-color="#064e3b"></stop>
+        </linearGradient>
+
+        {/* Ombre portée pour donner du volume */}
+        <filter id="dropShadow" x="-20%" y="-20%" width="140%" height="140%">
+          <feDropShadow
+            dx="0"
+            dy="10"
+            stdDeviation="8"
+            flood-color="#000"
+            flood-opacity="0.7"></feDropShadow>
+        </filter>
+
+        <filter id="divineGlow" x="-50%" y="-50%" width="200%" height="200%">
+          <feGaussianBlur stdDeviation="8" result="blur"></feGaussianBlur>
+          <feMerge>
+            <feMergeNode in="blur"></feMergeNode>
+            <feMergeNode in="SourceGraphic"></feMergeNode>
+          </feMerge>
+        </filter>
+      </defs>
+
+      {
+        /* ================= 1. LE SYSTÈME (La Prison / Le Code-Barres Gris) ================= */
+      }
+      {
+        /* Ce sont des barreaux froids et droits, mais ceux du milieu sont brisés et tordus vers l'extérieur */
+      }
+      <g filter="url(#dropShadow)">
+        {/* Barreaux intacts à gauche */}
+        <rect
+          x="100"
+          y="50"
+          width="24"
+          height="350"
+          fill="url(#systemGray)"
+          rx="4"></rect>
+        <rect
+          x="160"
+          y="50"
+          width="24"
+          height="350"
+          fill="url(#systemGray)"
+          rx="4"></rect>
+        <rect
+          x="220"
+          y="50"
+          width="24"
+          height="350"
+          fill="url(#systemGray)"
+          rx="4"></rect>
+
+        {/* Barreaux intacts à droite */}
+        <rect
+          x="676"
+          y="50"
+          width="24"
+          height="350"
+          fill="url(#systemGray)"
+          rx="4"></rect>
+        <rect
+          x="616"
+          y="50"
+          width="24"
+          height="350"
+          fill="url(#systemGray)"
+          rx="4"></rect>
+        <rect
+          x="556"
+          y="50"
+          width="24"
+          height="350"
+          fill="url(#systemGray)"
+          rx="4"></rect>
+
+        {/* Barreaux brisés par l'arbre au centre */}
+        {/* Barreau gauche brisé */}
+        <path
+          d="M 280,50 L 304,50 L 304,180 L 260,250 L 280,300 L 280,400 L 256,400 L 256,290 L 230,240 L 280,170 Z"
+          fill="url(#systemGray)"></path>
+        {/* Barreau droit brisé */}
+        <path
+          d="M 520,50 L 496,50 L 496,180 L 540,250 L 520,300 L 520,400 L 544,400 L 544,290 L 570,240 L 520,170 Z"
+          fill="url(#systemGray)"></path>
+      </g>
+
+      {
+        /* ================= 2. LA NATURE ET LE VODUN (L'Arbre de Vie) ================= */
+      }
+      <g class="fa-breathe">
+        {/* Tronc puissant et racines brisant le sol et les barreaux */}
+        <path
+          d="M 370,380 C 340,410 250,420 200,420 C 260,380 340,360 360,280 C 370,200 350,150 350,150 L 450,150 C 450,150 430,200 440,280 C 460,360 540,380 600,420 C 550,420 460,410 430,380 Z"
+          fill="url(#treeTrunk)"
+          filter="url(#dropShadow)"></path>
+
+        {/* Lignes de vie dans le tronc */}
+        <path
+          d="M 385,350 Q 395,250 380,160 M 415,350 Q 405,250 420,160"
+          fill="none"
+          stroke="#2c170a"
+          stroke-width="4"
+          opacity="0.5"></path>
+
+        {/* Le Feuillage (Abondant, protecteur, lumineux) */}
+        <g filter="url(#dropShadow)">
+          <circle cx="400" cy="140" r="100" fill="url(#leafGreen)"></circle>
+          <circle cx="320" cy="180" r="70" fill="url(#leafGreen)"></circle>
+          <circle cx="480" cy="180" r="70" fill="url(#leafGreen)"></circle>
+          <circle cx="270" cy="140" r="60" fill="url(#leafGreen)"></circle>
+          <circle cx="530" cy="140" r="60" fill="url(#leafGreen)"></circle>
+          <circle cx="340" cy="90" r="60" fill="url(#leafGreen)"></circle>
+          <circle cx="460" cy="90" r="60" fill="url(#leafGreen)"></circle>
+        </g>
+
+        {/* Énergie Vitale / Fruits dorés (La subsistance) */}
+        <g filter="url(#divineGlow)" fill="#fef08a">
+          <circle cx="380" cy="80" r="6" class="animate-pulse"></circle>
+          <circle
+            cx="450"
+            cy="120"
+            r="5"
+            class="animate-pulse"
+            style="animation-delay: 0.5s;"></circle>
+          <circle
+            cx="300"
+            cy="150"
+            r="7"
+            class="animate-pulse"
+            style="animation-delay: 1s;"></circle>
+          <circle
+            cx="500"
+            cy="160"
+            r="6"
+            class="animate-pulse"
+            style="animation-delay: 1.5s;"></circle>
+          <circle
+            cx="400"
+            cy="180"
+            r="8"
+            class="animate-pulse"
+            style="animation-delay: 0.2s;"></circle>
+        </g>
+      </g>
+
+      {
+        /* ================= 3. L'HUMAIN (Libéré et Protégé) ================= */
+      }
+      {
+        /* La silhouette d'une personne assise sereinement entre les racines, au centre exact, à l'abri du système */
+      }
+      <g transform="translate(400, 360)">
+        <circle cx="0" cy="-25" r="8" fill="#d4af37" filter="url(#divineGlow)"
+        ></circle>
+        <path
+          d="M -12,0 C -12,-15 -6,-20 0,-20 C 6,-20 12,-15 12,0 Z"
+          fill="#d4af37"
+          filter="url(#divineGlow)"></path>
+        {/* Petite pulsation au cœur */}
+        <circle
+          cx="0"
+          cy="-10"
+          r="2"
+          fill="#ffffff"
+          class="animate-[pulse_2s_ease-in-out_infinite]"></circle>
+      </g>
+
+      {/* Étincelles de vie (Le Vodun qui repousse la grisaille) */}
+      <g fill="#fef08a" opacity="0.6">
+        <circle cx="280" cy="350" r="2" class="animate-[bounce_3s_infinite]"
+        ></circle>
+        <circle cx="520" cy="320" r="1.5" class="animate-[bounce_4s_infinite]"
+        ></circle>
+        <circle cx="350" cy="250" r="2" class="animate-[bounce_2s_infinite]"
+        ></circle>
+        <circle cx="450" cy="280" r="2" class="animate-[bounce_5s_infinite]"
+        ></circle>
+      </g>
+    </svg>
+  </div>
+
+  {/* Cadre de noblesse */}
+  <div
+    class="absolute inset-0 border-2 border-[#d4af37]/10 rounded-3xl group-hover:border-[#d4af37]/30 transition-colors duration-1000 pointer-events-none"
+  >
+  </div>
+</div>
+
+<style>
+  /* Respiration organique très lente de l'arbre (La nature est vivante) */
+  .fa-breathe {
+    transform-origin: 400px 420px;
+    animation: treeBreathe 8s ease-in-out infinite alternate;
+  }
+
+  @keyframes treeBreathe {
+    0% {
+      transform: scale(1) rotate(0deg);
+    }
+    100% {
+      transform: scale(1.02) rotate(0.5deg);
+    }
+  }
+</style>

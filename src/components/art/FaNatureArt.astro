@@ -1,125 +1,474 @@
 ---
-// FaHumanNatureBalanceArt.astro - Représentation littérale de l'équilibre Homme-Nature
+// FaHumanNatureBalanceArt.astro
+// Composant Ultra-Premium : L&apos;Équilibre Absolu entre la Nature et la Conscience
+// Architecture : Astro + SVG Natif + Filtres Avancés + Physique CSS (60fps)
+// UX : Fond "Beige Nocturne / Parchemin Sombre" anti-fatigue visuelle
 ---
 
 <div
-  class="flex justify-center items-center py-10 w-full"
-  aria-label="La balance du Fâ mettant en équilibre l'Humain et la Nature"
+  class="relative w-full max-w-3xl mx-auto aspect-video rounded-3xl overflow-hidden bg-[#2A231C] border border-[#d4af37]/20 shadow-[0_40px_80px_rgba(0,0,0,0.6),inset_0_0_60px_rgba(0,0,0,0.4)] group mb-16 mt-8"
+  aria-label="La balance sacrée du Fâ mettant en équilibre l'Humain et l'Arbre"
 >
-  {/* Conteneur circulaire doux représentant le monde */}
+  {
+    /* Lueur originelle en arrière-plan (Le souffle de la terre sur fond beige sombre) */
+  }
   <div
-    class="relative w-80 h-80 bg-stone-50 rounded-full border border-stone-200 shadow-[inset_0_0_40px_rgba(0,0,0,0.02)] flex justify-center items-end pb-8"
+    class="absolute inset-0 bg-[radial-gradient(circle_at_50%_70%,#423528_0%,#2A231C_70%)] animate-[pulse_8s_ease-in-out_infinite]"
   >
-    {/* --- LE PILIER CENTRAL (L'axe du Fâ) --- */}
-    <div class="absolute bottom-8 w-6 h-48 bg-stone-800 rounded-t-lg z-10">
-    </div>
-    <div
-      class="absolute bottom-6 w-32 h-4 bg-stone-800 rounded-full z-10 shadow-md"
-    >
-    </div>
-    <div class="absolute bottom-4 w-48 h-2 bg-stone-300 rounded-full z-0"></div>
+  </div>
 
-    {/* Point de pivot (L'œil de l'équilibre) */}
-    <div
-      class="absolute top-[80px] w-6 h-6 bg-amber-500 rounded-full border-4 border-stone-800 z-30 shadow-sm flex justify-center items-center"
-    >
-      <div class="w-1.5 h-1.5 bg-stone-900 rounded-full"></div>
-    </div>
+  {/* Bruit organique pour la texture parchemin/terre (SVG Natif) */}
+  <svg
+    class="absolute inset-0 w-full h-full opacity-25 mix-blend-overlay pointer-events-none"
+    xmlns="http://www.w3.org/2000/svg"
+  >
+    <filter id="organicNoise">
+      <feTurbulence
+        type="fractalNoise"
+        baseFrequency="0.8"
+        numOctaves="4"
+        stitchTiles="stitch"></feTurbulence>
+      <feColorMatrix
+        type="matrix"
+        values="1 0 0 0 0, 0 0.8 0 0 0, 0 0.4 0 0 0, 0 0 0 0.3 0"
+      ></feColorMatrix>
+    </filter>
+    <rect width="100%" height="100%" filter="url(#organicNoise)"></rect>
+  </svg>
 
-    {/* --- LE FLÉAU ET LES PLATEAUX (Animés subtilement) --- */}
-    <div
-      class="absolute top-[88px] w-64 h-2 bg-stone-800 rounded-full origin-center animate-seesaw z-20"
+  <div class="absolute inset-0 flex items-center justify-center">
+    <svg
+      viewBox="0 0 800 450"
+      class="w-full h-full overflow-visible"
+      xmlns="http://www.w3.org/2000/svg"
+      preserveAspectRatio="xMidYMid meet"
     >
-      {/* CÔTÉ GAUCHE : LA NATURE (Un Arbre) */}
-      <div
-        class="absolute -left-2 top-1 w-20 flex flex-col items-center animate-counter-seesaw origin-top"
+      <defs>
+        {/* DÉGRADÉS ORGANIQUES ET ROYAUX */}
+        <linearGradient id="goldDivine" x1="0%" y1="100%" x2="100%" y2="0%">
+          <stop offset="0%" stop-color="#7a5204"></stop>
+          <stop offset="50%" stop-color="#fef08a"></stop>
+          <stop offset="100%" stop-color="#d4af37"></stop>
+        </linearGradient>
+
+        <linearGradient id="woodPremium" x1="0%" y1="0%" x2="0%" y2="100%">
+          <stop offset="0%" stop-color="#4a3023"></stop>
+          <stop offset="50%" stop-color="#2a1a12"></stop>
+          <stop offset="100%" stop-color="#140c08"></stop>
+        </linearGradient>
+
+        <linearGradient id="emeraldCanopy" x1="0%" y1="0%" x2="100%" y2="100%">
+          <stop offset="0%" stop-color="#34d399"></stop>
+          <stop offset="40%" stop-color="#059669"></stop>
+          <stop offset="100%" stop-color="#064e3b"></stop>
+        </linearGradient>
+
+        <linearGradient id="humanObsidian" x1="0%" y1="0%" x2="100%" y2="100%">
+          <stop offset="0%" stop-color="#57534e"></stop>
+          <stop offset="50%" stop-color="#292524"></stop>
+          <stop offset="100%" stop-color="#0c0a09"></stop>
+        </linearGradient>
+
+        {/* FILTRES DE LUMIÈRE ET D'OMBRE */}
+        <filter id="epicShadow" x="-20%" y="-20%" width="140%" height="140%">
+          <feDropShadow
+            dx="0"
+            dy="12"
+            stdDeviation="8"
+            flood-color="#000"
+            flood-opacity="0.6"></feDropShadow>
+        </filter>
+
+        <filter id="divineGlow" x="-50%" y="-50%" width="200%" height="200%">
+          <feGaussianBlur stdDeviation="4" result="blur1"></feGaussianBlur>
+          <feGaussianBlur stdDeviation="12" result="blur2"></feGaussianBlur>
+          <feMerge>
+            <feMergeNode in="blur2"></feMergeNode>
+            <feMergeNode in="blur1"></feMergeNode>
+            <feMergeNode in="SourceGraphic"></feMergeNode>
+          </feMerge>
+        </filter>
+
+        {/* Texture bois (Filtre complexe) */}
+        <filter id="woodGrain" x="0%" y="0%" width="100%" height="100%">
+          <feTurbulence
+            type="fractalNoise"
+            baseFrequency="0.02 0.5"
+            numOctaves="3"
+            result="noise"></feTurbulence>
+          <feColorMatrix
+            type="matrix"
+            values="1 0 0 0 0  0 0.8 0 0 0  0 0.5 0 0 0  0 0 0 0.15 0"
+            in="noise"
+            result="coloredNoise"></feColorMatrix>
+          <feComposite
+            operator="in"
+            in="coloredNoise"
+            in2="SourceGraphic"
+            result="texture"></feComposite>
+          <feBlend mode="multiply" in="texture" in2="SourceGraphic"></feBlend>
+        </filter>
+      </defs>
+
+      {
+        /* ================= GÉOMÉTRIE SACRÉE (Arrière-plan animé) ================= */
+      }
+      <g
+        opacity="0.15"
+        class="origin-center animate-[spin_60s_linear_infinite]"
+        style="transform-origin: 400px 300px;"
       >
-        {/* Fils suspenseurs */}
-        <div
-          class="w-16 h-20 border-b-2 border-l border-r border-stone-400 opacity-60"
-          style="clip-path: polygon(50% 0%, 0% 100%, 100% 100%);"
-        >
-        </div>
-        {/* Plateau */}
-        <div
-          class="w-20 h-2.5 bg-stone-800 rounded-full shadow-md relative z-10 -mt-0.5"
-        >
-        </div>
+        <circle
+          cx="400"
+          cy="300"
+          r="250"
+          fill="none"
+          stroke="url(#goldDivine)"
+          stroke-width="1"
+          stroke-dasharray="4 12"></circle>
+        <circle
+          cx="400"
+          cy="300"
+          r="180"
+          fill="none"
+          stroke="url(#goldDivine)"
+          stroke-width="0.5"></circle>
+        <path
+          d="M400,50 L400,550 M150,300 L650,300"
+          stroke="url(#goldDivine)"
+          stroke-width="0.5"
+          stroke-dasharray="10 10"></path>
+      </g>
 
-        {/* L'Élément : L'Arbre */}
-        <div class="absolute bottom-2 flex flex-col items-center">
-          {/* Feuillage */}
-          <div
-            class="w-14 h-14 bg-emerald-600 rounded-full shadow-inner mb-[-12px] z-10 border-2 border-emerald-700/50"
-          >
-          </div>
-          {/* Tronc */}
-          <div class="w-3 h-8 bg-amber-900 rounded-sm"></div>
-        </div>
-      </div>
+      {/* ================= LA STRUCTURE DE LA BALANCE ================= */}
+      <g filter="url(#epicShadow)">
+        {/* Socle majestueux */}
+        <path
+          d="M330,420 L470,420 C480,420 490,430 490,440 L310,440 C310,430 320,420 330,420 Z"
+          fill="url(#woodPremium)"></path>
+        <rect
+          x="330"
+          y="420"
+          width="140"
+          height="20"
+          fill="url(#woodPremium)"
+          filter="url(#woodGrain)"></rect>
+        <line
+          x1="340"
+          y1="422"
+          x2="460"
+          y2="422"
+          stroke="url(#goldDivine)"
+          stroke-width="1.5"
+          opacity="0.5"></line>
 
-      {/* CÔTÉ DROIT : L'HUMAIN (Une Silhouette) */}
-      <div
-        class="absolute -right-2 top-1 w-20 flex flex-col items-center animate-counter-seesaw origin-top"
-      >
-        {/* Fils suspenseurs */}
-        <div
-          class="w-16 h-20 border-b-2 border-l border-r border-stone-400 opacity-60"
-          style="clip-path: polygon(50% 0%, 0% 100%, 100% 100%);"
-        >
-        </div>
-        {/* Plateau */}
-        <div
-          class="w-20 h-2.5 bg-stone-800 rounded-full shadow-md relative z-10 -mt-0.5"
-        >
-        </div>
+        {/* Pilier Central (L'Axe de l'Univers) */}
+        <path
+          d="M390,420 L394,180 C394,175 406,175 406,180 L410,420 Z"
+          fill="url(#woodPremium)"
+          filter="url(#woodGrain)"></path>
+        <line
+          x1="400"
+          y1="180"
+          x2="400"
+          y2="420"
+          stroke="#000000"
+          stroke-width="4"
+          opacity="0.4"></line>
+        <line
+          x1="395"
+          y1="180"
+          x2="395"
+          y2="420"
+          stroke="url(#goldDivine)"
+          stroke-width="1"
+          opacity="0.3"></line>
+      </g>
 
-        {/* L'Élément : L'Être Humain */}
-        <div class="absolute bottom-2 flex flex-col items-center">
-          {/* Tête */}
-          <div
-            class="w-5 h-5 bg-stone-700 rounded-full mb-1 z-10 border border-stone-600"
-          >
-          </div>
-          {/* Épaules / Buste */}
-          <div
-            class="w-10 h-10 bg-stone-700"
-            style="border-radius: 20px 20px 4px 4px;"
-          >
-          </div>
-        </div>
-      </div>
-    </div>
+      {/* L'Œil de l'Équilibre (Point de Pivot) */}
+      <g transform="translate(400, 180)" z-index="50">
+        <circle
+          cx="0"
+          cy="0"
+          r="14"
+          fill="#140c08"
+          stroke="url(#goldDivine)"
+          stroke-width="3"
+          filter="url(#divineGlow)"></circle>
+        <circle cx="0" cy="0" r="6" fill="url(#goldDivine)"></circle>
+        <circle cx="0" cy="0" r="2" fill="#ffffff" class="animate-pulse"
+        ></circle>
+      </g>
+
+      {
+        /* ================= LE SYSTÈME DYNAMIQUE (Fléau + Plateaux) ================= */
+      }
+      {/* Le conteneur principal du fléau qui oscille */}
+      <g class="fa-seesaw-beam">
+        {/* Le Fléau (La barre horizontale) */}
+        <g filter="url(#epicShadow)">
+          <path
+            d="M150,176 L650,176 C655,176 655,184 650,184 L150,184 C145,184 145,176 150,176 Z"
+            fill="url(#woodPremium)"
+            filter="url(#woodGrain)"></path>
+          <line
+            x1="160"
+            y1="178"
+            x2="640"
+            y2="178"
+            stroke="url(#goldDivine)"
+            stroke-width="1"
+            opacity="0.4"></line>
+
+          {/* Embouts en or */}
+          <circle cx="150" cy="180" r="8" fill="url(#goldDivine)"></circle>
+          <circle cx="650" cy="180" r="8" fill="url(#goldDivine)"></circle>
+        </g>
+
+        {
+          /* ================= PLATEAU GAUCHE : L'ARBRE (LA NATURE) ================= */
+        }
+        {
+          /* Le plateau gauche reste vertical grâce à l'animation de contre-poids */
+        }
+        <g class="fa-counter-seesaw" style="transform-origin: 150px 180px;">
+          {/* Chaînes d'or */}
+          <path
+            d="M150,180 L110,280 M150,180 L190,280"
+            stroke="url(#goldDivine)"
+            stroke-width="1.5"
+            stroke-dasharray="3 2"
+            opacity="0.8"></path>
+
+          {/* Le Plateau */}
+          <ellipse
+            cx="150"
+            cy="280"
+            rx="45"
+            ry="8"
+            fill="url(#woodPremium)"
+            filter="url(#epicShadow)"></ellipse>
+          <ellipse
+            cx="150"
+            cy="280"
+            rx="43"
+            ry="6"
+            fill="none"
+            stroke="url(#goldDivine)"
+            stroke-width="1"
+            opacity="0.5"></ellipse>
+
+          {/* L'Arbre Sacré (Iroko stylisé) */}
+          <g transform="translate(150, 280)">
+            <g class="fa-breathe">
+              {/* Tronc */}
+              <path
+                d="M-6,0 C-8,-20 -2,-35 -2,-50 L2,-50 C2,-35 8,-20 6,0 Z"
+                fill="url(#woodPremium)"></path>
+              {/* Racine et Branches (Détails) */}
+              <path
+                d="M-2,-50 C-15,-60 -25,-65 -20,-75 M2,-50 C15,-60 25,-65 20,-75 M0,-50 C0,-65 5,-75 0,-85"
+                stroke="url(#woodPremium)"
+                stroke-width="3"
+                fill="none"
+                stroke-linecap="round"></path>
+
+              {/* Feuillage Vibratoire */}
+              <g filter="url(#divineGlow)">
+                <circle
+                  cx="0"
+                  cy="-80"
+                  r="28"
+                  fill="url(#emeraldCanopy)"
+                  opacity="0.95"></circle>
+                <circle
+                  cx="-20"
+                  cy="-65"
+                  r="22"
+                  fill="url(#emeraldCanopy)"
+                  opacity="0.9"></circle>
+                <circle
+                  cx="20"
+                  cy="-65"
+                  r="22"
+                  fill="url(#emeraldCanopy)"
+                  opacity="0.9"></circle>
+                <circle
+                  cx="-12"
+                  cy="-50"
+                  r="16"
+                  fill="url(#emeraldCanopy)"
+                  opacity="0.85"></circle>
+                <circle
+                  cx="12"
+                  cy="-50"
+                  r="16"
+                  fill="url(#emeraldCanopy)"
+                  opacity="0.85"></circle>
+              </g>
+              {/* Points de vie (Lumière pure de la nature) */}
+              <circle
+                cx="-10"
+                cy="-75"
+                r="1.5"
+                fill="#fef08a"
+                class="animate-[pulse_2s_ease-in-out_infinite]"></circle>
+              <circle
+                cx="15"
+                cy="-60"
+                r="1.5"
+                fill="#fef08a"
+                class="animate-[pulse_2s_ease-in-out_infinite]"
+                style="animation-delay: 1s;"></circle>
+              <circle
+                cx="5"
+                cy="-90"
+                r="2"
+                fill="#fef08a"
+                class="animate-[pulse_2s_ease-in-out_infinite]"
+                style="animation-delay: 0.5s;"></circle>
+            </g>
+          </g>
+        </g>
+
+        {
+          /* ================= PLATEAU DROIT : L'HOMME (LA CONSCIENCE) ================= */
+        }
+        {/* Le plateau droit reste vertical également */}
+        <g class="fa-counter-seesaw" style="transform-origin: 650px 180px;">
+          {/* Chaînes d'or */}
+          <path
+            d="M650,180 L610,280 M650,180 L690,280"
+            stroke="url(#goldDivine)"
+            stroke-width="1.5"
+            stroke-dasharray="3 2"
+            opacity="0.8"></path>
+
+          {/* Le Plateau */}
+          <ellipse
+            cx="650"
+            cy="280"
+            rx="45"
+            ry="8"
+            fill="url(#woodPremium)"
+            filter="url(#epicShadow)"></ellipse>
+          <ellipse
+            cx="650"
+            cy="280"
+            rx="43"
+            ry="6"
+            fill="none"
+            stroke="url(#goldDivine)"
+            stroke-width="1"
+            opacity="0.5"></ellipse>
+
+          {/* La Silhouette de l'Homme (Position de méditation / Noblesse) */}
+          <g transform="translate(650, 280)">
+            <g class="fa-breathe" style="animation-delay: 2s;">
+              {/* Le Corps (Buste et épaules fluides) */}
+              <path
+                d="M-22,0 C-22,-15 -18,-35 -8,-45 C-4,-49 4,-49 8,-45 C18,-35 22,-15 22,0 Z"
+                fill="url(#humanObsidian)"
+                filter="url(#epicShadow)"></path>
+
+              {/* La Tête */}
+              <circle
+                cx="0"
+                cy="-60"
+                r="12"
+                fill="url(#humanObsidian)"
+                filter="url(#epicShadow)"></circle>
+
+              {/* Couronne subtile / Aura d'esprit */}
+              <path
+                d="M-10,-68 C-5,-74 5,-74 10,-68"
+                stroke="url(#goldDivine)"
+                stroke-width="2"
+                fill="none"
+                stroke-linecap="round"
+                filter="url(#divineGlow)"></path>
+
+              {
+                /* Le Sùn / La Conscience (Étincelle dorée vibrante au centre de la poitrine) */
+              }
+              <g transform="translate(0, -32)">
+                <circle
+                  cx="0"
+                  cy="0"
+                  r="8"
+                  fill="url(#goldDivine)"
+                  filter="url(#divineGlow)"
+                  opacity="0.4"></circle>
+                <circle
+                  cx="0"
+                  cy="0"
+                  r="3"
+                  fill="#ffffff"
+                  filter="url(#divineGlow)"
+                  class="animate-[pulse_2s_ease-in-out_infinite]"></circle>
+              </g>
+            </g>
+          </g>
+        </g>
+      </g>
+    </svg>
+  </div>
+
+  {/* Cadre de luxe enveloppant */}
+  <div
+    class="absolute inset-0 border-2 border-[#d4af37]/10 rounded-3xl group-hover:border-[#d4af37]/30 transition-colors duration-1000 pointer-events-none"
+  >
   </div>
 </div>
 
 <style>
-  /* Le fléau de la balance oscille très légèrement pour montrer qu'elle est active, mais en équilibre */
-  @keyframes seesaw {
+  /* ================= PHYSIQUE DU BALANCIER (CSS Ultra-Fluide) ================= */
+
+  /* Rotation globale du fléau autour du pilier central (Pivot: 400px 180px) */
+  .fa-seesaw-beam {
+    transform-origin: 400px 180px;
+    animation: epicSeesaw 8s cubic-bezier(0.45, 0.05, 0.55, 0.95) infinite;
+  }
+
+  @keyframes epicSeesaw {
     0%,
     100% {
-      transform: rotate(-1.5deg);
+      transform: rotate(-2.5deg);
     }
     50% {
-      transform: rotate(1.5deg);
+      transform: rotate(2.5deg);
     }
   }
 
-  /* Les plateaux restent parfaitement droits par rapport à la gravité */
-  @keyframes counter-seesaw {
+  /* Contre-rotation stricte des plateaux pour qu'ils respectent la gravité */
+  .fa-counter-seesaw {
+    /* Le transform-origin est défini en ligne dans le HTML pour chaque plateau */
+    animation: epicCounterSeesaw 8s cubic-bezier(0.45, 0.05, 0.55, 0.95)
+      infinite;
+  }
+
+  @keyframes epicCounterSeesaw {
     0%,
     100% {
-      transform: rotate(1.5deg);
+      transform: rotate(2.5deg);
     }
     50% {
-      transform: rotate(-1.5deg);
+      transform: rotate(-2.5deg);
     }
   }
 
-  .animate-seesaw {
-    animation: seesaw 5s ease-in-out infinite;
+  /* Respiration organique pour l'Arbre et l'Humain (Simulation de l'énergie vitale) */
+  .fa-breathe {
+    animation: organicBreathe 6s ease-in-out infinite;
   }
-  .animate-counter-seesaw {
-    animation: counter-seesaw 5s ease-in-out infinite;
+
+  @keyframes organicBreathe {
+    0%,
+    100% {
+      transform: scale(1) translateY(0);
+    }
+    50% {
+      transform: scale(1.02) translateY(-2px);
+    }
   }
 </style>
