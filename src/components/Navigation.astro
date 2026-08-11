@@ -41,7 +41,7 @@ const navLinks = [
 
   {/* SÉLECTEUR DE LANGUE (i18n) */}
   <div
-    class="relative group mt-4 xl:mt-0 w-full xl:w-auto flex justify-center xl:ml-2"
+    class="relative group mt-4 xl:mt-0 w-full xl:w-auto flex flex-col xl:flex-row items-center justify-center xl:ml-2"
   >
     <button
       id="lang-btn"
@@ -71,7 +71,7 @@ const navLinks = [
     {/* Menu Déroulant des Langues */}
     <div
       id="lang-dropdown"
-      class="absolute top-full right-auto xl:left-1/2 xl:-translate-x-1/2 mt-1 w-48 lg:w-40 max-h-60 overflow-y-auto overscroll-contain bg-dark-surface border border-white/10 rounded-lg shadow-2xl opacity-0 invisible xl:group-hover:opacity-100 xl:group-hover:visible transition-all duration-300 flex flex-col z-50 origin-top"
+      class="hidden xl:flex relative xl:absolute top-full right-auto xl:left-1/2 xl:-translate-x-1/2 mt-2 w-full max-w-[220px] xl:w-48 lg:w-40 max-h-60 overflow-y-auto overscroll-contain bg-dark-surface border border-white/10 rounded-lg shadow-2xl opacity-0 invisible xl:group-hover:opacity-100 xl:group-hover:visible transition-all duration-300 flex-col z-50 origin-top"
     >
       <a
         href="/fon"
@@ -140,13 +140,16 @@ const navLinks = [
         e.preventDefault();
         e.stopPropagation();
 
-        const isClosed = langDropdown.classList.contains("opacity-0");
+        const isClosed =
+          langDropdown.classList.contains("opacity-0") ||
+          langDropdown.classList.contains("hidden");
+
         if (isClosed) {
-          langDropdown.classList.remove("opacity-0", "invisible");
-          langDropdown.classList.add("opacity-100", "visible");
+          langDropdown.classList.remove("hidden", "opacity-0", "invisible");
+          langDropdown.classList.add("flex", "opacity-100", "visible");
         } else {
-          langDropdown.classList.add("opacity-0", "invisible");
-          langDropdown.classList.remove("opacity-100", "visible");
+          langDropdown.classList.add("hidden", "opacity-0", "invisible");
+          langDropdown.classList.remove("flex", "opacity-100", "visible");
         }
       });
 
@@ -155,8 +158,8 @@ const navLinks = [
           !newLangBtn.contains(e.target as Node) &&
           !langDropdown.contains(e.target as Node)
         ) {
-          langDropdown.classList.add("opacity-0", "invisible");
-          langDropdown.classList.remove("opacity-100", "visible");
+          langDropdown.classList.add("hidden", "opacity-0", "invisible");
+          langDropdown.classList.remove("flex", "opacity-100", "visible");
         }
       });
     }
