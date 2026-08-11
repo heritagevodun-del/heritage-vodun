@@ -13,7 +13,7 @@ const navLinks = [
 
 <nav
   id="nav-menu"
-  class="hidden xl:flex absolute xl:relative top-full left-0 w-full xl:w-auto bg-dark-bg/95 xl:bg-transparent backdrop-blur-xl xl:backdrop-blur-none flex-col xl:flex-row items-center py-6 xl:py-0 px-4 xl:px-0 gap-4 xl:gap-6 xl:gap-8 border-b xl:border-none border-white/10 shadow-2xl xl:shadow-none transition-all duration-300 z-50"
+  class="hidden xl:flex absolute xl:relative top-full left-0 w-full xl:w-auto max-h-[calc(100vh-80px)] xl:max-h-none overflow-y-auto xl:overflow-visible overscroll-contain bg-dark-bg/95 xl:bg-transparent backdrop-blur-xl xl:backdrop-blur-none flex-col xl:flex-row items-center py-6 xl:py-0 px-4 xl:px-0 gap-4 xl:gap-6 xl:gap-8 border-b xl:border-none border-white/10 shadow-2xl xl:shadow-none transition-all duration-300 z-50"
 >
   {
     navLinks.map((link) => {
@@ -71,7 +71,7 @@ const navLinks = [
     {/* Menu Déroulant des Langues */}
     <div
       id="lang-dropdown"
-      class="absolute top-full right-auto xl:left-1/2 xl:-translate-x-1/2 mt-1 w-48 lg:w-40 bg-dark-surface border border-white/10 rounded-lg shadow-2xl opacity-0 invisible xl:group-hover:opacity-100 xl:group-hover:visible transition-all duration-300 flex flex-col overflow-hidden z-50 origin-top"
+      class="absolute top-full right-auto xl:left-1/2 xl:-translate-x-1/2 mt-1 w-48 lg:w-40 max-h-60 overflow-y-auto overscroll-contain bg-dark-surface border border-white/10 rounded-lg shadow-2xl opacity-0 invisible xl:group-hover:opacity-100 xl:group-hover:visible transition-all duration-300 flex flex-col z-50 origin-top"
     >
       <a
         href="/fon"
