@@ -27,7 +27,7 @@ let optimizedOgImage = frontmatter.image;
 
 if (frontmatter.image) {
   // 1. On nettoie le nom de l'image (on retire le '/' du début s'il y en a un)
-  // "/fa.jpeg" devient "fa.jpeg"
+  // "/fa.webp" devient "fa.webp"
   const cleanImageName = frontmatter.image.replace(/^\/+/, "");
 
   // 2. On reconstruit le chemin strict attendu par import.meta.glob
