@@ -1,0 +1,364 @@
+---
+// CulturalMatrixArt.astro
+// Composant Expert : Le Tissu Humain et la Culture (Le réseau du Sè)
+// NOUVEAUTÉ : Le Tissage Sacré en arrière-plan et l'interactivité au survol.
+---
+
+<div
+  class="relative w-full max-w-3xl mx-auto aspect-video rounded-3xl overflow-hidden bg-[#050505] border border-[#d4af37]/20 shadow-[0_40px_100px_rgba(0,0,0,0.8),inset_0_0_80px_rgba(0,0,0,0.5)] group mb-16 mt-8 cursor-pointer"
+  aria-label="Des silhouettes humaines errantes reliées par un fil d'or, tissant un motif sacré."
+>
+  {/* Le vide cosmique */}
+  <div
+    class="absolute inset-0 bg-[radial-gradient(circle_at_50%_50%,#1f160c_0%,#050505_70%)] group-hover:bg-[radial-gradient(circle_at_50%_50%,#3a2612_0%,#050505_75%)] transition-colors duration-1000"
+  >
+  </div>
+
+  <div class="absolute inset-0 flex items-center justify-center">
+    <svg
+      viewBox="0 0 800 450"
+      class="w-full h-full overflow-visible matrix-container"
+      xmlns="http://www.w3.org/2000/svg"
+      preserveAspectRatio="xMidYMid meet"
+    >
+      <defs>
+        <filter id="goldGlow" x="-50%" y="-50%" width="200%" height="200%">
+          <feGaussianBlur stdDeviation="6" result="blur"></feGaussianBlur>
+          <feMerge>
+            <feMergeNode in="blur"></feMergeNode>
+            <feMergeNode in="SourceGraphic"></feMergeNode>
+          </feMerge>
+        </filter>
+
+        {/* NOUVEAU : Le Motif de Tissage Sacré (Fâ / Pagne) */}
+        <pattern
+          id="sacredWeave"
+          width="40"
+          height="40"
+          patternUnits="userSpaceOnUse"
+          patternTransform="scale(1.5)"
+        >
+          <path
+            d="M20 0 L40 20 L20 40 L0 20 Z"
+            fill="none"
+            stroke="#d4af37"
+            stroke-width="0.5"
+            stroke-opacity="0.15"
+            class="weave-line"></path>
+          <circle cx="20" cy="20" r="1" fill="#d4af37" fill-opacity="0.3"
+          ></circle>
+        </pattern>
+
+        <mask id="fadeMask">
+          <radialGradient id="fadeGrad">
+            <stop offset="0%" stop-color="white" stop-opacity="1"></stop>
+            <stop offset="60%" stop-color="white" stop-opacity="0.5"></stop>
+            <stop offset="100%" stop-color="black" stop-opacity="0"></stop>
+          </radialGradient>
+          <circle cx="400" cy="225" r="180" fill="url(#fadeGrad)"></circle>
+        </mask>
+
+        <g id="human-silhouette">
+          <circle cx="0" cy="-12" r="4.5" fill="currentColor"></circle>
+          <path d="M-9,6 C-9,-2 -4,-4 0,-4 C4,-4 9,-2 9,6 Z" fill="currentColor"
+          ></path>
+        </g>
+
+        <g id="cultural-branch">
+          <path
+            d="M 400 225 L 400 130 L 330 70 L 400 30 L 470 70 L 400 130"
+            fill="none"
+            stroke="#d4af37"
+            stroke-width="1.5"
+            class="thread-path"
+            filter="url(#goldGlow)"></path>
+          <path
+            d="M 330 70 L 230 130"
+            fill="none"
+            stroke="#d4af37"
+            stroke-width="1"
+            class="thread-path-delay"
+            filter="url(#goldGlow)"></path>
+          <use href="#human-silhouette" x="400" y="130" class="human-level-1"
+          ></use>
+          <use href="#human-silhouette" x="330" y="70" class="human-level-2"
+          ></use>
+          <use href="#human-silhouette" x="470" y="70" class="human-level-2"
+          ></use>
+          <use href="#human-silhouette" x="400" y="30" class="human-level-3"
+          ></use>
+        </g>
+      </defs>
+
+      {
+        /* ================= 1. LE TISSAGE COSMIQUE (La culture en action) ================= */
+      }
+      {
+        /* Ce motif géométrique tourne lentement dans le sens inverse de la ronde pour un effet de profondeur incroyable */
+      }
+      <g mask="url(#fadeMask)">
+        <circle
+          cx="400"
+          cy="225"
+          r="250"
+          fill="url(#sacredWeave)"
+          class="counter-rotating-weave"></circle>
+      </g>
+
+      {/* ================= 2. LES ÂMES ERRANTES ================= */}
+      <g filter="url(#goldGlow)">
+        <use
+          href="#human-silhouette"
+          x="150"
+          y="80"
+          class="lost-soul-1"
+          style="color: #262626;"></use>
+        <use
+          href="#human-silhouette"
+          x="650"
+          y="100"
+          class="lost-soul-2"
+          style="color: #262626;"></use>
+        <use
+          href="#human-silhouette"
+          x="80"
+          y="300"
+          class="lost-soul-3"
+          style="color: #262626;"></use>
+        <use
+          href="#human-silhouette"
+          x="720"
+          y="320"
+          class="lost-soul-1"
+          style="color: #262626;"></use>
+        <use
+          href="#human-silhouette"
+          x="220"
+          y="380"
+          class="lost-soul-2"
+          style="color: #262626;"></use>
+        <use
+          href="#human-silhouette"
+          x="580"
+          y="400"
+          class="lost-soul-3"
+          style="color: #262626;"></use>
+      </g>
+
+      {/* ================= 3. LA RONDE DE LA SOCIÉTÉ ================= */}
+      <g class="rotating-matrix">
+        <use href="#cultural-branch" transform="rotate(0 400 225)"></use>
+        <use href="#cultural-branch" transform="rotate(60 400 225)"></use>
+        <use href="#cultural-branch" transform="rotate(120 400 225)"></use>
+        <use href="#cultural-branch" transform="rotate(180 400 225)"></use>
+        <use href="#cultural-branch" transform="rotate(240 400 225)"></use>
+        <use href="#cultural-branch" transform="rotate(300 400 225)"></use>
+      </g>
+
+      {/* ================= 4. LE CŒUR (Les Ancêtres) ================= */}
+      <circle
+        cx="400"
+        cy="225"
+        r="14"
+        fill="#d4af37"
+        filter="url(#goldGlow)"
+        class="core-pulse group-hover:scale-125 transition-transform duration-500"
+      ></circle>
+      <circle cx="400" cy="225" r="5" fill="#ffffff"></circle>
+
+      <circle
+        cx="400"
+        cy="225"
+        r="30"
+        fill="none"
+        stroke="#d4af37"
+        stroke-width="1.5"
+        class="resonance-ring group-hover:stroke-width-2 transition-all"
+      ></circle>
+      <circle
+        cx="400"
+        cy="225"
+        r="60"
+        fill="none"
+        stroke="#d4af37"
+        stroke-width="0.5"
+        class="resonance-ring delay-ring group-hover:stroke-width-2 transition-all"
+      ></circle>
+    </svg>
+  </div>
+</div>
+
+<style>
+  /* Rotation de la société */
+  .rotating-matrix {
+    transform-origin: 400px 225px;
+    animation: slowRotate 45s linear infinite;
+  }
+
+  /* NOUVEAU : Rotation inverse du tissu sacré (Effet Parallax et Harmonie) */
+  .counter-rotating-weave {
+    transform-origin: 400px 225px;
+    animation: slowRotateReverse 60s linear infinite;
+    transition: opacity 1s;
+    opacity: 0.5;
+  }
+
+  /* Éveil du tissu au survol de la souris */
+  .group:hover .counter-rotating-weave {
+    opacity: 1;
+    animation-duration: 30s; /* Le tissage s'accélère ! */
+  }
+
+  @keyframes slowRotate {
+    0% {
+      transform: rotate(0deg);
+    }
+    100% {
+      transform: rotate(360deg);
+    }
+  }
+  @keyframes slowRotateReverse {
+    0% {
+      transform: rotate(360deg);
+    }
+    100% {
+      transform: rotate(0deg);
+    }
+  }
+
+  /* Accélération des ondes au survol */
+  .group:hover .resonance-ring {
+    animation-duration: 2s;
+  }
+
+  /* Fil de culture */
+  .thread-path {
+    stroke-dasharray: 600;
+    stroke-dashoffset: 600;
+    animation: drawThread 8s cubic-bezier(0.4, 0, 0.2, 1) infinite alternate;
+  }
+  .thread-path-delay {
+    stroke-dasharray: 400;
+    stroke-dashoffset: 400;
+    animation: drawThread 8s cubic-bezier(0.4, 0, 0.2, 1) infinite alternate;
+    animation-delay: 1.5s;
+  }
+
+  .group:hover .thread-path,
+  .group:hover .thread-path-delay {
+    stroke-width: 2.5px; /* Le fil devient plus fort */
+    filter: drop-shadow(0 0 5px #d4af37);
+  }
+
+  @keyframes drawThread {
+    0%,
+    10% {
+      stroke-dashoffset: 600;
+      opacity: 0;
+    }
+    60%,
+    100% {
+      stroke-dashoffset: 0;
+      opacity: 1;
+    }
+  }
+
+  /* Éveil des humains */
+  .human-level-1,
+  .human-level-2,
+  .human-level-3 {
+    color: #333333;
+    transition: all 0.5s ease;
+    animation: awakenHuman 8s cubic-bezier(0.4, 0, 0.2, 1) infinite alternate;
+  }
+  .human-level-1 {
+    animation-delay: 1.5s;
+  }
+  .human-level-2 {
+    animation-delay: 2.5s;
+  }
+  .human-level-3 {
+    animation-delay: 3.5s;
+  }
+
+  /* Intensification de la lumière des humains au survol */
+  .group:hover .human-level-1,
+  .group:hover .human-level-2,
+  .group:hover .human-level-3 {
+    filter: drop-shadow(0 0 15px #d4af37) brightness(1.5);
+  }
+
+  @keyframes awakenHuman {
+    0%,
+    20% {
+      color: #333333;
+      filter: none;
+    }
+    50%,
+    100% {
+      color: #d4af37;
+      filter: drop-shadow(0 0 8px #d4af37);
+    }
+  }
+
+  /* Cœur central */
+  .core-pulse {
+    transform-origin: 400px 225px; /* <-- LA LIGNE MAGIQUE À AJOUTER */
+    animation: pulseCore 3s ease-in-out infinite alternate;
+  }
+  .group:hover .core-pulse {
+    animation-duration: 1s; /* Le cœur bat plus vite ! */
+  }
+
+  @keyframes pulseCore {
+    0% {
+      transform: scale(0.9);
+      opacity: 0.7;
+    }
+    100% {
+      transform: scale(1.15);
+      opacity: 1;
+    }
+  }
+
+  /* Ondes de résonance */
+  .resonance-ring {
+    transform-origin: 400px 225px;
+    animation: expandRing 4s ease-out infinite;
+  }
+  .delay-ring {
+    animation-delay: 2s;
+  }
+  @keyframes expandRing {
+    0% {
+      transform: scale(0);
+      opacity: 1;
+    }
+    100% {
+      transform: scale(3.5);
+      opacity: 0;
+    }
+  }
+
+  /* Les âmes errantes */
+  .lost-soul-1 {
+    animation: driftLost 12s ease-in-out infinite alternate;
+  }
+  .lost-soul-2 {
+    animation: driftLost 15s ease-in-out infinite alternate-reverse;
+  }
+  .lost-soul-3 {
+    animation: driftLost 18s ease-in-out infinite alternate;
+  }
+
+  @keyframes driftLost {
+    0% {
+      transform: translate(0, 0) rotate(-15deg);
+      opacity: 0.2;
+    }
+    100% {
+      transform: translate(30px, -20px) rotate(25deg);
+      opacity: 0.6;
+    }
+  }
+</style>

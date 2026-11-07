@@ -1,17 +1,27 @@
 ---
 import { Redis } from "@upstash/redis";
 
-// Initialisation de la connexion Redis via les variables d'environnement
-const redis = Redis.fromEnv();
-
 export interface Props {
   slug: string; // L'identifiant unique de l'article
 }
 
 const { slug } = Astro.props;
 
-// Incrémente le compteur pour cet article de 1 et récupère le nouveau total
-const views = await redis.incr(`pageviews:${slug}`);
+let views = 0;
+
+try {
+  // Initialisation de la connexion Redis via les variables d'environnement
+  const redis = Redis.fromEnv();
+
+  // Incrémente le compteur pour cet article de 1 et récupère le nouveau total
+  views = await redis.incr(`pageviews:${slug}`);
+} catch (error) {
+  // Intercepte l'erreur (ex: pas de connexion internet pendant le build local)
+  console.warn(
+    `⚠️ Impossible de joindre Upstash Redis pour l'article : ${slug}.`,
+  );
+  views = 0; // Valeur de repli pour ne pas casser le site
+}
 ---
 
 <div
