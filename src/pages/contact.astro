@@ -1,7 +1,7 @@
 ---
 import BaseLayout from "../layouts/BaseLayout.astro";
 
-// SEO : Schema.org pour la page Contact
+// SEO : Schema.org institutionnel pour la page Contact
 const schemaData = {
   "@context": "https://schema.org",
   "@type": "ContactPage",
@@ -9,17 +9,22 @@ const schemaData = {
     "@type": "Organization",
     name: "Héritage Vodun",
     url: "https://www.heritagevodun.com",
+    description:
+      "Institution culturelle dédiée à la préservation, à l'étude et à la transmission des savoirs endogènes aux quatre coins du Bénin.",
     contactPoint: {
       "@type": "ContactPoint",
-      contactType: "customer service",
+      contactType: "Relations culturelles et institutionnelles",
       areaServed: "BJ",
-      availableLanguage: ["French", "English"],
+      availableLanguage: ["French", "English", "Fon"],
     },
   },
 };
 ---
 
-<BaseLayout titrePage="Contact & Réservation | L'Arbre à Palabre">
+<BaseLayout
+  titrePage="Contact & Rencontres | Héritage Vodun"
+  description="Prenez contact avec l'institution Héritage Vodun. Préparez une immersion culturelle aux quatre coins du Bénin, proposez une alliance ou rejoignez notre Charte Éthique."
+>
   <script
     is:inline
     type="application/ld+json"
@@ -33,16 +38,18 @@ const schemaData = {
     >
       <span
         class="block text-gold text-xs uppercase tracking-[0.25em] font-bold mb-4"
-        >L&apos;Arbre à Palabre</span
       >
+        L&apos;Arbre à Palabre
+      </span>
       <h1 class="font-serif text-5xl md:text-6xl text-white mb-6 leading-tight">
         Parlons ensemble
       </h1>
       <div class="w-16 h-1 bg-gold mx-auto mb-8 rounded-full"></div>
-      <p class="text-lg text-gray-400 leading-relaxed font-sans">
+      <p class="text-lg text-gray-300 leading-relaxed font-sans">
         Sous l&apos;arbre à palabre, la parole se libère et les liens se
-        tissent. Que ce soit pour organiser votre voyage ou proposer une
-        alliance, nous sommes à votre écoute.
+        tissent dans le respect mutuel. Que ce soit pour préparer une immersion
+        aux quatre coins du Bénin, nouer un partenariat ou engager un dialogue
+        sincère, notre équipe vous accueille.
       </p>
     </div>
 
@@ -55,35 +62,51 @@ const schemaData = {
         class="flex flex-col gap-8 order-2 lg:order-1 opacity-0 animate-fade-right"
         style="animation-delay: 200ms;"
       >
-        {/* Carte IA */}
+        {/* Carte Charte Éthique & Label */}
         <div
           class="bg-gradient-to-br from-gold/10 to-transparent border border-gold/30 p-8 rounded-xl text-center shadow-[0_10px_30px_rgba(212,175,55,0.1)] hover:shadow-[0_15px_40px_rgba(212,175,55,0.2)] transition-all duration-300"
         >
-          <div class="text-4xl mb-4 animate-[bounce_3s_infinite]">✨</div>
+          <div class="text-4xl mb-4">🛡️</div>
           <h3 class="font-serif text-2xl text-white mb-3">
-            Une question sur notre héritage ?
+            Un Cadre de Confiance
           </h3>
           <p class="text-gray-400 text-sm leading-relaxed mb-6">
-            Vous souhaitez comprendre l&apos;essence du Fâ ou l&apos;histoire
-            d&apos;une divinité ? Notre conseiller spirituel numérique est à
-            votre écoute immédiate.
+            Chaque rencontre sur le terrain repose sur le respect absolu des
+            dignitaires, l&apos;intégrité des lieux sacrés et la fidélité
+            historique.
           </p>
           <a
-            href="https://www.mindoguesito.com"
-            class="open-oracle inline-block bg-gold hover:bg-gold-hover text-black font-bold uppercase tracking-widest text-xs px-6 py-3 rounded-full transition-all duration-300 hover:-translate-y-1 shadow-[0_5px_15px_rgba(212,175,55,0.2)]"
+            href="/label"
+            class="inline-block bg-gold hover:bg-gold-hover text-black font-bold uppercase tracking-widest text-xs px-6 py-3 rounded-full transition-all duration-300 hover:-translate-y-1 shadow-[0_5px_15px_rgba(212,175,55,0.2)]"
           >
-            Consulter notre Guide
+            Découvrir le Label
           </a>
         </div>
 
-        {/* Carte Localisation */}
+        {/* Carte Ancrage Territorial */}
         <div
           class="bg-dark-surface border border-white/5 p-8 rounded-xl text-center"
         >
           <div class="text-4xl mb-4 opacity-80">📍</div>
-          <h3 class="font-serif text-xl text-white mb-2">Localisation</h3>
+          <h3 class="font-serif text-xl text-white mb-2">
+            Quartier Général
+          </h3>
           <p class="text-gray-400 text-sm leading-relaxed">
-            Ouidah, Bénin<br />La Cité Historique
+            Ouidah, Bénin<br />
+          </p>
+        </div>
+
+        {/* Carte Philosophie d'Accueil */}
+        <div
+          class="bg-dark-surface border border-white/5 p-8 rounded-xl text-center"
+        >
+          <div class="text-4xl mb-4 opacity-80">🌿</div>
+          <h3 class="font-serif text-xl text-white mb-2">
+            Esprit d&apos;Ouverture
+          </h3>
+          <p class="text-gray-400 text-sm leading-relaxed">
+            Une démarche ouverte à toute personne animée par le bon sens et le
+            désir de comprendre l&apos;ingéniosité de la culture africaine.
           </p>
         </div>
       </aside>
@@ -105,11 +128,11 @@ const schemaData = {
           <h2
             class="font-serif text-3xl md:text-4xl text-white mb-2 relative z-10"
           >
-            Écrire à l&apos;équipe du domaine
+            Écrire à l&apos;équipe Héritage Vodun
           </h2>
           <p class="text-gray-400 text-sm mb-10 relative z-10">
-            Pour organiser votre venue, proposer une alliance ou pour toute
-            demande presse.
+            Pour organiser une rencontre sur le terrain, proposer une alliance
+            institutionnelle ou solliciter un échange.
           </p>
 
           <form id="form-contact" class="flex flex-col gap-6 relative z-10">
@@ -122,7 +145,7 @@ const schemaData = {
               type="hidden"
               name="subject"
               id="hidden-subject"
-              value="Nouveau Message Site Web"
+              value="Nouveau Message — Héritage Vodun"
             />
             <input
               type="checkbox"
@@ -136,8 +159,9 @@ const schemaData = {
                 <label
                   for="nom"
                   class="text-xs font-bold uppercase tracking-widest text-gold"
-                  >Nom complet</label
                 >
+                  Nom complet
+                </label>
                 <input
                   type="text"
                   id="nom"
@@ -151,8 +175,9 @@ const schemaData = {
                 <label
                   for="email-contact"
                   class="text-xs font-bold uppercase tracking-widest text-gold"
-                  >Email</label
                 >
+                  Email
+                </label>
                 <input
                   type="email"
                   id="email-contact"
@@ -168,8 +193,9 @@ const schemaData = {
               <label
                 for="sujet-select"
                 class="text-xs font-bold uppercase tracking-widest text-gold"
-                >Objet du message</label
               >
+                Objet de votre démarche
+              </label>
               <div class="relative">
                 <select
                   id="sujet-select"
@@ -177,14 +203,21 @@ const schemaData = {
                   required
                   class="w-full bg-black/50 border border-white/10 rounded-md px-4 py-3 text-white appearance-none cursor-pointer focus:outline-none focus:border-gold focus:ring-1 focus:ring-gold transition-all duration-300 [&>option]:bg-dark-surface [&>option]:text-white"
                 >
-                  <option value="" disabled selected
-                    >-- Choisissez un sujet --</option
-                  >
-                  <option value="Voyage">Organiser une visite à Ouidah</option>
-                  <option value="Partenariat"
-                    >Proposition d&apos;alliance / Partenariat</option
-                  >
-                  <option value="Presse">Presse & Médias</option>
+                  <option value="" disabled selected>
+                    -- Choisissez un sujet --
+                  </option>
+                  <option value="Immersion">
+                    Organiser une immersion culturelle au Bénin
+                  </option>
+                  <option value="Label">
+                    Rejoindre la Charte Éthique / Le Label
+                  </option>
+                  <option value="Partenariat">
+                    Proposition d&apos;alliance ou partenariat institutionnel
+                  </option>
+                  <option value="Presse">
+                    Presse, Recherche &amp; Médias
+                  </option>
                   <option value="Autre">Autre demande</option>
                 </select>
                 <div
@@ -199,8 +232,9 @@ const schemaData = {
               <label
                 for="message"
                 class="text-xs font-bold uppercase tracking-widest text-gold"
-                >Votre Message</label
               >
+                Votre Message
+              </label>
               <textarea
                 id="message"
                 name="message"
@@ -248,9 +282,9 @@ const schemaData = {
       const object = Object.fromEntries(formData);
       const json = JSON.stringify(object);
 
-      result.innerHTML = "Envoi en cours...";
+      result.innerHTML = "Transmission en cours...";
       result.className =
-        "block text-center font-bold text-sm mt-2 p-4 rounded-md text-gold"; // Style Loading
+        "block text-center font-bold text-sm mt-2 p-4 rounded-md text-gold";
       btn.innerHTML = "Patientez...";
       btn.disabled = true;
 
@@ -266,17 +300,17 @@ const schemaData = {
           let jsonResponse = await response.json();
           if (response.status == 200) {
             result.innerHTML =
-              "✨ Message reçu !<br>Nous vous répondrons dans les plus brefs délais.";
+              "Message bien reçu.<br>Notre équipe vous répondra dans les plus brefs délais.";
             result.className =
-              "block text-center font-bold text-sm mt-2 p-4 rounded-md bg-green-900/30 text-green-400 border border-green-500/30"; // Style Success
+              "block text-center font-bold text-sm mt-2 p-4 rounded-md bg-green-900/30 text-green-400 border border-green-500/30";
             form.reset();
             btn.innerHTML = "Message Transmis";
           } else {
             console.log(response);
             result.innerHTML =
-              jsonResponse.message || "Erreur lors de l&apos;envoi.";
+              jsonResponse.message || "Erreur lors de l'envoi.";
             result.className =
-              "block text-center font-bold text-sm mt-2 p-4 rounded-md bg-red-900/30 text-red-400 border border-red-500/30"; // Style Error
+              "block text-center font-bold text-sm mt-2 p-4 rounded-md bg-red-900/30 text-red-400 border border-red-500/30";
             btn.innerHTML = "Réessayer";
             btn.disabled = false;
           }
@@ -285,7 +319,7 @@ const schemaData = {
           console.log(error);
           result.innerHTML = "Erreur de connexion.";
           result.className =
-            "block text-center font-bold text-sm mt-2 p-4 rounded-md bg-red-900/30 text-red-400 border border-red-500/30"; // Style Error
+            "block text-center font-bold text-sm mt-2 p-4 rounded-md bg-red-900/30 text-red-400 border border-red-500/30";
           btn.innerHTML = "Réessayer";
           btn.disabled = false;
         });

@@ -1,29 +1,29 @@
 ---
 import BaseLayout from "../layouts/BaseLayout.astro";
 
-// Métadonnées pour le Ministre et le SEO
-const pageTitle = "Label Qualité & Certification | Héritage Vodun";
+// Métadonnées institutionnelles et SEO
+const pageTitle = "Label Qualité & Charte Éthique | Héritage Vodun";
 const description =
-  "Découvrez la Charte de Confiance Héritage Vodun. Le premier label garantissant l'authenticité, l'éthique et la sécurité du tourisme spirituel au Bénin.";
+  "Découvrez la Charte de Confiance Héritage Vodun. La référence nationale garantissant l'authenticité historique, le respect du sacré et la qualité de l'accueil culturel aux quatre coins du Bénin.";
 ---
 
 <BaseLayout titrePage={pageTitle} description={description}>
   <div class="min-h-screen bg-dark-bg pb-24 overflow-x-hidden">
-    {/* --- HERO SECTION --- */}
+    {/* --- HERO SECTION : SCEAU INSTITUTIONNEL --- */}
     <section
       class="relative text-center pt-24 pb-20 px-6 bg-[radial-gradient(ellipse_at_top,#1a1a1a_0%,#050505_100%)] opacity-0 animate-fade-down"
     >
-      <div class="flex justify-center items-end gap-4 md:gap-8 mb-16 flex-wrap">
-        {/* LOGO 1: Héritage Vodun */}
+      {/* Emblème officiel Héritage Vodun */}
+      <div class="flex justify-center items-center mb-12">
         <div
-          class="flex flex-col items-center w-24 md:w-32 group transition-transform duration-500 hover:-translate-y-2"
-          title="Héritage Vodun - La Tradition"
+          class="flex flex-col items-center w-28 md:w-36 group transition-transform duration-500 hover:-translate-y-2"
+          title="Sceau Officiel — Héritage Vodun"
         >
           <svg
             viewBox="0 0 100 100"
             fill="none"
             xmlns="http://www.w3.org/2000/svg"
-            class="w-full h-auto drop-shadow-[0_10px_15px_rgba(212,175,55,0.2)]"
+            class="w-full h-auto drop-shadow-[0_12px_20px_rgba(212,175,55,0.25)]"
           >
             <defs>
               <linearGradient
@@ -61,8 +61,8 @@ const description =
               r="45"
               fill="none"
               stroke="#C06C3B"
-              stroke-width="0.5"
-              opacity="0.4"
+              stroke-width="0.6"
+              opacity="0.5"
               stroke-dasharray="2 2"></circle>
             <circle
               cx="50"
@@ -70,8 +70,8 @@ const description =
               r="42"
               fill="none"
               stroke="#C06C3B"
-              stroke-width="0.2"
-              opacity="0.2"></circle>
+              stroke-width="0.25"
+              opacity="0.3"></circle>
             <path
               d="M42 85 L58 85 L54 92 L46 92 Z"
               fill="url(#bronzeBase)"
@@ -131,144 +131,56 @@ const description =
             <circle cx="64" cy="25" r="2.8" fill="url(#beadGrad)"></circle>
           </svg>
           <span
-            class="font-serif text-[0.65rem] md:text-xs text-gold uppercase tracking-widest mt-4 font-bold opacity-80 group-hover:opacity-100 transition-opacity"
-            >Héritage Vodun</span
+            class="font-serif text-xs text-gold uppercase tracking-[0.25em] mt-4 font-bold opacity-90 group-hover:opacity-100 transition-opacity"
           >
-        </div>
-
-        <div
-          class="font-serif text-3xl md:text-5xl text-gold/30 mb-8 md:mb-10 px-2 select-none"
-        >
-          ×
-        </div>
-
-        {/* LOGO 2: Mindoguesito */}
-        <div
-          class="flex flex-col items-center w-24 md:w-32 group transition-transform duration-500 hover:-translate-y-2"
-          title="Mindoguesito - Le Gardien"
-        >
-          <svg
-            viewBox="0 0 320 320"
-            fill="none"
-            xmlns="http://www.w3.org/2000/svg"
-            class="w-full h-auto drop-shadow-[0_10px_15px_rgba(212,175,55,0.2)]"
-          >
-            <defs>
-              <linearGradient
-                id="goldRoof"
-                x1="160"
-                y1="40"
-                x2="160"
-                y2="140"
-                gradientUnits="userSpaceOnUse"
-              >
-                <stop offset="0%" stop-color="#FFD700"></stop>
-                <stop offset="50%" stop-color="#DAA520"></stop>
-                <stop offset="100%" stop-color="#B8860B"></stop>
-              </linearGradient>
-              <linearGradient
-                id="goldBase"
-                x1="160"
-                y1="260"
-                x2="160"
-                y2="285"
-                gradientUnits="userSpaceOnUse"
-              >
-                <stop offset="0%" stop-color="#DAA520"></stop>
-                <stop offset="100%" stop-color="#8B4513"></stop>
-              </linearGradient>
-              <linearGradient id="woodPillar" x1="0" y1="0" x2="1" y2="0">
-                <stop offset="0%" stop-color="#4E342E"></stop>
-                <stop offset="40%" stop-color="#8D6E63"></stop>
-                <stop offset="60%" stop-color="#8D6E63"></stop>
-                <stop offset="100%" stop-color="#3E2723"></stop>
-              </linearGradient>
-            </defs>
-            <ellipse
-              cx="160"
-              cy="300"
-              rx="130"
-              ry="12"
-              fill="#5d4037"
-              opacity="0.3"
-              filter="blur(8px)"></ellipse>
-            <path
-              d="M90 140V260"
-              stroke="url(#woodPillar)"
-              stroke-width="36"
-              stroke-linecap="butt"></path>
-            <path
-              d="M90 140C100 160 80 180 90 200C100 220 80 240 90 260"
-              stroke="#3E2723"
-              stroke-width="4"
-              fill="none"
-              opacity="0.6"></path>
-            <path
-              d="M230 140V260"
-              stroke="url(#woodPillar)"
-              stroke-width="36"
-              stroke-linecap="butt"></path>
-            <path
-              d="M230 140C220 160 240 180 230 200C220 220 240 240 230 260"
-              stroke="#3E2723"
-              stroke-width="4"
-              fill="none"
-              opacity="0.6"></path>
-            <rect
-              x="60"
-              y="260"
-              width="200"
-              height="25"
-              rx="4"
-              fill="url(#goldBase)"
-              stroke="#8B4513"
-              stroke-width="2"></rect>
-            <path
-              d="M160 40L280 140H40L160 40Z"
-              fill="url(#goldRoof)"
-              stroke="#8B4513"
-              stroke-width="3"></path>
-          </svg>
-          <span
-            class="font-serif text-[0.65rem] md:text-xs text-gold uppercase tracking-widest mt-4 font-bold opacity-80 group-hover:opacity-100 transition-opacity"
-            >Mindoguesito</span
-          >
+            Sceau d'Excellence
+          </span>
         </div>
       </div>
 
-      <h1 class="font-serif text-5xl md:text-6xl text-white mb-6 leading-tight">
+      <p
+        class="font-sans text-xs md:text-sm uppercase tracking-[0.25em] text-gold/80 mb-4 font-semibold"
+      >
+        Charte Nationale d'Éthique & de Transmission
+      </p>
+
+      <h1 class="font-serif text-4xl md:text-6xl text-white mb-6 leading-tight">
         Le Label <span
           class="font-bold italic bg-gradient-to-r from-white to-gold bg-clip-text text-transparent"
           >Héritage Vodun</span
         >
       </h1>
+
       <div class="w-16 h-1 bg-gold mx-auto mb-8 rounded-full"></div>
+
       <p
-        class="text-lg md:text-xl text-gray-400 max-w-3xl mx-auto leading-relaxed font-sans"
+        class="text-lg md:text-xl text-gray-300 max-w-3xl mx-auto leading-relaxed font-sans"
       >
-        Face à la "folklorisation" du sacré, nous établissons le premier
-        standard de qualité pour le tourisme spirituel au Bénin. Une garantie
-        pour le visiteur, une fierté pour le guide.
+        Face à la folklorisation du sacré et aux récits approximatifs, nous
+        établissons une référence d'exigence aux quatre coins du Bénin. Une
+        garantie d'intégrité pour quiconque souhaite comprendre l'ingéniosité du
+        Vodun, et une reconnaissance pour les gardiens qui transmettent ce
+        patrimoine avec dignité.
       </p>
     </section>
 
     {/* --- LES 3 PILIERS DU LABEL --- */}
     <section
-      class="max-w-6xl mx-auto px-6 py-20 grid grid-cols-1 md:grid-cols-3 gap-10"
+      class="max-w-6xl mx-auto px-6 py-16 grid grid-cols-1 md:grid-cols-3 gap-10"
     >
       <div
         class="bg-dark-surface p-10 rounded-xl border-t-4 border-gold shadow-xl hover:-translate-y-2 transition-all duration-300 opacity-0 animate-fade-up"
         style="animation-delay: 200ms;"
       >
-        <div class="text-5xl mb-6">📜</div>
+        <div class="text-4xl mb-6">📜</div>
         <h3 class="font-serif text-2xl text-white mb-4">
-          1. Authenticité Historique
+          1. Fidélité Historique & Savoir
         </h3>
         <p class="text-gray-400 leading-relaxed text-sm md:text-base">
-          Fini les légendes inventées pour les touristes. Chaque guide certifié
-          par le Label s&apos;engage à transmettre l&apos;histoire réelle,
-          vérifiée auprès des anciens et des historiens. Nous distinguons
-          clairement le mythe de la réalité.
+          Fini les fables inventées pour séduire de passage. Chaque acteur
+          accrédité s'engage à transmettre une mémoire rigoureuse, validée
+          auprès des anciens, des dignitaires et des historiens, en éclairant la
+          philosophie profonde du Fâ et du vivant.
         </p>
       </div>
 
@@ -276,15 +188,14 @@ const description =
         class="bg-dark-surface p-10 rounded-xl border-t-4 border-gold shadow-xl hover:-translate-y-2 transition-all duration-300 opacity-0 animate-fade-up"
         style="animation-delay: 400ms;"
       >
-        <div class="text-5xl mb-6">🤝</div>
+        <div class="text-4xl mb-6">🤝</div>
         <h3 class="font-serif text-2xl text-white mb-4">
-          2. Éthique & Respect
+          2. Dignité & Respect du Sacré
         </h3>
         <p class="text-gray-400 leading-relaxed text-sm md:text-base">
-          Le Vodun n&apos;est pas un spectacle de zoo. Nos partenaires
-          s&apos;engagent à respecter la dignité des prêtres, le secret des
-          couvents et l&apos;intégrité des visiteurs. Aucune extorsion, aucune
-          mise en scène forcée.
+          Le Vodun n'est ni un spectacle ni un divertissement. Nos collaborateurs
+          veillent au respect absolu des gardiens de nos traditions et des lieux. Aucune mise en scène artificielle, aucune
+          dénaturation des traditions.
         </p>
       </div>
 
@@ -292,22 +203,82 @@ const description =
         class="bg-dark-surface p-10 rounded-xl border-t-4 border-gold shadow-xl hover:-translate-y-2 transition-all duration-300 opacity-0 animate-fade-up"
         style="animation-delay: 600ms;"
       >
-        <div class="text-5xl mb-6">🛡️</div>
+        <div class="text-4xl mb-6">🛡️</div>
         <h3 class="font-serif text-2xl text-white mb-4">
-          3. Sécurité & Confiance
+          3. Sérénité & Ancrage Local
         </h3>
         <p class="text-gray-400 leading-relaxed text-sm md:text-base">
-          Un visiteur serein est un visiteur qui revient. Le Label garantit des
-          parcours sécurisés, des tarifs transparents affichés à l&apos;avance
-          et une identité numérique vérifiée pour chaque intervenant.
+          La confiance naît de la clarté et de l'enracinement. Le Label garantit
+          des rencontres encadrées, des engagements transparents annoncés à
+          l'avance et des intervenants reconnus au sein même de leurs
+          communautés.
         </p>
+      </div>
+    </section>
+
+    {/* --- PARCOURS D'ACCRÉDITATION SUR LE TERRAIN --- */}
+    <section
+      class="max-w-5xl mx-auto px-6 py-12 mb-12 opacity-0 animate-fade-up"
+      style="animation-delay: 700ms;"
+    >
+      <div class="text-center mb-12">
+        <h2 class="font-serif text-3xl md:text-4xl text-white mb-4">
+          Une Démarche Ancrée dans le Réel
+        </h2>
+        <p class="text-gray-400 max-w-2xl mx-auto text-base">
+          L'attribution du Label repose exclusivement sur la rencontre humaine,
+          la vérification sur place et le respect mutuel.
+        </p>
+      </div>
+
+      <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
+        <div class="border border-white/10 bg-dark-surface/40 p-8 rounded-xl">
+          <span class="font-serif text-gold text-sm uppercase tracking-widest block mb-2">
+            Étape I
+          </span>
+          <h3 class="font-serif text-xl text-white mb-3">
+            Rencontre & Échange
+          </h3>
+          <p class="text-gray-400 text-sm leading-relaxed">
+            Dialogue direct sur le terrain avec les guides, responsables de
+            sites et acteurs culturels afin d'évaluer la justesse de leur
+            transmission.
+          </p>
+        </div>
+
+        <div class="border border-white/10 bg-dark-surface/40 p-8 rounded-xl">
+          <span class="font-serif text-gold text-sm uppercase tracking-widest block mb-2">
+            Étape II
+          </span>
+          <h3 class="font-serif text-xl text-white mb-3">
+            Adhésion à la Charte
+          </h3>
+          <p class="text-gray-400 text-sm leading-relaxed">
+            Engagement solennel à honorer nos trois piliers d'éthique, de
+            transparence et de préservation de l'intégrité culturelle.
+          </p>
+        </div>
+
+        <div class="border border-white/10 bg-dark-surface/40 p-8 rounded-xl">
+          <span class="font-serif text-gold text-sm uppercase tracking-widest block mb-2">
+            Étape III
+          </span>
+          <h3 class="font-serif text-xl text-white mb-3">
+            Accréditation & Suivi
+          </h3>
+          <p class="text-gray-400 text-sm leading-relaxed">
+            Intégration au réseau national Héritage Vodun et accompagnement
+            continu pour offrir aux visiteurs une immersion authentique et
+            apaisée.
+          </p>
+        </div>
       </div>
     </section>
 
     {/* --- MANIFESTE INSTITUTIONNEL --- */}
     <section
       class="max-w-4xl mx-auto px-6 mb-24 opacity-0 animate-fade-up"
-      style="animation-delay: 800ms;"
+      style="animation-delay: 850ms;"
     >
       <div
         class="bg-dark-surface/50 border border-gold/30 p-10 md:p-16 rounded-2xl relative overflow-hidden backdrop-blur-md"
@@ -320,32 +291,33 @@ const description =
 
         <div class="relative z-10 text-center">
           <h2 class="font-serif text-3xl md:text-4xl text-white mb-8">
-            Notre Engagement envers l&apos;État
+            Notre Engagement au Service du Bénin
           </h2>
           <div
             class="text-lg text-gray-300 leading-relaxed space-y-6 max-w-2xl mx-auto text-left md:text-center"
           >
             <p>
-              <strong class="text-gold">Héritage Vodun</strong> ne se substitue pas
-              aux institutions, il les accompagne. Notre mission est de numériser
-              et structurer l&apos;offre touristique informelle pour en faire un levier
-              de développement économique fiable.
+              <strong class="text-gold">Héritage Vodun</strong> agit en harmonie
+              avec les institutions nationales, les autorités coutumières et les
+              forces vives de nos terroirs. Notre vocation est de structurer et
+              d'élever la transmission culturelle sur l'ensemble du territoire
+              béninois, afin d'en faire un levier durable de dignité, de
+              cohésion et de développement local.
             </p>
             <p>
-              Nous construisons la base de données de confiance du Bénin Révélé.
+              Nous ouvrons les portes de cette sagesse à toute personne animée
+              par le bon sens et le respect, convaincus que la compréhension
+              juste de la culture africaine est une richesse universelle.
             </p>
           </div>
 
           <div
             class="mt-12 pt-8 border-t border-gold/20 flex flex-col items-end max-w-2xl mx-auto text-right"
           >
-            <span class="font-serif italic text-2xl text-gold mb-1"
-              >La Direction Héritage Vodun</span
-            >
-            <span
-              class="font-sans text-xs uppercase tracking-widest text-gray-500"
-              >Ouidah, 2026</span
-            >
+            <span class="font-serif italic text-2xl text-gold mb-1">
+              La Direction Héritage Vodun
+            </span>
+            
           </div>
         </div>
       </div>
@@ -357,16 +329,17 @@ const description =
       style="animation-delay: 1000ms;"
     >
       <h2 class="font-serif text-3xl text-white mb-4">
-        Vous êtes Guide ou Gardien de Temple ?
+        Vous êtes Gardien de Tradition, Guide ou Acteur Culturel ?
       </h2>
-      <p class="font-sans text-gray-400 mb-8">
-        Rejoignez le réseau d&apos;excellence.
+      <p class="font-sans text-gray-400 max-w-xl mx-auto mb-8">
+        Rejoignez un réseau engagé pour la vérité historique et le rayonnement
+        authentique de notre patrimoine aux quatre coins du Bénin.
       </p>
       <a
         href="/contact"
         class="inline-block bg-gold hover:bg-gold-hover text-black font-bold uppercase tracking-widest px-10 py-4 rounded-full transition-all duration-300 hover:shadow-[0_0_20px_rgba(212,175,55,0.4)] hover:-translate-y-1"
       >
-        Rejoindre le label &rarr;
+        Rejoindre la Charte &rarr;
       </a>
     </section>
   </div>

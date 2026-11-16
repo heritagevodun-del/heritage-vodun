@@ -1,7 +1,7 @@
 ---
 import BaseLayout from "../layouts/BaseLayout.astro";
 
-// SEO : Données structurées enrichies
+// SEO : Données structurées institutionnelles
 const schemaData = {
   "@context": "https://schema.org",
   "@type": "AboutPage",
@@ -11,18 +11,17 @@ const schemaData = {
     url: "https://www.heritagevodun.com",
     logo: "https://www.heritagevodun.com/logo.webp",
     description:
-      "Le sanctuaire numérique du Bénin. Nous allions la sagesse séculaire et la douceur de la transmission pour préserver la spiritualité Vodun.",
+      "Institution culturelle dédiée à la préservation, à l'étude et à la transmission des savoirs endogènes du Bénin. Nous révélons l'ingéniosité philosophique, écologique et sociale du Vodun aux quatre coins du territoire.",
     foundingDate: "2024",
-    areaServed: "Monde",
-    sameAs: [
-      "https://www.facebook.com/mindoguesito",
-      "https://www.instagram.com/mindoguesito.ia",
-    ],
+    areaServed: "Bénin & Monde",
   },
 };
 ---
 
-<BaseLayout titrePage="Notre Mission | Héritage Vodun & Sagesse Ancestrale">
+<BaseLayout
+  titrePage="Notre Mission | Héritage Vodun — Patrimoine Vivant du Bénin"
+  description="Découvrez la mission d'Héritage Vodun : restaurer la vérité historique, transmettre la philosophie du Fâ et organiser des rencontres authentiques aux quatre coins du Bénin."
+>
   <script
     is:inline
     type="application/ld+json"
@@ -36,8 +35,9 @@ const schemaData = {
     >
       <span
         class="block text-gold text-xs uppercase tracking-[0.25em] font-bold mb-4"
-        >Transmission & Harmonie</span
       >
+        Institution Culturelle & Patrimoine Vivant
+      </span>
       <h1 class="font-serif text-5xl md:text-6xl text-white mb-6 leading-tight">
         Notre Mission
       </h1>
@@ -45,7 +45,8 @@ const schemaData = {
       <p
         class="font-serif italic text-xl md:text-2xl text-gray-400 max-w-2xl mx-auto"
       >
-        "Quand la Sagesse de nos pères éclaire le monde de demain"
+        « Extraire la plus haute sagesse de nos racines pour éclairer le monde
+        présent. »
       </p>
     </header>
 
@@ -58,7 +59,7 @@ const schemaData = {
         <h2
           class='font-serif text-3xl md:text-4xl text-white mb-8 inline-block relative after:content-[""] after:block after:w-10 after:h-1 after:bg-gold after:mt-3'
         >
-          L&apos;Origine d&apos;une Quête
+          L&apos;Origine d&apos;une Ambition
         </h2>
 
         <div
@@ -69,24 +70,26 @@ const schemaData = {
               class="float-left font-serif text-6xl md:text-7xl leading-[0.8] text-gold pr-4 pt-2 font-bold"
               >T</span
             >
-            out est parti d&apos;une profonde volonté de vérité. Celle de voir le
-            <strong class="text-white">Bénin</strong>, berceau mondial du Vodun,
-            retrouver sa noblesse, trop souvent masquée par des récits
-            extérieurs ou des regards simplistes et craintifs.
+            out est parti d&apos;une profonde exigence de vérité. Celle de voir le
+            <strong class="text-white">Bénin</strong>, berceau historique du
+            Vodun, retrouver toute sa noblesse, trop longtemps masquée par des
+            clichés extérieurs, des caricatures ou un folklore superficiel.
           </p>
           <p>
-            Nous savions que derrière le voile se cachait une philosophie de
-            l&apos;équilibre, une harmonie sacrée avec la nature et un profond
-            amour du vivant. Mais comment transmettre cette sagesse millénaire à
-            une nouvelle génération ? Comment rendre cet héritage accessible
-            avec la plus grande des déférences ?
+            Derrière les apparences se déploie pourtant une architecture de
+            pensée remarquable : la précision mathématique et morale du
+            <strong class="text-white">Fâ</strong>, un code de gestion de la
+            vie et une science de l&apos;équilibre avec la nature. Dès lors, un
+            défi essentiel s&apos;est imposé : comment transmettre cette
+            ingéniosité aux générations d&apos;aujourd&apos;hui et l&apos;ouvrir
+            à quiconque fait preuve de bon sens, sans jamais profaner le sacré ?
           </p>
           <p
             class="border-l-4 border-gold pl-6 py-4 mt-8 bg-gold/5 italic text-xl text-gold font-serif rounded-r-lg"
           >
-            "Héritage Vodun est né pour être ce pont de lumière. Un pied ancré
-            dans la terre rouge de Ouidah, l&apos;autre tourné vers
-            l&apos;avenir."
+            « Héritage Vodun est né pour être ce pont vivant : profondément
+            enraciné aux quatre coins du Bénin, et ouvert à tous les esprits en
+            quête de sens. »
           </p>
         </div>
       </article>
@@ -102,7 +105,8 @@ const schemaData = {
           Nos 3 Piliers Fondateurs
         </h2>
         <p class="text-lg text-gray-400 mb-10">
-          Nous sommes des passeurs de mémoire et des bâtisseurs de paix :
+          Nous œuvrons comme une institution de référence au service de la
+          mémoire, de la transmission et de la rencontre humaine :
         </p>
 
         <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
@@ -116,24 +120,25 @@ const schemaData = {
               La Mémoire
             </h3>
             <p class="text-gray-400 leading-relaxed">
-              Préserver l&apos;histoire authentique, de la sagesse des ancêtres
-              jusqu&apos;à la dignité de nos rois, pour que la vérité demeure.
+              Restaurer la vérité historique et intellectuelle de nos
+              civilisations, de la rigueur du Fâ jusqu&apos;à la dignité de nos
+              institutions séculaires.
             </p>
           </div>
 
           <div
             class="group bg-dark-surface border-t-4 border-transparent hover:border-gold p-10 rounded-lg text-center shadow-xl transition-all duration-300 hover:-translate-y-2 hover:shadow-[0_20px_40px_rgba(0,0,0,0.3)]"
           >
-            <div class="text-5xl mb-6" aria-hidden="true">🕊️</div>
+            <div class="text-5xl mb-6" aria-hidden="true">📜</div>
             <h3
               class="font-serif text-2xl text-white mb-4 group-hover:text-gold transition-colors"
             >
               La Transmission
             </h3>
             <p class="text-gray-400 leading-relaxed">
-              Avec <strong class="text-white">Mindoguesito</strong>, notre
-              guide, nous offrons un accès digne et apaisé aux savoirs de notre
-              terre.
+              Préserver et Valoriser nos langues maternelles; produire des
+              travaux de fond pour rendre l&apos;ingéniosité africaine lisible
+              par tous.
             </p>
           </div>
 
@@ -144,17 +149,18 @@ const schemaData = {
             <h3
               class="font-serif text-2xl text-white mb-4 group-hover:text-gold transition-colors"
             >
-              La Vérité
+              L&apos;Ancrage Réel
             </h3>
             <p class="text-gray-400 leading-relaxed">
-              Nous vous accompagnons avec cœur dans les véritables sanctuaires,
-              à la rencontre de la noblesse de nos dignitaires.
+              Accompagner les visiteurs du Sud au Nord du Bénin dans les
+              véritables lieux de mémoire, au contact direct des gardiens et des
+              terroirs.
             </p>
           </div>
         </div>
       </section>
 
-      {/* --- INNOVATION IA --- */}
+      {/* --- ANCRAGE TERRITORIAL & PHILOSOPHIE --- */}
       <section
         class="bg-dark-surface border border-white/5 rounded-2xl p-10 md:p-16 flex flex-col md:flex-row items-center gap-12 shadow-2xl mb-24 opacity-0 animate-fade-up relative overflow-hidden"
         style="animation-delay: 600ms;"
@@ -166,38 +172,44 @@ const schemaData = {
 
         <div class="flex-1 relative z-10">
           <h2 class="font-serif text-3xl md:text-4xl text-white mb-6">
-            L&apos;Alliance de la Tradition et de Demain
+            La Rencontre avec le Vivant
           </h2>
           <p class="text-lg text-gray-300 mb-6 leading-relaxed">
-            Nous avons éveillé le premier compagnon numérique dédié à la beauté
-            de la culture Vodun. Il n&apos;a pas vocation à remplacer la chaleur
-            humaine de nos prêtres, il en est le <strong class="text-gold"
-              >respectueux messager</strong
-            >, conçu pour guider les cœurs en quête de sens.
+            La compréhension d&apos;une culture millénaire ne peut se réduire à
+            une observation lointaine. <strong class="text-gold"
+              >Héritage Vodun</strong
+            > s&apos;engage sur le terrain pour relier la réflexion de fond à
+            l&apos;expérience directe, dans le respect absolu de l&apos;homme et
+            de son environnement.
           </p>
           <ul class="space-y-3 mb-8">
             <li class="text-gold font-bold flex items-center gap-3">
-              <span>✨</span> Une écoute bienveillante à chaque instant
+              <span>✦</span> Un déploiement authentique aux quatre coins du Bénin
             </li>
             <li class="text-gold font-bold flex items-center gap-3">
-              <span>✨</span> Une transmission apaisée, sans jugement
+              <span>✦</span> Une approche ouverte à quiconque fait preuve de bon
+              sens
             </li>
             <li class="text-gold font-bold flex items-center gap-3">
-              <span>✨</span> Gardien de la vérité et de l&apos;histoire de nos pères
+              <span>✦</span> Une charte d&apos;éthique garantissant la dignité
+              des lieux sacrés
             </li>
           </ul>
           <a
-            href="https://www.mindoguesito.com"
-            class="open-oracle inline-block bg-gold hover:bg-gold-hover text-black font-bold uppercase tracking-widest px-8 py-4 rounded transition-all duration-300 hover:-translate-y-1 shadow-[0_5px_15px_rgba(212,175,55,0.2)]"
+            href="/label"
+            class="inline-block bg-gold hover:bg-gold-hover text-black font-bold uppercase tracking-widest px-8 py-4 rounded transition-all duration-300 hover:-translate-y-1 shadow-[0_5px_15px_rgba(212,175,55,0.2)]"
           >
-            Consulter notre Guide &rarr;
+            Découvrir notre Charte Éthique &rarr;
           </a>
         </div>
 
         <div class="hidden md:flex flex-1 justify-center relative z-10">
           <div
-            class="w-48 h-48 rounded-full bg-[radial-gradient(circle,rgba(212,175,55,0.2)_0%,transparent_70%)] shadow-[0_0_50px_rgba(212,175,55,0.15)] animate-[pulse_4s_infinite_ease-in-out]"
+            class="w-48 h-48 rounded-full bg-[radial-gradient(circle,rgba(212,175,55,0.2)_0%,transparent_70%)] shadow-[0_0_50px_rgba(212,175,55,0.15)] animate-[pulse_4s_infinite_ease-in-out] flex items-center justify-center border border-gold/20"
           >
+            <span class="font-serif text-gold text-sm uppercase tracking-[0.3em]">
+              Héritage Vodun
+            </span>
           </div>
         </div>
       </section>
@@ -215,23 +227,24 @@ const schemaData = {
         <p
           class="text-lg text-gray-400 mb-10 max-w-2xl mx-auto leading-relaxed"
         >
-          Que vous soyez descendant en quête de racines, chercheur de vérité ou
-          simple voyageur, votre place est ici. Le Vodun est une main tendue
-          vers l&apos;harmonie.
+          Que vous soyez enfant de la diaspora en quête de racines, chercheur de
+          vérité ou voyageur attentif, nos portes sont ouvertes. Venir fouler
+          la terre du Bénin est le premier pas vers une compréhension juste de
+          notre héritage.
         </p>
 
         <div
           class="bg-white/5 border border-white/10 p-10 md:p-12 rounded-xl shadow-2xl max-w-3xl mx-auto backdrop-blur-sm"
         >
           <p class="font-serif font-bold text-gold text-2xl mb-8 italic">
-            "Nul ne connaît la fin du voyage, mais nous honorons ceux qui ont
-            ouvert la voie."
+            « Nul ne connaît la fin du voyage, mais nous honorons ceux qui ont
+            ouvert la voie. »
           </p>
           <a
             href="/contact"
             class="block md:inline-block w-full md:w-auto bg-white hover:bg-gold text-black px-10 py-4 font-bold uppercase tracking-wider rounded transition-all duration-300 hover:-translate-y-1 hover:shadow-[0_5px_20px_rgba(212,175,55,0.3)]"
           >
-            Organiser ma rencontre
+            Organiser mon voyage
           </a>
         </div>
       </section>
