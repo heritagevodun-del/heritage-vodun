@@ -2,14 +2,14 @@
 import BaseLayout from "../layouts/BaseLayout.astro";
 
 // Métadonnées institutionnelles et SEO
-const pageTitle = "Label Qualité & Charte Éthique | Héritage Vodun";
+const pageTitle = "Le Label & La Charte Éthique | Héritage Vodun";
 const description =
-  "Découvrez la Charte de Confiance Héritage Vodun. La référence nationale garantissant l'authenticité historique, le respect du sacré et la qualité de l'accueil culturel aux quatre coins du Bénin.";
+  "Découvrez la Charte d'Éthique et de Transmission Héritage Vodun. La référence nationale garantissant la fidélité historique, la dignité du sacré et la qualité des rencontres culturelles au Bénin.";
 ---
 
 <BaseLayout titrePage={pageTitle} description={description}>
-  <div class="min-h-screen bg-dark-bg pb-24 overflow-x-hidden">
-    {/* --- HERO SECTION : SCEAU INSTITUTIONNEL --- */}
+  <div class="min-h-screen bg-dark-bg pb-28 overflow-x-hidden">
+    {/* --- HERO SECTION : LE SCEAU & LA CHARTE --- */}
     <section
       class="relative text-center pt-24 pb-20 px-6 bg-[radial-gradient(ellipse_at_top,#1a1a1a_0%,#050505_100%)] opacity-0 animate-fade-down"
     >
@@ -131,9 +131,9 @@ const description =
             <circle cx="64" cy="25" r="2.8" fill="url(#beadGrad)"></circle>
           </svg>
           <span
-            class="font-serif text-xs text-gold uppercase tracking-[0.25em] mt-4 font-bold opacity-90 group-hover:opacity-100 transition-opacity"
+            class="font-serif text-xs text-gold uppercase tracking-[0.28em] mt-4 font-bold opacity-90 group-hover:opacity-100 transition-opacity"
           >
-            Sceau d'Excellence
+            HOUN HO
           </span>
         </div>
       </div>
@@ -141,7 +141,7 @@ const description =
       <p
         class="font-sans text-xs md:text-sm uppercase tracking-[0.25em] text-gold/80 mb-4 font-semibold"
       >
-        Charte Nationale d'Éthique & de Transmission
+        Charte d&apos;Éthique &amp; de Transmission
       </p>
 
       <h1 class="font-serif text-4xl md:text-6xl text-white mb-6 leading-tight">
@@ -157,167 +157,221 @@ const description =
         class="text-lg md:text-xl text-gray-300 max-w-3xl mx-auto leading-relaxed font-sans"
       >
         Face à la folklorisation du sacré et aux récits approximatifs, nous
-        établissons une référence d'exigence aux quatre coins du Bénin. Une
-        garantie d'intégrité pour quiconque souhaite comprendre l'ingéniosité du
-        Vodun, et une reconnaissance pour les gardiens qui transmettent ce
-        patrimoine avec dignité.
+        établissons une référence d&apos;exigence aux quatre coins du Bénin. Une
+        garantie d&apos;intégrité pour quiconque souhaite saisir l&apos;ingéniosité du
+        Vodun, et une distinction pour ceux qui transmettent ce patrimoine avec
+        dignité.
       </p>
     </section>
 
-    {/* --- LES 3 PILIERS DU LABEL --- */}
-    <section
-      class="max-w-6xl mx-auto px-6 py-16 grid grid-cols-1 md:grid-cols-3 gap-10"
-    >
-      <div
-        class="bg-dark-surface p-10 rounded-xl border-t-4 border-gold shadow-xl hover:-translate-y-2 transition-all duration-300 opacity-0 animate-fade-up"
-        style="animation-delay: 200ms;"
-      >
-        <div class="text-4xl mb-6">📜</div>
-        <h3 class="font-serif text-2xl text-white mb-4">
-          1. Fidélité Historique & Savoir
-        </h3>
-        <p class="text-gray-400 leading-relaxed text-sm md:text-base">
-          Fini les fables inventées pour séduire de passage. Chaque acteur
-          accrédité s'engage à transmettre une mémoire rigoureuse, validée
-          auprès des anciens, des dignitaires et des historiens, en éclairant la
-          philosophie profonde du Fâ et du vivant.
-        </p>
-      </div>
-
-      <div
-        class="bg-dark-surface p-10 rounded-xl border-t-4 border-gold shadow-xl hover:-translate-y-2 transition-all duration-300 opacity-0 animate-fade-up"
-        style="animation-delay: 400ms;"
-      >
-        <div class="text-4xl mb-6">🤝</div>
-        <h3 class="font-serif text-2xl text-white mb-4">
-          2. Dignité & Respect du Sacré
-        </h3>
-        <p class="text-gray-400 leading-relaxed text-sm md:text-base">
-          Le Vodun n'est ni un spectacle ni un divertissement. Nos collaborateurs
-          veillent au respect absolu des gardiens de nos traditions et des lieux. Aucune mise en scène artificielle, aucune
-          dénaturation des traditions.
-        </p>
-      </div>
-
-      <div
-        class="bg-dark-surface p-10 rounded-xl border-t-4 border-gold shadow-xl hover:-translate-y-2 transition-all duration-300 opacity-0 animate-fade-up"
-        style="animation-delay: 600ms;"
-      >
-        <div class="text-4xl mb-6">🛡️</div>
-        <h3 class="font-serif text-2xl text-white mb-4">
-          3. Sérénité & Ancrage Local
-        </h3>
-        <p class="text-gray-400 leading-relaxed text-sm md:text-base">
-          La confiance naît de la clarté et de l'enracinement. Le Label garantit
-          des rencontres encadrées, des engagements transparents annoncés à
-          l'avance et des intervenants reconnus au sein même de leurs
-          communautés.
-        </p>
-      </div>
-    </section>
-
-    {/* --- PARCOURS D'ACCRÉDITATION SUR LE TERRAIN --- */}
-    <section
-      class="max-w-5xl mx-auto px-6 py-12 mb-12 opacity-0 animate-fade-up"
-      style="animation-delay: 700ms;"
-    >
-      <div class="text-center mb-12">
-        <h2 class="font-serif text-3xl md:text-4xl text-white mb-4">
-          Une Démarche Ancrée dans le Réel
+    {/* --- LES TROIS FONDEMENTS DE LA CHARTE --- */}
+    <section class="max-w-6xl mx-auto px-6 py-16">
+      <div class="text-center mb-14 opacity-0 animate-fade-up" style="animation-delay: 150ms;">
+        <span class="font-sans text-xs uppercase tracking-[0.2em] text-gold/75 block mb-2">
+          Les Engagements Fondamentaux
+        </span>
+        <h2 class="font-serif text-3xl md:text-4xl text-white">
+          Trois Piliers d&apos;Exigence
         </h2>
-        <p class="text-gray-400 max-w-2xl mx-auto text-base">
-          L'attribution du Label repose exclusivement sur la rencontre humaine,
-          la vérification sur place et le respect mutuel.
-        </p>
       </div>
 
       <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
-        <div class="border border-white/10 bg-dark-surface/40 p-8 rounded-xl">
-          <span class="font-serif text-gold text-sm uppercase tracking-widest block mb-2">
-            Étape I
+        {/* Pilier 1 */}
+        <article
+          class="bg-dark-surface/90 p-10 rounded-2xl border border-white/5 border-t-2 border-t-gold shadow-xl hover:-translate-y-1.5 transition-all duration-300 opacity-0 animate-fade-up"
+          style="animation-delay: 250ms;"
+        >
+          <div class="w-12 h-12 rounded-full bg-gold/10 border border-gold/30 flex items-center justify-center mb-6 text-gold">
+            <svg class="w-6 h-6" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5">
+              <path d="M4 19.5A2.5 2.5 0 0 1 6.5 17H20"></path>
+              <path d="M6.5 2H20v20H6.5A2.5 2.5 0 0 1 4 19.5v-15A2.5 2.5 0 0 1 6.5 2z"></path>
+              <line x1="8" y1="7" x2="16" y2="7"></line>
+              <line x1="8" y1="11" x2="14" y2="11"></line>
+            </svg>
+          </div>
+          <span class="font-serif text-xs uppercase tracking-[0.2em] text-gold/80 block mb-2">
+            Pilier I
           </span>
-          <h3 class="font-serif text-xl text-white mb-3">
-            Rencontre & Échange
+          <h3 class="font-serif text-2xl text-white mb-4">
+            Fidélité au Savoir
           </h3>
-          <p class="text-gray-400 text-sm leading-relaxed">
-            Dialogue direct sur le terrain avec les guides, responsables de
-            sites et acteurs culturels afin d'évaluer la justesse de leur
-            transmission.
+          <p class="text-gray-400 leading-relaxed text-sm md:text-base">
+            Fini les fables inventées pour séduire le visiteur de passage. Chaque
+            intervenant accrédité s&apos;engage à transmettre une mémoire rigoureuse,
+            validée auprès des anciens, des dignitaires et des historiens, en
+            éclairant la profondeur du Fâ et de l&apos;éthique du vivant.
           </p>
+        </article>
+
+        {/* Pilier 2 */}
+        <article
+          class="bg-dark-surface/90 p-10 rounded-2xl border border-white/5 border-t-2 border-t-gold shadow-xl hover:-translate-y-1.5 transition-all duration-300 opacity-0 animate-fade-up"
+          style="animation-delay: 400ms;"
+        >
+          <div class="w-12 h-12 rounded-full bg-gold/10 border border-gold/30 flex items-center justify-center mb-6 text-gold">
+            <svg class="w-6 h-6" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5">
+              <circle cx="12" cy="12" r="9"></circle>
+              <circle cx="12" cy="12" r="3"></circle>
+              <line x1="12" y1="3" x2="12" y2="6"></line>
+              <line x1="12" y1="18" x2="12" y2="21"></line>
+            </svg>
+          </div>
+          <span class="font-serif text-xs uppercase tracking-[0.2em] text-gold/80 block mb-2">
+            Pilier II
+          </span>
+          <h3 class="font-serif text-2xl text-white mb-4">
+            Dignité du Sacré
+          </h3>
+          <p class="text-gray-400 leading-relaxed text-sm md:text-base">
+            Le Vodun n&apos;est ni un spectacle ni un divertissement. Nos
+            collaborateurs veillent au respect absolu des gardiens de nos
+            traditions, de l&apos;intimité des sanctuaires et de ce qui relève du
+            secret initiatique. Aucune mise en scène artificielle.
+          </p>
+        </article>
+
+        {/* Pilier 3 */}
+        <article
+          class="bg-dark-surface/90 p-10 rounded-2xl border border-white/5 border-t-2 border-t-gold shadow-xl hover:-translate-y-1.5 transition-all duration-300 opacity-0 animate-fade-up"
+          style="animation-delay: 550ms;"
+        >
+          <div class="w-12 h-12 rounded-full bg-gold/10 border border-gold/30 flex items-center justify-center mb-6 text-gold">
+            <svg class="w-6 h-6" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5">
+              <path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"></path>
+              <polyline points="9 12 11 14 15 10"></polyline>
+            </svg>
+          </div>
+          <span class="font-serif text-xs uppercase tracking-[0.2em] text-gold/80 block mb-2">
+            Pilier III
+          </span>
+          <h3 class="font-serif text-2xl text-white mb-4">
+            Justesse &amp; Sérénité
+          </h3>
+          <p class="text-gray-400 leading-relaxed text-sm md:text-base">
+            La confiance naît de la clarté et de l&apos;enracinement. Le Label
+            garantit des rencontres encadrées, des engagements transparents
+            énoncés à l&apos;avance et des intervenants légitimes au sein même de leurs
+            communautés.
+          </p>
+        </article>
+      </div>
+    </section>
+
+    {/* --- DOUBLE VOCATION : GARDIENS & VISITEURS --- */}
+    <section
+      class="max-w-6xl mx-auto px-6 py-12 opacity-0 animate-fade-up"
+      style="animation-delay: 650ms;"
+    >
+      <div class="text-center mb-12">
+        <span class="font-sans text-xs uppercase tracking-[0.2em] text-gold/75 block mb-2">
+          Une Alliance Équilibrée
+        </span>
+        <h2 class="font-serif text-3xl md:text-4xl text-white">
+          Une Double Garantie sur le Terrain
+        </h2>
+      </div>
+
+      <div class="grid grid-cols-1 md:grid-cols-2 gap-8">
+        {/* Bloc 1 : Gardiens & Acteurs Culturels */}
+        <div class="bg-dark-surface/60 border border-gold/25 rounded-2xl p-8 md:p-10">
+          <p class="font-sans text-xs uppercase tracking-[0.2em] text-gold font-semibold mb-3">
+            Pour les Gardiens &amp; Passeurs de Mémoire
+          </p>
+          <h3 class="font-serif text-2xl text-white mb-4">
+            Honorer l&apos;Intégrité et le Savoir-Faire
+          </h3>
+          <p class="text-gray-300 text-sm md:text-base leading-relaxed mb-6">
+            Le Label constitue un signe de reconnaissance pour les gardiens de
+            traditions, guides et acteurs (trices) culturels (elles) qui maintiennent la tradition vivante et
+            défendent la vérité de notre patrimoine.
+          </p>
+          <ul class="space-y-3 text-sm text-gray-400">
+            <li class="flex items-start gap-3">
+              <span class="text-gold mt-0.5">&#9670;</span>
+              <span>Distinguer leur sérieux des pratiques opportunistes ou folkloriques.</span>
+            </li>
+            <li class="flex items-start gap-3">
+              <span class="text-gold mt-0.5">&#9670;</span>
+              <span>Fédérer les acteurs (trices) légitimes de terroir en terroir autour d&apos;un standard d&apos;excellence.</span>
+            </li>
+            <li class="flex items-start gap-3">
+              <span class="text-gold mt-0.5">&#9670;</span>
+              <span>Préserver la dignité des lieux et la justesse de la parole transmise.</span>
+            </li>
+          </ul>
         </div>
 
-        <div class="border border-white/10 bg-dark-surface/40 p-8 rounded-xl">
-          <span class="font-serif text-gold text-sm uppercase tracking-widest block mb-2">
-            Étape II
-          </span>
-          <h3 class="font-serif text-xl text-white mb-3">
-            Adhésion à la Charte
-          </h3>
-          <p class="text-gray-400 text-sm leading-relaxed">
-            Engagement solennel à honorer nos trois piliers d'éthique, de
-            transparence et de préservation de l'intégrité culturelle.
+        {/* Bloc 2 : Visiteurs, Chercheurs & Partenaires */}
+        <div class="bg-dark-surface/60 border border-gold/25 rounded-2xl p-8 md:p-10">
+          <p class="font-sans text-xs uppercase tracking-[0.2em] text-gold font-semibold mb-3">
+            Pour les Visiteurs, Chercheurs &amp; Esprits Attentifs
           </p>
-        </div>
-
-        <div class="border border-white/10 bg-dark-surface/40 p-8 rounded-xl">
-          <span class="font-serif text-gold text-sm uppercase tracking-widest block mb-2">
-            Étape III
-          </span>
-          <h3 class="font-serif text-xl text-white mb-3">
-            Accréditation & Suivi
+          <h3 class="font-serif text-2xl text-white mb-4">
+            Offrir un Repère de Confiance Absolu
           </h3>
-          <p class="text-gray-400 text-sm leading-relaxed">
-            Intégration au réseau national Héritage Vodun et accompagnement
-            continu pour offrir aux visiteurs une immersion authentique et
-            apaisée.
+          <p class="text-gray-300 text-sm md:text-base leading-relaxed mb-6">
+            Pour quiconque aborde le Bénin avec bon sens et désir de comprendre,
+            le Label assure une rencontre directe avec l&apos;ingéniosité de la
+            culture africaine.
           </p>
+          <ul class="space-y-3 text-sm text-gray-400">
+            <li class="flex items-start gap-3">
+              <span class="text-gold mt-0.5">&#9670;</span>
+              <span>Accéder à une lecture fidèle, philosophique et structurée du Vodun.</span>
+            </li>
+            <li class="flex items-start gap-3">
+              <span class="text-gold mt-0.5">&#9670;</span>
+              <span>Évoluer dans un cadre apaisé, transparent et respectueux des usages locaux.</span>
+            </li>
+            <li class="flex items-start gap-3">
+              <span class="text-gold mt-0.5">&#9670;</span>
+              <span>Vivre une immersion authentique, loin des mises en scène artificielles.</span>
+            </li>
+          </ul>
         </div>
       </div>
     </section>
 
     {/* --- MANIFESTE INSTITUTIONNEL --- */}
     <section
-      class="max-w-4xl mx-auto px-6 mb-24 opacity-0 animate-fade-up"
+      class="max-w-4xl mx-auto px-6 mt-6 mb-24 opacity-0 animate-fade-up"
       style="animation-delay: 850ms;"
     >
       <div
-        class="bg-dark-surface/50 border border-gold/30 p-10 md:p-16 rounded-2xl relative overflow-hidden backdrop-blur-md"
+        class="bg-dark-surface/60 border border-gold/30 p-10 md:p-16 rounded-2xl relative overflow-hidden backdrop-blur-md"
       >
-        {/* Lueur décorative */}
         <div
           class="absolute top-0 right-0 w-64 h-64 bg-gold/10 rounded-full blur-[80px] pointer-events-none"
         >
         </div>
 
         <div class="relative z-10 text-center">
-          <h2 class="font-serif text-3xl md:text-4xl text-white mb-8">
-            Notre Engagement au Service du Bénin
-          </h2>
+          <span class="font-sans text-xs uppercase tracking-[0.25em] text-gold/80 block mb-3">
+            Notre Engagement
+          </span>
           <div
-            class="text-lg text-gray-300 leading-relaxed space-y-6 max-w-2xl mx-auto text-left md:text-center"
+            class="text-base md:text-lg text-gray-300 leading-relaxed space-y-6 max-w-2xl mx-auto text-left md:text-center"
           >
             <p>
               <strong class="text-gold">Héritage Vodun</strong> agit en harmonie
               avec les institutions nationales, les autorités coutumières et les
               forces vives de nos terroirs. Notre vocation est de structurer et
-              d'élever la transmission culturelle sur l'ensemble du territoire
-              béninois, afin d'en faire un levier durable de dignité, de
-              cohésion et de développement local.
+              d&apos;élever la transmission culturelle sur l&apos;ensemble du territoire
+              béninois, afin d&apos;en faire un levier durable de dignité, de
+              cohésion et de rayonnement.
             </p>
             <p>
               Nous ouvrons les portes de cette sagesse à toute personne animée
-              par le bon sens et le respect, convaincus que la compréhension
-              juste de la culture africaine est une richesse universelle.
+              par le bon sens et le respect.
             </p>
           </div>
 
           <div
             class="mt-12 pt-8 border-t border-gold/20 flex flex-col items-end max-w-2xl mx-auto text-right"
           >
-            <span class="font-serif italic text-2xl text-gold mb-1">
+            <span class="font-serif italic text-2xl text-gold">
               La Direction Héritage Vodun
             </span>
-            
           </div>
         </div>
       </div>
@@ -326,18 +380,18 @@ const description =
     {/* --- CTA --- */}
     <section
       class="text-center px-6 opacity-0 animate-fade-up"
-      style="animation-delay: 1000ms;"
+      style="animation-delay: 950ms;"
     >
-      <h2 class="font-serif text-3xl text-white mb-4">
-        Vous êtes Gardien de Tradition, Guide ou Acteur Culturel ?
+      <h2 class="font-serif text-3xl md:text-4xl text-white mb-4">
+        Vous êtes Gardien (enne) de Tradition, Guide ou acteurs (trices) culturels (elles) ?
       </h2>
-      <p class="font-sans text-gray-400 max-w-xl mx-auto mb-8">
-        Rejoignez un réseau engagé pour la vérité historique et le rayonnement
-        authentique de notre patrimoine aux quatre coins du Bénin.
+      <p class="font-sans text-gray-400 max-w-xl mx-auto mb-8 leading-relaxed">
+        Rejoignez un réseau engagé pour la vérité historique et la transmission
+        digne de notre patrimoine aux quatre coins du Bénin.
       </p>
       <a
         href="/contact"
-        class="inline-block bg-gold hover:bg-gold-hover text-black font-bold uppercase tracking-widest px-10 py-4 rounded-full transition-all duration-300 hover:shadow-[0_0_20px_rgba(212,175,55,0.4)] hover:-translate-y-1"
+        class="inline-block bg-gold hover:bg-gold-hover text-black font-bold uppercase tracking-widest text-sm px-10 py-4 rounded-full transition-all duration-300 hover:shadow-[0_0_25px_rgba(212,175,55,0.4)] hover:-translate-y-1"
       >
         Rejoindre la Charte &rarr;
       </a>
@@ -349,7 +403,7 @@ const description =
   @keyframes fadeDown {
     from {
       opacity: 0;
-      transform: translateY(-30px);
+      transform: translateY(-24px);
     }
     to {
       opacity: 1;
@@ -357,13 +411,13 @@ const description =
     }
   }
   .animate-fade-down {
-    animation: fadeDown 1s ease-out forwards;
+    animation: fadeDown 0.9s ease-out forwards;
   }
 
   @keyframes fadeUp {
     from {
       opacity: 0;
-      transform: translateY(30px);
+      transform: translateY(24px);
     }
     to {
       opacity: 1;
