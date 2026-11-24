@@ -1,0 +1,871 @@
+---
+// JarreTroueeArt.astro
+// Composant Symbolique : La Jarre Trouée (Gézé) et l'Unité des Mains
+// Architecture : Astro + SVG Multicouche (Masques, Ombres Portées, Grain Céramique) + CSS 60fps
+---
+
+<div
+  class="relative w-full max-w-3xl mx-auto aspect-video rounded-3xl overflow-hidden bg-[#050505] border border-[#d4af37]/25 shadow-[0_40px_100px_rgba(0,0,0,0.9),inset_0_0_100px_rgba(0,0,0,0.75)] group mb-16 mt-8 cursor-pointer select-none"
+  aria-label="Illustration animée de la jarre trouée du Bénin : deux mains sculptées enveloppent le canari en terre cuite et bouchent chacune de ses dix ouvertures, arrêtant les fuites et permettant à l'eau dorée de remplir la jarre."
+>
+  {/* Lumière d'ambiance chaude */}
+  <div class="absolute inset-0 bg-[radial-gradient(circle_at_50%_44%,#29190b_0%,#090604_58%,#040302_100%)] group-hover:bg-[radial-gradient(circle_at_50%_44%,#38220f_0%,#0b0705_62%,#040302_100%)] transition-colors duration-1000"></div>
+
+  <div class="absolute inset-0 flex items-center justify-center">
+    <svg
+      viewBox="0 0 800 450"
+      class="w-full h-full overflow-visible"
+      xmlns="http://www.w3.org/2000/svg"
+      preserveAspectRatio="xMidYMid meet"
+    >
+      <defs>
+        {/* ================= TEXTURES & FILTRES ================= */}
+        {/* Grain minéral subtil pour la terre cuite */}
+        <filter id="terracottaGrain" x="0%" y="0%" width="100%" height="100%">
+          <feTurbulence
+            type="fractalNoise"
+            baseFrequency="0.75"
+            numOctaves="3"
+            seed="14"
+            result="noise"
+          ></feTurbulence>
+          <feColorMatrix
+            type="matrix"
+            values="1 0 0 0 0  0 1 0 0 0  0 0 1 0 0  0 0 0 0.06 0"
+            in="noise"
+            result="coloredNoise"
+          ></feColorMatrix>
+          <feComposite
+            operator="in"
+            in="coloredNoise"
+            in2="SourceGraphic"
+          ></feComposite>
+        </filter>
+
+        {/* Ombre portée réaliste des mains sur la courbe de la jarre */}
+        <filter
+          id="handCastShadow"
+          x="-25%"
+          y="-25%"
+          width="150%"
+          height="150%"
+        >
+          <feGaussianBlur in="SourceAlpha" stdDeviation="6"></feGaussianBlur>
+          <feOffset dx="0" dy="7" result="offsetblur"></feOffset>
+          <feComponentTransfer>
+            <feFuncA type="linear" slope="0.62"></feFuncA>
+          </feComponentTransfer>
+          <feMerge>
+            <feMergeNode></feMergeNode>
+            <feMergeNode in="SourceGraphic"></feMergeNode>
+          </feMerge>
+        </filter>
+
+        {/* Halo doré doux */}
+        <filter id="sacredGlow" x="-40%" y="-40%" width="180%" height="180%">
+          <feGaussianBlur stdDeviation="5" result="blur"></feGaussianBlur>
+          <feMerge>
+            <feMergeNode in="blur"></feMergeNode>
+            <feMergeNode in="SourceGraphic"></feMergeNode>
+          </feMerge>
+        </filter>
+
+        {/* ================= TRAME GÉOMÉTRIQUE D'ARRIÈRE-PLAN ================= */}
+        <pattern
+          id="danxomeWeave"
+          width="48"
+          height="48"
+          patternUnits="userSpaceOnUse"
+        >
+          <path
+            d="M 24 0 L 48 24 L 24 48 L 0 24 Z"
+            fill="none"
+            stroke="#d4af37"
+            stroke-width="0.45"
+            stroke-opacity="0.2"
+          ></path>
+          <circle
+            cx="24"
+            cy="24"
+            r="1"
+            fill="#d4af37"
+            fill-opacity="0.28"
+          ></circle>
+        </pattern>
+
+        <mask id="backdropVignette">
+          <radialGradient id="vignetteGrad" cx="50%" cy="46%" r="44%">
+            <stop offset="0%" stop-color="white" stop-opacity="0.85"></stop>
+            <stop offset="65%" stop-color="white" stop-opacity="0.3"></stop>
+            <stop offset="100%" stop-color="black" stop-opacity="0"></stop>
+          </radialGradient>
+          <rect
+            x="0"
+            y="0"
+            width="800"
+            height="450"
+            fill="url(#vignetteGrad)"
+          ></rect>
+        </mask>
+
+        {/* ================= DÉGRADÉS DU CANARI (TERRE CUITE) ================= */}
+        <linearGradient
+          id="clayMainGrad"
+          x1="270"
+          y1="95"
+          x2="530"
+          y2="345"
+          gradientUnits="userSpaceOnUse"
+        >
+          <stop offset="0%" stop-color="#BA6834"></stop>
+          <stop offset="28%" stop-color="#8C451E"></stop>
+          <stop offset="68%" stop-color="#59280F"></stop>
+          <stop offset="100%" stop-color="#2B1105"></stop>
+        </linearGradient>
+
+        {/* Reflet volumétrique 3D sur la panse */}
+        <radialGradient id="claySphereVolume" cx="38%" cy="33%" r="60%">
+          <stop offset="0%" stop-color="#F5B06B" stop-opacity="0.38"></stop>
+          <stop offset="50%" stop-color="#8C451E" stop-opacity="0"></stop>
+          <stop offset="85%" stop-color="#1A0902" stop-opacity="0.45"></stop>
+          <stop offset="100%" stop-color="#0D0401" stop-opacity="0.72"></stop>
+        </radialGradient>
+
+        {/* Dégradé de l'intérieur creux du canari */}
+        <radialGradient id="jarCavityGrad" cx="50%" cy="45%" r="55%">
+          <stop offset="0%" stop-color="#1E0E06"></stop>
+          <stop offset="100%" stop-color="#080301"></stop>
+        </radialGradient>
+
+        {/* Dégradé de l'eau dorée */}
+        <linearGradient
+          id="goldenWaterGrad"
+          x1="400"
+          y1="115"
+          x2="400"
+          y2="342"
+          gradientUnits="userSpaceOnUse"
+        >
+          <stop offset="0%" stop-color="#FFF7D1" stop-opacity="0.98"></stop>
+          <stop offset="30%" stop-color="#E5BC46" stop-opacity="0.9"></stop>
+          <stop offset="100%" stop-color="#8A6107" stop-opacity="0.95"></stop>
+        </linearGradient>
+
+        {/* ================= DÉGRADÉS DES DEUX MAINS ================= */}
+        {/* Main gauche : Ocre doré lumineux */}
+        <linearGradient
+          id="skinLeftMain"
+          x1="160"
+          y1="430"
+          x2="375"
+          y2="185"
+          gradientUnits="userSpaceOnUse"
+        >
+          <stop offset="0%" stop-color="#6B421E"></stop>
+          <stop offset="32%" stop-color="#A87340"></stop>
+          <stop offset="68%" stop-color="#D4A16A"></stop>
+          <stop offset="100%" stop-color="#F2D2AA"></stop>
+        </linearGradient>
+
+        <linearGradient
+          id="skinLeftShade"
+          x1="230"
+          y1="420"
+          x2="365"
+          y2="240"
+          gradientUnits="userSpaceOnUse"
+        >
+          <stop offset="0%" stop-color="#3D220D" stop-opacity="0.65"></stop>
+          <stop offset="60%" stop-color="#8C5B2B" stop-opacity="0.2"></stop>
+          <stop offset="100%" stop-color="#F2D2AA" stop-opacity="0"></stop>
+        </linearGradient>
+
+        {/* Main droite : Bronze-ébène profond */}
+        <linearGradient
+          id="skinRightMain"
+          x1="640"
+          y1="430"
+          x2="425"
+          y2="185"
+          gradientUnits="userSpaceOnUse"
+        >
+          <stop offset="0%" stop-color="#1C0C05"></stop>
+          <stop offset="35%" stop-color="#3B1D0E"></stop>
+          <stop offset="72%" stop-color="#693B20"></stop>
+          <stop offset="100%" stop-color="#965D3A"></stop>
+        </linearGradient>
+
+        <linearGradient
+          id="skinRightShade"
+          x1="570"
+          y1="420"
+          x2="435"
+          y2="240"
+          gradientUnits="userSpaceOnUse"
+        >
+          <stop offset="0%" stop-color="#0F0502" stop-opacity="0.7"></stop>
+          <stop offset="65%" stop-color="#3B1D0E" stop-opacity="0.25"></stop>
+          <stop offset="100%" stop-color="#965D3A" stop-opacity="0"></stop>
+        </linearGradient>
+
+        {/* ================= GÉOMÉTRIE DU CANARI & MASQUE DES TROUS ================= */}
+        <path
+          id="canariOuterShape"
+          d="M 344 92
+             C 348 106, 362 114, 362 124
+             C 308 145, 270 187, 270 236
+             C 270 291, 314 331, 364 343
+             Q 400 352, 436 343
+             C 486 331, 530 291, 530 236
+             C 530 187, 492 145, 438 124
+             C 438 114, 452 106, 456 92 Z"
+        ></path>
+
+        <clipPath id="canariInnerClip">
+          <path
+            d="M 366 125
+               C 314 146, 276 187, 276 236
+               C 276 289, 318 327, 366 339
+               Q 400 347, 434 339
+               C 482 327, 524 289, 524 236
+               C 524 187, 486 146, 434 125 Z"
+          ></path>
+        </clipPath>
+
+        {/* MASQUE DE PERÇAGE RÉEL : découpe les 10 trous dans la paroi en argile */}
+        <mask id="piercedClayMask">
+          <rect x="0" y="0" width="800" height="450" fill="white"></rect>
+          {/* 5 trous côté gauche */}
+          <circle cx="288" cy="228" r="6.2" fill="black"></circle>
+          <circle cx="305" cy="196" r="6.5" fill="black"></circle>
+          <circle cx="334" cy="182" r="6.8" fill="black"></circle>
+          <circle cx="364" cy="200" r="6.5" fill="black"></circle>
+          <circle cx="375" cy="264" r="6.5" fill="black"></circle>
+          {/* 5 trous côté droit */}
+          <circle cx="512" cy="232" r="6.2" fill="black"></circle>
+          <circle cx="495" cy="200" r="6.5" fill="black"></circle>
+          <circle cx="466" cy="185" r="6.8" fill="black"></circle>
+          <circle cx="436" cy="204" r="6.5" fill="black"></circle>
+          <circle cx="425" cy="268" r="6.5" fill="black"></circle>
+        </mask>
+
+        {/* Biseau d'épaisseur de terre cuite autour de chaque trou */}
+        <g id="hole-clay-bevel">
+          {/* Épaisseur intérieure de la paroi (tranche d'argile visible) */}
+          <circle
+            cx="0"
+            cy="0"
+            r="7.4"
+            fill="none"
+            stroke="#3B1808"
+            stroke-width="2.2"
+          ></circle>
+          {/* Reflet de lumière sur le bord inférieur droit du trou */}
+          <path
+            d="M -4.8 4.8 A 6.8 6.8 0 0 0 5.4 -4.2"
+            fill="none"
+            stroke="#E59C5A"
+            stroke-width="1.15"
+            stroke-linecap="round"
+            opacity="0.85"
+          ></path>
+          {/* Ombre supérieure gauche du rebord */}
+          <path
+            d="M 4.5 -5.0 A 6.8 6.8 0 0 0 -5.2 4.4"
+            fill="none"
+            stroke="#170802"
+            stroke-width="1.2"
+            stroke-linecap="round"
+            opacity="0.9"
+          ></path>
+          {/* Onde dorée lors du contact du doigt */}
+          <circle
+            cx="0"
+            cy="0"
+            r="10"
+            fill="none"
+            stroke="#FFF2B2"
+            stroke-width="0.9"
+            class="seal-ripple"
+          ></circle>
+        </g>
+      </defs>
+
+      {/* ================= 1. TRAME SACRÉE ================= */}
+      <g mask="url(#backdropVignette)">
+        <rect
+          x="100"
+          y="10"
+          width="600"
+          height="430"
+          fill="url(#danxomeWeave)"
+          class="sacred-backdrop"
+        ></rect>
+      </g>
+
+      {/* ================= 2. OMBRE AU SOL ================= */}
+      <ellipse
+        cx="400"
+        cy="352"
+        rx="118"
+        ry="13"
+        fill="#d4af37"
+        opacity="0.16"
+        filter="url(#sacredGlow)"
+      ></ellipse>
+
+      {/* ================= 3. LE CANARI PERCÉ (INTÉRIEUR + EAU + PAROI) ================= */}
+      <g class="canari-vessel">
+        {/* A. Cavité sombre intérieure (visible à travers les 10 trous !) */}
+        <use href="#canariOuterShape" fill="url(#jarCavityGrad)"></use>
+
+        {/* B. Eau dorée à l'intérieur du canari (visible à travers les trous quand elle monte !) */}
+        <g clip-path="url(#canariInnerClip)">
+          <g class="water-column">
+            <rect
+              x="265"
+              y="128"
+              width="270"
+              height="230"
+              fill="url(#goldenWaterGrad)"
+            ></rect>
+            {/* Vague lumineuse à la surface de l'eau */}
+            <path
+              d="M 240 128 Q 295 120 350 128 T 460 128 T 560 128 L 560 144 L 240 144 Z"
+              fill="#FFFBE6"
+              opacity="0.65"
+              class="water-surface-wave"
+            ></path>
+          </g>
+        </g>
+
+        {/* C. Paroi externe en terre cuite AJOURÉE par le masque */}
+        <g mask="url(#piercedClayMask)">
+          <use href="#canariOuterShape" fill="url(#clayMainGrad)"></use>
+          <use href="#canariOuterShape" fill="url(#claySphereVolume)"></use>
+          <use
+            href="#canariOuterShape"
+            fill="#ffffff"
+            filter="url(#terracottaGrain)"
+          ></use>
+
+          {/* Gravures géométriques traditionnelles sur l'épaule */}
+          <path
+            d="M 332 146 Q 400 159 468 146"
+            fill="none"
+            stroke="#d4af37"
+            stroke-width="0.9"
+            stroke-opacity="0.5"
+          ></path>
+          <path
+            d="M 318 160 L 331 153 L 344 160 L 357 153 L 370 160 L 383 153 L 400 159 L 417 153 L 430 160 L 443 153 L 456 160 L 469 153 L 482 160"
+            fill="none"
+            stroke="#d4af37"
+            stroke-width="1"
+            stroke-opacity="0.62"
+          ></path>
+        </g>
+
+        {/* Contour fin de la silhouette du canari */}
+        <use
+          href="#canariOuterShape"
+          fill="none"
+          stroke="#d4af37"
+          stroke-width="1.35"
+          stroke-opacity="0.75"
+        ></use>
+
+        {/* D. Biseaux d'épaisseur autour des 10 trous */}
+        {/* Gauche */}
+        <use href="#hole-clay-bevel" x="288" y="228"></use>
+        <use href="#hole-clay-bevel" x="305" y="196"></use>
+        <use href="#hole-clay-bevel" x="334" y="182"></use>
+        <use href="#hole-clay-bevel" x="364" y="200"></use>
+        <use href="#hole-clay-bevel" x="375" y="264"></use>
+        {/* Droite */}
+        <use href="#hole-clay-bevel" x="512" y="232"></use>
+        <use href="#hole-clay-bevel" x="495" y="200"></use>
+        <use href="#hole-clay-bevel" x="466" y="185"></use>
+        <use href="#hole-clay-bevel" x="436" y="204"></use>
+        <use href="#hole-clay-bevel" x="425" y="268"></use>
+
+        {/* E. Col et ouverture supérieure du canari */}
+        <ellipse
+          cx="400"
+          cy="91"
+          rx="58"
+          ry="11.5"
+          fill="#321508"
+          stroke="#d4af37"
+          stroke-width="1.75"
+        ></ellipse>
+        <ellipse cx="400" cy="91" rx="46" ry="7" fill="#090402"></ellipse>
+        {/* Reflet de l'eau visible tout en haut du col quand la jarre est pleine */}
+        <ellipse
+          cx="400"
+          cy="92"
+          rx="36"
+          ry="4.5"
+          fill="#F7D560"
+          class="top-water-glint"
+        ></ellipse>
+      </g>
+
+      {/* ================= 4. JETS D'EAU PARABOLIQUES (FUITES) ================= */}
+      <g
+        class="water-streams"
+        stroke="#FFF0B3"
+        stroke-width="1.5"
+        fill="none"
+        stroke-linecap="round"
+      >
+        {/* Fuites depuis les trous gauches */}
+        <path d="M 288 228 Q 258 262 252 322" stroke-dasharray="5 5"></path>
+        <path d="M 305 196 Q 276 236 270 302" stroke-dasharray="4 6"></path>
+        <path d="M 334 182 Q 312 228 308 292" stroke-dasharray="4 7"></path>
+        <path d="M 375 264 Q 362 302 360 346" stroke-dasharray="4 5"></path>
+
+        {/* Fuites depuis les trous droits */}
+        <path d="M 512 232 Q 542 266 548 324" stroke-dasharray="5 5"></path>
+        <path d="M 495 200 Q 524 240 530 304" stroke-dasharray="4 6"></path>
+        <path d="M 466 185 Q 488 230 492 294" stroke-dasharray="4 7"></path>
+        <path d="M 425 268 Q 438 305 440 346" stroke-dasharray="4 5"></path>
+      </g>
+
+      {/* ================= 5. LES DEUX MAINS SCULPTÉES (ANATOMIE FINE) ================= */}
+      {/* ---------- MAIN GAUCHE (Ocre doré) ---------- */}
+      <g class="hand-left-embrace" filter="url(#handCastShadow)">
+        {/* Avant-bras en courbe diagonale, poignet affiné, paume et pouce */}
+        <path
+          d="M 188 465
+             C 208 424, 232 392, 248 364
+             C 256 350, 260 338, 258 326
+             C 255 308, 258 286, 269 270
+             C 282 254, 304 248, 326 254
+             C 338 258, 344 268, 344 282
+             C 344 291, 346 294, 352 287
+             C 359 278, 366 266, 371 260
+             C 374 257, 380 260, 379 266
+             C 375 278, 368 294, 361 310
+             C 350 332, 336 346, 316 356
+             C 299 365, 286 376, 274 396
+             C 260 419, 248 442, 238 465 Z"
+          fill="url(#skinLeftMain)"
+        ></path>
+
+        {/* Modelé d'ombre sur le poignet et la paume */}
+        <path
+          d="M 188 465
+             C 208 424, 232 392, 248 364
+             C 256 350, 260 338, 258 326
+             C 255 308, 258 286, 269 270
+             C 282 254, 304 248, 326 254
+             C 338 258, 344 268, 344 282
+             C 344 291, 346 294, 352 287
+             C 359 278, 366 266, 371 260
+             C 374 257, 380 260, 379 266
+             C 375 278, 368 294, 361 310
+             C 350 332, 336 346, 316 356
+             C 299 365, 286 376, 274 396
+             C 260 419, 248 442, 238 465 Z"
+          fill="url(#skinLeftShade)"
+        ></path>
+
+        {/* Auriculaire -> pointe sur trou (288, 228) */}
+        <path
+          d="M 266 277
+             C 269 258, 276 240, 283 226
+             C 285 222, 292 223, 292 229
+             C 290 244, 286 260, 284 275 Z"
+          fill="url(#skinLeftMain)"
+        ></path>
+
+        {/* Annulaire -> pointe sur trou (305, 196) */}
+        <path
+          d="M 282 268
+             C 287 243, 294 216, 300 195
+             C 302 190, 309 191, 309 197
+             C 307 218, 303 242, 301 264 Z"
+          fill="url(#skinLeftMain)"
+        ></path>
+
+        {/* Majeur -> pointe sur trou (334, 182) */}
+        <path
+          d="M 300 262
+             C 309 235, 319 205, 329 181
+             C 331 176, 338 177, 338 184
+             C 334 207, 327 234, 322 260 Z"
+          fill="url(#skinLeftMain)"
+        ></path>
+
+        {/* Index -> pointe sur trou (364, 200) */}
+        <path
+          d="M 321 260
+             C 333 238, 346 216, 359 198
+             C 362 194, 368 197, 367 203
+             C 359 222, 349 244, 340 264 Z"
+          fill="url(#skinLeftMain)"
+        ></path>
+
+        {/* Plis anatomiques fins (articulations & paume) */}
+        <g
+          fill="none"
+          stroke="#5C3614"
+          stroke-width="0.8"
+          stroke-linecap="round"
+          opacity="0.45"
+        >
+          <path d="M 288 286 C 302 279, 318 280, 331 287"></path>
+          <path d="M 304 328 C 318 318, 332 313, 344 313"></path>
+          <path d="M 255 344 C 266 347, 276 353, 283 361"></path>
+        </g>
+
+        {/* Reflets délicats d'ongles au bout des 5 doigts */}
+        <g fill="#FFF5E4" opacity="0.55">
+          <ellipse
+            cx="288"
+            cy="226"
+            rx="2.1"
+            ry="2.8"
+            transform="rotate(-14 288 226)"
+          ></ellipse>
+          <ellipse
+            cx="305"
+            cy="194"
+            rx="2.2"
+            ry="3.0"
+            transform="rotate(-10 305 194)"
+          ></ellipse>
+          <ellipse
+            cx="334"
+            cy="180"
+            rx="2.3"
+            ry="3.1"
+            transform="rotate(-5 334 180)"
+          ></ellipse>
+          <ellipse
+            cx="363"
+            cy="198"
+            rx="2.2"
+            ry="2.9"
+            transform="rotate(8 363 198)"
+          ></ellipse>
+          <ellipse
+            cx="375"
+            cy="262"
+            rx="2.1"
+            ry="2.7"
+            transform="rotate(18 375 262)"
+          ></ellipse>
+        </g>
+      </g>
+
+      {/* ---------- MAIN DROITE (Bronze-ébène royal) ---------- */}
+      <g class="hand-right-embrace" filter="url(#handCastShadow)">
+        {/* Avant-bras en courbe diagonale, poignet affiné, paume et pouce */}
+        <path
+          d="M 612 465
+             C 592 424, 568 392, 552 364
+             C 544 350, 540 338, 542 326
+             C 545 308, 542 288, 531 273
+             C 518 257, 496 251, 474 257
+             C 462 261, 456 271, 456 285
+             C 456 294, 454 297, 448 290
+             C 441 281, 434 270, 429 264
+             C 426 261, 420 264, 421 270
+             C 425 282, 432 298, 439 314
+             C 450 335, 464 348, 484 358
+             C 501 367, 514 378, 526 398
+             C 540 420, 552 442, 562 465 Z"
+          fill="url(#skinRightMain)"
+        ></path>
+
+        {/* Modelé d'ombre sur le poignet et la paume */}
+        <path
+          d="M 612 465
+             C 592 424, 568 392, 552 364
+             C 544 350, 540 338, 542 326
+             C 545 308, 542 288, 531 273
+             C 518 257, 496 251, 474 257
+             C 462 261, 456 271, 456 285
+             C 456 294, 454 297, 448 290
+             C 441 281, 434 270, 429 264
+             C 426 261, 420 264, 421 270
+             C 425 282, 432 298, 439 314
+             C 450 335, 464 348, 484 358
+             C 501 367, 514 378, 526 398
+             C 540 420, 552 442, 562 465 Z"
+          fill="url(#skinRightShade)"
+        ></path>
+
+        {/* Auriculaire -> pointe sur trou (512, 232) */}
+        <path
+          d="M 534 280
+             C 531 261, 524 244, 517 230
+             C 515 226, 508 227, 508 233
+             C 510 248, 514 264, 516 278 Z"
+          fill="url(#skinRightMain)"
+        ></path>
+
+        {/* Annulaire -> pointe sur trou (495, 200) */}
+        <path
+          d="M 518 271
+             C 513 246, 506 220, 500 199
+             C 498 194, 491 195, 491 201
+             C 493 222, 497 245, 499 267 Z"
+          fill="url(#skinRightMain)"
+        ></path>
+
+        {/* Majeur -> pointe sur trou (466, 185) */}
+        <path
+          d="M 500 265
+             C 491 238, 481 208, 471 184
+             C 469 179, 462 180, 462 187
+             C 466 210, 473 237, 478 263 Z"
+          fill="url(#skinRightMain)"
+        ></path>
+
+        {/* Index -> pointe sur trou (436, 204) */}
+        <path
+          d="M 479 263
+             C 467 241, 454 220, 441 202
+             C 438 198, 432 201, 433 207
+             C 441 226, 451 247, 460 267 Z"
+          fill="url(#skinRightMain)"
+        ></path>
+
+        {/* Plis anatomiques fins et reflet d'arête dorée */}
+        <g
+          fill="none"
+          stroke="#140702"
+          stroke-width="0.85"
+          stroke-linecap="round"
+          opacity="0.55"
+        >
+          <path d="M 512 289 C 498 282, 482 283, 469 290"></path>
+          <path d="M 496 330 C 482 320, 468 315, 456 315"></path>
+          <path d="M 545 346 C 534 349, 524 355, 517 363"></path>
+        </g>
+
+        {/* Reflets délicats d'ongles au bout des 5 doigts */}
+        <g fill="#D9A87E" opacity="0.45">
+          <ellipse
+            cx="512"
+            cy="230"
+            rx="2.1"
+            ry="2.8"
+            transform="rotate(14 512 230)"
+          ></ellipse>
+          <ellipse
+            cx="495"
+            cy="198"
+            rx="2.2"
+            ry="3.0"
+            transform="rotate(10 495 198)"
+          ></ellipse>
+          <ellipse
+            cx="466"
+            cy="183"
+            rx="2.3"
+            ry="3.1"
+            transform="rotate(5 466 183)"
+          ></ellipse>
+          <ellipse
+            cx="437"
+            cy="202"
+            rx="2.2"
+            ry="2.9"
+            transform="rotate(-8 437 202)"
+          ></ellipse>
+          <ellipse
+            cx="425"
+            cy="266"
+            rx="2.1"
+            ry="2.7"
+            transform="rotate(-18 425 266)"
+          ></ellipse>
+        </g>
+      </g>
+    </svg>
+  </div>
+</div>
+
+<style>
+  /* Respiration de la trame géométrique */
+  .sacred-backdrop {
+    opacity: 0.45;
+    transition: opacity 0.9s ease;
+  }
+  .group:hover .sacred-backdrop {
+    opacity: 0.9;
+  }
+
+  /* Mouvement naturel du poignet et de la main gauche */
+  .hand-left-embrace {
+    transform-origin: 225px 435px;
+    animation: embraceLeft 11s cubic-bezier(0.25, 0.9, 0.3, 1) infinite;
+  }
+  @keyframes embraceLeft {
+    0%,
+    14% {
+      transform: translate(-26px, 16px) rotate(-7.5deg);
+      opacity: 0.85;
+    }
+    32%,
+    82% {
+      transform: translate(0px, 0px) rotate(0deg);
+      opacity: 1;
+    }
+    96%,
+    100% {
+      transform: translate(-26px, 16px) rotate(-7.5deg);
+      opacity: 0.85;
+    }
+  }
+
+  /* Mouvement naturel du poignet et de la main droite */
+  .hand-right-embrace {
+    transform-origin: 575px 435px;
+    animation: embraceRight 11s cubic-bezier(0.25, 0.9, 0.3, 1) infinite;
+  }
+  @keyframes embraceRight {
+    0%,
+    14% {
+      transform: translate(26px, 16px) rotate(7.5deg);
+      opacity: 0.85;
+    }
+    32%,
+    82% {
+      transform: translate(0px, 0px) rotate(0deg);
+      opacity: 1;
+    }
+    96%,
+    100% {
+      transform: translate(26px, 16px) rotate(7.5deg);
+      opacity: 0.85;
+    }
+  }
+
+  /* Tarissement des fuites dès que les 10 doigts scellent les trous */
+  .water-streams {
+    animation: streamDisappear 11s ease-in-out infinite;
+  }
+  @keyframes streamDisappear {
+    0%,
+    18% {
+      opacity: 0.88;
+      stroke-dashoffset: 24;
+    }
+    30%,
+    82% {
+      opacity: 0;
+      stroke-dashoffset: 0;
+    }
+    95%,
+    100% {
+      opacity: 0.88;
+      stroke-dashoffset: 24;
+    }
+  }
+
+  /* Montée de l'eau dorée à l'intérieur du canari */
+  .water-column {
+    animation: waterRise 11s cubic-bezier(0.35, 0, 0.2, 1) infinite;
+  }
+  @keyframes waterRise {
+    0%,
+    24% {
+      transform: translateY(154px);
+      opacity: 0.55;
+    }
+    56%,
+    80% {
+      transform: translateY(12px);
+      opacity: 0.96;
+    }
+    95%,
+    100% {
+      transform: translateY(154px);
+      opacity: 0.55;
+    }
+  }
+
+  /* Reflet de l'eau qui affleure au col du canari une fois rempli */
+  .top-water-glint {
+    animation: topGlint 11s ease-in-out infinite;
+  }
+  @keyframes topGlint {
+    0%,
+    46% {
+      opacity: 0;
+    }
+    58%,
+    80% {
+      opacity: 0.65;
+    }
+    90%,
+    100% {
+      opacity: 0;
+    }
+  }
+
+  /* Ondulation douce de la surface de l'eau */
+  .water-surface-wave {
+    animation: waveShift 3.5s ease-in-out infinite alternate;
+  }
+  @keyframes waveShift {
+    0% {
+      transform: translateX(-16px);
+    }
+    100% {
+      transform: translateX(16px);
+    }
+  }
+
+  /* Onde lumineuse sous chaque doigt au moment du scellement */
+  .seal-ripple {
+    transform-box: fill-box;
+    transform-origin: center;
+    animation: rippleExpand 11s ease-out infinite;
+  }
+  @keyframes rippleExpand {
+    0%,
+    30% {
+      transform: scale(0.8);
+      opacity: 0;
+    }
+    42% {
+      transform: scale(1.85);
+      opacity: 0.95;
+    }
+    58%,
+    82% {
+      transform: scale(1.2);
+      opacity: 0.4;
+    }
+    92%,
+    100% {
+      transform: scale(0.8);
+      opacity: 0;
+    }
+  }
+
+  /* Rayonnement de la jarre emplie */
+  .canari-vessel {
+    animation: vesselRadiance 11s ease-in-out infinite;
+  }
+  @keyframes vesselRadiance {
+    0%,
+    35% {
+      filter: none;
+    }
+    55%,
+    80% {
+      filter: drop-shadow(0 0 22px rgba(212, 175, 55, 0.4));
+    }
+    95%,
+    100% {
+      filter: none;
+    }
+  }
+</style>
