@@ -1,0 +1,561 @@
+---
+// ScienceDuVivantArt.astro
+// Composant Symbolique : D'abord la Lumière, ensuite le VODUN
+// Architecture : Astro + SVG Lumière Volumétrique + Chorégraphie CSS 60fps
+---
+
+<div
+  class="relative w-full max-w-3xl mx-auto aspect-video rounded-3xl overflow-hidden bg-[#040302] border border-[#d4af37]/30 shadow-[0_40px_100px_rgba(0,0,0,0.92),inset_0_0_90px_rgba(0,0,0,0.85)] group mb-16 mt-8 cursor-pointer select-none"
+  aria-label="Animation symbolique : dans l'obscurité, une lumière dorée éclot d'abord et rayonne, puis fait naître le mot VODUN en son cœur."
+>
+  {/* Fond sombre qui s'illumine progressivement au fil de l'apparition de la lumière */}
+  <div class="absolute inset-0 bg-[radial-gradient(circle_at_50%_50%,#2b1b0a_0%,#090603_58%,#040302_100%)] backdrop-light-glow"></div>
+
+  <div class="absolute inset-0 flex items-center justify-center">
+    <svg
+      viewBox="0 0 800 450"
+      class="w-full h-full overflow-visible"
+      xmlns="http://www.w3.org/2000/svg"
+      preserveAspectRatio="xMidYMid meet"
+    >
+      <defs>
+        {/* Graine de lumière initiale */}
+        <radialGradient id="seedCoreGrad" cx="50%" cy="50%" r="50%">
+          <stop offset="0%" stop-color="#FFFFFF" stop-opacity="1"></stop>
+          <stop offset="40%" stop-color="#FFE885" stop-opacity="0.85"></stop>
+          <stop offset="100%" stop-color="#D4AF37" stop-opacity="0"></stop>
+        </radialGradient>
+
+        {/* Grand foyer solaire qui précède le mot */}
+        <radialGradient id="vodunSunCore" cx="50%" cy="50%" r="50%">
+          <stop offset="0%" stop-color="#FFFDF2" stop-opacity="0.98"></stop>
+          <stop offset="22%" stop-color="#F7D568" stop-opacity="0.62"></stop>
+          <stop offset="55%" stop-color="#D4AF37" stop-opacity="0.2"></stop>
+          <stop offset="100%" stop-color="#D4AF37" stop-opacity="0"></stop>
+        </radialGradient>
+
+        {/* Pilier vertical de lumière */}
+        <linearGradient
+          id="verticalLightPillar"
+          x1="400"
+          y1="0"
+          x2="400"
+          y2="450"
+          gradientUnits="userSpaceOnUse"
+        >
+          <stop offset="0%" stop-color="#D4AF37" stop-opacity="0"></stop>
+          <stop offset="28%" stop-color="#F7DC79" stop-opacity="0.28"></stop>
+          <stop offset="50%" stop-color="#FFF9DB" stop-opacity="0.6"></stop>
+          <stop offset="72%" stop-color="#F7DC79" stop-opacity="0.28"></stop>
+          <stop offset="100%" stop-color="#D4AF37" stop-opacity="0"></stop>
+        </linearGradient>
+
+        {/* Rayons projetés vers l'extérieur */}
+        <linearGradient id="rayBeamGrad" x1="0%" y1="50%" x2="100%" y2="50%">
+          <stop offset="0%" stop-color="#FFF7CC" stop-opacity="0.5"></stop>
+          <stop offset="45%" stop-color="#D4AF37" stop-opacity="0.16"></stop>
+          <stop offset="100%" stop-color="#D4AF37" stop-opacity="0"></stop>
+        </linearGradient>
+
+        {/* Or sculpté pour les lettres VODUN */}
+        <linearGradient
+          id="vodunGoldMetal"
+          x1="200"
+          y1="185"
+          x2="600"
+          y2="265"
+          gradientUnits="userSpaceOnUse"
+        >
+          <stop offset="0%" stop-color="#C99B32"></stop>
+          <stop offset="28%" stop-color="#FFF3B8"></stop>
+          <stop offset="50%" stop-color="#E5BC46"></stop>
+          <stop offset="74%" stop-color="#FFF7D4"></stop>
+          <stop offset="100%" stop-color="#9E7114"></stop>
+        </linearGradient>
+
+        {/* Balayage lumineux traversant les lettres une fois révélées */}
+        <linearGradient
+          id="vodunShimmerSweep"
+          x1="0%"
+          y1="0%"
+          x2="100%"
+          y2="0%"
+        >
+          <stop offset="0%" stop-color="#FFFFFF" stop-opacity="0"></stop>
+          <stop offset="42%" stop-color="#FFFFFF" stop-opacity="0"></stop>
+          <stop offset="50%" stop-color="#FFFFFF" stop-opacity="0.95"></stop>
+          <stop offset="58%" stop-color="#FFFFFF" stop-opacity="0"></stop>
+          <stop offset="100%" stop-color="#FFFFFF" stop-opacity="0"></stop>
+          <animateTransform
+            attributeName="gradientTransform"
+            type="translate"
+            from="-1 0"
+            to="1 0"
+            dur="4.5s"
+            repeatCount="indefinite"
+          />
+        </linearGradient>
+
+        {/* Lignes d'horizon dorées */}
+        <linearGradient
+          id="horizonLineGrad"
+          x1="120"
+          y1="225"
+          x2="680"
+          y2="225"
+          gradientUnits="userSpaceOnUse"
+        >
+          <stop offset="0%" stop-color="#D4AF37" stop-opacity="0"></stop>
+          <stop offset="25%" stop-color="#D4AF37" stop-opacity="0.5"></stop>
+          <stop offset="50%" stop-color="#FFF5CC" stop-opacity="0.95"></stop>
+          <stop offset="75%" stop-color="#D4AF37" stop-opacity="0.5"></stop>
+          <stop offset="100%" stop-color="#D4AF37" stop-opacity="0"></stop>
+        </linearGradient>
+
+        {/* Filtres lumineux */}
+        <filter
+          id="divineLightBloom"
+          x="-50%"
+          y="-50%"
+          width="200%"
+          height="200%"
+        >
+          <feGaussianBlur stdDeviation="8" result="blurWide"></feGaussianBlur>
+          <feGaussianBlur
+            stdDeviation="2.5"
+            result="blurTight"
+          ></feGaussianBlur>
+          <feMerge>
+            <feMergeNode in="blurWide"></feMergeNode>
+            <feMergeNode in="blurTight"></feMergeNode>
+            <feMergeNode in="SourceGraphic"></feMergeNode>
+          </feMerge>
+        </filter>
+
+        <filter id="softAura" x="-40%" y="-40%" width="180%" height="180%">
+          <feGaussianBlur stdDeviation="14"></feGaussianBlur>
+        </filter>
+      </defs>
+
+      {/* ================= TEMPS 1 : L'ÉTINCELLE ORIGINELLE DANS L'OBSCURITÉ ================= */}
+      <g class="origin-seed">
+        <circle cx="400" cy="225" r="28" fill="url(#seedCoreGrad)"></circle>
+        <circle
+          cx="400"
+          cy="225"
+          r="3.5"
+          fill="#FFFFFF"
+          filter="url(#divineLightBloom)"
+        ></circle>
+      </g>
+
+      {/* ================= TEMPS 2 : D'ABORD LA LUMIÈRE (Pilier, Foyer & Rayons) ================= */}
+      {/* Pilier vertical de lumière */}
+      <g class="light-pillar-layer">
+        <rect
+          x="345"
+          y="0"
+          width="110"
+          height="450"
+          fill="url(#verticalLightPillar)"
+          filter="url(#softAura)"
+        ></rect>
+        <line
+          x1="400"
+          y1="20"
+          x2="400"
+          y2="430"
+          stroke="#FFF6CC"
+          stroke-width="1.2"
+          stroke-opacity="0.45"
+        ></line>
+      </g>
+
+      {/* Grand foyer solaire */}
+      <g class="sun-core-layer">
+        <circle cx="400" cy="225" r="230" fill="url(#vodunSunCore)"></circle>
+      </g>
+
+      {/* Rayons projetés à travers l'espace */}
+      <g class="sunburst-rays" transform="translate(400, 225)">
+        <polygon
+          points="0,0 385,-95 385,-42"
+          fill="url(#rayBeamGrad)"
+        ></polygon>
+        <polygon points="0,0 395,-14 395,14" fill="url(#rayBeamGrad)"></polygon>
+        <polygon points="0,0 385,42 385,95" fill="url(#rayBeamGrad)"></polygon>
+
+        <polygon
+          points="0,0 -385,-95 -385,-42"
+          fill="url(#rayBeamGrad)"
+        ></polygon>
+        <polygon
+          points="0,0 -395,-14 -395,14"
+          fill="url(#rayBeamGrad)"
+        ></polygon>
+        <polygon
+          points="0,0 -385,42 -385,95"
+          fill="url(#rayBeamGrad)"
+        ></polygon>
+
+        <polygon
+          points="0,0 -110,-220 -45,-220"
+          fill="url(#rayBeamGrad)"
+        ></polygon>
+        <polygon
+          points="0,0 45,-220 110,-220"
+          fill="url(#rayBeamGrad)"
+        ></polygon>
+        <polygon
+          points="0,0 -110,220 -45,220"
+          fill="url(#rayBeamGrad)"
+        ></polygon>
+        <polygon points="0,0 45,220 110,220" fill="url(#rayBeamGrad)"></polygon>
+      </g>
+
+      {/* Ondes de lumière qui se propagent avant et pendant l'apparition */}
+      <g fill="none" stroke="#d4af37">
+        <circle
+          cx="400"
+          cy="225"
+          r="95"
+          stroke-width="1.2"
+          class="light-wave wave-1"
+        ></circle>
+        <circle
+          cx="400"
+          cy="225"
+          r="95"
+          stroke-width="0.9"
+          class="light-wave wave-2"
+        ></circle>
+      </g>
+
+      {/* ================= TEMPS 3 : ENSUITE LE MOT « VODUN » NAÎT DE LA LUMIÈRE ================= */}
+      {/* Lignes d'horizon qui s'ouvrent pour accueillir le mot */}
+      <g class="horizon-frame">
+        <line
+          x1="120"
+          y1="166"
+          x2="680"
+          y2="166"
+          stroke="url(#horizonLineGrad)"
+          stroke-width="0.9"
+        ></line>
+        <line
+          x1="120"
+          y1="280"
+          x2="680"
+          y2="280"
+          stroke="url(#horizonLineGrad)"
+          stroke-width="0.9"
+        ></line>
+        <polygon
+          points="400,155 404,166 400,177 396,166"
+          fill="#FFF3C4"
+          filter="url(#divineLightBloom)"
+        ></polygon>
+        <polygon
+          points="400,269 404,280 400,291 396,280"
+          fill="#FFF3C4"
+          filter="url(#divineLightBloom)"
+        ></polygon>
+      </g>
+
+      {/* Le mot VODUN qui émerge après la lumière (x=410 compense le letter-spacing de 20 pour un centrage exact) */}
+      <g class="vodun-birth">
+        {/* Halo lumineux derrière les lettres */}
+        <text
+          x="410"
+          y="246"
+          text-anchor="middle"
+          font-family="Georgia, 'Playfair Display', 'Times New Roman', serif"
+          font-size="68"
+          font-weight="700"
+          letter-spacing="20"
+          fill="#FFF2B2"
+          opacity="0.55"
+          filter="url(#divineLightBloom)"
+        >
+          VODUN
+        </text>
+
+        {/* Corps principal en or sculpté */}
+        <text
+          x="410"
+          y="246"
+          text-anchor="middle"
+          font-family="Georgia, 'Playfair Display', 'Times New Roman', serif"
+          font-size="68"
+          font-weight="700"
+          letter-spacing="20"
+          fill="url(#vodunGoldMetal)"
+          stroke="#FFF8D6"
+          stroke-width="0.65"
+          stroke-opacity="0.7"
+        >
+          VODUN
+        </text>
+
+        {/* Reflet lumineux glissant sur le mot */}
+        <text
+          x="410"
+          y="246"
+          text-anchor="middle"
+          font-family="Georgia, 'Playfair Display', 'Times New Roman', serif"
+          font-size="68"
+          font-weight="700"
+          letter-spacing="20"
+          fill="url(#vodunShimmerSweep)"
+        >
+          VODUN
+        </text>
+      </g>
+
+      {/* ================= TEMPS 4 : ÉTINCELLES DE VIE AUTOUR DE LA LUMIÈRE ================= */}
+      <g class="sparks-layer" fill="#FFF5C8" filter="url(#divineLightBloom)">
+        <circle cx="245" cy="210" r="2.1" class="spark spark-1"></circle>
+        <circle cx="555" cy="205" r="2.3" class="spark spark-2"></circle>
+        <circle cx="310" cy="145" r="1.7" class="spark spark-3"></circle>
+        <circle cx="495" cy="142" r="1.9" class="spark spark-4"></circle>
+        <circle cx="275" cy="295" r="1.8" class="spark spark-2"></circle>
+        <circle cx="525" cy="298" r="2.0" class="spark spark-1"></circle>
+        <circle cx="190" cy="245" r="1.5" class="spark spark-4"></circle>
+        <circle cx="610" cy="235" r="1.6" class="spark spark-3"></circle>
+      </g>
+    </svg>
+  </div>
+</div>
+
+<style>
+  /* 0. Halo d'ambiance du fond : sombre au début, s'éclaire avec la lumière */
+  .backdrop-light-glow {
+    animation: backdropIlluminate 12s cubic-bezier(0.33, 1, 0.68, 1) infinite;
+  }
+  @keyframes backdropIlluminate {
+    0%,
+    10% {
+      opacity: 0.12;
+    }
+    28%,
+    82% {
+      opacity: 1;
+    }
+    95%,
+    100% {
+      opacity: 0.12;
+    }
+  }
+
+  /* 1. L'étincelle initiale dans le noir (0% -> 22%) */
+  .origin-seed {
+    transform-origin: 400px 225px;
+    animation: seedAwaken 12s ease-in-out infinite;
+  }
+  @keyframes seedAwaken {
+    0% {
+      transform: scale(0.4);
+      opacity: 0.25;
+    }
+    12% {
+      transform: scale(1.35);
+      opacity: 1;
+    }
+    26%,
+    88% {
+      transform: scale(2.2);
+      opacity: 0;
+    }
+    96%,
+    100% {
+      transform: scale(0.4);
+      opacity: 0.25;
+    }
+  }
+
+  /* 2A. Le pilier vertical de lumière descend et s'ouvre (10% -> 32%) */
+  .light-pillar-layer {
+    transform-origin: 400px 225px;
+    animation: pillarDescend 12s cubic-bezier(0.22, 1, 0.36, 1) infinite;
+  }
+  @keyframes pillarDescend {
+    0%,
+    8% {
+      transform: scaleY(0.05) scaleX(0.3);
+      opacity: 0;
+    }
+    26%,
+    82% {
+      transform: scaleY(1) scaleX(1);
+      opacity: 0.95;
+    }
+    94%,
+    100% {
+      transform: scaleY(0.05) scaleX(0.3);
+      opacity: 0;
+    }
+  }
+
+  /* 2B. Le foyer solaire éclot (14% -> 36%) */
+  .sun-core-layer {
+    transform-origin: 400px 225px;
+    animation: sunBloom 12s cubic-bezier(0.22, 1, 0.36, 1) infinite;
+  }
+  @keyframes sunBloom {
+    0%,
+    12% {
+      transform: scale(0.15);
+      opacity: 0;
+    }
+    32%,
+    82% {
+      transform: scale(1.05);
+      opacity: 1;
+    }
+    94%,
+    100% {
+      transform: scale(0.15);
+      opacity: 0;
+    }
+  }
+
+  /* 2C. Les rayons se déploient dans l'espace (18% -> 40%) */
+  .sunburst-rays {
+    animation: raysExpand 12s cubic-bezier(0.22, 1, 0.36, 1) infinite;
+  }
+  @keyframes raysExpand {
+    0%,
+    16% {
+      transform: translate(400px, 225px) scale(0.2);
+      opacity: 0;
+    }
+    36%,
+    82% {
+      transform: translate(400px, 225px) scale(1.06);
+      opacity: 0.92;
+    }
+    94%,
+    100% {
+      transform: translate(400px, 225px) scale(0.2);
+      opacity: 0;
+    }
+  }
+
+  /* 2D. Ondes de lumière envoyées vers l'extérieur */
+  .light-wave {
+    transform-origin: 400px 225px;
+    animation: sendLightWave 12s cubic-bezier(0.22, 0.61, 0.36, 1) infinite;
+  }
+  .wave-2 {
+    animation-delay: 1.4s;
+  }
+  @keyframes sendLightWave {
+    0%,
+    16% {
+      transform: scale(0.3);
+      opacity: 0;
+    }
+    24% {
+      opacity: 0.8;
+    }
+    55%,
+    100% {
+      transform: scale(3.1);
+      opacity: 0;
+    }
+  }
+
+  /* 3A. Lignes d'horizon qui s'étirent juste avant le mot (34% -> 48%) */
+  .horizon-frame {
+    transform-origin: 400px 225px;
+    animation: openHorizon 12s cubic-bezier(0.22, 1, 0.36, 1) infinite;
+  }
+  @keyframes openHorizon {
+    0%,
+    32% {
+      transform: scaleX(0);
+      opacity: 0;
+    }
+    48%,
+    80% {
+      transform: scaleX(1);
+      opacity: 1;
+    }
+    90%,
+    100% {
+      transform: scaleX(0);
+      opacity: 0;
+    }
+  }
+
+  /* 3B. LE MOT « VODUN » NAÎT APRÈS LA LUMIÈRE (38% -> 56%) */
+  .vodun-birth {
+    transform-origin: 400px 225px;
+    animation: vodunEmergeFromLight 12s cubic-bezier(0.22, 1, 0.36, 1) infinite;
+  }
+  @keyframes vodunEmergeFromLight {
+    0%,
+    36% {
+      opacity: 0;
+      transform: scale(0.92);
+      filter: blur(10px) brightness(2.4);
+    }
+    54% {
+      opacity: 1;
+      transform: scale(1);
+      filter: blur(0px) brightness(1.35);
+    }
+    64%,
+    80% {
+      opacity: 1;
+      transform: scale(1.015);
+      filter: blur(0px) brightness(1);
+    }
+    90%,
+    100% {
+      opacity: 0;
+      transform: scale(0.96);
+      filter: blur(6px) brightness(1.8);
+    }
+  }
+
+  /* 4. Étincelles dorées autour de la lumière révélée */
+  .sparks-layer {
+    animation: sparksVisibility 12s ease-in-out infinite;
+  }
+  @keyframes sparksVisibility {
+    0%,
+    35% {
+      opacity: 0;
+    }
+    50%,
+    82% {
+      opacity: 1;
+    }
+    92%,
+    100% {
+      opacity: 0;
+    }
+  }
+
+  .spark-1 {
+    animation: floatSpark 4s ease-in-out infinite alternate;
+  }
+  .spark-2 {
+    animation: floatSpark 5s ease-in-out infinite alternate-reverse;
+  }
+  .spark-3 {
+    animation: floatSpark 3.8s ease-in-out infinite alternate;
+  }
+  .spark-4 {
+    animation: floatSpark 5.5s ease-in-out infinite alternate-reverse;
+  }
+  @keyframes floatSpark {
+    0% {
+      transform: translate(0, 6px) scale(0.8);
+    }
+    100% {
+      transform: translate(0, -14px) scale(1.25);
+    }
+  }
+</style>
